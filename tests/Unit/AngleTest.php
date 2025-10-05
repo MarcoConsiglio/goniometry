@@ -211,14 +211,19 @@ class AngleTest extends TestCase
     public function test_can_cast_to_decimal()
     {
         // Arrange
-        $precision = 5;
-        $decimal = $this->faker->randomFloat($precision, -360, 360);
+        $precision = PHP_FLOAT_DIG;
+        $decimal = $this->faker->randomFloat(
+            $precision,             /* Max available precision */
+            -Angle::MAX_DEGREES,    /* -360° */
+            Angle::MAX_DEGREES      /* +360° */
+        );
         $angle = Angle::createFromDecimal($decimal);
+        $rounded_decimal = round($decimal, 1, RoundingMode::HalfTowardsZero);
 
         // Act & Assert
-        $result = $angle->toDecimal($precision);
+        $result = $angle->toDecimal();
         $this->assertIsFloat($result);
-        $this->assertEquals($decimal, $result);
+        $this->assertEquals($rounded_decimal, $result);
     }
 
     #[TestDox("can be casted to radiant.")]
