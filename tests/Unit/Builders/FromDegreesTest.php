@@ -42,17 +42,14 @@ class FromDegreesTest extends BuilderTestCase
         new FromDegrees(0, 60, 0);
     }
 
-    #[TestDox("cannot build an angle with 60\" or more.")]
+    #[TestDox("cannot build an angle with more than 59.9\".")]
     public function test_exception_if_equal_or_more_than_60_seconds()
     {
-        // Arrange
-        /** @var \MarcoConsiglio\Trigonometry\Builders\FromDegrees */
-        
         // Assert
         $this->expectException(AngleOverflowException::class);
-        $this->expectExceptionMessage("The angle seconds can't be greater than or equal to 60\".");
+        $this->expectExceptionMessage("The angle seconds can't be greater than 59.9\".");
         
-        // Act
+        // Arrange & Act
         new FromDegrees(0, 0, 60);
     }
     
