@@ -27,6 +27,8 @@ An angle
  [x] throws an exception if less than comparison has an unexpected type argument.
  [x] can be tested if it is less than or equal another string, integer, decimal or object angle.
  [x] throws an exception if less than or equal comparison has an unexpected type.
+ [x] can be tested if it is different than another string, integer, decimal or object angle.
+ [x] throws an exception if different comparison has an unexpected type.
 
 The AngleOverflowException
  [x] has a message which explain you're trying to create an angle with more than 360°.
@@ -44,14 +46,14 @@ The FromDecimal builder
 
 The FromDegrees builder
  [x] can create an angle from a degrees values.
- [x] cannot build an angle with more than 360°.
- [x] cannot build an angle with more than 59'.
- [x] cannot build an angle with more than 59.9".
- [x] can create an angle of exact 360°.
+ [x] throws AngleOverflowException with more than 360° input.
+ [x] throws AngleOverflowException with more than 59'.
+ [x] throws AngleOverflowException with 59.9".
+ [x] set the null angle with positive/counterclockwise direction.
 
 The FromRadian builder
- [x] can create a positive angle from a radiant value.
- [x] can create a negative angle from a radiant value.
+ [x] can create a positive angle from a radian value.
+ [x] can create a negative angle from a radian value.
  [x] cannot create an angle with more than +/-360°.
  [x] can create an angle of exact 360°.
 

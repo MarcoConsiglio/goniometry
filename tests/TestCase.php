@@ -63,7 +63,7 @@ class TestCase extends PHPUnitTestCase
      * @param int     $precision The precision if the angle is created from a decimal or radian value.
      * @return mixed
      */
-    protected function getRandomAngleValue(string $builder, $negative = false, int $precision = 0): mixed
+    protected function getRandomAngleValue(string $builder, $negative = false, int $precision = 1): mixed
     {
         if (class_exists($builder) && is_subclass_of($builder, AngleBuilder::class)) {
             switch ($builder) {

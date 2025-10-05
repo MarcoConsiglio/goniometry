@@ -94,7 +94,7 @@ abstract class BuilderTestCase extends TestCase
      * @param int     $precision The precision if the angle is created from a decimal or radian value.
      * @return void
      */
-    protected function testAngleCreation(string $builder, bool $negative = false, int $precision = 0)
+    protected function testAngleCreation(string $builder, bool $negative = false, int $precision = 1)
     {
         if(class_exists($builder) && is_subclass_of($builder, AngleBuilder::class)) {
             // Arrange
@@ -103,7 +103,12 @@ abstract class BuilderTestCase extends TestCase
             // Act
             switch ($builder) {
                 case FromDegrees::class:
-                    $angle = Angle::createFromValues($value[0], $value[1], $value[2]);
+                    $angle = Angle::createFromValues(
+                        abs($value[0]),                                                 /* Degrees */
+                        $value[1],                                                      /* Minutes */
+                        $value[2],                                                      /* Seconds */
+                        $value[0] >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE    /* Sign */
+                    );
                     break;
                 case FromDecimal::class:
                     $angle = Angle::createFromDecimal($value);
@@ -159,9 +164,10 @@ abstract class BuilderTestCase extends TestCase
      */
     public function assertAngleDegrees(array $expected_values, Angle $angle)
     {
-        $this->assertProperty("int", "degrees", $angle, $expected_values[0]);
+        $this->assertProperty("int", "degrees", $angle, abs($expected_values[0]));
         $this->assertProperty("int", "minutes", $angle, $expected_values[1]);
         $this->assertProperty("float", "seconds", $angle, $expected_values[2]);
+        $this->assertProperty("int", "direction", $angle, $expected_values[0] >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE);
     }
 
     /**

@@ -270,17 +270,22 @@ class Angle implements AngleInterface
      */
     public function isGreaterThan($angle, int $precision = 1): bool
     {
-        if (is_numeric($angle)) {
+        $is_string = is_string($angle);
+        $is_numeric = is_numeric($angle);
+        $is_object = $angle instanceof AngleInterface;
+        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
+        if ($invalid_argument_type)
+            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
+        if ($is_numeric) {
             return abs($this->toDecimal($precision)) > abs($angle);
-        } elseif ($angle instanceof AngleInterface) {
+        } 
+        if ($is_object) {
             return abs($this->toDecimal($precision)) > abs($angle->toDecimal($precision));
-        } elseif (is_string($angle)) {
+        } 
+        if ($is_string) {
             $angle = Angle::createFromString($angle);
             return abs($this->toDecimal($precision)) > abs($angle->toDecimal($precision));
         }
-        // If the addend is of an invalid type, throws an exception.
-        $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        return false;
     }
 
     /**
@@ -308,14 +313,13 @@ class Angle implements AngleInterface
         $is_string = is_string($angle);
         $is_numeric = is_numeric($angle);
         $is_object = $angle instanceof AngleInterface;
-        if ($is_string or $is_numeric or $is_object) {
-            if ($this->isEqual($angle)) {
-                return true;
-            }
-            return $this->isGreaterThan($angle);
+        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
+        if ($invalid_argument_type)
+            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
+        if ($this->isEqual($angle)) {
+            return true;
         }
-        $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        return false;
+        return $this->isGreaterThan($angle);
     }
 
     /**
@@ -339,16 +343,22 @@ class Angle implements AngleInterface
      */
     public function isLessThan($angle): bool
     {
-        if (is_numeric($angle)) {
+        $is_string = is_string($angle);
+        $is_numeric = is_numeric($angle);
+        $is_object = $angle instanceof AngleInterface;
+        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
+        if ($invalid_argument_type)
+            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
+        if ($is_numeric) {
             return abs($this->toDecimal()) < abs($angle);
-        } elseif ($angle instanceof AngleInterface) {
+        } 
+        if ($is_object) {
             return abs($this->toDecimal()) < abs($angle->toDecimal());
-        } elseif (is_string($angle)) {
+        } 
+        if ($is_string) {
             $angle = Angle::createFromString($angle);
             return abs($this->toDecimal()) < abs($angle->toDecimal());
         }
-        $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        return false;
     }
 
     /**
@@ -375,14 +385,13 @@ class Angle implements AngleInterface
         $is_string = is_string($angle);
         $is_numeric = is_numeric($angle);
         $is_object = $angle instanceof AngleInterface;
-        if ($is_string or $is_numeric or $is_object) {
-            if ($this->isEqual($angle)) {
-                return true;
-            }
-            return $this->isLessThan($angle);
+        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
+        if ($invalid_argument_type)
+            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
+        if ($this->isEqual($angle)) {
+            return true;
         }
-        $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        return false;
+        return $this->isLessThan($angle);
     }
 
     
@@ -391,7 +400,8 @@ class Angle implements AngleInterface
      *
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type.
+     * @throws \InvalidArgumentException when $angle has an unexpected type.     
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function lte($angle): bool
     {
@@ -410,21 +420,68 @@ class Angle implements AngleInterface
      */
     public function isEqual($angle, int $precision = 1): bool
     {
-        if (is_numeric($angle)) {
-            return abs($this->toDecimal($precision)) == abs($angle);
+        $is_string = is_string($angle);
+        $is_numeric = is_numeric($angle);
+        $is_object = $angle instanceof AngleInterface;
+        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
+        if ($invalid_argument_type)
+            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
+        if ($is_numeric) {
+            return abs($this->toDecimal($precision)) == abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
         }
-        if ($angle instanceof AngleInterface) {
+        if ($is_object) {
             /** @var \MarcoConsiglio\Goniometry\Angle $angle */
             $equal_degrees = $this->degrees == $angle->degrees;
             $equal_minutes = $this->minutes == $angle->minutes;
             $equal_seconds = $this->seconds == $angle->seconds;
             return $equal_degrees && $equal_minutes && $equal_seconds;
-        } elseif (is_string($angle)) {
+        } 
+        if ($is_string) {
             $angle = Angle::createFromString($angle);
             return abs($this->toDecimal($precision)) == abs($angle->toDecimal($precision));
         }
-        $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        return false;
+    }
+
+    /**
+     * Check if this angle is different than $angle
+     *
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
+     * @param integer $precision
+     * @return boolean
+     * @throws \InvalidArgumentException when $angle has an unexpected type argument.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
+     */
+    public function isDifferent($angle, int $precision = 1): bool
+    {
+        $is_string = is_string($angle);
+        $is_numeric = is_numeric($angle);
+        $is_object = $angle instanceof AngleInterface;
+        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
+        if ($invalid_argument_type)
+            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
+        if ($is_string) {
+            $angle = Angle::createFromString($angle);
+            return abs($this->toDecimal($precision)) != abs($angle->toDecimal($precision));
+        }
+        if ($is_numeric) {
+            return abs($this->toDecimal($precision)) != abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
+        }
+        if ($is_object) {
+            return abs($this->toDecimal($precision)) != abs($angle->toDecimal($precision));
+        }
+    }
+
+    /**
+     * Alias for isDifferent method.
+     *
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
+     * @param integer $precision
+     * @return boolean
+     * @throws \InvalidArgumentException when $angle has an unexpected type argument.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
+     */
+    public function not($angle, $precision = 1): bool {
+        return $this->isDifferent($angle, $precision);
     }
 
     /**

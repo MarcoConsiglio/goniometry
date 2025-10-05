@@ -157,8 +157,24 @@ interface Angle
     /**
      * Alias of isEqual method.
      *
-     * @param [type] $angle
+     * @param mixed $angle
      * @return boolean
      */
     public function eq($angle): bool;
+
+    /**
+     * Check if this angle is different than $angle.
+     *
+     * @param mixed $angle
+     * @return boolean
+     */
+    public function isDifferent($angle): bool;
+
+    /**
+     * Alias for isDifferent method.
+     *
+     * @param mixed $angle
+     * @return boolean
+     */
+    public function not($angle): bool;
 }

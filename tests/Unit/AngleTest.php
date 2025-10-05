@@ -285,10 +285,10 @@ class AngleTest extends TestCase
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa  */
         $alfa = $this->getMockedAngle(["toDecimal"]);
+        $alfa->expects($this->never())->method("toDecimal");
+        $invalid_argument = true;
 
         // Act & Assert
-        $invalid_argument = true;
-        $alfa->expects($this->never())->method("toDecimal");
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage($this->getInvalidArgumentMessage(
             $invalid_argument, ["int", "float", "string", Angle::class], Angle::class."::isEqual", 1
@@ -410,7 +410,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("throws an exception if less than or equal comparison has an unexpected type.")]
-    public function test_invalid_argument_exception()
+    public function test_less_then_or_equal_comparison_exception()
     {
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
@@ -424,6 +424,37 @@ class AngleTest extends TestCase
             ["int", "float", "string", Angle::class], Angle::class."::isLessThanOrEqual", 1)
         );
         $alfa->lte($invalid_argument); // Two birds with one stone.
+    }
+
+    #[TestDox("can be tested if it is different than another string, integer, decimal or object angle.")]
+    public function test_is_different_comparison()
+    {
+        // Arrange
+        $alfa = Angle::createFromValues(90);
+        $beta = Angle::createFromValues(45);
+        $gamma = clone $beta;
+        $gamma->toggleDirection();
+
+        // Act & Assert
+        $this->assertAngleDifferent($alfa, $beta);
+        $this->assertAngleDifferent($alfa, $gamma);
+    }
+
+    #[TestDox("throws an exception if different comparison has an unexpected type.")]
+    public function test_is_different_comparison_exception()
+    {
+        // Arrange
+        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
+        $alfa = $this->getMockedAngle(["toDecimal"]);
+        $alfa->expects($this->never())->method("toDecimal");
+        
+        // Act & Assert
+        $invalid_argument = true;
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($this->getInvalidArgumentMessage($invalid_argument, 
+            ["int", "float", "string", Angle::class], Angle::class."::isDifferent", 1)
+        );
+        $alfa->not($invalid_argument); // Two birds with one stone.
     }
 
     /**
@@ -467,21 +498,21 @@ class AngleTest extends TestCase
      */
     protected function assertAngleGreaterThan(AngleInterface $first_angle, AngleInterface $second_angle)
     {
-        $failure_message = $first_angle->toDecimal() . " > " . $second_angle->toDecimal();
+        $failure_message = $first_angle->toDecimal() . " > " . $second_angle->toDecimal() . " is false.";
 
-        $this->assertTrue($first_angle->isGreaterThan((string) $second_angle->toDecimal()));
-        $this->assertTrue($first_angle->isGreaterThan($second_angle->toDecimal()));
-        $this->assertTrue($first_angle->isGreaterThan($second_angle));
-        $this->assertTrue($first_angle->gt((string) $second_angle->toDecimal()));
-        $this->assertTrue($first_angle->gt($second_angle->toDecimal()));
-        $this->assertTrue($first_angle->gt($second_angle));
+        $this->assertTrue($first_angle->isGreaterThan((string) $second_angle), $failure_message);
+        $this->assertTrue($first_angle->isGreaterThan($second_angle->toDecimal()), $failure_message);
+        $this->assertTrue($first_angle->isGreaterThan($second_angle), $failure_message);
+        $this->assertTrue($first_angle->gt((string) $second_angle), $failure_message);
+        $this->assertTrue($first_angle->gt($second_angle->toDecimal()), $failure_message);
+        $this->assertTrue($first_angle->gt($second_angle), $failure_message);
 
-        $this->assertFalse($second_angle->isGreaterThan((string) $first_angle->toDecimal()));
-        $this->assertFalse($second_angle->isGreaterThan($second_angle->toDecimal()));
-        $this->assertFalse($second_angle->isGreaterThan($second_angle));
-        $this->assertFalse($second_angle->gt((string) $first_angle->toDecimal()));
-        $this->assertFalse($second_angle->gt($second_angle->toDecimal()));
-        $this->assertFalse($second_angle->gt($second_angle));
+        $this->assertFalse($second_angle->isGreaterThan((string) $first_angle), $failure_message);
+        $this->assertFalse($second_angle->isGreaterThan($second_angle->toDecimal()), $failure_message);
+        $this->assertFalse($second_angle->isGreaterThan($second_angle), $failure_message);
+        $this->assertFalse($second_angle->gt((string) $first_angle), $failure_message);
+        $this->assertFalse($second_angle->gt($second_angle->toDecimal()), $failure_message);
+        $this->assertFalse($second_angle->gt($second_angle), $failure_message);
     }
 
     /**
@@ -495,12 +526,19 @@ class AngleTest extends TestCase
     protected function assertAngleGreaterThanOrEqual(AngleInterface $first_angle, AngleInterface $second_angle)
     {
         $failure_message = $first_angle->toDecimal() . " >= " . $second_angle->toDecimal() . " is false.";
-        $this->assertTrue($first_angle->isGreaterThanOrEqual((string) $second_angle->toDecimal()),  $failure_message);
-        $this->assertTrue($first_angle->isGreaterThanOrEqual($second_angle->toDecimal()),           $failure_message);
-        $this->assertTrue($first_angle->isGreaterThanOrEqual($second_angle),                        $failure_message);
-        $this->assertTrue($first_angle->gte((string) $second_angle->toDecimal()),                   $failure_message);
-        $this->assertTrue($first_angle->gte($second_angle->toDecimal()),                            $failure_message);
-        $this->assertTrue($first_angle->gte($second_angle),                                         $failure_message);
+        $this->assertTrue($first_angle->isGreaterThanOrEqual((string) $second_angle),       $failure_message);
+        $this->assertTrue($first_angle->isGreaterThanOrEqual($second_angle->toDecimal()),   $failure_message);
+        $this->assertTrue($first_angle->isGreaterThanOrEqual($second_angle),                $failure_message);
+        $this->assertTrue($first_angle->gte((string) $second_angle),                        $failure_message);
+        $this->assertTrue($first_angle->gte($second_angle->toDecimal()),                    $failure_message);
+        $this->assertTrue($first_angle->gte($second_angle),                                 $failure_message);
+
+        $this->assertFalse($first_angle->isLessThan((string) $second_angle),        $failure_message);
+        $this->assertFalse($first_angle->isLessThan($second_angle->toDecimal()),    $failure_message);
+        $this->assertFalse($first_angle->isLessThan($second_angle),                 $failure_message);
+        $this->assertFalse($first_angle->lt((string) $second_angle),                $failure_message);
+        $this->assertFalse($first_angle->lt($second_angle->toDecimal()),            $failure_message);
+        $this->assertFalse($first_angle->lt($second_angle),                         $failure_message);
     }
 
     /**
@@ -514,12 +552,44 @@ class AngleTest extends TestCase
     protected function assertAngleEqual(AngleInterface $first_angle, AngleInterface $second_angle)
     {
         $failure_message = $first_angle->toDecimal() . " == " . $second_angle->toDecimal() . " is false.";
-        $this->assertTrue($first_angle->isEqual((string) $second_angle->toDecimal()),   $failure_message);
-        $this->assertTrue($first_angle->isEqual($second_angle->toDecimal()),            $failure_message);
-        $this->assertTrue($first_angle->isEqual($second_angle),                         $failure_message);
-        $this->assertTrue($first_angle->eq((string) $second_angle->toDecimal()),        $failure_message);
-        $this->assertTrue($first_angle->eq($second_angle->toDecimal()),                 $failure_message);
-        $this->assertTrue($first_angle->eq($second_angle),                              $failure_message);
+        $this->assertTrue($first_angle->isEqual((string) $second_angle),        $failure_message);
+        $this->assertTrue($first_angle->isEqual($second_angle->toDecimal()),    $failure_message);
+        $this->assertTrue($first_angle->isEqual($second_angle),                 $failure_message);
+        $this->assertTrue($first_angle->eq((string) $second_angle),             $failure_message);
+        $this->assertTrue($first_angle->eq($second_angle->toDecimal()),         $failure_message);
+        $this->assertTrue($first_angle->eq($second_angle),                      $failure_message);
+
+        $this->assertFalse($first_angle->isDifferent((string) $second_angle),       $failure_message);
+        $this->assertFalse($first_angle->isDifferent($second_angle->toDecimal()),   $failure_message);
+        $this->assertFalse($first_angle->isDifferent($second_angle),                $failure_message);
+        $this->assertFalse($first_angle->not((string) $second_angle),               $failure_message);
+        $this->assertFalse($first_angle->not($second_angle->toDecimal()),           $failure_message);
+        $this->assertFalse($first_angle->not($second_angle),                        $failure_message);
+    }
+
+    /**
+     * Asserts $first_angle is different than $second_angle.
+     * This is not a Custom Assert but a Parameterized Test.
+     *
+     * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
+     * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
+     * @return void
+     */
+    public function assertAngleDifferent(AngleInterface $first_angle, AngleInterface $second_angle) {
+        $failure_message = $first_angle->toDecimal() . " != " . $second_angle->toDecimal() . " is false.";
+        $this->assertTrue($first_angle->isDifferent((string) $second_angle),        $failure_message);
+        $this->assertTrue($first_angle->isDifferent($second_angle->toDecimal()),    $failure_message);
+        $this->assertTrue($first_angle->isDifferent($second_angle),                 $failure_message);
+        $this->assertTrue($first_angle->not((string) $second_angle),                $failure_message);
+        $this->assertTrue($first_angle->not($second_angle->toDecimal()),            $failure_message);
+        $this->assertTrue($first_angle->not($second_angle),                         $failure_message);
+
+        $this->assertFalse($first_angle->isEqual((string) $second_angle),           $failure_message);
+        $this->assertFalse($first_angle->isEqual($second_angle->toDecimal()),       $failure_message);
+        $this->assertFalse($first_angle->isEqual($second_angle),                    $failure_message);
+        $this->assertFalse($first_angle->eq((string) $second_angle),                $failure_message);
+        $this->assertFalse($first_angle->eq($second_angle->toDecimal()),            $failure_message);
+        $this->assertFalse($first_angle->eq($second_angle),                         $failure_message);
     }
 
     /**
@@ -555,29 +625,18 @@ class AngleTest extends TestCase
         $this->assertTrue($first_angle->lt((string) $second_angle->toDecimal()),$failure_message);
         $this->assertTrue($first_angle->lt($second_angle->toDecimal()),         $failure_message);
         $this->assertTrue($first_angle->lt($second_angle),                      $failure_message);
+
+        $this->assertFalse($first_angle->isGreaterThanOrEqual((string) $second_angle),     $failure_message);
+        $this->assertFalse($first_angle->isGreaterThanOrEqual($second_angle->toDecimal()), $failure_message);
+        $this->assertFalse($first_angle->isGreaterThanOrEqual($second_angle),              $failure_message);
+        $this->assertFalse($first_angle->gte((string) $second_angle->toDecimal()),         $failure_message);
+        $this->assertFalse($first_angle->gte($second_angle->toDecimal()),                  $failure_message);
+        $this->assertFalse($first_angle->gte($second_angle),                               $failure_message);
     }
 
     /**
-     * Asserts that $first_angle is NOT less than $second_angle.
-     * This is not a Custom Assertion but a Parameterized Test.
-     *
-     * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
-     * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
-     * @return void
-     */
-    protected function assertAngleNotLessThan(AngleInterface $first_angle, AngleInterface $second_angle)
-    {
-        $failure_message = $first_angle->toDecimal() . " >= " . $second_angle->toDecimal();           
-        $this->assertFalse($first_angle->isLessThan((string) $second_angle->toDecimal()), $failure_message);
-        $this->assertFalse($first_angle->isLessThan($second_angle->toDecimal()),          $failure_message);
-        $this->assertFalse($first_angle->isLessThan($second_angle),                       $failure_message);
-        $this->assertFalse($first_angle->lt((string) $second_angle->toDecimal()),         $failure_message);
-        $this->assertFalse($first_angle->lt($second_angle->toDecimal()),                  $failure_message);
-        $this->assertFalse($first_angle->lt($second_angle),                               $failure_message);
-    }
-
-    /**
-     * Asserts $first_angle is less than or equal to $second_angle. This is not a Custom Assertion bu a Parameterized Test.
+     * Asserts $first_angle is less than or equal to $second_angle. 
+     * This is not a Custom Assertion bu a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
@@ -592,5 +651,12 @@ class AngleTest extends TestCase
         $this->assertTrue($first_angle->lte((string) $second_angle->toDecimal()),                $failure_message);
         $this->assertTrue($first_angle->lte($second_angle->toDecimal()),                         $failure_message);
         $this->assertTrue($first_angle->lte($second_angle),                                      $failure_message);
+
+        $this->assertFalse($first_angle->isGreaterThan((string) $second_angle->toDecimal()),  $failure_message);
+        $this->assertFalse($first_angle->isGreaterThan($second_angle->toDecimal()),           $failure_message);
+        $this->assertFalse($first_angle->isGreaterThan($second_angle),                        $failure_message);
+        $this->assertFalse($first_angle->gt((string) $second_angle->toDecimal()),             $failure_message);
+        $this->assertFalse($first_angle->gt($second_angle->toDecimal()),                      $failure_message);
+        $this->assertFalse($first_angle->gt($second_angle),                                   $failure_message);
     }
 }

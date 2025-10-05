@@ -9,22 +9,21 @@ use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
  */
 class FromDegrees extends AngleBuilder
 {
-    protected $data;
     /**
      * Constructs and AngleBuilder with degrees, minutes, seconds and direction.
      *
      * @param integer $degrees
      * @param integer $minutes
      * @param float $seconds
-     * @param integer $sign
+     * @param integer $direction
      * @return void
      */
-    public function __construct(int $degrees, int $minutes, float $seconds, int $sign = Angle::COUNTER_CLOCKWISE)
+    public function __construct(int $degrees, int $minutes, float $seconds, int $direction = Angle::COUNTER_CLOCKWISE)
     {
         $this->degrees = $degrees;
         $this->minutes = $minutes;
         $this->seconds = $seconds;
-        $this->direction = $sign;
+        $this->direction = $direction;
         $this->checkOverflow();
     }
 
@@ -50,10 +49,10 @@ class FromDegrees extends AngleBuilder
      * @param integer $degrees
      * @param integer $minutes
      * @param float   $seconds
-     * @param int     $sing
+     * @param int     $direction
      * @return boolean
      */
-    protected function validate(int $degrees, int $minutes, float $seconds, int $sign)
+    protected function validate(int $degrees, int $minutes, float $seconds, int $direction)
     {
         if ($degrees > 360) {
             throw new AngleOverflowException("The angle degrees can't be greater than 360°.");
@@ -67,7 +66,7 @@ class FromDegrees extends AngleBuilder
         if ($degrees == 0 && $minutes == 0 && $seconds == 0) {
             $this->direction = Angle::COUNTER_CLOCKWISE;
         }
-        if ($sign > 0) {
+        if ($direction >= 0) {
             $this->direction = Angle::COUNTER_CLOCKWISE;
         } else {
             $this->direction = Angle::CLOCKWISE;

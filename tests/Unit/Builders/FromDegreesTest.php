@@ -17,10 +17,11 @@ class FromDegreesTest extends BuilderTestCase
     #[TestDox("can create an angle from a degrees values.")]
     public function test_can_create_an_angle()
     {
-        $this->testAngleCreation(FromDegrees::class);
+        $this->testAngleCreation(FromDegrees::class, false);
+        $this->testAngleCreation(FromDegrees::class, true);
     }
 
-    #[TestDox("cannot build an angle with more than 360°.")]
+    #[TestDox("throws AngleOverflowException with more than 360° input.")]
     public function test_exception_if_more_than_360_degrees()
     {
         // Assert
@@ -31,7 +32,7 @@ class FromDegreesTest extends BuilderTestCase
         new FromDegrees(361, 0, 0);
     }
 
-    #[TestDox("cannot build an angle with more than 59'.")]
+    #[TestDox("throws AngleOverflowException with more than 59'.")]
     public function test_exception_if_more_than_59_minutes()
     {
         // Assert
@@ -42,7 +43,7 @@ class FromDegreesTest extends BuilderTestCase
         new FromDegrees(0, 60, 0);
     }
 
-    #[TestDox("cannot build an angle with more than 59.9\".")]
+    #[TestDox("throws AngleOverflowException with 59.9\".")]
     public function test_exception_if_equal_or_more_than_60_seconds()
     {
         // Assert
@@ -53,14 +54,16 @@ class FromDegreesTest extends BuilderTestCase
         new FromDegrees(0, 0, 60);
     }
     
-    #[TestDox("can create an angle of exact 360°.")]
-    public function test_missing_exception_if_equal_to_360_degrees()
+    #[TestDox("set the null angle with positive/counterclockwise direction.")]
+    public function test_null_angle_is_positive()
     {
         // Arrange & Act
-        new FromDegrees(360, 0, 0);
-        
-        // Assert missing exception
-        $this->addToAssertionCount(1);
+        $null_angle = Angle::createFromValues(0);
+
+        // Assert
+        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $null_angle->direction,
+            "A null angle should be counterclockwise, but found the opposite."
+        );
     }
 
     /**

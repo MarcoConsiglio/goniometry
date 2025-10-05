@@ -71,7 +71,7 @@ The `MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException` is thrown when
 - with more than 59" if there are no degrees and minutes.
 
 ### Radian
-This create an angle from its radiant representation:
+This create an angle from its radian representation:
 ```php
 $delta = Angle::createFromRadian(M_PI); // deg2rad(M_PI) = 180°
 $delta = new Angle(FromRadian(M_PI));
@@ -107,7 +107,7 @@ You can cast the angle to decimal:
 $alfa->toDecimal(); // 180.2119
 ```
 
-You can cast the angle to radiant:
+You can cast the angle to radian:
 ```php
 $alfa->toRadian(); // 3.1452910063
 ```
@@ -142,6 +142,9 @@ $alfa->isCounterClockwise();    // true
 
 ## Comparison
 You can compare an angle with a numeric value, numeric string or another `Angle` object.
+Comparisons are performed with absolute values (congruent comparison), meaning that -90° is equal to +90°.
+If you need a relative comparison, you should perform arithmetics.
+
 ### $\alpha > \beta$ (greater than)
 ```php
 $alfa = Angle::createFromDecimal(180);
@@ -182,10 +185,27 @@ $alfa->lte(90);                     // true
 $alfa->isLessThanOrEqual($beta);    // true
 $alfa->lte($beta);                  // true
 ```
+### $\alpha \equiv \beta$
+```php
+$alfa = Angle::createFromDecimal(180);
+$beta = Angle::createFromDecimal(180);
+$gamma = Angle::createFromDecimal(-180);
+$alfa->isEqual($beta);  // true
+$alfa->eq($gamma);      // true
+```
+### $\alpha \not\equiv \beta$ (different)
+```php
+$alfa = Angle::createFromDecimal(90);
+$beta = Angle::createFromDecimal(180);
+$alfa->isDifferent(180);            // true
+$alfa->not(180);                    // true
+$alfa->isDifferent(-90);            // false
+$beta->not($alfa);                  // true
+```
 
 ## Algebric sum between two angles
 The `Sum` class extends the `Angle` class, so you immediately obtain the algebric sum
-between two angles, passing in its constructor a FromAngles builder, which is a SumBuilder.
+between two angles, passing in its constructor a `FromAngles` builder, which is a `SumBuilder`.
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(270);
