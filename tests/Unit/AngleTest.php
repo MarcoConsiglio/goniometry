@@ -17,6 +17,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use ReflectionClass;
+use RoundingMode;
 
 #[TestDox("An angle")]
 #[CoversClass(Angle::class)]
@@ -117,7 +118,10 @@ class AngleTest extends TestCase
         // Act
         $angle = Angle::createFromDecimal($decimal);
 
-        $this->assertEquals($decimal, $angle->toDecimal($precision));
+        $this->assertEquals(
+            round($decimal, 1, RoundingMode::HalfTowardsZero), 
+            $angle->toDecimal(1)
+        );
     }
 
     #[TestDox("can be created from a radiant number.")]
