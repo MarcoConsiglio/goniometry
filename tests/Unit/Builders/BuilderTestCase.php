@@ -6,17 +6,28 @@ use MarcoConsiglio\Trigonometry\Builders\AngleBuilder;
 use MarcoConsiglio\Trigonometry\Tests\TestCase;
 use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
 use MarcoConsiglio\Trigonometry\Builders\FromDegrees;
-use MarcoConsiglio\Trigonometry\Builders\FromRadiant;
+use MarcoConsiglio\Trigonometry\Builders\FromRadian;
 use MarcoConsiglio\Trigonometry\Builders\FromString;
 use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Trigonometry\Tests\Traits\WithFailureMessage;
 use PHPUnit\Framework\MockObject\MockObject;
 use RoundingMode;
 
+/**
+ * Supportive class for testing Builders.
+ */
 abstract class BuilderTestCase extends TestCase
 {
     use WithFailureMessage;
 
+    /**
+     * Returns value or values for a Angle that exceed +/-360°.
+     * The type returned is based on the Builder passed.
+     *
+     * @param string $builder_class The Builder class that determines the return type.
+     * @param boolean $negative A positive Angle value, negative otherwise.
+     * @return mixed Return a value or values that represent an Angle that exceed +/-360°
+     */
     protected function getExcessValues(string $builder_class, bool $negative = false): mixed
     {
         if (!$negative) {
@@ -30,8 +41,8 @@ abstract class BuilderTestCase extends TestCase
             if ($builder_class == FromDecimal::class) {
                 return $this->faker->randomFloat(1, 360.1, 999.0);
             }
-            if ($builder_class == FromRadiant::class) {
-                return $this->faker->randomFloat(1, Angle::MAX_RADIANT + 0.1, 10);
+            if ($builder_class == FromRadian::class) {
+                return $this->faker->randomFloat(1, Angle::MAX_RADIAN + 0.1, 10);
             }
             if ($builder_class == FromString::class) {
                 [$degrees, $minutes, $seconds] = $this->getExcessValues(FromDegrees::class);
@@ -48,8 +59,8 @@ abstract class BuilderTestCase extends TestCase
             if ($builder_class == FromDecimal::class) {
                 return $this->faker->randomFloat(1, -999, -360.1);
             }
-            if ($builder_class == FromRadiant::class) {
-                return $this->faker->randomFloat(1, -(Angle::MAX_RADIANT + 0.1), -10);
+            if ($builder_class == FromRadian::class) {
+                return $this->faker->randomFloat(1, -(Angle::MAX_RADIAN + 0.1), -10);
             }
             if ($builder_class == FromString::class) {
                 [$degrees, $minutes, $seconds] = $this->getExcessValues(FromDegrees::class, false);
@@ -61,6 +72,7 @@ abstract class BuilderTestCase extends TestCase
 
     /**
      * Expects an $exception with a $message.
+     * It is a Custom Assertion.
      *
      * @param string $exception
      * @param string $message
@@ -73,7 +85,8 @@ abstract class BuilderTestCase extends TestCase
     }
 
     /**
-     * Test the Angle creation with a specified AngleBuilder. This is a Parameterized Test.
+     * Test the Angle creation with a specified AngleBuilder. 
+     * This is a Parameterized Test.
      *
      * @param mixed   $value   The value used to create the angle.
      * @param string  $builder The builder that extends AngleBuilder.
@@ -95,8 +108,8 @@ abstract class BuilderTestCase extends TestCase
                 case FromDecimal::class:
                     $angle = Angle::createFromDecimal($value);
                     break;
-                case FromRadiant::class:
-                    $angle = Angle::createFromRadiant($value);
+                case FromRadian::class:
+                    $angle = Angle::createFromRadian($value);
                     break;
                 case FromString::class:
                     $angle = Angle::createFromString($value);
@@ -142,10 +155,9 @@ abstract class BuilderTestCase extends TestCase
      *
      * @param array                              $values
      * @param \MarcoConsiglio\Trigonometry\Angle $angle
-     * @param string                             $failure_message
      * @return void
      */
-    public function assertAngleDegrees(array $expected_values, Angle $angle, $failure_message = "")
+    public function assertAngleDegrees(array $expected_values, Angle $angle)
     {
         $this->assertProperty("int", "degrees", $angle, $expected_values[0]);
         $this->assertProperty("int", "minutes", $angle, $expected_values[1]);
@@ -157,29 +169,33 @@ abstract class BuilderTestCase extends TestCase
      *
      * @param float                              $expected_value The decimal value you expect from the $angle.
      * @param \MarcoConsiglio\Trigonometry\Angle $angle The angle to test.
-     * @param string                             $failure_message
      * @return void
      */
-    public function assertAngleDecimal(float $expected_value, Angle $angle, $failure_message = "")
+    public function assertAngleDecimal(float $expected_value, Angle $angle)
     {
         $expected = $expected_value;
         $actual = $angle->toDecimal();
-        $this->assertEquals($expected, $actual);
+        $angle_class = Angle::class;
+        $this->assertEquals($expected, $actual, 
+            "{$angle_class}::toDecimal() should return {$expected} but found {$actual}."
+        );
     }
 
     /**
-     * Assert that $angle->toRadiant() equals $expected_values.
+     * Assert that $angle->toRadian() equals $expected_values.
      *
      * @param float                              $expected_value The radiant value you expect from the $angle.
      * @param \MarcoConsiglio\Trigonometry\Angle $angle The angle to test.
-     * @param string                             $failure_message
      * @return void
      */
-    public function assertAngleRadiant(float $expected_value, Angle $angle, $failure_message = "")
+    public function assertAngleRadian(float $expected_value, Angle $angle, $failure_message = "")
     {
         $expected = round($expected_value, 1, RoundingMode::HalfTowardsZero);
-        $actual = round($angle->toRadiant(), 1, RoundingMode::HalfTowardsZero);
-        $this->assertEquals($expected, $actual, $this->methodFail(Angle::class."::toRadiant"));
+        $actual = round($angle->toRadian(), 1, RoundingMode::HalfTowardsZero);
+        $angle_class = Angle::class;
+        $this->assertEquals($expected, $actual, 
+            "{$angle_class}::toRadian() should return {$expected} but found {$actual}."
+        );
     }
 
     /**
@@ -191,7 +207,11 @@ abstract class BuilderTestCase extends TestCase
      */
     public function assertAngleString(string $expected_value, Angle $angle, $failure_message = "")
     {
-        $this->assertEquals($expected_value, $angle->__toString(), $this->methodFail(Angle::class."::__toString"));
+        $angle_class = Angle::class;
+        $actual = $angle->__toString();
+        $this->assertEquals($expected_value, $actual, 
+            "{$angle_class}::__toString() should return {$expected_value} but found {$actual}."
+        );
     }
 
     /**
@@ -212,8 +232,8 @@ abstract class BuilderTestCase extends TestCase
             case FromDecimal::class:
                 $this->assertAngleDecimal($expected_value, $angle, $failure_message);
                 break;
-            case FromRadiant::class:
-                $this->assertAngleRadiant($expected_value, $angle, $failure_message);
+            case FromRadian::class:
+                $this->assertAngleRadian($expected_value, $angle, $failure_message);
                 break;
             case FromString::class:
                 $this->assertAngleString($expected_value, $angle, $failure_message);

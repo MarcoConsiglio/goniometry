@@ -7,7 +7,7 @@ use MarcoConsiglio\Trigonometry\Builders\AngleBuilder;
 use MarcoConsiglio\Trigonometry\Builders\FromAngles;
 use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
 use MarcoConsiglio\Trigonometry\Builders\FromDegrees;
-use MarcoConsiglio\Trigonometry\Builders\FromRadiant;
+use MarcoConsiglio\Trigonometry\Builders\FromRadian;
 use MarcoConsiglio\Trigonometry\Builders\FromString;
 use MarcoConsiglio\Trigonometry\Builders\SumBuilder;
 use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
@@ -25,7 +25,7 @@ use RoundingMode;
 #[UsesClass(FromString::class)]
 #[UsesClass(FromDecimal::class)]
 #[UsesClass(FromDegrees::class)]
-#[UsesClass(FromRadiant::class)]
+#[UsesClass(FromRadian::class)]
 #[UsesClass(Sum::class)]
 #[UsesClass(SumBuilder::class)]
 #[UsesClass(FromAngles::class)]
@@ -133,13 +133,13 @@ class AngleTest extends TestCase
     {
         // Arrange
         $precision = 5;
-        $radiant = $this->faker->randomFloat($precision, -Angle::MAX_RADIANT, Angle::MAX_RADIANT);
+        $radiant = $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, Angle::MAX_RADIAN);
 
         // Act
-        $angle = Angle::createFromRadiant($radiant);
+        $angle = Angle::createFromRadian($radiant);
 
         // Assert
-        $this->assertEquals($radiant, $angle->toRadiant($precision));
+        $this->assertEquals($radiant, $angle->toRadian($precision));
     }
 
     #[TestDox("can output degrees, minutes and seconds wrapped in a simple array.")]
@@ -231,11 +231,11 @@ class AngleTest extends TestCase
     {
         // Arrange
         $precision = 5;
-        $radiant = $this->faker->randomFloat($precision, -Angle::MAX_RADIANT, Angle::MAX_RADIANT);
-        $angle = Angle::createFromRadiant($radiant);
+        $radiant = $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, Angle::MAX_RADIAN);
+        $angle = Angle::createFromRadian($radiant);
 
         // Act & Assert
-        $this->assertEquals($radiant, $angle->toRadiant($precision), $this->getCastError("radiant"));
+        $this->assertEquals($radiant, $angle->toRadian($precision), $this->getCastError("radiant"));
     }
 
     #[TestDox("can be clockwise or negative.")]

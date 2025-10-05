@@ -8,7 +8,7 @@ use MarcoConsiglio\Trigonometry\Builders\AngleBuilder;
 use MarcoConsiglio\Trigonometry\Builders\FromAngles;
 use MarcoConsiglio\Trigonometry\Builders\FromDegrees;
 use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
-use MarcoConsiglio\Trigonometry\Builders\FromRadiant;
+use MarcoConsiglio\Trigonometry\Builders\FromRadian;
 use MarcoConsiglio\Trigonometry\Builders\FromString;
 use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Trigonometry\Interfaces\AngleBuilder as AngleBuilderInterface;
@@ -73,8 +73,8 @@ class TestCase extends PHPUnitTestCase
                 case FromDecimal::class:
                     return $this->getRandomAngleDecimal($negative, $precision);
                     break;
-                case FromRadiant::class:
-                    return $this->getRandomAngleRadiant($negative, $precision);
+                case FromRadian::class:
+                    return $this->getRandomAngleRadian($negative, $precision);
                     break;
                 case FromString::class:
                     return $this->getRandomAngleString($negative);
@@ -119,11 +119,11 @@ class TestCase extends PHPUnitTestCase
      * @param integer $precision
      * @return void
      */
-    protected function getRandomAngleRadiant($negative = false, int $precision = 0)
+    protected function getRandomAngleRadian($negative = false, int $precision = 0)
     {
         return $negative ? 
-            $this->faker->randomFloat($precision, 0, Angle::MAX_RADIANT) : 
-            $this->faker->randomFloat($precision, -Angle::MAX_RADIANT, 0);
+            $this->faker->randomFloat($precision, 0, Angle::MAX_RADIAN) : 
+            $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, 0);
     }
 
     protected function getRandomAngleString($negative = false)
@@ -173,7 +173,7 @@ class TestCase extends PHPUnitTestCase
             $decimal_property = $builder_class->getProperty("decimal");
             $decimal_property->setValue($builder, $values);
         }
-        if (is_subclass_of($builder, FromRadiant::class)) {
+        if (is_subclass_of($builder, FromRadian::class)) {
             $radiant_property = $builder_class->getProperty("radiant");
             $radiant_property->setValue($builder, $values);
         }

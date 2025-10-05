@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Trigonometry;
 use InvalidArgumentException;
 use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
 use MarcoConsiglio\Trigonometry\Builders\FromDegrees;
-use MarcoConsiglio\Trigonometry\Builders\FromRadiant;
+use MarcoConsiglio\Trigonometry\Builders\FromRadian;
 use MarcoConsiglio\Trigonometry\Builders\FromString;
 use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Trigonometry\Interfaces\AngleBuilder;
@@ -68,9 +68,9 @@ class Angle implements AngleInterface
     public const MAX_SECONDS = 60;
 
     /**
-     * Radiant measure of a round angle.
+     * Radian measure of a round angle.
      */
-    public const MAX_RADIANT = 2 * M_PI;
+    public const MAX_RADIAN = 2 * M_PI;
 
     /**
      * The degrees part.
@@ -171,9 +171,9 @@ class Angle implements AngleInterface
      * @return Angle
      * @throws \MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
      */
-    public static function createFromRadiant(float $radiant): Angle
+    public static function createFromRadian(float $radiant): Angle
     {
-         return new Angle(new FromRadiant($radiant));
+         return new Angle(new FromRadian($radiant));
     }
 
     /**
@@ -254,7 +254,7 @@ class Angle implements AngleInterface
      * @param integer $precision The number of decimal digits.
      * @return float The angular value expressed as a radiant number.
      */
-    public function toRadiant(int $precision = 1): float
+    public function toRadian(int $precision = 1): float
     {
         return round(deg2rad($this->toDecimal(15)), $precision, PHP_ROUND_HALF_DOWN);
     }

@@ -38,7 +38,7 @@ interface Angle
      * @param float $radiant
      * @return Angle
      */
-    public static function createFromRadiant(float $radiant): Angle;
+    public static function createFromRadian(float $radiant): Angle;
 
     /**
      * Reverse the direction of rotation.
@@ -81,7 +81,7 @@ interface Angle
      *
      * @return float
      */
-    public function toRadiant(): float;
+    public function toRadian(): float;
 
     /**
      * Check if this angle is greater than $angle.

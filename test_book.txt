@@ -54,12 +54,6 @@ The FromDegrees builder
  [x] cannot build an angle with more than 59.9".
  [x] can create an angle of exact 360°.
 
-The FromRadiant builder
- [x] can create a positive angle from a radiant value.
- [x] can create a negative angle from a radiant value.
- [x] cannot create an angle with more than +/-360°.
- [x] can create an angle of exact 360°.
-
 The FromString builder
  [x] can create a positive angle from a string value.
  [x] can create a negative angle from a string value.

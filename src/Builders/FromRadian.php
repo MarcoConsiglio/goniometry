@@ -7,7 +7,7 @@ use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
 /**
  *  Builds an angle starting from a radiant value.
  */
-class FromRadiant extends AngleBuilder
+class FromRadian extends AngleBuilder
 {
     /**
      * The radiant value used to build an Angle.
@@ -90,7 +90,7 @@ class FromRadiant extends AngleBuilder
      */
     protected function validate(float $data)
     {
-        if (abs($data) > Angle::MAX_RADIANT) {
+        if (abs($data) > Angle::MAX_RADIAN) {
             throw new AngleOverflowException("The angle can't be greater than 360°.");
         }
     }

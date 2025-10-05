@@ -70,11 +70,11 @@ The `MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException` is thrown wh
 - with more than 59'
 - with more than 59" if there are no degrees and minutes.
 
-### Radiant
+### Radian
 This create an angle from its radiant representation:
 ```php
-$delta = Angle::createFromRadiant(M_PI); // deg2rad(M_PI) = 180°
-$delta = new Angle(FromRadiant(M_PI));
+$delta = Angle::createFromRadian(M_PI); // deg2rad(M_PI) = 180°
+$delta = new Angle(FromRadian(M_PI));
 ```
 
 ### Exceptions when creating an angle
@@ -109,7 +109,7 @@ $alfa->toDecimal(); // 180.2119
 
 You can cast the angle to radiant:
 ```php
-$alfa->toRadiant(); // 3.1452910063
+$alfa->toRadian(); // 3.1452910063
 ```
 
 ## Negative angles
@@ -118,7 +118,7 @@ You can create negative angles too!
 $alfa = Angle::createFromValues(180, 12, 43, Angle::CLOCKWISE);
 $beta = Angle::createFromString("-180° 12' 43\"");
 $gamma = Angle::createFromDecimal(-180.2119); 
-$delta = Angle::createFromRadiant(-3.1452910063);
+$delta = Angle::createFromRadian(-3.1452910063);
 ```
 ### Direction
 Positive angle are represented by the class constant

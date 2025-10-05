@@ -17,13 +17,9 @@ use RoundingMode;
 #[UsesClass(Angle::class)]
 #[UsesClass(FromDegrees::class)]
 #[UsesClass(FromDecimal::class)]
-// #[UsesClass(AngleInterface::class)]
 class FromAnglesTest extends BuilderTestCase
 {
     #[TestDox("can sums two angles.")]
-    /**
-     * This test fails sometime.
-     */
     public function test_can_sum_two_angle()
     {
         // Arrange
