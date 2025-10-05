@@ -113,7 +113,11 @@ class AngleTest extends TestCase
     {
         // Arrange
         $precision = PHP_FLOAT_DIG;
-        $decimal = $this->faker->randomFloat($precision, -Angle::MAX_DEGREES, Angle::MAX_DEGREES);
+        $decimal = $this->faker->randomFloat(
+            $precision,             /* Max available precision */ 
+            -Angle::MAX_DEGREES,    /* -360° */
+            Angle::MAX_DEGREES      /* +360° */
+        );
 
         // Act
         $angle = Angle::createFromDecimal($decimal);
@@ -322,13 +326,17 @@ class AngleTest extends TestCase
     public function test_equal_comparison_with_float()
     {
         // Arrange
-        $precision = 14;
-        $decimal = $this->getRandomAngleDecimal($this->faker->boolean(), $precision);
+        $precision = PHP_FLOAT_DIG;
+        $decimal = $this->getRandomAngleDecimal(
+            $this->faker->boolean(),    /* Positive or negative */
+            $precision                  /* Max available precision */
+        );
         $alfa = Angle::createFromDecimal($decimal);
+        $rounded_decimal = round($decimal, 1, RoundingMode::HalfTowardsZero);
 
         // Act
-        $equal_1 = $alfa->isEqual($decimal, $precision);
-        $equal_2 = $alfa->eq($decimal, $precision);
+        $equal_1 = $alfa->isEqual($rounded_decimal);
+        $equal_2 = $alfa->eq($rounded_decimal);
 
         // Assert
         $this->assertTrue($equal_1);
@@ -340,7 +348,7 @@ class AngleTest extends TestCase
     {
         // Arrange
         $alfa = $this->getRandomAngle($this->faker->boolean());
-        $beta = $alfa;
+        $beta = clone $alfa;
 
         // Act
         $equal_1 = $alfa->isEqual($beta);

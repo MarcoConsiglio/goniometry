@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Trigonometry\Builders;
 
 use MarcoConsiglio\Trigonometry\Angle;
 use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
+use RoundingMode;
 
 /**
  * Builds an angle starting from a decimal value.
@@ -87,7 +88,10 @@ class FromDecimal extends AngleBuilder
      */
     public function calcSeconds()
     {
-        $this->seconds = $this->reminder * Angle::MAX_MINUTES * Angle::MAX_SECONDS;
+        $this->seconds = round(
+            $this->reminder * Angle::MAX_MINUTES * Angle::MAX_SECONDS,
+            1, RoundingMode::HalfTowardsZero
+        );
     }
 
     /**
