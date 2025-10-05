@@ -82,7 +82,7 @@ abstract class AngleBuilder implements AngleBuilderInterface
         return [
             $this->degrees,
             $this->minutes,
-            $this->seconds,
+            round($this->seconds, 1),
             $this->direction
         ];
     }

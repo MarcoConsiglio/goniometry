@@ -11,6 +11,7 @@ use MarcoConsiglio\Trigonometry\Builders\FromString;
 use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Trigonometry\Tests\Traits\WithFailureMessage;
 use PHPUnit\Framework\MockObject\MockObject;
+use RoundingMode;
 
 abstract class BuilderTestCase extends TestCase
 {
@@ -141,9 +142,10 @@ abstract class BuilderTestCase extends TestCase
      *
      * @param array                              $values
      * @param \MarcoConsiglio\Trigonometry\Angle $angle
+     * @param string                             $failure_message
      * @return void
      */
-    public function assertAngleDegrees(array $expected_values, Angle $angle)
+    public function assertAngleDegrees(array $expected_values, Angle $angle, $failure_message = "")
     {
         $this->assertProperty("int", "degrees", $angle, $expected_values[0]);
         $this->assertProperty("int", "minutes", $angle, $expected_values[1]);
@@ -155,13 +157,14 @@ abstract class BuilderTestCase extends TestCase
      *
      * @param float                              $expected_value The decimal value you expect from the $angle.
      * @param \MarcoConsiglio\Trigonometry\Angle $angle The angle to test.
+     * @param string                             $failure_message
      * @return void
      */
-    public function assertAngleDecimal(float $expected_value, Angle $angle)
+    public function assertAngleDecimal(float $expected_value, Angle $angle, $failure_message = "")
     {
-        $expected = round($expected_value, 1, PHP_ROUND_HALF_DOWN);
-        $actual = round($angle->toDecimal(), 1, PHP_ROUND_HALF_DOWN);
-        $this->assertEquals($expected, $actual, $this->methodFail(Angle::class."::toDecimal"));
+        $expected = $expected_value;
+        $actual = $angle->toDecimal();
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -169,12 +172,13 @@ abstract class BuilderTestCase extends TestCase
      *
      * @param float                              $expected_value The radiant value you expect from the $angle.
      * @param \MarcoConsiglio\Trigonometry\Angle $angle The angle to test.
+     * @param string                             $failure_message
      * @return void
      */
-    public function assertAngleRadiant(float $expected_value, Angle $angle)
+    public function assertAngleRadiant(float $expected_value, Angle $angle, $failure_message = "")
     {
-        $expected = round($expected_value, 1, PHP_ROUND_HALF_DOWN);
-        $actual = round($angle->toRadiant(), 1, PHP_ROUND_HALF_DOWN);
+        $expected = round($expected_value, 1, RoundingMode::HalfTowardsZero);
+        $actual = round($angle->toRadiant(), 1, RoundingMode::HalfTowardsZero);
         $this->assertEquals($expected, $actual, $this->methodFail(Angle::class."::toRadiant"));
     }
 
@@ -185,7 +189,7 @@ abstract class BuilderTestCase extends TestCase
      * @param \MarcoConsiglio\Trigonometry\Angle $angle The angle to test.
      * @return void
      */
-    public function assertAngleString(string $expected_value, Angle $angle)
+    public function assertAngleString(string $expected_value, Angle $angle, $failure_message = "")
     {
         $this->assertEquals($expected_value, $angle->__toString(), $this->methodFail(Angle::class."::__toString"));
     }
@@ -196,22 +200,23 @@ abstract class BuilderTestCase extends TestCase
      * @param string                             $builder
      * @param mixed                              $expected_value
      * @param \MarcoConsiglio\Trigonometry\Angle $angle
+     * @param string                             $failure_message
      * @return void
      */
-    public function assertAngle(string $builder, mixed $expected_value, Angle $angle)
+    public function assertAngle(string $builder, mixed $expected_value, Angle $angle, string $failure_message = "")
     {
         switch ($builder) {
             case FromDegrees::class:
-                $this->assertAngleDegrees($expected_value, $angle);
+                $this->assertAngleDegrees($expected_value, $angle, $failure_message);
                 break;
             case FromDecimal::class:
-                $this->assertAngleDecimal($expected_value, $angle);
+                $this->assertAngleDecimal($expected_value, $angle, $failure_message);
                 break;
             case FromRadiant::class:
-                $this->assertAngleRadiant($expected_value, $angle);
+                $this->assertAngleRadiant($expected_value, $angle, $failure_message);
                 break;
             case FromString::class:
-                $this->assertAngleString($expected_value, $angle);
+                $this->assertAngleString($expected_value, $angle, $failure_message);
                 break;
         }
     }

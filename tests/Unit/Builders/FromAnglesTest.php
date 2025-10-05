@@ -9,6 +9,7 @@ use MarcoConsiglio\Trigonometry\Builders\FromDegrees;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use RoundingMode;
 
 #[TestDox("The FromAngles builder")]
 #[CoversClass(FromAngles::class)]
@@ -28,28 +29,31 @@ class FromAnglesTest extends BuilderTestCase
         // Arrange
         $alfa = $this->getRandomAngle();
         $beta = $this->getRandomAngle();
+        $builder = new FromAngles($alfa, $beta);
 
         // Act
-        $gamma = new Sum(new FromAngles($alfa, $beta));
-        
+        $result = $builder->fetchData();
+
         // Assert
-        $decimal_alfa = $alfa->toDecimal();
-        $decimal_beta = $beta->toDecimal();
+        $decimal_alfa = $alfa->toDecimal(3);
+        $decimal_beta = $beta->toDecimal(3);
+        $gamma = Angle::createFromValues($result[0], $result[1], $result[2], $result[3]);
         $decimal_gamma = $gamma->toDecimal();
-        $sum = round($alfa->toDecimal() + $beta->toDecimal(), 1, PHP_ROUND_HALF_DOWN);
-        while ($sum > Angle::MAX_DEGREES) {
-            $sum = round($sum - Angle::MAX_DEGREES, 1);
+        $sum = round($decimal_alfa + $decimal_beta, 3, RoundingMode::HalfTowardsZero);
+        if ($sum < 360 || $sum > 360) {
+            if ($sum < 360) $sum = round($sum + 360, 3, RoundingMode::HalfTowardsZero);
+            if ($sum > 360) $sum = round($sum - 360, 3, RoundingMode::HalfTowardsZero);
         }
-        $failure_message_1 = "{$decimal_alfa}° + {$decimal_beta}° must equal {$sum}° but found {$decimal_gamma}°.";
-        $failure_message_2 = "{$decimal_alfa}° + {$decimal_beta}° must be inside the limit -360°/+360° but found {$decimal_gamma}°.";
-        $this->assertEquals($sum, $gamma->toDecimal(), $failure_message_1);
+        $sum = round($sum, 1);
+        $failure_message = "{$decimal_alfa}° + {$decimal_beta}° must be {$sum} but found {$decimal_gamma}°.";
+        $this->assertAngle(FromDecimal::class, $sum, $gamma, $failure_message);
         $this->assertThat(
-            $sum,
+            $gamma->toDecimal(),
             $this->logicalAnd(
                 $this->greaterThanOrEqual(-360),
                 $this->lessThanOrEqual(360)
             ),
-            $failure_message_2
+            $failure_message
         );
     }
 

@@ -50,7 +50,7 @@ class FromDegrees extends AngleBuilder
      * @param integer $degrees
      * @param integer $minutes
      * @param float   $seconds
-     * @param int  $sing
+     * @param int     $sing
      * @return boolean
      */
     protected function validate(int $degrees, int $minutes, float $seconds, int $sign)
@@ -61,8 +61,8 @@ class FromDegrees extends AngleBuilder
         if ($minutes > 59) {
             throw new AngleOverflowException("The angle minutes can't be greater than 59'.");
         }
-        if ($seconds >= 60) {
-            throw new AngleOverflowException("The angle seconds can't be greater than or equal to 60\".");
+        if ($seconds > 59.9) {
+            throw new AngleOverflowException("The angle seconds can't be greater than 59.9\".");
         }
         if ($degrees == 0 && $minutes == 0 && $seconds == 0) {
             $this->direction = Angle::COUNTER_CLOCKWISE;

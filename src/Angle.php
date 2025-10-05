@@ -8,6 +8,7 @@ use MarcoConsiglio\Trigonometry\Builders\FromRadiant;
 use MarcoConsiglio\Trigonometry\Builders\FromString;
 use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Trigonometry\Interfaces\AngleBuilder;
+use RoundingMode;
 
 /**
  * Represents an angle.
@@ -238,9 +239,13 @@ class Angle implements AngleInterface
      */
     public function toDecimal(int $precision = 1): float
     {
-        $decimal = $this->degrees + $this->minutes / Angle::MAX_MINUTES + $this->seconds / (Angle::MAX_MINUTES * Angle::MAX_SECONDS);
+        $decimal = round(
+            $this->degrees + 
+            $this->minutes / Angle::MAX_MINUTES + 
+            $this->seconds / (Angle::MAX_MINUTES * Angle::MAX_SECONDS),
+        $precision, PHP_ROUND_HALF_DOWN);
         $decimal *= $this->direction;
-        return round($decimal, $precision, PHP_ROUND_HALF_DOWN);
+        return $decimal;
     }
 
     /**
@@ -452,5 +457,19 @@ class Angle implements AngleInterface
         }
         $message = "$method method expects parameter $parameter_position to be ".implode(", ", $expected_types).$last_type.", but found ".gettype($argument);
         throw new InvalidArgumentException($message);
+    }
+
+    /**
+     * It calculates the total seconds that make up the $angle.
+     * @param \MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param int $precision The number of decimal digits.
+     */
+    static public function toTotalSeconds(AngleInterface $angle, int $precision = 1) {
+        return round(
+            $angle->seconds +
+            $angle->minutes * Angle::MAX_SECONDS +
+            $angle->degrees * Angle::MAX_SECONDS * Angle::MAX_MINUTES, 
+            $precision, RoundingMode::HalfTowardsZero
+        );
     }
 }
