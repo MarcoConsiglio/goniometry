@@ -134,7 +134,7 @@ class Angle implements AngleInterface
      * @return Angle
      * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
      */
-    public static function createFromValues(int $degrees, int $minutes, float $seconds, int $direction = self::COUNTER_CLOCKWISE): Angle
+    public static function createFromValues(int $degrees = 0, int $minutes = 0, float $seconds = 0.0, int $direction = self::COUNTER_CLOCKWISE): Angle
     {
         return new Angle(new FromDegrees($degrees, $minutes, $seconds, $direction));
     }
@@ -243,7 +243,7 @@ class Angle implements AngleInterface
             $this->degrees + 
             $this->minutes / Angle::MAX_MINUTES + 
             $this->seconds / (Angle::MAX_MINUTES * Angle::MAX_SECONDS),
-        $precision, PHP_ROUND_HALF_DOWN);
+        $precision, RoundingMode::HalfTowardsZero);
         $decimal *= $this->direction;
         return $decimal;
     }
@@ -305,10 +305,17 @@ class Angle implements AngleInterface
      */
     public function isGreaterThanOrEqual($angle): bool
     {
-        if ($this->isEqual($angle)) {
-            return true;
+        $is_string = is_string($angle);
+        $is_numeric = is_numeric($angle);
+        $is_object = $angle instanceof AngleInterface;
+        if ($is_string or $is_numeric or $is_object) {
+            if ($this->isEqual($angle)) {
+                return true;
+            }
+            return $this->isGreaterThan($angle);
         }
-        return $this->isGreaterThan($angle);
+        $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
+        return false;
     }
 
     /**
@@ -333,12 +340,12 @@ class Angle implements AngleInterface
     public function isLessThan($angle): bool
     {
         if (is_numeric($angle)) {
-            return $this->toDecimal() < $angle;
+            return abs($this->toDecimal()) < abs($angle);
         } elseif ($angle instanceof AngleInterface) {
-            return $this->toDecimal() < $angle->toDecimal();
+            return abs($this->toDecimal()) < abs($angle->toDecimal());
         } elseif (is_string($angle)) {
             $angle = Angle::createFromString($angle);
-            return $this->toDecimal() < $angle->toDecimal();
+            return abs($this->toDecimal()) < abs($angle->toDecimal());
         }
         $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
         return false;
@@ -365,10 +372,17 @@ class Angle implements AngleInterface
      */
     public function isLessThanOrEqual($angle): bool
     {
-        if ($this->isEqual($angle)) {
-            return true;
+        $is_string = is_string($angle);
+        $is_numeric = is_numeric($angle);
+        $is_object = $angle instanceof AngleInterface;
+        if ($is_string or $is_numeric or $is_object) {
+            if ($this->isEqual($angle)) {
+                return true;
+            }
+            return $this->isLessThan($angle);
         }
-        return $this->isLessThan($angle);
+        $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
+        return false;
     }
 
     
@@ -407,7 +421,7 @@ class Angle implements AngleInterface
             return $equal_degrees && $equal_minutes && $equal_seconds;
         } elseif (is_string($angle)) {
             $angle = Angle::createFromString($angle);
-            return $this->toDecimal($precision) == $angle->toDecimal($precision);
+            return abs($this->toDecimal($precision)) == abs($angle->toDecimal($precision));
         }
         $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
         return false;

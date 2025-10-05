@@ -293,256 +293,162 @@ class AngleTest extends TestCase
         $this->assertEquals(Angle::CLOCKWISE, $alfa->direction, $failure_message);
     }
 
-    #[TestDox("can be tested if it is equal to another string angle.")]
-    public function test_equal_comparison_with_string()
+    #[TestDox("can be tested if it is equal to another congruent string, integer, decimal or object angle.")]
+    public function test_equal_comparison()
     {
         // Arrange
-        $alfa = $this->getRandomAngle($this->faker->boolean());
-        $beta = (string) $alfa;
-        $precision = 14;
+        $positive_alfa = $this->getRandomAngle();
+        $positive_beta = clone $positive_alfa;
+        $negative_gamma = clone $positive_beta;
+        $negative_gamma->toggleDirection();
         
-        // Act
-        $equal_1 = $alfa->isEqual($beta, $precision);
-        $equal_2 = $alfa->eq($beta, $precision);
-        
-        //Assert
-        $this->assertTrue($equal_1);
-        $this->assertTrue($equal_2);
+        // Act & Assert
+        $this->assertAngleEqual($positive_alfa, $positive_beta);
+        $this->assertAngleEqual($positive_alfa, $negative_gamma);
     }
 
-    #[TestDox("can be tested if it is equal to another integer angle.")]
-    public function test_equal_comparison_with_integer()
-    {
-        // Arrange
-        /** @var int $degrees */
-        $degrees = $this->faker->numberBetween(0, -360, 360);
-        $alfa = Angle::createFromValues(abs($degrees), 0, 0, $degrees < 0 ? Angle::CLOCKWISE : Angle::COUNTER_CLOCKWISE);
-
-        // Act
-        $equal_1 = $alfa->isEqual($degrees);
-        $equal_2 = $alfa->eq($degrees);
-
-        // Assert
-        $this->assertTrue($equal_1);
-        $this->assertTrue($equal_2);
-    }
-
-    #[TestDox("can be tested if it is equal to another decimal angle.")]
-    public function test_equal_comparison_with_float()
-    {
-        // Arrange
-        $precision = PHP_FLOAT_DIG;
-        $decimal = $this->getRandomAngleDecimal(
-            $this->faker->boolean(),    /* Positive or negative */
-            $precision                  /* Max available precision */
-        );
-        $alfa = Angle::createFromDecimal($decimal);
-        $rounded_decimal = round($decimal, 1, RoundingMode::HalfTowardsZero);
-
-        // Act
-        $equal_1 = $alfa->isEqual($rounded_decimal);
-        $equal_2 = $alfa->eq($rounded_decimal);
-
-        // Assert
-        $this->assertTrue($equal_1);
-        $this->assertTrue($equal_2);
-    }
-
-    #[TestDox("can be tested if it is equal to another Angle instance.")]
-    public function test_equal_comparison_with_angle()
-    {
-        // Arrange
-        $alfa = $this->getRandomAngle($this->faker->boolean());
-        $beta = clone $alfa;
-
-        // Act
-        $equal_1 = $alfa->isEqual($beta);
-        $equal_2 = $alfa->eq($beta);
-
-        // Assert
-        $this->assertTrue($equal_1);
-        $this->assertTrue($equal_2);
-    }
-
-    #[TestDox("can throw an exception if equal comparison has an unexpected type argument.")]
+    #[TestDox("throws an exception if equal comparison has an unexpected type argument.")]
     public function test_equal_comparison_exception()
     {
         // Arrange
-        $alfa = $this->getRandomAngle($this->faker->boolean());
+        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa  */
+        $alfa = $this->getMockedAngle(["toDecimal"]);
 
         // Act & Assert
+        $invalid_argument = true;
+        $alfa->expects($this->never())->method("toDecimal");
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage($this->getInvalidArgumentMessage(
-            true, ["int", "float", "string", Angle::class], Angle::class."::isEqual", 1
+            $invalid_argument, ["int", "float", "string", Angle::class], Angle::class."::isEqual", 1
         ));
-        $alfa->eq(true);
+        $alfa->eq($invalid_argument);
     }
 
-    #[TestDox("can be tested if it is greater than another string angle")]
-    public function test_greater_than_comparison_with_string()
+    #[TestDox("can be tested if it is greater than another string, integer, decimal or object angle.")]
+    public function test_greater_than_comparison()
     {
         // Arrange
-        $alfa = $this->getRandomAngle();
+        $positive_alfa = Angle::createFromValues(90);
         // Get an angle less than $alfa.
-        $addend = Angle::createFromValues(1 /* degrees */, 0 /* minutes */, 0 /* seconds */,
-            $alfa->isClockwise() ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE
-        );
-        $beta = new Sum(new FromAngles($alfa, $addend));
+        $positive_beta = Angle::createFromValues(45);
+        // Get an negative angle less than $alfa.
+        $negative_delta = clone $positive_beta;
+        $negative_delta->toggleDirection();
 
-        // Act
-        $greater_than_1 = $alfa->isGreaterThan((string) $beta);
-        $greater_than_2 = $alfa->gt((string) $beta);
-
-        // Assert
-        $this->assertTrue($greater_than_1);
-        $this->assertTrue($greater_than_2);
+        // Act & Assert
+        $this->assertAngleGreaterThan($positive_alfa, $positive_beta);
+        $this->assertAngleGreaterThan($positive_alfa, $negative_delta);
     }
 
-    #[TestDox("can be tested if it is greater than another integer angle")]
-    public function test_greater_than_comparison_with_integer()
-    {
-        // Arrange
-        $alfa = $this->getRandomAngle();
-        // Get an angle less than $alfa.
-        $addend = Angle::createFromValues(1 /* degrees */, 0 /* minutes */, 0 /* seconds */,
-            $alfa->isClockwise() ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE
-        );
-        $beta = new Sum(new FromAngles($alfa, $addend));
-
-        // Act
-        $greater_than_1 = $alfa->isGreaterThan($beta->degrees);
-        $greater_than_2 = $alfa->gt($beta->degrees);
-
-        $this->assertTrue($greater_than_1);
-        $this->assertTrue($greater_than_2);
-    }
-
-    #[TestDox("can throw an exception if greater than comparison has an unexpected type argument.")]
+    #[TestDox("throws an exception if greater than comparison has an unexpected type argument.")]
     public function test_greater_than_comparison_exception()
     {
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa  */
         $alfa = $this->getMockedAngle(["toDecimal"]);
-        $alfa->expects($this->never())->method("toDecimal");
-
+        
         // Act & Assert
+        $invalid_argument = true;
+        $alfa->expects($this->never())->method("toDecimal");
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage($this->getInvalidArgumentMessage(true, ["int", "float", "string", Angle::class], Angle::class."::isGreaterThan", 1));
-        $alfa->gt(true); // Two birds with one stone.
+        $this->expectExceptionMessage($this->getInvalidArgumentMessage($invalid_argument, 
+            ["int", "float", "string", Angle::class], Angle::class."::isGreaterThan", 1)
+        );
+        $alfa->gt($invalid_argument); // Two birds with one stone.
     }
 
-    #[TestDox("can be or not greater than or equal another angle.")]
+    #[TestDox("can be tested if it is greater than or equal another string, decimal or object angle.")]
     public function test_greater_than_or_equal_comparison()
     {
         // Arrange
-        $hide_methods = ["toDecimal", "isGreaterThan", "isEqual"];
-        $alfa = $this->getMockedAngle($hide_methods);
-        $beta = $this->getMockedAngle($hide_methods);
-        $gamma = $this->getMockedAngle($hide_methods);
-        $delta = $this->getMockedAngle($hide_methods);
-        $alfa->expects($this->anyTime())->method("toDecimal")->willReturn(180.0);
-        $alfa->expects($this->anyTime())->method("isEqual")->willReturnOnConsecutiveCalls(["180"], [180.0], [$beta])->willReturn(true);
-        $alfa->expects($this->never())->method("isGreaterThan");
-        $beta->expects($this->anyTime())->method("toDecimal")->willReturn(180.0);
-        $gamma->expects($this->anyTime())->method("toDecimal")->willReturn(360.0);
-        $gamma->expects($this->anyTime())->method("isEqual")->willReturn(false);
-        $gamma->expects($this->anyTime())->method("isGreaterThan")->willReturnOnConsecutiveCalls(["-90"], [-90.0], [$delta])->willReturn(true);
-        $delta->expects($this->anyTime())->method("toDecimal")->willReturn(-90.0);
+        $positive_alfa = Angle::createFromValues(90);
+        $positive_beta = Angle::createFromValues(45);
+        $negative_gamma = clone $positive_beta;
+        $negative_gamma->toggleDirection();
+        $delta_equal_to_alfa = clone $positive_alfa;
         
         // Act & Assert
-        /** 
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $beta
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $gamma
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $delta
-         */
-        $this->assertAngleGreaterThanOrEqual($alfa, $beta);
-        $this->assertAngleGreaterThanOrEqual($gamma, $delta);
+        $this->assertAngleGreaterThanOrEqual($positive_alfa, $positive_beta);
+        $this->assertAngleGreaterThanOrEqual($positive_alfa, $negative_gamma);
     }
 
+    #[TestDox("throws an exception if greater than or equal comparison has an unexpected type argument.")]
+    public function test_greater_than_or_equal_comparison_exception()
+    {
+        // Arrange
+        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa  */
+        $alfa = $this->getMockedAngle(["toDecimal"]);
+        
+        // Act & Assert
+        $invalid_argument = true;
+        $alfa->expects($this->never())->method("toDecimal");
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($this->getInvalidArgumentMessage($invalid_argument, 
+            ["int", "float", "string", Angle::class], Angle::class."::isGreaterThanOrEqual", 1)
+        );
+        $alfa->gte($invalid_argument); // Two birds with one stone.
+    }
 
-    #[TestDox("can be or not less than another angle.")]
+    #[TestDox("can be tested if it is less than another string, integer, decimal or object angle.")]
     public function test_less_than_comparison()
     {
         // Arrange
-        $alfa = $this->getMockedAngle(["toDecimal"]);
-        $beta = $this->getMockedAngle(["toDecimal"]);
-        $gamma = $this->getMockedAngle(["toDecimal"]);
-        $alfa->expects($this->anyTime())->method("toDecimal")->willReturn(180.0);
-        $beta->expects($this->anyTime())->method("toDecimal")->willReturn(360.0);
-        $gamma->expects($this->anyTime())->method("toDecimal")->willReturn(360.0);
-        
+        $positive_alfa = Angle::createFromValues(45);
+        $positive_beta = Angle::createFromValues(90);
+        $negative_gamma = clone $positive_beta;
+        $negative_gamma->toggleDirection();
+
         // Act & Assert
-        /** 
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $beta
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $gamma
-         */
-        $this->assertAngleLessThan($alfa, $beta);
-        $this->assertAngleNotLessThan($beta, $gamma);
+        $this->assertAngleLessThan($positive_alfa, $positive_beta);
+        $this->assertAngleLessThan($positive_alfa, $negative_gamma);
     }
 
-    #[TestDox("can throw an exception if less than comparison has an unexpected type argument.")]
+    #[TestDox("throws an exception if less than comparison has an unexpected type argument.")]
     public function test_less_than_comparison_exception()
     {
         // Arrange
-        /** 
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa 
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $beta 
-         */
+        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
         $alfa = $this->getMockedAngle(["toDecimal"]);
-        $beta = $this->getMockedAngle(["toDecimal"]);
-        $alfa->expects($this->anyTime())->method("toDecimal")->willReturn(-90.0);
-        $beta->expects($this->anyTime())->method("toDecimal")->willReturn(180.0);
+        $alfa->expects($this->never())->method("toDecimal");
 
         // Act & Assert
+        $invalid_argument = true;
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage($this->getInvalidArgumentMessage(true, ["int", "float", "string", Angle::class], Angle::class."::isLessThan", 1));
-        $alfa->lt(true); // Two birds with one stone.
+        $this->expectExceptionMessage($this->getInvalidArgumentMessage($invalid_argument, 
+            ["int", "float", "string", Angle::class], Angle::class."::isLessThan", 1)
+        );
+        $alfa->lt($invalid_argument); // Two birds with one stone.
     }
 
-    #[TestDox("can be or not greater than or equal another angle.")]
+    #[TestDox("can be tested if it is less than or equal another string, decimal or object angle.")]
     public function test_less_than_or_equal_comparison()
     {
         // Arrange
-        $hide_methods = ["toDecimal", "isLessThan", "isEqual"];
-        $alfa = $this->getMockedAngle($hide_methods);
-        $beta = $this->getMockedAngle($hide_methods);
-        $gamma = $this->getMockedAngle($hide_methods);
-        $delta = $this->getMockedAngle($hide_methods);
-        $alfa->expects($this->anyTime())->method("toDecimal")->willReturn(-90.0);
-        $alfa->expects($this->anyTime())->method("isEqual")->willReturn(false);
-        $alfa->expects($this->anyTime())->method("isLessThan")->willReturn(true);
-        $beta->expects($this->anyTime())->method("toDecimal")->willReturn(180.0);
-        $gamma->expects($this->anyTime())->method("toDecimal")->willReturn(-360.0);
-        $gamma->expects($this->anyTime())->method("isEqual")->willReturn(true);
-        $gamma->expects($this->never())->method("isLessThan");
-        $delta->expects($this->anyTime())->method("toDecimal")->willReturn(-360.0);
-        /** 
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $beta
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $gamma
-         * @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $delta
-         */
-        $this->assertAngleLessThanOrEqual($alfa, $beta);
-        $this->assertAngleLessThanOrEqual($gamma, $delta);
+        $positive_alfa = Angle::createFromValues(45);
+        $positive_beta = Angle::createFromValues(90);
+        $negative_delta = clone $positive_beta;
+        $negative_delta->toggleDirection();
+
+        // Act & Assert
+        $this->assertAngleLessThanOrEqual($positive_alfa, $positive_beta);
+        $this->assertAngleLessThanOrEqual($positive_alfa, $negative_delta);
     }
 
-    #[TestDox("can throw InvalidArgumentException.")]
+    #[TestDox("throws an exception if less than or equal comparison has an unexpected type.")]
     public function test_invalid_argument_exception()
     {
         // Arrange
-        $expected_type = ["int", "float", "string", Angle::class];
-        $argument = "shabadula";
-        $alfa = $this->getMockedAngle();
-        $class = new ReflectionClass($alfa);
-        $method = $class->getMethod("throwInvalidArgumentException");
-        $method->setAccessible(true);
+        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
+        $alfa = $this->getMockedAngle(["toDecimal"]);
+        $alfa->expects($this->never())->method("toDecimal");
         
         // Act & Assert
+        $invalid_argument = true;
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage($this->getInvalidArgumentMessage($argument, $expected_type, "<the_method>", 1));
-        $method->invoke($alfa, $argument, $expected_type, "<the_method>", 1);
+        $this->expectExceptionMessage($this->getInvalidArgumentMessage($invalid_argument, 
+            ["int", "float", "string", Angle::class], Angle::class."::isLessThanOrEqual", 1)
+        );
+        $alfa->lte($invalid_argument); // Two birds with one stone.
     }
 
     /**
@@ -577,7 +483,8 @@ class AngleTest extends TestCase
     }
 
     /**
-     * Asserts $first_angle is greater than $second_angle. This is not a Custom Assertion but a Parameterized Test.
+     * Asserts $first_angle is greater than $second_angle. 
+     * This is not a Custom Assertion but a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
@@ -603,7 +510,8 @@ class AngleTest extends TestCase
     }
 
     /**
-     * Asserts $first_angle is greater than or equal to $second_angle. This is not a Custom Assertion but a Parameterized Test.
+     * Asserts $first_angle is greater than or equal to $second_angle. 
+     * This is not a Custom Assertion but a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
@@ -611,7 +519,7 @@ class AngleTest extends TestCase
      */
     protected function assertAngleGreaterThanOrEqual(AngleInterface $first_angle, AngleInterface $second_angle)
     {
-        $failure_message = $first_angle->toDecimal() . " >= " . $second_angle->toDecimal();
+        $failure_message = $first_angle->toDecimal() . " >= " . $second_angle->toDecimal() . " is false.";
         $this->assertTrue($first_angle->isGreaterThanOrEqual((string) $second_angle->toDecimal()),  $failure_message);
         $this->assertTrue($first_angle->isGreaterThanOrEqual($second_angle->toDecimal()),           $failure_message);
         $this->assertTrue($first_angle->isGreaterThanOrEqual($second_angle),                        $failure_message);
@@ -621,7 +529,8 @@ class AngleTest extends TestCase
     }
 
     /**
-     * Asserts $first_angle is equal to $second_angle. This is not a Custom Assertion but a Parameterized Test.
+     * Asserts $first_angle is equal to $second_angle. 
+     * This is not a Custom Assertion but a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
@@ -629,7 +538,7 @@ class AngleTest extends TestCase
      */
     protected function assertAngleEqual(AngleInterface $first_angle, AngleInterface $second_angle)
     {
-        $failure_message = $first_angle->toDecimal() . " != " . $second_angle->toDecimal();
+        $failure_message = $first_angle->toDecimal() . " == " . $second_angle->toDecimal() . " is false.";
         $this->assertTrue($first_angle->isEqual((string) $second_angle->toDecimal()),   $failure_message);
         $this->assertTrue($first_angle->isEqual($second_angle->toDecimal()),            $failure_message);
         $this->assertTrue($first_angle->isEqual($second_angle),                         $failure_message);
@@ -639,7 +548,8 @@ class AngleTest extends TestCase
     }
 
     /**
-     * Assert the passed $values are the same of $angle. This is a Custom Assertion.
+     * Assert the passed $values are the same of $angle. 
+     * This is a Custom Assertion.
      *
      * @param AngleInterface $angle The angle being tested.
      * @param array $values The expected values of the angle.
@@ -655,6 +565,7 @@ class AngleTest extends TestCase
 
     /**
      * Asserts that $first_angle is less than $second_angle.
+     * This is not a Custom Assertion. This is a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
@@ -662,17 +573,18 @@ class AngleTest extends TestCase
      */
     protected function assertAngleLessThan(AngleInterface $first_angle, AngleInterface $second_angle)
     {
-        $failure_message = $first_angle->toDecimal() . " < " . $second_angle->toDecimal();           
-        $this->assertTrue($first_angle->isLessThan((string) $second_angle->toDecimal()), $failure_message);
-        $this->assertTrue($first_angle->isLessThan($second_angle->toDecimal()),          $failure_message);
-        $this->assertTrue($first_angle->isLessThan($second_angle),                       $failure_message);
-        $this->assertTrue($first_angle->lt((string) $second_angle->toDecimal()),         $failure_message);
-        $this->assertTrue($first_angle->lt($second_angle->toDecimal()),                  $failure_message);
-        $this->assertTrue($first_angle->lt($second_angle),                               $failure_message);
+        $failure_message = $first_angle->toDecimal() . " < " . $second_angle->toDecimal() . " is not true.";           
+        $this->assertTrue($first_angle->isLessThan((string) $second_angle),     $failure_message);
+        $this->assertTrue($first_angle->isLessThan($second_angle->toDecimal()), $failure_message);
+        $this->assertTrue($first_angle->isLessThan($second_angle),              $failure_message);
+        $this->assertTrue($first_angle->lt((string) $second_angle->toDecimal()),$failure_message);
+        $this->assertTrue($first_angle->lt($second_angle->toDecimal()),         $failure_message);
+        $this->assertTrue($first_angle->lt($second_angle),                      $failure_message);
     }
 
     /**
      * Asserts that $first_angle is NOT less than $second_angle.
+     * This is not a Custom Assertion but a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle

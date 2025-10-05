@@ -98,7 +98,7 @@ abstract class BuilderTestCase extends TestCase
     {
         if(class_exists($builder) && is_subclass_of($builder, AngleBuilder::class)) {
             // Arrange
-            $value = $this->getAngleValue($builder, $negative, $precision);
+            $value = $this->getRandomAngleValue($builder, $negative, $precision);
             
             // Act
             switch ($builder) {

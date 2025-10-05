@@ -44,7 +44,7 @@ class TestCase extends PHPUnitTestCase
      */
     protected function getRandomAngle(bool $negative = false): \MarcoConsiglio\Goniometry\Angle
     {
-        [$degrees, $minutes, $seconds] = $this->getAngleValue(FromDegrees::class, $negative);
+        [$degrees, $minutes, $seconds] = $this->getRandomAngleValue(FromDegrees::class, $negative);
         if ($negative) {
             $negative = Angle::CLOCKWISE;
         } else {
@@ -63,7 +63,7 @@ class TestCase extends PHPUnitTestCase
      * @param int     $precision The precision if the angle is created from a decimal or radiant value.
      * @return mixed
      */
-    protected function getAngleValue(string $builder, $negative = false, int $precision = 0): mixed
+    protected function getRandomAngleValue(string $builder, $negative = false, int $precision = 0): mixed
     {
         if (class_exists($builder) && is_subclass_of($builder, AngleBuilder::class)) {
             switch ($builder) {
