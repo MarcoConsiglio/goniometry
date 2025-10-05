@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Tests\Traits;
+namespace MarcoConsiglio\Goniometry\Tests\Traits;
 
 /**
  * Provides testing failure message helpers.

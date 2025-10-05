@@ -18,11 +18,11 @@ A PHP support for angles.
 # Usage
 Import this class to represent angles.
 ```php
-use MarcoConsiglio\Trigonometry\Angle;
+use MarcoConsiglio\Goniometry\Angle;
 ```
 Import this class to sum angles.
 ```php
-use MarcoConsiglio\Trigonometry\Operations\Sum;
+use MarcoConsiglio\Goniometry\Operations\Sum;
 ```
 ## Creating an angle
 ### Degrees, minutes and seconds
@@ -33,7 +33,7 @@ $alfa = new Angle(new FromDegrees(180, 12, 43, Angle::CLOCKWISE))
 ```
 `Angle::CLOCKWISE` is the plus sign, `Angle::COUNTERCLOCKWISE` is the minus sign.
 
-The `MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException` is thrown when you try to create an angle:
+The `MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException` is thrown when you try to create an angle:
 - with more than +/-360°
 - with more than 59'
 - with more than 59" if there are no degrees and minutes.
@@ -52,7 +52,7 @@ The regex treat degrees and minutes as integer numbers, but seconds are treated 
 
 You can create a negative Angle if the string representation start with the minus (-) sign.
 
-The `MarcoConsiglio\Trigonometry\Exceptions\NoMatchException` is thrown when you try to create an angle:
+The `MarcoConsiglio\Goniometry\Exceptions\NoMatchException` is thrown when you try to create an angle:
 - with more than +/-360°
 - with more than 59'
 - with more than 59" if there are no degrees and minutes.
@@ -65,7 +65,7 @@ $gamma = new Angle(new FromDecimal(180.2119));
 ```
 You can create a negative Angle if the decimal is negative.
 
-The `MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException` is thrown when you try to create an angle:
+The `MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException` is thrown when you try to create an angle:
 - with more than +/-360°
 - with more than 59'
 - with more than 59" if there are no degrees and minutes.

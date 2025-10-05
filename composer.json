@@ -1,17 +1,17 @@
 {
-    "name": "marcoconsiglio/trigonometry",
-    "description": "A PHP support for angles and trigonometric functions.",
+    "name": "marcoconsiglio/goniometry",
+    "description": "A PHP support for string, decimal, radian and object angles. Provides trigonometric algebra and congruent comparison.",
     "type": "library",
-    "keywords": ["angle", "trigonometry", "angular value"],
+    "keywords": ["angle", "angle object", "goniometry", "angular value", "decimal angle", "radian angle", "radian", "degrees", "minutes", "seconds"],
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "MarcoConsiglio\\Trigonometry\\": "src/"
+            "MarcoConsiglio\\Goniometry\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MarcoConsiglio\\Trigonometry\\Tests\\": "tests/"
+            "MarcoConsiglio\\Goniometry\\Tests\\": "tests/"
         }
     },
     "authors": [

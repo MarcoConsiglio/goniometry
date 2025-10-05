@@ -1,8 +1,8 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Operations;
+namespace MarcoConsiglio\Goniometry\Operations;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Builders\SumBuilder;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Builders\SumBuilder;
 
 /**
  * Sums two angles.
@@ -20,7 +20,7 @@ class Sum extends Angle
     /**
      * Constructs the Sum.
      *
-     * @param \MarcoConsiglio\Trigonometry\Builders\SumBuilder
+     * @param \MarcoConsiglio\Goniometry\Builders\SumBuilder
      * @return void
      */
     public function __construct(SumBuilder $builder)

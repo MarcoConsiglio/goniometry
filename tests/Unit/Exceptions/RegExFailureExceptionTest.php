@@ -1,8 +1,8 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Tests\Unit\Exceptions;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Exceptions;
 
-use MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException;
-use MarcoConsiglio\Trigonometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 

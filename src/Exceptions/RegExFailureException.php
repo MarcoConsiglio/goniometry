@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Exceptions;
+namespace MarcoConsiglio\Goniometry\Exceptions;
 
 use Exception;
 

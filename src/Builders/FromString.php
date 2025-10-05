@@ -1,10 +1,10 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
-use MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException;
-use MarcoConsiglio\Trigonometry\Exceptions\NoMatchException;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
+use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 
 /**
  *  Builds an angle starting from a string value.
@@ -71,8 +71,8 @@ class FromString extends AngleBuilder
      *
      * @param string $angle The string format angle value.
      * @return void
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\NoMatchException Bad formatted angle is found.
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException Bad formatted angle is found.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
      */
     protected function parseDegreesString(string $angle)
     {
@@ -84,8 +84,8 @@ class FromString extends AngleBuilder
      *
      * @param string $angle The string format angle value.
      * @return void
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\NoMatchException Bad formatted angle is found.
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException Bad formatted angle is found.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
      */
     protected function parseMinutesString(string $angle)
     {
@@ -97,8 +97,8 @@ class FromString extends AngleBuilder
      *
      * @param string $angle The string format angle value.
      * @return void
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\NoMatchException Bad formatted angle is found.
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException Bad formatted angle is found.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
      */
     protected function parseSecondsString(string $angle)
     {
@@ -109,8 +109,8 @@ class FromString extends AngleBuilder
      * Check for overflow above/below +/-360°.
      *
      * @return void
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\NoMatchException when a bad formatted angle is matched.
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException when the matched angle overflows +/-360°.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException when a bad formatted angle is matched.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when the matched angle overflows +/-360°.
      */
     public function checkOverflow()
     {

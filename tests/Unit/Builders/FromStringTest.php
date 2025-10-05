@@ -1,11 +1,11 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Tests\Unit\Builders;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
-use MarcoConsiglio\Trigonometry\Builders\FromString;
-use MarcoConsiglio\Trigonometry\Exceptions\NoMatchException;
-use MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
+use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;

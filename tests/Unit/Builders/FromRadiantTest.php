@@ -1,10 +1,10 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Tests\Unit\Builders;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
-use MarcoConsiglio\Trigonometry\Builders\FromRadian;
-use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromRadian;
+use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;

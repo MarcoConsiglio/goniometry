@@ -1,8 +1,8 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Interfaces\AngleBuilder as AngleBuilderInterface;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
 
 /**
  * Represents an angle builder.

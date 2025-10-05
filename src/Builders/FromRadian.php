@@ -1,8 +1,8 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 
 /**
  *  Builds an angle starting from a radiant value.

@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders;
 
 /**
  * Represents a sum builder.

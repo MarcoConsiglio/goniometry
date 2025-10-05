@@ -1,8 +1,8 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 
 /**
  *  Builds an angle starting from degrees, minutes and seconds.
@@ -32,7 +32,7 @@ class FromDegrees extends AngleBuilder
      * Check for overflow above/below +/-360°.
      *
      * @return void
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException when angle values exceeds.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when angle values exceeds.
      */
     public function checkOverflow()
     {

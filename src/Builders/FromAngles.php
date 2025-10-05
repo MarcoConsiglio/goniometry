@@ -1,8 +1,8 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use RoundingMode;
 
 /**
@@ -34,22 +34,22 @@ class FromAngles extends SumBuilder
     /**
      * The first addend.
      *
-     * @var \MarcoConsiglio\Trigonometry\Interfaces\Angle
+     * @var \MarcoConsiglio\Goniometry\Interfaces\Angle
      */
     protected AngleInterface $first_angle;
 
     /**
      * The second addend.
      *
-     * @var \MarcoConsiglio\Trigonometry\Interfaces\Angle
+     * @var \MarcoConsiglio\Goniometry\Interfaces\Angle
      */
     protected AngleInterface $second_angle;
 
     /**
      * Constructs a SumBuilder builder with two angles.
      *
-     * @param \MarcoConsiglio\Trigonometry\Interfaces\Angle $first_angle
-     * @param \MarcoConsiglio\Trigonometry\Interfaces\Angle $second_angle
+     * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
+     * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
      */
     public function __construct(AngleInterface $first_angle, AngleInterface $second_angle)
     {

@@ -1,8 +1,8 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Tests\Unit\Exceptions;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Exceptions;
 
-use MarcoConsiglio\Trigonometry\Exceptions\NoMatchException;
-use MarcoConsiglio\Trigonometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 

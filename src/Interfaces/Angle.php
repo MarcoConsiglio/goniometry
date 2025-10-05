@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Interfaces;
+namespace MarcoConsiglio\Goniometry\Interfaces;
 
 /**
  * The angle behavior.

@@ -1,15 +1,15 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Tests\Unit\Builders;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Builders\AngleBuilder;
-use MarcoConsiglio\Trigonometry\Tests\TestCase;
-use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
-use MarcoConsiglio\Trigonometry\Builders\FromDegrees;
-use MarcoConsiglio\Trigonometry\Builders\FromRadian;
-use MarcoConsiglio\Trigonometry\Builders\FromString;
-use MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException;
-use MarcoConsiglio\Trigonometry\Tests\Traits\WithFailureMessage;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Builders\AngleBuilder;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromRadian;
+use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
 use PHPUnit\Framework\MockObject\MockObject;
 use RoundingMode;
 
@@ -154,7 +154,7 @@ abstract class BuilderTestCase extends TestCase
      * Assert that $angle has the $expected_values.
      *
      * @param array                              $values
-     * @param \MarcoConsiglio\Trigonometry\Angle $angle
+     * @param \MarcoConsiglio\Goniometry\Angle $angle
      * @return void
      */
     public function assertAngleDegrees(array $expected_values, Angle $angle)
@@ -168,7 +168,7 @@ abstract class BuilderTestCase extends TestCase
      * Assert that $angle->toDecimal() equals $expected_values.
      *
      * @param float                              $expected_value The decimal value you expect from the $angle.
-     * @param \MarcoConsiglio\Trigonometry\Angle $angle The angle to test.
+     * @param \MarcoConsiglio\Goniometry\Angle $angle The angle to test.
      * @return void
      */
     public function assertAngleDecimal(float $expected_value, Angle $angle)
@@ -185,7 +185,7 @@ abstract class BuilderTestCase extends TestCase
      * Assert that $angle->toRadian() equals $expected_values.
      *
      * @param float                              $expected_value The radiant value you expect from the $angle.
-     * @param \MarcoConsiglio\Trigonometry\Angle $angle The angle to test.
+     * @param \MarcoConsiglio\Goniometry\Angle $angle The angle to test.
      * @return void
      */
     public function assertAngleRadian(float $expected_value, Angle $angle, $failure_message = "")
@@ -202,7 +202,7 @@ abstract class BuilderTestCase extends TestCase
      * Assert that $angle->__toString() equals $expected_value.
      *
      * @param string                             $expected_value The string value you expect from the $angle.
-     * @param \MarcoConsiglio\Trigonometry\Angle $angle The angle to test.
+     * @param \MarcoConsiglio\Goniometry\Angle $angle The angle to test.
      * @return void
      */
     public function assertAngleString(string $expected_value, Angle $angle, $failure_message = "")
@@ -219,7 +219,7 @@ abstract class BuilderTestCase extends TestCase
      *
      * @param string                             $builder
      * @param mixed                              $expected_value
-     * @param \MarcoConsiglio\Trigonometry\Angle $angle
+     * @param \MarcoConsiglio\Goniometry\Angle $angle
      * @param string                             $failure_message
      * @return void
      */

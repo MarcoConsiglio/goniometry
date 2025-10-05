@@ -1,17 +1,17 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Tests;
+namespace MarcoConsiglio\Goniometry\Tests;
 
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use Faker\Factory;
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Builders\AngleBuilder;
-use MarcoConsiglio\Trigonometry\Builders\FromAngles;
-use MarcoConsiglio\Trigonometry\Builders\FromDegrees;
-use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
-use MarcoConsiglio\Trigonometry\Builders\FromRadian;
-use MarcoConsiglio\Trigonometry\Builders\FromString;
-use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
-use MarcoConsiglio\Trigonometry\Interfaces\AngleBuilder as AngleBuilderInterface;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Builders\AngleBuilder;
+use MarcoConsiglio\Goniometry\Builders\FromAngles;
+use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromRadian;
+use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
 use ReflectionClass;
@@ -40,9 +40,9 @@ class TestCase extends PHPUnitTestCase
      * Gets a random angle.
      *
      * @param int $sign
-     * @return \MarcoConsiglio\Trigonometry\Angle
+     * @return \MarcoConsiglio\Goniometry\Angle
      */
-    protected function getRandomAngle(bool $negative = false): \MarcoConsiglio\Trigonometry\Angle
+    protected function getRandomAngle(bool $negative = false): \MarcoConsiglio\Goniometry\Angle
     {
         [$degrees, $minutes, $seconds] = $this->getAngleValue(FromDegrees::class, $negative);
         if ($negative) {
@@ -57,7 +57,7 @@ class TestCase extends PHPUnitTestCase
      * Returns a random angle measure (or an array with degrees, minutes and seconds values) 
      * usufull to create an angle from a specified $builder.
      *
-     * @param string  $builder The builder class extending the MarcoConsiglio\Trigonometry\Builders\AngleBuilder
+     * @param string  $builder The builder class extending the MarcoConsiglio\Goniometry\Builders\AngleBuilder
      *  you want to use to build the angle.
      * @param boolean $negative If you want a positive or negative angle.
      * @param int     $precision The precision if the angle is created from a decimal or radiant value.
@@ -135,7 +135,7 @@ class TestCase extends PHPUnitTestCase
     /**
      * Set read-only properties with the aid of Reflection.
      *
-     * @param \MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param array                                         $values
      * @return void
      */

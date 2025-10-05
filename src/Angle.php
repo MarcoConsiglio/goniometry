@@ -1,13 +1,13 @@
 <?php 
-namespace MarcoConsiglio\Trigonometry;
+namespace MarcoConsiglio\Goniometry;
 
 use InvalidArgumentException;
-use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
-use MarcoConsiglio\Trigonometry\Builders\FromDegrees;
-use MarcoConsiglio\Trigonometry\Builders\FromRadian;
-use MarcoConsiglio\Trigonometry\Builders\FromString;
-use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
-use MarcoConsiglio\Trigonometry\Interfaces\AngleBuilder;
+use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromRadian;
+use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
 use RoundingMode;
 
 /**
@@ -104,7 +104,7 @@ class Angle implements AngleInterface
     /**
      * Construct an angle.
      *
-     * @param \MarcoConsiglio\Trigonometry\Interfaces\AngleBuilder $builder
+     * @param \MarcoConsiglio\Goniometry\Interfaces\AngleBuilder $builder
      * @return void
      */
     public function __construct(AngleBuilder $builder)
@@ -132,7 +132,7 @@ class Angle implements AngleInterface
      * @param integer $minutes
      * @param float $seconds
      * @return Angle
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
      */
     public static function createFromValues(int $degrees, int $minutes, float $seconds, int $direction = self::COUNTER_CLOCKWISE): Angle
     {
@@ -144,8 +144,8 @@ class Angle implements AngleInterface
      *
      * @param string $angle
      * @return Angle
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\NoMatchException when $angle has no match.
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException when $angle has no match.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public static function createFromString(string $angle): Angle
     {
@@ -157,7 +157,7 @@ class Angle implements AngleInterface
      *
      * @param float $decimal_degrees
      * @return Angle
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
      */
     public static function createFromDecimal(float $decimal_degrees): Angle
     {
@@ -169,7 +169,7 @@ class Angle implements AngleInterface
      *
      * @param float $radiant
      * @return Angle
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
      */
     public static function createFromRadian(float $radiant): Angle
     {
@@ -262,11 +262,11 @@ class Angle implements AngleInterface
     /**
      * Check if this angle is greater than $angle.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param int $precision The precision digits with which to test the greater than comparison.
      * @return boolean True if this angle is greater than $angle, false otherwise.
      * @throws \InvalidArgumentException when $angle has an unexpected type argument.
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function isGreaterThan($angle, int $precision = 1): bool
     {
@@ -286,7 +286,7 @@ class Angle implements AngleInterface
     /**
      * Alias of isGreaterThan method.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param int $precision The precision digits with which to test the greater than comparison.
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
@@ -299,7 +299,7 @@ class Angle implements AngleInterface
     /**
      * Check if this angle is greater than or equal to $angle.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
@@ -314,7 +314,7 @@ class Angle implements AngleInterface
     /**
      * Alias of isGreaterThanOrEqual method.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
@@ -326,7 +326,7 @@ class Angle implements AngleInterface
     /**
      * Check if this angle is less than another angle.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
@@ -347,7 +347,7 @@ class Angle implements AngleInterface
     /**
      * Alias of isLessThan method.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
@@ -359,7 +359,7 @@ class Angle implements AngleInterface
     /**
      * Check if this angle is less than or equal to $angle.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
@@ -375,7 +375,7 @@ class Angle implements AngleInterface
     /**
      * Alias of isLessThanOrEqual method.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
@@ -387,12 +387,12 @@ class Angle implements AngleInterface
     /**
      * Check if this angle is equal to $angle.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle The angle expressed 
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle The angle expressed 
      * in a string, integer, float (degree, not radian) format or an instance of Angle.
      * @param int $precision The precision digits with which to test the equality
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type argument.
-     * @throws \MarcoConsiglio\Trigonometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function isEqual($angle, int $precision = 1): bool
     {
@@ -400,7 +400,7 @@ class Angle implements AngleInterface
             return abs($this->toDecimal($precision)) == abs($angle);
         }
         if ($angle instanceof AngleInterface) {
-            /** @var \MarcoConsiglio\Trigonometry\Angle $angle */
+            /** @var \MarcoConsiglio\Goniometry\Angle $angle */
             $equal_degrees = $this->degrees == $angle->degrees;
             $equal_minutes = $this->minutes == $angle->minutes;
             $equal_seconds = $this->seconds == $angle->seconds;
@@ -416,7 +416,7 @@ class Angle implements AngleInterface
     /**
      * Alias of isEqual method.
      *
-     * @param string|int|float|\MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param int $precision The precision digits with which to test the equality.
      * @return boolean
      */
@@ -461,7 +461,7 @@ class Angle implements AngleInterface
 
     /**
      * It calculates the total seconds that make up the $angle.
-     * @param \MarcoConsiglio\Trigonometry\Interfaces\Angle $angle
+     * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param int $precision The number of decimal digits.
      */
     static public function toTotalSeconds(AngleInterface $angle, int $precision = 1) {

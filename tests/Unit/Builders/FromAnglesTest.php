@@ -1,11 +1,11 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Tests\Unit\Builders;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Operations\Sum;
-use MarcoConsiglio\Trigonometry\Builders\FromAngles;
-use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
-use MarcoConsiglio\Trigonometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Operations\Sum;
+use MarcoConsiglio\Goniometry\Builders\FromAngles;
+use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;

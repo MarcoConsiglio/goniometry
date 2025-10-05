@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Interfaces;
+namespace MarcoConsiglio\Goniometry\Interfaces;
 
 /**
  * How an angle should be constructed.

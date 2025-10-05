@@ -1,13 +1,13 @@
 <?php
-namespace MarcoConsiglio\Trigonometry\Tests\Unit;
+namespace MarcoConsiglio\Goniometry\Tests\Unit;
 
-use MarcoConsiglio\Trigonometry\Angle;
-use MarcoConsiglio\Trigonometry\Builders\FromAngles;
-use MarcoConsiglio\Trigonometry\Builders\FromDecimal;
-use MarcoConsiglio\Trigonometry\Builders\SumBuilder;
-use MarcoConsiglio\Trigonometry\Interfaces\Angle as AngleInterface;
-use MarcoConsiglio\Trigonometry\Operations\Sum;
-use MarcoConsiglio\Trigonometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Builders\FromAngles;
+use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\SumBuilder;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\Operations\Sum;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -31,7 +31,7 @@ class SumTest extends TestCase
         $builder->expects($this->once())->method("fetchData")->willReturn($values);
 
         // Act
-        /** @var \MarcoConsiglio\Trigonometry\Builders\FromAngles $builder */
+        /** @var \MarcoConsiglio\Goniometry\Builders\FromAngles $builder */
         $sum = new Sum($builder);
 
         // Assert
