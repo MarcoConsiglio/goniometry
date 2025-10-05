@@ -87,7 +87,7 @@ class AngleTest extends TestCase
         ]);
     }
 
-    #[TestDox("can be created from a text representation.")]
+    #[TestDox("can be created from a textual representation.")]
     public function test_create_from_string()
     {
         // Arrange
@@ -128,7 +128,7 @@ class AngleTest extends TestCase
         );
     }
 
-    #[TestDox("can be created from a radiant number.")]
+    #[TestDox("can be created from a radian number.")]
     public function test_create_from_radiant()
     {
         // Arrange
@@ -142,7 +142,7 @@ class AngleTest extends TestCase
         $this->assertEquals($radiant, $angle->toRadian($precision));
     }
 
-    #[TestDox("can output degrees, minutes and seconds wrapped in a simple array.")]
+    #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]
     public function test_get_angle_values_in_simple_array()
     {
         // Arrange
@@ -151,60 +151,38 @@ class AngleTest extends TestCase
         $this->setAngleProperties($alfa, [1, 2, 3.4]);
 
         // Act
-        $result = $alfa->getDegrees();
+        $simple_result = $alfa->getDegrees();
+        $associative_result = $alfa->getDegrees(associative: true);
 
         // Assert
-        $failure_message = "Can't get angle values as a simple array.";
-        $this->assertEquals(1,   $result[0], $failure_message);
-        $this->assertEquals(2,   $result[1], $failure_message);
-        $this->assertEquals(3.4, $result[2], $failure_message);
+        $failure_message_1 = "Can't get angle values as a simple array.";
+        $failure_message_2 = "Can't get angle values as an associative array.";
+        $this->assertEquals(1,   $simple_result[0], $failure_message_1);
+        $this->assertEquals(2,   $simple_result[1], $failure_message_1);
+        $this->assertEquals(3.4, $simple_result[2], $failure_message_1);
+        $this->assertEquals(1,   $associative_result["degrees"], $failure_message_2);
+        $this->assertEquals(2,   $associative_result["minutes"], $failure_message_2);
+        $this->assertEquals(3.4, $associative_result["seconds"], $failure_message_2);
     }
 
-    #[TestDox("can output degrees, minutes and seconds wrapped in an associative array.")]
-    public function test_get_angle_values_in_assoc_array()
-    {
-        // Arrange
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle();
-        $this->setAngleProperties($alfa, [1, 2, 3.4]);
-
-        // Act
-        $result = $alfa->getDegrees(associative: true);
-
-        // Assert
-        $failure_message = "Can't get angle values as a simple array.";
-        $this->assertEquals(1,   $result["degrees"], $failure_message);
-        $this->assertEquals(2,   $result["minutes"], $failure_message);
-        $this->assertEquals(3.4, $result["seconds"], $failure_message);
-    }
-
-    #[TestDox("can be printed in a positive textual representation.")]
+    #[TestDox("can be printed in a positive or negative textual representation.")]
     public function test_can_cast_positive_angle_to_string()
     {
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle(["isCounterClockwise"]);
-        $alfa->expects($this->anyTime())->method("isCounterClockwise")->willReturn(false);
-
-        $this->setAngleProperties($alfa, [1, 2, 3.4]);
-        $expected_string = "1° 2' 3.4\"";
-
-        // Act & Assert
-        $this->assertEquals($expected_string, (string) $alfa, $this->getCastError("string"));
-    }
-    
-    #[TestDox("can be printed in a negative textual representation.")]
-    public function test_can_cast_negative_angle_to_string()
-    {
-        // Arrange
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
         $alfa = $this->getMockedAngle(["isClockwise"]);
-        $alfa->expects($this->anyTime())->method("isClockwise")->willReturn(true);
-        $this->setAngleProperties($alfa, [1, 2, 3.4, Angle::CLOCKWISE]);
-        $expected_string = "-1° 2' 3.4\"";
+        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $beta */
+        $beta = $this->getMockedAngle(["isClockWise"]);
+        $alfa->expects($this->once())->method("isClockwise")->willReturn(false);
+        $this->setAngleProperties($alfa, [1, 2, 3.4]);
+        $expected_alfa_string = "1° 2' 3.4\"";
+        $beta->expects($this->once())->method("isClockwise")->willReturn(true);
+        $this->setAngleProperties($beta, [1, 2, 3.4, Angle::CLOCKWISE]);
+        $expected_beta_string = "-" . $expected_alfa_string;
 
         // Act & Assert
-        $this->assertEquals($expected_string, (string) $alfa, $this->getCastError("string"));
+        $this->assertEquals($expected_alfa_string, (string) $alfa, $this->getCastError("string"));
+        $this->assertEquals($expected_beta_string, (string) $beta, $this->getCastError("string"));
     }
 
     #[TestDox("can be casted to decimal.")]
@@ -226,16 +204,21 @@ class AngleTest extends TestCase
         $this->assertEquals($rounded_decimal, $result);
     }
 
-    #[TestDox("can be casted to radiant.")]
+    #[TestDox("can be casted to radian.")]
     public function test_cast_to_radiant()
     {
         // Arrange
-        $precision = 5;
-        $radiant = $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, Angle::MAX_RADIAN);
-        $angle = Angle::createFromRadian($radiant);
+        $precision = PHP_FLOAT_DIG;
+        $radian = $this->faker->randomFloat(
+            $precision,         /* Max available precision */
+            -Angle::MAX_RADIAN, /* -360° */
+            Angle::MAX_RADIAN   /* +360° */
+        );
+        $angle = Angle::createFromRadian($radian);
+        $rounded_radian = round($radian, 1, RoundingMode::HalfTowardsZero);
 
         // Act & Assert
-        $this->assertEquals($radiant, $angle->toRadian($precision), $this->getCastError("radiant"));
+        $this->assertEquals($rounded_radian, $angle->toRadian(), $this->getCastError("radian"));
     }
 
     #[TestDox("can be clockwise or negative.")]
@@ -261,36 +244,26 @@ class AngleTest extends TestCase
         $this->assertTrue($alfa->isCounterClockwise(), "The angle is clockwise but found the opposite.");
     }
 
-    #[TestDox("can be reversed from counterclockwise to clockwise.")]
+    #[TestDox("can toggle its direction.")]
     public function test_can_toggle_rotation_from_clockwise_to_counterclockwise()
     {
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle([]);
-        $this->setAngleProperties($alfa, [1, 2, 3.4]);
-
-        // Act
-        $alfa->toggleDirection();
-
-        // Assert
-        $failure_message = "The angle should be counterclockwise but found the opposite";
-        $this->assertEquals(Angle::CLOCKWISE, $alfa->direction, $failure_message);
-    }
-
-    #[TestDox("can be reversed from clockwise to counterclockwise.")]
-    public function test_can_toggle_rotation_from_counterclockwise_to_clockwise()
-    {
-        // Arrange
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
         $alfa = $this->getMockedAngle();
-        $this->setAngleProperties($alfa, [1, 2, 3.4, Angle::COUNTER_CLOCKWISE]);
+        $this->setAngleProperties($alfa, [1, 2, 3.4]);
+        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $beta */
+        $beta = $this->getMockedAngle();
+        $this->setAngleProperties($beta, [1, 2, 3.4, Angle::CLOCKWISE]);
 
         // Act
         $alfa->toggleDirection();
+        $beta->toggleDirection();
 
         // Assert
-        $failure_message = "The angle should be clockwise but found the opposite.";
-        $this->assertEquals(Angle::CLOCKWISE, $alfa->direction, $failure_message);
+        $failure_message_1 = "The angle should be counterclockwise but found the opposite.";
+        $failure_message_2 = "The angle should be clockwise but found the opposite.";
+        $this->assertEquals(Angle::CLOCKWISE, $alfa->direction, $failure_message_2);
+        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $beta->direction, $failure_message_1);
     }
 
     #[TestDox("can be tested if it is equal to another congruent string, integer, decimal or object angle.")]
@@ -357,7 +330,7 @@ class AngleTest extends TestCase
         $alfa->gt($invalid_argument); // Two birds with one stone.
     }
 
-    #[TestDox("can be tested if it is greater than or equal another string, decimal or object angle.")]
+    #[TestDox("can be tested if it is greater than or equal another string, integer, decimal or object angle.")]
     public function test_greater_than_or_equal_comparison()
     {
         // Arrange
@@ -370,6 +343,7 @@ class AngleTest extends TestCase
         // Act & Assert
         $this->assertAngleGreaterThanOrEqual($positive_alfa, $positive_beta);
         $this->assertAngleGreaterThanOrEqual($positive_alfa, $negative_gamma);
+        $this->assertAngleGreaterThanOrEqual($positive_alfa, $delta_equal_to_alfa);
     }
 
     #[TestDox("throws an exception if greater than or equal comparison has an unexpected type argument.")]
@@ -420,7 +394,7 @@ class AngleTest extends TestCase
         $alfa->lt($invalid_argument); // Two birds with one stone.
     }
 
-    #[TestDox("can be tested if it is less than or equal another string, decimal or object angle.")]
+    #[TestDox("can be tested if it is less than or equal another string, integer, decimal or object angle.")]
     public function test_less_than_or_equal_comparison()
     {
         // Arrange
@@ -428,10 +402,12 @@ class AngleTest extends TestCase
         $positive_beta = Angle::createFromValues(90);
         $negative_delta = clone $positive_beta;
         $negative_delta->toggleDirection();
+        $delta_equal_to_alfa = clone $positive_alfa;
 
         // Act & Assert
         $this->assertAngleLessThanOrEqual($positive_alfa, $positive_beta);
         $this->assertAngleLessThanOrEqual($positive_alfa, $negative_delta);
+        $this->assertAngleLessThanOrEqual($positive_alfa, $delta_equal_to_alfa);
     }
 
     #[TestDox("throws an exception if less than or equal comparison has an unexpected type.")]

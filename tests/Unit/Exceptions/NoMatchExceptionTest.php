@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 #[CoversClass(NoMatchException::class)]
 class NoMatchExceptionTest extends TestCase
 {
-    #[TestDox("tell you're trying to create an angle from a bad formatted angle string.")]
+    #[TestDox("tells you're trying to create an angle from a bad formatted angle string.")]
     public function test_no_match_exception()
     {
         // Arrange

@@ -1,5 +1,5 @@
 A NoMatchException
- [x] tell you're trying to create an angle from a bad formatted angle string.
+ [x] tells you're trying to create an angle from a bad formatted angle string.
 
 A sum operation
  [x] can be performed with a SumBuilder.
@@ -7,28 +7,25 @@ A sum operation
 An angle
  [x] has read-only properties "degrees", "minutes", "seconds", "direction".
  [x] can be created from separated values for degrees, minutes, seconds and direction.
- [x] can be created from a text representation.
+ [x] can be created from a textual representation.
  [x] can be created from a decimal number.
- [x] can be created from a radiant number.
- [x] can output degrees, minutes and seconds wrapped in a simple array.
- [x] can output degrees, minutes and seconds wrapped in an associative array.
- [x] can be printed in a positive textual representation.
- [x] can be printed in a negative textual representation.
+ [x] can be created from a radian number.
+ [x] can output degrees, minutes and seconds wrapped in a simple or associative array.
+ [x] can be printed in a positive or negative textual representation.
  [x] can be casted to decimal.
- [x] can be casted to radiant.
+ [x] can be casted to radian.
  [x] can be clockwise or negative.
  [x] can be counterclockwise or positive.
- [x] can be reversed from counterclockwise to clockwise.
- [x] can be reversed from clockwise to counterclockwise.
+ [x] can toggle its direction.
  [x] can be tested if it is equal to another congruent string, integer, decimal or object angle.
  [x] throws an exception if equal comparison has an unexpected type argument.
  [x] can be tested if it is greater than another string, integer, decimal or object angle.
  [x] throws an exception if greater than comparison has an unexpected type argument.
- [x] can be tested if it is greater than or equal another string, decimal or object angle.
+ [x] can be tested if it is greater than or equal another string, integer, decimal or object angle.
  [x] throws an exception if greater than or equal comparison has an unexpected type argument.
  [x] can be tested if it is less than another string, integer, decimal or object angle.
  [x] throws an exception if less than comparison has an unexpected type argument.
- [x] can be tested if it is less than or equal another string, decimal or object angle.
+ [x] can be tested if it is less than or equal another string, integer, decimal or object angle.
  [x] throws an exception if less than or equal comparison has an unexpected type.
 
 The AngleOverflowException
