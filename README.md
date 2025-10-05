@@ -14,7 +14,7 @@
 A PHP support for angles.
 
 # Installation
-`composer require marcoconsiglio/trigonometry`
+`composer require marcoconsiglio/goniometry`
 # Usage
 Import this class to represent angles.
 ```php

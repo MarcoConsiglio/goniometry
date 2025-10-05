@@ -29,7 +29,6 @@ use RoundingMode;
 #[UsesClass(Sum::class)]
 #[UsesClass(SumBuilder::class)]
 #[UsesClass(FromAngles::class)]
-// #[UsesClass(InvalidArgumentException::class)]
 class AngleTest extends TestCase
 {
     /**
@@ -294,7 +293,7 @@ class AngleTest extends TestCase
         $this->expectExceptionMessage($this->getInvalidArgumentMessage(
             $invalid_argument, ["int", "float", "string", Angle::class], Angle::class."::isEqual", 1
         ));
-        $alfa->eq($invalid_argument);
+        $alfa->eq($invalid_argument); /* Two birds with one stone. */
     }
 
     #[TestDox("can be tested if it is greater than another string, integer, decimal or object angle.")]
