@@ -60,7 +60,7 @@ class TestCase extends PHPUnitTestCase
      * @param string  $builder The builder class extending the MarcoConsiglio\Goniometry\Builders\AngleBuilder
      *  you want to use to build the angle.
      * @param boolean $negative If you want a positive or negative angle.
-     * @param int     $precision The precision if the angle is created from a decimal or radiant value.
+     * @param int     $precision The precision if the angle is created from a decimal or radian value.
      * @return mixed
      */
     protected function getRandomAngleValue(string $builder, $negative = false, int $precision = 0): mixed
@@ -113,7 +113,7 @@ class TestCase extends PHPUnitTestCase
     }
 
     /**
-     * Gets a random radiant to create an angle.
+     * Gets a random radian to create an angle.
      *
      * @param boolean $negative
      * @param integer $precision
@@ -174,7 +174,7 @@ class TestCase extends PHPUnitTestCase
             $decimal_property->setValue($builder, $values);
         }
         if (is_subclass_of($builder, FromRadian::class)) {
-            $radiant_property = $builder_class->getProperty("radiant");
+            $radiant_property = $builder_class->getProperty("radian");
             $radiant_property->setValue($builder, $values);
         }
         if (is_subclass_of($builder, FromString::class)) {

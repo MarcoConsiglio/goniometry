@@ -33,12 +33,12 @@ interface Angle
     public static function createFromDecimal(float $decimal_degrees): Angle;
 
     /**
-     * Creates an angle from its radiant representation.
+     * Creates an angle from its radian representation.
      *
-     * @param float $radiant
+     * @param float $radian
      * @return Angle
      */
-    public static function createFromRadian(float $radiant): Angle;
+    public static function createFromRadian(float $radian): Angle;
 
     /**
      * Reverse the direction of rotation.
@@ -77,7 +77,7 @@ interface Angle
     public function toDecimal(): float;
 
     /**
-     * Gets the radiant representation of this angle.
+     * Gets the radian representation of this angle.
      *
      * @return float
      */

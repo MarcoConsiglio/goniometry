@@ -91,7 +91,7 @@ abstract class BuilderTestCase extends TestCase
      * @param mixed   $value   The value used to create the angle.
      * @param string  $builder The builder that extends AngleBuilder.
      * @param boolean $negative Specifies if to test a negative angle.
-     * @param int     $precision The precision if the angle is created from a decimal or radiant value.
+     * @param int     $precision The precision if the angle is created from a decimal or radian value.
      * @return void
      */
     protected function testAngleCreation(string $builder, bool $negative = false, int $precision = 0)
@@ -184,7 +184,7 @@ abstract class BuilderTestCase extends TestCase
     /**
      * Assert that $angle->toRadian() equals $expected_values.
      *
-     * @param float                              $expected_value The radiant value you expect from the $angle.
+     * @param float                              $expected_value The radian value you expect from the $angle.
      * @param \MarcoConsiglio\Goniometry\Angle $angle The angle to test.
      * @return void
      */

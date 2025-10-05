@@ -5,26 +5,26 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 
 /**
- *  Builds an angle starting from a radiant value.
+ *  Builds an angle starting from a radian value.
  */
 class FromRadian extends AngleBuilder
 {
     /**
-     * The radiant value used to build an Angle.
+     * The radian value used to build an Angle.
      *
      * @var float
      */
-    protected float $radiant;
+    protected float $radian;
 
     /**
      * Constructs an AngleBuilder with a decimal value.
      *
-     * @param float $radiant
+     * @param float $radian
      */
-    public function __construct(float $radiant)
+    public function __construct(float $radian)
     {
-        $this->radiant = $radiant;
-        $this->checkOverflow($radiant);
+        $this->radian = $radian;
+        $this->checkOverflow($radian);
     }
 
     /**
@@ -79,11 +79,11 @@ class FromRadian extends AngleBuilder
      */
     public function checkOverflow()
     {
-        $this->validate($this->radiant);
+        $this->validate($this->radian);
     }
 
     /**
-     * Tells if the radiant is more than 2 * PI.
+     * Tells if the radian is more than 2 * PI.
      *
      * @param float $data
      * @return void
@@ -102,6 +102,6 @@ class FromRadian extends AngleBuilder
      */
     public function fetchData(): array
     {
-        return (new FromDecimal(rad2deg($this->radiant)))->fetchData();
+        return (new FromDecimal(rad2deg($this->radian)))->fetchData();
     }
 }

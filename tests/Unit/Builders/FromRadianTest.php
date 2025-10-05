@@ -16,13 +16,13 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(FromDecimal::class)]
 class FromRadianTest extends BuilderTestCase
 {
-    #[TestDox("can create a positive angle from a radiant value.")]
+    #[TestDox("can create a positive angle from a radian value.")]
     public function test_can_create_positive_angle()
     {
         $this->testAngleCreation(FromRadian::class);
     }
 
-    #[TestDox("can create a negative angle from a radiant value.")]
+    #[TestDox("can create a negative angle from a radian value.")]
     public function test_can_create_negative_angle()
     {
         $this->testAngleCreation(FromRadian::class, negative: true);

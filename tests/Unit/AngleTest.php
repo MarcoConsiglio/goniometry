@@ -132,13 +132,13 @@ class AngleTest extends TestCase
     {
         // Arrange
         $precision = 5;
-        $radiant = $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, Angle::MAX_RADIAN);
+        $radian = $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, Angle::MAX_RADIAN);
 
         // Act
-        $angle = Angle::createFromRadian($radiant);
+        $angle = Angle::createFromRadian($radian);
 
         // Assert
-        $this->assertEquals($radiant, $angle->toRadian($precision));
+        $this->assertEquals($radian, $angle->toRadian($precision));
     }
 
     #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]

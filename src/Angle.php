@@ -165,15 +165,15 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Creates an angle from its radiant representation.
+     * Creates an angle from its radian representation.
      *
-     * @param float $radiant
+     * @param float $radian
      * @return Angle
      * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
      */
-    public static function createFromRadian(float $radiant): Angle
+    public static function createFromRadian(float $radian): Angle
     {
-         return new Angle(new FromRadian($radiant));
+         return new Angle(new FromRadian($radian));
     }
 
     /**
@@ -249,10 +249,10 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Gets the radiant representation of this angle.
+     * Gets the radian representation of this angle.
      *
      * @param integer $precision The number of decimal digits.
-     * @return float The angular value expressed as a radiant number.
+     * @return float The angular value expressed as a radian number.
      */
     public function toRadian(int $precision = 1): float
     {
