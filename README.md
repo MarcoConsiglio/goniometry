@@ -1,12 +1,13 @@
 # goniometry
-<img alt="GitHub" src="https://img.shields.io/github/license/marcoconsiglio/trigonometry">
-<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/marcoconsiglio/trigonometry">
-<img alt="Static Badge" src="https://img.shields.io/badge/Version-v3.0.0-white">
+<img alt="GitHub" src="https://img.shields.io/github/license/marcoconsiglio/goniometry">
+<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/marcoconsiglio/goniometry">
+<img alt="Static Badge" src="https://img.shields.io/badge/Version-v0.0.0-white">
 <br>
-<img alt="Static Badge" src="https://img.shields.io/badge/Line_coverage-98.86%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
-<img alt="Static Badge" src="https://img.shields.io/badge/Branch_coverage-97.81%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
-<img alt="Static Badge" src="https://img.shields.io/badge/Path_coverage-77.19%25-none?labelColor=%23ECECEC&color=rgb(255%2C%20193%2C%207)">
+<img alt="Static Badge" src="https://img.shields.io/badge/Line_coverage-100.00%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
+<img alt="Static Badge" src="https://img.shields.io/badge/Branch_coverage-99.27%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
+<img alt="Static Badge" src="https://img.shields.io/badge/Path_coverage-79.82%25-none?labelColor=%23ECECEC&color=rgb(255%2C%20193%2C%207)">
 <br>
+Not updated
 <img alt="MSI" src="https://img.shields.io/badge/Mutations%20Score%20Indicator-82%25-green">
 <img alt="MCC" src="https://img.shields.io/badge/Mutation%20Code%20Coverage-98%25-brightgreen">
 <img alt="CC MSI" src="https://img.shields.io/badge/Covered%20Code%20MSI-83%25-green">
