@@ -3,9 +3,9 @@
 <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/marcoconsiglio/trigonometry">
 <img alt="Static Badge" src="https://img.shields.io/badge/Version-v3.0.0-white">
 <br>
-<img alt="Static Badge" src="https://img.shields.io/badge/Line_coverage-100%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
-<img alt="Static Badge" src="https://img.shields.io/badge/Branch_coverage-94.26%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
-<img alt="Static Badge" src="https://img.shields.io/badge/Path_coverage-22.39%25-none?labelColor=%23ECECEC&color=rgb(220%2C%2053%2C%2069)">
+<img alt="Static Badge" src="https://img.shields.io/badge/Line_coverage-98.86%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
+<img alt="Static Badge" src="https://img.shields.io/badge/Branch_coverage-97.81%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
+<img alt="Static Badge" src="https://img.shields.io/badge/Path_coverage-77.19%25-none?labelColor=%23ECECEC&color=rgb(255%2C%20193%2C%207)">
 <br>
 <img alt="MSI" src="https://img.shields.io/badge/Mutations%20Score%20Indicator-82%25-green">
 <img alt="MCC" src="https://img.shields.io/badge/Mutation%20Code%20Coverage-98%25-brightgreen">

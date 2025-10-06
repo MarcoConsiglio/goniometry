@@ -1,4 +1,5 @@
 <?php
+
 namespace MarcoConsiglio\Goniometry\Interfaces;
 
 /**
@@ -15,7 +16,7 @@ interface Angle
      * @return Angle
      */
     public static function createFromValues(int $degrees, int $minutes, float $seconds): Angle;
-    
+
     /**
      * Creates an angle from its textual representation.
      *
@@ -89,7 +90,7 @@ interface Angle
      * @param mixed $angle
      * @return boolean
      */
-    public function isGreaterThan($angle): bool;
+    public function isGreaterThan(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Alias of isGreaterThan method.
@@ -97,23 +98,24 @@ interface Angle
      * @param mixed $angle
      * @return boolean
      */
-    public function gt($angle): bool;
+    public function gt(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Check if this angle is greater than or equal to $angle.
      *
      * @param mixed $angle
+     * @param int $precision
      * @return boolean
      */
-    public function isGreaterThanOrEqual($angle): bool;
+    public function isGreaterThanOrEqual(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Alias of isGreaterThanOrEqual method.
      *
      * @param mixed $angle
      * @return boolean
-     */ 
-    public function gte($angle): bool;
+     */
+    public function gte(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Check if this angle is less than another angle.
@@ -121,14 +123,14 @@ interface Angle
      * @param mixed $angle
      * @return boolean
      */
-    public function isLessThan($angle): bool;
+    public function isLessThan(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Alias of isLessThan method.
      *
      * @param mixed $angle
      */
-    public function lt($angle): bool;
+    public function lt(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Check if this angle is less than or equal to $angle.
@@ -136,7 +138,7 @@ interface Angle
      * @param mixed $angle
      * @return boolean
      */
-    public function isLessThanOrEqual($angle): bool;
+    public function isLessThanOrEqual(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Alias of isLessThanOrEqual method.
@@ -144,7 +146,7 @@ interface Angle
      * @param mixed $angle
      * @return boolean
      */
-    public function lte($angle): bool;
+    public function lte(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Check if this angle is equal to $angle.
@@ -152,7 +154,7 @@ interface Angle
      * @param mixed $angle
      * @return boolean
      */
-    public function isEqual($angle): bool;
+    public function isEqual(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Alias of isEqual method.
@@ -160,7 +162,7 @@ interface Angle
      * @param mixed $angle
      * @return boolean
      */
-    public function eq($angle): bool;
+    public function eq(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Check if this angle is different than $angle.
@@ -168,7 +170,7 @@ interface Angle
      * @param mixed $angle
      * @return boolean
      */
-    public function isDifferent($angle): bool;
+    public function isDifferent(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
      * Alias for isDifferent method.
@@ -176,5 +178,5 @@ interface Angle
      * @param mixed $angle
      * @return boolean
      */
-    public function not($angle): bool;
+    public function not(string|int|float|Angle $angle, int $precision = 1): bool;
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php declare(strict_types=1);
 namespace MarcoConsiglio\Goniometry;
 
 use InvalidArgumentException;
@@ -265,27 +265,22 @@ class Angle implements AngleInterface
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param int $precision The precision digits with which to test the greater than comparison.
      * @return boolean True if this angle is greater than $angle, false otherwise.
-     * @throws \InvalidArgumentException when $angle has an unexpected type argument.
+     * @throws \TypeError when $angle has an unexpected type argument.
      * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
-    public function isGreaterThan($angle, int $precision = 1): bool
+    public function isGreaterThan(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
-        $is_string = is_string($angle);
-        $is_numeric = is_numeric($angle);
-        $is_object = $angle instanceof AngleInterface;
-        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
-        if ($invalid_argument_type)
-            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        if ($is_numeric) {
-            return abs($this->toDecimal($precision)) > abs($angle);
-        } 
-        if ($is_object) {
-            return abs($this->toDecimal($precision)) > abs($angle->toDecimal($precision));
-        } 
-        if ($is_string) {
+        if (is_string($angle)) {
             $angle = Angle::createFromString($angle);
             return abs($this->toDecimal($precision)) > abs($angle->toDecimal($precision));
         }
+        if (is_int($angle)) {
+            return abs($this->toDecimal(0)) > abs($angle);
+        }
+        if (is_float($angle)) {
+            return abs($this->toDecimal($precision)) > abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
+        } 
+        return abs($this->toDecimal($precision)) > abs($angle->toDecimal($precision));
     }
 
     /**
@@ -296,7 +291,7 @@ class Angle implements AngleInterface
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
-    public function gt($angle, int $precision = 1): bool
+    public function gt(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
         return $this->isGreaterThan($angle, $precision);
     }
@@ -308,18 +303,9 @@ class Angle implements AngleInterface
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
-    public function isGreaterThanOrEqual($angle): bool
+    public function isGreaterThanOrEqual(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
-        $is_string = is_string($angle);
-        $is_numeric = is_numeric($angle);
-        $is_object = $angle instanceof AngleInterface;
-        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
-        if ($invalid_argument_type)
-            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        if ($this->isEqual($angle)) {
-            return true;
-        }
-        return $this->isGreaterThan($angle);
+        return $this->isEqual($angle, $precision) || $this->isGreaterThan($angle, $precision);
     }
 
     /**
@@ -329,9 +315,9 @@ class Angle implements AngleInterface
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
-    public function gte($angle): bool
+    public function gte(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
-        return $this->isGreaterThanOrEqual($angle);
+        return $this->isGreaterThanOrEqual($angle, $precision);
     }
 
     /**
@@ -341,24 +327,9 @@ class Angle implements AngleInterface
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
-    public function isLessThan($angle): bool
+    public function isLessThan(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
-        $is_string = is_string($angle);
-        $is_numeric = is_numeric($angle);
-        $is_object = $angle instanceof AngleInterface;
-        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
-        if ($invalid_argument_type)
-            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        if ($is_numeric) {
-            return abs($this->toDecimal()) < abs($angle);
-        } 
-        if ($is_object) {
-            return abs($this->toDecimal()) < abs($angle->toDecimal());
-        } 
-        if ($is_string) {
-            $angle = Angle::createFromString($angle);
-            return abs($this->toDecimal()) < abs($angle->toDecimal());
-        }
+        return !$this->isGreaterThanOrEqual($angle, $precision);
     }
 
     /**
@@ -368,7 +339,7 @@ class Angle implements AngleInterface
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
-    public function lt($angle): bool
+    public function lt(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
         return $this->isLessThan($angle);
     }
@@ -380,18 +351,9 @@ class Angle implements AngleInterface
      * @return boolean
      * @throws \InvalidArgumentException when $angle has an unexpected type.
      */
-    public function isLessThanOrEqual($angle): bool
+    public function isLessThanOrEqual(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
-        $is_string = is_string($angle);
-        $is_numeric = is_numeric($angle);
-        $is_object = $angle instanceof AngleInterface;
-        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
-        if ($invalid_argument_type)
-            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        if ($this->isEqual($angle)) {
-            return true;
-        }
-        return $this->isLessThan($angle);
+        return $this->isEqual($angle, $precision) || $this->isLessThan($angle, $precision);
     }
 
     
@@ -403,7 +365,7 @@ class Angle implements AngleInterface
      * @throws \InvalidArgumentException when $angle has an unexpected type.     
      * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
-    public function lte($angle): bool
+    public function lte(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
         return $this->isLessThanOrEqual($angle);
     }
@@ -418,28 +380,35 @@ class Angle implements AngleInterface
      * @throws \InvalidArgumentException when $angle has an unexpected type argument.
      * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
-    public function isEqual($angle, int $precision = 1): bool
+    public function isEqual(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
-        $is_string = is_string($angle);
-        $is_numeric = is_numeric($angle);
-        $is_object = $angle instanceof AngleInterface;
-        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
-        if ($invalid_argument_type)
-            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        if ($is_numeric) {
-            return abs($this->toDecimal($precision)) == abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
-        }
-        if ($is_object) {
-            /** @var \MarcoConsiglio\Goniometry\Angle $angle */
-            $equal_degrees = $this->degrees == $angle->degrees;
-            $equal_minutes = $this->minutes == $angle->minutes;
-            $equal_seconds = $this->seconds == $angle->seconds;
-            return $equal_degrees && $equal_minutes && $equal_seconds;
-        } 
-        if ($is_string) {
+        if (is_string($angle)) {
             $angle = Angle::createFromString($angle);
             return abs($this->toDecimal($precision)) == abs($angle->toDecimal($precision));
         }
+        if (is_int($angle)) {
+            return abs($this->toDecimal(0)) == abs($angle);
+        }
+        if (is_float($angle)) {
+            return abs($this->toDecimal($precision)) == abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
+        }
+        /** @var \MarcoConsiglio\Goniometry\Angle $angle */
+        $equal_degrees = $this->degrees == $angle->degrees;
+        $equal_minutes = $this->minutes == $angle->minutes;
+        $equal_seconds = $this->seconds == $angle->seconds;
+        return $equal_degrees && $equal_minutes && $equal_seconds;
+    }
+
+    /**
+     * Alias of isEqual method.
+     *
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
+     * @param int $precision The precision digits with which to test the equality.
+     * @return boolean
+     */
+    public function eq(string|int|float|AngleInterface $angle, int $precision = 1): bool
+    {
+        return $this->isEqual($angle, $precision);
     }
 
     /**
@@ -451,24 +420,9 @@ class Angle implements AngleInterface
      * @throws \InvalidArgumentException when $angle has an unexpected type argument.
      * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
-    public function isDifferent($angle, int $precision = 1): bool
+    public function isDifferent(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
-        $is_string = is_string($angle);
-        $is_numeric = is_numeric($angle);
-        $is_object = $angle instanceof AngleInterface;
-        $invalid_argument_type = !($is_string or $is_numeric or $is_object);
-        if ($invalid_argument_type)
-            $this->throwInvalidArgumentException($angle, ["int", "float", "string", Angle::class], __METHOD__, 1);
-        if ($is_string) {
-            $angle = Angle::createFromString($angle);
-            return abs($this->toDecimal($precision)) != abs($angle->toDecimal($precision));
-        }
-        if ($is_numeric) {
-            return abs($this->toDecimal($precision)) != abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
-        }
-        if ($is_object) {
-            return abs($this->toDecimal($precision)) != abs($angle->toDecimal($precision));
-        }
+        return !$this->isEqual($angle);
     }
 
     /**
@@ -480,20 +434,8 @@ class Angle implements AngleInterface
      * @throws \InvalidArgumentException when $angle has an unexpected type argument.
      * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
-    public function not($angle, $precision = 1): bool {
+    public function not(string|int|float|AngleInterface $angle, $precision = 1): bool {
         return $this->isDifferent($angle, $precision);
-    }
-
-    /**
-     * Alias of isEqual method.
-     *
-     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
-     * @param int $precision The precision digits with which to test the equality.
-     * @return boolean
-     */
-    public function eq($angle, int $precision = 1): bool
-    {
-        return $this->isEqual($angle, $precision);
     }
 
     /**
@@ -505,29 +447,6 @@ class Angle implements AngleInterface
     {
         $sign = $this->isClockwise() ? "-" : "";
         return "{$sign}{$this->degrees}° {$this->minutes}' {$this->seconds}\"";
-    }
-
-    /**
-     * Throws an InvalidArgumentException specifing the expected argument types and
-     * the actual argument type.
-     *
-     * @param mixed   $argument The actual argument throwing the exception.
-     * @param array   $expected_types A list of expected types.
-     * @param string  $method The method throwing the exception. Use __METHOD__ constant as argument.
-     * @param integer $parameter_position The parameter position.
-     * @return void
-     * @throws \InvalidArgumentException when calling this method.
-     */
-    private function throwInvalidArgumentException(mixed $argument, array $expected_types, string $method, int $parameter_position)
-    {
-        $last_type = "";
-        $total_types = count($expected_types);
-        if ($total_types >= 2) {
-            $last_type = " or ".$expected_types[$total_types - 1];
-            unset($expected_types[$total_types - 1]);
-        }
-        $message = "$method method expects parameter $parameter_position to be ".implode(", ", $expected_types).$last_type.", but found ".gettype($argument);
-        throw new InvalidArgumentException($message);
     }
 
     /**
