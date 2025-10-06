@@ -130,7 +130,8 @@ $alfa->isCounterClockwise();    // true
 ## Comparison
 You can compare an angle with a numeric value, numeric string or another `Angle` object.
 Comparisons are performed with absolute values (congruent comparison), meaning that $-90^\circ$ is equal to $+90^\circ$.
-If you need a relative comparison, you should perform arithmetics.
+If you need a relative comparison, you should perform arithmetics instead. 
+Warning! Comparisons are not available for radian values, you should perform arithmetics instead.
 
 ### $\alpha > \beta$ (greater than)
 ```php
@@ -201,9 +202,5 @@ $gamma = new Sum(new FromAngles($alfa, $beta));
 ```
 Note that if the sum is more than $\pm360^\circ$, the resulting angle will be corrected to remain between these limits.
 
-# Code documentation
-## UML Diagrams
-You can find a class diagram at `docs/classes.png`.
-![UML class diagram](https://github.com/MarcoConsiglio/trigonometry/blob/dev/docs/classes.png)
-## phpDoc
-You can read the code documentation at `docs/index.html`.
+# API documentation
+You can read the code documentation [here](./docs/index.html).

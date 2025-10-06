@@ -3,7 +3,7 @@
 namespace MarcoConsiglio\Goniometry\Interfaces;
 
 /**
- * The angle behavior.
+ * The angle concept.
  */
 interface Angle
 {
@@ -57,14 +57,14 @@ interface Angle
     public function getDegrees(): array;
 
     /**
-     * Check if this angle is clockwise or positive.
+     * Check if this angle is clockwise or negative.
      *
      * @return boolean
      */
     public function isClockwise(): bool;
 
     /**
-     * Check if this angle is counterclockwise or negative.
+     * Check if this angle is counterclockwise or positive.
      *
      * @return boolean
      */
@@ -118,7 +118,7 @@ interface Angle
     public function gte(string|int|float|Angle $angle, int $precision = 1): bool;
 
     /**
-     * Check if this angle is less than another angle.
+     * Check if this angle is less than $angle.
      *
      * @param mixed $angle
      * @return boolean

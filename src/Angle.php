@@ -90,14 +90,15 @@ class Angle implements AngleInterface
      * The angle direction.
      *  
      * self::COUNTERCLOCKWISE means positive angle.
-     * self::CLOCKWISE means negative angle,
+     * self::CLOCKWISE means negative angle.
      */
-    protected int $direction = Angle::COUNTER_CLOCKWISE;
+    protected int $direction = self::COUNTER_CLOCKWISE;
 
     /**
      * Construct an angle.
      *
-     * @param \MarcoConsiglio\Goniometry\Interfaces\AngleBuilder $builder
+     * @param \MarcoConsiglio\Goniometry\Interfaces\AngleBuilder $builder The builder used to construct the angle.
+     * @see \MarcoConsiglio\Goniometry\Builders
      * @return void
      */
     public function __construct(AngleBuilder $builder)
@@ -125,7 +126,7 @@ class Angle implements AngleInterface
      * @param integer $minutes
      * @param float $seconds
      * @return Angle
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than +/-360°.
      */
     public static function createFromValues(int $degrees = 0, int $minutes = 0, float $seconds = 0.0, int $direction = self::COUNTER_CLOCKWISE): Angle
     {
@@ -150,7 +151,7 @@ class Angle implements AngleInterface
      *
      * @param float $decimal_degrees
      * @return Angle
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than +/-360°.
      */
     public static function createFromDecimal(float $decimal_degrees): Angle
     {
@@ -162,7 +163,7 @@ class Angle implements AngleInterface
      *
      * @param float $radian
      * @return Angle
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than 360°.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when creating an angle greater than +/-360°.
      */
     public static function createFromRadian(float $radian): Angle
     {
@@ -171,7 +172,7 @@ class Angle implements AngleInterface
 
     /**
      * Return an array containing the values
-     * of degrees, minutes and seconds.
+     * of "degrees", "minutes" and "seconds".
      *
      * @param bool $associative Gets an associative array.
      * @return array
@@ -214,7 +215,7 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Reverse the direction of rotation.
+     * Reverse the direction of the rotation.
      *
      * @return Angle
      */
@@ -244,7 +245,7 @@ class Angle implements AngleInterface
     /**
      * Gets the radian representation of this angle.
      *
-     * @param integer $precision The number of decimal digits.
+     * @param integer $precision The number of digits after the decimal point.
      * @return float The angular value expressed as a radian number.
      */
     public function toRadian(int $precision = 1): float
@@ -280,9 +281,10 @@ class Angle implements AngleInterface
      * Alias of isGreaterThan method.
      *
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
-     * @param int $precision The precision digits with which to test the greater than comparison.
+     * @param int $precision The precision digits with which to test the comparison.
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type.
+     * @throws \TypeError when $angle has an unexpected type.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function gt(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
@@ -293,8 +295,10 @@ class Angle implements AngleInterface
      * Check if this angle is greater than or equal to $angle.
      *
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
+     * @param int $precision The precision digits with which to test the comparison.
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type.
+     * @throws \TypeError when $angle has an unexpected type.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function isGreaterThanOrEqual(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
@@ -305,8 +309,10 @@ class Angle implements AngleInterface
      * Alias of isGreaterThanOrEqual method.
      *
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
-     * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type.
+     * @return boolean     
+     * @param int $precision The precision digits with which to test the comparison.     
+     * @throws \TypeError when $angle has an unexpected type.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function gte(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
@@ -317,8 +323,10 @@ class Angle implements AngleInterface
      * Check if this angle is less than another angle.
      *
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
+     * @param int $precision The precision digits with which to test the comparison.
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type.
+     * @throws \TypeError when $angle has an unexpected type.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function isLessThan(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
@@ -329,8 +337,10 @@ class Angle implements AngleInterface
      * Alias of isLessThan method.
      *
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
+     * @param int $precision The precision digits with which to test the comparison.
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type.
+     * @throws \TypeError when $angle has an unexpected type.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function lt(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
@@ -341,8 +351,10 @@ class Angle implements AngleInterface
      * Check if this angle is less than or equal to $angle.
      *
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
+     * @param int $precision The precision digits with which to test the comparison.
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type.
+     * @throws \TypeError when $angle has an unexpected type.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function isLessThanOrEqual(string|int|float|AngleInterface $angle, int $precision = 1): bool
     {
@@ -354,8 +366,9 @@ class Angle implements AngleInterface
      * Alias of isLessThanOrEqual method.
      *
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
+     * @param int $precision The precision digits with which to test the comparison.
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type.     
+     * @throws \TypeError when $angle has an unexpected type.     
      * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function lte(string|int|float|AngleInterface $angle, int $precision = 1): bool
@@ -366,11 +379,10 @@ class Angle implements AngleInterface
     /**
      * Check if this angle is equal to $angle.
      *
-     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle The angle expressed 
-     * in a string, integer, float (degree, not radian) format or an instance of Angle.
+     * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param int $precision The precision digits with which to test the equality
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type argument.
+     * @throws \TypeError when $angle has an unexpected type argument.
      * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function isEqual(string|int|float|AngleInterface $angle, int $precision = 1): bool
@@ -410,7 +422,7 @@ class Angle implements AngleInterface
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param integer $precision
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type argument.
+     * @throws \TypeError when $angle has an unexpected type argument.
      * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function isDifferent(string|int|float|AngleInterface $angle, int $precision = 1): bool
@@ -424,7 +436,7 @@ class Angle implements AngleInterface
      * @param string|int|float|\MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param integer $precision
      * @return boolean
-     * @throws \InvalidArgumentException when $angle has an unexpected type argument.
+     * @throws \TypeError when $angle has an unexpected type argument.
      * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException when there's a failure in regex parser engine.
      */
     public function not(string|int|float|AngleInterface $angle, $precision = 1): bool {
@@ -435,6 +447,7 @@ class Angle implements AngleInterface
      * Get a textual representation of this angle in degrees.
      *
      * @return string
+     * @example (string) $alfa
      */
     public function __toString()
     {

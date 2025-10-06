@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<phpdocumentor configVersion="3.0" title="Trigonometry v3">
+<phpdocumentor configVersion="3.0" title="goniometry">
   <paths>
     <output>docs</output>
     <cache>.phpdoc/cache</cache>
@@ -14,8 +14,8 @@
         <path>tests/**/*</path>
       </ignore>
       <visibility>public</visibility>
-      <default-package-name>MarcoConsiglio\Trigonometry</default-package-name>
+      <default-package-name>MarcoConsiglio\Goniometry</default-package-name>
     </api>
   </version>
-  <setting name="graphs.enabled" value="true"/>
+  <setting name="graphs.enabled" value="false"/>
 </phpdocumentor>
