@@ -20,6 +20,7 @@
     </testsuites>
     <logging>
         <testdoxText outputFile="test_book.txt"/>
+        <testdoxHtml outputFile="test_book.html"/>
     </logging>
     <coverage
         includeUncoveredFiles="true"

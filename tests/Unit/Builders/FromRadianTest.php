@@ -33,7 +33,7 @@ class FromRadianTest extends BuilderTestCase
     {
         // Assert
         $this->expectException(AngleOverflowException::class);
-        $this->expectExceptionMessage("The angle can't be greater than 360°.");
+        $this->expectExceptionMessage("The angle can't be greater than +/-360°.");
 
         // Arrange & Act
         new FromRadian(Angle::MAX_RADIAN + 0.00001);

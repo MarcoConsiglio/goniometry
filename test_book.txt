@@ -55,7 +55,7 @@ The FromRadian builder
  [x] can create a positive angle from a radian value.
  [x] can create a negative angle from a radian value.
  [x] cannot create an angle with more than +/-360°.
- [x] can create an angle of exact 360°.
+ [x] Missing exception if equal 360 degrees
 
 The FromString builder
  [x] can create a positive angle from a string value.
