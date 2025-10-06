@@ -39,7 +39,6 @@ class FromRadianTest extends BuilderTestCase
         new FromRadian(Angle::MAX_RADIAN + 0.00001);
     }
 
-    #[TestDox("can create an angle of exact 360°.")]
     public function test_missing_exception_if_equal_360_degrees()
     {
         // Arrange & Act

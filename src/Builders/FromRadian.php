@@ -91,7 +91,7 @@ class FromRadian extends AngleBuilder
     protected function validate(float $data)
     {
         if (abs($data) > Angle::MAX_RADIAN) {
-            throw new AngleOverflowException("The angle can't be greater than 360°.");
+            throw new AngleOverflowException("The angle can't be greater than +/-360°.");
         }
     }
 

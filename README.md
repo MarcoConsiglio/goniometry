@@ -32,56 +32,50 @@ This creates an angle from its values in degrees, minutes and seconds:
 $alfa = Angle::createFromValues(180, 12, 43, Angle::CLOCKWISE); // 180° 12' 43"
 $alfa = new Angle(new FromDegrees(180, 12, 43, Angle::CLOCKWISE))
 ```
-`Angle::CLOCKWISE` is the plus sign, `Angle::COUNTERCLOCKWISE` is the minus sign.
+`Angle::COUNTERCLOCKWISE` is the plus sign, `Angle::CLOCKWISE` is the minus sign.
 
-The `MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException` is thrown when you try to create an angle:
-- with more than +/-360°
-- with more than 59'
-- with more than 59" if there are no degrees and minutes.
-### Parsing a string
+The `NoMatchException` is thrown when you try to create an angle:
+- with more than $\pm360^\circ$
+- with more than $59'$
+- with more than $59.9''$.
+- with a bad formatted string.
+### String
 This creates an angle from its textual representation:
 ```php
 $beta = Angle::createFromString("180° 12' 43\""); // Input from the user
 $beta = new Angle(new FromString("180° 12' 43\""));
 ```
 
-This is possible thank to the regular expression
+This is possible thanks to the regular expressions
 ```php
-Angle::ANGLE_REGEX;
+Angle::DEGREES_REGEX;
+Angle::MINUTES_REGEX;
+Angle::SECONDS_REGEX;
 ```
-The regex treat degrees and minutes as integer numbers, but seconds are treated as a float number.
+These regex expressions treat degrees and minutes as `int` type, but seconds are treated as a `float` type.
 
-You can create a negative Angle if the string representation start with the minus (-) sign.
+You can create a negative `Angle` if the string representation start with the minus (`-`) sign.
 
-The `MarcoConsiglio\Goniometry\Exceptions\NoMatchException` is thrown when you try to create an angle:
-- with more than +/-360°
-- with more than 59'
-- with more than 59" if there are no degrees and minutes.
+The `NoMatchException` is thrown when you try to create an angle:
+- with more than $\pm360^\circ$
+- with more than $59'$
+- with more than $59.9''$.
 
-### Decimal
+### Decimal (float)
 This create an angle from its decimal representation:
 ```php
 $gamma = Angle::createFromDecimal(180.2119); // 180.2119°
 $gamma = new Angle(new FromDecimal(180.2119));
-```
-You can create a negative Angle if the decimal is negative.
 
-The `MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException` is thrown when you try to create an angle:
-- with more than +/-360°
-- with more than 59'
-- with more than 59" if there are no degrees and minutes.
+The `AngleOverflowException` is thrown when you try to create an `Angle` with more than $\pm360.0^{\circ}$.
 
-### Radian
+### Radian (float)
 This create an angle from its radian representation:
 ```php
 $delta = Angle::createFromRadian(M_PI); // deg2rad(M_PI) = 180°
 $delta = new Angle(FromRadian(M_PI));
 ```
-
-### Exceptions when creating an angle
-Creating an angle by values overflowing the maximum (+/-)360° throws the `AngleOverflowException`
-
-Creating an angle by string overflowing the maximum (+/-)360° throws the `NoMatchException`
+The `AngleOverflowException` is thrown when you try to create an `Angle` with more than $\pm2\pi$.
 
 ## Getting angle values
 You can obtain degrees values separated in an array (simple by default, or associative):
@@ -113,20 +107,12 @@ You can cast the angle to radian:
 $alfa->toRadian(); // 3.1452910063
 ```
 
-## Negative angles
-You can create negative angles too!
-```php
-$alfa = Angle::createFromValues(180, 12, 43, Angle::CLOCKWISE);
-$beta = Angle::createFromString("-180° 12' 43\"");
-$gamma = Angle::createFromDecimal(-180.2119); 
-$delta = Angle::createFromRadian(-3.1452910063);
-```
-### Direction
-Positive angle are represented by the class constant
+## Direction
+Positive angles are represented by the class constant
 ```php
 Angle::COUNTER_CLOCKWISE; // 1
 ```
-while negative angle are represented by the opposite class constant:
+while negative angles are represented by the opposite class constant:
 ```php
 Angle::CLOCKWISE; // -1
 ```
@@ -143,7 +129,7 @@ $alfa->isCounterClockwise();    // true
 
 ## Comparison
 You can compare an angle with a numeric value, numeric string or another `Angle` object.
-Comparisons are performed with absolute values (congruent comparison), meaning that -90° is equal to +90°.
+Comparisons are performed with absolute values (congruent comparison), meaning that $-90^\circ$ is equal to $+90^\circ$.
 If you need a relative comparison, you should perform arithmetics.
 
 ### $\alpha > \beta$ (greater than)
@@ -186,7 +172,7 @@ $alfa->lte(90);                     // true
 $alfa->isLessThanOrEqual($beta);    // true
 $alfa->lte($beta);                  // true
 ```
-### $\alpha \equiv \beta$
+### $\alpha \cong \beta$
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(180);
@@ -194,7 +180,7 @@ $gamma = Angle::createFromDecimal(-180);
 $alfa->isEqual($beta);  // true
 $alfa->eq($gamma);      // true
 ```
-### $\alpha \not\equiv \beta$ (different)
+### $\alpha \ncong \beta$ (different)
 ```php
 $alfa = Angle::createFromDecimal(90);
 $beta = Angle::createFromDecimal(180);
@@ -213,7 +199,7 @@ $beta = Angle::createFromDecimal(270);
 $gamma = new Sum(new FromAngles($alfa, $beta));
 (string) $gamma; // 90° 0' 0"
 ```
-Note that if the sum is more than +360° or less than -360°, the resulting angle will be corrected to remain between these limits.
+Note that if the sum is more than $\pm360^\circ$, the resulting angle will be corrected to remain between these limits.
 
 # Code documentation
 ## UML Diagrams

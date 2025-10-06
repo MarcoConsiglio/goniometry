@@ -110,7 +110,6 @@ class FromString extends AngleBuilder
      *
      * @return void
      * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException when a bad formatted angle is matched.
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when the matched angle overflows +/-360°.
      */
     public function checkOverflow()
     {
@@ -120,10 +119,6 @@ class FromString extends AngleBuilder
         ) {
             throw new NoMatchException("Can't recognize the string $this->measure.");
         }
-        // The Angle::REGEX is a bit buggy. It accepts degrees greater than 360°.
-        // if ($this->matches[2] > 360) {
-        //     throw new AngleOverflowException("The angle degrees can't be greater than 360°.");
-        // }
     }
 
     /**

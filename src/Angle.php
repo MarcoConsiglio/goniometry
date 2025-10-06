@@ -21,13 +21,6 @@ use RoundingMode;
 class Angle implements AngleInterface
 {
     /**
-     *  Angle regular expression used to parse degrees, minutes and seconds values.
-     * @see https://regex101.com/r/OQCxIV/1
-     * @deprecated
-     */
-    public const ANGLE_REGEX = '/^(?:(-?360(*ACCEPT))|(-?[1-3]?[0-9]?[0-9]?))°?\s?([0-5]?[0-9])?\'?\s?([0-5]?[0-9]?)?"?$/';
-
-    /**
      * Regular expression used to parse degrees value.
      */
     public const DEGREES_REGEX = "/^(-?(?:360|3[0-5][[:digit:]]|[12]?[[:digit:]]{1,2}))°/";
