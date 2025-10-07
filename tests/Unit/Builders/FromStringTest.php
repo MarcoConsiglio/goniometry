@@ -21,13 +21,25 @@ class FromStringTest extends BuilderTestCase
     #[TestDox("can create a positive angle from a string value.")]
     public function test_can_create_positive_angle()
     {
-        $this->testAngleCreation(FromString::class);
+        // Arrange
+        $positive = Angle::COUNTER_CLOCKWISE;
+
+        // Act & Assert
+        $this->assertBuilderData(new FromString("180°"), [180, 0, 0, $positive]);
+        $this->assertBuilderData(new FromString("0° 30'"), [0, 30, 0, $positive]);
+        $this->assertBuilderData(new FromString("0° 0' 30\""), [0, 0, 30, $positive]);
     }
 
     #[TestDox("can create a negative angle from a string value.")]
     public function test_can_create_negative_angle()
     {
-        $this->testAngleCreation(FromString::class, negative: true);
+        // Arrange
+        $negative = Angle::CLOCKWISE;
+
+        // Act & Assert
+        $this->assertBuilderData(new FromString("-180°"), [180, 0, 0, $negative]);
+        $this->assertBuilderData(new FromString("-0° 30'"), [0, 30, 0, $negative]);
+        $this->assertBuilderData(new FromString("-0° 0' 30\""), [0, 0, 30, $negative]);
     }
     
     #[TestDox("cannot create an angle with more than 360°.")]
@@ -35,10 +47,11 @@ class FromStringTest extends BuilderTestCase
     {
         // Arrange
         $angle_string = "361° 0' 0\"";
+        $max_degrees = Angle::MAX_DEGREES;
 
         // Assert
-        $this->expectException(NoMatchException::class);
-        $this->expectExceptionMessage("Can't recognize the string $angle_string.");
+        $this->expectException(AngleOverflowException::class);
+        $this->expectExceptionMessage("The angle {$angle_string} exceeds {$max_degrees}°.");
 
         // Act
         new FromString($angle_string);
@@ -49,24 +62,26 @@ class FromStringTest extends BuilderTestCase
     {
         // Arrange
         $angle_string = "0° 60' 0\"";
+        $max_minutes = Angle::MAX_MINUTES;
 
         // Assert
-        $this->expectException(NoMatchException::class);
-        $this->expectExceptionMessage("Can't recognize the string $angle_string.");
+        $this->expectException(AngleOverflowException::class);
+        $this->expectExceptionMessage("The angle {$angle_string} exceeds {$max_minutes}'.");
 
         // Act
         new FromString($angle_string);
     }
 
-    #[TestDox("cannot create an angle with more than 59\".")]
+    #[TestDox("cannot create an angle with more than 59.9\".")]
     public function test_exception_if_more_than_59_seconds()
     {
         // Arrange
         $angle_string = "0° 0' 60\"";
+        $max_seconds = Angle::MAX_MINUTES;
 
         // Assert
-        $this->expectException(NoMatchException::class);
-        $this->expectExceptionMessage("Can't recognize the string $angle_string");
+        $this->expectException(AngleOverflowException::class);
+        $this->expectExceptionMessage("The angle {$angle_string} exceeds {$max_seconds}\".");
 
         // Act
         new FromString($angle_string);
