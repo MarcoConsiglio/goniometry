@@ -11,7 +11,7 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
 
 # Installation
 `composer require marcoconsiglio/goniometry`
-# Usage
+# Quick Start
 Import this class to represent angles.
 ```php
 use MarcoConsiglio\Goniometry\Angle;
@@ -19,6 +19,11 @@ use MarcoConsiglio\Goniometry\Angle;
 Import this class to sum angles.
 ```php
 use MarcoConsiglio\Goniometry\Operations\Sum;
+```
+Create an Angle object.
+```php
+$alfa = Angle::createFromValues(90); // 90°
+$beta = Angle::createFromString("180° 30' ");
 ```
 ## Creating an angle
 ### Degrees, minutes and seconds
