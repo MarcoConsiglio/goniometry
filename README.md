@@ -8,6 +8,33 @@
 <img alt="Static Badge" src="https://img.shields.io/badge/Path_coverage-79.82%25-none?labelColor=%23ECECEC&color=rgb(255%2C%20193%2C%207)">
 
 A PHP support for string, decimal, radian and object angles, providing goniometric algebra and comparison between angles.
+# Index
+- [Index](#index)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Usage](#usage)
+  - [Creating an angle](#creating-an-angle)
+    - [Degrees, minutes and seconds](#degrees-minutes-and-seconds)
+    - [String](#string)
+    - [Decimal (float)](#decimal-float)
+    - [Radian (float)](#radian-float)
+  - [Getting angle values](#getting-angle-values)
+    - [Casting](#casting)
+      - [To decimal (float)](#to-decimal-float)
+      - [To radian (float)](#to-radian-float)
+      - [To string](#to-string)
+  - [Direction](#direction)
+  - [Comparison](#comparison)
+    - [$\alpha > \beta$ (greater than)](#greater-than)
+    - [$\alpha \ge \beta$ (greater than or equal)](#greater-than-or-equal)
+    - [$\alpha < \beta$ (less than)](#less-than)
+    - [$\alpha \le \beta$ (less than or equal)](#less-than-or-equal)
+    - [$\alpha \cong \beta$ (equal)](#equal)
+    - [$\alpha \ncong \beta$ (different)](#different)
+  - [Algebric sum between two angles](#algebric-sum-between-two-angles)
+- [API documentation](#api-documentation)
+- [Testing](#testing)
+  - [Code coverage](#code-coverage)
 
 # Installation
 `composer require marcoconsiglio/goniometry`
@@ -69,6 +96,7 @@ This create an angle from its decimal representation:
 ```php
 $gamma = Angle::createFromDecimal(180.2119); // 180.2119°
 $gamma = new Angle(new FromDecimal(180.2119));
+```
 
 The `AngleOverflowException` is thrown when you try to create an `Angle` with more than $\pm360.0^{\circ}$.
 
@@ -99,16 +127,25 @@ $alfa->minutes;   // 12
 $alfa->seconds;   // 43
 $alfa->direction; // Angle::CLOCKWISE (1)
 ```
-
-You can cast the angle to decimal:
+### Casting
+#### To decimal (float)
+You can cast the angle to decimal, with optional precision:
 ```php
-$alfa->toDecimal(); // 180.2119
+$alfa->toDecimal(); // 180.2
+$alfa->toDecimal(4); // 180.2119
 ```
-
-You can cast the angle to radian:
+#### To radian (float)
+You can cast the angle to radian, with optional precision:
 ```php
-$alfa->toRadian(); // 3.1452910063
+$alfa->toRadian(); // 3.1
+$alfa->toRadian(3); // 3.145
 ```
+#### To string
+You can cast the angle to a string representation:
+```php
+(string) $alfa; // 180° 30' 25.7"
+```
+In this case, maximum precision of seconds will be ever one decimal digit.
 
 ## Direction
 Positive angles are represented by the class constant
@@ -136,7 +173,7 @@ Comparisons are performed with absolute values (congruent comparison), meaning t
 If you need a relative comparison, you should perform arithmetics instead. 
 Warning! Comparisons are not available for radian values, you should perform arithmetics instead.
 
-### $\alpha > \beta$ (greater than)
+### $\alpha > \beta$ (greater than) <a name="greater-than"></a>
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(90);
@@ -147,7 +184,7 @@ $alfa->isGreaterThan($gamma);   // false    180 > 360
 $alfa->gt($gamma);              // false    180 > 360
 ```
 
-### $\alpha \ge \beta$ (greater than or equal)
+### $\alpha \ge \beta$ (greater than or equal) <a name="greater-than-or-equal"></a>
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(90);
@@ -158,7 +195,7 @@ $beta->isGreaterThanOrEqual($gamma);    // true  90 >=  90
 $beta->gte(90);                         // true  90 >=  90
 ```
 
-### $\alpha < \beta$ (less than)
+### $\alpha < \beta$ (less than) <a name="less-than"/></a>
 ```php
 $alfa = Angle::createFromDecimal(90);
 $beta = Angle::createFromDecimal(180);
@@ -167,7 +204,7 @@ $alfa->lt(180);             // true  90 < 180
 $alfa->isLessThan($beta);   // true  90 < 180
 $beta->lt($alfa);           // true 180 < 90
 ```
-### $\alpha \le \beta$ (less than or equal)
+### $\alpha \le \beta$ (less than or equal) <a name="less-than-or-equal"></a>
 ```php
 $alfa = Angle::createFromDecimal(90);
 $beta = Angle::createFromDecimal(180);
@@ -176,7 +213,7 @@ $alfa->lte(90);                     // true
 $alfa->isLessThanOrEqual($beta);    // true
 $alfa->lte($beta);                  // true
 ```
-### $\alpha \cong \beta$
+### $\alpha \cong \beta$ (equal) <a name="equal"></a>
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(180);
@@ -184,7 +221,7 @@ $gamma = Angle::createFromDecimal(-180);
 $alfa->isEqual($beta);  // true
 $alfa->eq($gamma);      // true
 ```
-### $\alpha \ncong \beta$ (different)
+### $\alpha \ncong \beta$ (different) <a name="different"></a>
 ```php
 $alfa = Angle::createFromDecimal(90);
 $beta = Angle::createFromDecimal(180);
