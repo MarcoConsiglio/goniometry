@@ -31,7 +31,7 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
     - [$\alpha \le \beta$ (less than or equal)](#less-than-or-equal)
     - [$\alpha \cong \beta$ (equal)](#equal)
     - [$\alpha \ncong \beta$ (different)](#different)
-  - [Algebric sum between two angles](#algebric-sum-between-two-angles)
+  - [Algebraic sum between two angles](#algebraic-sum-between-two-angles)
 - [API documentation](#api-documentation)
 - [Testing](#testing)
   - [Code coverage](#code-coverage)
@@ -226,8 +226,8 @@ $alfa->isDifferent(-90);            // false
 $beta->not($alfa);                  // true
 ```
 
-## Algebric sum between two angles
-The `Sum` class extends the `Angle` class, so you immediately obtain the algebric sum
+## Algebraic sum between two angles
+The `Sum` class extends the `Angle` class, so you immediately obtain the algebraic sum
 between two angles, passing in its constructor a `FromAngles` builder, which is a `SumBuilder`.
 ```php
 $alfa = Angle::createFromDecimal(180);
