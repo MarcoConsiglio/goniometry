@@ -4,7 +4,6 @@
     "type": "library",
     "keywords": ["angle", "angle object", "goniometry", "goniometric algebra", "angular value", "decimal angle", "radian angle", "radian", "degrees", "minutes", "seconds"],
     "license": "MIT",
-    "version": "1.0.0",
     "autoload": {
         "psr-4": {
             "MarcoConsiglio\\Goniometry\\": "src/"
