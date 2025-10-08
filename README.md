@@ -60,20 +60,17 @@ $delta = Angle::createFromRadian(M_PI); // 180°
 This creates an angle from its values in degrees, minutes and seconds:
 ```php
 $alfa = Angle::createFromValues(180, 12, 43, Angle::CLOCKWISE); // 180° 12' 43"
-$alfa = new Angle(new FromDegrees(180, 12, 43, Angle::CLOCKWISE))
 ```
 `Angle::COUNTERCLOCKWISE` is the plus sign, `Angle::CLOCKWISE` is the minus sign.
 
-The `NoMatchException` is thrown when you try to create an angle:
+The `AngleOverflowException` is thrown when you try to create an angle:
 - with more than $\pm360^\circ$
 - with more than $59'$
 - with more than $59.9''$.
-- with a bad formatted string.
 ### String
 This creates an angle from its textual representation:
 ```php
 $beta = Angle::createFromString("180° 12' 43\""); // Input from the user
-$beta = new Angle(new FromString("180° 12' 43\""));
 ```
 
 This is possible thanks to the regular expressions
@@ -95,7 +92,6 @@ The `NoMatchException` is thrown when you try to create an angle:
 This create an angle from its decimal representation:
 ```php
 $gamma = Angle::createFromDecimal(180.2119); // 180.2119°
-$gamma = new Angle(new FromDecimal(180.2119));
 ```
 
 The `AngleOverflowException` is thrown when you try to create an `Angle` with more than $\pm360.0^{\circ}$.
@@ -104,7 +100,6 @@ The `AngleOverflowException` is thrown when you try to create an `Angle` with mo
 This create an angle from its radian representation:
 ```php
 $delta = Angle::createFromRadian(M_PI); // deg2rad(M_PI) = 180°
-$delta = new Angle(FromRadian(M_PI));
 ```
 The `AngleOverflowException` is thrown when you try to create an `Angle` with more than $\pm2\pi$.
 

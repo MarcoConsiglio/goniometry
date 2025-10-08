@@ -30,7 +30,7 @@ class FromStringTest extends BuilderTestCase
         $this->testAngleCreation(FromString::class, negative: true);
     }
     
-    #[TestDox("cannot create an angle with more than 360°.")]
+    #[TestDox("throws NoMatchException with more than 360° input.")]
     public function test_exception_if_more_than_360_degrees()
     {
         // Arrange
@@ -44,7 +44,7 @@ class FromStringTest extends BuilderTestCase
         new FromString($angle_string);
     }
 
-    #[TestDox("cannot create an angle with more than 59'.")]
+    #[TestDox("throws NoMatchException with more than 59' input.")]
     public function test_exception_if_more_than_59_minutes()
     {
         // Arrange
@@ -58,7 +58,7 @@ class FromStringTest extends BuilderTestCase
         new FromString($angle_string);
     }
 
-    #[TestDox("cannot create an angle with more than 59\".")]
+    #[TestDox("throws NoMatchException with more than 59.9\" input.")]
     public function test_exception_if_more_than_59_seconds()
     {
         // Arrange
