@@ -36,6 +36,11 @@ Search.appendIndex(
             "summary": "Creates\u0020an\u0020angle\u0020from\u0020its\u0020radian\u0020representation.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_createFromRadian"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Asum\u0028\u0029",
+            "name": "sum",
+            "summary": "Sum\u0020two\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_sum"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AgetDegrees\u0028\u0029",
             "name": "getDegrees",
             "summary": "Return\u0020an\u0020array\u0020containing\u0020the\u0020values\nof\u0020\u0022degrees\u0022,\u0020\u0022minutes\u0022\u0020and\u0020\u0022seconds\u0022.",
