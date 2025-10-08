@@ -26,13 +26,13 @@ class FromAnglesTest extends BuilderTestCase
         $alfa = $this->getRandomAngle();
         $beta = $this->getRandomAngle();
         $builder = new FromAngles($alfa, $beta);
+        $decimal_alfa = $alfa->toDecimal(3);
+        $decimal_beta = $beta->toDecimal(3);
 
         // Act
         $result = $builder->fetchData();
 
         // Assert
-        $decimal_alfa = $alfa->toDecimal(3);
-        $decimal_beta = $beta->toDecimal(3);
         $gamma = Angle::createFromValues($result[0], $result[1], $result[2], $result[3]);
         $decimal_gamma = $gamma->toDecimal();
         $sum = round($decimal_alfa + $decimal_beta, 3, RoundingMode::HalfTowardsZero);

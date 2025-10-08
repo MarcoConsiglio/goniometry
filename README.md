@@ -4,8 +4,8 @@
 <img alt="Static Badge" src="https://img.shields.io/badge/Version-v0.0.0-white">
 <br>
 <img alt="Static Badge" src="https://img.shields.io/badge/Line_coverage-100.00%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
-<img alt="Static Badge" src="https://img.shields.io/badge/Branch_coverage-99.27%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
-<img alt="Static Badge" src="https://img.shields.io/badge/Path_coverage-79.82%25-none?labelColor=%23ECECEC&color=rgb(255%2C%20193%2C%207)">
+<img alt="Static Badge" src="https://img.shields.io/badge/Branch_coverage-99.29%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
+<img alt="Static Badge" src="https://img.shields.io/badge/Path_coverage-86.11%25-none?labelColor=%23ECECEC&color=rgb(255%2C%20193%2C%207)">
 
 A PHP support for string, decimal, radian and object angles, providing goniometric algebra and comparison between angles.
 # Index
