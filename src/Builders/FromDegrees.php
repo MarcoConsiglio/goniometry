@@ -23,7 +23,7 @@ class FromDegrees extends AngleBuilder
     {
         $this->degrees = abs($degrees);
         $this->minutes = abs($minutes);
-        $this->seconds = abs($seconds);
+        $this->seconds = round(abs($seconds), 1, RoundingMode::HalfTowardsZero);
         $this->direction = $direction;
         $this->checkOverflow();
     }
@@ -36,30 +36,21 @@ class FromDegrees extends AngleBuilder
      */
     public function checkOverflow()
     {
-        $this->validate(
-            $this->degrees,
-            $this->minutes,
-            $this->seconds,
-            $this->direction
-        );
+        if ($this->valuesExceedsMaximumAllowed($this->degrees, $this->minutes, $this->seconds)) {
+            throw new AngleOverflowException("The angle inputs can't be greater than 360° or 59' or 59.9\".");
+        }
+        $this->validateDirection();
     }
 
     /**
-     * Check if values are valid.
+     * Validate the direction input.
      *
-     * @param integer $degrees
-     * @param integer $minutes
-     * @param float   $seconds
-     * @param int     $direction
-     * @return boolean
+     * @return void
      */
-    protected function validate(int $degrees, int $minutes, float $seconds, int $direction)
+    protected function validateDirection()
     {  
-        if ($this->valuesExceedsMaximumAllowed($degrees, $minutes, $seconds)) {
-            throw new AngleOverflowException("The angle inputs can't be greater than 360° or 59' or 59.9\".");
-        }
-        $this->direction = $this->correctDirection($direction);
-        if ($this->isNullAngle($degrees, $minutes, $seconds)) {
+        $this->direction = $this->correctDirection($this->direction);
+        if ($this->isNullAngle($this->degrees, $this->minutes, $this->seconds)) {
             $this->direction = Angle::COUNTER_CLOCKWISE;
         }
     }
@@ -119,10 +110,37 @@ class FromDegrees extends AngleBuilder
      */
     private function valuesExceedsMaximumAllowed(int $degrees, int $minutes, float $seconds)
     {
-        $exceeds_degrees = $degrees > Angle::MAX_DEGREES;
-        $exceeds_minutes = $minutes > Angle::MAX_MINUTES - 1;
-        $exceeds_seconds = $seconds > round(Angle::MAX_SECONDS - 0.1, 1, RoundingMode::HalfTowardsZero);
-        return $exceeds_degrees || $exceeds_minutes || $exceeds_seconds;
+        return 
+            $this->degreesExceeded($degrees) || 
+            $this->minutesExceeded($minutes) || 
+            $this->secondsExceeded($seconds);
+    }
+
+    /**
+     * Check if degrees exceeds the maximum allowed value.
+     *
+     * @param integer $degrees
+     * @return boolean
+     */
+    private function degreesExceeded(int $degrees): bool
+    {
+        return $degrees > Angle::MAX_DEGREES;
+    }
+
+    /**
+     * Check if minutes exceeds the maximum allowed value.
+     *
+     * @param integer $minutes
+     * @return boolean
+     */
+    private function minutesExceeded(int $minutes): bool
+    {
+        return $minutes >= Angle::MAX_MINUTES ;
+    }
+
+    private function secondsExceeded(float $seconds): bool
+    {
+        return $seconds >= Angle::MAX_SECONDS;
     }
 
     /**

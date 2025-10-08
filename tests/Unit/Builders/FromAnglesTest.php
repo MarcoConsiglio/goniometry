@@ -53,34 +53,24 @@ class FromAnglesTest extends BuilderTestCase
         );
     }
 
-    #[TestDox("corrects positive excess if the sum is greater than 360°.")]
+    #[TestDox("corrects the excess if the sum is greater than +/-360°.")]
     public function test_correct_positive_excess()
     {
         // Arrange
         $alfa = Angle::createFromDecimal(360.0);
         $beta = Angle::createFromDecimal(360.0);
+        $gamma = Angle::createFromDecimal(-360.0);
+        $delta = Angle::createFromDecimal(-360.0);
 
         // Act
-        $gamma = new Sum(new FromAngles($alfa, $beta));
+        $sum_1 = new Sum(new FromAngles($alfa, $beta));
+        $sum_2 = new Sum(new FromAngles($gamma, $delta));
 
         // Assert
-        $decimal_gamma = $gamma->toDecimal();
-        $this->assertEquals(360.0, $decimal_gamma);
-    }
-
-    #[TestDox("corrects negative excess if the sum is less than -360°.")]
-    public function test_correct_negative_excess()
-    {
-        // Arrange
-        $alfa = Angle::createFromDecimal(-360.0);
-        $beta = Angle::createFromDecimal(-360.0);
-
-        // Act
-        $gamma = new Sum(new FromAngles($alfa, $beta));
-
-        // Assert
-        $decimal_gamma = $gamma->toDecimal();
-        $this->assertEquals(-360.0, $decimal_gamma); 
+        $decimal_sum_1 = $sum_1->toDecimal();
+        $decimal_sum_2 = $sum_2->toDecimal();
+        $this->assertEquals(360.0, $decimal_sum_1);
+        $this->assertEquals(-360.0, $decimal_sum_2);
     }
 
     /**

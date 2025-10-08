@@ -27,18 +27,23 @@ class FromDegreesTest extends BuilderTestCase
         // Arrange
         $direction = "direction";
         $positive_direction = Angle::COUNTER_CLOCKWISE;
+        $negative_direction = Angle::CLOCKWISE;
 
         // Act
-        $alfa = Angle::createFromValues(0, 0, 0);
-        $beta = Angle::createFromValues(0, 0, 0, Angle::CLOCKWISE);
+        $alfa = Angle::createFromValues(0, 0, 0, $positive_direction);
+        $beta = Angle::createFromValues(0, 0, 0, $negative_direction);
+        $gamma = Angle::createFromValues(1, 0, 0, $negative_direction);    // Negative non-null angle.
+        $delta = Angle::createFromValues(1, 0, 0, $positive_direction);    // Positive non-null angle.
 
         // Assert
         $this->assertProperty("int", $direction, $alfa, $positive_direction);
         $this->assertProperty("int", $direction, $beta, $positive_direction);
+        $this->assertProperty("int", $direction, $gamma, $negative_direction);
+        $this->assertProperty("int", $direction, $delta, $positive_direction);
     }
 
     #[TestDox("throws AngleOverflowException with more than 360°, 59' or 59.9\" input.")]
-    public function test_exception_if_more_than_360_degrees()
+    public function test_exception_with_exceeding_values()
     {
         // Arrange
         $degrees_excess = 361;
