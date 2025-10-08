@@ -15,7 +15,6 @@ use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use ReflectionClass;
 use RoundingMode;
 use TypeError;
 
@@ -142,7 +141,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]
-    public function test_get_angle_values_in_simple_array()
+    public function test_get_angle_values_in_array()
     {
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
@@ -165,7 +164,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be printed in a positive or negative textual representation.")]
-    public function test_can_cast_positive_angle_to_string()
+    public function test_cast_angle_to_string()
     {
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
@@ -185,7 +184,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be casted to decimal.")]
-    public function test_can_cast_to_decimal()
+    public function test_cast_to_decimal()
     {
         // Arrange
         $precision = PHP_FLOAT_DIG;
@@ -437,6 +436,31 @@ class AngleTest extends TestCase
         // Act & Assert
         $this->expectException(TypeError::class);
         $alfa->not($invalid_argument); // Two birds with one stone.
+    }
+
+    #[TestDox("can sums two angles.")]
+    public function test_sum_two_angles()
+    {
+        // Arrange
+        $alfa = $this->getRandomAngle($this->faker->boolean());
+        $beta = $this->getRandomAngle($this->faker->boolean());
+
+        // Act
+        $gamma = Angle::sum($alfa, $beta);
+
+        // Assert
+        $decimal_alfa = $alfa->toDecimal(3);
+        $decimal_beta = $beta->toDecimal(3);
+        $decimal_gamma = $gamma->toDecimal();
+        $decimal_sum = round($decimal_alfa + $decimal_beta, 1, RoundingMode::HalfTowardsZero);
+        $absolute_sum = abs($decimal_sum);
+        while ($absolute_sum > Angle::MAX_DEGREES) {
+            $absolute_sum = round($absolute_sum - Angle::MAX_DEGREES, 1, RoundingMode::HalfTowardsZero);
+        }
+        $decimal_sum = $decimal_sum >= 0 ? $absolute_sum : -$absolute_sum;
+        $this->assertEquals($decimal_sum, $decimal_gamma, 
+            "{$decimal_alfa}° + {$decimal_beta}° must equals {$decimal_sum}° but found {$decimal_gamma}°."
+        );
     }
 
     /**

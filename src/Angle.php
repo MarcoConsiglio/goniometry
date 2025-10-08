@@ -2,12 +2,14 @@
 namespace MarcoConsiglio\Goniometry;
 
 use InvalidArgumentException;
+use MarcoConsiglio\Goniometry\Builders\FromAngles;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
+use MarcoConsiglio\Goniometry\Operations\Sum;
 use RoundingMode;
 
 /**
@@ -168,6 +170,18 @@ class Angle implements AngleInterface
     public static function createFromRadian(float $radian): Angle
     {
          return new Angle(new FromRadian($radian));
+    }
+
+    /**
+     * Sum two angles.
+     *
+     * @param AngleInterface $first_angle
+     * @param AngleInterface $second_angle
+     * @return Angle
+     */
+    public static function sum(AngleInterface $first_angle, AngleInterface $second_angle): Angle
+    {
+        return new Sum(new FromAngles($first_angle, $second_angle));
     }
 
     /**
