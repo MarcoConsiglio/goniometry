@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use RoundingMode;
 
 /**
  *  Builds an angle starting from degrees, minutes and seconds.
@@ -53,23 +54,13 @@ class FromDegrees extends AngleBuilder
      * @return boolean
      */
     protected function validate(int $degrees, int $minutes, float $seconds, int $direction)
-    {
-        if ($degrees > 360) {
-            throw new AngleOverflowException("The angle degrees can't be greater than 360°.");
+    {  
+        if ($this->valuesExceedsMaximumAllowed($degrees, $minutes, $seconds)) {
+            throw new AngleOverflowException("The angle inputs can't be greater than 360° or 59' or 59.9\".");
         }
-        if ($minutes > 59) {
-            throw new AngleOverflowException("The angle minutes can't be greater than 59'.");
-        }
-        if ($seconds > 59.9) {
-            throw new AngleOverflowException("The angle seconds can't be greater than 59.9\".");
-        }
-        if ($degrees == 0 && $minutes == 0 && $seconds == 0) {
+        $this->direction = $this->correctDirection($direction);
+        if ($this->isNullAngle($degrees, $minutes, $seconds)) {
             $this->direction = Angle::COUNTER_CLOCKWISE;
-        }
-        if ($direction >= 0) {
-            $this->direction = Angle::COUNTER_CLOCKWISE;
-        } else {
-            $this->direction = Angle::CLOCKWISE;
         }
     }
 
@@ -116,5 +107,45 @@ class FromDegrees extends AngleBuilder
     public function calcSign()
     {
 
+    }
+
+    /**
+     * Check if one or more of angle values exceeded the maximum allowed.
+     *
+     * @param integer $degrees
+     * @param integer $minutes
+     * @param float $seconds
+     * @return void
+     */
+    private function valuesExceedsMaximumAllowed(int $degrees, int $minutes, float $seconds)
+    {
+        $exceeds_degrees = $degrees > Angle::MAX_DEGREES;
+        $exceeds_minutes = $minutes > Angle::MAX_MINUTES - 1;
+        $exceeds_seconds = $seconds > round(Angle::MAX_SECONDS - 0.1, 1, RoundingMode::HalfTowardsZero);
+        return $exceeds_degrees || $exceeds_minutes || $exceeds_seconds;
+    }
+
+    /**
+     * Correct direction value in case of wrong integer input.
+     *
+     * @param integer $direction
+     * @return int
+     */
+    private function correctDirection(int $direction): int
+    {
+        return $direction < 0 ? Angle::CLOCKWISE : Angle::COUNTER_CLOCKWISE;
+    }
+
+    /**
+     * Check if the angle is a null angle.
+     *
+     * @param integer $degrees
+     * @param integer $minutes
+     * @param float $seconds
+     * @return boolean
+     */
+    private function isNullAngle(int $degrees, int $minutes, float $seconds): bool
+    {
+        return $degrees == 0 && $minutes == 0 && $seconds == 0;
     }
 }
