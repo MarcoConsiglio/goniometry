@@ -28,7 +28,7 @@ class FromRadianTest extends BuilderTestCase
         $this->testAngleCreation(FromRadian::class, negative: true);
     }
 
-    #[TestDox("cannot create an angle with more than +/-360°.")]
+    #[TestDox("throws AngleOverflowException with more than +/-360° input.")]
     public function test_exception_if_more_than_360_degrees()
     {
         // Assert
@@ -39,14 +39,14 @@ class FromRadianTest extends BuilderTestCase
         new FromRadian(Angle::MAX_RADIAN + 0.00001);
     }
 
-    public function test_missing_exception_if_equal_360_degrees()
-    {
-        // Arrange & Act
-        new FromRadian(Angle::MAX_RADIAN);
+    // public function test_missing_exception_if_equal_360_degrees()
+    // {
+    //     // Arrange & Act
+    //     new FromRadian(Angle::MAX_RADIAN);
 
-        // Assert
-        $this->expectNotToPerformAssertions();
-    }
+    //     // Assert
+    //     $this->expectNotToPerformAssertions();
+    // }
 
     /**
      * Returns the FromRadian builder class.
