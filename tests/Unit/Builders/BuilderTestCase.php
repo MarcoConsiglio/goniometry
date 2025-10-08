@@ -9,7 +9,6 @@ use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
-use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
 use PHPUnit\Framework\MockObject\MockObject;
 use RoundingMode;
@@ -249,26 +248,6 @@ abstract class BuilderTestCase extends TestCase
     }
 
     /**
-     * Assert the result of an AngleBuilder.
-     *
-     * @param AngleBuilderInterface $builder
-     * @param array $expected_data
-     * @param string $failure_message
-     * @return void
-     */
-    public function assertBuilderData(AngleBuilderInterface $builder, array $expected_data)
-    {
-        $actual_data = $builder->fetchData();
-        for ($i=0; $i < 4; $i++) { 
-            $this->assertEquals(
-                $expected_data[$i],
-                $actual_data[$i], 
-                $this->getBuilderDataFailureMessage($expected_data[$i], $actual_data[$i])
-            );
-        }
-    }
-
-    /**
      * Constructs a mocked AngleBuilder based on the getBuilderClass method.
      *
      * @param array $mocked_methods The methods you want to hide or mock.
@@ -295,17 +274,4 @@ abstract class BuilderTestCase extends TestCase
      * @return string
      */
     protected abstract function getBuilderClass(): string;
-
-    /**
-     * Produces a failure message for a value fetched from a builder.
-     *
-     * @param mixed $expected
-     * @param mixed $actual
-     * @return string
-     */
-    protected function getBuilderDataFailureMessage($expected, $actual): string
-    {
-        $class = $this->getBuilderClass();
-        return "$class fetched data must be {$expected} but found {$actual}.";
-    }
 }

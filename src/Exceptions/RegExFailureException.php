@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Exceptions;
 use Exception;
 
 /**
- * This exception is thrown when an angle regular expression fails.
+ * This exception is thrown when the angle regex fails to find a string angle.
  */
 class RegExFailureException extends Exception
 {

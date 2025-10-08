@@ -5,7 +5,6 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
-use RoundingMode;
 
 /**
  *  Builds an angle starting from a string value.
@@ -22,43 +21,34 @@ class FromString extends AngleBuilder
     /**
      * The parsing status for degrees value.
      *
-     * @var int|false
+     * @var mixed
      */
     protected mixed $degrees_parsing_status;
 
     /**
      * The parsing status for minutes value.
      *
-     * @var int|false
+     * @var mixed
      */
     protected mixed $minutes_parsing_status;
 
     /**
      * The parsing status for seconds value.
      *
-     * @var int|false
+     * @var mixed
      */
     protected mixed $seconds_parsing_status;
 
     /**
-     * The matched values for degrees.
+     * The regex matches.
      *
      * @var array
+     * @deprecated
      */
+    protected array $matches = [];
+
     protected array $degrees_match = [];
-
-    /**
-     * The matched values for minutes.
-     *
-     * @var array
-     */
     protected array $minutes_match = [];
-
-    /**
-     * The matched values for seconds.
-     *
-     * @var array
-     */
     protected array $seconds_match = [];
 
     /**
@@ -86,11 +76,7 @@ class FromString extends AngleBuilder
      */
     protected function parseDegreesString(string $angle)
     {
-        $regex = Angle::DEGREES_REGEX;
-        $this->degrees_parsing_status = preg_match($regex, $angle, $this->degrees_match);
-        if ($this->degrees_parsing_status === false) throw new RegExFailureException(
-            $this->getRegExFailureMessage($regex)
-        );
+        $this->degrees_parsing_status = preg_match(Angle::DEGREES_REGEX, $angle, $this->degrees_match);
     }
 
     /**
@@ -103,11 +89,7 @@ class FromString extends AngleBuilder
      */
     protected function parseMinutesString(string $angle)
     {
-        $regex = Angle::MINUTES_REGEX;
-        $this->minutes_parsing_status = preg_match($regex, $angle, $this->minutes_match);
-        if ($this->minutes_parsing_status === false) throw new RegExFailureException(
-            $this->getRegExFailureMessage($regex)
-        );
+        $this->minutes_parsing_status = preg_match(Angle::MINUTES_REGEX, $angle, $this->minutes_match);
     }
 
     /**
@@ -120,60 +102,23 @@ class FromString extends AngleBuilder
      */
     protected function parseSecondsString(string $angle)
     {
-        $regex = Angle::SECONDS_REGEX;
-        $this->seconds_parsing_status = preg_match($regex, $angle, $this->seconds_match);
-        if ($this->seconds_parsing_status === false) throw new RegExFailureException(
-            $this->getRegExFailureMessage($regex)
-        );
+        $this->seconds_parsing_status = preg_match(Angle::SECONDS_REGEX, $angle, $this->seconds_match);
     }
 
     /**
-     * Check if values overflow the maximum allowed.
+     * Check for overflow above/below +/-360°.
      *
      * @return void
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when values overflows the maximum allowed.
+     * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException when a bad formatted angle is matched.
      */
     public function checkOverflow()
     {
-        if (isset($this->degrees_match[1])) $this->checkDegreesOverflow((int) $this->degrees_match[1]);
-        if (isset($this->minutes_match[1])) $this->checkMinutesOverflow((int) $this->minutes_match[1]);
-        if (isset($this->seconds_match[1])) $this->checkSecondsOverflow((float) $this->seconds_match[1]);
-    }
-
-    /**
-     * Check if degrees overflow the maximum allowed.
-     *
-     * @param integer $degrees
-     * @return void
-     */
-    private function checkDegreesOverflow(int $degrees)
-    {
-        $max_degrees = Angle::MAX_DEGREES;
-        if (abs($degrees) > $max_degrees) throw new AngleOverflowException("The angle {$this->measure} exceeds {$max_degrees}°.");
-    }
-
-    /**
-     * Check if minutes overflow the maximum allowed.
-     *
-     * @param integer $minutes
-     * @return void
-     */
-    private function checkMinutesOverflow(int $minutes)
-    {
-        $max_minutes = Angle::MAX_MINUTES;
-        if ($minutes >= $max_minutes) throw new AngleOverflowException("The angle {$this->measure} exceeds {$max_minutes}'.");
-    }
-
-    /**
-     * Check if seconds overflow the maximum allowed.
-     *
-     * @param integer $degrees
-     * @return void
-     */
-    private function checkSecondsOverflow(float $seconds)
-    {
-        $max_seconds = Angle::MAX_SECONDS;
-        if (round($seconds, 1, RoundingMode::HalfTowardsZero) > 59.9) throw new AngleOverflowException("The angle {$this->measure} exceeds {$max_seconds}\".");
+        if ($this->degrees_parsing_status == 0 || 
+            $this->minutes_parsing_status == 0 ||
+            $this->seconds_parsing_status == 0
+        ) {
+            throw new NoMatchException("Can't recognize the string $this->measure.");
+        }
     }
 
     /**
@@ -183,8 +128,7 @@ class FromString extends AngleBuilder
      */
     public function calcDegrees()
     {
-        $this->degrees = isset($this->degrees_match[1]) ? 
-            abs((int) $this->degrees_match[1]) : 0;
+        $this->degrees = abs((int) $this->degrees_match[1]);
     }
 
     /**
@@ -194,8 +138,7 @@ class FromString extends AngleBuilder
      */
     public function calcMinutes()
     {
-        $this->minutes = isset($this->minutes_match[1]) ?
-            (int) $this->minutes_match[1] : 0;
+        $this->minutes = (int) $this->minutes_match[1];
     }
 
     /**
@@ -205,8 +148,7 @@ class FromString extends AngleBuilder
      */
     public function calcSeconds()
     {
-        $this->seconds = isset($this->seconds_match[1]) ?
-            $this->seconds_match[1] : 0;
+        $this->seconds = $this->seconds_match[1];
     }
 
     /**
@@ -217,8 +159,7 @@ class FromString extends AngleBuilder
      */
     public function calcSign()
     {
-        $this->direction = (substr($this->measure, 0, 1) == '-') ?
-            Angle::CLOCKWISE : Angle::COUNTER_CLOCKWISE;
+        $this->direction = ((int) $this->degrees_match[1]) >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE;
     }
 
     /**
@@ -233,16 +174,5 @@ class FromString extends AngleBuilder
         $this->calcSeconds();
         $this->calcSign();
         return parent::fetchData();
-    }
-
-    /**
-     * Produce an error message for a regular expression failure.
-     *
-     * @param string $regex
-     * @return string
-     */
-    private function getRegExFailureMessage(string $regex): string
-    {
-        return "The regular expression {$regex} failed.";
     }
 }

@@ -1,4 +1,5 @@
 vendor
 .phpunit.cache
 .phpdoc
-test_book.*
+test_book.txt
+test_book.html
