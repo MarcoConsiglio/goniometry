@@ -19,8 +19,8 @@
         </testsuite>
     </testsuites>
     <logging>
-        <testdoxText outputFile="test_book.txt"/>
-        <testdoxHtml outputFile="test_book.html"/>
+        <testdoxText outputFile="testbook.txt"/>
+        <testdoxHtml outputFile="testbook.html"/>
     </logging>
     <coverage
         includeUncoveredFiles="true"

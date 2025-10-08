@@ -7,7 +7,7 @@
 <img alt="Static Badge" src="https://img.shields.io/badge/Branch_coverage-99.27%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
 <img alt="Static Badge" src="https://img.shields.io/badge/Path_coverage-79.82%25-none?labelColor=%23ECECEC&color=rgb(255%2C%20193%2C%207)">
 
-A PHP support for string, decimal, radian and object angles, providing goniometric algebra and congruent comparison.
+A PHP support for string, decimal, radian and object angles, providing goniometric algebra and comparison between angles.
 
 # Installation
 `composer require marcoconsiglio/goniometry`
@@ -22,9 +22,12 @@ use MarcoConsiglio\Goniometry\Operations\Sum;
 ```
 Create an Angle object.
 ```php
-$alfa = Angle::createFromValues(90); // 90°
-$beta = Angle::createFromString("180° 30' ");
+$alfa = Angle::createFromValues(180, 30);
+$beta = Angle::createFromString("180° 30'");
+$gamma = Angle::createFromDecimal(180.5);
+$delta = Angle::createFromRadian(M_PI); // 180°
 ```
+# Usage
 ## Creating an angle
 ### Degrees, minutes and seconds
 This creates an angle from its values in degrees, minutes and seconds:
@@ -203,4 +206,18 @@ $gamma = new Sum(new FromAngles($alfa, $beta));
 Note that if the sum is more than $\pm360^\circ$, the resulting angle will be corrected to remain between these limits.
 
 # API documentation
-You can read the code documentation [here](./docs/index.html).
+You can read the code documentation in `./docs/index.html`.
+
+To generate the API documentation use
+```shell
+vendor/bin/phpdoc run
+```
+
+# Testing
+To perform tests use
+```shell
+vendor/bin/phpunit
+```
+At the end, it will produce a testbook both in text and html formats at `./testbook.txt` and `./testbook.html`.
+## Code coverage
+If you have Xdebug setup for code coverage, you can find an html report in `./tests/coverage_report/index.html`.
