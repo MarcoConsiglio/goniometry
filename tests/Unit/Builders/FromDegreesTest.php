@@ -82,10 +82,14 @@ class FromDegreesTest extends BuilderTestCase
         // Act
         $alfa = Angle::createFromValues(180, 30, 15, $wrong_negative);
         $beta = Angle::createFromValues(180, 30, 15, $wrong_positive);
+        $gamma = Angle::createFromValues(-180, -30, -15, $wrong_negative);
+        $delta = Angle::createFromValues(-180, -30, -15, $wrong_positive);
 
         // Assert
         $this->assertProperty("int", $direction, /* of */ $alfa, /* must be */ $negative);
         $this->assertProperty("int", $direction, /* of */ $beta, /* must be */ $positive);
+        $this->assertProperty("int", $direction, /* of */ $gamma, /* must be */ $negative);
+        $this->assertProperty("int", $direction, /* of */ $delta, /* must be */ $positive);
     }
 
     /**

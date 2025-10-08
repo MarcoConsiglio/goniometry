@@ -21,9 +21,9 @@ class FromDegrees extends AngleBuilder
      */
     public function __construct(int $degrees, int $minutes, float $seconds, int $direction = Angle::COUNTER_CLOCKWISE)
     {
-        $this->degrees = $degrees;
-        $this->minutes = $minutes;
-        $this->seconds = $seconds;
+        $this->degrees = abs($degrees);
+        $this->minutes = abs($minutes);
+        $this->seconds = abs($seconds);
         $this->direction = $direction;
         $this->checkOverflow();
     }
