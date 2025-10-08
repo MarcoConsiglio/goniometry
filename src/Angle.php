@@ -250,7 +250,7 @@ class Angle implements AngleInterface
      */
     public function toRadian(int $precision = 1): float
     {
-        return round(deg2rad($this->toDecimal(15)), $precision, PHP_ROUND_HALF_DOWN);
+        return round(deg2rad($this->toDecimal(PHP_FLOAT_DIG)), $precision, PHP_ROUND_HALF_DOWN);
     }
 
     /**
