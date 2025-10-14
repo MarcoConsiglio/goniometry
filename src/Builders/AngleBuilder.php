@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
+use RoundingMode;
 
 /**
  * Represents an angle builder.
@@ -42,35 +43,35 @@ abstract class AngleBuilder implements AngleBuilderInterface
      *
      * @return void
      */
-    abstract public function checkOverflow();
+    abstract protected function checkOverflow();
 
     /**
      * Calc degrees.
      *
      * @return void
      */
-    abstract public function calcDegrees();
+    abstract protected function calcDegrees();
 
     /**
      * Calc minutes.    
      *
      * @return void
      */
-    abstract public function calcMinutes();
+    abstract protected function calcMinutes();
 
     /**
      * Calc seconds.
      *
      * @return void
      */
-    abstract public function calcSeconds();
+    abstract protected function calcSeconds();
 
     /**
      * Calc direction.
      *
      * @return void
      */
-    abstract public function calcSign();
+    abstract protected function calcSign();
 
     /**
      * Fetch data to build an Angle class.
@@ -82,7 +83,7 @@ abstract class AngleBuilder implements AngleBuilderInterface
         return [
             $this->degrees,
             $this->minutes,
-            round($this->seconds, 1),
+            round($this->seconds, 1, RoundingMode::HalfTowardsZero),
             $this->direction
         ];
     }
