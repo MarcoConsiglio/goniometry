@@ -204,14 +204,16 @@ class TestCase extends PHPUnitTestCase
     ): MockObject
     {
         $angle = $this->getMockBuilder(Angle::class)
-            ->onlyMethods($mocked_methods)
             ->disableOriginalConstructor();
-            if ($original_constructor) {
-                $angle->enableOriginalConstructor()
-                        ->setConstructorArgs(
-                            is_array($constructor_arguments) ? $constructor_arguments : [$constructor_arguments]
-                        );
-            }
+        if (!empty($mocked_methods)) {
+            $angle->onlyMethods($mocked_methods);
+        }
+        if ($original_constructor) {
+            $angle->enableOriginalConstructor()
+                    ->setConstructorArgs(
+                        is_array($constructor_arguments) ? $constructor_arguments : [$constructor_arguments]
+                    );
+        }
         return $angle->getMock();
     }
 

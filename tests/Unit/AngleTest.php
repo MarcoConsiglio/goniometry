@@ -145,8 +145,13 @@ class AngleTest extends TestCase
     {
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle();
-        $this->setAngleProperties($alfa, [1, 2, 3.4]);
+        $alfa = Angle::createFromValues(
+            $degrees = $this->faker->numberBetween(0, 360), 
+            $minutes = $this->faker->numberBetween(0, 59), 
+            $seconds = $this->faker->randomFloat(1, 0, 59.9),
+            $direction = $this->faker->randomElement([Angle::CLOCKWISE, Angle::COUNTER_CLOCKWISE])
+        );
+        $degrees *= $direction;
 
         // Act
         $simple_result = $alfa->getDegrees();
@@ -155,12 +160,12 @@ class AngleTest extends TestCase
         // Assert
         $failure_message_1 = "Can't get angle values as a simple array.";
         $failure_message_2 = "Can't get angle values as an associative array.";
-        $this->assertEquals(1,   $simple_result[0], $failure_message_1);
-        $this->assertEquals(2,   $simple_result[1], $failure_message_1);
-        $this->assertEquals(3.4, $simple_result[2], $failure_message_1);
-        $this->assertEquals(1,   $associative_result["degrees"], $failure_message_2);
-        $this->assertEquals(2,   $associative_result["minutes"], $failure_message_2);
-        $this->assertEquals(3.4, $associative_result["seconds"], $failure_message_2);
+        $this->assertEquals($degrees,   $simple_result[0],              $failure_message_1);
+        $this->assertEquals($minutes,   $simple_result[1],              $failure_message_1);
+        $this->assertEquals($seconds,   $simple_result[2],              $failure_message_1);
+        $this->assertEquals($degrees,   $associative_result["degrees"], $failure_message_2);
+        $this->assertEquals($minutes,   $associative_result["minutes"], $failure_message_2);
+        $this->assertEquals($seconds,   $associative_result["seconds"], $failure_message_2);
     }
 
     #[TestDox("can be printed in a positive or negative textual representation.")]
@@ -223,39 +228,34 @@ class AngleTest extends TestCase
     public function test_angle_is_clockwise()
     {
         // Arrange
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle();
-        $this->setAngleProperties($alfa, [1, 0, 0, Angle::CLOCKWISE]);
+        $alfa = $this->getRandomAngle(true);
 
         // Act & assert
         $this->assertTrue($alfa->isClockwise(), "The angle is clockwise but found the opposite.");
+        $this->assertFalse($alfa->isCounterClockwise(), "The angle is not counter clockwise but found the opposite.");
     }
 
     #[TestDox("can be counterclockwise or positive.")]
     public function test_angle_is_counterclockwise()
     {
         // Arrange
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle();
+        $alfa = $this->getRandomAngle(false);
 
         // Act & assert
         $this->assertTrue($alfa->isCounterClockwise(), "The angle is clockwise but found the opposite.");
+        $this->assertFalse($alfa->isClockwise(), "The angle is not clockwise but found the opposite.");
     }
 
     #[TestDox("can toggle its direction.")]
     public function test_can_toggle_rotation_from_clockwise_to_counterclockwise()
     {
         // Arrange
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle();
-        $this->setAngleProperties($alfa, [1, 2, 3.4]);
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $beta */
-        $beta = $this->getMockedAngle();
-        $this->setAngleProperties($beta, [1, 2, 3.4, Angle::CLOCKWISE]);
+        $alfa = $this->getRandomAngle(false);
+        $beta = $this->getRandomAngle(true);
 
         // Act
-        $alfa->toggleDirection();
-        $beta->toggleDirection();
+        $alfa->toggleDirection(); /* From positive to negative */
+        $beta->toggleDirection(); /* From negative to positive */
 
         // Assert
         $failure_message_1 = "The angle should be counterclockwise but found the opposite.";

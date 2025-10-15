@@ -257,14 +257,16 @@ abstract class BuilderTestCase extends TestCase
      */
     protected function getMockedAngleBuilder(array $mocked_methods = [], $original_constructor = false, mixed $constructor_arguments = []): MockObject
     {
-        $builder = $this->getMockBuilder($this->getBuilderClass())
-            ->onlyMethods($mocked_methods)
-            ->disableOriginalConstructor();
+        $angle_builder = $this->getMockBuilder($this->getBuilderClass())
+                        ->disableOriginalConstructor();
+        if (!empty($mocked_methods)) {
+            $angle_builder->onlyMethods($mocked_methods);
+        }
         if ($original_constructor) {
-            $builder->enableOriginalConstructor()
+            $angle_builder->enableOriginalConstructor()
                     ->setConstructorArgs(is_array($constructor_arguments) ? $constructor_arguments : [$constructor_arguments]);
         }
-        return $builder->getMock();
+        return $angle_builder->getMock();
     }
 
     /**

@@ -26,6 +26,7 @@ class FromDegrees extends AngleBuilder
         $this->seconds = round(abs($seconds), 1, RoundingMode::HalfTowardsZero);
         $this->direction = $direction;
         $this->checkOverflow();
+        $this->validateDirection();
     }
 
     /**
@@ -39,7 +40,6 @@ class FromDegrees extends AngleBuilder
         if ($this->angleOverflows()) {
             throw new AngleOverflowException("The angle inputs can't be greater than 360° or 59' or 59.9\".");
         }
-        $this->validateDirection();
     }
 
     /**
@@ -61,7 +61,7 @@ class FromDegrees extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    public function calcDegrees()
+    protected function calcDegrees()
     {
 
     }
@@ -72,7 +72,7 @@ class FromDegrees extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    public function calcMinutes()
+    protected function calcMinutes()
     {
 
     }
@@ -83,7 +83,7 @@ class FromDegrees extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    public function calcSeconds()
+    protected function calcSeconds()
     {
 
     }
@@ -95,7 +95,7 @@ class FromDegrees extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    public function calcSign()
+    protected function calcSign()
     {
 
     }
@@ -105,7 +105,7 @@ class FromDegrees extends AngleBuilder
      *
      * @return bool
      */
-    private function angleOverflows(): bool
+    protected function angleOverflows(): bool
     {
         return 
             $this->excessiveDegrees() || 
@@ -118,7 +118,7 @@ class FromDegrees extends AngleBuilder
      *
      * @return boolean
      */
-    private function excessiveDegrees(): bool
+    protected function excessiveDegrees(): bool
     {
         return $this->degrees > Angle::MAX_DEGREES;
     }
@@ -128,7 +128,7 @@ class FromDegrees extends AngleBuilder
      * 
      * @return boolean
      */
-    private function excessiveMinutes(): bool
+    protected function excessiveMinutes(): bool
     {
         return $this->minutes >= Angle::MAX_MINUTES ;
     }
@@ -138,7 +138,7 @@ class FromDegrees extends AngleBuilder
      *
      * @return boolean
      */
-    private function excessiveSeconds(): bool
+    protected function excessiveSeconds(): bool
     {
         return $this->seconds >= Angle::MAX_SECONDS;
     }
@@ -148,7 +148,7 @@ class FromDegrees extends AngleBuilder
      *
      * @return int
      */
-    private function correctDirection(): int
+    protected function correctDirection(): int
     {
         return $this->direction = $this->direction < 0 ? Angle::CLOCKWISE : Angle::COUNTER_CLOCKWISE;
     }
@@ -158,8 +158,38 @@ class FromDegrees extends AngleBuilder
      *
      * @return boolean
      */
-    private function isNullAngle(): bool
+    protected function isNullAngle(): bool
     {
-        return $this->degrees == 0 && $this->minutes == 0 && $this->seconds == 0;
+        return $this->zeroDegrees() && $this->zeroMinutes() && $this->zeroSeconds();
+    }
+
+    /**
+     * Check if degrees are zero.
+     *
+     * @return boolean
+     */
+    protected function zeroDegrees(): bool
+    {
+        return $this->degrees == 0;
+    }
+    
+    /**
+     * Check if minutes are zero.
+     *
+     * @return boolean
+     */
+    protected function zeroMinutes(): bool
+    {
+        return $this->minutes == 0;
+    }
+
+    /**
+     * Check if seconds are zero.
+     *
+     * @return boolean
+     */
+    protected function zeroSeconds(): bool
+    {
+        return $this->seconds == 0;
     }
 }

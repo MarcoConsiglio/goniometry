@@ -7,6 +7,7 @@ use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The FromDegrees builder")]
 #[CoversClass(FromDegrees::class)]
@@ -14,7 +15,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Angle::class)]
 class FromDegreesTest extends BuilderTestCase
 {
-    #[TestDox("can create an angle from a degrees values.")]
+    #[TestDox("can create an angle from degrees values.")]
     public function test_can_create_an_angle()
     {
         $this->testAngleCreation(FromDegrees::class, false);    // Positive angle.
@@ -30,48 +31,65 @@ class FromDegreesTest extends BuilderTestCase
         $negative_direction = Angle::CLOCKWISE;
 
         // Act
+        //  Null angles
         $alfa = Angle::createFromValues(0, 0, 0, $positive_direction);
         $beta = Angle::createFromValues(0, 0, 0, $negative_direction);
-        $gamma = Angle::createFromValues(1, 0, 0, $negative_direction);    // Negative non-null angle.
-        $delta = Angle::createFromValues(1, 0, 0, $positive_direction);    // Positive non-null angle.
 
         // Assert
         $this->assertProperty("int", $direction, $alfa, $positive_direction);
         $this->assertProperty("int", $direction, $beta, $positive_direction);
-        $this->assertProperty("int", $direction, $gamma, $negative_direction);
-        $this->assertProperty("int", $direction, $delta, $positive_direction);
     }
 
-    #[TestDox("throws AngleOverflowException with more than 360°, 59' or 59.9\" input.")]
-    public function test_exception_with_exceeding_values()
+    #[TestDox("throws AngleOverflowException with more than 360°.")]
+    public function test_exception_with_exceeding_degrees()
     {
         // Arrange
-        $degrees_excess = 361;
-        $minutes_excess = 60;
-        $seconds_excess = 60;
+        $degrees_excess = Angle::MAX_DEGREES + 1;
         $positive = Angle::COUNTER_CLOCKWISE;
-        $negative = Angle::CLOCKWISE;
 
         // Assert
-        $this->expectException(AngleOverflowException::class);
-        $this->expectExceptionMessage("The angle inputs can't be greater than 360° or 59' or 59.9\".");
-        
+        $this->expectExceptionWithMessage(
+            AngleOverflowException::class,
+            "The angle inputs can't be greater than 360° or 59' or 59.9\"."
+        );
+
+        // Act
+
+        new FromDegrees($degrees_excess, 0, 0, $positive);
+    }
+
+    #[TestDox("throws AngleOverflowException with more than 59'.")]
+    public function test_exception_with_exceeding_minutes()
+    {
+        // Arrange
+        $minutes_excess = Angle::MAX_MINUTES;
+        $positive = Angle::COUNTER_CLOCKWISE;
+
+        // Assert
+        $this->expectExceptionWithMessage(
+            AngleOverflowException::class,
+            "The angle inputs can't be greater than 360° or 59' or 59.9\"."
+        );
+
+        // Act
+        new FromDegrees(0, $minutes_excess, 0, $positive);
+    }
+
+    #[TestDox("throws AngleOverflowException with more than 59.9\".")]
+    public function test_exception_with_exceeding_seconds()
+    {
+        // Arrange
+        $seconds_excess = Angle::MAX_SECONDS;
+        $positive = Angle::COUNTER_CLOCKWISE;
+
+        // Assert
+        $this->expectExceptionWithMessage(
+            AngleOverflowException::class,
+            "The angle inputs can't be greater than 360° or 59' or 59.9\"."
+        );
+
         // Act
         new FromDegrees(0, 0, $seconds_excess, $positive);
-        new FromDegrees(0, $minutes_excess, 0, $positive);
-        new FromDegrees(0, $minutes_excess, $seconds_excess);
-        new FromDegrees($degrees_excess, 0, 0, $positive);
-        new FromDegrees($degrees_excess, 0, $seconds_excess, $positive);
-        new FromDegrees($degrees_excess, $minutes_excess, 0, $positive);
-        new FromDegrees($degrees_excess, $minutes_excess, $seconds_excess, $positive);
-
-        new FromDegrees(0, 0, $seconds_excess, $negative);
-        new FromDegrees(0, $minutes_excess, 0, $negative);
-        new FromDegrees(0, $minutes_excess, $seconds_excess, $negative);
-        new FromDegrees($degrees_excess, 0, 0, $negative);
-        new FromDegrees($degrees_excess, 0, $seconds_excess, $negative);
-        new FromDegrees($degrees_excess, $minutes_excess, 0, $negative);
-        new FromDegrees($degrees_excess, $minutes_excess, $seconds_excess, $negative);
     }
 
     #[TestDox("will always correct a wrong direction input.")]
