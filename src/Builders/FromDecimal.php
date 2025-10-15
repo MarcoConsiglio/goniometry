@@ -41,7 +41,7 @@ class FromDecimal extends AngleBuilder
      *
      * @return void
      */
-    public function checkOverflow()
+    protected function checkOverflow()
     {
         $this->validate($this->decimal);
     }
@@ -64,7 +64,7 @@ class FromDecimal extends AngleBuilder
      *
      * @return void
      */
-    public function calcDegrees()
+    protected function calcDegrees()
     {
         $this->degrees = intval(abs($this->decimal));
         $this->reminder = abs($this->decimal) - $this->degrees;
@@ -75,7 +75,7 @@ class FromDecimal extends AngleBuilder
      *
      * @return void
      */
-    public function calcMinutes()
+    protected function calcMinutes()
     {
         $this->minutes = intval($this->reminder * Angle::MAX_MINUTES);
         $this->reminder = abs($this->reminder - $this->minutes / Angle::MAX_MINUTES);
@@ -86,7 +86,7 @@ class FromDecimal extends AngleBuilder
      *
      * @return void
      */
-    public function calcSeconds()
+    protected function calcSeconds()
     {
         $this->seconds = round(
             $this->reminder * Angle::MAX_MINUTES * Angle::MAX_SECONDS,
@@ -99,7 +99,7 @@ class FromDecimal extends AngleBuilder
      *
      * @return void
      */
-    public function calcSign()
+    protected function calcSign()
     {
         if ($this->decimal < 0) {
             $this->direction = Angle::CLOCKWISE;

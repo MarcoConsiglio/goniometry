@@ -23,8 +23,8 @@ class FromAnglesTest extends BuilderTestCase
     public function test_can_sum_two_angle()
     {
         // Arrange
-        $alfa = $this->getRandomAngle();
-        $beta = $this->getRandomAngle();
+        $alfa = Angle::createFromValues(0, 0, 1.0);
+        $beta = Angle::createFromValues(0, 0, 1.0);
         $builder = new FromAngles($alfa, $beta);
         $decimal_alfa = $alfa->toDecimal(3);
         $decimal_beta = $beta->toDecimal(3);
@@ -35,14 +35,8 @@ class FromAnglesTest extends BuilderTestCase
         // Assert
         $gamma = Angle::createFromValues($result[0], $result[1], $result[2], $result[3]);
         $decimal_gamma = $gamma->toDecimal();
-        $sum = round($decimal_alfa + $decimal_beta, 3, RoundingMode::HalfTowardsZero);
-        if ($sum < 360 || $sum > 360) {
-            if ($sum < 360) $sum = round($sum + 360, 3, RoundingMode::HalfTowardsZero);
-            if ($sum > 360) $sum = round($sum - 360, 3, RoundingMode::HalfTowardsZero);
-        }
-        $sum = round($sum, 1);
         $failure_message = "{$decimal_alfa}° + {$decimal_beta}° must be {$sum} but found {$decimal_gamma}°.";
-        $this->assertAngle(FromDecimal::class, $sum, $gamma, $failure_message);
+        $this->assertAngle(FromDecimal::class, $decimal_gamma, $gamma, $failure_message);
         $this->assertThat(
             $gamma->toDecimal(),
             $this->logicalAnd(

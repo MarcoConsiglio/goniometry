@@ -62,12 +62,22 @@ class FromAngles extends SumBuilder
      *
      * @return void
      */
-    public function checkOverflow()
+    protected function checkOverflow()
     {
         $full_angle = Angle::MAX_DEGREES * Angle::MAX_MINUTES * Angle::MAX_SECONDS;
-        while ($this->temp_seconds > $full_angle) {
+        while ($this->angleOverflows()) {
             $this->temp_seconds = round($this->temp_seconds - $full_angle, 3, RoundingMode::HalfTowardsZero);
         }
+    }
+
+    /**
+     * Check if the angle overflows.
+     *
+     * @return boolean
+     */
+    protected function angleOverflows(): bool
+    {
+        return $this->temp_seconds > Angle::MAX_DEGREES * Angle::MAX_MINUTES * Angle::MAX_SECONDS;
     }
 
     /**
@@ -75,7 +85,7 @@ class FromAngles extends SumBuilder
      *
      * @return void
      */
-    public function calcDegrees()
+    protected function calcDegrees()
     {
       $this->degrees = $this->temp_degrees;
     }
@@ -85,9 +95,9 @@ class FromAngles extends SumBuilder
      *
      * @return void
      */
-    public function calcMinutes()
+    protected function calcMinutes()
     {
-        while ($this->temp_minutes >= Angle::MAX_MINUTES) {
+        while ($this->excessiveMinutes()) {
             $this->temp_minutes -= Angle::MAX_MINUTES;
             $this->temp_degrees++;
         }
@@ -95,13 +105,23 @@ class FromAngles extends SumBuilder
     }
 
     /**
+     * Check if minutes exceeds Angle::MAX_MINUTES.
+     *
+     * @return bool
+     */
+    protected function excessiveMinutes(): bool
+    {
+        return $this->temp_minutes >= Angle::MAX_MINUTES;
+    }
+
+    /**
      * Calc seconds.
      *
      * @return void
      */
-    public function calcSeconds()
+    protected function calcSeconds()
     {
-        while ($this->temp_seconds >= Angle::MAX_SECONDS) {
+        while ($this->excessiveSeconds()) {
             $this->temp_seconds = round($this->temp_seconds - Angle::MAX_SECONDS, 3, RoundingMode::HalfTowardsZero);
             $this->temp_minutes++;
         }
@@ -109,11 +129,21 @@ class FromAngles extends SumBuilder
     }
 
     /**
+     * Check if seconds exceeds Angle::MAX_SECONDS.
+     *
+     * @return boolean
+     */
+    protected function excessiveSeconds(): bool
+    {
+        return $this->temp_seconds >= Angle::MAX_SECONDS;
+    }
+
+    /**
      * Calc sign.
      *
      * @return void
      */
-    public function calcSign()
+    protected function calcSign()
     {
         $this->direction = $this->temp_seconds >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE;
         $this->temp_seconds = abs($this->temp_seconds);

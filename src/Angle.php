@@ -72,21 +72,21 @@ class Angle implements AngleInterface
      *
      * @var integer
      */
-    protected int $degrees;
+    public protected(set) int $degrees;
 
     /**
      * The minutes part.
      *
      * @var integer
      */
-    protected int $minutes;
+    public protected(set) int $minutes;
 
     /**
      * The seconds part.
      *
      * @var integer
      */
-    protected float $seconds;
+    public protected(set) float $seconds;
 
     /** 
      * The angle direction.
@@ -94,7 +94,7 @@ class Angle implements AngleInterface
      * self::COUNTERCLOCKWISE means positive angle.
      * self::CLOCKWISE means negative angle.
      */
-    protected int $direction = self::COUNTER_CLOCKWISE;
+    public protected(set) int $direction = self::COUNTER_CLOCKWISE;
 
     /**
      * Construct an angle.
@@ -106,19 +106,6 @@ class Angle implements AngleInterface
     public function __construct(AngleBuilder $builder)
     {
         [$this->degrees, $this->minutes, $this->seconds, $this->direction] = $builder->fetchData();
-    }
-
-    /**
-     * Getters.
-     *
-     * @param string $property
-     * @return mixed
-     */
-    public function __get(string $property)
-    {
-        if (property_exists($this, $property)) {
-            return $this->$property;
-        }
     }
 
     /**
