@@ -1,7 +1,8 @@
 # Changelog
 ## [1.0.1] - 2025-10-08
-# Changed
+### Changed
 - Visibility from public to protected of methods `checkOverflow`, `calcDegrees`, `calcMinutes`, `calcSeconds`, `calcSign` for all child classes of `AngleBuilder`, as they shouldn't use manually.
+- License from Unlicense to MIT.
 
 ## [1.0.0] - 2025-10-08
 ### Added
