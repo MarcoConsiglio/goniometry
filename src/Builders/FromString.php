@@ -111,7 +111,7 @@ class FromString extends AngleBuilder
      * @return void
      * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException when a bad formatted angle is matched.
      */
-    public function checkOverflow()
+    protected function checkOverflow()
     {
         if ($this->degrees_parsing_status == 0 || 
             $this->minutes_parsing_status == 0 ||
@@ -126,7 +126,7 @@ class FromString extends AngleBuilder
      *
      * @return void
      */
-    public function calcDegrees()
+    protected function calcDegrees()
     {
         $this->degrees = abs((int) $this->degrees_match[1]);
     }
@@ -136,7 +136,7 @@ class FromString extends AngleBuilder
      *
      * @return void
      */
-    public function calcMinutes()
+    protected function calcMinutes()
     {
         $this->minutes = (int) $this->minutes_match[1];
     }
@@ -146,7 +146,7 @@ class FromString extends AngleBuilder
      *
      * @return void
      */
-    public function calcSeconds()
+    protected function calcSeconds()
     {
         $this->seconds = $this->seconds_match[1];
     }
@@ -157,7 +157,7 @@ class FromString extends AngleBuilder
      * @param mixed $data
      * @return void
      */
-    public function calcSign()
+    protected function calcSign()
     {
         $this->direction = ((int) $this->degrees_match[1]) >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE;
     }

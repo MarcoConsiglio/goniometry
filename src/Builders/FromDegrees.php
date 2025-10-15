@@ -35,7 +35,7 @@ class FromDegrees extends AngleBuilder
      * @return void
      * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when angle values exceeds.
      */
-    public function checkOverflow()
+    protected function checkOverflow()
     {
         if ($this->angleOverflows()) {
             throw new AngleOverflowException("The angle inputs can't be greater than 360° or 59' or 59.9\".");

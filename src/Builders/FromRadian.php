@@ -28,15 +28,12 @@ class FromRadian extends AngleBuilder
     }
 
     /**
-     * Calcs degrees.
+     * Calc degrees.
      *
      * @return void
-     * @codeCoverageIgnore
      */
-    public function calcDegrees()
-    {
-        
-    }
+    protected function calcDegrees() {}
+
 
     /**
      * Calcs minutes.
@@ -44,10 +41,7 @@ class FromRadian extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    public function calcMinutes()
-    {
-        
-    }
+    protected function calcMinutes() {}
 
     /**
      * Calcs seconds.
@@ -55,10 +49,7 @@ class FromRadian extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    public function calcSeconds()
-    {
-        
-    }
+    protected function calcSeconds() {}
 
     /**
      * Calcs sign.
@@ -66,10 +57,7 @@ class FromRadian extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    public function calcSign()
-    {
-        
-    }
+    protected function calcSign() {}
 
     /**
      * Checks for overflow above/below +/-360°.
@@ -77,7 +65,7 @@ class FromRadian extends AngleBuilder
      * @param mixed $data
      * @return void
      */
-    public function checkOverflow()
+    protected function checkOverflow()
     {
         $this->validate($this->radian);
     }
