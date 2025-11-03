@@ -25,17 +25,17 @@ class Angle implements AngleInterface
     /**
      * Regular expression used to parse degrees value as integer number.
      */
-    public const DEGREES_REGEX = "/^(-?(?:360|3[0-5][[:digit:]]|[12]?[[:digit:]]{1,2}))°/";
+    public const DEGREES_REGEX = "/(?<!\d)(-?(?:360|3[0-5]\d|[12]?\d{1,2}))°/";
 
     /**
      * Regular expression used to parse minutes value as integer number.
      */
-    public const MINUTES_REGEX = '/\b([0-5]?[[:digit:]])\'/';
+    public const MINUTES_REGEX = '/\b([0-5]?\d)\'/';
 
     /**
      * Regular expression used to parse second value as decimal number.
      */
-    public const SECONDS_REGEX = '/\b((?:[1-5]?[[:digit:]])(?:\.[[:digit:]]+)?)"$/';
+    public const SECONDS_REGEX = '/\b((?:[1-5]?\d)(?:\.\d+)?)"/';
    
     /**
      * It represents a negative angle.

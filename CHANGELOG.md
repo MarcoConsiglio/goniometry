@@ -1,4 +1,8 @@
 # Changelog
+## [1.1.1] - 2025-11-03
+### Fixed
+- The `Angle::DEGREES_REGEX` regular expression matching 61° parsing the text "361°". Now, it excludes every values major than 360°.
+
 ## [1.1.0] - 2025-11-03
 ### Changed
 - The regular expression for seconds: now the `Angle` class can be created from a string with any decimal place for the seconds part. 

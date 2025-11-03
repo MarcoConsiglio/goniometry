@@ -1,11 +1,13 @@
 # goniometry
-<img alt="GitHub" src="https://img.shields.io/github/license/marcoconsiglio/goniometry">
-<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/marcoconsiglio/goniometry">
-<img alt="Static Badge" src="https://img.shields.io/badge/version-v1.1.0-white">
-<br>
-<img alt="Static Badge" src="https://img.shields.io/badge/Line_coverage-100%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
-<img alt="Static Badge" src="https://img.shields.io/badge/Branch_coverage-100%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
-<img alt="Static Badge" src="https://img.shields.io/badge/Path_coverage-92%25-none?labelColor=%23ECECEC&color=rgb(40%2C%20167%2C%2069)">
+![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
+![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
+![Static Badge](https://img.shields.io/badge/version-v1.1.1-white)
+
+![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
+![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
+![Static Badge](https://img.shields.io/badge/Path%20coverage-92%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
+
+
 
 A PHP support for string, decimal, radian and object angles, providing goniometric algebra and comparison between angles.
 # Index
