@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased - 2025-11-03
+## [1.1.0] - 2025-11-03
 ### Changed
 - The regular expression for seconds: now the `Angle` class can be created from a string with any decimal place for the seconds part. 
 - Creating an `Angle` from degrees value now accept seconds with more than one decimal place.
