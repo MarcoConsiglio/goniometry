@@ -91,7 +91,7 @@ class AngleTest extends TestCase
         // Arrange
         $degrees = $this->faker->numberBetween(0, 360);
         $minutes = $this->faker->numberBetween(0, 59);
-        $seconds = $this->faker->numberBetween(0, 59.9);
+        $seconds = $this->faker->randomFloat(4, 0, 59.9999);
         $direction = $this->faker->randomElement(["-", ""]);
         $text = "{$direction}{$degrees}° {$minutes}' {$seconds}\"";
 
@@ -121,8 +121,8 @@ class AngleTest extends TestCase
         $angle = Angle::createFromDecimal($decimal);
 
         $this->assertEquals(
-            round($decimal, 1, RoundingMode::HalfTowardsZero), 
-            $angle->toDecimal(1)
+            $decimal, 
+            $angle->toDecimal(PHP_FLOAT_DIG)
         );
     }
 
@@ -172,15 +172,10 @@ class AngleTest extends TestCase
     public function test_cast_angle_to_string()
     {
         // Arrange
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle(["isClockwise"]);
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $beta */
-        $beta = $this->getMockedAngle(["isClockWise"]);
-        $alfa->expects($this->once())->method("isClockwise")->willReturn(false);
-        $this->setAngleProperties($alfa, [1, 2, 3.4]);
-        $expected_alfa_string = "1° 2' 3.4\"";
-        $beta->expects($this->once())->method("isClockwise")->willReturn(true);
-        $this->setAngleProperties($beta, [1, 2, 3.4, Angle::CLOCKWISE]);
+        $alfa = Angle::createFromValues(1, 2, 3.141592653589793);
+        $expected_alfa_string = "1° 2' 3.141592653589793\"";
+        $beta = clone $alfa;
+        $beta->toggleDirection();
         $expected_beta_string = "-" . $expected_alfa_string;
 
         // Act & Assert
