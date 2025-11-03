@@ -23,19 +23,19 @@ use RoundingMode;
 class Angle implements AngleInterface
 {
     /**
-     * Regular expression used to parse degrees value.
+     * Regular expression used to parse degrees value as integer number.
      */
     public const DEGREES_REGEX = "/^(-?(?:360|3[0-5][[:digit:]]|[12]?[[:digit:]]{1,2}))°/";
 
     /**
-     * Regular expression used to parse minutes value.
+     * Regular expression used to parse minutes value as integer number.
      */
     public const MINUTES_REGEX = '/\b([0-5]?[[:digit:]])\'/';
 
     /**
-     * Regular expression used to parse second values.
+     * Regular expression used to parse second value as decimal number.
      */
-    public const SECONDS_REGEX = '/\b((?:[1-5]?[[:digit:]])(?:\.[[:digit:]])?)"$/';
+    public const SECONDS_REGEX = '/\b((?:[1-5]?[[:digit:]])(?:\.[[:digit:]]+)?)"$/';
    
     /**
      * It represents a negative angle.
@@ -88,6 +88,13 @@ class Angle implements AngleInterface
      */
     public protected(set) float $seconds;
 
+    /**
+     * The original precision at the moment of the angle creation.
+     * 
+     * @var integer
+     */
+    public protected(set) int $original_precision;
+
     /** 
      * The angle direction.
      *  
@@ -106,6 +113,7 @@ class Angle implements AngleInterface
     public function __construct(AngleBuilder $builder)
     {
         [$this->degrees, $this->minutes, $this->seconds, $this->direction] = $builder->fetchData();
+        $this->original_precision = $this->calcOriginalPrecision($this->seconds);
     }
 
     /**
@@ -453,7 +461,11 @@ class Angle implements AngleInterface
     public function __toString()
     {
         $sign = $this->isClockwise() ? "-" : "";
-        return "{$sign}{$this->degrees}° {$this->minutes}' {$this->seconds}\"";
+        // If seconds is not a whole number, remove trailing zeros.
+        if (floor($this->seconds) != $this->seconds) {
+            $seconds = number_format($this->seconds, $this->original_precision, '.', '');
+        } else $seconds = (int) $this->seconds;
+        return "{$sign}{$this->degrees}° {$this->minutes}' {$seconds}\"";
     }
 
     /**
@@ -468,5 +480,17 @@ class Angle implements AngleInterface
             $angle->degrees * Angle::MAX_SECONDS * Angle::MAX_MINUTES, 
             $precision, RoundingMode::HalfTowardsZero
         );
+    }
+
+    /**
+     * Count the decimal digits of a decimal number.
+     *
+     * @param float $number
+     * @return integer The number of decimal digits after the decimal separator.
+     */
+    protected function calcOriginalPrecision(float $number): int
+    {
+        for ($decimal_digits = 0; $number != round($number, $decimal_digits); $decimal_digits++);
+        return $decimal_digits;
     }
 }

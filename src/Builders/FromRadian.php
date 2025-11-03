@@ -31,6 +31,7 @@ class FromRadian extends AngleBuilder
      * Calc degrees.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function calcDegrees() {}
 

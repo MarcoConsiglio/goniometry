@@ -90,7 +90,7 @@ class FromDecimal extends AngleBuilder
     {
         $this->seconds = round(
             $this->reminder * Angle::MAX_MINUTES * Angle::MAX_SECONDS,
-            1, RoundingMode::HalfTowardsZero
+            PHP_FLOAT_DIG, RoundingMode::HalfTowardsZero
         );
     }
 

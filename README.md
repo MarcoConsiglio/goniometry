@@ -33,8 +33,6 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
     - [$\alpha \ncong \beta$ (different)](#different)
   - [Algebraic sum between two angles](#algebraic-sum-between-two-angles)
 - [API documentation](#api-documentation)
-- [Testing](#testing)
-  - [Code coverage](#code-coverage)
 
 # Installation
 `composer require marcoconsiglio/goniometry`
@@ -66,7 +64,7 @@ $alfa = Angle::createFromValues(180, 12, 43, Angle::CLOCKWISE); // 180° 12' 43"
 The `AngleOverflowException` is thrown when you try to create an angle:
 - with more than $\pm360^\circ$
 - with more than $59'$
-- with more than $59.9''$.
+- with more than $59.\overline{9}''$.
 ### String
 This creates an angle from its textual representation:
 ```php
@@ -86,7 +84,7 @@ You can create a negative `Angle` if the string representation start with the mi
 The `NoMatchException` is thrown when you try to create an angle:
 - with more than $\pm360^\circ$
 - with more than $59'$
-- with more than $59.9''$.
+- with more than $59.\overline{9}''$.
 
 ### Decimal (float)
 This create an angle from its decimal representation:
@@ -123,24 +121,28 @@ $alfa->seconds;   // 43
 $alfa->direction; // Angle::CLOCKWISE (1)
 ```
 ### Casting
+When the precision parameter is needed, you can obtain your maximum available precision with
+the `PHP_FLOAT_DIG` constant.
 #### To decimal (float)
 You can cast the angle to decimal, with optional precision:
 ```php
 $alfa->toDecimal(); // 180.2
 $alfa->toDecimal(4); // 180.2119
+$alfa->toDecimal(PHP_FLOAT_DIG) // 180.211971543295645
 ```
 #### To radian (float)
 You can cast the angle to radian, with optional precision:
 ```php
 $alfa->toRadian(); // 3.1
-$alfa->toRadian(3); // 3.145
+$alfa->toRadian(3); // 3.141
+$alfa->toRadian(PHP_FLOAT_DIG); // 3.141592653589793 
 ```
 #### To string
 You can cast the angle to a string representation:
 ```php
 (string) $alfa; // 180° 30' 25.7"
 ```
-In this case, maximum precision of seconds will be ever one decimal digit.
+In this case, maximum precision of seconds will be `PHP_FLOAT_DIG`.
 
 ## Direction
 Positive angles are represented by the class constant
@@ -166,7 +168,7 @@ $alfa->isCounterClockwise();    // true
 You can compare an angle with a numeric value, numeric string or another `Angle` object.
 Comparisons are performed with absolute values (congruent comparison), meaning that $-90^\circ$ is equal to $+90^\circ$.
 If you need a relative comparison, you should perform arithmetics instead. 
-Warning! Comparisons are not available for radian values, you should perform arithmetics instead.
+Warning! Comparisons are not available for radian values, you should use decimal comparison.
 
 ### $\alpha > \beta$ (greater than) <a name="greater-than"></a>
 ```php
@@ -238,18 +240,4 @@ $gamma = new Sum(new FromAngles($alfa, $beta));
 Note that if the sum is more than $\pm360^\circ$, the resulting angle will be corrected to remain between these limits.
 
 # API documentation
-You can read the code documentation in `./docs/index.html`.
-
-To generate the API documentation use
-```shell
-vendor/bin/phpdoc run
-```
-
-# Testing
-To perform tests use
-```shell
-vendor/bin/phpunit
-```
-At the end, it will produce a testbook both in text and html formats at `./testbook.txt` and `./testbook.html`.
-## Code coverage
-If you have Xdebug setup for code coverage, you can find an html report in `./tests/coverage_report/index.html`.
+You can read the code documentation in `./docs/html/index.html`.

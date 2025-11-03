@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <phpdocumentor configVersion="3.0" title="goniometry">
   <paths>
-    <output>docs</output>
+    <output>docs/html</output>
     <cache>.phpdoc/cache</cache>
   </paths>
-  <version number="1.0.0">
+  <version number="1.1.0">
     <api format="php">
       <source dsn=".">
         <path>src</path>
@@ -17,5 +17,5 @@
       <default-package-name>MarcoConsiglio\Goniometry</default-package-name>
     </api>
   </version>
-  <setting name="graphs.enabled" value="false"/>
+  <setting name="graphs.enabled" value="true"/>
 </phpdocumentor>
