@@ -1,4 +1,13 @@
 # Changelog
+## [1.1.0] - 2025-11-03
+### Changed
+- The regular expression for seconds: now the `Angle` class can be created from a string with any decimal place for the seconds part. 
+- Creating an `Angle` from degrees value now accept seconds with more than one decimal place.
+- Casting an `Angle` to string respects the original precision for seconds value instead the default display precision.
+- API and README documentation.
+### Added
+- `Angle::$original_precision` property that stores the original number of decimal places for the seconds value.
+
 ## [1.0.1] - 2025-10-08
 ### Changed
 - Visibility from public to protected of methods `checkOverflow`, `calcDegrees`, `calcMinutes`, `calcSeconds`, `calcSign` for all child classes of `AngleBuilder`, as they shouldn't use manually.

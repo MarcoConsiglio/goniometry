@@ -23,7 +23,7 @@ class FromDegrees extends AngleBuilder
     {
         $this->degrees = abs($degrees);
         $this->minutes = abs($minutes);
-        $this->seconds = round(abs($seconds), 1, RoundingMode::HalfTowardsZero);
+        $this->seconds = abs($seconds);
         $this->direction = $direction;
         $this->checkOverflow();
         $this->validateDirection();
