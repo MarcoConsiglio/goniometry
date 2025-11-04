@@ -136,6 +136,11 @@ Search.appendIndex(
             "summary": "It\u0020calculates\u0020the\u0020total\u0020seconds\u0020that\u0020make\u0020up\u0020the\u0020\u0024angle.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_toTotalSeconds"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AcountDecimalPlaces\u0028\u0029",
+            "name": "countDecimalPlaces",
+            "summary": "Count\u0020the\u0020decimal\u0020digits\u0020of\u0020a\u0020decimal\u0020number.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_countDecimalPlaces"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003ADEGREES_REGEX",
             "name": "DEGREES_REGEX",
             "summary": "Regular\u0020expression\u0020used\u0020to\u0020parse\u0020degrees\u0020value\u0020as\u0020integer\u0020number.",

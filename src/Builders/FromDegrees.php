@@ -61,10 +61,7 @@ class FromDegrees extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    protected function calcDegrees()
-    {
-
-    }
+    protected function calcDegrees() {}
 
     /**
      * Calc minutes.
@@ -72,10 +69,7 @@ class FromDegrees extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    protected function calcMinutes()
-    {
-
-    }
+    protected function calcMinutes() {}
 
     /**
      * Calc seconds.
@@ -83,10 +77,7 @@ class FromDegrees extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    protected function calcSeconds()
-    {
-
-    }
+    protected function calcSeconds() {}
 
     /**
      * Calc sign.
@@ -95,10 +86,7 @@ class FromDegrees extends AngleBuilder
      * @return void
      * @codeCoverageIgnore
      */
-    protected function calcSign()
-    {
-
-    }
+    protected function calcSign() {}
 
     /**
      * Check if one or more angle values exceeded the maximum allowed.
