@@ -1,4 +1,11 @@
 # Changelog
+## [1.2.0] 2025-11-04
+### Changed
+- The `FromDecimal` builder now respect the correct precision for seconds value to built the Angle, based on the precision of the decimal number used to construct it.
+- Updated API documentation.
+### Added
+- The static method `Angle::countDecimalPlaces()` calcs the number of decimal places of a decimal number.
+
 ## [1.1.2] - 2025-11-04
 ### Changed
 - `Sum` operations are now performed with the maximum available precision.

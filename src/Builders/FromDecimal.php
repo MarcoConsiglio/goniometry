@@ -18,6 +18,14 @@ class FromDecimal extends AngleBuilder
     protected float $decimal;
 
     /**
+     * The number of decimal places of the decimal number
+     * used to construct the builder.
+     *
+     * @var integer
+     */
+    protected int $decimal_precision;
+
+    /**
      * The remainder that remains during the conversion steps from decimal to sexagesimal degrees.
      *
      * @var float
@@ -33,6 +41,7 @@ class FromDecimal extends AngleBuilder
     public function __construct(float $decimal)
     {
         $this->decimal = $decimal;
+        $this->calcDecimalPrecision($decimal);
         $this->checkOverflow();
     }
 
@@ -90,7 +99,7 @@ class FromDecimal extends AngleBuilder
     {
         $this->seconds = round(
             $this->reminder * Angle::MAX_MINUTES * Angle::MAX_SECONDS,
-            PHP_FLOAT_DIG, RoundingMode::HalfTowardsZero
+            $this->getSecondsPrecision(), RoundingMode::HalfTowardsZero
         );
     }
 
@@ -118,5 +127,33 @@ class FromDecimal extends AngleBuilder
         $this->calcSeconds();
         $this->calcSign();
         return parent::fetchData();
+    }
+
+    /**
+     * It calcs the number of decimal places
+     * in $number.
+     *
+     * @param float $number
+     * @return void
+     */
+    protected function calcDecimalPrecision(float $number)
+    {
+        $decimal_places = Angle::countDecimalPlaces($number);
+        $this->decimal_precision = $decimal_places > PHP_FLOAT_DIG ? PHP_FLOAT_DIG : $decimal_places;
+    }
+
+    /**
+     * It calcs the precision of seconds necessary to
+     * correctly represents the seconds value of the Angle,
+     * based on the original decimal precision passed to
+     * this builder.
+     *
+     * @return integer
+     */
+    protected function getSecondsPrecision(): int
+    {
+        $precision = $this->decimal_precision + 2;
+        if ($precision >= PHP_FLOAT_DIG) return PHP_FLOAT_DIG;
+        else return $precision;
     }
 }

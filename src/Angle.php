@@ -113,7 +113,7 @@ class Angle implements AngleInterface
     public function __construct(AngleBuilder $builder)
     {
         [$this->degrees, $this->minutes, $this->seconds, $this->direction] = $builder->fetchData();
-        $this->original_precision = $this->calcOriginalPrecision($this->seconds);
+        $this->original_precision = $this->countDecimalPlaces($this->seconds);
     }
 
     /**
@@ -488,7 +488,7 @@ class Angle implements AngleInterface
      * @param float $number
      * @return integer The number of decimal digits after the decimal separator.
      */
-    protected function calcOriginalPrecision(float $number): int
+    public static function countDecimalPlaces(float $number): int
     {
         for ($decimal_digits = 0; $number != round($number, $decimal_digits); $decimal_digits++);
         return $decimal_digits;
