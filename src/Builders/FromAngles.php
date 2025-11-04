@@ -165,7 +165,10 @@ class FromAngles extends SumBuilder
         // Calc the sign of the second angle.
         $second_angle_total_seconds = $second_angle_total_seconds * $this->second_angle->direction;
         // Calc the algebraic sum in seconds.
-        $this->temp_seconds = round($first_angle_total_seconds + $second_angle_total_seconds, 3);
+        $this->temp_seconds = round(
+            $first_angle_total_seconds + $second_angle_total_seconds, 
+            PHP_FLOAT_DIG, RoundingMode::HalfTowardsZero
+        );
         // Calc the sign of the algebraic sum.
         $this->calcSign();
         // Subtract any excess of 360°.
