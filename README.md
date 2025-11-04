@@ -4,8 +4,8 @@
 ![Static Badge](https://img.shields.io/badge/version-v1.2.0-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
-![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
-![Static Badge](https://img.shields.io/badge/Path%20coverage-92%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
+![Static Badge](https://img.shields.io/badge/Branch%20coverage-99%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
+![Static Badge](https://img.shields.io/badge/Path%20coverage-91%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 
 
 
