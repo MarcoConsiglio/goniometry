@@ -4,7 +4,7 @@
     <output>docs/html</output>
     <cache>.phpdoc/cache</cache>
   </paths>
-  <version number="1.1.1">
+  <version number="1.1.2">
     <api format="php">
       <source dsn=".">
         <path>src</path>

@@ -1,4 +1,9 @@
 # Changelog
+## [1.1.2] - 2025-11-04
+### Changed
+- `Sum` operations are now performed with the maximum available precision.
+- README documentation.
+
 ## [1.1.1] - 2025-11-03
 ### Fixed
 - The `Angle::DEGREES_REGEX` regular expression matching 61° parsing the text "361°". Now, it excludes every values major than 360°.
