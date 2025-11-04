@@ -1,7 +1,7 @@
 # goniometry
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v1.1.1-white)
+![Static Badge](https://img.shields.io/badge/version-v1.1.2-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
@@ -167,10 +167,11 @@ $alfa->isCounterClockwise();    // true
 ```
 
 ## Comparison
-You can compare an angle with a numeric value, numeric string or another `Angle` object.
-Comparisons are performed with absolute values (congruent comparison), meaning that $-90^\circ$ is equal to $+90^\circ$.
-If you need a relative comparison, you should perform arithmetics instead. 
-Warning! Comparisons are not available for radian values, you should use decimal comparison.
+You can compare an angle with a numeric value (not radian but decimal), numeric string or another `Angle` object.
+Comparisons are performed with absolute values (congruent comparison), meaning that $-90^\circ\cong+90^\circ$.
+
+If you need a relative comparison, you should cast the angle to decimal and then perform the arithmetic comparison,
+meaning that $-90.0\lt+90.0$.
 
 ### $\alpha > \beta$ (greater than) <a name="greater-than"></a>
 ```php
