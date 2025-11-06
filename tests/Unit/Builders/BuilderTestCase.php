@@ -222,6 +222,7 @@ abstract class BuilderTestCase extends TestCase
 
     /**
      * Assert that an $angle equals the $expected_value(s).
+     * This is a Custom Assertion.
      *
      * @param string                             $builder
      * @param mixed                              $expected_value

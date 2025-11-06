@@ -1,4 +1,11 @@
 # Changelog
+## [1.3.0] 2025-11-04
+### Added
+- `Angle::countDecimalPlaces()` public static method, useful to cound decimal places of a `float` variable.
+### Changed
+- Methods `Angle::toDecimal()`, `Angle::toRadian()`, `Angle::toTotalSeconds()` now accept `null` as precision, triggering the preservation of the original precision at the time the `Angle` was built.
+- Updated API and README documentation.
+
 ## [1.2.0] 2025-11-04
 ### Changed
 - The `FromDecimal` builder now respect the correct precision for seconds value to built the Angle, based on the precision of the decimal number used to construct it.

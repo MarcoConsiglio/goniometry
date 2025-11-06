@@ -186,20 +186,12 @@ class AngleTest extends TestCase
     #[TestDox("can be casted to decimal.")]
     public function test_cast_to_decimal()
     {
-        // Arrange
-        $precision = PHP_FLOAT_DIG;
-        $decimal = $this->faker->randomFloat(
-            $precision,             /* Max available precision */
-            -Angle::MAX_DEGREES,    /* -360° */
-            Angle::MAX_DEGREES      /* +360° */
-        );
-        $angle = Angle::createFromDecimal($decimal);
-        $rounded_decimal = round($decimal, 1, RoundingMode::HalfTowardsZero);
-
-        // Act & Assert
-        $result = $angle->toDecimal();
-        $this->assertIsFloat($result);
-        $this->assertEquals($rounded_decimal, $result);
+        $this->testCastToDecimal();
+        $this->testCastToDecimal(0);
+        $this->testCastToDecimal(3);
+        $this->testCastToDecimal(PHP_FLOAT_DIG - 2);
+        $this->testCastToDecimal(PHP_FLOAT_DIG);
+        $this->testCastToDecimal(PHP_FLOAT_DIG + 3);
     }
 
     #[TestDox("can be casted to radian.")]
@@ -269,8 +261,8 @@ class AngleTest extends TestCase
         $negative_gamma->toggleDirection();
         
         // Act & Assert
-        $this->assertAngleEqual($positive_alfa, $positive_beta);
-        $this->assertAngleEqual($positive_alfa, $negative_gamma);
+        $this->testAngleEqual($positive_alfa, $positive_beta);
+        $this->testAngleEqual($positive_alfa, $negative_gamma);
     }
 
     #[TestDox("throws an exception if equal comparison has an unexpected type argument.")]
@@ -299,8 +291,8 @@ class AngleTest extends TestCase
         $negative_delta->toggleDirection();
 
         // Act & Assert
-        $this->assertAngleGreaterThan($positive_alfa, $positive_beta);
-        $this->assertAngleGreaterThan($positive_alfa, $negative_delta);
+        $this->testAngleGreaterThan($positive_alfa, $positive_beta);
+        $this->testAngleGreaterThan($positive_alfa, $negative_delta);
     }
 
     #[TestDox("throws an exception if greater than comparison has an unexpected type argument.")]
@@ -328,9 +320,9 @@ class AngleTest extends TestCase
         $delta_equal_to_alfa = clone $positive_alfa;
         
         // Act & Assert
-        $this->assertAngleGreaterThanOrEqual($positive_alfa, $positive_beta);
-        $this->assertAngleGreaterThanOrEqual($positive_alfa, $negative_gamma);
-        $this->assertAngleGreaterThanOrEqual($positive_alfa, $delta_equal_to_alfa);
+        $this->testAngleGreaterThanOrEqual($positive_alfa, $positive_beta);
+        $this->testAngleGreaterThanOrEqual($positive_alfa, $negative_gamma);
+        $this->testAngleGreaterThanOrEqual($positive_alfa, $delta_equal_to_alfa);
     }
 
     #[TestDox("throws an exception if greater than or equal comparison has an unexpected type argument.")]
@@ -357,8 +349,8 @@ class AngleTest extends TestCase
         $negative_gamma->toggleDirection();
 
         // Act & Assert
-        $this->assertAngleLessThan($positive_alfa, $positive_beta);
-        $this->assertAngleLessThan($positive_alfa, $negative_gamma);
+        $this->testAngleLessThan($positive_alfa, $positive_beta);
+        $this->testAngleLessThan($positive_alfa, $negative_gamma);
     }
 
     #[TestDox("throws an exception if less than comparison has an unexpected type argument.")]
@@ -386,9 +378,9 @@ class AngleTest extends TestCase
         $delta_equal_to_alfa = clone $positive_alfa;
 
         // Act & Assert
-        $this->assertAngleLessThanOrEqual($positive_alfa, $positive_beta);
-        $this->assertAngleLessThanOrEqual($positive_alfa, $negative_delta);
-        $this->assertAngleLessThanOrEqual($positive_alfa, $delta_equal_to_alfa);
+        $this->testAngleLessThanOrEqual($positive_alfa, $positive_beta);
+        $this->testAngleLessThanOrEqual($positive_alfa, $negative_delta);
+        $this->testAngleLessThanOrEqual($positive_alfa, $delta_equal_to_alfa);
     }
 
     #[TestDox("throws an exception if less than or equal comparison has an unexpected type.")]
@@ -415,8 +407,8 @@ class AngleTest extends TestCase
         $gamma->toggleDirection();
 
         // Act & Assert
-        $this->assertAngleDifferent($alfa, $beta);
-        $this->assertAngleDifferent($alfa, $gamma);
+        $this->testAngleDifferent($alfa, $beta);
+        $this->testAngleDifferent($alfa, $gamma);
     }
 
     #[TestDox("throws an exception if different comparison has an unexpected type.")]
@@ -439,23 +431,29 @@ class AngleTest extends TestCase
         // Arrange
         $alfa = $this->getRandomAngle($this->faker->boolean());
         $beta = $this->getRandomAngle($this->faker->boolean());
+        $precision = max($alfa->original_precision, $beta->original_precision);
 
         // Act
         $gamma = Angle::sum($alfa, $beta);
 
         // Assert
-        $decimal_alfa = $alfa->toDecimal(3);
-        $decimal_beta = $beta->toDecimal(3);
-        $decimal_gamma = $gamma->toDecimal();
-        $decimal_sum = round($decimal_alfa + $decimal_beta, 1, RoundingMode::HalfTowardsZero);
-        $absolute_sum = abs($decimal_sum);
-        while ($absolute_sum > Angle::MAX_DEGREES) {
-            $absolute_sum = round($absolute_sum - Angle::MAX_DEGREES, 1, RoundingMode::HalfTowardsZero);
-        }
-        $decimal_sum = $decimal_sum >= 0 ? $absolute_sum : -$absolute_sum;
-        $this->assertEquals($decimal_sum, $decimal_gamma, 
-            "{$decimal_alfa}° + {$decimal_beta}° must equals {$decimal_sum}° but found {$decimal_gamma}°."
+        $alfa_seconds = Angle::toTotalSeconds($alfa) * $alfa->direction;
+        $beta_seconds = Angle::toTotalSeconds($beta) * $beta->direction;
+        $gamma_seconds = Angle::toTotalSeconds($gamma) * $gamma->direction;
+        $expected_total_seconds = round(
+            $alfa_seconds + $beta_seconds,
+            $precision, RoundingMode::HalfTowardsZero
         );
+        $absolute_sum = abs($expected_total_seconds);
+        while ($absolute_sum > Angle::MAX_DEGREES * Angle::MAX_MINUTES * Angle::MAX_SECONDS) {
+            $absolute_sum = round(
+                $absolute_sum - Angle::MAX_DEGREES * Angle::MAX_MINUTES * Angle::MAX_SECONDS,
+                $precision,
+                RoundingMode::HalfTowardsZero
+            );
+        }
+        $expected_total_seconds = $expected_total_seconds >= 0 ? $absolute_sum : -$absolute_sum;
+        $this->assertEquals($expected_total_seconds, $gamma_seconds);
     }
 
     /**
@@ -487,13 +485,13 @@ class AngleTest extends TestCase
 
     /**
      * Asserts $first_angle is greater than $second_angle. 
-     * This is not a Custom Assertion but a Parameterized Test.
+     * This is a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
      * @return void
      */
-    protected function assertAngleGreaterThan(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
+    protected function testAngleGreaterThan(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
     {
         $failure_message = $first_angle->toDecimal($precision) . " > " . $second_angle->toDecimal($precision) . " is false.";
 
@@ -518,13 +516,13 @@ class AngleTest extends TestCase
 
     /**
      * Asserts $first_angle is greater than or equal to $second_angle. 
-     * This is not a Custom Assertion but a Parameterized Test.
+     * This is a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
      * @return void
      */
-    protected function assertAngleGreaterThanOrEqual(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
+    protected function testAngleGreaterThanOrEqual(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
     {
         $failure_message = $first_angle->toDecimal($precision) . " >= " . $second_angle->toDecimal($precision) . " is false.";
         $this->assertTrue($first_angle->isGreaterThanOrEqual((string) $second_angle),               $failure_message);
@@ -548,13 +546,13 @@ class AngleTest extends TestCase
 
     /**
      * Asserts $first_angle is equal to $second_angle. 
-     * This is not a Custom Assertion but a Parameterized Test.
+     * This is a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
      * @return void
      */
-    protected function assertAngleEqual(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
+    protected function testAngleEqual(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
     {
         $failure_message = $first_angle->toDecimal($precision) . " == " . $second_angle->toDecimal($precision) . " is false.";
         $this->assertTrue($first_angle->isEqual((string) $second_angle),                $failure_message);
@@ -578,13 +576,13 @@ class AngleTest extends TestCase
 
     /**
      * Asserts $first_angle is different than $second_angle.
-     * This is not a Custom Assert but a Parameterized Test.
+     * This is a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
      * @return void
      */
-    public function assertAngleDifferent(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1) {
+    protected function testAngleDifferent(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1) {
         $failure_message = $first_angle->toDecimal($precision) . " != " . $second_angle->toDecimal($precision) . " is false.";
         $this->assertTrue($first_angle->isDifferent((string) $second_angle),                $failure_message);
         $this->assertTrue($first_angle->isDifferent($second_angle->toDecimal($precision)),  $failure_message);
@@ -607,13 +605,13 @@ class AngleTest extends TestCase
 
     /**
      * Asserts that $first_angle is less than $second_angle.
-     * This is not a Custom Assertion. This is a Parameterized Test.
+     * This is a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
      * @return void
      */
-    protected function assertAngleLessThan(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
+    protected function testAngleLessThan(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
     {
         $failure_message = $first_angle->toDecimal($precision) . " < " . $second_angle->toDecimal($precision) . " is not true.";           
         $this->assertTrue($first_angle->isLessThan((string) $second_angle),               $failure_message);
@@ -637,13 +635,13 @@ class AngleTest extends TestCase
 
     /**
      * Asserts $first_angle is less than or equal to $second_angle. 
-     * This is not a Custom Assertion bu a Parameterized Test.
+     * This is a Parameterized Test.
      *
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $first_angle
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $second_angle
      * @return void
      */
-    protected function assertAngleLessThanOrEqual(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
+    protected function testAngleLessThanOrEqual(AngleInterface $first_angle, AngleInterface $second_angle, int $precision = 1)
     {
         $failure_message = $first_angle->toDecimal($precision) . " <= " . $second_angle->toDecimal($precision);
         $this->assertTrue($first_angle->isLessThanOrEqual((string) $second_angle),                  $failure_message);
@@ -663,5 +661,25 @@ class AngleTest extends TestCase
         $this->assertFalse($first_angle->gt($second_angle->toDecimal($precision)),                  $failure_message);
         $this->assertFalse($first_angle->gt((int) $second_angle->toDecimal(0)),                     $failure_message);
         $this->assertFalse($first_angle->gt($second_angle),                                         $failure_message);
+    }
+
+    protected function testCastToDecimal(int|null $precision = null): void
+    {
+        // Arrange
+        $decimal = $this->faker->randomFloat(
+            $precision ?? $this->faker->numberBetween(0, PHP_FLOAT_DIG), 
+            /* Min */ -Angle::MAX_DEGREES, /* Max */ Angle::MAX_DEGREES
+        );
+        $angle = Angle::createFromDecimal($decimal);
+    
+        // Act
+        $result = $angle->toDecimal($precision);
+
+        // Assert
+        $this->assertIsFloat($result);
+        $this->assertEquals($decimal, $result, 
+            "There was an error casting {$angle} to decimal with $precision precision digits. 
+            Expected {$decimal}° but found {$result}°."
+        );
     }
 }

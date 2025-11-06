@@ -9,14 +9,6 @@ use MarcoConsiglio\Goniometry\Builders\SumBuilder;
  */
 class Sum extends Angle
 {
-
-    /**
-     * Decimal sum of the two addend.
-     *
-     * @var float
-     */
-    private float $decimal_sum;
-
     /**
      * Constructs the Sum.
      *
@@ -25,6 +17,6 @@ class Sum extends Angle
      */
     public function __construct(SumBuilder $builder)
     {
-        [$this->degrees, $this->minutes, $this->seconds, $this->direction] = $builder->fetchData();
+        parent::__construct($builder);
     }
 }

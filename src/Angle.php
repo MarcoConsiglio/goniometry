@@ -19,6 +19,7 @@ use RoundingMode;
  * @property-read int $minutes
  * @property-read float $seconds
  * @property-read int $direction
+ * @property-read int $original_precision
  */
 class Angle implements AngleInterface
 {
@@ -237,16 +238,19 @@ class Angle implements AngleInterface
     /**
      * Gets the decimal degrees representation of this angle.
      *
-     * @param integer $precision The number of decimal digits.
+     * @param integer|null $precision The number of decimal digits. If sets to null,
+     * it resolve the original precision at the time this Angle was built.
      * @return float The angular value expressed as a decimal number.
      */
-    public function toDecimal(int $precision = 1): float
+    public function toDecimal(int|null $precision = null): float
     {
         $decimal = round(
             $this->degrees + 
             $this->minutes / Angle::MAX_MINUTES + 
             $this->seconds / (Angle::MAX_MINUTES * Angle::MAX_SECONDS),
-        $precision, RoundingMode::HalfTowardsZero);
+            $this->limitPrecision($precision) ?? $this->getDecimalPrecision(), 
+            RoundingMode::HalfTowardsZero
+        );
         $decimal *= $this->direction;
         return $decimal;
     }
@@ -254,12 +258,12 @@ class Angle implements AngleInterface
     /**
      * Gets the radian representation of this angle.
      *
-     * @param integer $precision The number of digits after the decimal point.
+     * @param integer|null $precision The number of digits after the decimal point.
      * @return float The angular value expressed as a radian number.
      */
-    public function toRadian(int $precision = 1): float
+    public function toRadian(int|null $precision = null): float
     {
-        return round(deg2rad($this->toDecimal(PHP_FLOAT_DIG)), $precision, PHP_ROUND_HALF_DOWN);
+        return round(deg2rad($this->toDecimal($precision)), $precision, RoundingMode::HalfTowardsZero);
     }
 
     /**
@@ -469,16 +473,16 @@ class Angle implements AngleInterface
     }
 
     /**
-     * It calculates the total seconds that make up the $angle.
+     * It calculates the absolute total seconds that make up the $angle.
      * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $angle
      * @param int $precision The number of decimal digits.
      */
-    static public function toTotalSeconds(AngleInterface $angle, int $precision = 1) {
+    static public function toTotalSeconds(AngleInterface $angle, int|null $precision = null) {
         return round(
             $angle->seconds +
             $angle->minutes * Angle::MAX_SECONDS +
             $angle->degrees * Angle::MAX_SECONDS * Angle::MAX_MINUTES, 
-            $precision, RoundingMode::HalfTowardsZero
+            $precision ?? $angle->original_precision, RoundingMode::HalfTowardsZero
         );
     }
 
@@ -492,5 +496,30 @@ class Angle implements AngleInterface
     {
         for ($decimal_digits = 0; $number != round($number, $decimal_digits); $decimal_digits++);
         return $decimal_digits;
+    }
+
+    /**
+     * It returns the correct precision to cast to decimal, 
+     * based on the original precision of seconds value 
+     * the Angle was built.
+     *
+     * @return integer
+     */
+    protected function getDecimalPrecision(): int
+    {
+        return $this->original_precision + 2;
+    }
+
+    /**
+     * It limits the maximum precision to the one available from the system.
+     *
+     * @param integer|null $precision
+     * @return integer|null
+     */
+    protected function limitPrecision(int|null $precision): int|null
+    {
+        if ($precision === null) return $precision;
+        else if (abs($precision) > PHP_FLOAT_DIG) return PHP_FLOAT_DIG;
+        else return abs($precision);
     }
 }
