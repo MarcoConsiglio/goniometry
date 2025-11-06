@@ -133,7 +133,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AtoTotalSeconds\u0028\u0029",
             "name": "toTotalSeconds",
-            "summary": "It\u0020calculates\u0020the\u0020total\u0020seconds\u0020that\u0020make\u0020up\u0020the\u0020\u0024angle.",
+            "summary": "It\u0020calculates\u0020the\u0020absolute\u0020total\u0020seconds\u0020that\u0020make\u0020up\u0020the\u0020\u0024angle.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_toTotalSeconds"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AcountDecimalPlaces\u0028\u0029",

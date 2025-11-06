@@ -18,12 +18,26 @@ class FromDecimalTest extends BuilderTestCase
     public function test_can_create_positive_angle()
     {
         $this->testAngleCreation(FromDecimal::class);
+        $this->testAngleCreation(
+            FromDecimal::class, 
+            negative: false, 
+            precision: 17
+        );
+        $angle = Angle::createFromDecimal(0);
+        $this->assertEquals(0, $angle->toDecimal());
     }
 
     #[TestDox("can create a negative angle from a decimal value.")]
     public function test_can_create_negative_angle()
     {
         $this->testAngleCreation(FromDecimal::class, negative: true);
+        $this->testAngleCreation(
+            FromDecimal::class, 
+            negative: true,
+            precision: 17
+        );
+        $angle = Angle::createFromDecimal(0);
+        $this->assertEquals(0, $angle->toDecimal());
     }
 
     #[TestDox("throws AngleOverflowException with more than +/-360° input.")]

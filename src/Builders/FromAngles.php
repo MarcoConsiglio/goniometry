@@ -55,6 +55,7 @@ class FromAngles extends SumBuilder
     {
         $this->first_angle = $first_angle;
         $this->second_angle = $second_angle;
+        
     }
 
     /**
@@ -66,7 +67,9 @@ class FromAngles extends SumBuilder
     {
         $full_angle = Angle::MAX_DEGREES * Angle::MAX_MINUTES * Angle::MAX_SECONDS;
         while ($this->angleOverflows()) {
-            $this->temp_seconds = round($this->temp_seconds - $full_angle, 3, RoundingMode::HalfTowardsZero);
+            $this->temp_seconds = round($this->temp_seconds - $full_angle,
+            $this->getHighestPrecision(), 
+            RoundingMode::HalfTowardsZero);
         }
     }
 
@@ -122,7 +125,11 @@ class FromAngles extends SumBuilder
     protected function calcSeconds()
     {
         while ($this->excessiveSeconds()) {
-            $this->temp_seconds = round($this->temp_seconds - Angle::MAX_SECONDS, 3, RoundingMode::HalfTowardsZero);
+            $this->temp_seconds = round(
+                $this->temp_seconds - Angle::MAX_SECONDS, 
+                $this->getHighestPrecision(), 
+                RoundingMode::HalfTowardsZero
+            );
             $this->temp_minutes++;
         }
         $this->seconds = $this->temp_seconds;
@@ -179,8 +186,6 @@ class FromAngles extends SumBuilder
         $this->calcDegrees();
     }
 
-
-
     /**
      * Fetch data to build a Sum class.
      *
@@ -190,5 +195,18 @@ class FromAngles extends SumBuilder
     {
         $this->calcSum();
         return parent::fetchData();
+    }
+
+    /**
+     * It returns the higher precision of one of the two angle operands.
+     *
+     * @return integer
+     */
+    protected function getHighestPrecision(): int
+    {
+        return max(
+            $this->first_angle->original_precision, 
+            $this->second_angle->original_precision
+        );
     }
 }

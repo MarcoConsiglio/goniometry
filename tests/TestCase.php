@@ -15,15 +15,16 @@ use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
 use ReflectionClass;
+use Faker\Generator;
 
 class TestCase extends PHPUnitTestCase
 {
     /**
      * The faker generator.
      *
-     * @var \Faker\Generator;
+     * @var Generator;
      */
-    protected $faker;
+    protected Generator $faker;
 
     /**
      * This method is called before each test.
