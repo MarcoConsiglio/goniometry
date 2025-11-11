@@ -263,7 +263,7 @@ class Angle implements AngleInterface
      */
     public function toRadian(int|null $precision = null): float
     {
-        return round(deg2rad($this->toDecimal($precision)), $precision, RoundingMode::HalfTowardsZero);
+        return round(deg2rad($this->toDecimal($precision)), $precision ?? $this->original_precision + 2, RoundingMode::HalfTowardsZero);
     }
 
     /**
@@ -415,6 +415,21 @@ class Angle implements AngleInterface
         $equal_minutes = $this->minutes == $angle->minutes;
         $equal_seconds = $this->seconds == $angle->seconds;
         return $equal_degrees && $equal_minutes && $equal_seconds;
+    }
+
+    /**
+     * Alias of isEqual.
+     * 
+     * Useful when asserting with assertObjectEquals method in PHPUnit.
+     * The method must have only one parameter.
+     *
+     * @param AngleInterface $angle
+     * @return boolean
+     * @codeCoverageIgnore
+     */
+    public function equals(AngleInterface $angle): bool
+    {
+        return $this->isEqual($angle, max($this->original_precision, $angle->original_precision) + 2);
     }
 
     /**

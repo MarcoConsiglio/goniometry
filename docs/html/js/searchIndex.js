@@ -111,6 +111,11 @@ Search.appendIndex(
             "summary": "Check\u0020if\u0020this\u0020angle\u0020is\u0020equal\u0020to\u0020\u0024angle.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_isEqual"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Aequals\u0028\u0029",
+            "name": "equals",
+            "summary": "Alias\u0020of\u0020isEqual.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_equals"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Aeq\u0028\u0029",
             "name": "eq",
             "summary": "Alias\u0020of\u0020isEqual\u0020method.",

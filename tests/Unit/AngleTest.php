@@ -205,7 +205,7 @@ class AngleTest extends TestCase
             Angle::MAX_RADIAN   /* +360° */
         );
         $angle = Angle::createFromRadian($radian);
-        $rounded_radian = round($radian, 1, RoundingMode::HalfTowardsZero);
+        $rounded_radian = round($radian, $angle->original_precision + 2, RoundingMode::HalfTowardsZero);
 
         // Act & Assert
         $this->assertEquals($rounded_radian, $angle->toRadian(), $this->getCastError("radian"));
