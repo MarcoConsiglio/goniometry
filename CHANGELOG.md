@@ -1,4 +1,7 @@
 # Changelog
+## [1.4.0] 2025-11-11
+### Added
+- Support for assertion `assertObjectEquals()` method in PHPUnit through the method `Angle::equals()` which is an alias for `Angle::isEquals()`
 ## [1.3.0] 2025-11-04
 ### Added
 - `Angle::countDecimalPlaces()` public static method, useful to cound decimal places of a `float` variable.
