@@ -180,4 +180,35 @@ class FromDegrees extends AngleBuilder
     {
         return $this->seconds == 0;
     }
+
+    /**
+     * Fetch data to build an Angle class.
+     *
+     * @return array{
+     *      int,
+     *      int,
+     *      float,
+     *      int,
+     *      int|null,
+     *      float|null,
+     *      int|null,
+     *      float|null,
+     *      int|null
+     *  }
+     */
+    public function fetchData(): array
+    {
+        $seconds_decimal_places = Angle::countDecimalPlaces($this->seconds);
+        return [
+            $this->degrees,
+            $this->minutes,
+            $this->seconds,
+            $this->direction,
+            $seconds_decimal_places + 6, // Suggested decimal precision
+            null, // No original decimal degrees value.
+            $seconds_decimal_places, // Seconds precision
+            null, // No original radian value
+            null  // No original radian precision
+        ];
+    }
 }

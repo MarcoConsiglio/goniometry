@@ -11,25 +11,25 @@ use RoundingMode;
 abstract class AngleBuilder implements AngleBuilderInterface
 {
     /**
-     * Degrees
+     * Degrees value.
      *
      * @var integer
      */
-    protected int $degrees;
+    protected int $degrees = 0;
 
     /**
-     * Minutes
+     * Minutes value.
      *
      * @var integer
      */
-    protected int $minutes;
+    protected int $minutes = 0;
 
     /**
-     * Seconds
+     * Seconds value.
      *
      * @var float
      */
-    protected float $seconds;
+    protected float $seconds = 0.0;
 
     /**
      * Rotation direction.
@@ -39,35 +39,35 @@ abstract class AngleBuilder implements AngleBuilderInterface
     protected int $direction = Angle::COUNTER_CLOCKWISE;  
 
     /**
-     * Check for overflow above/below +/-360°.
+     * Check for overflow above/below ±360°.
      *
      * @return void
      */
     abstract protected function checkOverflow();
 
     /**
-     * Calc degrees.
+     * Calcs degrees.
      *
      * @return void
      */
     abstract protected function calcDegrees();
 
     /**
-     * Calc minutes.    
+     * Calcs minutes.    
      *
      * @return void
      */
     abstract protected function calcMinutes();
 
     /**
-     * Calc seconds.
+     * Calcs seconds.
      *
      * @return void
      */
     abstract protected function calcSeconds();
 
     /**
-     * Calc direction.
+     * Calcs direction.
      *
      * @return void
      */
@@ -78,13 +78,5 @@ abstract class AngleBuilder implements AngleBuilderInterface
      *
      * @return array
      */
-    public function fetchData(): array
-    {
-        return [
-            $this->degrees,
-            $this->minutes,
-            $this->seconds,
-            $this->direction
-        ];
-    }
+    abstract public function fetchData(): array;
 }

@@ -1,4 +1,34 @@
 # Changelog
+## Unreleased
+### Added
+- Properties `Angle::{`  
+&ensp;&ensp;&ensp;&ensp;`$original_seconds_precision,`  
+&ensp;&ensp;&ensp;&ensp;`$original_radian_precision`  
+&ensp;&ensp;&ensp;&ensp;`$suggested_decimal_precision`  
+`}` to cast the angle without specifing the precision.
+### Changed
+- Improvement of computational precision in `Angle::{`  
+&ensp;&ensp;&ensp;&ensp;`toDecimal()`,  
+&ensp;&ensp;&ensp;&ensp;`toRadian()`,  
+`}` methods.
+- Every concrete methods of `AngleBuilder::fetchData()` returns an array with the following values in order:
+  - degrees,
+  - minutes,
+  - seconds,
+  - direction,
+  - suggested decimal precision,
+  - original decimal value,
+  - seconds value precision,
+  - original radian value,
+  - suggested radian precision
+- `Angle::toggleDirection()` now returns a new instance making the Angle instance totally immutable.
+### Removed
+- Parameter $precision of the `Angle::toTotalSeconds()` method. Rounding of this value should be performed at user discretion.
+
+## [1.4.1] 2025-11-15
+### Changed
+- README documentation.
+
 ## [1.4.0] 2025-11-11
 ### Added
 - Support for assertion `assertObjectEquals()` method in PHPUnit through the method `Angle::equals()` which is an alias for `Angle::isEquals()`

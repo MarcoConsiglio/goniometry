@@ -9,7 +9,7 @@ use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use RoundingMode;
+use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The FromAngles builder")]
 #[CoversClass(FromAngles::class)]
@@ -23,28 +23,113 @@ class FromAnglesTest extends BuilderTestCase
     public function test_can_sum_two_angle()
     {
         // Arrange
-        $alfa = Angle::createFromValues(0, 0, 1.0);
-        $beta = Angle::createFromValues(0, 0, 1.0);
+        $mocked_methods = [
+            "bothAnglesAreFullPositiveAngles",
+            "bothAnglesAreFullNegativeAngles",
+            "bothAnglesAreNullAngles",
+            "calcSign",
+            "checkOverflow",
+            "calcDegrees",
+            "calcMinutes",
+            "calcSeconds",
+            "getMaxSuggestedDecimalPrecisionBetween"
+        ];
+        $alfa = $this->getMockedAngle();
+        $beta = $this->getMockedAngle();
+        /** @var FromAngles&MockObject $builder */
+        $builder = $this->getMockedAngleBuilder($mocked_methods, true, [$alfa, $beta]);
+        
+        // Assert
+        $builder->expects($this->once())->method("calcSign");
+        $builder->expects($this->once())->method("checkOverflow");
+        $builder->expects($this->once())->method("calcDegrees");
+        $builder->expects($this->once())->method("calcMinutes");
+        $builder->expects($this->once())->method("calcSeconds");
+        $builder->expects($this->any())->method("getMaxSuggestedDecimalPrecisionBetween");
+        
+        // Act
+        $builder->fetchData();
+    }
+
+    #[TestDox("can take a shortcut if the two angles are full angles.")]
+    public function test_can_shortcut_sum_of_two_full_angles()
+    {
+        /**
+         * 360° + 360° ≅ 360°
+         */
+        // Arrange
+        $alfa = Angle::createFromValues(360);
+        $beta = Angle::createFromValues(360);
         $builder = new FromAngles($alfa, $beta);
-        $decimal_alfa = $alfa->toDecimal(3);
-        $decimal_beta = $beta->toDecimal(3);
 
         // Act
         $result = $builder->fetchData();
 
         // Assert
-        $gamma = Angle::createFromValues($result[0], $result[1], $result[2], $result[3]);
-        $decimal_gamma = $gamma->toDecimal();
-        $failure_message = "{$decimal_alfa}° + {$decimal_beta}° must be {$sum} but found {$decimal_gamma}°.";
-        $this->assertAngle(FromDecimal::class, $decimal_gamma, $gamma, $failure_message);
-        $this->assertThat(
-            $gamma->toDecimal(),
-            $this->logicalAnd(
-                $this->greaterThanOrEqual(-360),
-                $this->lessThanOrEqual(360)
-            ),
-            $failure_message
-        );
+        $this->assertEquals($result[0], 360);
+        $this->assertEquals($result[1], 0);
+        $this->assertEquals($result[2], 0.0);
+        $this->assertEquals($result[3], Angle::COUNTER_CLOCKWISE);
+
+        /**
+         * -360° + (-360°) ≅ -360°
+         */
+        $alfa = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
+        $beta = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
+        $builder = new FromAngles($alfa, $beta);
+
+        // Act
+        $result = $builder->fetchData();
+
+        // Assert
+        $this->assertEquals($result[0], 360);
+        $this->assertEquals($result[1], 0);
+        $this->assertEquals($result[2], 0.0);
+        $this->assertEquals($result[3], Angle::CLOCKWISE);
+    }
+
+    #[TestDox("can take a shortcut if the two angles are null angles.")]
+    public function test_can_shortcut_sum_of_two_null_angles()
+    {
+        /**
+         * 0° + 0° ≅ 0°
+         */
+        // Arrange
+        $alfa = Angle::createFromValues(0);
+        $beta = Angle::createFromValues(0);
+        $builder = new FromAngles($alfa, $beta);
+
+        // Act
+        $result = $builder->fetchData();
+
+        // Assert
+        $this->assertEquals($result[0], 0);
+        $this->assertEquals($result[1], 0);
+        $this->assertEquals($result[2], 0.0);
+        $this->assertEquals($result[3], Angle::COUNTER_CLOCKWISE);
+
+        /**
+         * 0° + 90° ≆ 0
+         */
+        // Arrange
+        $alfa = Angle::createFromValues(0);
+        $beta = Angle::createFromValues(90);
+        $builder = new FromAngles($alfa, $beta);
+        
+        // Act
+        $result = $builder->fetchData();
+        $this->assertNotEquals(0, $result[0]);
+
+        /**
+         * 90° + 0° ≆ 0°
+         */
+        $alfa = Angle::createFromValues(0);
+        $beta = Angle::createFromValues(90);
+        $builder = new FromAngles($beta, $alfa);
+        
+        // Act
+        $result = $builder->fetchData();
+        $this->assertNotEquals(0, $result[0]);        
     }
 
     #[TestDox("corrects the excess if the sum is greater than +/-360°.")]
@@ -57,8 +142,8 @@ class FromAnglesTest extends BuilderTestCase
         $delta = Angle::createFromDecimal(-360.0);
 
         // Act
-        $sum_1 = new Sum(new FromAngles($alfa, $beta));
-        $sum_2 = new Sum(new FromAngles($gamma, $delta));
+        $sum_1 = Angle::sum($alfa, $beta);
+        $sum_2 = Angle::sum($gamma, $delta);
 
         // Assert
         $decimal_sum_1 = $sum_1->toDecimal();

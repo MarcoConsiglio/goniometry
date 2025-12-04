@@ -136,11 +136,6 @@ Search.appendIndex(
             "summary": "Get\u0020a\u0020textual\u0020representation\u0020of\u0020this\u0020angle\u0020in\u0020degrees.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method___toString"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AtoTotalSeconds\u0028\u0029",
-            "name": "toTotalSeconds",
-            "summary": "It\u0020calculates\u0020the\u0020absolute\u0020total\u0020seconds\u0020that\u0020make\u0020up\u0020the\u0020\u0024angle.",
-            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_toTotalSeconds"
-        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AcountDecimalPlaces\u0028\u0029",
             "name": "countDecimalPlaces",
             "summary": "Count\u0020the\u0020decimal\u0020digits\u0020of\u0020a\u0020decimal\u0020number.",
@@ -206,10 +201,20 @@ Search.appendIndex(
             "summary": "The\u0020seconds\u0020part.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#property_seconds"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A\u0024original_precision",
-            "name": "original_precision",
-            "summary": "The\u0020original\u0020precision\u0020at\u0020the\u0020moment\u0020of\u0020the\u0020angle\u0020creation.",
-            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#property_original_precision"
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A\u0024original_seconds_precision",
+            "name": "original_seconds_precision",
+            "summary": "The\u0020original\u0020precision\u0020of\u0020the\u0020seconds\u0020value\nat\u0020the\u0020moment\u0020of\u0020the\u0020angle\u0020creation.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#property_original_seconds_precision"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A\u0024suggested_decimal_precision",
+            "name": "suggested_decimal_precision",
+            "summary": "The\u0020suggested\u0020decimal\u0020precision\u0020if\u0020the\u0020angle\u0020was\u0020built\u0020from\ndegrees,\u0020minutes\u0020and\u0020seconds\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#property_suggested_decimal_precision"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A\u0024original_radian_precision",
+            "name": "original_radian_precision",
+            "summary": "The\u0020original\u0020precision\u0020of\u0020the\u0020radian\u0020value\nat\u0020the\u0020moment\u0020of\u0020the\u0020angle\u0020creation\u0020if\u0020it\nwas\u0020constructed\u0020with\u0020the\u0020FromRadian\u0020builder.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#property_original_radian_precision"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A\u0024direction",
             "name": "direction",
@@ -233,7 +238,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAngles\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructs\u0020a\u0020SumBuilder\u0020builder\u0020with\u0020two\u0020angles.",
+            "summary": "It\u0020construct\u0020the\u0020SumBuilder\u0020with\u0020two\u0020angles.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAngles.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAngles\u003A\u003AfetchData\u0028\u0029",
@@ -265,6 +270,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Constructs\u0020and\u0020AngleBuilder\u0020with\u0020degrees,\u0020minutes,\u0020seconds\u0020and\u0020direction.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-FromDegrees.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromDegrees\u003A\u003AfetchData\u0028\u0029",
+            "name": "fetchData",
+            "summary": "Fetch\u0020data\u0020to\u0020build\u0020an\u0020Angle\u0020class.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromDegrees.html#method_fetchData"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromRadian",
             "name": "FromRadian",
@@ -301,14 +311,9 @@ Search.appendIndex(
             "summary": "Represents\u0020a\u0020sum\u0020builder.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-SumBuilder.html"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\SumBuilder\u003A\u003AfetchData\u0028\u0029",
-            "name": "fetchData",
-            "summary": "Fetch\u0020data\u0020to\u0020build\u0020a\u0020Sum\u0020class.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-SumBuilder.html#method_fetchData"
-        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\AngleOverflowException",
             "name": "AngleOverflowException",
-            "summary": "This\u0020exception\u0020is\u0020thrown\u0020when\u0020the\u0020client\u0020code\ntries\u0020to\u0020create\u0020an\u0020angle\u0020that\u0020exceeds\u0020360\u00B0.",
+            "summary": "This\u0020exception\u0020is\u0020thrown\u0020when\u0020the\u0020client\u0020code\ntries\u0020to\u0020create\u0020an\u0020angle\u0020that\u0020exceeds\u0020\u00B1360\u00B0.",
             "url": "classes/MarcoConsiglio-Goniometry-Exceptions-AngleOverflowException.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\AngleOverflowException\u003A\u003A__construct\u0028\u0029",
@@ -318,22 +323,22 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\NoMatchException",
             "name": "NoMatchException",
-            "summary": "This\u0020exception\u0020is\u0020thrown\u0020when\u0020a\u0020bad\u0020format\u0020string\u0020angle\u0020is\u0020matched,\nfor\u0020example\u0020372\u00B0\u002088\u0027\u0020513\u0022.",
+            "summary": "This\u0020exception\u0020is\u0020thrown\u0020when\u0020a\u0020bad\u0020format\u0020string\u0020angle\u0020is\u0020matched,\nfor\u0020example\u0020\u0060372\u00B0\u002088\u0027\u0020513\u0022\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\NoMatchException\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Construct\u0020the\u0020exception.",
+            "summary": "It\u0020construct\u0020the\u0020exception.",
             "url": "classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\RegExFailureException",
             "name": "RegExFailureException",
-            "summary": "This\u0020exception\u0020is\u0020thrown\u0020when\u0020the\u0020angle\u0020regex\u0020fails\u0020to\u0020find\u0020a\u0020string\u0020angle.",
+            "summary": "This\u0020exception\u0020is\u0020thrown\u0020when\u0020the\u0020angle\u0020regular\u0020expressions\u0020fails\u0020to\u0020find\u0020a\u0020string\u0020angle.",
             "url": "classes/MarcoConsiglio-Goniometry-Exceptions-RegExFailureException.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\RegExFailureException\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructs\u0020the\u0020exception.",
+            "summary": "It\u0020constructs\u0020the\u0020exception.",
             "url": "classes/MarcoConsiglio-Goniometry-Exceptions-RegExFailureException.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\Angle",

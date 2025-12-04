@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use RoundingMode;
 
 /**
  *  Builds an angle starting from a radian value.
@@ -87,10 +88,35 @@ class FromRadian extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array
+     * @return array{
+     *      int,
+     *      int,
+     *      float,
+     *      int,
+     *      int|null,
+     *      float|null,
+     *      int|null,
+     *      float|null,
+     *      int|null
+     *  }
      */
     public function fetchData(): array
     {
-        return (new FromDecimal(rad2deg($this->radian)))->fetchData();
+        $result = new FromDecimal(round(
+            rad2deg($this->radian),
+            Angle::countDecimalPlaces($this->radian),
+            RoundingMode::HalfTowardsZero
+        ))->fetchData();
+        return [
+            $result[0], // Degrees
+            $result[1], // Minutes
+            $result[2], // Seconds
+            $result[3], // Direction
+            $result[4], // Suggested decimal precision
+            $result[5], // Original decimal value
+            $result[6], // Original seconds precision
+            $this->radian, // Original radian value
+            Angle::countDecimalPlaces($this->radian) // Original radian precision
+        ];
     }
 }

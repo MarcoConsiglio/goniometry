@@ -40,15 +40,24 @@ class FromString extends AngleBuilder
     protected mixed $seconds_parsing_status;
 
     /**
-     * The regex matches.
+     * The matched degrees by the regular expression.
      *
      * @var array
-     * @deprecated
      */
-    protected array $matches = [];
-
     protected array $degrees_match = [];
+
+    /**
+     * The matched minutes by the regular expression.
+     *
+     * @var array
+     */
     protected array $minutes_match = [];
+
+    /**
+     * The matched seconds by the regular expression.
+     *
+     * @var array
+     */
     protected array $seconds_match = [];
 
     /**
@@ -154,7 +163,6 @@ class FromString extends AngleBuilder
     /**
      * Calc sign.
      *
-     * @param mixed $data
      * @return void
      */
     protected function calcSign()
@@ -165,7 +173,17 @@ class FromString extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array
+     * @return array{
+     *      int,
+     *      int,
+     *      float,
+     *      int,
+     *      int|null,
+     *      float|null,
+     *      int|null,
+     *      float|null,
+     *      int|null
+     *  }
      */
     public function fetchData(): array
     {
@@ -173,6 +191,16 @@ class FromString extends AngleBuilder
         $this->calcMinutes();
         $this->calcSeconds();
         $this->calcSign();
-        return parent::fetchData();
+        return [
+            $this->degrees,
+            $this->minutes,
+            $this->seconds,
+            $this->direction,
+            null, // No suggested decimal precision
+            null, // No original decimal value
+            Angle::countDecimalPlaces($this->seconds),
+            null, // No original radian value 
+            null, // No original radian precision
+        ];
     }
 }

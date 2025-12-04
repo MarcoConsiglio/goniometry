@@ -12,7 +12,7 @@ class Sum extends Angle
     /**
      * Constructs the Sum.
      *
-     * @param \MarcoConsiglio\Goniometry\Builders\SumBuilder
+     * @param SumBuilder
      * @return void
      */
     public function __construct(SumBuilder $builder)

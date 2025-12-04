@@ -4,18 +4,18 @@ namespace MarcoConsiglio\Goniometry\Exceptions;
 use Exception;
 
 /**
- * This exception is thrown when the angle regex fails to find a string angle.
+ * This exception is thrown when the angle regular expressions fails to find a string angle.
  */
 class RegExFailureException extends Exception
 {
     /**
-     * Constructs the exception.
+     * It constructs the exception.
      *
-     * @param string $failure_message
+     * @param string $message
      * @return void
      */
-    public function __construct(string $failure_message = "")
+    public function __construct(string $message = "")
     {
-        parent::__construct($failure_message, 0, $this->getPrevious());
+        parent::__construct($message, 0, $this->getPrevious());
     }
 }

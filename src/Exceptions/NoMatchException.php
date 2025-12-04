@@ -5,14 +5,14 @@ use Exception;
 
 /**
  * This exception is thrown when a bad format string angle is matched,
- * for example 372° 88' 513".
+ * for example `372° 88' 513"`.
  */
 class NoMatchException extends Exception
 {
     /**
-     * Construct the exception.
+     * It construct the exception.
      *
-     * @param string $angle The string provoking the exception.
+     * @param string $angle The string angle provoking the exception.
      * @return void
      */
     public function __construct(string $angle)

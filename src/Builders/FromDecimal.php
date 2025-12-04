@@ -26,6 +26,12 @@ class FromDecimal extends AngleBuilder
     protected int $decimal_precision;
 
     /**
+     * The seconds precision.
+     *
+     * @var integer
+     */
+    protected int $seconds_precision;
+    /**
      * The remainder that remains during the conversion steps from decimal to sexagesimal degrees.
      *
      * @var float
@@ -97,9 +103,10 @@ class FromDecimal extends AngleBuilder
      */
     protected function calcSeconds()
     {
+        $this->seconds_precision = $this->getSecondsPrecision();
         $this->seconds = round(
             $this->reminder * Angle::MAX_MINUTES * Angle::MAX_SECONDS,
-            $this->getSecondsPrecision(), RoundingMode::HalfTowardsZero
+            $this->seconds_precision, RoundingMode::HalfTowardsZero
         );
     }
 
@@ -118,7 +125,17 @@ class FromDecimal extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array
+     * @return array{
+     *      int,
+     *      int,
+     *      float,
+     *      int,
+     *      int|null,
+     *      float|null,
+     *      int|null,
+     *      float|null,
+     *      int|null
+     *  }
      */
     public function fetchData(): array
     {
@@ -126,7 +143,17 @@ class FromDecimal extends AngleBuilder
         $this->calcMinutes();
         $this->calcSeconds();
         $this->calcSign();
-        return parent::fetchData();
+        return [
+            $this->degrees,
+            $this->minutes,
+            $this->seconds,
+            $this->direction,
+            $this->decimal_precision, // Suggested decimal precision
+            $this->decimal, // Original decimal value,
+            $this->seconds_precision,
+            null, // No original radian value
+            null  // No original radian precision
+        ];
     }
 
     /**
@@ -152,8 +179,8 @@ class FromDecimal extends AngleBuilder
      */
     protected function getSecondsPrecision(): int
     {
-        $precision = $this->decimal_precision + 2;
-        if ($precision >= PHP_FLOAT_DIG) return PHP_FLOAT_DIG;
+        $precision = $this->decimal_precision + 6;
+        if ($precision > PHP_FLOAT_DIG) return PHP_FLOAT_DIG;
         else return $precision;
     }
 }
