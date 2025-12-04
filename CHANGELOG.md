@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## [1.5.0] 2025-12-04
 ### Added
 - Properties `Angle::{`  
 &ensp;&ensp;&ensp;&ensp;`$original_seconds_precision,`  
