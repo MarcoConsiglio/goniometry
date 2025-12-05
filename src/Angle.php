@@ -120,8 +120,8 @@ class Angle implements AngleInterface
     public protected(set) int|null $original_seconds_precision = null;
 
     /**
-     * The original decimal precision if the angle was built from
-     * degrees, minutes and seconds values.
+     * The suggested decimal precision to cast the instance to decimal
+     * degrees.
      * 
      * @var int|null
      */
@@ -130,7 +130,8 @@ class Angle implements AngleInterface
     /**
      * The original precision of the radian value
      * at the moment of the angle creation if it
-     * was constructed with the FromRadian builder.
+     * was constructed with a radian value or casted
+     * to a radian value.
      * 
      * @var integer
      */

@@ -208,12 +208,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A\u0024suggested_decimal_precision",
             "name": "suggested_decimal_precision",
-            "summary": "The\u0020suggested\u0020decimal\u0020precision\u0020if\u0020the\u0020angle\u0020was\u0020built\u0020from\ndegrees,\u0020minutes\u0020and\u0020seconds\u0020values.",
+            "summary": "The\u0020suggested\u0020decimal\u0020precision\u0020to\u0020cast\u0020the\u0020instance\u0020to\u0020decimal\ndegrees.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#property_suggested_decimal_precision"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A\u0024original_radian_precision",
             "name": "original_radian_precision",
-            "summary": "The\u0020original\u0020precision\u0020of\u0020the\u0020radian\u0020value\nat\u0020the\u0020moment\u0020of\u0020the\u0020angle\u0020creation\u0020if\u0020it\nwas\u0020constructed\u0020with\u0020the\u0020FromRadian\u0020builder.",
+            "summary": "The\u0020original\u0020precision\u0020of\u0020the\u0020radian\u0020value\nat\u0020the\u0020moment\u0020of\u0020the\u0020angle\u0020creation\u0020if\u0020it\nwas\u0020constructed\u0020with\u0020a\u0020radian\u0020value\u0020or\u0020casted\nto\u0020a\u0020radian\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#property_original_radian_precision"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A\u0024direction",
