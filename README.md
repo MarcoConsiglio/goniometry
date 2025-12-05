@@ -128,6 +128,7 @@ $alfa->direction; // Angle::CLOCKWISE (1)
 ### Casting
 When the precision parameter is needed, you can obtain your maximum available precision with
 the `PHP_FLOAT_DIG` constant.
+
 #### To decimal (float)
 You can cast the angle to decimal, with optional precision:
 ```php
@@ -136,6 +137,12 @@ $alfa->toDecimal(4); // 180.2119
 $alfa->toDecimal(PHP_FLOAT_DIG) // 180.211971543295645
 ```
 If the number of decimal places is not set, the casting operation preserve the original precision at the time the angle was built.
+
+You can obtain a suggested precision to correctly represent the sexadecimal value of the `Angle` instance.
+```php
+$precision = $alfa->suggested_decimal_precision;
+$alfa->toDecimal($precision);
+```
 #### To radian (float)
 You can cast the angle to radian, with optional precision:
 ```php
@@ -144,6 +151,13 @@ $alfa->toRadian(3); // 3.141
 $alfa->toRadian(PHP_FLOAT_DIG); // 3.141592653589793 
 ```
 If the number of decimal places is not set, the casting operation preserve the original precision at the time the angle was built.
+
+You can obtain the original precision to correctly represent the radian value of the `Angle` instance.
+```php
+$precision = $alfa->original_radian_precision;
+$alfa->toRadian($precision);
+```
+
 #### To string
 You can cast the angle to a string representation:
 ```php
