@@ -46,21 +46,71 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("has read-only properties \"degrees\", \"minutes\", \"seconds\", \"direction\".")]
-    public function test_getters()
+    public function test_degrees_minutes_seconds_direction_properties()
     {
         // Arrange
-        $failure_message = function (string $property) {
-            return "$property property is not working correctly.";
-        };
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle();
-        $this->setAngleProperties($alfa, [1, 2, 3.4]);
+        $alfa = Angle::createFromValues(1, 2, 3.4);
 
         // Act & Assert
-        $this->assertEquals(1, $alfa->degrees, $failure_message("degrees"));
-        $this->assertEquals(2, $alfa->minutes, $failure_message("minutes"));
-        $this->assertEquals(3.4, $alfa->seconds, $failure_message("seconds"));
-        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $alfa->direction, $failure_message("direction"));
+        $this->assertEquals(1, $alfa->degrees, $this->getPropertyError("degrees"));
+        $this->assertEquals(2, $alfa->minutes, $this->getPropertyError("minutes"));
+        $this->assertEquals(3.4, $alfa->seconds, $this->getPropertyError("seconds"));
+        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $alfa->direction, $this->getPropertyError("direction"));
+    }
+
+    #[TestDox("has read-only property \"original_seconds_precision\" which is an integer.")]
+    public function test_original_seconds_precision()
+    {
+        // Arrange
+        $seconds = $this->faker->randomFloat(PHP_FLOAT_DIG, 0, Angle::MAX_SECONDS - 0.00000001);
+        $seconds_precision = Angle::countDecimalPlaces($seconds);
+        $alfa = Angle::createFromValues(0, 0, $seconds);
+
+        // Act & Assert
+        $this->assertEquals($seconds_precision, $alfa->original_seconds_precision, 
+            $this->getPropertyError("original_seconds_precision")
+        );
+    }
+
+    #[TestDox("has read-only property \"suggested_decimal_precision\" which is an integer.")]
+    public function test_suggested_decimal_precision()
+    {
+        // Arrange
+        $alfa = $this->getRandomAngle($this->faker->boolean());
+        $decimal_precision = $alfa->original_seconds_precision + 6;
+        if ($decimal_precision > PHP_FLOAT_DIG) $decimal_precision = PHP_FLOAT_DIG;
+
+        // Act & Assert
+        $this->assertEquals($decimal_precision, $alfa->suggested_decimal_precision,
+            $this->getPropertyError("suggested_decimal_precision")
+        );
+    }
+
+    #[TestDox("has read-only property \"original_radian_precision\" which is an integer.")]
+    public function test_original_radian_precision()
+    {
+        /**
+         * Angle built with sexagesimal degrees.
+         */
+        // Arrange
+        $alfa = $this->getRandomAngle($this->faker->boolean());
+
+        // Act & Assert
+        $this->assertNull($alfa->original_radian_precision, $this->getPropertyError("original_radian_precision"));
+
+        /**
+         * Angle built with radian.
+         */
+        // Arrange
+        $radian = $this->faker->randomFloat(PHP_FLOAT_DIG, -Angle::MAX_RADIAN, Angle::MAX_RADIAN);
+        $radian_precision = Angle::countDecimalPlaces($radian);
+        $beta = Angle::createFromRadian($radian);
+
+        // Act & Assert
+        $this->assertEquals($radian_precision, $beta->original_radian_precision,
+            $this->getPropertyError("original_radian_precision")
+        );
     }
 
     #[TestDox("can be created from separated values for degrees, minutes, seconds and direction.")]
@@ -826,7 +876,7 @@ TEXT;
     }
 
     /**
-     * Gets a casting error message.
+     * It produces a casting error message.
      *
      * @param string $type Type to cast to.
      * @return string
@@ -834,5 +884,16 @@ TEXT;
     protected function getCastError(string $type): string
     {
         return "Something is not working when casting to $type.";
+    }
+
+    /**
+     * It produces a property error message.
+     *
+     * @param string $property_name
+     * @return string
+     */
+    protected function getPropertyError(string $property_name): string
+    {
+        return "Angle::\${$property_name} property is not working correctly.";
     }
 }

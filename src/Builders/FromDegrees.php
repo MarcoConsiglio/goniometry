@@ -199,12 +199,15 @@ class FromDegrees extends AngleBuilder
     public function fetchData(): array
     {
         $seconds_decimal_places = Angle::countDecimalPlaces($this->seconds);
+        $suggested_decimal_precision = $seconds_decimal_places + 6;
+        if ($suggested_decimal_precision > PHP_FLOAT_DIG) 
+            $suggested_decimal_precision = PHP_FLOAT_DIG;
         return [
             $this->degrees,
             $this->minutes,
             $this->seconds,
             $this->direction,
-            $seconds_decimal_places + 6, // Suggested decimal precision
+            $suggested_decimal_precision, // Suggested decimal precision
             null, // No original decimal degrees value.
             $seconds_decimal_places, // Seconds precision
             null, // No original radian value

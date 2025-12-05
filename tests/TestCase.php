@@ -51,7 +51,7 @@ class TestCase extends PHPUnitTestCase
         } else {
             $negative = Angle::COUNTER_CLOCKWISE;
         }
-        return Angle::createFromValues(abs($degrees), $minutes, $seconds, $negative);
+        return Angle::createFromValues($degrees, $minutes, $seconds, $negative);
     }
 
     /**
@@ -95,7 +95,9 @@ class TestCase extends PHPUnitTestCase
     {
         $degrees = $this->faker->numberBetween(0, 360);
         $minutes = $this->faker->numberBetween(0, 59);
-        $seconds = $this->faker->randomFloat(1, 0, 59.9);
+        $seconds = $this->faker->randomFloat(
+            $this->faker->numberBetween(0, PHP_FLOAT_DIG), 0, 59.9
+        );
         return [$negative ? -$degrees : $degrees, $minutes, $seconds];
     }
 
@@ -134,65 +136,6 @@ class TestCase extends PHPUnitTestCase
     }
 
     /**
-     * Set read-only properties with the aid of Reflection.
-     *
-     * @param \MarcoConsiglio\Goniometry\Interfaces\Angle $angle
-     * @param array                                         $values
-     * @return void
-     */
-    protected function setAngleProperties(AngleInterface $angle, array $values)
-    {
-        $angle_class = new ReflectionClass($angle);
-        $degrees_property = $angle_class->getProperty("degrees");
-        $minutes_property = $angle_class->getProperty("minutes");
-        $seconds_property = $angle_class->getProperty("seconds");
-        $sign_property    = $angle_class->getProperty("direction");
-        $degrees_property->setValue($angle, $values[0]);       
-        $minutes_property->setValue($angle, $values[1]);       
-        $seconds_property->setValue($angle, $values[2]);  
-        if (isset($values[3])) {
-             $sign_property->setValue($angle, $values[3]);
-        }
-    }
-
-    protected function setAngleBuilderProperties(AngleBuilderInterface $builder, mixed $values)
-    {
-        $builder_class = new ReflectionClass($builder);
-        if (is_subclass_of($builder, FromDegrees::class)) {
-            $degrees_property = $builder_class->getProperty("degrees");
-            $minutes_property = $builder_class->getProperty("minutes");
-            $seconds_property = $builder_class->getProperty("seconds");
-            $sign_property    = $builder_class->getProperty("sign");
-            $degrees_property->setValue($builder, $values[0]);       
-            $minutes_property->setValue($builder, $values[1]);       
-            $seconds_property->setValue($builder, $values[2]);  
-            if (isset($values[3])) {
-                 $sign_property->setValue($builder, $values[3]);
-            }
-        }
-        if (is_subclass_of($builder, FromDecimal::class)) {
-            $decimal_property = $builder_class->getProperty("decimal");
-            $decimal_property->setValue($builder, $values);
-        }
-        if (is_subclass_of($builder, FromRadian::class)) {
-            $radiant_property = $builder_class->getProperty("radian");
-            $radiant_property->setValue($builder, $values);
-        }
-        if (is_subclass_of($builder, FromString::class)) {
-            $measure_property = $builder_class->getProperty("measure");
-            $parsing_status_property = $builder_class->getProperty("parsing_status");
-            $measure_property->setValue($builder, $values[0]);
-            $parsing_status_property->setValue($builder, $values[1]);
-        }
-        if (is_subclass_of($builder, FromAngles::class)) {
-            $first_angle_property = $builder_class->getProperty("first_angle");
-            $second_angle_property = $builder_class->getProperty("second_angle");
-            $first_angle_property->setValue($builder, $values[0]);
-            $second_angle_property->setValue($builder, $values[1]);
-        }
-    }
-
-    /**
      * Constructs a mocked Angle.
      *
      * @param array $mocked_methods
@@ -218,13 +161,4 @@ class TestCase extends PHPUnitTestCase
         return $angle->getMock();
     }
 
-    /**
-     * Alias of any method.
-     *
-     * @return \PHPUnit\Framework\MockObject\Rule\AnyInvokedCount
-     */
-    public function anyTime(): AnyInvokedCount
-    {
-        return $this->any();
-    }
-}
+ }

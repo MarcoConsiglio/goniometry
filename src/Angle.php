@@ -22,6 +22,8 @@ use RoundingMode;
  * @property-read float $seconds
  * @property-read int $direction
  * @property-read int $original_seconds_precision
+ * @property-read int $suggested_decimal_precision
+ * @property-read int $original_radian_precision
  */
 class Angle implements AngleInterface
 {
@@ -118,7 +120,7 @@ class Angle implements AngleInterface
     public protected(set) int|null $original_seconds_precision = null;
 
     /**
-     * The suggested decimal precision if the angle was built from
+     * The original decimal precision if the angle was built from
      * degrees, minutes and seconds values.
      * 
      * @var int|null
@@ -338,6 +340,7 @@ class Angle implements AngleInterface
                     RoundingMode::HalfTowardsZero
                 );
                 $decimal *= $this->direction;
+                $this->original_decimal = $decimal;
                 return $decimal; 
             }
         }
@@ -351,6 +354,7 @@ class Angle implements AngleInterface
             RoundingMode::HalfTowardsZero
         );
         $decimal *= $this->direction;
+        $this->original_decimal = $decimal;
         return $decimal;
     }
 
@@ -373,21 +377,28 @@ class Angle implements AngleInterface
         // If the angle was built from a decimal degrees value.
         if ($this->original_decimal) {
             if ($precision) {
-                return round(
+                $radian = round(
                     deg2rad($this->original_decimal),
                     $precision,
                     RoundingMode::HalfTowardsZero
                 );
+                $this->original_radian = $radian;
+                return $radian;
             } else return deg2rad($this->original_decimal);
         }
         // All other cases.
-        if ($precision) 
-            return round(
+        if ($precision) { 
+            $radian = round(
                 deg2rad($this->toDecimal()),
                 $precision,
                 RoundingMode::HalfTowardsZero
             );
-        else return deg2rad($this->toDecimal());
+            $this->original_radian = $radian;
+            return $radian;
+        }
+        $radian = deg2rad($this->toDecimal());
+        $this->original_radian = $radian;
+        return $radian;
     }
 
     /**
