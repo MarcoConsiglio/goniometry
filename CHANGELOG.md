@@ -1,4 +1,10 @@
 # Changelog
+## [1.5.1] 2025-12-05
+### Changed
+- README documentation.
+### Fixed
+- Decimal and radian precision when casting an `Angle` instance to decimal or radian.
+
 ## [1.5.0] 2025-12-04
 ### Added
 - Properties `Angle::{`  
