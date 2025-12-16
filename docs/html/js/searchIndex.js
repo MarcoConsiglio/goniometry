@@ -481,26 +481,6 @@ Search.appendIndex(
             "summary": "Fetch\u0020the\u0020data\u0020that\u0020will\u0020bee\u0020used\u0020for\u0020an\u0020angle.",
             "url": "classes/MarcoConsiglio-Goniometry-Interfaces-AngleBuilder.html#method_fetchData"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Operations\\AbsoluteSum",
-            "name": "AbsoluteSum",
-            "summary": "Sum\u0020two\u0020Angle\u0028s\u0029\u0020keeping\u0020the\u0020result\u0020inside\nthe\u0020limits\u00200\u00B0\u0020and\u0020\u002B360\u00B0.",
-            "url": "classes/MarcoConsiglio-Goniometry-Operations-AbsoluteSum.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Operations\\AbsoluteSum\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Construct\u0020an\u0020angle.",
-            "url": "classes/MarcoConsiglio-Goniometry-Operations-AbsoluteSum.html#method___construct"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Operations\\RelativeSum",
-            "name": "RelativeSum",
-            "summary": "Sum\u0020two\u0020Angle\u0028s\u0029\u0020keeping\u0020the\u0020result\u0020inside\nthe\u0020limits\u0020\u002D360\u00B0\u0020and\u0020\u002B360\u00B0.",
-            "url": "classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Operations\\RelativeSum\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Construct\u0020the\u0020RelativeSum\u0020instance.",
-            "url": "classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#method___construct"
-        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -530,10 +510,5 @@ Search.appendIndex(
             "name": "Interfaces",
             "summary": "",
             "url": "namespaces/marcoconsiglio-goniometry-interfaces.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Operations",
-            "name": "Operations",
-            "summary": "",
-            "url": "namespaces/marcoconsiglio-goniometry-operations.html"
         }            ]
 );
