@@ -47,6 +47,37 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
         $builder->fetchData();
     }
 
+    #[TestDox("supports relative sum.")]
+    public function test_calc_sign()
+    {
+        /**
+         * Positive sum
+         */
+        // Arrange
+        $alfa = Angle::createFromValues(30);
+        $beta = Angle::createFromValues(30);
+        $builder = new FromAnglesToRelativeSum($alfa, $beta);
+
+        // Act
+        $result = $builder->fetchData();
+
+        // Assert
+        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $result[3]);
+
+        /**
+         * Negative sum
+         */
+        $alfa = Angle::createFromValues(30, direction: Angle::CLOCKWISE);
+        $beta = Angle::createFromValues(30, direction: Angle::CLOCKWISE);
+        $builder = new FromAnglesToRelativeSum($alfa, $beta);
+
+        // Act
+        $result = $builder->fetchData();
+
+        // Assert
+        $this->assertEquals(Angle::CLOCKWISE, $result[3]);
+    }
+
     #[TestDox("can take a shortcut if the two angles are full angles.")]
     public function test_can_shortcut_sum_of_two_full_angles()
     {

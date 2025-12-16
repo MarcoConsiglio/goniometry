@@ -25,14 +25,12 @@
         "php": "^8.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "^11"
+        "phpunit/phpunit": "^11",
+        "fakerphp/faker": "^1.24"
     },
     "replace": {
         "marcoconsiglio/trigonometry": "*"
     },
     "config": {
-        "allow-plugins": {
-            "phpdocumentor/shim": true
-        }
     }
 }
