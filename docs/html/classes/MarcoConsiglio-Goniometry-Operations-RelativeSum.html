@@ -100,12 +100,16 @@
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio.html">MarcoConsiglio</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-goniometry.html">Goniometry</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-goniometry-operations.html">Operations</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Angle
+    RelativeSum
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -115,9 +119,6 @@
                             </ul>
         </div>
     
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a>                    </span>
     
     </h2>
 
@@ -127,13 +128,14 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Operations/RelativeSum.php"><a href="files/src-operations-relativesum.html"><abbr title="src/Operations/RelativeSum.php">RelativeSum.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Represents an angle.</p>
+            <p class="phpdocumentor-summary">Sum two Angle(s) keeping the result inside
+the limits -360° and +360°.</p>
 
 
 
@@ -143,26 +145,19 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/MarcoConsiglio-Goniometry-Angle.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></dt><dd>The angle concept.</dd>    </dl>
 
 
 
 
 <h4 id="toc-constants">
     Constants
-    <a href="classes/MarcoConsiglio-Goniometry-Angle.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
@@ -234,7 +229,7 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/MarcoConsiglio-Goniometry-Angle.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
@@ -243,69 +238,57 @@
     <span>
                         &nbsp;: int            </span>
 </dt>
-<dd>The degrees part.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#property_direction">$direction</a>
     <span>
                         &nbsp;: int            </span>
 </dt>
-<dd>The angle direction.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#property_minutes">$minutes</a>
     <span>
                         &nbsp;: int            </span>
 </dt>
-<dd>The minutes part.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#property_original_radian_precision">$original_radian_precision</a>
     <span>
                         &nbsp;: int            </span>
 </dt>
-<dd>The original precision of the radian value
-at the moment of the angle creation if it
-was constructed with a radian value or casted
-to a radian value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#property_original_seconds_precision">$original_seconds_precision</a>
     <span>
-                        &nbsp;: int|null            </span>
+                        &nbsp;: int            </span>
 </dt>
-<dd>The original precision of the seconds value
-at the moment of the angle creation.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#property_seconds">$seconds</a>
     <span>
                         &nbsp;: float            </span>
 </dt>
-<dd>The seconds part.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#property_suggested_decimal_precision">$suggested_decimal_precision</a>
     <span>
-                        &nbsp;: int|null            </span>
+                        &nbsp;: int            </span>
 </dt>
-<dd>The suggested decimal precision to cast the instance to decimal
-degrees.</dd>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/MarcoConsiglio-Goniometry-Angle.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method___construct">__construct()</a>
+    <a class="" href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Construct an angle.</dd>
+<dd>Construct the RelativeSum instance.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method___toString">__toString()</a>
@@ -498,7 +481,7 @@ of &quot;degrees&quot;, &quot;minutes&quot; and &quot;seconds&quot;.</dd>
     <section class="phpdocumentor-constants">
         <h3 class="phpdocumentor-elements__header" id="constants">
             Constants
-            <a href="classes/MarcoConsiglio-Goniometry-Angle.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article class="phpdocumentor-element -constant -public ">
@@ -786,7 +769,7 @@ of &quot;degrees&quot;, &quot;minutes&quot; and &quot;seconds&quot;.</dd>
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/MarcoConsiglio-Goniometry-Angle.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -794,27 +777,26 @@ of &quot;degrees&quot;, &quot;minutes&quot; and &quot;seconds&quot;.</dd>
             phpdocumentor-element
             -property
             -public
-                                                                    "
+                                                -read-only                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_degrees">
         $degrees
         <a href="classes/MarcoConsiglio-Goniometry-Angle.html#property_degrees" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                            </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The degrees part.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$degrees</span>
     </code>
@@ -832,57 +814,33 @@ of &quot;degrees&quot;, &quot;minutes&quot; and &quot;seconds&quot;.</dd>
             phpdocumentor-element
             -property
             -public
-                                                                    "
+                                                -read-only                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_direction">
         $direction
         <a href="classes/MarcoConsiglio-Goniometry-Angle.html#property_direction" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                            </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">169</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The angle direction.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$direction</span>
-     = <span class="phpdocumentor-signature__default-value">self::COUNTER_CLOCKWISE</span></code>
+    </code>
 
     
     
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#property_direction#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">see</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                    <span class="phpdocumentor-tag-link"><abbr title="\MarcoConsiglio\Goniometry\Angle::COUNTERCLOCKWISE">Angle::COUNTERCLOCKWISE</abbr></span>
-                                        
-                                             
-                                    </dd>
-                            <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">see</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_CLOCKWISE"><abbr title="\MarcoConsiglio\Goniometry\Angle::CLOCKWISE">Angle::CLOCKWISE</abbr></a></span>
-                                        
-                                             
-                                    </dd>
-                                            </dl>
 
         
         
@@ -893,27 +851,26 @@ of &quot;degrees&quot;, &quot;minutes&quot; and &quot;seconds&quot;.</dd>
             phpdocumentor-element
             -property
             -public
-                                                                    "
+                                                -read-only                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_minutes">
         $minutes
         <a href="classes/MarcoConsiglio-Goniometry-Angle.html#property_minutes" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                            </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The minutes part.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$minutes</span>
     </code>
@@ -931,33 +888,29 @@ of &quot;degrees&quot;, &quot;minutes&quot; and &quot;seconds&quot;.</dd>
             phpdocumentor-element
             -property
             -public
-                                                                    "
+                                                -read-only                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_original_radian_precision">
         $original_radian_precision
         <a href="classes/MarcoConsiglio-Goniometry-Angle.html#property_original_radian_precision" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                            </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">140</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The original precision of the radian value
-at the moment of the angle creation if it
-was constructed with a radian value or casted
-to a radian value.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$original_radian_precision</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
+    </code>
 
     
     
@@ -972,31 +925,29 @@ to a radian value.</p>
             phpdocumentor-element
             -property
             -public
-                                                                    "
+                                                -read-only                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_original_seconds_precision">
         $original_seconds_precision
         <a href="classes/MarcoConsiglio-Goniometry-Angle.html#property_original_seconds_precision" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                            </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">122</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The original precision of the seconds value
-at the moment of the angle creation.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
-            <span class="phpdocumentor-signature__type">int|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$original_seconds_precision</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
+    </code>
 
     
     
@@ -1011,27 +962,26 @@ at the moment of the angle creation.</p>
             phpdocumentor-element
             -property
             -public
-                                                                    "
+                                                -read-only                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_seconds">
         $seconds
         <a href="classes/MarcoConsiglio-Goniometry-Angle.html#property_seconds" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                            </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">114</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The seconds part.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__type">float</span>
     <span class="phpdocumentor-signature__name">$seconds</span>
     </code>
@@ -1049,31 +999,29 @@ at the moment of the angle creation.</p>
             phpdocumentor-element
             -property
             -public
-                                                                    "
+                                                -read-only                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_suggested_decimal_precision">
         $suggested_decimal_precision
         <a href="classes/MarcoConsiglio-Goniometry-Angle.html#property_suggested_decimal_precision" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                                            </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">130</span>
+    <span class="phpdocumentor-element-found-in__line">0</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The suggested decimal precision to cast the instance to decimal
-degrees.</p>
-
+    
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-            <span class="phpdocumentor-signature__visibility">public protected(set)</span>
-            <span class="phpdocumentor-signature__type">int|null</span>
+        <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$suggested_decimal_precision</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
+    </code>
 
     
     
@@ -1088,7 +1036,7 @@ degrees.</p>
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/MarcoConsiglio-Goniometry-Angle.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -1099,21 +1047,21 @@ degrees.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Operations/RelativeSum.php"><a href="files/src-operations-relativesum.html"><abbr title="src/Operations/RelativeSum.php">RelativeSum.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">177</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Construct an angle.</p>
+        <p class="phpdocumentor-summary">Construct the RelativeSum instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-AngleBuilder.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\AngleBuilder">AngleBuilder</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$builder</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Builders-FromAnglesToRelativeSum.html"><abbr title="\MarcoConsiglio\Goniometry\Builders\FromAnglesToRelativeSum">FromAnglesToRelativeSum</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$builder</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1123,12 +1071,10 @@ degrees.</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$builder</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-AngleBuilder.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\AngleBuilder">AngleBuilder</abbr></a></span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Builders-FromAnglesToRelativeSum.html"><abbr title="\MarcoConsiglio\Goniometry\Builders\FromAnglesToRelativeSum">FromAnglesToRelativeSum</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The builder used to construct the angle.</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -2934,7 +2880,7 @@ it resolve the original precision at the time this Angle was built.</p>
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Angle.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Operations/RelativeSum.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -3035,9 +2981,9 @@ it resolve the original precision at the time this Angle was built.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                        <li><a href="classes/MarcoConsiglio-Goniometry-Angle.html#toc-constants">Constants</a></li>
-                                                            <li><a href="classes/MarcoConsiglio-Goniometry-Angle.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/MarcoConsiglio-Goniometry-Angle.html#toc-methods">Methods</a></li>
+                                        <li><a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#toc-constants">Constants</a></li>
+                                                            <li><a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
                             <li class="phpdocumentor-on-this-page-section__title">Constants</li>
@@ -3071,7 +3017,7 @@ it resolve the original precision at the time this Angle was built.</p>
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method___toString">__toString()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_countDecimalPlaces">countDecimalPlaces()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_createFromDecimal">createFromDecimal()</a></li>
@@ -3117,7 +3063,7 @@ it resolve the original precision at the time this Angle was built.</p>
     </section>
 </section>
         </div>
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Operations-RelativeSum.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
