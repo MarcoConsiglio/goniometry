@@ -105,10 +105,10 @@ class TestCase extends PHPUnitTestCase
      * Return a random sexadecimal value.
      *
      * @param boolean $negative If negative or positive number.
-     * @param integer $precision The precision digits of the result.
+     * @param int|null $precision The precision digits of the result.
      * @return float
      */
-    protected function getRandomAngleDecimal($negative = false, int $precision = 0): float
+    protected function getRandomAngleDecimal($negative = false, int|null $precision = null): float
     {
         return $negative ? 
             $this->faker->randomFloat($precision, 0, Angle::MAX_DEGREES) : 
@@ -119,10 +119,10 @@ class TestCase extends PHPUnitTestCase
      * Returns a random radian value.
      *
      * @param boolean $negative
-     * @param integer $precision
+     * @param int|null $precision
      * @return void
      */
-    protected function getRandomAngleRadian($negative = false, int $precision = 0)
+    protected function getRandomAngleRadian($negative = false, int|null $precision = null)
     {
         return $negative ? 
             $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, 0):

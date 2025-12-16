@@ -239,6 +239,24 @@ class AngleTest extends TestCase
         $this->testCastToDecimal(PHP_FLOAT_DIG - 2);
         $this->testCastToDecimal(PHP_FLOAT_DIG);
         $this->testCastToDecimal(PHP_FLOAT_DIG + 3);
+
+        /**
+         * Other builders than FromDecimal.
+         */
+        // Arrange
+        $precision = $this->faker->numberBetween(0, PHP_FLOAT_DIG);
+        $values = $this->getRandomAngleDegrees($sign = $this->faker->boolean);
+        $alfa = Angle::createFromValues(
+            abs($values[0]),
+            $values[1],
+            $values[2],
+            $sign ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE
+        );
+        $beta = clone $alfa;
+        $decimal = $beta->toDecimal($precision);
+
+        // Act & Assert
+        $this->assertEquals($decimal, $alfa->toDecimal($precision), $this->getCastError("decimal"));
     }
 
     #[TestDox("can be casted to radian.")]

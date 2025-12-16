@@ -81,7 +81,7 @@ class FromString extends AngleBuilder
      * @param string $angle The string format angle value.
      * @return void
      * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException Bad formatted angle is found.
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
+     * @throws RegExFailureException Error while parsing with a regular expression.
      */
     protected function parseDegreesString()
     {
@@ -94,7 +94,7 @@ class FromString extends AngleBuilder
      * @param string $angle The string format angle value.
      * @return void
      * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException Bad formatted angle is found.
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
+     * @throws RegExFailureException Error while parsing with a regular expression.
      */
     protected function parseMinutesString()
     {
@@ -107,7 +107,7 @@ class FromString extends AngleBuilder
      * @param string $angle The string format angle value.
      * @return void
      * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException Bad formatted angle is found.
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
+     * @throws RegExFailureException Error while parsing with a regular expression.
      */
     protected function parseSecondsString()
     {
