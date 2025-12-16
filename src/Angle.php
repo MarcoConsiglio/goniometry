@@ -4,14 +4,13 @@ namespace MarcoConsiglio\Goniometry;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
-use MarcoConsiglio\Goniometry\Builders\FromAngles;
+use MarcoConsiglio\Goniometry\Builders\FromAnglesToRelativeSum;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
-use MarcoConsiglio\Goniometry\Operations\Sum;
 use RoundingMode;
 
 /**
@@ -249,7 +248,7 @@ class Angle implements AngleInterface
      */
     public static function sum(AngleInterface $first_angle, AngleInterface $second_angle): Angle
     {
-        return new Sum(new FromAngles($first_angle, $second_angle));
+        return new Angle(new FromAnglesToRelativeSum($first_angle, $second_angle));
     }
 
     /**
@@ -559,7 +558,6 @@ class Angle implements AngleInterface
      * Alias of isEqual.
      * 
      * Useful when asserting with assertObjectEquals method in PHPUnit.
-     * The method must have only one parameter.
      *
      * @param AngleInterface $angle
      * @return boolean

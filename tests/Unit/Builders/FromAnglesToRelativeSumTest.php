@@ -3,21 +3,22 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Operations\Sum;
-use MarcoConsiglio\Goniometry\Builders\FromAngles;
+use MarcoConsiglio\Goniometry\Builders\FromAnglesToRelativeSum;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Operations\RelativeSum;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 
-#[TestDox("The FromAngles builder")]
-#[CoversClass(FromAngles::class)]
-#[CoversClass(Sum::class)]
+#[TestDox("The FromAnglesToRelativeSum builder")]
+#[CoversClass(FromAnglesToRelativeSum::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(FromDegrees::class)]
 #[UsesClass(FromDecimal::class)]
-class FromAnglesTest extends BuilderTestCase
+#[UsesClass(RelativeSum::class)]
+class FromAnglesToRelativeSumTest extends BuilderTestCase
 {
     #[TestDox("can sums two angles.")]
     public function test_can_sum_two_angle()
@@ -36,7 +37,7 @@ class FromAnglesTest extends BuilderTestCase
         ];
         $alfa = $this->getMockedAngle();
         $beta = $this->getMockedAngle();
-        /** @var FromAngles&MockObject $builder */
+        /** @var FromAnglesToRelativeSum&MockObject $builder */
         $builder = $this->getMockedAngleBuilder($mocked_methods, true, [$alfa, $beta]);
         
         // Assert
@@ -60,7 +61,7 @@ class FromAnglesTest extends BuilderTestCase
         // Arrange
         $alfa = Angle::createFromValues(360);
         $beta = Angle::createFromValues(360);
-        $builder = new FromAngles($alfa, $beta);
+        $builder = new FromAnglesToRelativeSum($alfa, $beta);
 
         // Act
         $result = $builder->fetchData();
@@ -76,7 +77,7 @@ class FromAnglesTest extends BuilderTestCase
          */
         $alfa = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
         $beta = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
-        $builder = new FromAngles($alfa, $beta);
+        $builder = new FromAnglesToRelativeSum($alfa, $beta);
 
         // Act
         $result = $builder->fetchData();
@@ -97,7 +98,7 @@ class FromAnglesTest extends BuilderTestCase
         // Arrange
         $alfa = Angle::createFromValues(0);
         $beta = Angle::createFromValues(0);
-        $builder = new FromAngles($alfa, $beta);
+        $builder = new FromAnglesToRelativeSum($alfa, $beta);
 
         // Act
         $result = $builder->fetchData();
@@ -114,7 +115,7 @@ class FromAnglesTest extends BuilderTestCase
         // Arrange
         $alfa = Angle::createFromValues(0);
         $beta = Angle::createFromValues(90);
-        $builder = new FromAngles($alfa, $beta);
+        $builder = new FromAnglesToRelativeSum($alfa, $beta);
         
         // Act
         $result = $builder->fetchData();
@@ -125,7 +126,7 @@ class FromAnglesTest extends BuilderTestCase
          */
         $alfa = Angle::createFromValues(0);
         $beta = Angle::createFromValues(90);
-        $builder = new FromAngles($beta, $alfa);
+        $builder = new FromAnglesToRelativeSum($beta, $alfa);
         
         // Act
         $result = $builder->fetchData();
@@ -153,11 +154,11 @@ class FromAnglesTest extends BuilderTestCase
     }
 
     /**
-     * Returns the FromAngles builder class.
+     * Returns the FromAnglesToRelativeSum builder class.
      * @return string
      */
     protected function getBuilderClass(): string
     {
-        return FromAngles::class;
+        return FromAnglesToRelativeSum::class;
     }
 }

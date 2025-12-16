@@ -1,15 +1,16 @@
 <?php declare(strict_types=1);
 namespace MarcoConsiglio\Goniometry\Tests\Unit;
 
+use MarcoConsiglio\Goniometry\Tests\Traits\WithEqualsMethod;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AngleBuilder;
-use MarcoConsiglio\Goniometry\Builders\FromAngles;
+use MarcoConsiglio\Goniometry\Builders\FromAnglesToRelativeSum;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Builders\SumBuilder;
-use MarcoConsiglio\Goniometry\Operations\Sum;
+use MarcoConsiglio\Goniometry\Operations\RelativeSum;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -17,18 +18,19 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use RoundingMode;
 use TypeError;
 
-#[TestDox("An angle")]
+#[TestDox("An Angle")]
 #[CoversClass(Angle::class)]
 #[UsesClass(AngleBuilder::class)]
 #[UsesClass(FromString::class)]
 #[UsesClass(FromDecimal::class)]
 #[UsesClass(FromDegrees::class)]
 #[UsesClass(FromRadian::class)]
-#[UsesClass(Sum::class)]
+#[UsesClass(RelativeSum::class)]
 #[UsesClass(SumBuilder::class)]
-#[UsesClass(FromAngles::class)]
+#[UsesClass(FromAnglesToRelativeSum::class)]
 class AngleTest extends TestCase
 {
+    use WithEqualsMethod;
     /**
      * The expected degrees, minutes, seconds e angle direction.
      *
@@ -376,6 +378,12 @@ class AngleTest extends TestCase
         $this->testIntegerAngleEqual($integer_positive_delta, $integer_negative_zeta);
     }
 
+    #[TestDox("support PHPUnit assertObjectEquals() method.")]
+    public function test_equals_method()
+    {
+        $this->testEqualComparison(3);
+    }
+
     #[TestDox("throws an exception if equal comparison has an unexpected type argument.")]
     public function test_equal_comparison_exception()
     {
@@ -560,39 +568,6 @@ class AngleTest extends TestCase
         $this->expectException(TypeError::class);
         $alfa->not($invalid_argument); // Two birds with one stone.
     }
-
-    #[TestDox("can sums two angles.")]
-    public function test_sum_two_angles()
-    {
-        // Arrange
-        $alfa = $this->getRandomAngle($this->faker->boolean());
-        $beta = $this->getRandomAngle($this->faker->boolean());
-        $decimal_alfa = $alfa->toDecimal();
-        $decimal_beta = $beta->toDecimal();
-        $precision = max(
-            Angle::countDecimalPlaces($decimal_alfa), 
-            Angle::countDecimalPlaces($decimal_beta)
-        );
-        $decimal_sum = $decimal_alfa + $decimal_beta;
-        $sign = $decimal_sum >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE;
-        if (abs($decimal_sum) > Angle::MAX_DEGREES) $decimal_sum = (abs($decimal_sum) - Angle::MAX_DEGREES) * $sign;
-        $decimal_sum = round($decimal_sum, $precision, RoundingMode::HalfTowardsZero);
-        
-        // Act
-        $gamma = Angle::sum($alfa, $beta);
-
-        // Assert
-        $failure_message = function(Angle $alfa, Angle $beta, Angle $gamma) {
-            return <<<TEXT
-+ $alfa
-= $beta
-------------------
-  $gamma
-TEXT;
-        };
-        $this->assertEquals($decimal_sum, $gamma->toDecimal(), $failure_message($alfa, $beta, $gamma));
-    }
-
     
     /**
      * Assert the passed $values are the same of $angle. 
@@ -849,6 +824,39 @@ TEXT;
         $this->assertFalse($first_angle->gt($second_angle->degrees), $failure_message_true);
     }
 
+    #[TestDox("can be added to another to obtain a relative result.")]
+    public function test_relative_sum()
+    {
+        // Arrange
+        $alfa = $this->getRandomAngle($this->faker->boolean());
+        $beta = $this->getRandomAngle($this->faker->boolean());
+        $decimal_alfa = $alfa->toDecimal();
+        $decimal_beta = $beta->toDecimal();
+        $precision = max(
+            $alfa->suggested_decimal_precision, 
+            $beta->suggested_decimal_precision
+        );
+        $decimal_sum = $decimal_alfa + $decimal_beta;
+        $sign = $decimal_sum >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE;
+        if (abs($decimal_sum) > Angle::MAX_DEGREES) $decimal_sum = (abs($decimal_sum) - Angle::MAX_DEGREES) * $sign;
+        $decimal_sum = round($decimal_sum, $precision, RoundingMode::HalfTowardsZero);
+        
+        // Act
+        $gamma = Angle::sum($alfa, $beta);
+
+        // Assert
+        $failure_message = function(Angle $alfa, Angle $beta, Angle $gamma) {
+            return <<<TEXT
++ $alfa
+= $beta
+------------------
+  $gamma
+TEXT;
+        };
+        $this->assertEquals($decimal_sum, $gamma->toDecimal(), $failure_message($alfa, $beta, $gamma));
+    }
+
+
     /**
      * It asserts an Angle can be casted to decimal.
     *
@@ -895,5 +903,59 @@ TEXT;
     protected function getPropertyError(string $property_name): string
     {
         return "Angle::\${$property_name} property is not working correctly.";
+    }
+
+    /**
+     * Return a comparison dataset with different and equal arguments.
+     * 
+     * @return array
+     */
+    protected function getComparisonDataset(): array
+    {
+        $d1 = 180;
+        $d2 = 90;
+        $m1 = 20;
+        $m2 = 30;
+        $s1 = 10;
+        $s2 = 50;
+        return [
+            0 => [
+                self::DIFFERENT => [$d1, $d2],
+                self::EQUAL => [$d1, $d1]
+            ],
+            1 => [
+                self::DIFFERENT => [$m1, $m2],
+                self::EQUAL => [$m1, $m1]
+            ],
+            2 => [
+                self::DIFFERENT => [$s1, $s2],
+                self::EQUAL => [$s1, $s1]
+            ]
+        ];
+    }
+
+    /**
+     * Construct the two records to be compared with some $property_couples 
+     * representing an equal or different property
+     * 
+     * @param array $property_couples
+     * @return array
+     */
+    protected function getRecordsToCompare(array $property_couples): array
+    {
+        $first = 0;
+        $second = 1;
+        return [
+            Angle::createFromValues(
+                $property_couples[0][$first],
+                $property_couples[1][$first],
+                $property_couples[2][$first],
+            ),
+            Angle::createFromValues(
+                $property_couples[0][$second],
+                $property_couples[1][$second],
+                $property_couples[2][$second],
+            )
+        ];
     }
 }

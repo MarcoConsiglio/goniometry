@@ -200,8 +200,10 @@ class FromDegrees extends AngleBuilder
     {
         $seconds_decimal_places = Angle::countDecimalPlaces($this->seconds);
         $suggested_decimal_precision = $seconds_decimal_places + 6;
+        // @codeCoverageIgnoreStart
         if ($suggested_decimal_precision > PHP_FLOAT_DIG) 
             $suggested_decimal_precision = PHP_FLOAT_DIG;
+        // @codeCoverageIgnoreEnd
         return [
             $this->degrees,
             $this->minutes,
