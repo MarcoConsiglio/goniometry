@@ -272,7 +272,7 @@ abstract class BuilderTestCase extends TestCase
 
     /**
      * Implemented in a concrete BuilderTestCase, returns the
-     * concrete AngleBuilder to test.
+     * concrete AngleBuilder class to test.
      * 
      * @return string
      */

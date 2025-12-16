@@ -10,7 +10,6 @@ use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Builders\SumBuilder;
-use MarcoConsiglio\Goniometry\Operations\RelativeSum;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -25,7 +24,6 @@ use TypeError;
 #[UsesClass(FromDecimal::class)]
 #[UsesClass(FromDegrees::class)]
 #[UsesClass(FromRadian::class)]
-#[UsesClass(RelativeSum::class)]
 #[UsesClass(SumBuilder::class)]
 #[UsesClass(FromAnglesToRelativeSum::class)]
 class AngleTest extends TestCase
