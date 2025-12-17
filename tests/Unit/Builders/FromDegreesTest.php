@@ -34,10 +34,41 @@ class FromDegreesTest extends BuilderTestCase
         //  Null angles
         $alfa = Angle::createFromValues(0, 0, 0, $positive_direction);
         $beta = Angle::createFromValues(0, 0, 0, $negative_direction);
+        //  Non-null angles
+        $gamma =    Angle::createFromValues(0, 0, 1, $positive_direction);
+        $delta =    Angle::createFromValues(0, 1, 0, $positive_direction);
+        $epsilon =  Angle::createFromValues(0, 1, 1, $positive_direction);
+        $zeta =     Angle::createFromValues(1, 0, 0, $positive_direction);
+        $eta =      Angle::createFromValues(1, 0, 1, $positive_direction);
+        $theta =    Angle::createFromValues(1, 1, 0, $positive_direction);
+        $iota =     Angle::createFromValues(1, 1, 1, $positive_direction);
+        $kappa =    Angle::createFromValues(0, 0, 1, $negative_direction);
+        $lambda =   Angle::createFromValues(0, 1, 0, $negative_direction);
+        $mi =       Angle::createFromValues(0, 1, 1, $negative_direction);
+        $ni =       Angle::createFromValues(1, 0, 0, $negative_direction);
+        $xi =       Angle::createFromValues(1, 0, 1, $negative_direction);
+        $omicron =  Angle::createFromValues(1, 1, 0, $negative_direction);
+        $rho =      Angle::createFromValues(1, 1, 1, $negative_direction);
 
         // Assert
-        $this->assertProperty("int", $direction, $alfa, $positive_direction);
-        $this->assertProperty("int", $direction, $beta, $positive_direction);
+        //  Null angles
+        $this->assertProperty("int", $direction, $alfa,     $positive_direction);
+        $this->assertProperty("int", $direction, $beta,     $positive_direction);
+        //  Non-null angles
+        $this->assertProperty("int", $direction, $gamma,    $positive_direction);
+        $this->assertProperty("int", $direction, $delta,    $positive_direction);
+        $this->assertProperty("int", $direction, $epsilon,  $positive_direction);
+        $this->assertProperty("int", $direction, $zeta,     $positive_direction);
+        $this->assertProperty("int", $direction, $eta,      $positive_direction);
+        $this->assertProperty("int", $direction, $theta,    $positive_direction);
+        $this->assertProperty("int", $direction, $iota,     $positive_direction);
+        $this->assertProperty("int", $direction, $kappa,    $negative_direction);
+        $this->assertProperty("int", $direction, $lambda,   $negative_direction);
+        $this->assertProperty("int", $direction, $mi,       $negative_direction);
+        $this->assertProperty("int", $direction, $ni,       $negative_direction);
+        $this->assertProperty("int", $direction, $xi,       $negative_direction);
+        $this->assertProperty("int", $direction, $omicron,  $negative_direction);
+        $this->assertProperty("int", $direction, $rho,      $negative_direction);
     }
 
     #[TestDox("throws AngleOverflowException with more than 360°.")]

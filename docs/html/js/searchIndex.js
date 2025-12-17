@@ -33,8 +33,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Asum\u0028\u0029",
             "name": "sum",
-            "summary": "Sum\u0020two\u0020angles.",
+            "summary": "Sums\u0020two\u0020relative\u0020angles.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_sum"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AabsSum\u0028\u0029",
+            "name": "absSum",
+            "summary": "Sums\u0020two\u0020absolute\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_absSum"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AgetDegrees\u0028\u0029",
             "name": "getDegrees",
@@ -231,20 +236,30 @@ Search.appendIndex(
             "summary": "Fetch\u0020data\u0020to\u0020build\u0020an\u0020Angle\u0020class.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-AngleBuilder.html#method_fetchData"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAngles",
-            "name": "FromAngles",
-            "summary": "Sums\u0020two\u0020angles.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAngles.html"
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAnglesToAbsoluteSum",
+            "name": "FromAnglesToAbsoluteSum",
+            "summary": "Represents\u0020a\u0020sum\u0020builder.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAnglesToAbsoluteSum.html"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAngles\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAnglesToAbsoluteSum\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "It\u0020construct\u0020the\u0020SumBuilder\u0020with\u0020two\u0020angles.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAngles.html#method___construct"
+            "summary": "Construct\u0020the\u0020SumBuilder\u0020with\u0020two\u0020absolute\u0020Angle\u0028s\u0029.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAnglesToAbsoluteSum.html#method___construct"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAngles\u003A\u003AfetchData\u0028\u0029",
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAnglesToAbsoluteSum\u003A\u003AfetchData\u0028\u0029",
             "name": "fetchData",
-            "summary": "Fetch\u0020data\u0020to\u0020build\u0020a\u0020Sum\u0020class.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAngles.html#method_fetchData"
+            "summary": "Fetch\u0020data\u0020to\u0020build\u0020an\u0020Angle\u0020which\u0020is\u0020the\u0020sum\nbetween\u0020two\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAnglesToAbsoluteSum.html#method_fetchData"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAnglesToRelativeSum",
+            "name": "FromAnglesToRelativeSum",
+            "summary": "Sum\u0020two\u0020angles\u0020resulting\u0020in\u0020a\u0020relative\u0020sum.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAnglesToRelativeSum.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAnglesToRelativeSum\u003A\u003AfetchData\u0028\u0029",
+            "name": "fetchData",
+            "summary": "Fetch\u0020data\u0020to\u0020build\u0020an\u0020Angle\u0020which\u0020is\u0020the\u0020sum\nbetween\u0020two\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAnglesToRelativeSum.html#method_fetchData"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromDecimal",
             "name": "FromDecimal",
@@ -310,6 +325,11 @@ Search.appendIndex(
             "name": "SumBuilder",
             "summary": "Represents\u0020a\u0020sum\u0020builder.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-SumBuilder.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\SumBuilder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020the\u0020SumBuilder\u0020with\u0020two\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-SumBuilder.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\AngleOverflowException",
             "name": "AngleOverflowException",
@@ -466,16 +486,6 @@ Search.appendIndex(
             "summary": "Fetch\u0020the\u0020data\u0020that\u0020will\u0020bee\u0020used\u0020for\u0020an\u0020angle.",
             "url": "classes/MarcoConsiglio-Goniometry-Interfaces-AngleBuilder.html#method_fetchData"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Operations\\Sum",
-            "name": "Sum",
-            "summary": "Sums\u0020two\u0020angles.",
-            "url": "classes/MarcoConsiglio-Goniometry-Operations-Sum.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Operations\\Sum\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructs\u0020the\u0020Sum.",
-            "url": "classes/MarcoConsiglio-Goniometry-Operations-Sum.html#method___construct"
-        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -505,10 +515,5 @@ Search.appendIndex(
             "name": "Interfaces",
             "summary": "",
             "url": "namespaces/marcoconsiglio-goniometry-interfaces.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Operations",
-            "name": "Operations",
-            "summary": "",
-            "url": "namespaces/marcoconsiglio-goniometry-operations.html"
         }            ]
 );

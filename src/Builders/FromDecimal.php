@@ -47,8 +47,8 @@ class FromDecimal extends AngleBuilder
     public function __construct(float $decimal)
     {
         $this->decimal = $decimal;
-        $this->calcDecimalPrecision($decimal);
         $this->checkOverflow();
+        $this->calcDecimalPrecision();
     }
 
     /**
@@ -158,14 +158,13 @@ class FromDecimal extends AngleBuilder
 
     /**
      * It calcs the number of decimal places
-     * in $number.
+     * in `FromDecimal::$decimal`.
      *
-     * @param float $number
      * @return void
      */
-    protected function calcDecimalPrecision(float $number)
+    protected function calcDecimalPrecision()
     {
-        $decimal_places = Angle::countDecimalPlaces($number);
+        $decimal_places = Angle::countDecimalPlaces($this->decimal);
         $this->decimal_precision = $decimal_places > PHP_FLOAT_DIG ? PHP_FLOAT_DIG : $decimal_places;
     }
 

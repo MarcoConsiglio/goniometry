@@ -1,11 +1,11 @@
 # goniometry
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v1.5.1-white)
+![Static Badge](https://img.shields.io/badge/version-v2.0.0-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
-![Static Badge](https://img.shields.io/badge/Branch%20coverage-98%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
-![Static Badge](https://img.shields.io/badge/Path%20coverage-92%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
+![Static Badge](https://img.shields.io/badge/Branch%20coverage-99%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
+![Static Badge](https://img.shields.io/badge/Path%20coverage-96%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 
 
 
@@ -271,15 +271,25 @@ $beta->not($alfa);                  // true   180 ≇ 90
 ```
 
 ## Algebraic sum between two angles
-The `Sum` class extends the `Angle` class, so you immediately obtain the algebraic sum
-between two angles, passing in its constructor a `FromAngles` builder, which is a `SumBuilder`.
+You can sum two angles
+
+### Relative sum
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(270);
-$gamma = new Sum(new FromAngles($alfa, $beta)); // 180° + 270°
+$gamma = Angle::sum($alfa, $beta); // 180° + 270°
 (string) $gamma; // 90° 0' 0"
 ```
-Note that if the sum is more than $\pm360^\circ$, the resulting angle will be corrected to remain between these limits.
+Note that if the sum is less than $-360^\circ$ or more than $+360^\circ$, the resulting angle will be corrected to remain between these limits.
+
+### Absolute sum
+```php
+$alfa = Angle::createFromDecimal(180);
+$beta = Angle::createFromDecimal(-270);
+$gamma = Angle::absSum($alfa, $beta); // 180° + abs(-270°)
+(string) $gamma; // 90° 0' 0"
+```
+Note that if the sum is less than $0^\circ$ or more than $+360^\circ$, the resulting angle will be corrected to remain between these limits.
 
 # API documentation
 You can read the code documentation in `./docs/html/index.html`.

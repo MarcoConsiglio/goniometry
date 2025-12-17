@@ -81,11 +81,11 @@ class FromString extends AngleBuilder
      * @param string $angle The string format angle value.
      * @return void
      * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException Bad formatted angle is found.
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
+     * @throws RegExFailureException Error while parsing with a regular expression.
      */
-    protected function parseDegreesString(string $angle)
+    protected function parseDegreesString()
     {
-        $this->degrees_parsing_status = preg_match(Angle::DEGREES_REGEX, $angle, $this->degrees_match);
+        $this->degrees_parsing_status = preg_match(Angle::DEGREES_REGEX, $this->measure, $this->degrees_match);
     }
 
     /**
@@ -94,11 +94,11 @@ class FromString extends AngleBuilder
      * @param string $angle The string format angle value.
      * @return void
      * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException Bad formatted angle is found.
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
+     * @throws RegExFailureException Error while parsing with a regular expression.
      */
-    protected function parseMinutesString(string $angle)
+    protected function parseMinutesString()
     {
-        $this->minutes_parsing_status = preg_match(Angle::MINUTES_REGEX, $angle, $this->minutes_match);
+        $this->minutes_parsing_status = preg_match(Angle::MINUTES_REGEX, $this->measure, $this->minutes_match);
     }
 
     /**
@@ -107,11 +107,11 @@ class FromString extends AngleBuilder
      * @param string $angle The string format angle value.
      * @return void
      * @throws \MarcoConsiglio\Goniometry\Exceptions\NoMatchException Bad formatted angle is found.
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\RegExFailureException Error while parsing with a regular expression.
+     * @throws RegExFailureException Error while parsing with a regular expression.
      */
-    protected function parseSecondsString(string $angle)
+    protected function parseSecondsString()
     {
-        $this->seconds_parsing_status = preg_match(Angle::SECONDS_REGEX, $angle, $this->seconds_match);
+        $this->seconds_parsing_status = preg_match(Angle::SECONDS_REGEX, $this->measure, $this->seconds_match);
     }
 
     /**
@@ -128,7 +128,7 @@ class FromString extends AngleBuilder
         ) {
             throw new NoMatchException("Can't recognize the string $this->measure.");
         }
-    }
+    }//@codeCoverageIgnore
 
     /**
      * Calc degrees.
