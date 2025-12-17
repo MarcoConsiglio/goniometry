@@ -7,19 +7,15 @@ use RoundingMode;
 class FromAnglesToAbsoluteSum extends SumBuilder
 {
     /**
-     * Construct the SumBuilder with two absolute Angle(s).
+     * Construct the SumBuilder with two angles.
      * 
-     * If $first_angle or $second_angle are clockwise (negative) Angle 
-     * instances they will be converted to counterclockwise (positive)
-     * Angle instances.
+     * The sum will always be positive.
      *
      * @param Angle $first_angle
      * @param Angle $second_angle
      */
     public function __construct(Angle $first_angle, Angle $second_angle)
     {
-        if ($first_angle->isClockwise()) $first_angle = $first_angle->toggleDirection();
-        if ($second_angle->isClockwise()) $second_angle = $second_angle->toggleDirection();
         $this->first_angle = $first_angle;
         $this->second_angle = $second_angle;
     }
@@ -94,6 +90,8 @@ class FromAnglesToAbsoluteSum extends SumBuilder
 
     /**
      * It calcs the result sign.
+     * 
+     * The sign/direction will be always positive/counterclockwise.
      *
      * @return void
      */

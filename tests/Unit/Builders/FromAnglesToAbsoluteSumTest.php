@@ -116,46 +116,46 @@ class FromAnglesToAbsoluteSumTest extends BuilderTestCase
     public function test_negative_angles_is_considered_positive_angles()
     {
         /**
-         * 90° + abs(-90°) ≅ 180°
+         * 1° - 181° = 181°
          */
         // Arrange
-        $alfa = Angle::createFromValues(90, direction: Angle::COUNTER_CLOCKWISE);
-        $beta = Angle::createFromValues(90, direction: Angle::CLOCKWISE);
+        $alfa = Angle::createFromValues(1);
+        $beta = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
         $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
 
         // Act
         $result = $builder->fetchData();
 
         // Assert
-        $this->assertEquals(180, $result[0]);
+        $this->assertEquals(181, $result[0]);
 
         /**
-         * abs(-90°) + 90° ≅ 180°
+         * -30° + (-60°) = 270°
          */
         // Arrange
-        $alfa = Angle::createFromValues(90, direction: Angle::CLOCKWISE);
-        $beta = Angle::createFromValues(90, direction: Angle::COUNTER_CLOCKWISE);
+        $alfa = Angle::createFromValues(30, direction: Angle::CLOCKWISE);
+        $beta = Angle::createFromValues(60, direction: Angle::CLOCKWISE);
         $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
 
         // Act
         $result = $builder->fetchData();
 
         // Assert
-        $this->assertEquals(180, $result[0]);
+        $this->assertEquals(270, $result[0]);
 
         /**
-         * abs(-90°) + abs(-90°) ≅ 180°
+         * 30 + (-90°) = 300°
          */
         // Arrange
-        $alfa = Angle::createFromValues(90, direction: Angle::CLOCKWISE);
-        $beta = Angle::createFromValues(90, direction: Angle::CLOCKWISE);
+        $alfa = Angle::createFromValues(30);
+        $beta = Angle::createFromValues(90);
         $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
 
         // Act
         $result = $builder->fetchData();
 
         // Assert
-        $this->assertEquals(180, $result[0]);
+        $this->assertEquals(120, $result[0]);       
     }
 
     /**

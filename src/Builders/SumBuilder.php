@@ -139,7 +139,7 @@ abstract class SumBuilder extends AngleBuilder
     protected function checkOverflow()
     {
         $this->decimal_sum = round(
-            fmod($this->decimal_sum, Angle::MAX_DEGREES),
+            fmod($this->decimal_sum + Angle::MAX_DEGREES, Angle::MAX_DEGREES),
             $this->decimal_precision,
             RoundingMode::HalfTowardsZero
         );
