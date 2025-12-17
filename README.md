@@ -286,8 +286,8 @@ Note that if the sum is less than $-360^\circ$ or more than $+360^\circ$, the re
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::absSum($alfa, $beta); // 180° + abs(-270°)
-(string) $gamma; // 90° 0' 0"
+$gamma = Angle::absSum($alfa, $beta); // 180° + (-270°)
+(string) $gamma; // 270° 0' 0"
 ```
 Note that if the sum is less than $0^\circ$ or more than $+360^\circ$, the resulting angle will be corrected to remain between these limits.
 
