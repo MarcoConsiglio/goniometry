@@ -18,8 +18,6 @@ use RoundingMode;
  */
 abstract class BuilderTestCase extends TestCase
 {
-    use WithFailureMessage;
-
     /**
      * Returns value or values for a Angle that exceed +/-360°.
      * The type returned is based on the Builder passed.
@@ -91,10 +89,10 @@ abstract class BuilderTestCase extends TestCase
      * @param mixed   $value   The value used to create the angle.
      * @param string  $builder The builder that extends AngleBuilder.
      * @param boolean $negative Specifies if to test a negative angle.
-     * @param int     $precision The precision if the angle is created from a decimal or radian value.
+     * @param int|null $precision The precision if the angle is created from a decimal or radian value.
      * @return void
      */
-    protected function testAngleCreation(string $builder, bool $negative = false, int $precision = 1)
+    protected function testAngleCreation(string $builder, bool $negative = false, int|null $precision = null)
     {
         if(class_exists($builder) && is_subclass_of($builder, AngleBuilder::class)) {
             // Arrange
@@ -272,7 +270,7 @@ abstract class BuilderTestCase extends TestCase
 
     /**
      * Implemented in a concrete BuilderTestCase, returns the
-     * concrete AngleBuilder to test.
+     * concrete AngleBuilder class to test.
      * 
      * @return string
      */

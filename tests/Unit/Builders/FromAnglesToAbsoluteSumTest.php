@@ -2,30 +2,24 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Operations\Sum;
-use MarcoConsiglio\Goniometry\Builders\FromAngles;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromAnglesToAbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 
-#[TestDox("The FromAngles builder")]
-#[CoversClass(FromAngles::class)]
-#[CoversClass(Sum::class)]
+#[TestDox("The FromAnglesToAbsoluteSum builder")]
+#[CoversClass(FromAnglesToAbsoluteSum::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(FromDegrees::class)]
-#[UsesClass(FromDecimal::class)]
-class FromAnglesTest extends BuilderTestCase
+class FromAnglesToAbsoluteSumTest extends BuilderTestCase
 {
-    #[TestDox("can sums two angles.")]
-    public function test_can_sum_two_angle()
+    public function test_can_sum_two_angles()
     {
         // Arrange
         $mocked_methods = [
             "bothAnglesAreFullPositiveAngles",
-            "bothAnglesAreFullNegativeAngles",
             "bothAnglesAreNullAngles",
             "calcSign",
             "checkOverflow",
@@ -36,7 +30,7 @@ class FromAnglesTest extends BuilderTestCase
         ];
         $alfa = $this->getMockedAngle();
         $beta = $this->getMockedAngle();
-        /** @var FromAngles&MockObject $builder */
+        /** @var FromAnglesToAbsoluteSum&MockObject $builder */
         $builder = $this->getMockedAngleBuilder($mocked_methods, true, [$alfa, $beta]);
         
         // Assert
@@ -48,7 +42,7 @@ class FromAnglesTest extends BuilderTestCase
         $builder->expects($this->any())->method("getMaxSuggestedDecimalPrecisionBetween");
         
         // Act
-        $builder->fetchData();
+        $builder->fetchData();  
     }
 
     #[TestDox("can take a shortcut if the two angles are full angles.")]
@@ -60,7 +54,7 @@ class FromAnglesTest extends BuilderTestCase
         // Arrange
         $alfa = Angle::createFromValues(360);
         $beta = Angle::createFromValues(360);
-        $builder = new FromAngles($alfa, $beta);
+        $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
 
         // Act
         $result = $builder->fetchData();
@@ -70,22 +64,6 @@ class FromAnglesTest extends BuilderTestCase
         $this->assertEquals($result[1], 0);
         $this->assertEquals($result[2], 0.0);
         $this->assertEquals($result[3], Angle::COUNTER_CLOCKWISE);
-
-        /**
-         * -360° + (-360°) ≅ -360°
-         */
-        $alfa = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
-        $beta = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
-        $builder = new FromAngles($alfa, $beta);
-
-        // Act
-        $result = $builder->fetchData();
-
-        // Assert
-        $this->assertEquals($result[0], 360);
-        $this->assertEquals($result[1], 0);
-        $this->assertEquals($result[2], 0.0);
-        $this->assertEquals($result[3], Angle::CLOCKWISE);
     }
 
     #[TestDox("can take a shortcut if the two angles are null angles.")]
@@ -97,7 +75,7 @@ class FromAnglesTest extends BuilderTestCase
         // Arrange
         $alfa = Angle::createFromValues(0);
         $beta = Angle::createFromValues(0);
-        $builder = new FromAngles($alfa, $beta);
+        $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
 
         // Act
         $result = $builder->fetchData();
@@ -114,7 +92,7 @@ class FromAnglesTest extends BuilderTestCase
         // Arrange
         $alfa = Angle::createFromValues(0);
         $beta = Angle::createFromValues(90);
-        $builder = new FromAngles($alfa, $beta);
+        $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
         
         // Act
         $result = $builder->fetchData();
@@ -125,39 +103,68 @@ class FromAnglesTest extends BuilderTestCase
          */
         $alfa = Angle::createFromValues(0);
         $beta = Angle::createFromValues(90);
-        $builder = new FromAngles($beta, $alfa);
+        $builder = new FromAnglesToAbsoluteSum($beta, $alfa);
         
         // Act
         $result = $builder->fetchData();
+
+        // Assert
         $this->assertNotEquals(0, $result[0]);        
     }
 
-    #[TestDox("corrects the excess if the sum is greater than +/-360°.")]
-    public function test_correct_positive_excess()
+    #[TestDox("consider negative angles as positive angles.")]
+    public function test_negative_angles_is_considered_positive_angles()
     {
+        /**
+         * 90° + abs(-90°) ≅ 180°
+         */
         // Arrange
-        $alfa = Angle::createFromDecimal(360.0);
-        $beta = Angle::createFromDecimal(360.0);
-        $gamma = Angle::createFromDecimal(-360.0);
-        $delta = Angle::createFromDecimal(-360.0);
+        $alfa = Angle::createFromValues(90, direction: Angle::COUNTER_CLOCKWISE);
+        $beta = Angle::createFromValues(90, direction: Angle::CLOCKWISE);
+        $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
 
         // Act
-        $sum_1 = Angle::sum($alfa, $beta);
-        $sum_2 = Angle::sum($gamma, $delta);
+        $result = $builder->fetchData();
 
         // Assert
-        $decimal_sum_1 = $sum_1->toDecimal();
-        $decimal_sum_2 = $sum_2->toDecimal();
-        $this->assertEquals(360.0, $decimal_sum_1);
-        $this->assertEquals(-360.0, $decimal_sum_2);
+        $this->assertEquals(180, $result[0]);
+
+        /**
+         * abs(-90°) + 90° ≅ 180°
+         */
+        // Arrange
+        $alfa = Angle::createFromValues(90, direction: Angle::CLOCKWISE);
+        $beta = Angle::createFromValues(90, direction: Angle::COUNTER_CLOCKWISE);
+        $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
+
+        // Act
+        $result = $builder->fetchData();
+
+        // Assert
+        $this->assertEquals(180, $result[0]);
+
+        /**
+         * abs(-90°) + abs(-90°) ≅ 180°
+         */
+        // Arrange
+        $alfa = Angle::createFromValues(90, direction: Angle::CLOCKWISE);
+        $beta = Angle::createFromValues(90, direction: Angle::CLOCKWISE);
+        $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
+
+        // Act
+        $result = $builder->fetchData();
+
+        // Assert
+        $this->assertEquals(180, $result[0]);
     }
 
     /**
-     * Returns the FromAngles builder class.
+     * Returns the FromAnglesToAbsoluteSum to test.
+     * 
      * @return string
      */
     protected function getBuilderClass(): string
     {
-        return FromAngles::class;
+        return FromAnglesToAbsoluteSum::class;
     }
 }

@@ -1,24 +1,22 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests;
 
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;
-use Faker\Factory;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AngleBuilder;
-use MarcoConsiglio\Goniometry\Builders\FromAngles;
-use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
-use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
-use ReflectionClass;
+use Faker\Factory;
 use Faker\Generator;
+use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class TestCase extends PHPUnitTestCase
 {
+    use WithFailureMessage;
+    
     /**
      * The faker generator.
      *
@@ -58,13 +56,13 @@ class TestCase extends PHPUnitTestCase
      * Returns a random angle measure (or an array with degrees, minutes and seconds values) 
      * usufull to create an angle from a specified $builder.
      *
-     * @param string  $builder The builder class extending the MarcoConsiglio\Goniometry\Builders\AngleBuilder
+     * @param string  $builder The builder class extending the `AngleBuilder`.
      *  you want to use to build the angle.
      * @param boolean $negative If you want a positive or negative angle.
-     * @param int     $precision The precision if the angle is created from a decimal or radian value.
+     * @param int|null $precision The precision if the angle is created from a decimal or radian value.
      * @return mixed
      */
-    protected function getRandomAngleValue(string $builder, $negative = false, int $precision = 1): mixed
+    protected function getRandomAngleValue(string $builder, $negative = false, int|null $precision = null): mixed
     {
         if (class_exists($builder) && is_subclass_of($builder, AngleBuilder::class)) {
             switch ($builder) {
@@ -86,7 +84,7 @@ class TestCase extends PHPUnitTestCase
     }
 
     /**
-     * Gets random angle degrees values.
+     * Gets random sexage values.
      *
      * @param boolean $negative
      * @return array
@@ -102,13 +100,13 @@ class TestCase extends PHPUnitTestCase
     }
 
     /**
-     * Gets a random decimal to create an angle.
+     * Return a random sexadecimal value.
      *
      * @param boolean $negative If negative or positive number.
-     * @param integer $precision The precision digits of the result.
+     * @param int|null $precision The precision digits of the result.
      * @return float
      */
-    protected function getRandomAngleDecimal($negative = false, int $precision = 0): float
+    protected function getRandomAngleDecimal($negative = false, int|null $precision = null): float
     {
         return $negative ? 
             $this->faker->randomFloat($precision, 0, Angle::MAX_DEGREES) : 
@@ -116,19 +114,22 @@ class TestCase extends PHPUnitTestCase
     }
 
     /**
-     * Gets a random radian to create an angle.
+     * Returns a random radian value.
      *
      * @param boolean $negative
-     * @param integer $precision
+     * @param int|null $precision
      * @return void
      */
-    protected function getRandomAngleRadian($negative = false, int $precision = 0)
+    protected function getRandomAngleRadian($negative = false, int|null $precision = null)
     {
         return $negative ? 
-            $this->faker->randomFloat($precision, 0, Angle::MAX_RADIAN) : 
-            $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, 0);
+            $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, 0):
+            $this->faker->randomFloat($precision, 0, Angle::MAX_RADIAN); 
     }
 
+    /**
+     * Returns a random angle string.
+     */
     protected function getRandomAngleString($negative = false)
     {
         [$degrees, $minutes, $seconds] = $this->getRandomAngleDegrees($negative);
