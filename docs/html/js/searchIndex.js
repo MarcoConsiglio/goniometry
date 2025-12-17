@@ -33,8 +33,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Asum\u0028\u0029",
             "name": "sum",
-            "summary": "Sum\u0020two\u0020angles.",
+            "summary": "Sums\u0020two\u0020relative\u0020angles.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_sum"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AabsSum\u0028\u0029",
+            "name": "absSum",
+            "summary": "Sums\u0020two\u0020absolute\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_absSum"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AgetDegrees\u0028\u0029",
             "name": "getDegrees",
