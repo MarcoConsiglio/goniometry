@@ -1,24 +1,22 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests;
 
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;
-use Faker\Factory;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AngleBuilder;
-use MarcoConsiglio\Goniometry\Builders\FromAngles;
-use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
-use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
-use ReflectionClass;
+use Faker\Factory;
 use Faker\Generator;
+use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class TestCase extends PHPUnitTestCase
 {
+    use WithFailureMessage;
+    
     /**
      * The faker generator.
      *

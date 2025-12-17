@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 namespace MarcoConsiglio\Goniometry;
 
+use MarcoConsiglio\Goniometry\Builders\FromAnglesToAbsoluteSum;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
@@ -240,7 +241,9 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Sum two angles.
+     * Sums two relative angles.
+     * 
+     * The result can be positive or negative.
      *
      * @param AngleInterface $first_angle
      * @param AngleInterface $second_angle
@@ -249,6 +252,17 @@ class Angle implements AngleInterface
     public static function sum(AngleInterface $first_angle, AngleInterface $second_angle): Angle
     {
         return new Angle(new FromAnglesToRelativeSum($first_angle, $second_angle));
+    }
+
+    /**
+     * Sums two absolute angles.
+     * 
+     * The result can be only positive even if its inputs are negative angles,
+     * beacause they are treated as absolute angles.
+     */
+    public static function absSum(AngleInterface $first_angle, AngleInterface $second_angle): Angle
+    {
+        return new Angle(new FromAnglesToAbsoluteSum($first_angle, $second_angle));
     }
 
     /**

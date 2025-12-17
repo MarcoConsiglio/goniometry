@@ -38,4 +38,30 @@ trait WithFailureMessage
     {
         return "'$name()' method is not working properly.";
     }
+
+    /**
+     * Get an instance type failure message.
+     *
+     * @param [type] $expected_class
+     * @param [type] $actual_class
+     * @return string
+     */
+    protected static function instanceTypeFail($expected_class, $actual_class): string
+    {
+        return "Expected $expected_class class but found $actual_class class instead.";
+    }
+
+    /**
+     * Produces a failure message when calling $called_class::$method doesn't return
+     * the expected $return_type.
+     *
+     * @param string $called_class
+     * @param string $method
+     * @param string $return_type
+     * @return string
+     */
+    protected static function methodMustReturn(string $called_class, string $method, string $return_type): string
+    {
+        return "Calling $called_class::$method() must return a $return_type instance.";
+    }
 }

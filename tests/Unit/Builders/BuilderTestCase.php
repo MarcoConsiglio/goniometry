@@ -18,8 +18,6 @@ use RoundingMode;
  */
 abstract class BuilderTestCase extends TestCase
 {
-    use WithFailureMessage;
-
     /**
      * Returns value or values for a Angle that exceed +/-360°.
      * The type returned is based on the Builder passed.

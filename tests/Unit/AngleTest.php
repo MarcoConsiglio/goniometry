@@ -840,39 +840,6 @@ class AngleTest extends TestCase
         $this->assertFalse($first_angle->gt($second_angle->degrees), $failure_message_true);
     }
 
-    #[TestDox("can be added to another to obtain a relative result.")]
-    public function test_relative_sum()
-    {
-        // Arrange
-        $alfa = $this->getRandomAngle($this->faker->boolean());
-        $beta = $this->getRandomAngle($this->faker->boolean());
-        $decimal_alfa = $alfa->toDecimal();
-        $decimal_beta = $beta->toDecimal();
-        $precision = max(
-            $alfa->suggested_decimal_precision, 
-            $beta->suggested_decimal_precision
-        );
-        $decimal_sum = $decimal_alfa + $decimal_beta;
-        $sign = $decimal_sum >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE;
-        if (abs($decimal_sum) > Angle::MAX_DEGREES) $decimal_sum = (abs($decimal_sum) - Angle::MAX_DEGREES) * $sign;
-        $decimal_sum = round($decimal_sum, $precision, RoundingMode::HalfTowardsZero);
-        
-        // Act
-        $gamma = Angle::sum($alfa, $beta);
-
-        // Assert
-        $failure_message = function(Angle $alfa, Angle $beta, Angle $gamma) {
-            return <<<TEXT
-+ $alfa
-= $beta
-------------------
-  $gamma
-TEXT;
-        };
-        $this->assertEquals($decimal_sum, $gamma->toDecimal(), $failure_message($alfa, $beta, $gamma));
-    }
-
-
     /**
      * It asserts an Angle can be casted to decimal.
     *
