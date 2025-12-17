@@ -5,6 +5,9 @@
 - `FromAnglesToRelativeSum::class` builder to perform relative sum between two angles.
 - Constructor to class `SumBuilder::class`.
 - `Angle::absSum()` method to perform absolute sum between to angles.
+### Changed
+- API documentation.
+- README documentation.
 ### Removed
 - `FromAngles::class`. Use instead one of these two classes:
   - `FromAnglesToAbsoluteSum::class` or `Angle::absSum()` method,
