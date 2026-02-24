@@ -7,6 +7,113 @@
     "content-hash": "90fc4da123ea8fe921e39c26bbfdf82d",
     "packages": [
         {
+            "name": "marcoconsiglio/bcmath-extended",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MarcoConsiglio/bcmath-extended.git",
+                "reference": "c518231cbc86f28bd56c637b48620aa177233922"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/c518231cbc86f28bd56c637b48620aa177233922",
+                "reference": "c518231cbc86f28bd56c637b48620aa177233922",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.24",
+                "marcoconsiglio/faker-php-number-helpers": "^1.1",
+                "phpunit/phpunit": "^13.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MarcoConsiglio\\BCMathExtended\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Consiglio",
+                    "email": "mrccnsgl@gmail.com"
+                }
+            ],
+            "description": "The BCMathExtended library extends the PHP BCMath extension adding more features like abs, min, max, random, factorial, type comparison between integer and decimal or positive and negative, modulo and power modulo with negative modulus (see more on BCMath extendsion http://php.net/manual/en/book.bc.php).",
+            "keywords": [
+                "Arbitrary-precision",
+                "abs",
+                "bcmath",
+                "bignumber",
+                "ceil",
+                "floor",
+                "math",
+                "precision",
+                "rand",
+                "round"
+            ],
+            "support": {
+                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.0.0"
+            },
+            "time": "2026-02-23T16:06:09+00:00"
+        },
+        {
+            "name": "marcoconsiglio/modular-arithmetic",
+            "version": "v3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MarcoConsiglio/php-modular-arithmetic.git",
+                "reference": "c53541d2599fde5b44587b50fd355ee38ed395b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/c53541d2599fde5b44587b50fd355ee38ed395b4",
+                "reference": "c53541d2599fde5b44587b50fd355ee38ed395b4",
+                "shasum": ""
+            },
+            "require": {
+                "marcoconsiglio/bcmath-extended": "^2.0.0",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.24",
+                "marcoconsiglio/faker-php-number-helpers": "^1.0",
+                "phpunit/phpunit": "^13.0",
+                "rector/rector": "^2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Marcoconsiglio\\ModularArithmetic\\": "src/",
+                    "Marcoconsiglio\\ModularArithmetic\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Consiglio",
+                    "email": "mrccnsgl@gmail.com"
+                }
+            ],
+            "description": "A PHP libarary to support modular arithmetic, aka clock arithmetic.",
+            "support": {
+                "issues": "https://github.com/MarcoConsiglio/php-modular-arithmetic/issues",
+                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.1.0"
+            },
+            "time": "2026-02-24T12:09:10+00:00"
+        }
+    ],
+    "packages-dev": [
+        {
             "name": "fakerphp/faker",
             "version": "v1.24.1",
             "source": {
@@ -69,232 +176,6 @@
             },
             "time": "2024-11-21T13:46:39+00:00"
         },
-        {
-            "name": "marcoconsiglio/bcmath-extended",
-            "version": "v1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/MarcoConsiglio/bcmath-extended.git",
-                "reference": "3f4f0df1f1a196df11094e8a454edd365e65d487"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/3f4f0df1f1a196df11094e8a454edd365e65d487",
-                "reference": "3f4f0df1f1a196df11094e8a454edd365e65d487",
-                "shasum": ""
-            },
-            "require": {
-                "ext-bcmath": "*",
-                "fakerphp/faker": "^1.24",
-                "php": "^8.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^13.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MarcoConsiglio\\BCMathExtended\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Consiglio",
-                    "email": "mrccnsgl@gmail.com"
-                }
-            ],
-            "description": "The BCMathExtended library extends the PHP BCMath extension adding more features like abs, min, max, random, factorial, type comparison between integer and decimal or positive and negative, modulo and power modulo with negative modulus (see more on BCMath extendsion http://php.net/manual/en/book.bc.php).",
-            "keywords": [
-                "Arbitrary-precision",
-                "abs",
-                "bcmath",
-                "bignumber",
-                "ceil",
-                "floor",
-                "math",
-                "precision",
-                "rand",
-                "round"
-            ],
-            "support": {
-                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v1.2.0"
-            },
-            "time": "2026-02-21T16:20:49+00:00"
-        },
-        {
-            "name": "marcoconsiglio/modular-arithmetic",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/MarcoConsiglio/php-modular-arithmetic.git",
-                "reference": "f203ed238e8300fb6b3ca8f39d7ce29c2fca04e4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/f203ed238e8300fb6b3ca8f39d7ce29c2fca04e4",
-                "reference": "f203ed238e8300fb6b3ca8f39d7ce29c2fca04e4",
-                "shasum": ""
-            },
-            "require": {
-                "marcoconsiglio/bcmath-extended": "^1.0",
-                "php": "^8.4"
-            },
-            "require-dev": {
-                "fakerphp/faker": "^1.24",
-                "marcoconsiglio/faker-php-number-helpers": "^1.0",
-                "phpunit/phpunit": "^13.0",
-                "rector/rector": "^2.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Marcoconsiglio\\ModularArithmetic\\": "src/",
-                    "Marcoconsiglio\\ModularArithmetic\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Consiglio",
-                    "email": "mrccnsgl@gmail.com"
-                }
-            ],
-            "description": "A PHP libarary to support modular arithmetic, aka clock arithmetic.",
-            "support": {
-                "issues": "https://github.com/MarcoConsiglio/php-modular-arithmetic/issues",
-                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.0.0"
-            },
-            "time": "2026-02-22T12:37:40+00:00"
-        },
-        {
-            "name": "psr/container",
-            "version": "2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/container.git",
-                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
-                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Container\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
-                }
-            ],
-            "description": "Common Container Interface (PHP FIG PSR-11)",
-            "homepage": "https://github.com/php-fig/container",
-            "keywords": [
-                "PSR-11",
-                "container",
-                "container-interface",
-                "container-interop",
-                "psr"
-            ],
-            "support": {
-                "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/2.0.2"
-            },
-            "time": "2021-11-05T16:47:00+00:00"
-        },
-        {
-            "name": "symfony/deprecation-contracts",
-            "version": "v3.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/63afe740e99a13ba87ec199bb07bbdee937a5b62",
-                "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.1"
-            },
-            "type": "library",
-            "extra": {
-                "thanks": {
-                    "url": "https://github.com/symfony/contracts",
-                    "name": "symfony/contracts"
-                },
-                "branch-alias": {
-                    "dev-main": "3.6-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "function.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "A generic function and convention to trigger deprecation notices",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.6.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2024-09-25T14:21:43+00:00"
-        }
-    ],
-    "packages-dev": [
         {
             "name": "myclabs/deep-copy",
             "version": "1.13.4",
@@ -1018,6 +899,59 @@
                 }
             ],
             "time": "2026-02-18T12:40:03+00:00"
+        },
+        {
+            "name": "psr/container",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/container.git",
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Container\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common Container Interface (PHP FIG PSR-11)",
+            "homepage": "https://github.com/php-fig/container",
+            "keywords": [
+                "PSR-11",
+                "container",
+                "container-interface",
+                "container-interop",
+                "psr"
+            ],
+            "support": {
+                "issues": "https://github.com/php-fig/container/issues",
+                "source": "https://github.com/php-fig/container/tree/2.0.2"
+            },
+            "time": "2021-11-05T16:47:00+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -2039,6 +1973,73 @@
                 }
             ],
             "time": "2024-10-20T05:08:20+00:00"
+        },
+        {
+            "name": "symfony/deprecation-contracts",
+            "version": "v3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/deprecation-contracts.git",
+                "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/63afe740e99a13ba87ec199bb07bbdee937a5b62",
+                "reference": "63afe740e99a13ba87ec199bb07bbdee937a5b62",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
+                "branch-alias": {
+                    "dev-main": "3.6-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "function.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "A generic function and convention to trigger deprecation notices",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-09-25T14:21:43+00:00"
         },
         {
             "name": "theseer/tokenizer",
