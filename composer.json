@@ -27,7 +27,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^13",
-        "fakerphp/faker": "^1.24"
+        "fakerphp/faker": "^1.24",
+        "marcoconsiglio/faker-php-number-helpers": "^2.0"
     },
     "replace": {
         "marcoconsiglio/trigonometry": "*"

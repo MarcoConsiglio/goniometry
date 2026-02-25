@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90fc4da123ea8fe921e39c26bbfdf82d",
+    "content-hash": "ea0462ded5576b19d8b79525ebcc13f8",
     "packages": [
         {
             "name": "marcoconsiglio/bcmath-extended",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcoConsiglio/bcmath-extended.git",
-                "reference": "c518231cbc86f28bd56c637b48620aa177233922"
+                "reference": "f1308844dd1ebebb7bc8f258fb1bde9f4193f0d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/c518231cbc86f28bd56c637b48620aa177233922",
-                "reference": "c518231cbc86f28bd56c637b48620aa177233922",
+                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/f1308844dd1ebebb7bc8f258fb1bde9f4193f0d0",
+                "reference": "f1308844dd1ebebb7bc8f258fb1bde9f4193f0d0",
                 "shasum": ""
             },
             "require": {
@@ -59,22 +59,23 @@
                 "round"
             ],
             "support": {
-                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.0.0"
+                "issues": "https://github.com/MarcoConsiglio/bcmath-extended/issues",
+                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.0.1"
             },
-            "time": "2026-02-23T16:06:09+00:00"
+            "time": "2026-02-24T16:23:21+00:00"
         },
         {
             "name": "marcoconsiglio/modular-arithmetic",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcoConsiglio/php-modular-arithmetic.git",
-                "reference": "c53541d2599fde5b44587b50fd355ee38ed395b4"
+                "reference": "ee60fbee80436f1d02379a339acd611b50da182b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/c53541d2599fde5b44587b50fd355ee38ed395b4",
-                "reference": "c53541d2599fde5b44587b50fd355ee38ed395b4",
+                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/ee60fbee80436f1d02379a339acd611b50da182b",
+                "reference": "ee60fbee80436f1d02379a339acd611b50da182b",
                 "shasum": ""
             },
             "require": {
@@ -107,9 +108,9 @@
             "description": "A PHP libarary to support modular arithmetic, aka clock arithmetic.",
             "support": {
                 "issues": "https://github.com/MarcoConsiglio/php-modular-arithmetic/issues",
-                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.1.0"
+                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.1.1"
             },
-            "time": "2026-02-24T12:09:10+00:00"
+            "time": "2026-02-24T16:41:37+00:00"
         }
     ],
     "packages-dev": [
@@ -175,6 +176,50 @@
                 "source": "https://github.com/FakerPHP/Faker/tree/v1.24.1"
             },
             "time": "2024-11-21T13:46:39+00:00"
+        },
+        {
+            "name": "marcoconsiglio/faker-php-number-helpers",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MarcoConsiglio/faker-php-number-helpers.git",
+                "reference": "2fb0f3c9724e863d93bdad8c954ef1620bfc6614"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MarcoConsiglio/faker-php-number-helpers/zipball/2fb0f3c9724e863d93bdad8c954ef1620bfc6614",
+                "reference": "2fb0f3c9724e863d93bdad8c954ef1620bfc6614",
+                "shasum": ""
+            },
+            "require": {
+                "fakerphp/faker": "^1.24"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^13.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MarcoConsiglio\\FakerPhpNumberHelpers\\": "src/",
+                    "MarcoConsiglio\\FakerPhpNumberHelpers\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Consiglio",
+                    "email": "mrccnsgl@gmail.com"
+                }
+            ],
+            "description": "Adds a helper trait that makes it easier to generate random numbers using FakerPHP.",
+            "support": {
+                "issues": "https://github.com/MarcoConsiglio/faker-php-number-helpers/issues",
+                "source": "https://github.com/MarcoConsiglio/faker-php-number-helpers/tree/v2.0.0"
+            },
+            "time": "2026-02-25T14:19:28+00:00"
         },
         {
             "name": "myclabs/deep-copy",
