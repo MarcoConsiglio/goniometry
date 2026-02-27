@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "marcoconsiglio/bcmath-extended",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcoConsiglio/bcmath-extended.git",
-                "reference": "f1308844dd1ebebb7bc8f258fb1bde9f4193f0d0"
+                "reference": "bb27492400b1d0b7e4e77a181738e99d48eaceb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/f1308844dd1ebebb7bc8f258fb1bde9f4193f0d0",
-                "reference": "f1308844dd1ebebb7bc8f258fb1bde9f4193f0d0",
+                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/bb27492400b1d0b7e4e77a181738e99d48eaceb3",
+                "reference": "bb27492400b1d0b7e4e77a181738e99d48eaceb3",
                 "shasum": ""
             },
             "require": {
@@ -60,22 +60,22 @@
             ],
             "support": {
                 "issues": "https://github.com/MarcoConsiglio/bcmath-extended/issues",
-                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.0.1"
+                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.1.0"
             },
-            "time": "2026-02-24T16:23:21+00:00"
+            "time": "2026-02-27T13:21:41+00:00"
         },
         {
             "name": "marcoconsiglio/modular-arithmetic",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcoConsiglio/php-modular-arithmetic.git",
-                "reference": "ee60fbee80436f1d02379a339acd611b50da182b"
+                "reference": "e6bd02b9823362772d2868ed4c55245845c4643b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/ee60fbee80436f1d02379a339acd611b50da182b",
-                "reference": "ee60fbee80436f1d02379a339acd611b50da182b",
+                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/e6bd02b9823362772d2868ed4c55245845c4643b",
+                "reference": "e6bd02b9823362772d2868ed4c55245845c4643b",
                 "shasum": ""
             },
             "require": {
@@ -108,9 +108,9 @@
             "description": "A PHP libarary to support modular arithmetic, aka clock arithmetic.",
             "support": {
                 "issues": "https://github.com/MarcoConsiglio/php-modular-arithmetic/issues",
-                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.1.1"
+                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.1.2"
             },
-            "time": "2026-02-24T16:41:37+00:00"
+            "time": "2026-02-27T13:39:24+00:00"
         }
     ],
     "packages-dev": [
