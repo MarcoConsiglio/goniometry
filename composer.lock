@@ -66,16 +66,16 @@
         },
         {
             "name": "marcoconsiglio/modular-arithmetic",
-            "version": "v3.2.0",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcoConsiglio/php-modular-arithmetic.git",
-                "reference": "a3a815ae25c03c9da55d1144fbb01893ac67933a"
+                "reference": "7b14282350a9a3f12a3163c8685a343b459b6ce0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/a3a815ae25c03c9da55d1144fbb01893ac67933a",
-                "reference": "a3a815ae25c03c9da55d1144fbb01893ac67933a",
+                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/7b14282350a9a3f12a3163c8685a343b459b6ce0",
+                "reference": "7b14282350a9a3f12a3163c8685a343b459b6ce0",
                 "shasum": ""
             },
             "require": {
@@ -108,9 +108,9 @@
             "description": "A PHP libarary to support modular arithmetic, aka clock arithmetic.",
             "support": {
                 "issues": "https://github.com/MarcoConsiglio/php-modular-arithmetic/issues",
-                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.2.0"
+                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.3.0"
             },
-            "time": "2026-02-28T09:37:52+00:00"
+            "time": "2026-02-28T10:35:59+00:00"
         }
     ],
     "packages-dev": [
