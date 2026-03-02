@@ -1,8 +1,14 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders;
 
+use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
+use Marcoconsiglio\ModularArithmetic\ModularNumber;
 use RoundingMode;
 
 /**
@@ -12,67 +18,33 @@ class FromDecimal extends AngleBuilder
 {
     /**
      * The decimal value used to build an angle.
-     *
-     * @var float
      */
-    protected float $decimal;
+    protected ModularNumber $decimal;
 
     /**
-     * The number of decimal places of the decimal number
-     * used to construct the builder.
-     *
-     * @var integer
+     * The decimal value input.
      */
-    protected int $decimal_precision;
+    protected float $decimal_input;
 
     /**
-     * The seconds precision.
-     *
-     * @var integer
+     * The remainder that remains during the conversion steps from decimal to
+     * sexagesimal degrees.
      */
-    protected int $seconds_precision;
-    /**
-     * The remainder that remains during the conversion steps from decimal to sexagesimal degrees.
-     *
-     * @var float
-     */
-    private float $reminder;
+    private Number $reminder;
 
     /**
-     * Constructs an AngleBuilder with a decimal value.
-     *
-     * @param float $decimal
-     * @return void
+     * Constructs an AngleBuilder with a $decimal value.
      */
     public function __construct(float $decimal)
     {
-        $this->decimal = $decimal;
-        $this->checkOverflow();
-        $this->calcDecimalPrecision();
+        $this->decimal_input = $decimal;
+        $this->decimal = new ModularNumber(abs($decimal), Angle::MAX_DEGREES);
     }
 
     /**
      * Check for overflow above/below +/-360°.
-     *
-     * @return void
      */
-    protected function checkOverflow()
-    {
-        $this->validate($this->decimal);
-    }
-
-    /**
-     * Check if values are valid.
-     *
-     * @param float $data
-     * @return void
-     */
-    protected function validate(float $data)
-    {
-        if (abs($data) > Angle::MAX_DEGREES) {
-            throw new AngleOverflowException("The angle can't be greather than 360°.");
-        }
-    }
+    protected function checkOverflow() {/* No need to check overflow. Overflow is allowed. */}
 
     /**
      * Calc degrees.
@@ -81,8 +53,8 @@ class FromDecimal extends AngleBuilder
      */
     protected function calcDegrees()
     {
-        $this->degrees = intval(abs($this->decimal));
-        $this->reminder = abs($this->decimal) - $this->degrees;
+        $this->degrees = new Degrees($this->decimal->floor()->value);
+        $this->reminder = $this->decimal->value->sub($this->degrees->value);
     }
 
     /**
@@ -92,8 +64,13 @@ class FromDecimal extends AngleBuilder
      */
     protected function calcMinutes()
     {
-        $this->minutes = intval($this->reminder * Angle::MAX_MINUTES);
-        $this->reminder = abs($this->reminder - $this->minutes / Angle::MAX_MINUTES);
+        $this->minutes = new Minutes(
+            $this->reminder->mul(Minutes::MAX)->floor()
+        );
+        $this->reminder = 
+            $this->reminder
+            ->mul(Minutes::MAX)
+            ->sub($this->minutes->value);
     }
 
     /**
@@ -103,39 +80,28 @@ class FromDecimal extends AngleBuilder
      */
     protected function calcSeconds()
     {
-        $this->seconds_precision = $this->getSecondsPrecision();
-        $this->seconds = round(
-            $this->reminder * Angle::MAX_MINUTES * Angle::MAX_SECONDS,
-            $this->seconds_precision, RoundingMode::HalfTowardsZero
+        $this->seconds = new Seconds(
+            $this->reminder->mul(Seconds::MAX)
         );
     }
 
     /**
-     * Calc sign.
+     * Calc sign.s
      *
      * @return void
      */
     protected function calcSign()
     {
-        if ($this->decimal < 0) {
-            $this->direction = Angle::CLOCKWISE;
-        }
+        $this->direction = 
+            $this->decimal_input >= 0 ?
+            Direction::COUNTER_CLOCKWISE :
+            Direction::CLOCKWISE;
     }
 
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array{
-     *      int,
-     *      int,
-     *      float,
-     *      int,
-     *      int|null,
-     *      float|null,
-     *      int|null,
-     *      float|null,
-     *      int|null
-     *  }
+     * @return array{Degrees,Minutes,Seconds,Direction,float}
      */
     public function fetchData(): array
     {
@@ -148,38 +114,7 @@ class FromDecimal extends AngleBuilder
             $this->minutes,
             $this->seconds,
             $this->direction,
-            $this->decimal_precision, // Suggested decimal precision
-            $this->decimal, // Original decimal value,
-            $this->seconds_precision,
-            null, // No original radian value
-            null  // No original radian precision
+            $this->decimal_input
         ];
-    }
-
-    /**
-     * It calcs the number of decimal places
-     * in `FromDecimal::$decimal`.
-     *
-     * @return void
-     */
-    protected function calcDecimalPrecision()
-    {
-        $decimal_places = Angle::countDecimalPlaces($this->decimal);
-        $this->decimal_precision = $decimal_places > PHP_FLOAT_DIG ? PHP_FLOAT_DIG : $decimal_places;
-    }
-
-    /**
-     * It calcs the precision of seconds necessary to
-     * correctly represents the seconds value of the Angle,
-     * based on the original decimal precision passed to
-     * this builder.
-     *
-     * @return integer
-     */
-    protected function getSecondsPrecision(): int
-    {
-        $precision = $this->decimal_precision + 6;
-        if ($precision > PHP_FLOAT_DIG) return PHP_FLOAT_DIG;
-        else return $precision;
     }
 }

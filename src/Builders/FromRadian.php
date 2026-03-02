@@ -112,11 +112,8 @@ class FromRadian extends AngleBuilder
             $result[1], // Minutes
             $result[2], // Seconds
             $result[3], // Direction
-            $result[4], // Suggested decimal precision
             $result[5], // Original decimal value
-            $result[6], // Original seconds precision
             $this->radian, // Original radian value
-            Angle::countDecimalPlaces($this->radian) // Original radian precision
         ];
     }
 }

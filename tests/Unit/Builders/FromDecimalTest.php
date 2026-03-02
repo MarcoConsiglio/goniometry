@@ -3,7 +3,11 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -12,37 +16,34 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(FromDecimal::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleOverflowException::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(Seconds::class)]
 class FromDecimalTest extends BuilderTestCase
 {
-    #[TestDox("can create a positive angle from a decimal value.")]
-    public function test_can_create_positive_angle()
+    #[TestDox("can create an Angle from a sexadecimal value.")]
+    public function test_can_create_an_angle_from_decimal_degrees()
     {
-        $this->testAngleCreation(FromDecimal::class);
-        $this->testAngleCreation(
-            FromDecimal::class, 
-            negative: false, 
-            precision: 17
-        );
-        $angle = Angle::createFromDecimal(0);
-        $this->assertEquals(0, $angle->toDecimal());
-    }
+        // Arrange
+        $decimal_input = $this->randomFloat(max: Angle::MAX_DEGREES * 3);
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($decimal_input);
+        $sign = $direction == Direction::CLOCKWISE ? '-' : '';
 
-    #[TestDox("can create a negative angle from a decimal value.")]
-    public function test_can_create_negative_angle()
-    {
-        $this->testAngleCreation(FromDecimal::class, negative: true);
-        $this->testAngleCreation(
-            FromDecimal::class, 
-            negative: true,
-            precision: 17
-        );
-        $angle = Angle::createFromDecimal(0);
-        $this->assertEquals(0, $angle->toDecimal());
+        // Act
+        $angle = Angle::createFromDecimal($decimal_input);
+
+        // Assert
+        $failure_message = "{$decimal_input}° should be equal to {$sign}{$degrees}°{$minutes}'{$seconds}\"";
+        $this->assertTrue($angle->degrees->value->isEqual($degrees), $failure_message);
+        $this->assertTrue($angle->minutes->value->isEqual($minutes), $failure_message);
+        $this->assertTrue($angle->seconds->value->isEqual($seconds), $failure_message);
+        $this->assertEquals($direction, $angle->direction);
     }
 
     #[TestDox("throws AngleOverflowException with more than +/-360° input.")]
     public function test_exception_if_greater_than_360_degrees()
-    {    
+    {   
+        $this->markTestSkipped("This test is no longer necessary because it is allowed to create an instance of type Angle with values ​​that exceed the full angle."); 
         // Assert
         $this->expectException(AngleOverflowException::class);
         $this->expectExceptionMessage("The angle can't be greather than 360°.");
@@ -50,16 +51,6 @@ class FromDecimalTest extends BuilderTestCase
         // Arrange & Act
         new FromDecimal(360.00001);
     }
-
-    // #[TestDox("can create an angle of exact 360°.")]
-    // public function test_missing_exception_if_equal_to_360_degrees()
-    // {
-    //     // Arrange & Act
-    //     new FromDecimal(360);
-        
-    //     // Assert missing exception
-    //     $this->addToAssertionCount(1);
-    // }
 
     /**
      * Returns the FromDecimal builder class.

@@ -1,14 +1,42 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders;
 
+use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
-use RoundingMode;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
+use Marcoconsiglio\ModularArithmetic\ModularNumber;
 
 /**
  * Sum two angles resulting in a relative sum.
  */
 class FromAnglesToRelativeSum extends SumBuilder
 {
+    protected Number $alfa_degrees;
+
+    protected Number $alfa_minutes;
+
+    protected Number $alfa_seconds;
+
+    protected Number $beta_degrees;
+
+    protected Number $beta_minutes;
+
+    protected Number $beta_seconds;
+
+    public function __construct(Angle $alfa, Angle $beta)
+    {
+        parent::__construct($alfa, $beta);
+        $this->alfa_degrees = $alfa->degrees->value;
+        $this->alfa_minutes = $alfa->minutes->value;
+        $this->alfa_seconds = $alfa->seconds->value;
+        $this->beta_degrees = $beta->degrees->value;
+        $this->beta_minutes = $beta->minutes->value;
+        $this->beta_seconds = $beta->seconds->value;
+    }
+
     /**
      * It calcs the result sign.
      *
@@ -16,7 +44,10 @@ class FromAnglesToRelativeSum extends SumBuilder
      */
     protected function calcSign()
     {
-        $this->direction = $this->decimal_sum >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE;
+        $this->operation =
+            $this->alfa->direction == $this->beta->direction ?
+            $this->alfa->direction : 
+            $this->alfa->direction->opposite();
     }
 
     /**
@@ -26,69 +57,127 @@ class FromAnglesToRelativeSum extends SumBuilder
      */
     protected function calcSum()
     {
-        // These are shortcuts.
-        if ($this->bothAnglesAreFullPositiveAngles()) {
-            $this->degrees = Angle::MAX_DEGREES;
-            return;
-        }
-        if ($this->bothAnglesAreFullNegativeAngles()) {
-            $this->degrees = Angle::MAX_DEGREES;
-            $this->direction = Angle::CLOCKWISE;
-            return;
-        }
-        if ($this->bothAnglesAreNullAngles()) {
-            return;
-        }
-
-        // Real calculation is performed here.
-        $decimal_first_angle = $this->first_angle->toDecimal();
-        $decimal_second_angle = $this->second_angle->toDecimal();
-        $this->decimal_precision = $this->getMaxSuggestedDecimalPrecisionBetween($this->first_angle, $this->second_angle);
-        $this->decimal_sum = round(
-            $decimal_first_angle + $decimal_second_angle,
-            $this->decimal_precision,
-            RoundingMode::HalfTowardsZero
-        );
-        // Calc the sign of the algebraic sum and return the absolute result.
         $this->calcSign();
-        // Subtract any excess of 360°.
-        $this->checkOverflow();
-        // Calc the values of the sum angle.
-        $this->calcDegrees();
-        $this->calcMinutes();
         $this->calcSeconds();
+        $this->calcMinutes();
+        $this->calcDegrees();
+    }
+
+    private function subSeconds(): void
+    {
+        if ($this->needBorrowing($this->alfa_seconds, $this->beta_seconds))
+            $this->borrow($this->alfa_minutes, $this->alfa_seconds);
+        $this->seconds = new Seconds(
+            $this->alfa_seconds->sub($this->beta_seconds)
+        );
+    }
+
+    private function subMinutes(): void
+    {
+        if ($this->needBorrowing($this->alfa_minutes, $this->beta_minutes))
+            $this->borrow($this->alfa_degrees, $this->alfa_minutes);
+        $this->minutes = new Minutes(
+            $this->alfa_minutes->sub($this->beta_minutes)
+        );
+    }
+
+    private function subDegrees(): void
+    {
+        if ($this->needBorrowing($this->alfa_minutes, $this->beta_minutes))
+            $this->borrow($this->alfa_degrees, $this->alfa_minutes);
+        $degrees = $this->alfa_degrees->sub($this->beta_degrees);
+        $this->setSign($degrees);
+        $this->degrees = new Degrees(
+            $degrees->abs()
+        );
+    }
+
+    private function addSeconds(Number &$reminder): void
+    {
+        $seconds = $this->alfa_seconds->add($this->beta_seconds);
+        $this->seconds = new ModularNumber($seconds, Angle::MAX_SECONDS);
+        $reminder = new Number(
+            $seconds->sub($this->seconds->value)->div(Angle::MAX_SECONDS)
+        );
+    }
+
+    private function addMinutes(Number &$reminder): void
+    {
+        $minutes = $this->alfa_minutes->add($this->beta_minutes)->add($reminder);
+        $this->minutes = new ModularNumber($minutes, Angle::MAX_MINUTES);
+        $reminder = new Number(
+            $minutes->sub($this->minutes->value)->div(Angle::MAX_MINUTES)
+        );
+    }
+
+    private function addDegrees(Number &$reminder): void
+    {
+        $degrees = $this->alfa_degrees->add($this->beta_degrees)->add($reminder);
+        $this->degrees = new ModularNumber($degrees, Angle::MAX_DEGREES);
+    }
+
+    private function needBorrowing(Number $first_number, Number $second_number): bool
+    {
+        return $first_number->lt($second_number->value);
+    }
+
+    private function borrow(Number &$from, Number &$to): void
+    {
+        $from = $from->sub(1);
+        $to = $to->add(60);
+    }
+
+    private function setSign(Number $degrees_result): void
+    {
+        if ($degrees_result->isPositive())
+            $this->direction = Direction::CLOCKWISE;
+        else
+            $this->direction = Direction::COUNTER_CLOCKWISE;
     }
 
     /**
      * Fetch data to build an Angle which is the sum
      * between two angles.
      *
-     * @return array{
-     *      int,
-     *      int,
-     *      float,
-     *      int,
-     *      int|null,
-     *      float|null,
-     *      int|null,
-     *      float|null,
-     *      int|null
-     *  }
+     * @return array{Degrees,Minutes,Seconds,Direction}
      */
     public function fetchData(): array
     {
         $this->calcSum();
-        $seconds_decimal_places = Angle::countDecimalPlaces($this->seconds);
         return [
             $this->degrees,
             $this->minutes,
             $this->seconds,
-            $this->direction,
-            $this->decimal_precision, // Suggested decimal precision
-            $this->decimal_sum, // Original decimal value
-            $seconds_decimal_places, // Seconds precision
-            null, // No original radian value 
-            null  // No original radian precision
+            $this->direction
         ];
     }
+
+    protected function calcSeconds()
+    {
+        if ($this->operation == Angle::COUNTER_CLOCKWISE)
+            $this->addSeconds($this->reminder);
+        else
+            $this->subSeconds();
+    }
+
+    protected function calcMinutes()
+    {
+        if ($this->operation == Angle::COUNTER_CLOCKWISE)
+            $this->addMinutes($this->reminder);
+        else
+            $this->subMinutes();
+    }
+
+    protected function calcDegrees()
+    {
+        if ($this->operation == Angle::COUNTER_CLOCKWISE)
+            $this->addDegrees($this->reminder);
+        else
+            $this->subDegrees();
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    protected function checkOverflow() {/* There's no need to check overflow */}
 }

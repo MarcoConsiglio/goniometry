@@ -23,8 +23,8 @@ class AngleTest extends TestCase
     public function test_can_sum_two_angles_and_return_relative_result()
     {
         // Arrange
-        $alfa = $this->getRandomAngle($this->faker->boolean);
-        $beta = $this->getRandomAngle($this->faker->boolean);
+        $alfa = $this->randomAngle();
+        $beta = $this->randomAngle();
 
         // Act
         $gamma = Angle::sum($alfa, $beta);
@@ -39,8 +39,8 @@ class AngleTest extends TestCase
     public function test_can_sum_two_angles_and_return_absolute_result()
     {
         // Arrange
-        $alfa = $this->getRandomAngle($this->faker->boolean);
-        $beta = $this->getRandomAngle($this->faker->boolean);
+        $alfa = $this->randomAngle();
+        $beta = $this->randomAngle();
 
         // Act
         $gamma = Angle::absSum($alfa, $beta);

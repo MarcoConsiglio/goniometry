@@ -10,20 +10,14 @@ use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
+use Marcoconsiglio\ModularArithmetic\ModularNumber;
 use RoundingMode;
 
 /**
  * Represents an angle.
- * 
- * @property-read int $degrees
- * @property-read int $minutes
- * @property-read float $seconds
- * @property-read int $direction
- * @property-read int $original_seconds_precision
- * @property-read int $suggested_decimal_precision
- * @property-read int $original_radian_precision
  */
 class Angle implements AngleInterface
 {
@@ -92,30 +86,25 @@ class Angle implements AngleInterface
 
     /**
      * The degrees part.
-     *
-     * @var integer
      */
-    public protected(set) int $degrees;
+    public protected(set) Degrees $degrees;
 
     /**
      * The minutes part.
-     *
-     * @var integer
      */
-    public protected(set) int $minutes;
+    public protected(set) Minutes $minutes;
 
     /**
      * The seconds part.
-     *
-     * @var float
      */
-    public protected(set) float $seconds;
+    public protected(set) Seconds $seconds;
 
     /**
      * The original precision of the seconds value
      * at the moment of the angle creation.
      * 
      * @var integer|null
+     * @deprecated Using bcmath-extended don't need exotic precision-related alogirthm.
      */
     public protected(set) int|null $original_seconds_precision = null;
 
@@ -124,6 +113,7 @@ class Angle implements AngleInterface
      * degrees.
      * 
      * @var int|null
+     * @deprecated Using bcmath-extended don't need exotic precision-related alogirthm.
      */
     public protected(set) int|null $suggested_decimal_precision = null;
 
@@ -134,6 +124,7 @@ class Angle implements AngleInterface
      * to a radian value.
      * 
      * @var integer
+     * @deprecated Using bcmath-extended don't need exotic precision-related alogirthm.
      */
     public protected(set) int|null $original_radian_precision = null;
 
@@ -159,12 +150,8 @@ class Angle implements AngleInterface
 
     /** 
      * The angle direction.
-     *  
-     * @var int
-     * @see \MarcoConsiglio\Goniometry\Angle::COUNTERCLOCKWISE
-     * @see \MarcoConsiglio\Goniometry\Angle::CLOCKWISE
      */
-    public protected(set) int $direction = self::COUNTER_CLOCKWISE;
+    public protected(set) Direction $direction = Direction::COUNTER_CLOCKWISE;
 
     /**
      * Construct an angle.
@@ -178,15 +165,10 @@ class Angle implements AngleInterface
             $this->degrees, 
             $this->minutes, 
             $this->seconds, 
-            $this->direction, 
-            $this->suggested_decimal_precision,
-            $this->original_decimal, 
-            $this->original_seconds_precision,
-            $this->original_radian,
-            $this->original_radian_precision
+            $this->direction,
+            $this->original_decimal,
+            $this->original_radian
         ] = $builder->fetchData();
-        if (! $this->original_seconds_precision)
-            $this->original_seconds_precision = $this->countDecimalPlaces($this->seconds);
     }
 
     /**
@@ -196,9 +178,8 @@ class Angle implements AngleInterface
      * @param integer $minutes
      * @param float $seconds
      * @return Angle
-     * @throws AngleOverflowException when creating an angle greater than +/-360°.
      */
-    public static function createFromValues(int $degrees = 0, int $minutes = 0, float $seconds = 0.0, int $direction = self::COUNTER_CLOCKWISE): Angle
+    public static function createFromValues(int $degrees = 0, int $minutes = 0, float $seconds = 0.0, Direction $direction = Direction::COUNTER_CLOCKWISE): Angle
     {
         return new Angle(new FromDegrees($degrees, $minutes, $seconds, $direction));
     }
@@ -273,27 +254,21 @@ class Angle implements AngleInterface
      * degrees value.
      *
      * @param bool $associative Set to true it returns an associative array.
-     * @return array{
-     *      degrees: int,
-     *      minutes: int,
-     *      seconds: float
-     *  }
+     * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
      */
     public function getDegrees(bool $associative = false): array
     {
-        if ($associative) {
+        $degrees = (int) $this->degrees->value->mul($this->direction->value)->value;
+        $minutes = (int) $this->minutes->value->value;
+        $seconds = round((float) $this->seconds->value->value, PHP_FLOAT_DIG, RoundingMode::HalfTowardsZero);
+        if ($associative)
             return [
-                "degrees" => $this->degrees * $this->direction,
-                "minutes" => $this->minutes,
-                "seconds" => $this->seconds
+                "degrees" => $degrees,
+                "minutes" => $minutes,
+                "seconds" => $seconds
             ];
-        } else {
-            return [
-                $this->degrees * $this->direction,
-                $this->minutes,
-                $this->seconds
-            ];
-        }
+        else
+            return [$degrees, $minutes, $seconds];
     }
 
     /**
@@ -303,7 +278,7 @@ class Angle implements AngleInterface
      */
     public function isClockwise(): bool
     {
-        return $this->direction == self::CLOCKWISE;
+        return $this->direction == Direction::CLOCKWISE;
     }
 
     /**
@@ -313,7 +288,7 @@ class Angle implements AngleInterface
      */
     public function isCounterClockwise(): bool
     {
-        return $this->direction == self::COUNTER_CLOCKWISE;
+        return $this->direction == Direction::COUNTER_CLOCKWISE;
     }
 
     /**
@@ -324,7 +299,10 @@ class Angle implements AngleInterface
     public function toggleDirection(): Angle
     {
         $clone = clone $this;
-        $clone->direction *= self::CLOCKWISE;
+        $clone->direction =
+            $clone->direction === Direction::COUNTER_CLOCKWISE ?
+            Direction::CLOCKWISE :
+            Direction::COUNTER_CLOCKWISE;
         return $clone;
     }
 
@@ -337,39 +315,20 @@ class Angle implements AngleInterface
      */
     public function toDecimal(int|null $precision = null): float
     {
-        // Non-null precision
-        if ($precision) {
-            if ($this->original_decimal) 
-                return round(
-                    $this->original_decimal,
-                    $this->limitPrecision($precision),
-                    RoundingMode::HalfTowardsZero
-                );
-            else {
-                $decimal = round(
-                    $this->degrees + 
-                    $this->minutes / Angle::MAX_MINUTES + 
-                    $this->seconds / (Angle::MAX_MINUTES * Angle::MAX_SECONDS),
-                    $this->limitPrecision($precision), 
-                    RoundingMode::HalfTowardsZero
-                );
-                $decimal *= $this->direction;
-                $this->original_decimal = $decimal;
-                return $decimal; 
-            }
-        }
-        // Null precision
-        if ($this->original_decimal) return $this->original_decimal;
-        $decimal = round(
-            $this->degrees + 
-            $this->minutes / Angle::MAX_MINUTES + 
-            $this->seconds / (Angle::MAX_MINUTES * Angle::MAX_SECONDS),
-            $this->getDecimalPrecision(), 
-            RoundingMode::HalfTowardsZero
-        );
-        $decimal *= $this->direction;
-        $this->original_decimal = $decimal;
-        return $decimal;
+        if ($this->original_decimal !== null) return $this->original_decimal;
+        $decimal = 
+            $this->degrees->value->plus(
+                $this->minutes->value->div(Minutes::MAX)
+            )->plus(
+                $this->seconds->value->div(Minutes::MAX * Seconds::MAX)
+            );
+        $precision = 
+            $precision === null ? 
+            $decimal->getParent()->scale : 
+            abs($precision);
+        if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
+        $decimal->round($precision);
+        return $this->original_decimal = (float) $decimal->mul($this->direction->value)->value;
     }
 
     /**
@@ -382,37 +341,37 @@ class Angle implements AngleInterface
     {
         // If the angle was built from a radian value.
         if ($this->original_radian) {
-            return round(
-                $this->original_radian,
-                $precision ?? $this->original_radian_precision,
-                RoundingMode::HalfTowardsZero
-            );
+            if ($precision)
+                return round(
+                    $this->original_radian,
+                    $precision,
+                    RoundingMode::HalfTowardsZero
+                );
+            else return $this->original_radian;
         }
         // If the angle was built from a decimal degrees value.
         if ($this->original_decimal) {
-            if ($precision) {
-                $radian = round(
+            if ($precision)
+                return $this->original_radian = round(
                     deg2rad($this->original_decimal),
                     $precision,
                     RoundingMode::HalfTowardsZero
                 );
-                $this->original_radian = $radian;
-                return $radian;
-            } else return deg2rad($this->original_decimal);
+            else return deg2rad($this->original_decimal);
         }
         // All other cases.
-        if ($precision) { 
-            $radian = round(
+        if ($precision) {
+            return $this->original_radian = round(
                 deg2rad($this->toDecimal()),
                 $precision,
                 RoundingMode::HalfTowardsZero
             );
-            $this->original_radian = $radian;
-            return $radian;
         }
-        $radian = deg2rad($this->toDecimal());
-        $this->original_radian = $radian;
-        return $radian;
+        return $this->original_radian = round(
+            deg2rad($this->toDecimal()),
+            PHP_FLOAT_DIG,
+            RoundingMode::HalfTowardsZero
+        );
     }
 
     /**
@@ -454,6 +413,11 @@ class Angle implements AngleInterface
     public function gt(string|int|float|AngleInterface $angle, int|null $precision = null): bool
     {
         return $this->isGreaterThan($angle, $precision);
+    }
+
+    private function greaterThanComparison(Angle $alfa, Angle $beta): bool
+    {
+        
     }
 
     /**
@@ -632,11 +596,7 @@ class Angle implements AngleInterface
     public function __toString()
     {
         $sign = $this->isClockwise() ? "-" : "";
-        // If seconds is not a whole number, remove trailing zeros.
-        if (floor($this->seconds) != $this->seconds) {
-            $seconds = number_format($this->seconds, $this->original_seconds_precision, '.', '');
-        } else $seconds = (int) $this->seconds;
-        return "{$sign}{$this->degrees}° {$this->minutes}' {$seconds}\"";
+        return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";
     }
 
     /**

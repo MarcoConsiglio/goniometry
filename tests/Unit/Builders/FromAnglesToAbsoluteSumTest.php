@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromAnglesToAbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -39,7 +40,6 @@ class FromAnglesToAbsoluteSumTest extends BuilderTestCase
         $builder->expects($this->once())->method("calcDegrees");
         $builder->expects($this->once())->method("calcMinutes");
         $builder->expects($this->once())->method("calcSeconds");
-        $builder->expects($this->any())->method("getMaxSuggestedDecimalPrecisionBetween");
         
         // Act
         $builder->fetchData();  
@@ -120,7 +120,7 @@ class FromAnglesToAbsoluteSumTest extends BuilderTestCase
          */
         // Arrange
         $alfa = Angle::createFromValues(1);
-        $beta = Angle::createFromValues(180, direction: Angle::CLOCKWISE);
+        $beta = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
         $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
 
         // Act
@@ -133,8 +133,8 @@ class FromAnglesToAbsoluteSumTest extends BuilderTestCase
          * -30° + (-60°) = 270°
          */
         // Arrange
-        $alfa = Angle::createFromValues(30, direction: Angle::CLOCKWISE);
-        $beta = Angle::createFromValues(60, direction: Angle::CLOCKWISE);
+        $alfa = Angle::createFromValues(30, direction: Direction::CLOCKWISE);
+        $beta = Angle::createFromValues(60, direction: Direction::CLOCKWISE);
         $builder = new FromAnglesToAbsoluteSum($alfa, $beta);
 
         // Act

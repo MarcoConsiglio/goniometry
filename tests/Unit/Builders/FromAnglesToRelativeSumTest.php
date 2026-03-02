@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromAnglesToRelativeSum;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -171,8 +172,8 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
         // Arrange
         $alfa = Angle::createFromValues(360);
         $beta = Angle::createFromValues(360);
-        $gamma = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
-        $delta = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
+        $gamma = Angle::createFromValues(360, direction: Direction::CLOCKWISE);
+        $delta = Angle::createFromValues(360, direction: Direction::CLOCKWISE);
         $builder_1 = new FromAnglesToRelativeSum($alfa, $beta);
         $builder_2 = new FromAnglesToRelativeSum($gamma, $delta);
 

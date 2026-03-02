@@ -4,8 +4,11 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -13,9 +16,12 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The FromString builder")]
 #[CoversClass(FromString::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(RegExFailureException::class)]
-#[UsesClass(NoMatchException::class)]
 #[UsesClass(AngleOverflowException::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(NoMatchException::class)]
+#[UsesClass(RegExFailureException::class)]
+#[UsesClass(Seconds::class)]
 class FromStringTest extends BuilderTestCase
 {
     #[TestDox("can create a positive angle from a string value.")]

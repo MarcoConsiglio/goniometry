@@ -7,7 +7,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Traits;
 trait WithFailureMessage
 {
     /**
-     * Gets a property type failure message.
+     * Return a property type failure message.
      *
      * @param string $property
      * @return string
@@ -18,7 +18,17 @@ trait WithFailureMessage
     }
 
     /**
-     * Gets a getter failure message.
+     * Return a property failure message.
+     * 
+     * @param string $property The property name.
+     */
+    protected function propertyFail(string $property): string
+    {
+        return "{$property} property is not working properly.";
+    }
+
+    /**
+     * Return a getter failure message.
      *
      * @param string $property
      * @return string
@@ -29,7 +39,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Gets a function failure message.
+     * Return a function failure message.
      *
      * @param string $name
      * @return string
@@ -40,7 +50,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Get an instance type failure message.
+     * Return an instance type failure message.
      *
      * @param [type] $expected_class
      * @param [type] $actual_class
@@ -52,7 +62,7 @@ trait WithFailureMessage
     }
 
     /**
-     * Produces a failure message when calling $called_class::$method doesn't return
+     * Return a failure message when calling $called_class::$method doesn't return
      * the expected $return_type.
      *
      * @param string $called_class

@@ -2,7 +2,12 @@
 namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
+use Marcoconsiglio\ModularArithmetic\ModularNumber;
 use RoundingMode;
 
 /**
@@ -12,31 +17,23 @@ abstract class AngleBuilder implements AngleBuilderInterface
 {
     /**
      * Degrees value.
-     *
-     * @var integer
      */
-    protected int $degrees = 0;
+    protected Degrees $degrees;
 
     /**
      * Minutes value.
-     *
-     * @var integer
      */
-    protected int $minutes = 0;
+    protected Minutes $minutes;
 
     /**
      * Seconds value.
-     *
-     * @var float
      */
-    protected float $seconds = 0.0;
+    protected Seconds $seconds;
 
     /**
      * Rotation direction.
-     *
-     * @var integer
      */
-    protected int $direction = Angle::COUNTER_CLOCKWISE;  
+    protected Direction $direction = Direction::COUNTER_CLOCKWISE;  
 
     /**
      * Check for overflow above/below ±360°.

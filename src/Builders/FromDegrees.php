@@ -1,219 +1,122 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders;
 
+use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
-use RoundingMode;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
+use Marcoconsiglio\ModularArithmetic\ModularNumber;
 
 /**
- *  Builds an angle starting from degrees, minutes and seconds.
+ *  Builds an angle starting from degrees, minutes, seconds and direction.
  */
 class FromDegrees extends AngleBuilder
 {
+
+    protected Number $degrees_input;
+
+    protected Number $minutes_input;
+
+    protected Number $seconds_input;
+
+    protected Direction $direction_input;
+
     /**
      * Constructs and AngleBuilder with degrees, minutes, seconds and direction.
-     *
-     * @param integer $degrees
-     * @param integer $minutes
-     * @param float $seconds
-     * @param integer $direction
-     * @return void
      */
-    public function __construct(int $degrees, int $minutes, float $seconds, int $direction = Angle::COUNTER_CLOCKWISE)
+    public function __construct(int $degrees, int $minutes, float $seconds, Direction $direction = Direction::COUNTER_CLOCKWISE)
     {
-        $this->degrees = abs($degrees);
-        $this->minutes = abs($minutes);
-        $this->seconds = abs($seconds);
-        $this->direction = $direction;
-        $this->checkOverflow();
-        $this->validateDirection();
+        $this->degrees_input = new Number(abs($degrees));
+        $this->minutes_input = new Number(abs($minutes));
+        $this->seconds_input = new Number(abs($seconds));
+        $this->direction_input = $direction;
+        $this->calcSeconds();
+        $this->calcMinutes();
+        $this->calcDegrees();
+        $this->calcSign();
     }
 
     /**
      * Check for overflow above/below +/-360°.
-     *
-     * @return void
-     * @throws \MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException when angle values exceeds.
-     */
-    protected function checkOverflow()
-    {
-        if ($this->angleOverflows()) {
-            throw new AngleOverflowException("The angle inputs can't be greater than 360° or 59' or 59.9\".");
-        }
-    }
-
-    /**
-     * Validate the direction input.
-     *
-     * @return void
-     */
-    protected function validateDirection()
-    {  
-        $this->correctDirection();
-        if ($this->isNullAngle()) {
-            $this->direction = Angle::COUNTER_CLOCKWISE;
-        }
-    }
-
-    /**
-     * Calc degrees.
      * 
-     * @return void
      * @codeCoverageIgnore
      */
-    protected function calcDegrees() {}
+    protected function checkOverflow() 
+    { 
+        /*
+         * No need to check overflow beacause
+         * it is done in calcDegrees(), calcMinutes(),
+         * calcSeconds().
+         */
+    }
 
-    /**
-     * Calc minutes.
-     *
-     * @return void
-     * @codeCoverageIgnore
-     */
-    protected function calcMinutes() {}
+    protected function calcDegrees() 
+    {
+        $this->degrees_input =
+            $this->minutes_input->sub($this->minutes->value)
+            ->div(Minutes::MAX)->plus($this->degrees_input);
+        $this->degrees = new Degrees($this->degrees_input);
+    }
 
-    /**
-     * Calc seconds.
-     *
-     * @return void
-     * @codeCoverageIgnore
-     */
-    protected function calcSeconds() {}
+    protected function calcMinutes() 
+    {
+        $this->minutes = new Minutes($this->minutes_input);
+        $this->minutes_input = 
+            $this->minutes_input->sub($this->minutes->value)
+            ->div(Seconds::MAX)->plus($this->minutes_input);
+        $this->minutes = new Minutes($this->minutes_input);
+    }
 
-    /**
-     * Calc sign.
-     *
-     * @param mixed $data
-     * @return void
-     * @codeCoverageIgnore
-     */
-    protected function calcSign() {}
+    protected function calcSeconds() 
+    {
+        $this->seconds = new Seconds($this->seconds_input);
+    }
 
-    /**
-     * Check if one or more angle values exceeded the maximum allowed.
-     *
-     * @return bool
-     */
-    protected function angleOverflows(): bool
+    protected function calcSign() 
+    {
+        if ($this->isNullAngle())
+            $this->direction = Direction::COUNTER_CLOCKWISE;
+        else
+            $this->direction = $this->direction_input;
+    }
+
+    private function isNullAngle(): bool
     {
         return 
-            $this->excessiveDegrees() || 
-            $this->excessiveMinutes() || 
-            $this->excessiveSeconds();
+            $this->hasZeroDegrees() &&
+            $this->hasZeroMinutes() &&
+            $this->hasZeroSeconds();
     }
 
-    /**
-     * Check if degrees exceeds Angle::MAX_DEGREES.
-     *
-     * @return boolean
-     */
-    protected function excessiveDegrees(): bool
+    private function hasZeroDegrees(): bool
     {
-        return $this->degrees > Angle::MAX_DEGREES;
+        return $this->degrees->value->isEqual(0);
     }
 
-    /**
-     * Check if minutes exceeds Angle::MAX_MINUTES.
-     * 
-     * @return boolean
-     */
-    protected function excessiveMinutes(): bool
+    private function hasZeroMinutes(): bool
     {
-        return $this->minutes >= Angle::MAX_MINUTES ;
+        return $this->minutes->value->isEqual(0);
     }
 
-    /**
-     * Check if seconds exceeds Angle::MAX_SECONDS.
-     *
-     * @return boolean
-     */
-    protected function excessiveSeconds(): bool
+    private function hasZeroSeconds(): bool
     {
-        return $this->seconds >= Angle::MAX_SECONDS;
-    }
-
-    /**
-     * Correct direction value in case of wrong integer input.
-     *
-     * @return int
-     */
-    protected function correctDirection(): int
-    {
-        return $this->direction = $this->direction < 0 ? Angle::CLOCKWISE : Angle::COUNTER_CLOCKWISE;
-    }
-
-    /**
-     * Check if the angle is a null angle.
-     *
-     * @return boolean
-     */
-    protected function isNullAngle(): bool
-    {
-        return $this->zeroDegrees() && $this->zeroMinutes() && $this->zeroSeconds();
-    }
-
-    /**
-     * Check if degrees are zero.
-     *
-     * @return boolean
-     */
-    protected function zeroDegrees(): bool
-    {
-        return $this->degrees == 0;
-    }
-    
-    /**
-     * Check if minutes are zero.
-     *
-     * @return boolean
-     */
-    protected function zeroMinutes(): bool
-    {
-        return $this->minutes == 0;
-    }
-
-    /**
-     * Check if seconds are zero.
-     *
-     * @return boolean
-     */
-    protected function zeroSeconds(): bool
-    {
-        return $this->seconds == 0;
+        return $this->seconds->value->isEqual(0);
     }
 
     /**
      * Fetch data to build an Angle class.
      *
-     * @return array{
-     *      int,
-     *      int,
-     *      float,
-     *      int,
-     *      int|null,
-     *      float|null,
-     *      int|null,
-     *      float|null,
-     *      int|null
-     *  }
+     * @return array{ModularNumber,ModularNumber,ModularNumber,Direction}
      */
     public function fetchData(): array
     {
-        $seconds_decimal_places = Angle::countDecimalPlaces($this->seconds);
-        $suggested_decimal_precision = $seconds_decimal_places + 6;
-        // @codeCoverageIgnoreStart
-        if ($suggested_decimal_precision > PHP_FLOAT_DIG) 
-            $suggested_decimal_precision = PHP_FLOAT_DIG;
-        // @codeCoverageIgnoreEnd
         return [
             $this->degrees,
             $this->minutes,
             $this->seconds,
-            $this->direction,
-            $suggested_decimal_precision, // Suggested decimal precision
-            null, // No original decimal degrees value.
-            $seconds_decimal_places, // Seconds precision
-            null, // No original radian value
-            null  // No original radian precision
+            $this->direction
         ];
     }
 }
