@@ -3,44 +3,50 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The EqualAngle comparison strategy")]
-#[CoversClass(EqualAngle::class)]
+#[TestDox("The EqualInt comparison strategy")]
+#[CoversClass(EqualInt::class)]
+#[UsesClass(EqualAngle::class)]
 #[UsesClass(Angle::class)]
+#[UsesClass(FromDegrees::class)]
 #[UsesClass(FromDecimal::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class EqualAngleTest extends TestCase
+class EqualIntTest extends TestCase
 {
-    #[TestDox("can compare if two Angle instances are equal.")]
+    #[DependsOnClass(EqualAngleTest::class)]
     public function test_compare(): void
     {
         /**
          * Equal
          */
         // Arrange
-        $alfa = $this->randomAngle();
-        $beta = clone $alfa;
+        $beta = $this->randomDegrees();
+        $alfa = Angle::createFromValues($beta);
 
         // Act & Assert
-        $this->assertTrue(new EqualAngle($alfa, $beta)->compare());
+        $this->assertTrue(new EqualInt($alfa, $beta)->compare());
 
         /**
-         * Not equal
+         * Not Equal
          */
-        $alfa = $this->randomAngle(max: 180 - PHP_FLOAT_MIN);
-        $beta = $this->randomAngle(min: 180);
+        // Arrange
+        $beta = $this->randomDegrees();
+        $alfa = $this->randomAngle();
 
         // Act & Assert
-        $this->assertFalse(new EqualAngle($alfa, $beta)->compare());
+        $this->assertFalse(new EqualInt($alfa, $beta)->compare());
     }
 }
