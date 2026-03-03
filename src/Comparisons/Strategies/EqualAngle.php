@@ -3,6 +3,9 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 
+/**
+ * The strategy that compares two Angle instances to check if they are equal.
+ */
 class EqualAngle extends ComparisonStrategy
 {
     private bool $equal_sign;
@@ -13,6 +16,9 @@ class EqualAngle extends ComparisonStrategy
 
     private bool $equal_seconds;
 
+    /**
+     * Construct the comparison strategy.
+     */
     public function __construct(Angle $alfa, protected Angle $beta)
     {
         parent::__construct($alfa);
@@ -22,12 +28,15 @@ class EqualAngle extends ComparisonStrategy
         $this->equal_seconds = $this->alfa->seconds->eq($this->beta->seconds);
     }
 
+    /**
+     * Perform the comparison.
+     */
     public function compare(): bool
     {
         if (! $this->equal_sign) return false;
+        if (! $this->equal_seconds) return false;
         if (! $this->equal_degrees) return false;
         if (! $this->equal_minutes) return false;
-        if (! $this->equal_seconds) return false;
         return true;
     }
 }
