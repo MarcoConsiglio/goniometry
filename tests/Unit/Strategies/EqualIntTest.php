@@ -27,6 +27,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class EqualIntTest extends TestCase
 {
     #[DependsOnClass(EqualAngleTest::class)]
+    #[TestDox("can compare an Angle and a sexagesimal degrees angle measure.")]
     public function test_compare(): void
     {
         /**

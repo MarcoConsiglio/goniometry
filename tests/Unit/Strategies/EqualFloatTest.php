@@ -3,51 +3,50 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
-use MarcoConsiglio\Goniometry\Builders\FromString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The EqualString comparison strategy")]
-#[CoversClass(EqualString::class)]
+#[TestDox("The EqualFloat comparison strategy")]
+#[CoversClass(EqualFloat::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(EqualAngle::class)]
 #[UsesClass(FromDecimal::class)]
-#[UsesClass(FromString::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class EqualStringTest extends TestCase
+class EqualFloatTest extends TestCase
 {
-    #[DependsOnClass(EqualAngleTest::class)]
-    #[TestDox("can compare an Angle and a sexagesimal string angle measure.")]
+    #[TestDox("can compare an Angle and a sexadecimal angle measure.")]
     public function test_compare(): void
     {
         /**
          * Equal
          */
         // Arrange
+        $precision = $this->randomPrecision();
         $alfa = $this->randomAngle();
-        $beta = (string) $alfa;
+        $beta = $alfa->toDecimal($precision);
+        $true_alfa = number_format($alfa->toDecimal($precision), PHP_FLOAT_DIG);
+        $true_beta = number_format($beta, PHP_FLOAT_DIG);
 
         // Act & Assert
-        $this->assertTrue(new EqualString($alfa, $beta)->compare());
+        $this->assertTrue(new EqualFloat($alfa, $beta, $precision)->compare(), 
+            "\$alfa = $true_alfa\n\$beta = $true_beta"
+        );
 
         /**
          * Not equal
          */
         // Arrange
-        $alfa = $this->randomAngle();
-        $beta = (string) $this->randomAngle();
+        $alfa = $this->randomAngle(0, 180 - 0.0000000000001);
+        $beta = $this->randomSexadecimal(180);
 
         // Act & Assert
-        $this->assertFalse(new EqualString($alfa, $beta)->compare());
+        $this->assertFalse(new EqualFloat($alfa, $beta, $precision)->compare());
     }
 }

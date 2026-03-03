@@ -4,6 +4,7 @@
          bootstrap="vendor/autoload.php"
          colors="true"
          cacheDirectory=".phpunit.cache"
+         resolveDependencies="true"
          executionOrder="depends"
          shortenArraysForExportThreshold="10"
          requireCoverageMetadata="true"

@@ -315,7 +315,13 @@ class Angle implements AngleInterface
      */
     public function toDecimal(int|null $precision = null): float
     {
-        if ($this->original_decimal !== null) return $this->original_decimal;
+        if ($precision !== null) assert($precision >= 0 && $precision <= PHP_FLOAT_DIG);
+        if ($this->original_decimal) {
+            if ($precision !== null)
+                return round($this->original_decimal, $precision, RoundingMode::HalfTowardsZero);
+            else
+                return $this->original_decimal;
+        }
         $decimal = 
             $this->degrees->value->plus(
                 $this->minutes->value->div(Minutes::MAX)
@@ -325,9 +331,9 @@ class Angle implements AngleInterface
         $precision = 
             $precision === null ? 
             $decimal->getParent()->scale : 
-            abs($precision);
+            $precision;
         if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
-        $decimal->round($precision);
+        $decimal = $decimal->round($precision);
         return $this->original_decimal = (float) $decimal->mul($this->direction->value)->value;
     }
 

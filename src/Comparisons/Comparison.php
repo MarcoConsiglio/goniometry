@@ -17,6 +17,8 @@ abstract class Comparison
 
     protected Strategy $comparison_strategy;
 
+    protected int $float_precision = PHP_FLOAT_DIG;
+
     public function __construct(Angle $alfa, string|int|float|Angle $beta)
     {
         $this->alfa = $alfa;
@@ -37,7 +39,7 @@ abstract class Comparison
                 return new StringType($this->beta);
                 break;
             case 'double':
-                return new FloatType;
+                return new FloatType($this->beta, $this->float_precision);
                 break;
         }
     }
@@ -45,4 +47,9 @@ abstract class Comparison
     abstract protected function setComparisonStrategy(): void;
 
     abstract public function compare(): bool;
+
+    public function setPrecision(int $precision): void
+    {
+        $this->float_precision = $precision;
+    }
 }

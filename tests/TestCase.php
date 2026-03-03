@@ -60,9 +60,18 @@ class TestCase extends PHPUnitTestCase
     }
 
     /**
+     * Return a random integer to be used as rounding precision between
+     * 0 and PHP_FLOAT_DIG. 
+     */
+    protected function randomPrecision(): int
+    {
+        return $this->positiveRandomInteger(0, PHP_FLOAT_DIG);
+    }
+
+    /**
      * Return a random Angle, whether positive or negative.
      */
-    protected function randomAngle(float $min = 0, float $max = Degrees::MAX - PHP_FLOAT_MIN): Angle
+    protected function randomAngle(float $min = 0, float $max = Degrees::MAX - 0.0000000000001): Angle
     {
         return $this->faker->randomElement([
             $this->positiveRandomAngle($min, $max),
@@ -73,7 +82,7 @@ class TestCase extends PHPUnitTestCase
     /**
      * Return a positive random Angle.
      */
-    protected function positiveRandomAngle(float $min = 0, float $max = Degrees::MAX - PHP_FLOAT_MIN): Angle
+    protected function positiveRandomAngle(float $min = 0, float $max = Degrees::MAX - 0.0000000000001): Angle
     {
         assert($min >= 0 && $min < Degrees::MAX);
         assert($max >= 0 && $max < Degrees::MAX);
@@ -83,7 +92,7 @@ class TestCase extends PHPUnitTestCase
     /**
      * Return a negative random Angle
      */
-    protected function negativeRandomAngle(float $min = 0, float $max = Degrees::MAX - PHP_FLOAT_MIN): Angle
+    protected function negativeRandomAngle(float $min = 0, float $max = Degrees::MAX - 0.0000000000001): Angle
     {
         $angle = $this->positiveRandomAngle($min, $max);
         return $angle->toggleDirection();

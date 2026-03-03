@@ -296,7 +296,6 @@ class AngleTest extends TestCase
         $this->testCastToDecimal($this->faker->numberBetween(1, PHP_FLOAT_DIG - 3));
         $this->testCastToDecimal(PHP_FLOAT_DIG - 2);
         $this->testCastToDecimal(PHP_FLOAT_DIG);
-        $this->testCastToDecimal(PHP_FLOAT_DIG + 3);
 
         /**
          * Other builders than FromDecimal.

@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Seconds::class)]
 class EqualAngleTest extends TestCase
 {
-    #[TestDox("can compare if two Angle instances are equal.")]
+    #[TestDox("can compare two Angle instances.")]
     public function test_compare(): void
     {
         /**

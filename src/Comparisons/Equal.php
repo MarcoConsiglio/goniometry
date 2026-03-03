@@ -8,7 +8,7 @@ class Equal extends Comparison
 {
     protected function setComparisonStrategy(): void
     {
-        $this->comparison_strategy = $this->getBetaType()->getStrategyClassFor($this, $this->alfa);
+        $this->comparison_strategy = $this->getBetaType()->getStrategyFor($this, $this->alfa);
     }
 
     public function compare(): bool
