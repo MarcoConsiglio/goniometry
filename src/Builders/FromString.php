@@ -184,7 +184,7 @@ class FromString extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array{Degrees,Minutes,Seconds,Direction}
+     * @return array{Degrees,Minutes,Seconds,Direction,null,null}
      */
     public function fetchData(): array
     {
@@ -196,7 +196,9 @@ class FromString extends AngleBuilder
             $this->degrees,
             $this->minutes,
             $this->seconds,
-            $this->direction
+            $this->direction,
+            null,
+            null
         ];
     }
 }

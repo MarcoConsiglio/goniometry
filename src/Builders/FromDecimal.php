@@ -101,7 +101,7 @@ class FromDecimal extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array{Degrees,Minutes,Seconds,Direction,float}
+     * @return array{Degrees,Minutes,Seconds,Direction,float,null}
      */
     public function fetchData(): array
     {
@@ -114,7 +114,8 @@ class FromDecimal extends AngleBuilder
             $this->minutes,
             $this->seconds,
             $this->direction,
-            $this->decimal_input
+            $this->decimal_input,
+            null
         ];
     }
 }
