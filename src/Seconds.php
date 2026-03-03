@@ -18,7 +18,7 @@ class Seconds extends ModularNumber
     /**
      * The symbol for the unit of measurement of seconds.
      */
-    protected const string MEASURE = '"';
+    public const string MEASURE = '"';
 
     /**
      * Construct the seconds of an Angle.
@@ -34,5 +34,65 @@ class Seconds extends ModularNumber
     public function __toString(): string
     {
         return $this->value->value . self::MEASURE;
+    }
+
+    public function isEqualTo(Seconds $seconds): bool
+    {
+        return $this->value->eq($seconds->value);
+    }
+
+    public function eq(Seconds $seconds): bool
+    {
+        return $this->isEqualTo($seconds);
+    }
+
+    public function isDifferentThan(Seconds $seconds): bool
+    {
+        return $this->value->not($seconds->value);
+    }
+
+    public function not(Seconds $seconds): bool
+    {
+        return $this->isDifferentThan($seconds);
+    }
+
+    public function isGreaterThan(Seconds $seconds): bool
+    {
+        return $this->value->gt($seconds->value);
+    }
+
+    public function gt(Seconds $seconds): bool
+    {
+        return $this->isGreaterThan($seconds);
+    }
+
+    public function isGreaterThanOrEqual(Seconds $seconds): bool
+    {
+        return $this->value->gte($seconds->value);
+    }
+
+    public function gte(Seconds $seconds): bool
+    {
+        return $this->isGreaterThanOrEqual($seconds);
+    }
+
+    public function isLessThan(Seconds $seconds): bool
+    {
+        return $this->value->lt($seconds->value);
+    }
+
+    public function lt(Seconds $seconds): bool
+    {
+        return $this->isLessThan($seconds);
+    }
+
+    public function isLessThanOrEqual(Seconds $seconds): bool
+    {
+        return $this->value->lte($seconds->value);
+    }
+
+    public function lte(Seconds $seconds): bool
+    {
+        return $this->isLessThanOrEqual($seconds);
     }
 }
