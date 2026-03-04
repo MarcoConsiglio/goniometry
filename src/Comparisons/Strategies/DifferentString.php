@@ -5,9 +5,9 @@ use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * The strategy that compares an Angle instance against a sexagesimal string 
- * measure of an angle to check if they are equal.
+ * measure of an angle to check if they are different.
  */
-class EqualString extends ComparisonStrategy
+class DifferentString extends ComparisonStrategy
 {
     /**
      * The right comparison operand.
@@ -16,9 +16,6 @@ class EqualString extends ComparisonStrategy
 
     /**
      * Construct the comparison strategy.
-     * 
-     * @param string $beta The right comparison operand expressed as a
-     * sexagesimal string measure. 
      */
     public function __construct(Angle $alfa, string $beta)
     {
@@ -31,6 +28,6 @@ class EqualString extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        return new EqualAngle($this->alfa, $this->beta)->compare();
+        return new DifferentAngle($this->alfa, $this->beta)->compare();
     }
 }

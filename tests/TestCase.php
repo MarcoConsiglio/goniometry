@@ -23,6 +23,11 @@ class TestCase extends PHPUnitTestCase
     use WithFailureMessage, WithFakerHelpers;
 
     /**
+     * The Smallest Significant Number.
+     */
+    protected const float SSN = 0.0000000000001;
+
+    /**
      * This method is called before each test.
      *
      * @return void
@@ -71,7 +76,7 @@ class TestCase extends PHPUnitTestCase
     /**
      * Return a random Angle, whether positive or negative.
      */
-    protected function randomAngle(float $min = 0, float $max = Degrees::MAX - 0.0000000000001): Angle
+    protected function randomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
     {
         return $this->faker->randomElement([
             $this->positiveRandomAngle($min, $max),
@@ -82,7 +87,7 @@ class TestCase extends PHPUnitTestCase
     /**
      * Return a positive random Angle.
      */
-    protected function positiveRandomAngle(float $min = 0, float $max = Degrees::MAX - 0.0000000000001): Angle
+    protected function positiveRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
     {
         assert($min >= 0 && $min < Degrees::MAX);
         assert($max >= 0 && $max < Degrees::MAX);
@@ -92,7 +97,7 @@ class TestCase extends PHPUnitTestCase
     /**
      * Return a negative random Angle
      */
-    protected function negativeRandomAngle(float $min = 0, float $max = Degrees::MAX - 0.0000000000001): Angle
+    protected function negativeRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
     {
         $angle = $this->positiveRandomAngle($min, $max);
         return $angle->toggleDirection();
@@ -336,6 +341,22 @@ class TestCase extends PHPUnitTestCase
         $sexadecimal = $sexadecimal->mul(Angle::MAX_MINUTES)->sub($minutes);
         $seconds = $sexadecimal->mul(Angle::MAX_SECONDS)->value;
         return [$degrees, $minutes, $seconds, $direction];
+    }
+
+    /**
+     * Assert the passed $values are the same of $angle. 
+     * This is a Custom Assertion.
+    *
+    * @param Angle $angle The angle being tested.
+    * @param array $expected_values The expected values of the angle.
+    * @return void
+    */
+    protected function assertAngleHasValues(Angle $angle, array $expected_values)
+    {
+        $values = $angle->getDegrees(true);
+        $this->assertEquals($expected_values["degrees"], $values["degrees"]);
+        $this->assertEquals($expected_values["minutes"], $values["minutes"]);
+        $this->assertEquals($expected_values["seconds"], $values["seconds"]);
     }
 
  }

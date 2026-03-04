@@ -3,10 +3,16 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
-use RoundingMode;
 
+/**
+ * The strategy that compares an Angle instance agains a sexagesimal degrees 
+ * measure of an angle to check if they are equal.
+ */
 class EqualFloat extends ComparisonStrategy
 {
+    /**
+     * Construct the comparison strategy.
+     */
     public function __construct(
         Angle $alfa, 
         protected float $beta, 
@@ -16,6 +22,9 @@ class EqualFloat extends ComparisonStrategy
         parent::__construct($alfa);
     }
 
+    /**
+     * Perform the comparison.
+     */
     public function compare(): bool
     {
         return 

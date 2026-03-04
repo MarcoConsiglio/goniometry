@@ -74,4 +74,26 @@ trait WithFailureMessage
     {
         return "Calling $called_class::$method() must return a $return_type instance.";
     }
+
+    /**
+     * It produces a casting error message.
+     *
+     * @param string $type Type to cast to.
+     * @return string
+     */
+    protected function getCastError(string $type): string
+    {
+        return "Something is not working when casting to $type.";
+    }
+
+    /**
+     * It produces a property error message.
+     *
+     * @param string $property_name
+     * @return string
+     */
+    protected function getPropertyError(string $property_name): string
+    {
+        return "Angle::\${$property_name} property is not working correctly.";
+    }
 }

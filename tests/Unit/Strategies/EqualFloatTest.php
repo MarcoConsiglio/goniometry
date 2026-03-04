@@ -7,8 +7,10 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\Tests\Feature\AngleTest;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DependsExternal;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -21,6 +23,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Seconds::class)]
 class EqualFloatTest extends TestCase
 {
+    #[DependsExternal(AngleTest::class, "test_cast_to_decimal")]
     #[TestDox("can compare an Angle and a sexadecimal angle measure.")]
     public function test_compare(): void
     {
@@ -43,7 +46,7 @@ class EqualFloatTest extends TestCase
          * Not equal
          */
         // Arrange
-        $alfa = $this->randomAngle(0, 180 - 0.0000000000001);
+        $alfa = $this->randomAngle(0, 180 - self::SSN);
         $beta = $this->randomSexadecimal(180);
 
         // Act & Assert

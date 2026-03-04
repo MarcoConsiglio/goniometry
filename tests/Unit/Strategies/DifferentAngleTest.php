@@ -32,7 +32,7 @@ class DifferentAngleTest extends TestCase
          * Different
          */
         // Arrange
-        $alfa = $this->randomAngle(max: 180 - 0.0000000000001);
+        $alfa = $this->randomAngle(max: 180 - self::SSN);
         $beta = $this->randomAngle(min: 180);
 
         // Act & Assert
