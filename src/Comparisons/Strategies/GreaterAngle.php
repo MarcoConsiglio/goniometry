@@ -17,7 +17,7 @@ class GreaterAngle extends ComparisonStrategy
     /**
      * The right comparison operand.
      */
-    protected angle $beta;
+    protected Angle $beta;
 
     /**
      * Construct the comparison strategy.

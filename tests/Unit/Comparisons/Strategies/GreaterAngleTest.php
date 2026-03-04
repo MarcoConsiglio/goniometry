@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Strategies;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
@@ -59,7 +59,7 @@ class GreaterAngleTest extends TestCase
         $this->assertTrue(new GreaterAngle($epsilon, $zeta)->compare());
 
         /**
-         *  Less
+         *  Lesser
          */
 
         // Act & Assert
