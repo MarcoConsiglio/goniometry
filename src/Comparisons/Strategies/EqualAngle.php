@@ -8,24 +8,23 @@ use MarcoConsiglio\Goniometry\Angle;
  */
 class EqualAngle extends ComparisonStrategy
 {
-    private bool $equal_sign;
+    /**
+     * The left comparison operand.
+     */
+    protected Angle $alfa;
 
-    private bool $equal_degrees;
-
-    private bool $equal_minutes;
-
-    private bool $equal_seconds;
+    /**
+     * The right comparison operand.
+     */
+    protected Angle $beta;
 
     /**
      * Construct the comparison strategy.
      */
-    public function __construct(Angle $alfa, protected Angle $beta)
+    public function __construct(Angle $alfa, Angle $beta)
     {
         parent::__construct($alfa);
-        $this->equal_sign = $this->alfa->direction == $this->beta->direction;
-        $this->equal_degrees = $this->alfa->degrees->eq($this->beta->degrees);
-        $this->equal_minutes = $this->alfa->minutes->eq($this->beta->minutes);
-        $this->equal_seconds = $this->alfa->seconds->eq($this->beta->seconds);
+        $this->beta = $beta;
     }
 
     /**
@@ -33,10 +32,36 @@ class EqualAngle extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        if (! $this->equal_sign) return false;
-        if (! $this->equal_seconds) return false;
-        if (! $this->equal_degrees) return false;
-        if (! $this->equal_minutes) return false;
+        if (! $this->secondsAreEqual()) return false;
+        if (! $this->minutesAreEqual()) return false;
+        if (! $this->degreesAreEqual()) return false;
         return true;
+    }
+
+    /**
+     * Return true if $alfa->seconds are equal to $beta->seconds, false 
+     * otherwise.
+     */
+    protected function secondsAreEqual(): bool
+    {
+        return $this->alfa->degrees->eq($this->beta->degrees);
+    }
+
+    /**
+     * Return true if $alfa->minutes are equal to $beta->minutes, false 
+     * otherwise.
+     */
+    protected function minutesAreEqual(): bool
+    {
+        return $this->alfa->minutes->eq($this->beta->minutes);
+    }
+
+    /**
+     * Return true if $alfa->degrees are equal to $beta->degrees, false 
+     * otherwise.
+     */
+    protected function degreesAreEqual(): bool
+    {
+        return $this->alfa->degrees->eq($this->beta->degrees);
     }
 }

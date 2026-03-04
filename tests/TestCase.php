@@ -261,13 +261,13 @@ class TestCase extends PHPUnitTestCase
      */
     protected function randomSeconds(
         float $min = 0, 
-        float $max = Seconds::MAX - PHP_FLOAT_MIN, 
+        float $max = Seconds::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
     ): float {
         if ($min < 0 ) $min = abs($min);
-        if ($min >= Seconds::MAX) $min = Seconds::MAX - PHP_FLOAT_MIN;
+        if ($min >= Seconds::MAX) $min = Seconds::MAX - self::SSN;
         if ($max < 0) $max = abs($max);
-        if ($max >= Seconds::MAX) $max = Seconds::MAX - PHP_FLOAT_MIN;
+        if ($max >= Seconds::MAX) $max = Seconds::MAX - self::SSN;
         if ($precision < 0) $precision = abs($precision);
         if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
         return $this->positiveRandomFloat($min, $max, $precision);
