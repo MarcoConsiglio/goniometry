@@ -290,7 +290,7 @@ class TestCase extends PHPUnitTestCase
      */
     protected function randomSexadecimal(
         float $min = 0.0, 
-        float $max = Degrees::MAX - PHP_FLOAT_MIN, 
+        float $max = Degrees::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
     ): float {
         $random_value = $this->randomFloat($min, $max, $precision);
@@ -303,7 +303,7 @@ class TestCase extends PHPUnitTestCase
      */
     protected function positiveRandomSexadecimal(
         float $min = 0.0, 
-        float $max = Degrees::MAX - PHP_FLOAT_MIN, 
+        float $max = Degrees::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
     ): float {
         assert($min >= 0 && $min < Degrees::MAX);
@@ -318,7 +318,7 @@ class TestCase extends PHPUnitTestCase
      */
     protected function negativeRandomSexadecimal(
         float $min = 0.0, 
-        float $max = Degrees::MAX - PHP_FLOAT_MIN, 
+        float $max = Degrees::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
     ): float {
         return -$this->positiveRandomSexadecimal($min, $max, $precision);

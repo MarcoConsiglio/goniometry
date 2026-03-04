@@ -1,25 +1,24 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
-use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * The strategy that compares an Angle instance against a sexadecimal angle 
- * measure to check if they are equal.
+ * measure to check if they are different.
  */
-class EqualFloat extends ComparisonStrategy
+class DifferentFloat extends ComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
      */
     public function __construct(
-        Angle $alfa, 
-        protected float $beta, 
+        Angle $alfa,
+        protected float $beta,
         protected int $precision = PHP_FLOAT_DIG
     ) {
         assert($precision >= 0 && $precision <= PHP_FLOAT_DIG);
-        parent::__construct($alfa);
+        return parent::__construct($alfa);
     }
 
     /**
@@ -27,8 +26,6 @@ class EqualFloat extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        return 
-            $this->alfa->toDecimal($this->precision) == 
-            new Number($this->beta)->toFloat($this->precision);
+        return ! (new EqualFloat($this->alfa, $this->beta, $this->precision)->compare());
     }
 }
