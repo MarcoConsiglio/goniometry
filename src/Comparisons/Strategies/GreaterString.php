@@ -2,13 +2,12 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
 
 /**
- * The strategy that compares an Angle instance against a sexagesimal degrees 
+ * The strategy that compares an Angle instance against a sexagesimal string 
  * measure of an angle to check if the first is greater than the last.
  */
-class GreaterInt extends ComparisonStrategy
+class GreaterString extends ComparisonStrategy
 {
     /**
      * The left comparison operand.
@@ -23,12 +22,10 @@ class GreaterInt extends ComparisonStrategy
     /**
      * Construct the comparison strategy.
      */
-    public function __construct(Angle $alfa, int $beta)
+    public function __construct(Angle $alfa, string $beta)
     {
         parent::__construct($alfa);
-        $this->beta = Angle::createFromValues(
-            degrees: $beta
-        );
+        $this->beta = Angle::createFromString($beta);
     }
 
     /**
