@@ -9,8 +9,11 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategy;
  */
 abstract class ComparisonStrategy implements Strategy
 {
+    
     /**
      * Construct the comparison strategy.
+     * 
+     * @param Angle $alfa The left comparison operand.
      */
     public function __construct(protected Angle $alfa) {}
 }

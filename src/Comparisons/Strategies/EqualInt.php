@@ -11,23 +11,14 @@ use MarcoConsiglio\Goniometry\Enums\Direction;
 class EqualInt extends ComparisonStrategy
 {
     /**
-     * The right comparison operand.
-     */
-    protected Angle $beta;
-
-    /**
      * Construct the comparison strategy.
      * 
      * @param int $beta The right comparison operand expressed as an integer
      * degrees measure.
      */
-    public function __construct(Angle $alfa, int $beta)
+    public function __construct(Angle $alfa, protected int $beta)
     {
         parent::__construct($alfa);
-        $this->beta = Angle::createFromValues(
-            degrees: $beta, 
-            direction: $beta >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE
-        );
     }
 
     /**
@@ -35,6 +26,9 @@ class EqualInt extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        return new EqualAngle($this->alfa, $this->beta)->compare();
+        return new EqualAngle(
+            $this->alfa, 
+            Angle::createFromValues($this->beta)
+        )->compare();
     }
 }

@@ -10,22 +10,13 @@ use MarcoConsiglio\Goniometry\Angle;
 class GreaterAngle extends ComparisonStrategy
 {
     /**
-     * The left comparison operand.
-     */
-    protected Angle $alfa;
-
-    /**
-     * The right comparison operand.
-     */
-    protected Angle $beta;
-
-    /**
      * Construct the comparison strategy.
+     * 
+     * @param Angle $beta The right comparison operand.
      */
-    public function __construct(Angle $alfa, Angle $beta)
+    public function __construct(Angle $alfa, protected Angle $beta)
     {
         parent::__construct($alfa);
-        $this->beta = $beta;
     }
 
     /**

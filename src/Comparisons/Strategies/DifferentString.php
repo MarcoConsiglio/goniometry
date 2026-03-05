@@ -10,17 +10,14 @@ use MarcoConsiglio\Goniometry\Angle;
 class DifferentString extends ComparisonStrategy
 {
     /**
-     * The right comparison operand.
-     */
-    protected Angle $beta;
-
-    /**
      * Construct the comparison strategy.
+     * 
+     * @param string $beta The right comparison operand expressed as a 
+     * sexagesimal string angle measure.
      */
-    public function __construct(Angle $alfa, string $beta)
+    public function __construct(Angle $alfa, protected string $beta)
     {
         parent::__construct($alfa);
-        $this->beta = Angle::createFromString($beta);
     }
 
     /**
@@ -28,6 +25,8 @@ class DifferentString extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        return new DifferentAngle($this->alfa, $this->beta)->compare();
+        return new DifferentAngle(
+            $this->alfa, Angle::createFromString($this->beta)
+        )->compare();
     }
 }

@@ -11,24 +11,11 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
 class GreaterInt extends ComparisonStrategy
 {
     /**
-     * The left comparison operand.
-     */
-    protected Angle $alfa;
-
-    /**
-     * The right comparison operand.
-     */
-    protected Angle $beta;
-
-    /**
      * Construct the comparison strategy.
      */
-    public function __construct(Angle $alfa, int $beta)
+    public function __construct(Angle $alfa, protected int $beta)
     {
         parent::__construct($alfa);
-        $this->beta = Angle::createFromValues(
-            degrees: $beta
-        );
     }
 
     /**
@@ -36,6 +23,9 @@ class GreaterInt extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        return new GreaterAngle($this->alfa, $this->beta)->compare();
+        return new GreaterAngle(
+            $this->alfa, 
+            Angle::createFromValues($this->beta)
+        )->compare();
     }
 }

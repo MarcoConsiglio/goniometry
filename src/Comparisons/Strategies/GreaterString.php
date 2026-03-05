@@ -8,24 +8,13 @@ use MarcoConsiglio\Goniometry\Angle;
  * measure of an angle to check if the first is greater than the last.
  */
 class GreaterString extends ComparisonStrategy
-{
-    /**
-     * The left comparison operand.
-     */
-    protected Angle $alfa;
-
-    /**
-     * The right comparison operand.
-     */
-    protected Angle $beta;
-
+{    
     /**
      * Construct the comparison strategy.
      */
-    public function __construct(Angle $alfa, string $beta)
+    public function __construct(Angle $alfa, protected string $beta)
     {
         parent::__construct($alfa);
-        $this->beta = Angle::createFromString($beta);
     }
 
     /**
@@ -33,6 +22,9 @@ class GreaterString extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        return new GreaterAngle($this->alfa, $this->beta)->compare();
+        return new GreaterAngle(
+            $this->alfa, 
+            Angle::createFromString($this->beta)
+        )->compare();
     }
 }

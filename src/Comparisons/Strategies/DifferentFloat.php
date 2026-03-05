@@ -11,6 +11,10 @@ class DifferentFloat extends ComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
+     * 
+     * @param float $beta The right operand of the comparison expressed as
+     * a sexadecimal angle measure.
+     * @param int $precision The precision used in the comparison.
      */
     public function __construct(
         Angle $alfa,
@@ -18,7 +22,7 @@ class DifferentFloat extends ComparisonStrategy
         protected int $precision = PHP_FLOAT_DIG
     ) {
         assert($precision >= 0 && $precision <= PHP_FLOAT_DIG);
-        return parent::__construct($alfa);
+        parent::__construct($alfa);
     }
 
     /**

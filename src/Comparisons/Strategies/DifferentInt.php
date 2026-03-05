@@ -10,20 +10,14 @@ use MarcoConsiglio\Goniometry\Angle;
 class DifferentInt extends ComparisonStrategy
 {
     /**
-     * The right comparison operand.
-     */
-    protected int $beta;
-
-    /**
      * Construct the comparison strategy.
      * 
      * @param int $beta The right comparison operand expressed as an integer
      * degrees measure.
      */
-    public function __construct(Angle $alfa, int $beta)
+    public function __construct(Angle $alfa, protected int $beta)
     {
         parent::__construct($alfa);
-        $this->beta = $beta;
     }
 
     /**
