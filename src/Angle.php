@@ -421,12 +421,7 @@ class Angle implements AngleInterface
         return $this->isGreaterThan($angle, $precision);
     }
 
-    private function greaterThanComparison(Angle $alfa, Angle $beta): bool
-    {
-        
-    }
-
-    /**
+     /**
      * Check if this angle is greater than or equal to $angle.
      *
      * @param string|int|float|AngleInterface $angle

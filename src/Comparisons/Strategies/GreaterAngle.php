@@ -37,7 +37,7 @@ class GreaterAngle extends ComparisonStrategy
      * Return true if $alfa->degrees is greater than beta->degrees, false 
      * otherwise.
      */
-    public function degreesAreGreater(): bool
+    protected function degreesAreGreater(): bool
     {
         return $this->alfa->degrees->gt($this->beta->degrees);
     }
@@ -46,7 +46,7 @@ class GreaterAngle extends ComparisonStrategy
      * Return true if $alfa->degrees is less than $beta->degrees, false 
      * otherwise.
      */
-    public function degreesAreLess(): bool
+    protected function degreesAreLess(): bool
     {
         return $this->alfa->degrees->lt($this->beta->degrees);
     }
@@ -55,7 +55,7 @@ class GreaterAngle extends ComparisonStrategy
      * Return true if $alfa->minutes is greater than $beta->minutes, false 
      * otherwise.
      */
-    public function minutesAreGreater(): bool
+    protected function minutesAreGreater(): bool
     {
         return $this->alfa->minutes->gt($this->beta->minutes);
     }
@@ -64,7 +64,7 @@ class GreaterAngle extends ComparisonStrategy
      * Return true if $alfa->minutes is less than $beta->minutes, false 
      * otherwise.
      */
-    public function minutesAreLess(): bool
+    protected function minutesAreLess(): bool
     {
         return $this->alfa->minutes->lt($this->beta->minutes);
     }
@@ -73,7 +73,7 @@ class GreaterAngle extends ComparisonStrategy
      * Return true if $alfa->seconds is greater than $beta->seconds, false 
      * otherwise.
      */
-    public function secondsAreGreater(): bool
+    protected function secondsAreGreater(): bool
     {
         return $this->alfa->seconds->gt($this->beta->seconds);
     }
@@ -82,7 +82,7 @@ class GreaterAngle extends ComparisonStrategy
      * Return true if $alfa->seconds is less than $beta->seconds, false 
      * otherwise.
      */
-    public function secondsAreLess(): bool
+    protected function secondsAreLess(): bool
     {
         return $this->alfa->seconds->lt($this->beta->seconds);
     }
