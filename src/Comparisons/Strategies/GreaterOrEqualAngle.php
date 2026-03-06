@@ -19,6 +19,9 @@ class GreaterOrEqualAngle extends ComparisonStrategy
         parent::__construct($alfa);
     }
 
+    /**
+     * Perform the comparison.
+     */
     public function compare(): bool
     {
         return 
