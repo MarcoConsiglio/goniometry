@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * The strategy that compares two Angle instances to check if the first is 
- * greater than or equal than the last.
+ * greater or equal than the last.
  */
 class GreaterOrEqualAngle extends ComparisonStrategy
 {
