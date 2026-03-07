@@ -3,27 +3,31 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LessAngle;
+use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The LessAngle comparison strategy")]
-#[CoversClass(LessAngle::class)]
+#[TestDox("The LesserString comparison strategy")]
+#[CoversClass(LesserString::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(FromDecimal::class)]
+#[UsesClass(FromString::class)]
+#[UsesClass(GreaterAngle::class)]
+#[UsesClass(LesserAngle::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class LessAngleTest extends TestCase
+class LesserStringTest extends TestCase
 {
-    #[DependsOnClass(GreaterAngleTest::class)]
-    #[TestDox("can compare two Angle instances.")]
+    #[TestDox("can compare an Angle and a sexagesimal string angle measure.")]
     public function test_compare(): void
     {
         /**
@@ -31,29 +35,29 @@ class LessAngleTest extends TestCase
          */
         // Arrange
         $alfa = $this->randomAngle(max: 180 - self::SSN);
-        $beta = $this->randomAngle(min: 180);
+        $beta = (string) $this->randomAngle(min: 180);
 
         // Act & Assert
-        $this->assertTrue(new LessAngle($alfa, $beta)->compare());
+        $this->assertTrue(new LesserString($alfa, $beta)->compare());
 
         /**
          * Equal
          */
         // Arrange
         $alfa = $this->randomAngle();
-        $beta = clone $alfa;
+        $beta = (string) clone $alfa;
 
         // Act & Assert
-        $this->assertFalse(new LessAngle($alfa, $beta)->compare());
+        $this->assertFalse(new LesserString($alfa, $beta)->compare());
 
         /**
          * Greater
          */
         // Arrange
         $alfa = $this->randomAngle(min: 180);
-        $beta = $this->randomAngle(max: 180 - self::SSN);
+        $beta = (string) $this->randomAngle(max: 180 - self::SSN);
 
         // Act & Assert
-        $this->assertFalse(new LessAngle($alfa, $beta)->compare());
+        $this->assertFalse(new LesserString($alfa, $beta)->compare());
     }
 }

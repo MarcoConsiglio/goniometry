@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\Angle;
  * The strategy that compares an Angle instance against a sexagesimal degrees 
  * measure of an angle to check if the first is less than the last.
  */
-class LessInt extends ComparisonStrategy
+class LesserInt extends ComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
@@ -25,7 +25,7 @@ class LessInt extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        return new LessAngle(
+        return new LesserAngle(
             $this->alfa,
             Angle::createFromValues($this->beta)
         )->compare();

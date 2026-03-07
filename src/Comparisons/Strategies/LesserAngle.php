@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\Angle;
  * The strategy that compares two Angle instances to check if the first is less
  * than the last.
  */
-class LessAngle extends GreaterAngle
+class LesserAngle extends GreaterAngle
 {
     /**
      * Construct the comparison strategy.

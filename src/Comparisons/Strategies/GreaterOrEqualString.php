@@ -11,6 +11,9 @@ class GreaterOrEqualString extends ComparisonStrategy
 {    
     /**
      * Construct the comparison strategy.
+     * 
+     * @param string $beta The right comparison operand expressed as a 
+     * sexagesimal string angle measure.
      */
     public function __construct(Angle $alfa, protected string $beta)
     {

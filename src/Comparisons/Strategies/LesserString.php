@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\Angle;
  * The strategy that compares an Angle instance against a sexagesimal string 
  * measure of an angle to check if the first is greater than the last.
  */
-class GreaterString extends ComparisonStrategy
+class LesserString extends ComparisonStrategy
 {    
     /**
      * Construct the comparison strategy.
@@ -25,7 +25,7 @@ class GreaterString extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        return new GreaterAngle(
+        return new LesserAngle(
             $this->alfa, 
             Angle::createFromString($this->beta)
         )->compare();
