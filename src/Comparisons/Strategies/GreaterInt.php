@@ -13,6 +13,7 @@ class GreaterInt extends ComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
+     * @param Angle $alfa The left comparison operand.
      * @param int $beta The right comparison operand expressed as an integer
      * degrees measure.
      */

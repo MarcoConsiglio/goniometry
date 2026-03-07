@@ -13,6 +13,7 @@ class EqualFloat extends ComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
+     * @param Angle $alfa The left comparison operand.
      * @param float $beta The right operand of the comparison expressed as a
      * sexadecimal angle measure.
      * @param int $precision The precision used in the comparison.

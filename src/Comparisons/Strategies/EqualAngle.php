@@ -11,6 +11,7 @@ class EqualAngle extends ComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
+     * @param Angle $alfa The left comparison operand.
      * @param Angle $beta The right comparison operand.
      */
     public function __construct(Angle $alfa, protected Angle $beta)

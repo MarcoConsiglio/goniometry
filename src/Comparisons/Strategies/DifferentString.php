@@ -12,6 +12,7 @@ class DifferentString extends ComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
+     * @param Angle $alfa The left comparison operand.
      * @param string $beta The right comparison operand expressed as a 
      * sexagesimal string angle measure.
      */

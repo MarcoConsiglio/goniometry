@@ -11,6 +11,7 @@ class DifferentAngle extends ComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
+     * @param Angle $beta The left comparison operand.
      * @param Angle $beta The right operand of the comparison.
      */
     public function __construct(Angle $alfa, protected Angle $beta)
