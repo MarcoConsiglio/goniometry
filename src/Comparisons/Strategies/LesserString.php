@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * The strategy that compares an Angle instance against a sexagesimal string 
- * measure of an angle to check if the first is greater than the last.
+ * measure of an angle to check if the first is lesser than the last.
  */
 class LesserString extends ComparisonStrategy
 {    
