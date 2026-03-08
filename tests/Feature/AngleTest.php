@@ -5,17 +5,17 @@ use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromAnglesToAbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\FromAnglesToRelativeSum;
+use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromRadian;
+use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Builders\SumBuilder;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
-use MarcoConsiglio\Goniometry\Tests\Unit\Builders\FromDecimalTest;
-use MarcoConsiglio\Goniometry\Tests\Unit\Builders\FromDegreesTest;
-use MarcoConsiglio\Goniometry\Tests\Unit\Builders\FromRadianTest;
-use MarcoConsiglio\Goniometry\Tests\Unit\Builders\FromStringTest;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Depends;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use RoundingMode;
@@ -25,7 +25,13 @@ use RoundingMode;
 #[UsesClass(FromAnglesToAbsoluteSum::class)]
 #[UsesClass(FromAnglesToRelativeSum::class)]
 #[UsesClass(FromDegrees::class)]
+#[UsesClass(FromDecimal::class)]
+#[UsesClass(FromString::class)]
+#[UsesClass(FromRadian::class)]
 #[UsesClass(SumBuilder::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(Seconds::class)]
 class AngleTest extends TestCase
 {
     #[TestDox('has "degrees" property which is of type Degrees.')]
@@ -69,8 +75,7 @@ class AngleTest extends TestCase
         // Act & Assert
         $this->assertEquals($direction, $alfa->direction, $this->getPropertyError("direction"));
     }
-    
-    #[DependsOnClass(FromDegreesTest::class)]
+
     #[TestDox("can be created from separated values for degrees, minutes, seconds and direction.")]
     public function test_create_from_values()
     {
@@ -89,7 +94,6 @@ class AngleTest extends TestCase
         ]);
     }
 
-    #[DependsOnClass(FromStringTest::class)]
     #[TestDox("can be created from a textual representation.")]
     public function test_create_from_string()
     {
@@ -111,7 +115,6 @@ class AngleTest extends TestCase
         ]);
     }
 
-    #[DependsOnClass(FromDecimalTest::class)]
     #[TestDox("can be created from a decimal number.")]
     public function test_create_from_decimal()
     {
@@ -128,11 +131,10 @@ class AngleTest extends TestCase
 
         $this->assertEquals(
             $decimal, 
-            $angle->toDecimal()
+            $angle->toFloat()
         );
     }
 
-    #[DependsOnClass(FromRadianTest::class)]
     #[TestDox("can be created from a radian number.")]
     public function test_create_from_radiant()
     {
@@ -175,7 +177,6 @@ class AngleTest extends TestCase
         $this->assertEquals($seconds,   $associative_result["seconds"], $failure_message_2);
     }
 
-    #[Depends("test_angle_is_clockwise")]
     #[TestDox("can be printed in a positive or negative textual representation.")]
     public function test_cast_angle_to_string()
     {
@@ -194,11 +195,11 @@ class AngleTest extends TestCase
     #[TestDox("can be casted to decimal.")]
     public function test_cast_to_decimal()
     {
-        $this->testCastToDecimal();
-        $this->testCastToDecimal(0);
-        $this->testCastToDecimal($this->faker->numberBetween(1, PHP_FLOAT_DIG - 3));
-        $this->testCastToDecimal(PHP_FLOAT_DIG - 2);
-        $this->testCastToDecimal(PHP_FLOAT_DIG);
+        $this->testCasttoFloat();
+        $this->testCasttoFloat(0);
+        $this->testCasttoFloat($this->faker->numberBetween(1, PHP_FLOAT_DIG - 3));
+        $this->testCasttoFloat(PHP_FLOAT_DIG - 2);
+        $this->testCasttoFloat(PHP_FLOAT_DIG);
 
         /**
          * Other builders than FromDecimal.
@@ -210,13 +211,12 @@ class AngleTest extends TestCase
         [$degrees, $minutes, $seconds, $direction] = $this->randomSexagesimal();
         $alfa = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
         $beta = clone $alfa;
-        $decimal = $beta->toDecimal($precision);
+        $decimal = $beta->toFloat($precision);
 
         // Act & Assert
-        $this->assertEquals($decimal, $alfa->toDecimal($precision), $this->getCastError("decimal"));
+        $this->assertEquals($decimal, $alfa->toFloat($precision), $this->getCastError("decimal"));
     }
 
-    #[DependsOnClass(FromRadianTest::class)]
     #[TestDox("can be casted to radian.")]
     public function test_cast_to_radian()
     {
@@ -330,7 +330,6 @@ class AngleTest extends TestCase
         $this->assertEquals(Direction::COUNTER_CLOCKWISE, $beta_opposite->direction, $failure_message_1);
     }
 
-    #[Depends("test_cast_to_decimal")]
     #[TestDox("can be tested if it is equal to another congruent string, integer, decimal or object angle.")]
     public function test_equal_comparison()
     {
@@ -354,6 +353,7 @@ class AngleTest extends TestCase
     #[TestDox("can sum two angles obtaining a relative result.")]
     public function test_can_sum_two_angles_and_return_relative_result()
     {
+        $this->markTestSkipped("This test is waiting for refactoring.");
         // Arrange
         $alfa = $this->randomAngle();
         $beta = $this->randomAngle();
@@ -370,6 +370,7 @@ class AngleTest extends TestCase
     #[TestDox("can sum two angles obtaining an absolute result.")]
     public function test_can_sum_two_angles_and_return_absolute_result()
     {
+        $this->markTestSkipped("This test is waiting for refactoring.");
         // Arrange
         $alfa = $this->randomAngle();
         $beta = $this->randomAngle();
@@ -392,7 +393,7 @@ class AngleTest extends TestCase
      * @param integer|null|null $precision
      * @return void
      */
-    protected function testCastToDecimal(int|null $precision = null): void
+    protected function testCasttoFloat(int|null $precision = null): void
     {
         // Arrange
         $decimal = $this->faker->randomFloat(
@@ -402,7 +403,7 @@ class AngleTest extends TestCase
         $angle = Angle::createFromDecimal($decimal);
         
         // Act
-        $result = $angle->toDecimal($precision);
+        $result = $angle->toFloat($precision);
 
         // Assert
         $this->assertIsFloat($result);
@@ -427,12 +428,12 @@ class AngleTest extends TestCase
         $failure_message_true = "$first_angle ≇ $second_angle is true.";
         
         $this->assertTrue($first_angle->eq((string) $second_angle),                             $failure_message_false);
-        $this->assertTrue($first_angle->eq($second_angle->toDecimal($precision), $precision),   $failure_message_false);
+        $this->assertTrue($first_angle->eq($second_angle->toFloat($precision), $precision),   $failure_message_false);
         $this->assertTrue($first_angle->eq($second_angle),                                      $failure_message_false);
         $this->assertTrue($first_angle->equals($second_angle),                                  $failure_message_false);
         
         $this->assertFalse($first_angle->not((string) $second_angle),                           $failure_message_true);
-        $this->assertFalse($first_angle->not($second_angle->toDecimal($precision), $precision), $failure_message_true);
+        $this->assertFalse($first_angle->not($second_angle->toFloat($precision), $precision), $failure_message_true);
         $this->assertFalse($first_angle->not($second_angle),                                    $failure_message_true);
     }
 

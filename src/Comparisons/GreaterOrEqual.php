@@ -1,10 +1,11 @@
 <?php
+
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
- * The Different comparison between angles.
+ * The GreaterOrEqual comparison between angles.
  */
-class Different extends Comparison
+class GreaterOrEqual extends Comparison
 {
     /**
      * Set the comparison strategy based on the comparison type and

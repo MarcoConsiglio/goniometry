@@ -8,7 +8,7 @@ use MarcoConsiglio\Goniometry\Angle;
  * The strategy that compares an Angle instance against a sexadecimal angle 
  * measure to check if the first is greater than the last.
  */
-class GreaterFloat extends ComparisonStrategy
+class GreaterFloat extends FloatComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
@@ -20,8 +20,9 @@ class GreaterFloat extends ComparisonStrategy
     public function __construct(
         Angle $alfa, 
         protected float $beta, 
-        protected int $precision = PHP_FLOAT_DIG
+        protected int $precision = 54
     ) {
+        $this->checkPrecision($precision);
         parent::__construct($alfa);
     }
 
@@ -30,7 +31,10 @@ class GreaterFloat extends ComparisonStrategy
      */
     public function compare(): bool
     {
-        return $this->alfa->toDecimal($this->precision) >
-            new Number($this->beta)->toFloat($this->precision);
+        return 
+            $this->alfa->toDecimal()->round($this->precision)->abs()
+            ->gt(
+                new Number($this->beta)->round($this->precision)->abs()
+            );
     }
 }

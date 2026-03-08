@@ -76,7 +76,7 @@ interface Angle
      *
      * @return float
      */
-    public function toDecimal(): float;
+    public function toFloat(): float;
 
     /**
      * Gets the radian representation of this angle.

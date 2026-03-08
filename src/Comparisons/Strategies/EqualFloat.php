@@ -8,7 +8,7 @@ use MarcoConsiglio\Goniometry\Angle;
  * The strategy that compares an Angle instance against a sexadecimal angle 
  * measure to check if they are equal.
  */
-class EqualFloat extends ComparisonStrategy
+class EqualFloat extends FloatComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
@@ -21,9 +21,9 @@ class EqualFloat extends ComparisonStrategy
     public function __construct(
         Angle $alfa, 
         protected float $beta, 
-        protected int $precision = PHP_FLOAT_DIG
+        protected int $precision = 54
     ) {
-        assert($precision >= 0 && $precision <= PHP_FLOAT_DIG);
+        $this->checkPrecision($precision);
         parent::__construct($alfa);
     }
 
@@ -33,7 +33,7 @@ class EqualFloat extends ComparisonStrategy
     public function compare(): bool
     {
         return 
-            $this->alfa->toDecimal($this->precision) == 
-            new Number($this->beta)->toFloat($this->precision);
+            $this->alfa->toDecimal()->abs()->round($this->precision)
+            ->eq(new Number($this->beta)->abs()->round($this->precision));
     }
 }

@@ -2,9 +2,9 @@
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
- * The Different comparison between angles.
+ * The LesserOrEqual comparison between angles.
  */
-class Different extends Comparison
+class LesserOrEqual extends Comparison
 {
     /**
      * Set the comparison strategy based on the comparison type and

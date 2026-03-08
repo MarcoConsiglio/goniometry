@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 namespace MarcoConsiglio\Goniometry;
 
+use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Builders\FromAnglesToAbsoluteSum;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
@@ -307,16 +308,16 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Gets the decimal degrees representation of this angle.
+     * Return the sexadecimal value of this `Angle`.
      *
      * @param integer|null $precision The number of decimal digits. If sets to null,
      * it resolve the original precision at the time this Angle was built.
      * @return float The angular value expressed as a decimal number.
      */
-    public function toDecimal(int|null $precision = null): float
+    public function toFloat(int|null $precision = null): float
     {
         if ($precision !== null) assert($precision >= 0 && $precision <= PHP_FLOAT_DIG);
-        if ($this->original_decimal) {
+        if ($this->original_decimal !== null) {
             if ($precision !== null)
                 return round($this->original_decimal, $precision, RoundingMode::HalfTowardsZero);
             else
@@ -333,8 +334,26 @@ class Angle implements AngleInterface
             $decimal->getParent()->scale : 
             $precision;
         if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
-        $decimal = $decimal->round($precision);
-        return $this->original_decimal = (float) $decimal->mul($this->direction->value)->value;
+        $decimal = $decimal->mul($this->direction->value)->round($precision);
+        return $this->original_decimal = (float) $decimal->value;
+    }
+
+    /**
+     * Return the sexadecimal value of this `Angle` with an arbitrary 
+     * precision.
+     */
+    public function toDecimal(): Number
+    {
+        if ($this->original_decimal !== null)
+            return new Number($this->original_decimal);
+        $decimal = $this->degrees->value->plus(
+            $this->minutes->value->div(Minutes::MAX)
+        )->plus(
+            $this->seconds->value->div(
+                Minutes::MAX * Seconds::MAX
+            )
+        );
+        return $decimal->mul($this->direction->value);
     }
 
     /**
@@ -368,13 +387,13 @@ class Angle implements AngleInterface
         // All other cases.
         if ($precision) {
             return $this->original_radian = round(
-                deg2rad($this->toDecimal()),
+                deg2rad($this->toFloat()),
                 $precision,
                 RoundingMode::HalfTowardsZero
             );
         }
         return $this->original_radian = round(
-            deg2rad($this->toDecimal()),
+            deg2rad($this->toFloat()),
             PHP_FLOAT_DIG,
             RoundingMode::HalfTowardsZero
         );
@@ -395,16 +414,16 @@ class Angle implements AngleInterface
             return $this->isGreaterThan(Angle::createFromString($angle));
         }
         if (is_int($angle)) {
-            return abs($this->toDecimal($precision)) > abs($angle);
+            return abs($this->toFloat($precision)) > abs($angle);
         }
         if (is_float($angle)) {
             if ($precision)
-                return abs($this->toDecimal($precision)) > abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
+                return abs($this->toFloat($precision)) > abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
             else
-                return abs($this->toDecimal()) > abs($angle);
+                return abs($this->toFloat()) > abs($angle);
         }
         // Angle object case. 
-        return abs($this->toDecimal($precision)) > abs($angle->toDecimal($precision));
+        return abs($this->toFloat($precision)) > abs($angle->toFloat($precision));
     }
 
     /**
@@ -521,13 +540,13 @@ class Angle implements AngleInterface
             return $this->isEqual(Angle::createFromString($angle));
         }
         if (is_int($angle)) {
-            return abs($this->toDecimal($precision)) == abs($angle);
+            return abs($this->toFloat($precision)) == abs($angle);
         }
         if (is_float($angle)) {
             if ($precision)
-                return abs($this->toDecimal($precision)) == abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
+                return abs($this->toFloat($precision)) == abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
             else
-                return abs($this->toDecimal()) == abs($angle);
+                return abs($this->toFloat()) == abs($angle);
         }
         // Angle type case
         return $this->equals($angle);

@@ -1,6 +1,9 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
+/**
+ * The Greater comparison between angles.
+ */
 class Greater extends Comparison
 {
     /**
@@ -10,13 +13,5 @@ class Greater extends Comparison
     protected function setComparisonStrategy(): void
     {
         $this->comparison_strategy = $this->getBetaType()->getStrategyFor($this, $this->alfa);
-    }
-
-    /**
-     * Perform the comparison.
-     */
-    public function compare(): bool
-    {
-        return $this->comparison_strategy->compare();
     }
 }

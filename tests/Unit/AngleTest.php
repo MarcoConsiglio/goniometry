@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace MarcoConsiglio\Goniometry\Tests\Unit;
 
-use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AngleBuilder;
 use MarcoConsiglio\Goniometry\Builders\FromAnglesToRelativeSum;
@@ -16,16 +15,9 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithEqualsMethod;
-use MarcoConsiglio\Goniometry\Tests\Unit\Builders\FromDecimalTest;
-use MarcoConsiglio\Goniometry\Tests\Unit\Builders\FromDegreesTest;
-use MarcoConsiglio\Goniometry\Tests\Unit\Builders\FromRadianTest;
-use MarcoConsiglio\Goniometry\Tests\Unit\Builders\FromStringTest;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Depends;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use RoundingMode;
 use TypeError;
 
 #[TestDox("An Angle")]
@@ -137,8 +129,8 @@ class AngleTest extends TestCase
         $this->markTestSkipped("Angle comparisons need a huge refactoring.");
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa  */
-        $alfa = $this->getMockedAngle(["toDecimal"]);
-        $alfa->expects($this->never())->method("toDecimal");
+        $alfa = $this->getMockedAngle(["toFloat"]);
+        $alfa->expects($this->never())->method("toFloat");
         $invalid_argument = true;
 
         // Act & Assert
@@ -168,8 +160,8 @@ class AngleTest extends TestCase
         $this->markTestSkipped("Angle comparisons need a huge refactoring.");
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa  */
-        $alfa = $this->getMockedAngle(["toDecimal"]);
-        $alfa->expects($this->never())->method("toDecimal");
+        $alfa = $this->getMockedAngle(["toFloat"]);
+        $alfa->expects($this->never())->method("toFloat");
         $invalid_argument = true;
         
         // Act & Assert
@@ -203,8 +195,8 @@ class AngleTest extends TestCase
         $this->markTestSkipped("Angle comparisons need a huge refactoring.");
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa  */
-        $alfa = $this->getMockedAngle(["toDecimal"]);
-        $alfa->expects($this->never())->method("toDecimal");
+        $alfa = $this->getMockedAngle(["toFloat"]);
+        $alfa->expects($this->never())->method("toFloat");
         $invalid_argument = true;
         
         // Act & Assert
@@ -239,8 +231,8 @@ class AngleTest extends TestCase
         $this->markTestSkipped("Angle comparisons need a huge refactoring.");
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle(["toDecimal"]);
-        $alfa->expects($this->never())->method("toDecimal");
+        $alfa = $this->getMockedAngle(["toFloat"]);
+        $alfa->expects($this->never())->method("toFloat");
         $invalid_argument = true;
 
         // Act & Assert
@@ -275,8 +267,8 @@ class AngleTest extends TestCase
         $this->markTestSkipped("Angle comparisons need a huge refactoring.");
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle(["toDecimal"]);
-        $alfa->expects($this->never())->method("toDecimal");
+        $alfa = $this->getMockedAngle(["toFloat"]);
+        $alfa->expects($this->never())->method("toFloat");
         $invalid_argument = true;
         
         // Act & Assert
@@ -311,8 +303,8 @@ class AngleTest extends TestCase
         $this->markTestSkipped("Angle comparisons need a huge refactoring.");
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
-        $alfa = $this->getMockedAngle(["toDecimal"]);
-        $alfa->expects($this->never())->method("toDecimal");
+        $alfa = $this->getMockedAngle(["toFloat"]);
+        $alfa->expects($this->never())->method("toFloat");
         $invalid_argument = true;
         
         // Act & Assert
@@ -335,11 +327,11 @@ class AngleTest extends TestCase
         $failure_message = "$first_angle ≦ $second_angle is false.";
         
         $this->assertTrue($first_angle->gt((string) $second_angle),                            $failure_message);
-        $this->assertTrue($first_angle->gt($second_angle->toDecimal($precision), $precision),  $failure_message);
+        $this->assertTrue($first_angle->gt($second_angle->toFloat($precision), $precision),  $failure_message);
         $this->assertTrue($first_angle->gt($second_angle),                                     $failure_message);
         
         $this->assertFalse($first_angle->lte((string) $second_angle),                           $failure_message);
-        $this->assertFalse($first_angle->lte($second_angle->toDecimal($precision), $precision), $failure_message);
+        $this->assertFalse($first_angle->lte($second_angle->toFloat($precision), $precision), $failure_message);
         $this->assertFalse($first_angle->lte($second_angle),                                    $failure_message);
     }
     
@@ -375,11 +367,11 @@ class AngleTest extends TestCase
         $failure_message_true = "$first_angle < $second_angle is true.";
         
         $this->assertTrue($first_angle->gte((string) $second_angle),               $failure_message_false);
-        $this->assertTrue($first_angle->gte($second_angle->toDecimal($precision)), $failure_message_false);
+        $this->assertTrue($first_angle->gte($second_angle->toFloat($precision)), $failure_message_false);
         $this->assertTrue($first_angle->gte($second_angle),                        $failure_message_false);
         
         $this->assertFalse($first_angle->lt((string) $second_angle),               $failure_message_true);
-        $this->assertFalse($first_angle->lt($second_angle->toDecimal($precision)), $failure_message_true);
+        $this->assertFalse($first_angle->lt($second_angle->toFloat($precision)), $failure_message_true);
         $this->assertFalse($first_angle->lt($second_angle),                        $failure_message_true);
     }
     
@@ -415,11 +407,11 @@ class AngleTest extends TestCase
         $failure_message_true = "$first_angle ≅ $second_angle is true.";
         
         $this->assertTrue($first_angle->not((string) $second_angle),               $failure_message_false);
-        $this->assertTrue($first_angle->not($second_angle->toDecimal($precision)), $failure_message_false);
+        $this->assertTrue($first_angle->not($second_angle->toFloat($precision)), $failure_message_false);
         $this->assertTrue($first_angle->not($second_angle),                        $failure_message_false);
         
         $this->assertFalse($first_angle->eq((string) $second_angle),               $failure_message_true);
-        $this->assertFalse($first_angle->eq($second_angle->toDecimal($precision)), $failure_message_true);
+        $this->assertFalse($first_angle->eq($second_angle->toFloat($precision)), $failure_message_true);
         $this->assertFalse($first_angle->eq($second_angle),                        $failure_message_true);
         $this->assertFalse($first_angle->equals($second_angle),                    $failure_message_true);
     }
@@ -454,11 +446,11 @@ class AngleTest extends TestCase
         $failure_message_false = "$first_angle < $second_angle is false.";
         $failure_message_true = "$first_angle ≧ $second_angle is true.";
         $this->assertTrue($first_angle->lt((string) $second_angle),                 $failure_message_false);
-        $this->assertTrue($first_angle->lt($second_angle->toDecimal($precision)),   $failure_message_false);
+        $this->assertTrue($first_angle->lt($second_angle->toFloat($precision)),   $failure_message_false);
         $this->assertTrue($first_angle->lt($second_angle),                          $failure_message_false);
         
         $this->assertFalse($first_angle->gte((string) $second_angle),               $failure_message_true);
-        $this->assertFalse($first_angle->gte($second_angle->toDecimal($precision)), $failure_message_true);
+        $this->assertFalse($first_angle->gte($second_angle->toFloat($precision)), $failure_message_true);
         $this->assertFalse($first_angle->gte($second_angle),                        $failure_message_true);
     }
     
@@ -493,10 +485,10 @@ class AngleTest extends TestCase
         $failure_message_false = "$first_angle ≦ $second_angle is false intead of expected true.";
         $failure_message_true = "$first_angle > $second_angle is true instead of expected false.";
         $this->assertTrue($first_angle->lte((string) $second_angle),               $failure_message_false);
-        $this->assertTrue($first_angle->lte($second_angle->toDecimal($precision)), $failure_message_false);
+        $this->assertTrue($first_angle->lte($second_angle->toFloat($precision)), $failure_message_false);
         $this->assertTrue($first_angle->lte($second_angle),                        $failure_message_false);
         $this->assertFalse($first_angle->gt((string) $second_angle),               $failure_message_true);
-        $this->assertFalse($first_angle->gt($second_angle->toDecimal($precision)), $failure_message_true);
+        $this->assertFalse($first_angle->gt($second_angle->toFloat($precision)), $failure_message_true);
         $this->assertFalse($first_angle->gt($second_angle),                        $failure_message_true);
     }
     

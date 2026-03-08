@@ -51,7 +51,7 @@ abstract class Comparison
         if ($this->beta instanceof Angle) {
             return new AngleType($this->beta);
         }
-        if (is_string($this->beta)) new StringType($this->beta);
+        if (is_string($this->beta)) return new StringType($this->beta);
         if (is_int($this->beta)) return new IntType($this->beta);
         return new FloatType($this->beta, $this->float_precision);
     }
@@ -65,5 +65,8 @@ abstract class Comparison
     /**
      * Perform the comparison.
      */
-    abstract public function compare(): bool;
+    public function compare(): bool
+    {
+        return $this->comparison_strategy->compare();
+    }
 }

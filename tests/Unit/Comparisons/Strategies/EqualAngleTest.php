@@ -7,14 +7,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\Tests\Feature\AngleTest;
-use MarcoConsiglio\Goniometry\Tests\Feature\DegreesTest;
-use MarcoConsiglio\Goniometry\Tests\Feature\MinutesTest;
-use MarcoConsiglio\Goniometry\Tests\Feature\SecondsTest;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DependsExternal;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -25,15 +18,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class EqualAngleTest extends TestCase
+class EqualAngleTest extends ComparisonStrategiesTestCase
 {
-    #[DependsOnClass(DegreesTest::class)]
-    #[DependsOnClass(MinutesTest::class)]
-    #[DependsOnClass(SecondsTest::class)]
-    #[DependsExternal(AngleTest::class, "test_degrees_property")]
-    #[DependsExternal(AngleTest::class, "test_minutes_property")]
-    #[DependsExternal(AngleTest::class, "test_seconds_property")]
-    #[DependsExternal(AngleTest::class, "test_direction_property")]
+    protected string $comparison = '=';
+    
     #[TestDox("can compare two Angle instances.")]
     public function test_compare(): void
     {
@@ -45,7 +33,9 @@ class EqualAngleTest extends TestCase
         $beta = clone $alfa;
 
         // Act & Assert
-        $this->assertTrue(new EqualAngle($alfa, $beta)->compare());
+        $this->assertTrue(new EqualAngle($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
 
         /**
          * Not equal
@@ -54,6 +44,16 @@ class EqualAngleTest extends TestCase
         $beta = $this->randomAngle(min: 180);
 
         // Act & Assert
-        $this->assertFalse(new EqualAngle($alfa, $beta)->compare());
+        $this->assertFalse(new EqualAngle($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
+    }
+
+    /**
+     * Return a fail message for this TestCase.
+     */
+    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
+    {
+        return $this->getComparisonFailMessage($alfa, $this->comparison, $beta);
     }
 }

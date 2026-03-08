@@ -8,9 +8,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -22,11 +20,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(FromDegrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class GreaterAngleTest extends TestCase
+class GreaterAngleTest extends ComparisonStrategiesTestCase
 {
-    #[DependsOnClass(Degrees::class)]
-    #[DependsOnClass(Minutes::class)]
-    #[DependsOnClass(Seconds::class)]
+    protected string $comparison = '>';
+
     #[TestDox("can compare two Angle instances.")]
     public function test_compare(): void
     {
@@ -54,9 +51,15 @@ class GreaterAngleTest extends TestCase
         );
 
         // Act & Assert
-        $this->assertTrue(new GreaterAngle($alfa, $beta)->compare());
-        $this->assertTrue(new GreaterAngle($gamma, $delta)->compare());
-        $this->assertTrue(new GreaterAngle($epsilon, $zeta)->compare());
+        $this->assertTrue(new GreaterAngle($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
+        $this->assertTrue(new GreaterAngle($gamma, $delta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
+        $this->assertTrue(new GreaterAngle($epsilon, $zeta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
 
         /**
          *  Lesser
@@ -76,5 +79,13 @@ class GreaterAngleTest extends TestCase
 
         // Act & Assert
         $this->assertFalse(new GreaterAngle($alfa, $beta)->compare());
+    }
+
+    /**
+     * Return a fail message for this TestCase.
+     */
+    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
+    {
+        return $this->getComparisonFailMessage($alfa, $this->comparison, $beta);
     }
 }

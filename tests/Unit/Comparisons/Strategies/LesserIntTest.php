@@ -10,9 +10,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -26,9 +24,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class LesserIntTest extends TestCase
+class LesserIntTest extends ComparisonStrategiesTestCase
 {
-    #[DependsOnClass(LesserAngleTest::class)]
+    protected string $comparison = '<';
+
     #[TestDox("can compare an Angle instance and a sexagesimal degrees angle measure.")]
     public function test_compare(): void
     {
@@ -61,5 +60,13 @@ class LesserIntTest extends TestCase
 
         // Act & Assert
         $this->assertFalse(new LesserInt($alfa, $beta)->compare());
+    }
+
+    /**
+     * Return a fail message for this TestCase.
+     */
+    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
+    {
+        return $this->getComparisonFailMessage($alfa, $this->comparison, $beta);
     }
 }

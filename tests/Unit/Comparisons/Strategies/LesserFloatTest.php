@@ -7,10 +7,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\Tests\Feature\AngleTest;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DependsExternal;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -21,9 +18,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class LesserFloatTest extends TestCase
+class LesserFloatTest extends ComparisonStrategiesTestCase
 {
-    #[DependsExternal(AngleTest::class, "test_cast_to_decimal")]
+    protected string $comparison = '<';
+
     #[TestDox("can compare an Angle and a sexadecimal angle measure.")]
     public function test_compare(): void
     {
@@ -35,17 +33,23 @@ class LesserFloatTest extends TestCase
         $beta = $this->randomSexadecimal(min: 180);
 
         // Act & Assert
-        $this->assertTrue(new LesserFloat($alfa, $beta)->compare());
+        $this->assertTrue(
+            new LesserFloat($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
 
         /**
          * Equal
          */
         // Arrange
         $alfa = $this->randomAngle();
-        $beta = $alfa->toDecimal();
+        $beta = $alfa->toFloat();
 
         // Act & Assert
-        $this->assertFalse(new LesserFloat($alfa, $beta)->compare());
+        $this->assertFalse(
+            new LesserFloat($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
 
         /**
          * Greater
@@ -55,6 +59,17 @@ class LesserFloatTest extends TestCase
         $beta = $this->randomSexadecimal(max: 180 - self::SSN);
 
         // Act & Assert
-        $this->assertFalse(new LesserFloat($alfa, $beta)->compare());
+        $this->assertFalse(
+            new LesserFloat($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
+    }
+
+    /**
+     * Return a fail message for this TestCase.
+     */
+    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
+    {
+        return $this->getComparisonFailMessage($alfa->toFloat(), $this->comparison, $beta);
     }
 }

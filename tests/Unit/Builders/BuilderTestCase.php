@@ -171,7 +171,7 @@ abstract class BuilderTestCase extends TestCase
     }
 
     /**
-     * Assert that $angle->toDecimal() equals $expected_values.
+     * Assert that $angle->toFloat() equals $expected_values.
      *
      * @param float                              $expected_value The decimal value you expect from the $angle.
      * @param \MarcoConsiglio\Goniometry\Angle $angle The angle to test.
@@ -180,10 +180,10 @@ abstract class BuilderTestCase extends TestCase
     public function assertAngleDecimal(float $expected_value, Angle $angle)
     {
         $expected = $expected_value;
-        $actual = $angle->toDecimal();
+        $actual = $angle->toFloat();
         $angle_class = Angle::class;
         $this->assertEquals($expected, $actual, 
-            "{$angle_class}::toDecimal() should return {$expected} but found {$actual}."
+            "{$angle_class}::toFloat() should return {$expected} but found {$actual}."
         );
     }
 

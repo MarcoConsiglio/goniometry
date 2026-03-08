@@ -73,8 +73,8 @@ class FromAnglesToAbsoluteSum extends SumBuilder
         // }
 
         // // Real calculation is performed here.
-        // $decimal_first_angle = $this->first_angle->toDecimal();
-        // $decimal_second_angle = $this->second_angle->toDecimal();
+        // $decimal_first_angle = $this->first_angle->toFloat();
+        // $decimal_second_angle = $this->second_angle->toFloat();
         // $this->decimal_precision = $this->getMaxSuggestedDecimalPrecisionBetween($this->first_angle, $this->second_angle);
         // $this->decimal_sum = round(
         //     $decimal_first_angle + $decimal_second_angle,

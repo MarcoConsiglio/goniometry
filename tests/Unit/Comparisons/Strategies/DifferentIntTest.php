@@ -9,9 +9,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -24,9 +22,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class DifferentIntTest extends TestCase
+class DifferentIntTest extends ComparisonStrategiesTestCase
 {
-    #[DependsOnClass(EqualIntTest::class)]
+    protected string $comparison = '≠';
+
     #[TestDox("can compare an Angle instance and a sexagesimal degrees angle measure.")]
     public function test_compare(): void
     {
@@ -38,7 +37,9 @@ class DifferentIntTest extends TestCase
         $alfa = Angle::createFromValues($beta - 1);
 
         // Act & Assert
-        $this->assertTrue(new DifferentInt($alfa, $beta)->compare());
+        $this->assertTrue(new DifferentInt($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
 
         /**
          * Equal
@@ -48,6 +49,16 @@ class DifferentIntTest extends TestCase
         $alfa = Angle::createFromValues($beta);
 
         // Act & Assert
-        $this->assertFalse(new DifferentInt($alfa, $beta)->compare());
+        $this->assertFalse(new DifferentInt($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
+    }
+
+    /**
+     * Return a fail message for this TestCase.
+     */
+    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
+    {
+        return $this->getComparisonFailMessage($alfa, $this->comparison, $beta);
     }
 }

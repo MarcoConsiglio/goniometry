@@ -40,18 +40,6 @@ class FromDecimalTest extends BuilderTestCase
         $this->assertEquals($direction, $angle->direction);
     }
 
-    #[TestDox("throws AngleOverflowException with more than +/-360° input.")]
-    public function test_exception_if_greater_than_360_degrees()
-    {   
-        $this->markTestSkipped("This test is no longer necessary because it is allowed to create an instance of type Angle with values ​​that exceed the full angle."); 
-        // Assert
-        $this->expectException(AngleOverflowException::class);
-        $this->expectExceptionMessage("The angle can't be greather than 360°.");
-
-        // Arrange & Act
-        new FromDecimal(360.00001);
-    }
-
     /**
      * Returns the FromDecimal builder class.
      * @return string

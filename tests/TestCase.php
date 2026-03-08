@@ -9,6 +9,7 @@ use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
+use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -17,6 +18,7 @@ use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
 use Marcoconsiglio\ModularArithmetic\ModularNumber;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use ValueError;
 
 class TestCase extends PHPUnitTestCase
 {
@@ -52,16 +54,39 @@ class TestCase extends PHPUnitTestCase
     {
         $angle = $this->getMockBuilder(Angle::class)
             ->disableOriginalConstructor();
-        if (!empty($mocked_methods)) {
+        if (! empty($mocked_methods))
             $angle->onlyMethods($mocked_methods);
-        }
         if ($original_constructor) {
             $angle->enableOriginalConstructor()
-                    ->setConstructorArgs(
-                        is_array($constructor_arguments) ? $constructor_arguments : [$constructor_arguments]
-                    );
+                  ->setConstructorArgs(
+                    is_array($constructor_arguments) ? $constructor_arguments : [$constructor_arguments]
+                  );
         }
         return $angle->getMock();
+    }
+
+    protected function getMockedInputType(
+        string $input_type,
+        array $mocked_methods = [],
+        bool $original_constructor = false,
+        mixed $constructor_arguments = []
+    ): MockObject
+    {
+        if (! class_exists($input_type)) 
+            throw new ValueError("The class $input_type does not exists.");
+        if (! is_subclass_of($input_type, InputType::class)) 
+            throw new ValueError("The class $input_type is not a child of " . InputType::class . ".");
+        $input_type = $this->getMockBuilder($input_type)
+            ->disableOriginalConstructor();
+        if (! empty($mocked_methods))
+            $input_type->onlyMethods($mocked_methods);
+        if ($original_constructor) {
+            $input_type->enableOriginalConstructor()
+                       ->setConstructorArgs(
+                            is_array($constructor_arguments) ? $constructor_arguments : [$constructor_arguments]
+                       );
+        }
+        return $input_type->getMock();
     }
 
     /**

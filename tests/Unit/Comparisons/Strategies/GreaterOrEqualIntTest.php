@@ -10,9 +10,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualInt;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DependsOnClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -26,10 +24,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class GreaterOrEqualIntTest extends TestCase
+class GreaterOrEqualIntTest extends ComparisonStrategiesTestCase
 {
-    #[DependsOnClass(EqualAngleTest::class)]
-    #[DependsOnClass(GreaterAngleTest::class)]
+    protected string $comparison = '≥';
+
     #[TestDox("can compare an Angle instance and a sexagesimal degrees angle measure.")]
     public function test_compare(): void
     {
@@ -41,7 +39,9 @@ class GreaterOrEqualIntTest extends TestCase
         $beta = $this->randomDegrees(max: 179);
 
         // Act & Assert
-        $this->assertTrue(new GreaterOrEqualInt($alfa, $beta)->compare());
+        $this->assertTrue(new GreaterOrEqualInt($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
 
         /**
          * Equal
@@ -51,7 +51,9 @@ class GreaterOrEqualIntTest extends TestCase
         $alfa = Angle::createFromValues($beta);
 
         // Act & Assert
-        $this->assertTrue(new GreaterOrEqualInt($alfa, $beta)->compare());
+        $this->assertTrue(new GreaterOrEqualInt($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
 
         /**
          * Lesser
@@ -62,5 +64,13 @@ class GreaterOrEqualIntTest extends TestCase
 
         // Act & Assert
         $this->assertFalse(new GreaterOrEqualInt($alfa, $beta)->compare());
+    }
+
+    /**
+     * Return a fail message for this TestCase.
+     */
+    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
+    {
+        return $this->getComparisonFailMessage($alfa, $this->comparison, $beta);
     }
 }

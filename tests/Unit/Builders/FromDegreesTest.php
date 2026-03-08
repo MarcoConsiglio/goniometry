@@ -11,7 +11,6 @@ use MarcoConsiglio\Goniometry\Seconds;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\MockObject\MockObject;
 
 #[TestDox("The FromDegrees builder")]
 #[CoversClass(FromDegrees::class)]
@@ -42,7 +41,6 @@ class FromDegreesTest extends BuilderTestCase
     public function test_can_create_a_null_angle()
     {
         // Arrange
-        $direction = "direction";
         $positive_direction = Direction::COUNTER_CLOCKWISE;
         $negative_direction = Direction::CLOCKWISE;
 
@@ -85,85 +83,6 @@ class FromDegreesTest extends BuilderTestCase
         $this->assertEquals($negative_direction, $xi->direction,       $this->propertyFail("direction"));
         $this->assertEquals($negative_direction, $omicron->direction,  $this->propertyFail("direction"));
         $this->assertEquals($negative_direction, $rho->direction,      $this->propertyFail("direction"));
-    }
-
-    #[TestDox("throws AngleOverflowException with more than 360°.")]
-    public function test_exception_with_exceeding_degrees()
-    {
-        $this->markTestSkipped("This test is no longer necessary because it is allowed to create an instance of type Angle with values that exceed the full angle.");
-        // Arrange
-        $degrees_excess = Angle::MAX_DEGREES + 1;
-        $positive = Angle::COUNTER_CLOCKWISE;
-
-        // Assert
-        $this->expectExceptionWithMessage(
-            AngleOverflowException::class,
-            "The angle inputs can't be greater than 360° or 59' or 59.9\"."
-        );
-
-        // Act
-
-        new FromDegrees($degrees_excess, 0, 0, $positive);
-    }
-
-    #[TestDox("throws AngleOverflowException with more than 59'.")]
-    public function test_exception_with_exceeding_minutes()
-    {
-        $this->markTestSkipped("This test is no longer necessary because it is allowed to create an instance of type Angle with values that exceed the full angle.");
-        // Arrange
-        $minutes_excess = Angle::MAX_MINUTES;
-        $positive = Angle::COUNTER_CLOCKWISE;
-
-        // Assert
-        $this->expectExceptionWithMessage(
-            AngleOverflowException::class,
-            "The angle inputs can't be greater than 360° or 59' or 59.9\"."
-        );
-
-        // Act
-        new FromDegrees(0, $minutes_excess, 0, $positive);
-    }
-
-    #[TestDox("throws AngleOverflowException with more than 59.9\".")]
-    public function test_exception_with_exceeding_seconds()
-    {
-        $this->markTestSkipped("This test is no longer necessary because it is allowed to create an instance of type Angle with values that exceed the full angle.");
-        // Arrange
-        $seconds_excess = Angle::MAX_SECONDS;
-        $positive = Angle::COUNTER_CLOCKWISE;
-
-        // Assert
-        $this->expectExceptionWithMessage(
-            AngleOverflowException::class,
-            "The angle inputs can't be greater than 360° or 59' or 59.9\"."
-        );
-
-        // Act
-        new FromDegrees(0, 0, $seconds_excess, $positive);
-    }
-
-    #[TestDox("will always correct a wrong direction input.")]
-    public function test_wrong_direction_value()
-    {
-        $this->markTestSkipped("This test is no longer necessary because the Angle type instance is created with absolute values and the direction of the angle, which determines its sign.");
-        // Arrange
-        $wrong_negative = -2;
-        $wrong_positive = 2;
-        $direction = "direction";
-        $negative = Angle::CLOCKWISE;
-        $positive = Angle::COUNTER_CLOCKWISE;
-
-        // Act
-        $alfa = Angle::createFromValues(180, 30, 15, $wrong_negative);
-        $beta = Angle::createFromValues(180, 30, 15, $wrong_positive);
-        $gamma = Angle::createFromValues(-180, -30, -15, $wrong_negative);
-        $delta = Angle::createFromValues(-180, -30, -15, $wrong_positive);
-
-        // Assert
-        $this->assertProperty("int", $direction, /* of */ $alfa, /* must be */ $negative);
-        $this->assertProperty("int", $direction, /* of */ $beta, /* must be */ $positive);
-        $this->assertProperty("int", $direction, /* of */ $gamma, /* must be */ $negative);
-        $this->assertProperty("int", $direction, /* of */ $delta, /* must be */ $positive);
     }
 
     /**
