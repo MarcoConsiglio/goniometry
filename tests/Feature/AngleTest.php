@@ -10,6 +10,8 @@ use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Builders\SumBuilder;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
@@ -106,6 +108,8 @@ use RoundingMode;
 #[UsesClass(FloatType::class)]
 #[UsesClass(IntType::class)]
 #[UsesClass(StringType::class)]
+#[UsesClass(Round::class)]
+#[UsesClass(Cast::class)]
 class AngleTest extends TestCase
 {    
     #[TestDox('has "degrees" property which is of type Degrees.')]
@@ -265,29 +269,66 @@ class AngleTest extends TestCase
         $this->assertEquals("{$sign}{$degrees} {$minutes} {$seconds}", (string) $alfa);
     }
 
-    #[TestDox("can be casted to decimal.")]
-    public function test_cast_to_decimal()
+    #[TestDox("can be casted to float.")]
+    public function test_cast_to_float()
     {
-        $this->testCasttoFloat();
-        $this->testCasttoFloat(0);
-        $this->testCasttoFloat($this->faker->numberBetween(1, PHP_FLOAT_DIG - 3));
-        $this->testCasttoFloat(PHP_FLOAT_DIG - 2);
-        $this->testCasttoFloat(PHP_FLOAT_DIG);
-
         /**
-         * Other builders than FromDecimal.
-         * 
-         * This test is not significant as the expectation is calculated from the SUT.
+         * Angle created FromDecimal,
+         * casted to float without precision.
          */
         // Arrange
-        $precision = $this->faker->numberBetween(0, PHP_FLOAT_DIG);
-        [$degrees, $minutes, $seconds, $direction] = $this->randomSexagesimal();
-        $alfa = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
-        $beta = clone $alfa;
-        $decimal = $beta->toFloat($precision);
+        $float = $this->randomSexadecimal();
+        $alfa = Angle::createFromDecimal($float);
 
         // Act & Assert
-        $this->assertEquals($decimal, $alfa->toFloat($precision), $this->getCastError("decimal"));
+        $this->assertSame($float, $cast = $alfa->toFloat(), "$float ≠ $cast");
+
+        /**
+         * Angle created FromDecimal,
+         * casted to float with precision.
+         */
+        // Arrange
+        $precision = $this->positiveRandomInteger(max: PHP_FLOAT_DIG - 1);
+        $float = $this->randomSexadecimal(precision: $precision);
+        $alfa = Angle::createFromDecimal($float);
+
+        // Act & Assert
+        $this->assertSame($float, $cast = $alfa->toFloat($precision), "$float ≠ $cast with precision $precision");
+
+        /**
+         * Angle created with other AngleBuilder(s),
+         * casted without precision.
+         */
+        // Arrange
+        [$degrees, $minutes, $seconds, $direction] = $this->randomSexagesimal();
+        $alfa = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
+        $float = new Number($degrees)->plus(
+            new Number($minutes)->div(Minutes::MAX)
+        )->plus(
+            new Number($seconds)->div(Minutes::MAX * Seconds::MAX)
+        )->mul($direction->value)->round(PHP_FLOAT_DIG)->value;
+        $float = (float) $float;
+
+        // Act & Assert
+        $this->assertSame($float, $cast = $alfa->toFloat(), "$float ≠ $cast");
+
+        /**
+         * Angle created with other AngleBuilder(s),
+         * casted with precision.
+         */
+        // Arrange
+        $precision = $this->positiveRandomInteger(max: PHP_FLOAT_DIG);
+        [$degrees, $minutes, $seconds, $direction] = $this->randomSexagesimal();
+        $alfa = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
+        $float = new Number($degrees)->plus(
+            new Number($minutes)->div(Minutes::MAX)
+        )->plus(
+            new Number($seconds)->div(Minutes::MAX * Seconds::MAX)
+        )->mul($direction->value)->round($precision)->value;
+        $float = (float) $float;
+
+        // Act & Assert
+        $this->assertSame($float, $cast = $alfa->toFloat($precision), "$float ≠ $cast");
     }
 
     #[TestDox("can be casted to radian.")]

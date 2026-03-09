@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -21,6 +22,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(Round::class)]
 class DifferentFloatTest extends TestCase
 {
     protected string $comparison = '≠';

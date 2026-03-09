@@ -11,6 +11,8 @@ use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
@@ -293,26 +295,15 @@ class Angle implements AngleInterface
      */
     public function toFloat(int|null $precision = null): float
     {
-        if ($precision !== null) assert($precision >= 0 && $precision <= PHP_FLOAT_DIG);
-        if ($this->original_decimal !== null) {
-            if ($precision !== null)
-                return round($this->original_decimal, $precision, RoundingMode::HalfTowardsZero);
-            else
-                return $this->original_decimal;
-        }
-        $decimal = 
-            $this->degrees->value->plus(
-                $this->minutes->value->div(Minutes::MAX)
-            )->plus(
-                $this->seconds->value->div(Minutes::MAX * Seconds::MAX)
-            );
-        $precision = 
-            $precision === null ? 
-            $decimal->getParent()->scale : 
-            $precision;
-        if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
-        $decimal = $decimal->mul($this->direction->value)->round($precision);
-        return $this->original_decimal = (float) $decimal->value;
+        if ($this->original_decimal !== null)
+            return new Round($this->original_decimal, $precision)->cast();
+        return new Cast(
+            $this->degrees, 
+            $this->minutes,
+            $this->seconds,
+            $this->direction,
+            $precision
+        )->cast();
     }
 
     /**

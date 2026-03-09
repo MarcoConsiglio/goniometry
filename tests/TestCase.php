@@ -143,10 +143,10 @@ class TestCase extends PHPUnitTestCase
         if (class_exists($builder) && is_subclass_of($builder, AngleBuilder::class)) {
             switch ($builder) {
                 case FromDegrees::class:
-                    return $this->getRandomAngleDegrees($negative);
+                    return $this->randomSexagesimal($negative ? Direction::CLOCKWISE : Direction::COUNTER_CLOCKWISE);
                     break;
                 case FromDecimal::class:
-                    return $this->getRandomAngleDecimal($negative, $precision);
+                    return $negative ? -$this->randomSexadecimal($precision) : $this->randomSexadecimal($precision);
                     break;
                 case FromRadian::class:
                     return $this->getRandomAngleRadian($negative, $precision);
@@ -166,7 +166,7 @@ class TestCase extends PHPUnitTestCase
      */
     protected function randomSexagesimal(Direction|null $direction = null)
     {
-        if (! $direction) $direction = $this->faker->randomElement([
+        if ($direction === null) $direction = $this->faker->randomElement([
             Direction::COUNTER_CLOCKWISE, Direction::CLOCKWISE
         ]);
         return [

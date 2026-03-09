@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -19,6 +20,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(Round::class)]
 class GreaterFloatTest extends TestCase
 {
     protected string $comparison = '>';
