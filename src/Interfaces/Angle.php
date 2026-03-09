@@ -108,7 +108,7 @@ interface Angle
      * @param int $precision
      * @return boolean
      */
-    public function isGreaterThanOrEqual(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isGreaterThanOrEqualTo(string|int|float|AngleObject $angle, int $precision = 1): bool;
 
     /**
      * Alias of isGreaterThanOrEqual method.
@@ -139,7 +139,7 @@ interface Angle
      * @param string|int|float|AngleObject $angle
      * @return boolean
      */
-    public function isLessThanOrEqual(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isLessThanOrEqualTo(string|int|float|AngleObject $angle, int $precision = 1): bool;
 
     /**
      * Alias of isLessThanOrEqual method.
@@ -155,7 +155,7 @@ interface Angle
      * @param string|int|float|AngleObject $angle
      * @return boolean
      */
-    public function isEqual(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isEqualTo(string|int|float|AngleObject $angle, int $precision = 1): bool;
 
     /**
      * Alias of isEqual method.
@@ -171,7 +171,7 @@ interface Angle
      * @param string|int|float|AngleObject $angle
      * @return boolean
      */
-    public function isDifferent(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isDifferentThan(string|int|float|AngleObject $angle, int $precision = 1): bool;
 
     /**
      * Alias for isDifferent method.

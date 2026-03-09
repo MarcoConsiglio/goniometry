@@ -27,10 +27,10 @@ abstract class Comparison
     protected Strategy $comparison_strategy;
 
     /**
-     * The precision used when comparing an Angle against a float type 
+     * The precision used when comparing an `Angle` against a `float` type 
      * variable.
      */
-    protected int $float_precision = PHP_FLOAT_DIG;
+    protected int $float_precision = 54;
 
     /**
      * Construct the Comparison with the two angles $alfa and $beta.
@@ -68,5 +68,10 @@ abstract class Comparison
     public function compare(): bool
     {
         return $this->comparison_strategy->compare();
+    }
+
+    public function setPrecision(int $precision): void
+    {
+        $this->float_precision = $precision;
     }
 }

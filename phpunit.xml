@@ -23,7 +23,7 @@
         </testsuite>
     </testsuites>
     <logging>
-        <testdoxText outputFile="testbook.txt"/>
+        <!-- <testdoxText outputFile="testbook.txt"/> -->
         <testdoxHtml outputFile="testbook.html"/>
     </logging>
     <coverage

@@ -11,6 +11,12 @@ use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Comparisons\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
@@ -100,50 +106,21 @@ class Angle implements AngleInterface
      */
     public protected(set) Seconds $seconds;
 
-    /**
-     * The original precision of the seconds value
-     * at the moment of the angle creation.
-     * 
-     * @var integer|null
-     * @deprecated Using bcmath-extended don't need exotic precision-related alogirthm.
-     */
-    public protected(set) int|null $original_seconds_precision = null;
-
-    /**
-     * The suggested decimal precision to cast the instance to decimal
-     * degrees.
-     * 
-     * @var int|null
-     * @deprecated Using bcmath-extended don't need exotic precision-related alogirthm.
-     */
-    public protected(set) int|null $suggested_decimal_precision = null;
-
-    /**
-     * The original precision of the radian value
-     * at the moment of the angle creation if it
-     * was constructed with a radian value or casted
-     * to a radian value.
-     * 
-     * @var integer
-     * @deprecated Using bcmath-extended don't need exotic precision-related alogirthm.
-     */
-    public protected(set) int|null $original_radian_precision = null;
-
     /** 
-     * The original decimal degrees if the Angle is built with
-     * a FromDecimal builder.
+     * The original decimal degrees if the `Angle` is built with
+     * a `FromDecimal` builder.
      * 
-     * It is used for faster casting the Angle to decimal.
+     * It is used to cast faster the `Angle` to decimal.
      * 
      * @var float|null
      */
     protected float|null $original_decimal = null;
 
     /** 
-     * The original radian degrees if the Angle is built with
-     * a FromRadian builder.
+     * The original radian degrees if the `Angle` is built with
+     * a `FromRadian` builder.
      * 
-     * It is used for faster casting the Angle to radian.
+     * It is used cast faster the `Angle` to radian.
      * 
      * @var float|null
      */
@@ -155,7 +132,7 @@ class Angle implements AngleInterface
     public protected(set) Direction $direction = Direction::COUNTER_CLOCKWISE;
 
     /**
-     * Construct an angle.
+     * Construct an `Angle`.
      *
      * @param AngleBuilder $builder The builder used to construct the angle.
      * @return void
@@ -400,218 +377,162 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Check if this angle is greater than $angle.
-     *
-     * @param string|int|float|AngleInterface $angle
-     * @param int|null $precision The precision digits with which to test the greater than comparison.
-     * @return boolean True if this angle is greater than $angle, false otherwise.
-     * @throws \TypeError when $angle has an unexpected type argument.
+     * Check if this `Angle` is greater than `$angle`.
+     * 
+     * @param int $precision The precision used when `$angle` is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function isGreaterThan(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function isGreaterThan(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
-        if (is_string($angle)) {
-            return $this->isGreaterThan(Angle::createFromString($angle));
-        }
-        if (is_int($angle)) {
-            return abs($this->toFloat($precision)) > abs($angle);
-        }
-        if (is_float($angle)) {
-            if ($precision)
-                return abs($this->toFloat($precision)) > abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
-            else
-                return abs($this->toFloat()) > abs($angle);
-        }
-        // Angle object case. 
-        return abs($this->toFloat($precision)) > abs($angle->toFloat($precision));
+        $comparison = new Greater($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     /**
-     * Alias of isGreaterThan method.
+     * Alias of `isGreaterThan()` method.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int|null $precision The precision digits with which to test the comparison.
-     * @return boolean
-     * @throws \TypeError when $angle has an unexpected type.
+     * @param int $precision The precision used when `$angle` is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function gt(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function gt(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
         return $this->isGreaterThan($angle, $precision);
     }
 
-     /**
-     * Check if this angle is greater than or equal to $angle.
+    /**
+     * Check if this `Angle` is greater than or equal to `$angle`.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int|null $precision = null The precision digits with which to test the comparison.
-     * @return boolean
-     * @throws \TypeError when $angle has an unexpected type.
+     * @param int $precision The precision used when `$angle` is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function isGreaterThanOrEqual(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function isGreaterThanOrEqualTo(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
-        return $this->isEqual($angle, $precision) || $this->isGreaterThan($angle, $precision);
+        $comparison = new GreaterOrEqual($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     /**
-     * Alias of isGreaterThanOrEqual method.
+     * Alias of `isGreaterThanOrEqualTo()` method.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @return boolean     
-     * @param int|null $precision $precision The precision digits with which to test the comparison.     
-     * @throws \TypeError when $angle has an unexpected type.
+     * @param int $precision The precision used when $angle is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function gte(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function gte(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
-        return $this->isGreaterThanOrEqual($angle, $precision);
+        return $this->isGreaterThanOrEqualTo($angle, $precision);
     }
 
     /**
-     * Check if this angle is less than another angle.
+     * Check if this `Angle` is less than another `$angle`.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int|null $precision = null The precision digits with which to test the comparison.
-     * @return boolean
-     * @throws \TypeError when $angle has an unexpected type.
+     * @param int $precision The precision used when $angle is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function isLessThan(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function isLessThan(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
-        return ! $this->isGreaterThanOrEqual($angle, $precision);
+        $comparison = new Lesser($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     /**
-     * Alias of isLessThan method.
+     * Alias of `isLessThan()` method.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int|null $precision The precision digits with which to test the comparison.
-     * @return boolean
-     * @throws \TypeError when $angle has an unexpected type.
+     * @param int $precision The precision used when $angle is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function lt(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function lt(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
         return $this->isLessThan($angle);
     }
 
     /**
-     * Check if this angle is less than or equal to $angle.
+     * Check if this `Angle` is less than or equal to `$angle`.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int|null $precision The precision digits with which to test the comparison.
-     * @return boolean
-     * @throws \TypeError when $angle has an unexpected type.
+     * @param int $precision The precision used when $angle is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function isLessThanOrEqual(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function isLessThanOrEqualTo(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
-        return $this->isEqual($angle, $precision) || $this->isLessThan($angle, $precision);
+        $comparison = new LesserOrEqual($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     
     /**
-     * Alias of isLessThanOrEqual method.
+     * Alias of `isLessThanOrEqual()` method.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int|null $precision The precision digits with which to test the comparison.
-     * @return boolean
-     * @throws \TypeError when $angle has an unexpected type.     
+     * @param int $precision The precision used when $angle is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function lte(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function lte(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
-        return $this->isLessThanOrEqual($angle);
+        return $this->isLessThanOrEqualTo($angle);
     }
 
     /**
-     * Check if this angle is equal to $angle.
+     * Check if this `Angle` is equal to `$angle`.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int|null $precision The precision digits with which to test the equality
-     * @return boolean
-     * @throws \TypeError when $angle has an unexpected type argument.
+     * @param int $precision The precision used when $angle is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function isEqual(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function isEqualTo(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
-        if (is_string($angle)) {
-            return $this->isEqual(Angle::createFromString($angle));
-        }
-        if (is_int($angle)) {
-            return abs($this->toFloat($precision)) == abs($angle);
-        }
-        if (is_float($angle)) {
-            if ($precision)
-                return abs($this->toFloat($precision)) == abs(round($angle, $precision, RoundingMode::HalfTowardsZero));
-            else
-                return abs($this->toFloat()) == abs($angle);
-        }
-        // Angle type case
-        return $this->equals($angle);
+        $comparison = new Equal($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     /**
-     * Alias of isEqual.
-     * 
-     * Useful when asserting with assertObjectEquals method in PHPUnit.
-     *
-     * @param AngleInterface $angle
-     * @return boolean
-     */
-    public function equals(AngleInterface $angle): bool
-    {
-        $equal_degrees = $this->degrees == $angle->degrees;
-        $equal_minutes = $this->minutes == $angle->minutes;
-        $equal_seconds = $this->seconds == $angle->seconds;
-        return $equal_degrees && $equal_minutes && $equal_seconds;
-    }
-
-    /**
-     * Alias of isEqual method.
+     * Alias of `isEqualTo()` method.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int|null $precision The precision digits with which to test the equality.
-     * @return boolean
-     */
-    public function eq(string|int|float|AngleInterface $angle, int|null $precision = null): bool
-    {
-        return $this->isEqual($angle, $precision);
-    }
-
-    /**
-     * Check if this angle is different than $angle
-     *
-     * @param string|int|float|AngleInterface $angle
-     * @param integer|null $precision
-     * @return boolean
-     * @throws \TypeError when $angle has an unexpected type argument.
+     * @param int $precision The precision used when $angle is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function isDifferent(string|int|float|AngleInterface $angle, int|null $precision = null): bool
+    public function eq(string|int|float|AngleInterface $angle, int $precision = 54): bool
     {
-        return ! $this->isEqual($angle);
+        return $this->isEqualTo($angle, $precision);
     }
 
     /**
-     * Alias for isDifferent method.
+     * Check if this `Angle` is different than `$angle`.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param integer $precision
-     * @return boolean
-     * @throws \TypeError when $angle has an unexpected type argument.
+     * @param int $precision The precision used when $angle is a `float`.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
-    public function not(string|int|float|AngleInterface $angle, $precision = 1): bool {
-        return $this->isDifferent($angle, $precision);
+    public function isDifferentThan(string|int|float|AngleInterface $angle, int $precision = 54): bool
+    {
+        $comparison = new Different($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     /**
-     * Get a textual representation of this angle in degrees.
+     * Alias for `isDifferentThan()` method.
+     *
+     * @param string|int|float|AngleInterface $angle
+     * @param int $precision The precision used when $angle is a `float`.
+     * @throws RegExFailureException when there's a failure in regex parser engine.
+     */
+    public function not(string|int|float|AngleInterface $angle, int $precision = 54): bool {
+        return $this->isDifferentThan($angle, $precision);
+    }
+
+    /**
+     * Return the sexagesimal value of this `Angle`.
      *
      * @return string
-     * @example (string) $alfa
+     * @example `(string) $alfa`
      */
     public function __toString()
     {
@@ -629,33 +550,5 @@ class Angle implements AngleInterface
     {
         for ($decimal_digits = 0; $number != round($number, $decimal_digits); $decimal_digits++);
         return $decimal_digits;
-    }
-
-    /**
-     * It returns the correct precision to cast to decimal, 
-     * based on the original precision of seconds value 
-     * the Angle was built with.
-     *
-     * @return integer
-     */
-    protected function getDecimalPrecision(): int
-    {
-        if ($this->suggested_decimal_precision) return $this->suggested_decimal_precision;
-        $this->suggested_decimal_precision = $this->limitPrecision($this->original_seconds_precision + 6);
-        return $this->suggested_decimal_precision;
-    }
-
-    /**
-     * It limits the maximum precision to the one available from the system.
-     *
-     * @param integer|null $precision
-     * @return integer|null
-     */
-    protected function limitPrecision(int|null $precision): int|null
-    {
-        if ($precision === null) return $precision; // @codeCoverageIgnore
-        else $precision = abs($precision);
-        if ($precision > PHP_FLOAT_DIG) return PHP_FLOAT_DIG;
-        else return $precision;
     }
 }

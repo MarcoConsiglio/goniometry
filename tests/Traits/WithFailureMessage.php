@@ -1,11 +1,19 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Traits;
 
+use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\Angle;
+use ValueError;
+
 /**
  * Provides testing failure message helpers.
  */
 trait WithFailureMessage
 {
+    private array $allowed_comparisons = [
+        '<', '≤', '=', '≠', '>', '≥'
+    ];
+
     /**
      * Return a property type failure message.
      *
@@ -95,5 +103,20 @@ trait WithFailureMessage
     protected function getPropertyError(string $property_name): string
     {
         return "Angle::\${$property_name} property is not working correctly.";
+    }
+
+    /**
+     * Return a comparison fail message.
+     */
+    protected function comparisonFail(Angle $alfa, string $comparison, int|float|string|Angle $beta): string
+    {
+        if (! in_array($comparison, $this->allowed_comparisons))
+            throw new ValueError("\"$comparison\" is not an allowed comparison.");
+        if (is_int($beta)) return "$alfa $comparison {$beta}°";
+        if (is_float($beta)) { 
+            $float = new Number($beta)->value;
+            return "{$alfa->toDecimal()->value}° $comparison {$float}°";
+        }
+        return "$alfa $comparison $beta";
     }
 }

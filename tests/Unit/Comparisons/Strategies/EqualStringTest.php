@@ -9,6 +9,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Tests\Feature\AngleTest;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -23,7 +24,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(FromString::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class EqualStringTest extends ComparisonStrategiesTestCase
+class EqualStringTest extends TestCase
 {
     protected string $comparison = '=';
  
@@ -60,6 +61,6 @@ class EqualStringTest extends ComparisonStrategiesTestCase
      */
     protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
     {
-        return $this->getComparisonFailMessage($alfa, $this->comparison, $beta);
+        return $this->comparisonFail($alfa, $this->comparison, $beta);
     }
 }

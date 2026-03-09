@@ -10,6 +10,43 @@ use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Builders\SumBuilder;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\FloatComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
+use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
+use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
+use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
+use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -32,8 +69,45 @@ use RoundingMode;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(Comparison::class)]
+#[UsesClass(Equal::class)]
+#[UsesClass(Different::class)]
+#[UsesClass(Greater::class)]
+#[UsesClass(GreaterOrEqual::class)]
+#[UsesClass(Lesser::class)]
+#[UsesClass(LesserOrEqual::class)]
+#[UsesClass(ComparisonStrategy::class)]
+#[UsesClass(FloatComparisonStrategy::class)]
+#[UsesClass(DifferentAngle::class)]
+#[UsesClass(DifferentFloat::class)]
+#[UsesClass(DifferentInt::class)]
+#[UsesClass(DifferentString::class)]
+#[UsesClass(EqualAngle::class)]
+#[UsesClass(EqualFloat::class)]
+#[UsesClass(EqualInt::class)]
+#[UsesClass(EqualString::class)]
+#[UsesClass(GreaterAngle::class)]
+#[UsesClass(GreaterFloat::class)]
+#[UsesClass(GreaterInt::class)]
+#[UsesClass(GreaterString::class)]
+#[UsesClass(GreaterOrEqualAngle::class)]
+#[UsesClass(GreaterOrEqualFloat::class)]
+#[UsesClass(GreaterOrEqualInt::class)]
+#[UsesClass(GreaterOrEqualString::class)]
+#[UsesClass(LesserAngle::class)]
+#[UsesClass(LesserFloat::class)]
+#[UsesClass(LesserInt::class)]
+#[UsesClass(LesserString::class)]
+#[UsesClass(LesserOrEqualAngle::class)]
+#[UsesClass(LesserOrEqualFloat::class)]
+#[UsesClass(LesserOrEqualInt::class)]
+#[UsesClass(LesserOrEqualString::class)]
+#[UsesClass(AngleType::class)]
+#[UsesClass(FloatType::class)]
+#[UsesClass(IntType::class)]
+#[UsesClass(StringType::class)]
 class AngleTest extends TestCase
-{
+{    
     #[TestDox('has "degrees" property which is of type Degrees.')]
     public function test_degrees_property(): void
     {
@@ -177,19 +251,18 @@ class AngleTest extends TestCase
         $this->assertEquals($seconds,   $associative_result["seconds"], $failure_message_2);
     }
 
-    #[TestDox("can be printed in a positive or negative textual representation.")]
+    #[TestDox("can be casted to string.")]
     public function test_cast_angle_to_string()
     {
         // Arrange
-        $alfa = Angle::createFromValues(1, 2, 3.141592653589793);
-        $expected_alfa_string = "1° 2' 3.141592653589793\"";
-        $beta = clone $alfa;
-        $negative_beta = $beta->toggleDirection();
-        $expected_beta_string = "-" . $expected_alfa_string;
-
+        $alfa = $this->randomAngle();
+        $sign = $alfa->direction == Direction::COUNTER_CLOCKWISE ? "" : "-";
+        $degrees = $alfa->degrees->value."°";
+        $minutes = $alfa->minutes->value."'";
+        $seconds = $alfa->seconds->value.'"';
+        
         // Act & Assert
-        $this->assertEquals($expected_alfa_string, (string) $alfa, $this->getCastError("string"));
-        $this->assertEquals($expected_beta_string, (string) $negative_beta, $this->getCastError("string"));
+        $this->assertEquals("{$sign}{$degrees} {$minutes} {$seconds}", (string) $alfa);
     }
 
     #[TestDox("can be casted to decimal.")]
@@ -330,24 +403,106 @@ class AngleTest extends TestCase
         $this->assertEquals(Direction::COUNTER_CLOCKWISE, $beta_opposite->direction, $failure_message_1);
     }
 
-    #[TestDox("can be tested if it is equal to another congruent string, integer, decimal or object angle.")]
+    #[TestDox("can be equal compared against an int, float, string or Angle.")]
     public function test_equal_comparison()
     {
-        $this->markTestSkipped("Angle comparisons need a huge refactoring.");
         // Arrange
-        $positive_alfa = $this->positiveRandomAngle();
-        $positive_beta = clone $positive_alfa;
-        $negative_gamma = $positive_beta->toggleDirection();
-        $integer_positive_delta = Angle::createFromValues($this->randomDegrees());
-        $integer_positive_epsilon = clone $integer_positive_delta;
-        $integer_negative_zeta = $integer_positive_epsilon->toggleDirection();
-        
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
         // Act & Assert
-        $this->testAngleEqual($positive_alfa, $positive_beta);
-        $this->testAngleEqual($positive_alfa, $positive_beta);
-        $this->testAngleEqual($positive_alfa, $negative_gamma);
-        $this->testIntegerAngleEqual($integer_positive_delta, $integer_positive_epsilon);
-        $this->testIntegerAngleEqual($integer_positive_delta, $integer_negative_zeta);
+        $this->assertIsBool($alfa->eq($int_beta));
+        $this->assertIsBool($alfa->eq($string_beta));
+        $this->assertIsBool($alfa->eq($float_beta));
+        $this->assertIsBool($alfa->eq($angle_beta));
+    }
+
+    #[TestDox("can be different compared against an int, float, string or Angle.")]
+    public function test_different_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->not($int_beta));
+        $this->assertIsBool($alfa->not($string_beta));
+        $this->assertIsBool($alfa->not($float_beta));
+        $this->assertIsBool($alfa->not($angle_beta));
+    }
+
+    #[TestDox("can be greater compared against an int, float, string or Angle.")]
+    public function test_greater_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->gt($int_beta));
+        $this->assertIsBool($alfa->gt($string_beta));
+        $this->assertIsBool($alfa->gt($float_beta));
+        $this->assertIsBool($alfa->gt($angle_beta));
+    }
+
+    #[TestDox("can be greater or equal compared against an int, float, string or Angle.")]
+    public function test_greater_or_equal_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->gte($int_beta));
+        $this->assertIsBool($alfa->gte($string_beta));
+        $this->assertIsBool($alfa->gte($float_beta));
+        $this->assertIsBool($alfa->gte($angle_beta));
+    }
+
+    #[TestDox("can be lesser compared against an int, float, string or Angle.")]
+    public function test_lesser_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->lt($int_beta));
+        $this->assertIsBool($alfa->lt($string_beta));
+        $this->assertIsBool($alfa->lt($float_beta));
+        $this->assertIsBool($alfa->lt($angle_beta));       
+    }
+
+    #[TestDox("can be lesser or equal compared against an int, float, string or Angle.")]
+    public function test_lesser_or_equal_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->lte($int_beta));
+        $this->assertIsBool($alfa->lte($string_beta));
+        $this->assertIsBool($alfa->lte($float_beta));
+        $this->assertIsBool($alfa->lte($angle_beta));      
     }
 
     #[TestDox("can sum two angles obtaining a relative result.")]
@@ -411,46 +566,5 @@ class AngleTest extends TestCase
             "There was an error casting {$angle} to decimal with $precision precision digits. 
             Expected {$decimal}° but found {$result}°."
         );
-    }
-
-    /**
-     * It asserts $first_angle is equal to $second_angle. 
-     * This is a Parameterized Test.
-    *
-    * @param Angle $first_angle
-    * @param Angle $second_angle
-    * @param int|null $precision
-    * @return void
-    */
-    protected function testAngleEqual(Angle $first_angle, Angle $second_angle, int|null $precision = null)
-    {
-        $failure_message_false = "$first_angle ≅ $second_angle is false.";
-        $failure_message_true = "$first_angle ≇ $second_angle is true.";
-        
-        $this->assertTrue($first_angle->eq((string) $second_angle),                             $failure_message_false);
-        $this->assertTrue($first_angle->eq($second_angle->toFloat($precision), $precision),   $failure_message_false);
-        $this->assertTrue($first_angle->eq($second_angle),                                      $failure_message_false);
-        $this->assertTrue($first_angle->equals($second_angle),                                  $failure_message_false);
-        
-        $this->assertFalse($first_angle->not((string) $second_angle),                           $failure_message_true);
-        $this->assertFalse($first_angle->not($second_angle->toFloat($precision), $precision), $failure_message_true);
-        $this->assertFalse($first_angle->not($second_angle),                                    $failure_message_true);
-    }
-
-    /**
-     * It asserts $first_angle is equal to $second_angle. 
-     * This is a Parameterized Test.
-     *
-     * @param Angle $first_angle
-     * @param Angle $second_angle
-     * @return void
-     */
-    protected function testIntegerAngleEqual(Angle $first_angle, Angle $second_angle)
-    {
-        $failure_message_false = "$first_angle ≅ $second_angle is false.";
-        $failure_message_true = "$first_angle ≇ $second_angle is true.";
-        
-        $this->assertTrue(  $first_angle->eq($second_angle), $failure_message_false);
-        $this->assertFalse($first_angle->not($second_angle), $failure_message_true);
     }
 }

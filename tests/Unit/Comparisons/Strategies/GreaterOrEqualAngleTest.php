@@ -9,6 +9,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualAngle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -22,7 +23,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-class GreaterOrEqualAngleTest extends ComparisonStrategiesTestCase
+class GreaterOrEqualAngleTest extends TestCase
 {
     protected string $comparison = '≥';
 
@@ -71,6 +72,6 @@ class GreaterOrEqualAngleTest extends ComparisonStrategiesTestCase
      */
     protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
     {
-        return $this->getComparisonFailMessage($alfa, $this->comparison, $beta);
+        return $this->comparisonFail($alfa, $this->comparison, $beta);
     }
 }
