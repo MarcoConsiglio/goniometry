@@ -165,11 +165,13 @@ class AngleTest extends TestCase
         $angle = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
 
         // Assert
-        $this->assertAngleHasValues($angle, [
-            "degrees" => $degrees * $direction->value,
-            "minutes" => $minutes,
-            "seconds" => $seconds,
-        ]);
+        $this->assertEquals(abs($degrees), $angle->degrees->value->value);
+        $this->assertEquals(abs($minutes), $angle->minutes->value->value);
+        $this->assertEquals(abs($seconds), $angle->seconds->value->value);
+        $this->assertEquals(
+            $degrees >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE,
+            $angle->direction    
+        );
     }
 
     #[TestDox("can be created from a textual representation.")]
