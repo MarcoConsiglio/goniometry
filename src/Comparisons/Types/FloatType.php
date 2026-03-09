@@ -25,7 +25,7 @@ class FloatType extends InputType
     /**
      * Construct the InputType of $beta.
      */
-    public function __construct(protected float $beta, protected int $precision) {}
+    public function __construct(protected float $beta, protected int $precision = 54) {}
 
     /**
      * Get the correct strategy for the current $comparison operation.

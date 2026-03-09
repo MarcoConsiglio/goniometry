@@ -12,6 +12,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategy;
 
@@ -36,6 +37,6 @@ class StringType extends InputType
         if ($comparison instanceof Greater) return new GreaterString($alfa, $this->beta);
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualString($alfa, $this->beta);
         if ($comparison instanceof Lesser) return new LesserString($alfa, $this->beta);
-        return new LesserString($alfa, $this->beta);
+        return new LesserOrEqualString($alfa, $this->beta);
     }
 }

@@ -10,13 +10,13 @@ use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -25,27 +25,27 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\MockObject;
 
 
-#[TestDox("The IntType ")]
-#[CoversClass(IntType::class)]
+#[TestDox("The FloatType ")]
+#[CoversClass(FloatType::class)]
 #[UsesClass(Comparison::class)]
 #[UsesClass(Equal::class)]
 #[UsesClass(Different::class)]
 #[UsesClass(Greater::class)]
 #[UsesClass(GreaterOrEqual::class)]
 #[UsesClass(Lesser::class)]
-#[UsesClass(ComparisonStrategy::class)]
-#[UsesClass(EqualInt::class)]
-#[UsesClass(DifferentInt::class)]
-#[UsesClass(GreaterInt::class)]
-#[UsesClass(GreaterOrEqualInt::class)]
-#[UsesClass(LesserInt::class)]
 #[UsesClass(LesserOrEqual::class)]
-#[UsesClass(LesserOrEqualInt::class)]
-class IntTypeTest extends InputTypeTestCase
+#[UsesClass(ComparisonStrategy::class)]
+#[UsesClass(EqualFloat::class)]
+#[UsesClass(DifferentFloat::class)]
+#[UsesClass(GreaterFloat::class)]
+#[UsesClass(GreaterOrEqualFloat::class)]
+#[UsesClass(LesserFloat::class)]
+#[UsesClass(LesserOrEqualFloat::class)]
+class FloatTypeTest extends InputTypeTestCase
 {
     protected Angle&MockObject $alfa;
 
-    protected int $beta;
+    protected float $beta;
 
     protected InputType $input_type;
 
@@ -54,8 +54,8 @@ class IntTypeTest extends InputTypeTestCase
     {
         parent::setUp();
         $this->alfa = $this->getMockedAngle();
-        $this->beta = $this->randomDegrees();
-        $this->input_type = new IntType($this->beta);
+        $this->beta = $this->randomSexadecimal();
+        $this->input_type = new FloatType($this->beta);
     }
 
     #[TestDox("return the strategy for an Equal comparison.")]
@@ -68,7 +68,7 @@ class IntTypeTest extends InputTypeTestCase
         );
 
         // Assert
-        $this->assertInstanceOf(EqualInt::class, $strategy);
+        $this->assertInstanceOf(EqualFloat::class, $strategy);
     }
 
     #[TestDox("return the strategy for a Different comparison.")]
@@ -81,7 +81,7 @@ class IntTypeTest extends InputTypeTestCase
         );
 
         // Assert
-        $this->assertInstanceOf(DifferentInt::class, $strategy);
+        $this->assertInstanceOf(DifferentFloat::class, $strategy);
     }
 
     #[TestDox("return the strategy for a Greater comparison.")]
@@ -94,7 +94,7 @@ class IntTypeTest extends InputTypeTestCase
         );
 
         // Assert
-        $this->assertInstanceOf(GreaterInt::class, $strategy);
+        $this->assertInstanceOf(GreaterFloat::class, $strategy);
     }
 
     #[TestDox("return the strategy for a GreaterOrEqual comparison.")]
@@ -107,7 +107,7 @@ class IntTypeTest extends InputTypeTestCase
         );
 
         // Assert
-        $this->assertInstanceOf(GreaterOrEqualInt::class, $strategy);
+        $this->assertInstanceOf(GreaterOrEqualFloat::class, $strategy);
     }
 
     #[TestDox("return the strategy for a Lesser comparison.")]
@@ -120,7 +120,7 @@ class IntTypeTest extends InputTypeTestCase
         );
 
         // Assert
-        $this->assertInstanceOf(LesserInt::class, $strategy);
+        $this->assertInstanceOf(LesserFloat::class, $strategy);
     }
 
     #[TestDox("return the strategy for a LesserOrEqual comparison.")]
@@ -133,7 +133,7 @@ class IntTypeTest extends InputTypeTestCase
         );
 
         // Assert
-        $this->assertInstanceOf(LesserOrEqualInt::class, $strategy);
+        $this->assertInstanceOf(LesserOrEqualFloat::class, $strategy);
     }
 
     /**
@@ -147,10 +147,8 @@ class IntTypeTest extends InputTypeTestCase
     /**
      * Return the mocked beta Angle.
      */
-    protected function getMockedBeta(): int
+    protected function getMockedBeta(): float
     {
         return $this->beta;
     }
-
-
 }

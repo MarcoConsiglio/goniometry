@@ -76,8 +76,8 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
         /**
          * Negative sum
          */
-        $alfa = Angle::createFromValues(30, direction: Angle::CLOCKWISE);
-        $beta = Angle::createFromValues(30, direction: Angle::CLOCKWISE);
+        $alfa = Angle::createFromValues(30, direction: Direction::CLOCKWISE);
+        $beta = Angle::createFromValues(30, direction: Direction::CLOCKWISE);
         $builder = new FromAnglesToRelativeSum($alfa, $beta);
 
         // Act
@@ -111,8 +111,8 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
         /**
          * -360° + (-360°) ≅ -360°
          */
-        $alfa = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
-        $beta = Angle::createFromValues(360, direction: Angle::CLOCKWISE);
+        $alfa = Angle::createFromValues(360, direction: Direction::CLOCKWISE);
+        $beta = Angle::createFromValues(360, direction: Direction::CLOCKWISE);
         $builder = new FromAnglesToRelativeSum($alfa, $beta);
 
         // Act

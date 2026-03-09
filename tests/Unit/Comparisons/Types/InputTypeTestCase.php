@@ -32,5 +32,5 @@ abstract class InputTypeTestCase extends TestCase
     /**
      * Return the mocked beta Angle.
      */
-    abstract protected function getMockedBeta(): Angle&MockObject;
+    abstract protected function getMockedBeta(): int|float|string|(Angle&MockObject);
 }
