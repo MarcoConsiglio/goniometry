@@ -4,12 +4,13 @@ namespace MarcoConsiglio\Goniometry\Tests\Traits;
 use InvalidArgumentException;
 
 /**
- * This trait provides equal or not equal comparison Parameterized Tests.
- * to support the equals method used by PHPUnit.
+ * This trait provides equal or not equal comparison to support
+ * disposition testing. It'a mean to test every possible path 
+ * of the code passing through binary conditions.
  */
-trait WithEqualsMethod
+trait WithDispositionTesting
 {
-       /**
+    /**
      * The maximum number of comparable properties.
      * 
      * @var int
@@ -162,7 +163,7 @@ trait WithEqualsMethod
      * will be two, different comparison result and equal comparison result.
      * 
      * @param int $properties_number
-     * @return float|int|object
+     * @return int|float
      */
     protected function getTotalDispositions(int $properties_number) 
     {
@@ -176,7 +177,6 @@ trait WithEqualsMethod
      *  
      * @param string $binary_string The string representation of a binary number.
      * @param int $max_length The maximum number of digits in the binary number.
-     * @return string
      */
     private function fillWithTrailingZeros(string $binary_string, int $max_length): string
     {
