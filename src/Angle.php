@@ -240,7 +240,7 @@ class Angle implements AngleInterface
     {
         $degrees = (int) $this->degrees->value->mul($this->direction->value)->value;
         $minutes = (int) $this->minutes->value->value;
-        $seconds = round((float) $this->seconds->value->value, PHP_FLOAT_DIG, RoundingMode::HalfTowardsZero);
+        $seconds = $this->seconds->value->toFloat();
         if ($associative)
             return [
                 "degrees" => $degrees,

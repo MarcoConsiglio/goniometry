@@ -133,7 +133,7 @@ class AngleTest extends TestCase
         $this->assertTrue($alfa->minutes->value->eq($minutes), $this->propertyFail("minutes"));
     }
 
-    #[TestDox('has "seconds" property which is of type Minutes.')]
+    #[TestDox('has "seconds" property which is of type Seconds.')]
     public function test_seconds_property(): void
     {
         $seconds = $this->randomSeconds();
@@ -168,10 +168,7 @@ class AngleTest extends TestCase
         $this->assertEquals(abs($degrees), $angle->degrees->value->value);
         $this->assertEquals(abs($minutes), $angle->minutes->value->value);
         $this->assertEquals(abs($seconds), $angle->seconds->value->value);
-        $this->assertEquals(
-            $degrees >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE,
-            $angle->direction    
-        );
+        $this->assertEquals($direction, $angle->direction);
     }
 
     #[TestDox("can be created from a textual representation.")]
@@ -234,9 +231,9 @@ class AngleTest extends TestCase
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
         $alfa = Angle::createFromValues(
-            $degrees = $this->faker->numberBetween(0, 360), 
-            $minutes = $this->faker->numberBetween(0, 59), 
-            $seconds = $this->faker->randomFloat(1, 0, 59.9),
+            $degrees = $this->randomDegrees(), 
+            $minutes = $this->randomMinutes(), 
+            $seconds = new Number($this->randomSeconds())->toFloat(),
             $direction = $this->faker->randomElement([Direction::CLOCKWISE, Direction::COUNTER_CLOCKWISE])
         );
         /** @var Direction $direction */
