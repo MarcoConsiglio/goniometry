@@ -12,26 +12,32 @@ trait WithDispositionTesting
 {
     /**
      * The maximum number of comparable properties.
-     * 
-     * @var int
      */
-    private const MAX_PROPERTIES = 8;
+    private const int MAX_PROPERTIES = 8;
 
     /**
      * The index used to find a pair of equal arguments in the 
      * testing dataset.
-     * 
-     * @var int
      */
-    protected const EQUAL = 1;
+    protected const int EQUAL = 1;
 
     /**
      * The index used to find a pair of different arguments in 
      * the testing dataset.
-     * 
-     * @var int
      */
-    protected const DIFFERENT = 0;
+    protected const int DIFFERENT = 0;
+
+    /**
+     * Index used to find a pair of topics, where the first is less than the 
+     * second, in the test dataset.
+     */
+    protected const int LESSER = 1;
+
+    /**
+     * Index used to find a pair of topics, where the first is no less than the 
+     * second, in the test dataset.
+     */
+    protected const int NOT_LESSER = 0;
 
     /**
      * Calculate every possible disposition with repetition in 
@@ -88,11 +94,8 @@ trait WithDispositionTesting
      */
     protected function testEqualComparison(int $properties_number): void
     {
-        $max_comparable_properties = self::MAX_PROPERTIES;
         $properties_number = abs($properties_number);
-        if ($properties_number > $max_comparable_properties) {
-            throw new InvalidArgumentException("Currently, you can compare items that have a maximum of $max_comparable_properties properties.");
-        }
+        $this->checkPropertiesNumber($properties_number);
         $total_cases = $this->getTotalDispositions($properties_number);
         $values_to_compare = $this->getValuesToCompare(
             $this->getComparisonDataset(),
@@ -110,6 +113,19 @@ trait WithDispositionTesting
                 $this->testObjectsAreEqual($case_number, $records);
             }
         }
+    }
+
+    /**
+     * Check that the number of properties being test do not exceed the maximum 
+     * allowed.
+     */
+    private function checkPropertiesNumber(int $properties_number): void
+    {
+        if ($properties_number > self::MAX_PROPERTIES) {
+            throw new InvalidArgumentException(
+                "Currently, you can compare items that have a maximum of ".self::MAX_PROPERTIES." properties."
+            );
+        }        
     }
 
     /**

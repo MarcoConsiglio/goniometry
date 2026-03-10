@@ -30,7 +30,7 @@ class LesserAngle extends GreaterAngle
         if ($this->minutesAreLess()) return true;
         if ($this->minutesAreGreater()) return false;
         if ($this->secondsAreLess()) return true;
-        if ($this->secondsAreGreater()) return false;
+        // if ($this->secondsAreGreater()) return false;
         return false;
     }
 }
