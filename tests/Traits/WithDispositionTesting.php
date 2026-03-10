@@ -85,9 +85,8 @@ trait WithDispositionTesting
      * @param int $properties_number The number of properties of the class being 
      * compared.
      * @throws \InvalidArgumentException if $properties_number exceed MAX_PROPERTIES constant.
-     * @return void
      */
-    protected function testEqualComparison(int $properties_number)
+    protected function testEqualComparison(int $properties_number): void
     {
         $max_comparable_properties = self::MAX_PROPERTIES;
         $properties_number = abs($properties_number);
@@ -104,56 +103,23 @@ trait WithDispositionTesting
             $case_number = $case + 1;
             // All cases except the last one regards different objects.
             if ($case_number != $total_cases) {
-                $this->testRecordsNotEqual($case_number, $records);
+                $this->testObjectsAreNotEqual($case_number, $records);
             }
             // The last case is when all properties are equals therefor the two objects are equal.
             if ($case_number == $total_cases) {
-                $this->testRecordsEqual($case_number, $records);
+                $this->testObjectsAreEqual($case_number, $records);
             }
         }
     }
 
     /**
-     * Test two records are equal. This is a Parameterized Test.
-     * 
-     * @param int $case_number The case number being tested.
-     * @param array $records An array of two records that will be fed to the comparison method.
-     * @return void
-     */
-    protected function testRecordsEqual(int $case_number, array $records)
-    {
-        $this->assertObjectEquals($records[0], $records[1], "equals", 
-            $this->getComparisonFailureMessage($case_number, $records)
-        );
-    }
-
-    /**
-     * Test two records are different. This is a Parameterized Test.
-     * 
-     * @param int $case_number The case number being tested.
-     * @param array $records An array of two records that will be fed to the comparison method.
-     * @return void
-     */
-    protected function testRecordsNotEqual(int $case_number, array $records)
-    {
-        $this->assertObjectNotEquals($records[0], $records[1], "equals", 
-            $this->getComparisonFailureMessage($case_number, $records)
-        );
-    }
-
-    /**
      * Return a comparison dataset with different and equal arguments.
-     * 
-     * @return array
      */
     abstract protected function getComparisonDataset(): array;
 
     /**
-     * Construct the two records to be compared with some $property_couples 
-     * representing an equal or different property
-     * 
-     * @param array $property_couples
-     * @return array
+     * Construct the two records to be compared with some `$property_couples` 
+     * representing an equal or different property comparison result.
      */
     abstract protected function getRecordsToCompare(array $property_couples): array;
 
@@ -163,9 +129,8 @@ trait WithDispositionTesting
      * will be two, different comparison result and equal comparison result.
      * 
      * @param int $properties_number
-     * @return int|float
      */
-    protected function getTotalDispositions(int $properties_number) 
+    protected function getTotalDispositions(int $properties_number): int
     {
         $properties_number = abs($properties_number);
         return pow(2, $properties_number);
@@ -193,7 +158,6 @@ trait WithDispositionTesting
      * Return an all zeros bit mask of $length bits.
      * 
      * @param int $length The maximum length of the bit mask.
-     * @return string
      */
     private function getTrailingZeroMask(int $length): string
     {
@@ -210,8 +174,7 @@ trait WithDispositionTesting
      * Cast a string binary number to an array composed of
      * integer bits (0 or 1).
      * 
-     * @param string $binary_string The string binary number to cast.
-     * @return array
+     * @param string $binary_string The string binary number to be casted.
      */
     private function toIntegerBits(string $binary_string): array
     {
@@ -224,15 +187,11 @@ trait WithDispositionTesting
 
     /**
      * Return a failure message for a comparison failure.
-     * 
-     * @param int $case_number
-     * @param array $records
-     * @return string
      */
-    private function getComparisonFailureMessage(int $case_number, array $records): string
+    private function getComparisonFailureMessage(int $case_number, array $objects): string
     {
-        $first_record = $records[0];
-        $second_record = $records[1];
-        return "Comparison test case n. $case_number failed with records\n$first_record\n$second_record\n";
+        $first = $objects[0];
+        $second = $objects[1];
+        return "Comparison test case n. $case_number failed with objects\n$first\n$second\n";
     }
 }
