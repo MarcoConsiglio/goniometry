@@ -243,7 +243,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAnglesToAbsoluteSum\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Construct\u0020the\u0020SumBuilder\u0020with\u0020two\u0020absolute\u0020Angle\u0028s\u0029.",
+            "summary": "Construct\u0020the\u0020SumBuilder\u0020with\u0020two\u0020angles.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-FromAnglesToAbsoluteSum.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromAnglesToAbsoluteSum\u003A\u003AfetchData\u0028\u0029",

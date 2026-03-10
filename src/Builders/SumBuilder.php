@@ -1,7 +1,9 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders;
 
+use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use RoundingMode;
 
 /**
@@ -14,47 +16,51 @@ abstract class SumBuilder extends AngleBuilder
      *
      * @var Angle
      */
-    protected Angle $first_angle;
+    protected Angle $alfa;
 
     /**
      * The second addend.
      *
      * @var Angle
      */
-    protected Angle $second_angle;
+    protected Angle $beta;
+
+    /**
+     * The operation direction.
+     */
+    protected Direction $operation;
 
     /**
      * The decimal sum of the two angles.
      * 
-     * @var float
+     * @deprecated
      */
     protected float $decimal_sum = 0.0;
 
     /**
      * The reminder used in calculations.
-     *
-     * @var float
      */
-    protected float $reminder = 0.0;
+    protected Number $reminder;
 
     /**
      * The precision of the decimal value used
      * int the sum calculation.
      * 
-     * @var integer
+     * @deprecated BCMath provides arbitrary precision.
      */
     protected int $decimal_precision = 0;
 
     /**
      * Construct the SumBuilder with two angles.
      *
-     * @param Angle $first_angle
-     * @param Angle $second_angle
+     * @param Angle $alfa
+     * @param Angle $beta
      */
-    public function __construct(Angle $first_angle, Angle $second_angle)
+    public function __construct(Angle $alfa, Angle $beta)
     {
-        $this->first_angle = $first_angle;
-        $this->second_angle = $second_angle;
+        $this->alfa = $alfa;
+        $this->beta = $beta;
+        $this->reminder = new Number(0);
     }
 
     /**
@@ -65,8 +71,8 @@ abstract class SumBuilder extends AngleBuilder
     protected function bothAnglesAreFullPositiveAngles(): bool
     {
         return 
-            $this->isFullAngle($this->first_angle, Angle::COUNTER_CLOCKWISE) && 
-            $this->isFullAngle($this->second_angle, Angle::COUNTER_CLOCKWISE);
+            $this->isFullAngle($this->alfa, Direction::COUNTER_CLOCKWISE) && 
+            $this->isFullAngle($this->beta, Direction::COUNTER_CLOCKWISE);
     }
 
     /**
@@ -77,8 +83,8 @@ abstract class SumBuilder extends AngleBuilder
     protected function bothAnglesAreFullNegativeAngles(): bool
     {
         return 
-            $this->isFullAngle($this->first_angle, Angle::CLOCKWISE) && 
-            $this->isFullAngle($this->second_angle, Angle::CLOCKWISE);
+            $this->isFullAngle($this->alfa, Direction::CLOCKWISE) && 
+            $this->isFullAngle($this->beta, Direction::CLOCKWISE);
     }
 
     /**
@@ -88,7 +94,7 @@ abstract class SumBuilder extends AngleBuilder
      */
     protected function bothAnglesAreNullAngles(): bool
     {
-        return $this->isNullAngle($this->first_angle) && $this->isNullAngle($this->second_angle);
+        return $this->isNullAngle($this->alfa) && $this->isNullAngle($this->beta);
     }
 
 
@@ -96,12 +102,12 @@ abstract class SumBuilder extends AngleBuilder
      * It checks that an $angle is a full angle.
      *
      * @param Angle $angle
-     * @param int $sign The expected sign of the angle being checked.
+     * @param Direction $sign The expected sign of the angle being checked.
      * @return boolean
      */
-    protected function isFullAngle(Angle $angle, int $sign): bool
+    protected function isFullAngle(Angle $angle, Direction $sign): bool
     {
-        $sign = $sign >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE;
+        $sign = $sign >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE;
         return $angle->direction == $sign && $angle->isEqual(Angle::MAX_DEGREES) ;
     }
 
@@ -114,71 +120,5 @@ abstract class SumBuilder extends AngleBuilder
     protected function isNullAngle(Angle $angle): bool
     {
         return $angle->isEqual(0);
-    }
-
-    /**
-     * Get the max suggested decimal precision between two angles.
-     *
-     * @param Angle $first
-     * @param Angle $second
-     * @return integer
-     */
-    protected function getMaxSuggestedDecimalPrecisionBetween(Angle $first, Angle $second): int
-    {
-        return max(
-            $first->suggested_decimal_precision,
-            $second->suggested_decimal_precision
-        );
-    }
-
-    /**
-     * It checks for overflow above/below ±360°.
-     *
-     * @return void
-     */
-    protected function checkOverflow()
-    {
-        $this->decimal_sum = round(
-            fmod($this->decimal_sum, Angle::MAX_DEGREES),
-            $this->decimal_precision,
-            RoundingMode::HalfTowardsZero
-        );
-    }
-
-    /**
-     * It calcs seconds value.
-     *
-     * @return void
-     */
-    protected function calcSeconds()
-    {
-        $this->seconds = round(
-            $this->reminder * Angle::MAX_SECONDS,
-            $this->decimal_precision - 2,
-            RoundingMode::HalfTowardsZero
-        );
-    }
-
-    /**
-     * It calcs minutes value.    
-     *
-     * @return void
-     */
-    protected function calcMinutes()
-    {
-        $this->reminder = abs($this->decimal_sum) - $this->degrees;
-        $this->reminder *= Angle::MAX_MINUTES;
-        $this->minutes = intval($this->reminder);
-        $this->reminder -= $this->minutes;
-    }
-
-    /**
-     * It calcs degrees value.
-     *
-     * @return void
-     */
-    protected function calcDegrees()
-    {
-        $this->degrees = intval(abs($this->decimal_sum));
     }
 }

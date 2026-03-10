@@ -2,9 +2,14 @@
 namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
+use Marcoconsiglio\ModularArithmetic\ModularNumber;
 
 /**
  *  Builds an angle starting from a string value.
@@ -137,7 +142,9 @@ class FromString extends AngleBuilder
      */
     protected function calcDegrees()
     {
-        $this->degrees = abs((int) $this->degrees_match[1]);
+        $this->degrees = new Degrees(
+            abs((int) $this->degrees_match[1])
+        );
     }
 
     /**
@@ -147,7 +154,9 @@ class FromString extends AngleBuilder
      */
     protected function calcMinutes()
     {
-        $this->minutes = (int) $this->minutes_match[1];
+        $this->minutes = new Minutes(
+            $this->minutes_match[1]
+        );
     }
 
     /**
@@ -157,7 +166,9 @@ class FromString extends AngleBuilder
      */
     protected function calcSeconds()
     {
-        $this->seconds = $this->seconds_match[1];
+        $this->seconds = new Seconds(
+            $this->seconds_match[1]
+        );
     }
 
     /**
@@ -167,23 +178,13 @@ class FromString extends AngleBuilder
      */
     protected function calcSign()
     {
-        $this->direction = ((int) $this->degrees_match[1]) >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE;
+        $this->direction = ((int) $this->degrees_match[1]) >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE;
     }
 
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array{
-     *      int,
-     *      int,
-     *      float,
-     *      int,
-     *      int|null,
-     *      float|null,
-     *      int|null,
-     *      float|null,
-     *      int|null
-     *  }
+     * @return array{Degrees,Minutes,Seconds,Direction,null,null}
      */
     public function fetchData(): array
     {
@@ -196,11 +197,8 @@ class FromString extends AngleBuilder
             $this->minutes,
             $this->seconds,
             $this->direction,
-            null, // No suggested decimal precision
-            null, // No original decimal value
-            Angle::countDecimalPlaces($this->seconds),
-            null, // No original radian value 
-            null, // No original radian precision
+            null,
+            null
         ];
     }
 }

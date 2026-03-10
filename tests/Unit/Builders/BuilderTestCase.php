@@ -8,8 +8,10 @@ use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
+use Marcoconsiglio\ModularArithmetic\ModularNumber;
 use PHPUnit\Framework\MockObject\MockObject;
 use RoundingMode;
 
@@ -102,10 +104,10 @@ abstract class BuilderTestCase extends TestCase
             switch ($builder) {
                 case FromDegrees::class:
                     $angle = Angle::createFromValues(
-                        abs($value[0]),                                                 /* Degrees */
-                        $value[1],                                                      /* Minutes */
-                        $value[2],                                                      /* Seconds */
-                        $value[0] >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE    /* Sign */
+                        $value[0], /* Degrees */
+                        $value[1], /* Minutes */
+                        $value[2], /* Seconds */
+                        $value[3]  /* Sign */
                     );
                     break;
                 case FromDecimal::class:
@@ -162,14 +164,14 @@ abstract class BuilderTestCase extends TestCase
      */
     public function assertAngleDegrees(array $expected_values, Angle $angle)
     {
-        $this->assertProperty("int", "degrees", $angle, abs($expected_values[0]));
-        $this->assertProperty("int", "minutes", $angle, $expected_values[1]);
-        $this->assertProperty("float", "seconds", $angle, $expected_values[2]);
-        $this->assertProperty("int", "direction", $angle, $expected_values[0] >= 0 ? Angle::COUNTER_CLOCKWISE : Angle::CLOCKWISE);
+        $this->assertProperty(ModularNumber::class, "degrees", $angle, abs($expected_values[0]));
+        $this->assertProperty(ModularNumber::class, "minutes", $angle, $expected_values[1]);
+        $this->assertProperty(ModularNumber::class, "seconds", $angle, $expected_values[2]);
+        $this->assertProperty(Direction::class, "direction", $angle, $expected_values[3]);
     }
 
     /**
-     * Assert that $angle->toDecimal() equals $expected_values.
+     * Assert that $angle->toFloat() equals $expected_values.
      *
      * @param float                              $expected_value The decimal value you expect from the $angle.
      * @param \MarcoConsiglio\Goniometry\Angle $angle The angle to test.
@@ -178,10 +180,10 @@ abstract class BuilderTestCase extends TestCase
     public function assertAngleDecimal(float $expected_value, Angle $angle)
     {
         $expected = $expected_value;
-        $actual = $angle->toDecimal();
+        $actual = $angle->toFloat();
         $angle_class = Angle::class;
         $this->assertEquals($expected, $actual, 
-            "{$angle_class}::toDecimal() should return {$expected} but found {$actual}."
+            "{$angle_class}::toFloat() should return {$expected} but found {$actual}."
         );
     }
 

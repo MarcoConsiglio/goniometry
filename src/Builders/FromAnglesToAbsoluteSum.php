@@ -2,24 +2,21 @@
 namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use RoundingMode;
 
 class FromAnglesToAbsoluteSum extends SumBuilder
 {
     /**
-     * Construct the SumBuilder with two absolute Angle(s).
+     * Construct the SumBuilder with two angles.
      * 
-     * If $first_angle or $second_angle are clockwise (negative) Angle 
-     * instances they will be converted to counterclockwise (positive)
-     * Angle instances.
+     * The sum will always be positive.
      *
      * @param Angle $first_angle
      * @param Angle $second_angle
      */
     public function __construct(Angle $first_angle, Angle $second_angle)
     {
-        if ($first_angle->isClockwise()) $first_angle = $first_angle->toggleDirection();
-        if ($second_angle->isClockwise()) $second_angle = $second_angle->toggleDirection();
         $this->first_angle = $first_angle;
         $this->second_angle = $second_angle;
     }
@@ -66,24 +63,24 @@ class FromAnglesToAbsoluteSum extends SumBuilder
     {
         $this->calcSign();
 
-        // These are shortcuts.
-        if ($this->bothAnglesAreFullPositiveAngles()) {
-            $this->degrees = Angle::MAX_DEGREES;
-            return;
-        }
-        if ($this->bothAnglesAreNullAngles()) {
-            return;
-        }
+        // // These are shortcuts.
+        // if ($this->bothAnglesAreFullPositiveAngles()) {
+        //     $this->degrees = Angle::MAX_DEGREES;
+        //     return;
+        // }
+        // if ($this->bothAnglesAreNullAngles()) {
+        //     return;
+        // }
 
-        // Real calculation is performed here.
-        $decimal_first_angle = $this->first_angle->toDecimal();
-        $decimal_second_angle = $this->second_angle->toDecimal();
-        $this->decimal_precision = $this->getMaxSuggestedDecimalPrecisionBetween($this->first_angle, $this->second_angle);
-        $this->decimal_sum = round(
-            $decimal_first_angle + $decimal_second_angle,
-            $this->decimal_precision,
-            RoundingMode::HalfTowardsZero
-        );
+        // // Real calculation is performed here.
+        // $decimal_first_angle = $this->first_angle->toFloat();
+        // $decimal_second_angle = $this->second_angle->toFloat();
+        // $this->decimal_precision = $this->getMaxSuggestedDecimalPrecisionBetween($this->first_angle, $this->second_angle);
+        // $this->decimal_sum = round(
+        //     $decimal_first_angle + $decimal_second_angle,
+        //     $this->decimal_precision,
+        //     RoundingMode::HalfTowardsZero
+        // );
         // Subtract any excess of 360°.
         $this->checkOverflow();
         // Calc the values of the sum angle.
@@ -94,11 +91,33 @@ class FromAnglesToAbsoluteSum extends SumBuilder
 
     /**
      * It calcs the result sign.
+     * 
+     * The sign/direction will be always positive/counterclockwise.
      *
      * @return void
      */
     protected function calcSign()
     {
-        $this->direction = Angle::COUNTER_CLOCKWISE;
+        $this->direction = Direction::COUNTER_CLOCKWISE;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    protected function checkOverflow(): void {/* There's no need to check overflow */}
+
+    protected function calcSeconds()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    protected function calcMinutes()
+    {
+        throw new \Exception('Not implemented');
+    }
+
+    protected function calcDegrees()
+    {
+        throw new \Exception('Not implemented');
     }
 }

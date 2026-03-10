@@ -1,7 +1,7 @@
 # goniometry
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v2.0.0-white)
+![Static Badge](https://img.shields.io/badge/version-v2.0.1-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-99%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
@@ -62,9 +62,9 @@ $delta = Angle::createFromRadian(M_PI); // 180°
 ### Degrees, minutes and seconds
 This creates an angle from its values in degrees, minutes and seconds:
 ```php
-$alfa = Angle::createFromValues(180, 12, 43, Angle::CLOCKWISE); // 180° 12' 43"
+$alfa = Angle::createFromValues(180, 12, 43, Direction::CLOCKWISE); // 180° 12' 43"
 ```
-`Angle::COUNTERCLOCKWISE` is the plus sign, `Angle::CLOCKWISE` is the minus sign.
+`Direction::COUNTERCLOCKWISE` is the plus sign, `Direction::CLOCKWISE` is the minus sign.
 
 The `AngleOverflowException` is thrown when you try to create an angle:
 - with more than $\pm360^\circ$
@@ -118,13 +118,15 @@ echo $value['degrees'];
 echo $value['minutes'];
 echo $value['seconds'];
 ```
-There is read-only properties too:
+There are read-only properties too:
 ```php
 $alfa->degrees;   // 180
 $alfa->minutes;   // 12
 $alfa->seconds;   // 43
-$alfa->direction; // Angle::CLOCKWISE (1)
+$alfa->direction; // Direction::CLOCKWISE (-1)
 ```
+The Degrees, minutes, and seconds properties are of type `ModularNumber`, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
+
 ### Casting
 When the precision parameter is needed, you can obtain your maximum available precision with
 the `PHP_FLOAT_DIG` constant.
@@ -166,13 +168,13 @@ You can cast the angle to a string representation:
 In this case, maximum precision of seconds will be `PHP_FLOAT_DIG`.
 
 ## Direction
-Positive angles are represented by the class constant
+Positive angles are represented by the enum constant
 ```php
-Angle::COUNTER_CLOCKWISE; // 1
+Direction::COUNTER_CLOCKWISE; // 1
 ```
-while negative angles are represented by the opposite class constant:
+while negative angles are represented by the opposite enum constant:
 ```php
-Angle::CLOCKWISE; // -1
+Direction::CLOCKWISE; // -1
 ```
 You can toggle direction:
 ```php
@@ -276,9 +278,9 @@ You can sum two angles
 ### Relative sum
 ```php
 $alfa = Angle::createFromDecimal(180);
-$beta = Angle::createFromDecimal(270);
-$gamma = Angle::sum($alfa, $beta); // 180° + 270°
-(string) $gamma; // 90° 0' 0"
+$beta = Angle::createFromDecimal(-270);
+$gamma = Angle::sum($alfa, $beta); // 180° + (-270°)
+(string) $gamma; // -90° 0' 0"
 ```
 Note that if the sum is less than $-360^\circ$ or more than $+360^\circ$, the resulting angle will be corrected to remain between these limits.
 
@@ -286,8 +288,8 @@ Note that if the sum is less than $-360^\circ$ or more than $+360^\circ$, the re
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::absSum($alfa, $beta); // 180° + abs(-270°)
-(string) $gamma; // 90° 0' 0"
+$gamma = Angle::absSum($alfa, $beta); // 180° + (-270°)
+(string) $gamma; // 270° 0' 0"
 ```
 Note that if the sum is less than $0^\circ$ or more than $+360^\circ$, the resulting angle will be corrected to remain between these limits.
 

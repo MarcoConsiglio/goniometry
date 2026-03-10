@@ -4,7 +4,8 @@
          bootstrap="vendor/autoload.php"
          colors="true"
          cacheDirectory=".phpunit.cache"
-         executionOrder="depends,defects"
+         resolveDependencies="false"
+         executionOrder="default"
          shortenArraysForExportThreshold="10"
          requireCoverageMetadata="true"
          beStrictAboutCoverageMetadata="true"
@@ -22,7 +23,7 @@
         </testsuite>
     </testsuites>
     <logging>
-        <testdoxText outputFile="testbook.txt"/>
+        <!-- <testdoxText outputFile="testbook.txt"/> -->
         <testdoxHtml outputFile="testbook.html"/>
     </logging>
     <coverage

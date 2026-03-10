@@ -4,7 +4,10 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -13,7 +16,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(FromRadian::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleOverflowException::class)]
+#[UsesClass(Degrees::class)]
 #[UsesClass(FromDecimal::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(Seconds::class)]
 class FromRadianTest extends BuilderTestCase
 {
     #[TestDox("can create a positive angle from a radian value.")]
