@@ -165,9 +165,9 @@ class AngleTest extends TestCase
         $angle = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
 
         // Assert
-        $this->assertEquals(abs($degrees), $angle->degrees->value->value);
-        $this->assertEquals(abs($minutes), $angle->minutes->value->value);
-        $this->assertEquals(abs($seconds), $angle->seconds->value->value);
+        $this->assertEquals(new Number($degrees)->value, $angle->degrees->value->value);
+        $this->assertEquals(new Number($minutes)->value, $angle->minutes->value->value);
+        $this->assertEquals(new Number($seconds)->value, $angle->seconds->value->value);
         $this->assertEquals($direction, $angle->direction);
     }
 
