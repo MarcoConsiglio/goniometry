@@ -31,7 +31,7 @@ class LesserOrEqualFloat extends FloatComparisonStrategy
     public function compare(): bool
     {
         return
-            $this->alfa->toDecimal()->round($this->precision)->abs()
+            $this->alfa->toDecimal()->value->round($this->precision)->abs()
             ->lte(
                 new Number($this->beta)->round($this->precision)->abs()
             );

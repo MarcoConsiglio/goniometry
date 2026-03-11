@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use RoundingMode;
 
@@ -108,7 +109,7 @@ abstract class SumBuilder extends AngleBuilder
     protected function isFullAngle(Angle $angle, Direction $sign): bool
     {
         $sign = $sign >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE;
-        return $angle->direction == $sign && $angle->isEqual(Angle::MAX_DEGREES) ;
+        return $angle->direction == $sign && $angle->isEqual(Degrees::MAX) ;
     }
 
     /**

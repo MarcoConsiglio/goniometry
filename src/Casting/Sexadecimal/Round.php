@@ -2,18 +2,21 @@
 namespace MarcoConsiglio\Goniometry\Casting\Sexadecimal;
 
 use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use RoundingMode;
 
 /**
  * Cast an `Angle` to a sexadecimal value when the same `Angle` has already 
  * been constructed with a sexadecimal value.
  */
-class Round implements ToSexadecimal
+class Round extends Sexagesimal implements ToSexadecimal
 {
     /**
      * Construct the `Round` object.
      */
     public function __construct(
-        protected float $original_decimal,
+        protected SexadecimalDegrees $sexadecimal,
         protected int|null $precision = null
     ) {}
 
@@ -24,27 +27,20 @@ class Round implements ToSexadecimal
     {
         if ($this->hasPrecisionBeenSet()) {
             $this->normalizePrecision();
-            return new Number($this->original_decimal)->toFloat($this->precision);
+            return round(
+                $this->sexadecimalToFloat(),
+                $this->precision,
+                RoundingMode::HalfTowardsZero
+            );
         }
-        return $this->original_decimal;
+        return $this->sexadecimalToFloat();
     }
 
     /**
-     * Check if the precision has been set.
+     * Return the sexadecimal degrees value as a 'float` type variable.
      */
-    protected function hasPrecisionBeenSet(): bool
+    protected function sexadecimalToFloat(): float
     {
-        return $this->precision !== null;
-    }
-
-    /**
-     * Normalize the precision to a suitable precision
-     * when casting to float.
-     */
-    protected function normalizePrecision(): void
-    {
-        $this->precision = 
-            abs($this->precision) > PHP_FLOAT_DIG ? 
-            PHP_FLOAT_DIG : abs($this->precision);
+        return $this->sexadecimal->value->toFloat();
     }
 }

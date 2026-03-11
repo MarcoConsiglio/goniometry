@@ -11,8 +11,10 @@ use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
+use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
+use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundFromRadian;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundFromSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
@@ -22,8 +24,6 @@ use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
-use Marcoconsiglio\ModularArithmetic\ModularNumber;
-use RoundingMode;
 
 /**
  * Represents an angle.
@@ -32,66 +32,18 @@ class Angle implements AngleInterface
 {
     /**
      * Regular expression used to parse degrees value as integer number.
-     * 
-     * @var string
      */
     public const DEGREES_REGEX = "/(?<!\d)(-?(?:360|3[0-5]\d|[12]?\d{1,2}))°/";
 
     /**
      * Regular expression used to parse minutes value as integer number.
-     * 
-     * @var string
      */
     public const MINUTES_REGEX = '/\b([0-5]?\d)\'/';
 
     /**
      * Regular expression used to parse second value as decimal number.
-     * 
-     * @var string
      */
     public const SECONDS_REGEX = '/\b((?:[1-5]?\d)(?:\.\d+)?)"/';
-   
-    /**
-     * It represents a negative angle.
-     * 
-     * @var int
-     */
-    public const CLOCKWISE = -1;
-
-    /**
-     * It represents a positive angle.
-     * 
-     * @var int
-     */
-    public const COUNTER_CLOCKWISE = 1;
-
-    /**
-     * The max degrees an angle can have.
-     * 
-     * @var int
-     */
-    public const MAX_DEGREES = 360;
-
-    /**
-     * The max minutes an angle can have.
-     * 
-     * @var int
-     */
-    public const MAX_MINUTES = 60;
-
-    /**
-     * The max seconds an angle can have.
-     * 
-     * @var int
-     */
-    public const MAX_SECONDS = 60;
-
-    /**
-     * Radian measure of a round angle.
-     * 
-     * @var float
-     */
-    public const MAX_RADIAN = 2 * M_PI;
 
     /**
      * The degrees part.
@@ -109,29 +61,20 @@ class Angle implements AngleInterface
     public protected(set) Seconds $seconds;
 
     /** 
-     * The original decimal degrees if the `Angle` is built with
-     * a `FromDecimal` builder.
-     * 
-     * It is used to cast faster the `Angle` to decimal.
-     * 
-     * @var float|null
-     */
-    protected float|null $original_decimal = null;
-
-    /** 
-     * The original radian degrees if the `Angle` is built with
-     * a `FromRadian` builder.
-     * 
-     * It is used cast faster the `Angle` to radian.
-     * 
-     * @var float|null
-     */
-    protected float|null $original_radian = null;
-
-    /** 
      * The angle direction.
      */
     public protected(set) Direction $direction = Direction::COUNTER_CLOCKWISE;
+    
+    /** 
+     * The original sexadecimal degrees if the `Angle` is built `FromDecimal`.
+     */
+    protected SexadecimalDegrees|null $original_decimal = null;
+
+    /** 
+     * The original radian degrees if the `Angle` is built `FromRadian`.
+     */
+    protected Radian|null $original_radian = null;
+
 
     /**
      * Construct an `Angle`.
@@ -139,7 +82,7 @@ class Angle implements AngleInterface
      * @param AngleBuilder $builder The builder used to construct the angle.
      * @return void
      */
-    public function __construct(AngleBuilder $builder)
+    protected function __construct(AngleBuilder $builder)
     {
         [
             $this->degrees, 
@@ -296,32 +239,25 @@ class Angle implements AngleInterface
     public function toFloat(int|null $precision = null): float
     {
         if ($this->original_decimal !== null)
-            return new Round($this->original_decimal, $precision)->cast();
-        return new Cast(
-            $this->degrees, 
-            $this->minutes,
-            $this->seconds,
-            $this->direction,
-            $precision
-        )->cast();
+            return new RoundFromSexadecimal($this->original_decimal, $precision)->cast();
+        return new CastToSexadecimal($this, $precision)->cast();
     }
 
     /**
-     * Return the sexadecimal value of this `Angle` with an arbitrary 
+     * Return the sexadecimal value of this `Angle` with arbitrary 
      * precision.
      */
-    public function toDecimal(): Number
+    public function toDecimal(): SexadecimalDegrees
     {
         if ($this->original_decimal !== null)
-            return new Number($this->original_decimal);
-        $decimal = $this->degrees->value->plus(
-            $this->minutes->value->div(Minutes::MAX)
-        )->plus(
-            $this->seconds->value->div(
-                Minutes::MAX * Seconds::MAX
-            )
+            return $this->original_decimal;
+        return new SexadecimalDegrees(
+            $this->degrees->value->plus(
+                $this->minutes->value->div(Minutes::MAX)
+            )->plus(
+                $this->seconds->value->div(Minutes::MAX * Seconds::MAX)
+            )->mul($this->direction->value)
         );
-        return $decimal->mul($this->direction->value);
     }
 
     /**
@@ -332,39 +268,9 @@ class Angle implements AngleInterface
      */
     public function toRadian(int|null $precision = null): float
     {
-        // If the angle was built from a radian value.
-        if ($this->original_radian) {
-            if ($precision)
-                return round(
-                    $this->original_radian,
-                    $precision,
-                    RoundingMode::HalfTowardsZero
-                );
-            else return $this->original_radian;
-        }
-        // If the angle was built from a decimal degrees value.
-        if ($this->original_decimal) {
-            if ($precision)
-                return $this->original_radian = round(
-                    deg2rad($this->original_decimal),
-                    $precision,
-                    RoundingMode::HalfTowardsZero
-                );
-            else return deg2rad($this->original_decimal);
-        }
-        // All other cases.
-        if ($precision) {
-            return $this->original_radian = round(
-                deg2rad($this->toFloat()),
-                $precision,
-                RoundingMode::HalfTowardsZero
-            );
-        }
-        return $this->original_radian = round(
-            deg2rad($this->toFloat()),
-            PHP_FLOAT_DIG,
-            RoundingMode::HalfTowardsZero
-        );
+        if ($this->original_radian !== null)
+            return new RoundFromRadian($this->original_radian, $precision)->cast();
+        return new CastToRadian($this, $precision)->cast();
     }
 
     /**

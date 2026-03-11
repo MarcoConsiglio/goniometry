@@ -33,7 +33,7 @@ class EqualFloat extends FloatComparisonStrategy
     public function compare(): bool
     {
         return 
-            $this->alfa->toDecimal()->abs()->round($this->precision)
+            $this->alfa->toDecimal()->value->abs()->round($this->precision)
             ->eq(new Number($this->beta)->abs()->round($this->precision));
     }
 }

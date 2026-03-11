@@ -10,6 +10,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -25,6 +26,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(GreaterAngle::class)]
 #[UsesClass(LesserAngle::class)]
+#[UsesClass(SexadecimalDegrees::class)]
 class LesserOrEqualAngleTest extends TestCase
 {
     protected string $comparison = '<';

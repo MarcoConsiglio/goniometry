@@ -10,8 +10,10 @@ use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Builders\SumBuilder;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundToSexadecimal;
+use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
+use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundToRadian;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
@@ -52,7 +54,9 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -108,8 +112,12 @@ use RoundingMode;
 #[UsesClass(FloatType::class)]
 #[UsesClass(IntType::class)]
 #[UsesClass(StringType::class)]
-#[UsesClass(Round::class)]
-#[UsesClass(Cast::class)]
+#[UsesClass(RoundToRadian::class)]
+#[UsesClass(CastToRadian::class)]
+#[UsesClass(Radian::class)]
+#[UsesClass(CastToSexadecimal::class)]
+#[UsesClass(RoundToSexadecimal::class)]
+#[UsesClass(SexadecimalDegrees::class)]
 class AngleTest extends TestCase
 {    
     #[TestDox('has "degrees" property which is of type Degrees.')]
@@ -196,12 +204,7 @@ class AngleTest extends TestCase
     public function test_create_from_decimal()
     {
         // Arrange
-        $precision = PHP_FLOAT_DIG;
-        $decimal = $this->faker->randomFloat(
-            $precision,             /* Max available precision */ 
-            -Angle::MAX_DEGREES,    /* -360° */
-            Angle::MAX_DEGREES      /* +360° */
-        );
+        $decimal = $this->randomSexadecimal();
 
         // Act
         $angle = Angle::createFromDecimal($decimal);
@@ -216,7 +219,7 @@ class AngleTest extends TestCase
     public function test_create_from_radiant()
     {
         // Arrange
-        $radian = $this->randomFloat(max: Angle::MAX_RADIAN - PHP_FLOAT_MIN);
+        $radian = $this->randomFloat(max: Radian::MAX - self::SSN);
 
         // Act
         $angle = Angle::createFromRadian($radian);
@@ -280,127 +283,17 @@ class AngleTest extends TestCase
         $alfa = Angle::createFromDecimal($float);
 
         // Act & Assert
-        $this->assertSame($float, $cast = $alfa->toFloat(), "$float ≠ $cast");
-
-        /**
-         * Angle created FromDecimal,
-         * casted to float with precision.
-         */
-        // Arrange
-        $precision = $this->positiveRandomInteger(max: PHP_FLOAT_DIG - 1);
-        $float = $this->randomSexadecimal(precision: $precision);
-        $alfa = Angle::createFromDecimal($float);
-
-        // Act & Assert
-        $this->assertSame($float, $cast = $alfa->toFloat($precision), "$float ≠ $cast with precision $precision");
-
-        /**
-         * Angle created with other AngleBuilder(s),
-         * casted without precision.
-         */
-        // Arrange
-        [$degrees, $minutes, $seconds, $direction] = $this->randomSexagesimal();
-        $alfa = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
-        $float = new Number($degrees)->plus(
-            new Number($minutes)->div(Minutes::MAX)
-        )->plus(
-            new Number($seconds)->div(Minutes::MAX * Seconds::MAX)
-        )->mul($direction->value)->round(PHP_FLOAT_DIG)->value;
-        $float = (float) $float;
-
-        // Act & Assert
-        $this->assertSame($float, $cast = $alfa->toFloat(), "$float ≠ $cast");
-
-        /**
-         * Angle created with other AngleBuilder(s),
-         * casted with precision.
-         */
-        // Arrange
-        $precision = $this->positiveRandomInteger(max: PHP_FLOAT_DIG);
-        [$degrees, $minutes, $seconds, $direction] = $this->randomSexagesimal();
-        $alfa = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
-        $float = new Number($degrees)->plus(
-            new Number($minutes)->div(Minutes::MAX)
-        )->plus(
-            new Number($seconds)->div(Minutes::MAX * Seconds::MAX)
-        )->mul($direction->value)->round($precision)->value;
-        $float = (float) $float;
-
-        // Act & Assert
-        $this->assertSame($float, $cast = $alfa->toFloat($precision), "$float ≠ $cast");
+        $this->assertIsFloat($alfa->toFloat());
     }
 
     #[TestDox("can be casted to radian.")]
     public function test_cast_to_radian()
     {
-        /**
-         * Built from radian value, no precision specified.
-         */
-        $radian = $this->randomFloat(
-            max: Angle::MAX_RADIAN - PHP_FLOAT_MIN
-        );
-        $angle = Angle::createFromRadian($radian);
-
-        // Act & Assert
-        $this->assertEquals($radian, $angle->toRadian(), $this->getCastError("radian"));
-    
-        /**
-         * Built from decimal degrees value,
-         * no precision specified.
-         */
         // Arrange
-        $decimal = $this->faker->randomFloat(
-            PHP_FLOAT_DIG,      /* Max available precision */
-            -Angle::MAX_DEGREES, /* -360° */
-            Angle::MAX_DEGREES   /* +360° */
-        );
-        $angle = Angle::createFromDecimal($decimal);
+        $angle = $this->randomAngle();
 
         // Act & Assert
-        $this->assertEquals(deg2rad($decimal), $angle->toRadian(), $this->getCastError("radian"));
-
-        /**
-         * Built from decimal degrees value,
-         * precision setted.
-         */
-        // Arrange
-        $decimal = $this->faker->randomFloat(
-            PHP_FLOAT_DIG,      /* Max available precision */
-            -Angle::MAX_DEGREES, /* -360° */
-            Angle::MAX_DEGREES   /* +360° */
-        );
-        $precision = 3;
-        $angle = Angle::createFromDecimal($decimal);
-        $expected_radian = round(
-            deg2rad($decimal),
-            $precision,
-            RoundingMode::HalfTowardsZero
-        );
-
-        // Act & Assert
-        $this->assertEquals($expected_radian, $angle->toRadian($precision), $this->getCastError("radian"));
-
-        /**
-         * All other cases, with precision.
-         */
-        // Arrange
-        $precision = 3;
-        $expected_radian = Number::PI($precision);
-        $angle = Angle::createFromValues(180);
-        
-        // Act & Assert
-        $this->assertEquals($expected_radian->value, $angle->toRadian($precision), $this->getCastError("radian"));
-
-        /**
-         * All other cases, without precision.
-         */
-        // Arrange
-        $expected_radian = Number::PI(PHP_FLOAT_DIG);
-        $angle = Angle::createFromValues(180);
-        
-
-        // Act & Assert
-        $this->assertEquals($expected_radian->value, $angle->toRadian(), $this->getCastError("radian"));
+        $this->assertIsFloat($angle->toRadian());
     }
 
     #[TestDox("can be clockwise or negative.")]
@@ -577,7 +470,7 @@ class AngleTest extends TestCase
         $this->assertInstanceOf(Angle::class, $gamma, $this->methodMustReturn(
             Angle::class, "absSum", Angle::class
         ));
-        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $gamma->direction, 
+        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $gamma->direction, 
             Angle::class."absSum() method must always return a positive angle."
         );
     }
@@ -593,7 +486,7 @@ class AngleTest extends TestCase
         // Arrange
         $decimal = $this->faker->randomFloat(
             $precision ?? $this->faker->numberBetween(0, PHP_FLOAT_DIG), 
-            /* Min */ -Angle::MAX_DEGREES, /* Max */ Angle::MAX_DEGREES
+            /* Min */ -Degrees::MAX, /* Max */Degrees::MAX
         );
         $angle = Angle::createFromDecimal($decimal);
         

@@ -95,25 +95,25 @@ class FromAnglesToRelativeSum extends SumBuilder
     private function addSeconds(Number &$reminder): void
     {
         $seconds = $this->alfa_seconds->add($this->beta_seconds);
-        $this->seconds = new ModularNumber($seconds, Angle::MAX_SECONDS);
+        $this->seconds = new ModularNumber($seconds, Seconds::MAX);
         $reminder = new Number(
-            $seconds->sub($this->seconds->value)->div(Angle::MAX_SECONDS)
+            $seconds->sub($this->seconds->value)->div(Seconds::MAX)
         );
     }
 
     private function addMinutes(Number &$reminder): void
     {
         $minutes = $this->alfa_minutes->add($this->beta_minutes)->add($reminder);
-        $this->minutes = new ModularNumber($minutes, Angle::MAX_MINUTES);
+        $this->minutes = new ModularNumber($minutes, Minutes::MAX);
         $reminder = new Number(
-            $minutes->sub($this->minutes->value)->div(Angle::MAX_MINUTES)
+            $minutes->sub($this->minutes->value)->div(Minutes::MAX)
         );
     }
 
     private function addDegrees(Number &$reminder): void
     {
         $degrees = $this->alfa_degrees->add($this->beta_degrees)->add($reminder);
-        $this->degrees = new ModularNumber($degrees, Angle::MAX_DEGREES);
+        $this->degrees = new ModularNumber($degrees, Degrees::MAX);
     }
 
     private function needBorrowing(Number $first_number, Number $second_number): bool
@@ -154,7 +154,7 @@ class FromAnglesToRelativeSum extends SumBuilder
 
     protected function calcSeconds()
     {
-        if ($this->operation == Angle::COUNTER_CLOCKWISE)
+        if ($this->operation == Direction::COUNTER_CLOCKWISE)
             $this->addSeconds($this->reminder);
         else
             $this->subSeconds();
@@ -162,7 +162,7 @@ class FromAnglesToRelativeSum extends SumBuilder
 
     protected function calcMinutes()
     {
-        if ($this->operation == Angle::COUNTER_CLOCKWISE)
+        if ($this->operation == Direction::COUNTER_CLOCKWISE)
             $this->addMinutes($this->reminder);
         else
             $this->subMinutes();
@@ -170,7 +170,7 @@ class FromAnglesToRelativeSum extends SumBuilder
 
     protected function calcDegrees()
     {
-        if ($this->operation == Angle::COUNTER_CLOCKWISE)
+        if ($this->operation == Direction::COUNTER_CLOCKWISE)
             $this->addDegrees($this->reminder);
         else
             $this->subDegrees();

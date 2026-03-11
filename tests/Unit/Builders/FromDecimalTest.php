@@ -8,6 +8,7 @@ use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -19,13 +20,14 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalDegrees::class)]
 class FromDecimalTest extends BuilderTestCase
 {
     #[TestDox("can create an Angle from a sexadecimal value.")]
     public function test_can_create_an_angle_from_decimal_degrees()
     {
         // Arrange
-        $decimal_input = $this->randomFloat(max: Angle::MAX_DEGREES * 3);
+        $decimal_input = $this->randomSexadecimal();
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($decimal_input);
         $sign = $direction == Direction::CLOCKWISE ? '-' : '';
 

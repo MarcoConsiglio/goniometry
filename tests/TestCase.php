@@ -13,6 +13,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
 use Marcoconsiglio\ModularArithmetic\ModularNumber;
@@ -116,7 +117,7 @@ class TestCase extends PHPUnitTestCase
     {
         assert($min >= 0 && $min < Degrees::MAX);
         assert($max >= 0 && $max < Degrees::MAX);
-        return Angle::createFromDecimal($this->positiveRandomFloat($min, $max));
+        return Angle::createFromDecimal($this->positiveRandomSexadecimal($min, $max));
     }
 
     /**
@@ -205,7 +206,7 @@ class TestCase extends PHPUnitTestCase
      * @param boolean $negative If negative or positive number.
      * @param int|null $precision The precision digits of the result.
      * @return float
-     * @deprecated Use randomSexadecimal() instead.
+     * @deprecated Use `randomSexadecimal()` instead.
      */
     protected function getRandomAngleDecimal($negative = false, int|null $precision = null): float
     {
@@ -221,13 +222,13 @@ class TestCase extends PHPUnitTestCase
      */
     protected function getRandomPositiveAngleDecimal(
         float $min = 0, 
-        float $max = Angle::MAX_DEGREES - PHP_FLOAT_MIN, 
+        float $max = Degrees::MAX - PHP_FLOAT_MIN, 
         int|null $precision = null
     ): float {
         if ($min < 0) $min = abs($min);
         if ($max < 0) $max = abs($max);
-        if ($min > Angle::MAX_DEGREES) $min = Angle::MAX_DEGREES - PHP_FLOAT_MIN;
-        if ($max > Angle::MAX_DEGREES) $max = Angle::MAX_DEGREES - PHP_FLOAT_MIN;
+        if ($min > Degrees::MAX) $min = Degrees::MAX - PHP_FLOAT_MIN;
+        if ($max > Degrees::MAX) $max = Degrees::MAX - PHP_FLOAT_MIN;
         return $this->positiveRandomFloat($min, $max, $precision);
     }
 
@@ -318,7 +319,7 @@ class TestCase extends PHPUnitTestCase
         float $max = Degrees::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
     ): float {
-        $random_value = $this->randomFloat($min, $max, $precision);
+        $random_value = $this->positiveRandomSexadecimal($min, $max, $precision);
         return $this->faker->randomElement([$random_value, -$random_value]);
     }
 
@@ -331,9 +332,10 @@ class TestCase extends PHPUnitTestCase
         float $max = Degrees::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
     ): float {
-        assert($min >= 0 && $min < Degrees::MAX);
-        assert($max >= 0 && $max < Degrees::MAX);
-        assert($precision >= 0 && $precision <= PHP_FLOAT_DIG);
+        $min = abs($min); $max = abs($max); $precision = abs($precision);
+        if ($min > Degrees::MAX) $min = Degrees::MAX - self::SSN;
+        if ($max > Degrees::MAX) $max = Degrees::MAX - self::SSN;
+        if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
         return $this->positiveRandomFloat($min, $max, $precision);
     }
 
@@ -359,13 +361,47 @@ class TestCase extends PHPUnitTestCase
     protected function toSexagesimal(float $sexadecimal): array
     {
         $direction = $sexadecimal >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE;
-        $sexadecimal = new ModularNumber(abs($sexadecimal), Angle::MAX_DEGREES)->value;
+        $sexadecimal = new ModularNumber(abs($sexadecimal), Degrees::MAX)->value;
         $degrees = intval($sexadecimal->floor()->value);
         $sexadecimal = $sexadecimal->sub($degrees);
-        $minutes = intval($sexadecimal->mul(Angle::MAX_MINUTES)->value);
-        $sexadecimal = $sexadecimal->mul(Angle::MAX_MINUTES)->sub($minutes);
-        $seconds = $sexadecimal->mul(Angle::MAX_SECONDS)->value;
+        $minutes = intval($sexadecimal->mul(Minutes::MAX)->value);
+        $sexadecimal = $sexadecimal->mul(Minutes::MAX)->sub($minutes);
+        $seconds = $sexadecimal->mul(Seconds::MAX)->value;
         return [$degrees, $minutes, $seconds, $direction];
+    }
+
+    /**
+     * Return a random relative radian value.
+     */
+    protected function randomRadian(
+        float $min = 0, 
+        float $max = Radian::MAX - self::SSN,
+        int $precision = PHP_FLOAT_DIG
+    ): float {
+        $radian = $this->positiveRandomRadian($min, $max, $precision);
+        return $this->faker->randomElement([$radian, -$radian]);
+    }
+
+    /**
+     * Return a positive random radian value.
+     */
+    protected function positiveRandomRadian(
+        float $min = 0, 
+        float $max = Radian::MAX - self::SSN,
+        int $precision = PHP_FLOAT_DIG
+    ): float {
+        return $this->positiveRandomFloat($min, $max, $precision);
+    }
+
+    /**
+     * Return a negative random radian value.
+     */
+    protected function negativeRandomRadian(
+        float $min = 0, 
+        float $max = Radian::MAX - self::SSN,
+        int $precision = PHP_FLOAT_DIG
+    ): float {
+        return -$this->positiveRandomRadian($min, $max, $precision);
     }
 
     /**

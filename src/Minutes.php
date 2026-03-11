@@ -17,7 +17,7 @@ class Minutes extends ModularNumber implements Stringable
     public const int MAX = 60;
 
     /**
-     * The symbol for the unit of measurement of seconds.
+     * The symbol for the unit of measurement of minutes.
      */
     public const string MEASURE = "'";
 

@@ -65,7 +65,7 @@ class FromAnglesToAbsoluteSumTest extends BuilderTestCase
         $this->assertEquals($result[0], 360);
         $this->assertEquals($result[1], 0);
         $this->assertEquals($result[2], 0.0);
-        $this->assertEquals($result[3], Angle::COUNTER_CLOCKWISE);
+        $this->assertEquals($result[3], Direction::COUNTER_CLOCKWISE);
     }
 
     #[TestDox("can take a shortcut if the two angles are null angles.")]
@@ -87,7 +87,7 @@ class FromAnglesToAbsoluteSumTest extends BuilderTestCase
         $this->assertEquals($result[0], 0);
         $this->assertEquals($result[1], 0);
         $this->assertEquals($result[2], 0.0);
-        $this->assertEquals($result[3], Angle::COUNTER_CLOCKWISE);
+        $this->assertEquals($result[3], Direction::COUNTER_CLOCKWISE);
 
         /**
          * 0° + 90° ≆ 0

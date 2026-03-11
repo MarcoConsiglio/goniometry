@@ -71,7 +71,7 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
         $result = $builder->fetchData();
 
         // Assert
-        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $result[3]);
+        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $result[3]);
 
         /**
          * Negative sum
@@ -84,7 +84,7 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
         $result = $builder->fetchData();
 
         // Assert
-        $this->assertEquals(Angle::CLOCKWISE, $result[3]);
+        $this->assertEquals(Direction::CLOCKWISE, $result[3]);
     }
 
     #[TestDox("can take a shortcut if the two angles are full angles.")]
@@ -106,7 +106,7 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
         $this->assertEquals($result[0], 360);
         $this->assertEquals($result[1], 0);
         $this->assertEquals($result[2], 0.0);
-        $this->assertEquals($result[3], Angle::COUNTER_CLOCKWISE);
+        $this->assertEquals($result[3], Direction::COUNTER_CLOCKWISE);
 
         /**
          * -360° + (-360°) ≅ -360°
@@ -122,7 +122,7 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
         $this->assertEquals($result[0], 360);
         $this->assertEquals($result[1], 0);
         $this->assertEquals($result[2], 0.0);
-        $this->assertEquals($result[3], Angle::CLOCKWISE);
+        $this->assertEquals($result[3], Direction::CLOCKWISE);
     }
 
     #[TestDox("can take a shortcut if the two angles are null angles.")]
@@ -144,7 +144,7 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
         $this->assertEquals(0, $result[0]);
         $this->assertEquals(0, $result[1]);
         $this->assertEquals(0.0, $result[2]);
-        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $result[3]);
+        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $result[3]);
 
         /**
          * 0° + 90° ≆ 0
@@ -159,7 +159,7 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
 
         // Assert
         $this->assertNotEquals(0, $result[0]);
-        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $result[3]);
+        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $result[3]);
 
         /**
          * 90° + 0° ≆ 0°
@@ -173,7 +173,7 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
 
         // Assert
         $this->assertNotEquals(0, $result[0]);
-        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $result[3]);        
+        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $result[3]);        
     }
 
     #[TestDox("corrects the excess if the sum is greater than +/-360°.")]
@@ -194,9 +194,9 @@ class FromAnglesToRelativeSumTest extends BuilderTestCase
 
         // Assert
         $this->assertEquals(360, $result_1[0]);
-        $this->assertEquals(Angle::COUNTER_CLOCKWISE, $result_1[3]);
+        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $result_1[3]);
         $this->assertEquals(360, $result_2[0]);
-        $this->assertEquals(Angle::CLOCKWISE, $result_2[3]);
+        $this->assertEquals(Direction::CLOCKWISE, $result_2[3]);
     }
 
     /**

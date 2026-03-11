@@ -108,7 +108,7 @@ class FromDegrees extends AngleBuilder
     /**
      * Fetch data to build an Angle class.
      *
-     * @return array{ModularNumber,ModularNumber,ModularNumber,Direction,null,null}
+     * @return array{Degrees,Minutes,Seconds,Direction,null,null}
      */
     public function fetchData(): array
     {

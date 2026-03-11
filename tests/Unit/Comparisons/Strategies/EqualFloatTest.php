@@ -8,6 +8,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -21,6 +22,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(Round::class)]
+#[UsesClass(SexadecimalDegrees::class)]
 class EqualFloatTest extends TestCase
 {
     protected string $comparison = '=';
@@ -35,8 +37,6 @@ class EqualFloatTest extends TestCase
         $precision = $this->randomPrecision();
         $alfa = $this->randomAngle();
         $beta = $alfa->toFloat($precision);
-        $true_alfa = number_format($alfa->toFloat($precision), PHP_FLOAT_DIG);
-        $true_beta = number_format($beta, PHP_FLOAT_DIG);
 
         // Act & Assert
         $this->assertTrue(new EqualFloat($alfa, $beta, $precision)->compare(),

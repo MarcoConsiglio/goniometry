@@ -32,9 +32,7 @@ class LesserFloat extends FloatComparisonStrategy
     public function compare(): bool
     {
         return 
-            $this->alfa->toDecimal()->round($this->precision)
-            ->lt(
-                new Number($this->beta)->round($this->precision)->abs()
-            );
+            $this->alfa->toDecimal()->value->round($this->precision)
+            ->lt(new Number($this->beta)->abs()->round($this->precision));
     }
 }

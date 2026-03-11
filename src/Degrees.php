@@ -17,7 +17,7 @@ class Degrees extends ModularNumber implements Stringable
     public const int MAX = 360;
 
     /**
-     * The symbol for the unit of measurement of seconds.
+     * The symbol for the unit of measurement of degrees.
      */
     public const string MEASURE = '°';
 
@@ -26,7 +26,7 @@ class Degrees extends ModularNumber implements Stringable
      */
     public function __construct(int|float|string|Number|BCMathExtendedNumber $degrees)
     {
-        return parent::__construct($degrees, self::MAX);
+        parent::__construct($degrees, self::MAX);
     }
 
     /**

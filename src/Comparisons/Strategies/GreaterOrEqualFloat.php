@@ -32,7 +32,7 @@ class GreaterOrEqualFloat extends FloatComparisonStrategy
     public function compare(): bool
     {
         return
-            $this->alfa->toDecimal()->round($this->precision)->abs()
+            $this->alfa->toDecimal()->value->round($this->precision)->abs()
             ->gte(
                 new Number($this->beta)->round($this->precision)->abs()
             );

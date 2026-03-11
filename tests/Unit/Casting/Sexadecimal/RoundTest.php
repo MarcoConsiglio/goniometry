@@ -7,6 +7,7 @@ use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -20,8 +21,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalDegrees::class)]
 class RoundTest extends TestCase
 {
+
     #[TestDox("can cast the Angle to a sexadecimal value with a specific precision.")]
     public function test_cast_with_precision(): void
     {
@@ -29,37 +32,44 @@ class RoundTest extends TestCase
          * Less than PHP_FLOAT_DIG
          */
         // Arrange
-        $precision = $this->positiveRandomInteger(max: PHP_FLOAT_DIG);
-        $expected_float = $this->randomSexadecimal(precision: $precision);
+        $precision = $this->randomPrecision();
+        $sexadecimal = new SexadecimalDegrees(
+            $this->randomSexadecimal(precision: $precision)
+        );
+        $expected_float = $sexadecimal->value->toFloat($precision);
 
         // Act
-        $float = new Round($expected_float, $precision)->cast();
+        $float = new Round($sexadecimal, $precision)->cast();
 
         // Assert
-        $this->assertSame($expected_float, $float, "$expected_float ≠ $float with $precision digit precision");
+        $this->assertSame($expected_float, $float, 
+            " ≠ $float with $precision digit precision"
+        );
 
         /**
          * More than PHP_FLOAT_DIG
          */
         // Arrange
-        $precision = $this->positiveRandomInteger(min: PHP_FLOAT_DIG + 1);
+        $precision = PHP_FLOAT_DIG + 1;
         $expected_float = $this->randomSexadecimal(precision: $precision);
+        $sexadecimal = new SexadecimalDegrees($expected_float);
 
         // Act
-        $float = new Round($expected_float, $precision)->cast();
+        $float = new Round($sexadecimal, $precision)->cast();
 
         // Assert
         $this->assertSame($expected_float, $float, "$expected_float ≠ $float with $precision digit precision");
     }
 
+    #[TestDox("can cast the Angle to a sexadecimal value without a specific precision.")]
     public function test_cast_without_precision(): void
     {
         // Arrange
-        $expected_float = $this->randomSexadecimal(max: PHP_FLOAT_DIG);
-        $angle = Angle::createFromDecimal($expected_float);
+        $expected_float = $this->randomSexadecimal();
+        $sexadecimal = new SexadecimalDegrees($expected_float);
 
         // Act
-        $float = new Round($expected_float)->cast();
+        $float = new Round($sexadecimal)->cast();
 
         // Assert
         $this->assertSame($expected_float, $float, "$expected_float ≠ $float");

@@ -2,14 +2,12 @@
 namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\BCMathExtended\Number;
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use Marcoconsiglio\ModularArithmetic\ModularNumber;
-use RoundingMode;
 
 /**
  * Builds an angle starting from a decimal value.
@@ -19,12 +17,7 @@ class FromDecimal extends AngleBuilder
     /**
      * The decimal value used to build an angle.
      */
-    protected ModularNumber $decimal;
-
-    /**
-     * The decimal value input.
-     */
-    protected float $decimal_input;
+    protected SexadecimalDegrees $decimal;
 
     /**
      * The remainder that remains during the conversion steps from decimal to
@@ -37,8 +30,7 @@ class FromDecimal extends AngleBuilder
      */
     public function __construct(float $decimal)
     {
-        $this->decimal_input = $decimal;
-        $this->decimal = new ModularNumber(abs($decimal), Angle::MAX_DEGREES);
+        $this->decimal = new SexadecimalDegrees($decimal);
     }
 
     /**
@@ -53,8 +45,8 @@ class FromDecimal extends AngleBuilder
      */
     protected function calcDegrees()
     {
-        $this->degrees = new Degrees($this->decimal->floor()->value);
-        $this->reminder = $this->decimal->value->sub($this->degrees->value);
+        $this->degrees = new Degrees($this->decimal->value->abs()->floor());
+        $this->reminder = $this->decimal->value->abs()->sub($this->degrees->value);
     }
 
     /**
@@ -93,7 +85,7 @@ class FromDecimal extends AngleBuilder
     protected function calcSign()
     {
         $this->direction = 
-            $this->decimal_input >= 0 ?
+            $this->decimal->value->isPositive() ?
             Direction::COUNTER_CLOCKWISE :
             Direction::CLOCKWISE;
     }
@@ -101,7 +93,7 @@ class FromDecimal extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array{Degrees,Minutes,Seconds,Direction,float,null}
+     * @return array{Degrees,Minutes,Seconds,Direction,SexadecimalDegrees,null}
      */
     public function fetchData(): array
     {
@@ -114,7 +106,7 @@ class FromDecimal extends AngleBuilder
             $this->minutes,
             $this->seconds,
             $this->direction,
-            $this->decimal_input,
+            $this->decimal,
             null
         ];
     }
