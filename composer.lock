@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "marcoconsiglio/bcmath-extended",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcoConsiglio/bcmath-extended.git",
-                "reference": "bb27492400b1d0b7e4e77a181738e99d48eaceb3"
+                "reference": "b4ee2b905708a541b02736c7e6ee9cbfb0765524"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/bb27492400b1d0b7e4e77a181738e99d48eaceb3",
-                "reference": "bb27492400b1d0b7e4e77a181738e99d48eaceb3",
+                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/b4ee2b905708a541b02736c7e6ee9cbfb0765524",
+                "reference": "b4ee2b905708a541b02736c7e6ee9cbfb0765524",
                 "shasum": ""
             },
             "require": {
@@ -60,9 +60,9 @@
             ],
             "support": {
                 "issues": "https://github.com/MarcoConsiglio/bcmath-extended/issues",
-                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.1.0"
+                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.2.0"
             },
-            "time": "2026-02-27T13:21:41+00:00"
+            "time": "2026-03-10T21:49:02+00:00"
         },
         {
             "name": "marcoconsiglio/modular-arithmetic",
