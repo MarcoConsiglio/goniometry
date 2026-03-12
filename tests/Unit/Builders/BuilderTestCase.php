@@ -9,8 +9,6 @@ use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Enums\Direction;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
-use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
 use Marcoconsiglio\ModularArithmetic\ModularNumber;
 use PHPUnit\Framework\MockObject\MockObject;
 use RoundingMode;
@@ -20,56 +18,6 @@ use RoundingMode;
  */
 abstract class BuilderTestCase extends TestCase
 {
-    /**
-     * Returns value or values for a Angle that exceed +/-360°.
-     * The type returned is based on the Builder passed.
-     *
-     * @param string $builder_class The Builder class that determines the return type.
-     * @param boolean $negative A positive Angle value, negative otherwise.
-     * @return mixed Return a value or values that represent an Angle that exceed +/-360°
-     */
-    protected function getExcessValues(string $builder_class, bool $negative = false): mixed
-    {
-        if (!$negative) {
-            if ($builder_class == FromDegrees::class) {
-                return [
-                    $this->faker->numberBetween(361, 999),
-                    $this->faker->numberBetween(61, 100),
-                    $this->faker->numberBetween(61, 100)
-                ];
-            }
-            if ($builder_class == FromDecimal::class) {
-                return $this->faker->randomFloat(1, 360.1, 999.0);
-            }
-            if ($builder_class == FromRadian::class) {
-                return $this->faker->randomFloat(1, Angle::MAX_RADIAN + 0.1, 10);
-            }
-            if ($builder_class == FromString::class) {
-                [$degrees, $minutes, $seconds] = $this->getExcessValues(FromDegrees::class);
-                return "{$degrees}° {$minutes}' {$seconds}\"";
-            }
-        } else {
-            if ($builder_class == FromDegrees::class) {
-                return [
-                    $this->faker->numberBetween(-999, -361),
-                    $this->faker->numberBetween(61, 100),
-                    $this->faker->numberBetween(61, 100)
-                ];
-            }
-            if ($builder_class == FromDecimal::class) {
-                return $this->faker->randomFloat(1, -999, -360.1);
-            }
-            if ($builder_class == FromRadian::class) {
-                return $this->faker->randomFloat(1, -(Angle::MAX_RADIAN + 0.1), -10);
-            }
-            if ($builder_class == FromString::class) {
-                [$degrees, $minutes, $seconds] = $this->getExcessValues(FromDegrees::class, false);
-                return "{$degrees}° {$minutes}' {$seconds}\"";
-            }
-        }
-        return null;
-    }
-
     /**
      * Expects an $exception with a $message.
      * It is a Custom Assertion.

@@ -35,6 +35,8 @@ class FromDecimal extends AngleBuilder
 
     /**
      * Check for overflow above/below +/-360°.
+     * 
+     * @codeCoverageIgnore
      */
     protected function checkOverflow() {/* No need to check overflow. Overflow is allowed. */}
 

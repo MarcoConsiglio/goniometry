@@ -1,22 +1,21 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests;
 
-use BcMath\Number;
+use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AngleBuilder;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
-use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
-use Marcoconsiglio\ModularArithmetic\ModularNumber;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use ValueError;
@@ -198,23 +197,6 @@ class TestCase extends PHPUnitTestCase
         return $this->randomSexagesimal(Direction::CLOCKWISE);
     }
 
-
-
-    /**
-     * Return a random sexadecimal value.
-     *
-     * @param boolean $negative If negative or positive number.
-     * @param int|null $precision The precision digits of the result.
-     * @return float
-     * @deprecated Use `randomSexadecimal()` instead.
-     */
-    protected function getRandomAngleDecimal($negative = false, int|null $precision = null): float
-    {
-        return $negative ? 
-            -$this->getRandomPositiveAngleDecimal(min: 0 + PHP_FLOAT_MIN, precision: $precision) :
-            $this->getRandomPositiveAngleDecimal(precision: $precision);
-    }
-
     /**
      * Return a random positive sexadecimal value.
      * 
@@ -354,19 +336,17 @@ class TestCase extends PHPUnitTestCase
     /**
      * Convert a `$sexadecimal` value to sexagesimal values.
      * 
-     * @return array{int,int,string,Direction} Return degrees, minutes, seconds
-     * and direction. The seconds value is returned as a string specifically to
-     * maintain precision. If necessary, convert it to a float yourself.
+     * @return array{Degrees,Minutes,Seconds,Direction}
      */
     protected function toSexagesimal(float $sexadecimal): array
     {
         $direction = $sexadecimal >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE;
-        $sexadecimal = new ModularNumber(abs($sexadecimal), Degrees::MAX)->value;
-        $degrees = intval($sexadecimal->floor()->value);
-        $sexadecimal = $sexadecimal->sub($degrees);
-        $minutes = intval($sexadecimal->mul(Minutes::MAX)->value);
-        $sexadecimal = $sexadecimal->mul(Minutes::MAX)->sub($minutes);
-        $seconds = $sexadecimal->mul(Seconds::MAX)->value;
+        $sexadecimal = new SexadecimalDegrees($sexadecimal);
+        $degrees = new Degrees(intval($sexadecimal->value->abs()->floor()->value));
+        $sexadecimal = new SexadecimalDegrees($sexadecimal->value->abs()->sub($degrees->value));
+        $minutes = new Minutes(intval($sexadecimal->value->abs()->mul(Minutes::MAX)->value));
+        $sexadecimal = new SexadecimalDegrees($sexadecimal->value->abs()->mul(Minutes::MAX)->sub($minutes->value));
+        $seconds = new Seconds($sexadecimal->value->abs()->mul(Seconds::MAX)->value);
         return [$degrees, $minutes, $seconds, $direction];
     }
 

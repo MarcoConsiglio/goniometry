@@ -23,22 +23,39 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalDegrees::class)]
 class FromDecimalTest extends BuilderTestCase
 {
-    #[TestDox("can create an Angle from a sexadecimal value.")]
-    public function test_can_create_an_angle_from_decimal_degrees()
+    #[TestDox("can create a counter-clockwise Angle from a positive sexadecimal value.")]
+    public function test_create_angle_from_positive_decimal_degrees()
     {
         // Arrange
-        $decimal_input = $this->randomSexadecimal();
+        $decimal_input = $this->positiveRandomSexadecimal();
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($decimal_input);
-        $sign = $direction == Direction::CLOCKWISE ? '-' : '';
 
         // Act
         $angle = Angle::createFromDecimal($decimal_input);
 
         // Assert
-        $failure_message = "{$decimal_input}° should be equal to {$sign}{$degrees}°{$minutes}'{$seconds}\"";
-        $this->assertTrue($angle->degrees->value->isEqual($degrees), $failure_message);
-        $this->assertTrue($angle->minutes->value->isEqual($minutes), $failure_message);
-        $this->assertTrue($angle->seconds->value->isEqual($seconds), $failure_message);
+        $failure_message = "{$decimal_input}° should be equal to {$degrees}{$minutes}{$seconds}";
+        $this->assertTrue($angle->degrees->eq($degrees), $failure_message);
+        $this->assertTrue($angle->minutes->eq($minutes), $failure_message);
+        $this->assertTrue($angle->seconds->eq($seconds), $failure_message);
+        $this->assertEquals($direction, $angle->direction);
+    }
+
+    #[TestDox("can create a clockwise Angle from a negative sexadecimal value.")]
+    public function test_create_angle_from_negative_decimal_degrees()
+    {
+        // Arrange
+        $decimal_input = $this->negativeRandomSexadecimal();
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($decimal_input);
+
+        // Act
+        $angle = Angle::createFromDecimal($decimal_input);
+
+        // Assert
+        $failure_message = "{$decimal_input}° should be equal to -{$degrees}{$minutes}{$seconds}";
+        $this->assertTrue($angle->degrees->eq($degrees), $failure_message);
+        $this->assertTrue($angle->minutes->eq($minutes), $failure_message);
+        $this->assertTrue($angle->seconds->eq($seconds), $failure_message);
         $this->assertEquals($direction, $angle->direction);
     }
 
