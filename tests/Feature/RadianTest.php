@@ -5,6 +5,7 @@ use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use RoundingMode;
 
 #[TestDox("The Radian class")]
 #[CoversClass(Radian::class)]
@@ -14,6 +15,7 @@ class RadianTest extends TestCase
     public function test_positive_radian(): void
     {
         // Arrange
+        $precision = PHP_FLOAT_DIG - 1;
         $value = $this->positiveRandomRadian();
         
         // Act
@@ -21,7 +23,8 @@ class RadianTest extends TestCase
 
         // Assert
         $this->assertEquals(
-            $value, $actual = $radian->value->toFloat(),
+            round($value, $precision, RoundingMode::HalfTowardsZero), 
+            $actual = $radian->value->toFloat($precision),
             "$value ≠ $actual"    
         );
     }

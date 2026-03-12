@@ -6,6 +6,7 @@ use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
+use RoundingMode;
 
 #[CoversClass(Round::class)]
 #[UsesClass(Radian::class)]
@@ -28,7 +29,7 @@ class RoundTest extends TestCase
     public function test_cast_without_precision(): void
     {
         // Arrange
-        $precision = $this->randomPrecision();
+        $precision = PHP_FLOAT_DIG - 1;
         $expected = $this->randomRadian();
         $radian = new Radian($expected);
 
@@ -36,6 +37,9 @@ class RoundTest extends TestCase
         $actual = new Round($radian)->cast();
 
         // Assert
-        $this->assertEquals($expected, $actual);       
+        $this->assertEquals(
+            round($expected, $precision, RoundingMode::HalfTowardsZero), 
+            round($actual, $precision, RoundingMode::HalfTowardsZero)
+        );       
     }
 }

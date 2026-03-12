@@ -242,8 +242,8 @@ class TestCase extends PHPUnitTestCase
     protected function getRandomAngleRadian($negative = false, int|null $precision = null)
     {
         return $negative ? 
-            $this->faker->randomFloat($precision, -Angle::MAX_RADIAN, 0):
-            $this->faker->randomFloat($precision, 0, Angle::MAX_RADIAN); 
+            $this->positiveRandomRadian():
+            $this->negativeRandomRadian(); 
     }
 
     /**

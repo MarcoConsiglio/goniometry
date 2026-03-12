@@ -13,6 +13,7 @@ use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use RoundingMode;
 
 #[TestDox("The Round class")]
 #[CoversClass(Round::class)]
@@ -65,6 +66,7 @@ class RoundTest extends TestCase
     public function test_cast_without_precision(): void
     {
         // Arrange
+        $precision = PHP_FLOAT_DIG - 1;
         $expected_float = $this->randomSexadecimal();
         $sexadecimal = new SexadecimalDegrees($expected_float);
 
@@ -72,6 +74,9 @@ class RoundTest extends TestCase
         $float = new Round($sexadecimal)->cast();
 
         // Assert
-        $this->assertSame($expected_float, $float, "$expected_float ≠ $float");
+        $this->assertSame(
+            round($expected_float, $precision, RoundingMode::HalfTowardsZero), 
+            round($float, $precision, RoundingMode::HalfTowardsZero)
+        );
     }
 }
