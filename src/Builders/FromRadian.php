@@ -9,6 +9,7 @@ use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use RoundingMode;
 
 /**
@@ -68,7 +69,7 @@ class FromRadian extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array{Degrees,Minutes,Seconds,Direction,float,float}
+     * @return array{Degrees,Minutes,Seconds,Direction,SexadecimalDegrees,Radian}
      */
     public function fetchData(): array
     {
