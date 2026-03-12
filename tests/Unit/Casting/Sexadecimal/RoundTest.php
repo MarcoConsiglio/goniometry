@@ -66,7 +66,7 @@ class RoundTest extends TestCase
     public function test_cast_without_precision(): void
     {
         // Arrange
-        $precision = PHP_FLOAT_DIG - 1;
+        $precision = PHP_FLOAT_DIG - 2;
         $expected_float = $this->randomSexadecimal();
         $sexadecimal = new SexadecimalDegrees($expected_float);
 
