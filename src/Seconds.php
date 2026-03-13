@@ -29,6 +29,14 @@ class Seconds extends ModularNumber
     }
 
     /**
+     * Return the seconds value.
+     */
+    public function value(int|null $precision = null): float
+    {
+        return $this->value->toFloat($precision);
+    }
+
+    /**
      * Cast seconds to string.
      */
     public function __toString(): string

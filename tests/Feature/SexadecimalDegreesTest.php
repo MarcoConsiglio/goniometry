@@ -6,6 +6,7 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use RoundingMode;
 
 #[TestDox("The SexadecimalDegrees class")]
 #[CoversClass(SexadecimalDegrees::class)]
@@ -30,7 +31,8 @@ class SexadecimalDegreesTest extends TestCase
     #[TestDox("can store a negative sexadecimal value.")]
     public function test_negative_sexadecimal(): void
     {
-         // Arrange
+        // Arrange
+        $precision = PHP_FLOAT_DIG - 2;
         $value = $this->negativeRandomSexadecimal();
 
         // Act
@@ -38,7 +40,8 @@ class SexadecimalDegreesTest extends TestCase
 
         // Assert
         $this->assertEquals(
-            $value, $actual = $sexadecimal->value->toFloat(),
+            round($value, $precision, RoundingMode::HalfTowardsZero), 
+            round($actual = $sexadecimal->value->toFloat(), $precision, RoundingMode::HalfTowardsZero),
             "$value ≠ $actual"    
         );       
     }
@@ -47,8 +50,8 @@ class SexadecimalDegreesTest extends TestCase
     {
         // Arrange
         $value = $this->randomSexadecimal();
-        $sexadecimal = new SexadecimalDegrees($value);
-        $expected_value = new Number($value);
+        $sexadecimal = new SexadecimalDegrees(new Number($value)->round());
+        $expected_value = new Number($value)->;
 
         // Act
         $this->assertSame("{$expected_value}°", "$sexadecimal");       

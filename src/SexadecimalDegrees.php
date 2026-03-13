@@ -29,6 +29,14 @@ class SexadecimalDegrees extends ModularNumber implements Stringable
     }
 
     /**
+     * Return the sexadecimal value.
+     */
+    public function value(int|null $precision = null): float
+    {
+        return $this->value->toFloat($precision);
+    }
+
+    /**
      * Cast this instance to `string` type.
      */
     public function __toString(): string

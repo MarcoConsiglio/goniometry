@@ -172,9 +172,9 @@ class AngleTest extends TestCase
         $angle = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
 
         // Assert
-        $this->assertEquals(new Number($degrees)->value, $angle->degrees->value->value);
-        $this->assertEquals(new Number($minutes)->value, $angle->minutes->value->value);
-        $this->assertEquals(new Number($seconds)->value, $angle->seconds->value->value);
+        $this->assertEquals($degrees, $angle->degrees->value());
+        $this->assertEquals($minutes, $angle->minutes->value());
+        $this->assertEquals($seconds, $angle->seconds->value());
         $this->assertEquals($direction, $angle->direction);
     }
 
@@ -185,18 +185,21 @@ class AngleTest extends TestCase
         $degrees = $this->randomDegrees();
         $minutes = $this->randomMinutes();
         $seconds = Number::string($this->randomSeconds());
-        $direction = $this->faker->randomElement(["-", ""]);
-        $text = "{$direction}{$degrees}° {$minutes}' {$seconds}\"";
+        $direction = $this->faker->randomElement([
+            Direction::COUNTER_CLOCKWISE,
+            Direction::CLOCKWISE
+        ]);
+        $sign = $direction == Direction::CLOCKWISE ? '-' : '';
+        $text = "{$sign}{$degrees}° {$minutes}' {$seconds}\"";
 
         // Act
         $angle = Angle::createFromString($text);
 
         // Act
-        $this->assertAngleHasValues($angle, [
-            "degrees" => $direction == "-" ? -$degrees : $degrees,
-            "minutes" => $minutes,
-            "seconds" => $seconds,
-        ]);
+        $this->assertEquals($degrees, $angle->degrees->value());
+        $this->assertEquals($minutes, $angle->minutes->value());
+        $this->assertEquals($seconds, $angle->seconds->value());
+        $this->assertEquals($direction, $angle->direction->value);
     }
 
     #[TestDox("can be created from a decimal number.")]

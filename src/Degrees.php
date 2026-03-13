@@ -30,6 +30,14 @@ class Degrees extends ModularNumber implements Stringable
     }
 
     /**
+     * Return the degrees value.
+     */
+    public function value(): int
+    {
+        return (int) $this->value->value;
+    }
+
+    /**
      * Cast degrees to string.
      */
     public function __toString(): string

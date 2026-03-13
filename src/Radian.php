@@ -28,6 +28,14 @@ class Radian extends ModularNumber
     }
 
     /**
+     * Return the radian value.
+     */
+    public function value(int|null $precision = null): float
+    {
+        return $this->value->toFloat($precision);
+    }
+
+    /**
      * Return the max allowed radian with a precision up to 54 decimal places.
      */
     public static function getMaxRadian(): Number

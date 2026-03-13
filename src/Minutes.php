@@ -37,6 +37,14 @@ class Minutes extends ModularNumber implements Stringable
         return $this->value->value . self::MEASURE;
     }
 
+    /**
+     * Return the minutes value.
+     */
+    public function value(): int
+    {
+        return (int) $this->value->value;
+    }
+
     public function isEqualTo(Minutes $minutes): bool
     {
         return $this->value->eq($minutes->value);

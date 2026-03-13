@@ -30,6 +30,11 @@ class TestCase extends PHPUnitTestCase
     protected const float SSN = 0.0000000000001;
 
     /**
+     * A safe precision used when comparing `float` type variables.
+     */
+    protected const int PRECISION = PHP_FLOAT_DIG - 2;
+
+    /**
      * This method is called before each test.
      *
      * @return void

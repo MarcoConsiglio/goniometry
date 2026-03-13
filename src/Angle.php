@@ -160,9 +160,9 @@ class Angle implements AngleInterface
      */
     public function getDegrees(bool $associative = false): array
     {
-        $degrees = (int) $this->degrees->value->mul($this->direction->value)->value;
-        $minutes = (int) $this->minutes->value->value;
-        $seconds = $this->seconds->value->toFloat();
+        $degrees = (int) $this->degrees->value() * $this->direction->value;
+        $minutes = $this->minutes->value();
+        $seconds = $this->seconds->value();
         if ($associative)
             return [
                 "degrees" => $degrees,
@@ -203,19 +203,6 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Return the sexadecimal value of this `Angle`.
-     *
-     * @param integer|null $precision The number of decimal digits. If sets to null,
-     * it resolve the original precision at the time this Angle was built.
-     */
-    public function toFloat(int|null $precision = null): float
-    {
-        if ($this->original_decimal !== null)
-            return new RoundFromSexadecimal($this->original_decimal, $precision)->cast();
-        return new CastToSexadecimal($this, $precision)->cast();
-    }
-
-    /**
      * Return the sexadecimal value of this `Angle` with arbitrary 
      * precision.
      */
@@ -230,6 +217,19 @@ class Angle implements AngleInterface
                 $this->seconds->value->div(Minutes::MAX * Seconds::MAX)
             )->mul($this->direction->value)
         );
+    }
+
+    /**
+     * Return the sexadecimal value of this `Angle`.
+     *
+     * @param integer|null $precision The number of decimal digits. If sets to null,
+     * it resolve the original precision at the time this Angle was built.
+     */
+    public function toFloat(int|null $precision = null): float
+    {
+        if ($this->original_decimal !== null)
+            return new RoundFromSexadecimal($this->original_decimal, $precision)->cast();
+        return new CastToSexadecimal($this, $precision)->cast();
     }
 
     /**

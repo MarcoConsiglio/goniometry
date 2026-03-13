@@ -40,9 +40,9 @@ class AbsoluteSumTest extends TestCase
         $actual_sum = new AbsoluteSum($alfa, $beta)->fetchData();
 
         // Assert
-        $this->assertEquals($gamma->degrees->value, $actual_sum[0]->value);
-        $this->assertEquals($gamma->minutes->value, $actual_sum[1]->value);
-        $this->assertEquals($gamma->seconds->value, $actual_sum[2]->value);
+        $this->assertEquals($gamma->degrees->value(), $actual_sum[0]->value());
+        $this->assertEquals($gamma->minutes->value(), $actual_sum[1]->value());
+        $this->assertEquals($gamma->seconds->value(), $actual_sum[2]->value());
         $this->assertEquals($gamma->direction, $actual_sum[3]);
     }
 }
