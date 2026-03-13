@@ -32,11 +32,10 @@ use RoundingMode;
 #[UsesClass(SexadecimalDegrees::class)]
 class FromRadianTest extends TestCase
 {
-    #[TestDox("can create an angle from a radian value.")]
-    public function test_can_create_an_angle()
+    #[TestDox("can create an angle from a radian float value.")]
+    public function test_can_create_an_angle_from_float_value()
     {
         // Arrange
-        $precision = PHP_FLOAT_DIG - 1;
         $radian_value = $this->randomRadian();
 
         // Act
@@ -44,17 +43,24 @@ class FromRadianTest extends TestCase
 
         // Assert
         $this->assertEquals(
-            round($radian_value, $precision, RoundingMode::HalfTowardsZero), 
-            $angle->toRadian($precision)
+            $this->safeRound($radian_value),
+            $angle->toRadian(self::PRECISION)
         );
     }
 
-    /**
-     * Returns the FromRadian builder class.
-     * @return string
-     */
-    protected function getBuilderClass(): string
+    #[TestDox("can create an angle from a Radian type value.")]
+    public function test_can_create_an_angle_from_radian_type()
     {
-        return FromRadian::class;
+        // Arrange
+        $radian_value = new Radian($this->randomRadian());
+
+        // Act
+        $angle = Angle::createFromRadian($radian_value);
+
+        // Assert
+        $this->assertEquals(
+            $radian_value->value(self::PRECISION),
+            $angle->toRadian(self::PRECISION)
+        );
     }
 }

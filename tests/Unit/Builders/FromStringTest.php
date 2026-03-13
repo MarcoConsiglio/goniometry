@@ -1,14 +1,17 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
+use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -16,24 +19,56 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The FromString builder")]
 #[CoversClass(FromString::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(AngleOverflowException::class)]
+#[UsesClass(FromDegrees::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
+#[UsesClass(Seconds::class)]
 #[UsesClass(NoMatchException::class)]
 #[UsesClass(RegExFailureException::class)]
-#[UsesClass(Seconds::class)]
-class FromStringTest extends BuilderTestCase
+class FromStringTest extends TestCase
 {
     #[TestDox("can create a positive angle from a string value.")]
     public function test_can_create_positive_angle()
     {
-        $this->testAngleCreation(FromString::class);
+        // Arrange
+        $degrees = new Degrees($this->randomDegrees());
+        $minutes = new Minutes($this->randomMinutes());
+        $seconds = new Seconds($this->randomSeconds());
+        $seconds_string = Number::string($seconds);
+        $direction = Direction::COUNTER_CLOCKWISE;
+        $sign = '';
+        
+        // Act
+        $builder = new FromString("{$sign}{$degrees} {$minutes} {$seconds_string}");
+        $result = $builder->fetchData();
+        
+        //Assert
+        $this->assertEquals($degrees->value(), $result[0]->value());
+        $this->assertEquals($minutes->value(), $result[1]->value());
+        $this->assertEquals($seconds->value(), $result[2]->value());
+        $this->assertEquals($direction->value, $result[3]->value);
     }
 
     #[TestDox("can create a negative angle from a string value.")]
     public function test_can_create_negative_angle()
     {
-        $this->testAngleCreation(FromString::class, negative: true);
+        // Arrange
+        $degrees = new Degrees($this->randomDegrees());
+        $minutes = new Minutes($this->randomMinutes());
+        $seconds = new Seconds($this->randomSeconds());
+        $seconds_string = Number::string($seconds);
+        $direction = Direction::CLOCKWISE;
+        $sign = '-';
+        
+        // Act
+        $builder = new FromString("{$sign}{$degrees} {$minutes} {$seconds_string}");
+        $result = $builder->fetchData();
+        
+        //Assert
+        $this->assertEquals($degrees->value(), $result[0]->value());
+        $this->assertEquals($minutes->value(), $result[1]->value());
+        $this->assertEquals($seconds->value(), $result[2]->value());
+        $this->assertEquals($direction->value, $result[3]->value);
     }
     
     #[TestDox("throws NoMatchException with more than 360° input.")]
@@ -76,14 +111,5 @@ class FromStringTest extends BuilderTestCase
 
         // Act
         new FromString($angle_string);
-    }
-
-    /**
-     * Returns the FromString builder class.
-     * @return string
-     */
-    protected function getBuilderClass(): string
-    {
-        return FromString::class;
     }
 }

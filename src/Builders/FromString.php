@@ -120,12 +120,36 @@ class FromString extends AngleBuilder
      */
     protected function checkOverflow(): void
     {
-        if ($this->degrees_parsing_status == 0 || 
-            $this->minutes_parsing_status == 0 ||
-            $this->seconds_parsing_status == 0
-        ) {
+        if ($this->degreesError())
             throw new NoMatchException("Can't recognize the string $this->measure.");
-        }
+        if ($this->minutesError())
+            throw new NoMatchException("Can't recognize the string $this->measure.");
+        if ($this->secondsError())
+            throw new NoMatchException("Can't recognize the string $this->measure.");
+    }
+
+    /**
+     * Return true if there was a parsing error on degrees.
+     */
+    protected function degreesError(): bool
+    {
+        return $this->degrees_parsing_status == 0;
+    }
+
+    /**
+     * Return true if there was a parsing error on minutes.
+     */
+    protected function minutesError(): bool
+    {
+        return $this->minutes_parsing_status == 0;
+    }
+
+    /**
+     * Return true if there was a parsing error on seconds.
+     */
+    protected function secondsError(): bool
+    {
+        return $this->seconds_parsing_status == 0;
     }
 
     /**
