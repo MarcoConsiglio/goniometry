@@ -9,6 +9,7 @@ use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -21,7 +22,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalDegrees::class)]
-class FromDecimalTest extends BuilderTestCase
+class FromDecimalTest extends TestCase
 {
     #[TestDox("can create a counter-clockwise Angle from a positive sexadecimal value.")]
     public function test_create_angle_from_positive_decimal_degrees()

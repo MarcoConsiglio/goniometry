@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry;
 
 use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\FromAnglesToAbsoluteSum;
 use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
@@ -11,6 +12,7 @@ use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Builders\RelativeSum;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundFromRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
@@ -78,9 +80,6 @@ class Angle implements AngleInterface
 
     /**
      * Construct an `Angle`.
-     *
-     * @param AngleBuilder $builder The builder used to construct the angle.
-     * @return void
      */
     protected function __construct(AngleBuilder $builder)
     {
@@ -96,11 +95,6 @@ class Angle implements AngleInterface
 
     /**
      * Creates an angle from its values.
-     *
-     * @param integer $degrees
-     * @param integer $minutes
-     * @param float $seconds
-     * @return Angle
      */
     public static function createFromValues(int $degrees = 0, int $minutes = 0, float $seconds = 0.0, Direction $direction = Direction::COUNTER_CLOCKWISE): Angle
     {
@@ -109,9 +103,7 @@ class Angle implements AngleInterface
 
     /**
      * Creates an angle from its textual representation.
-     *
-     * @param string $angle
-     * @return Angle
+     * 
      * @throws NoMatchException when $angle has no match.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
@@ -122,24 +114,16 @@ class Angle implements AngleInterface
 
     /**
      * Creates an angle from its decimal representation.
-     *
-     * @param float $decimal_degrees
-     * @return Angle
-     * @throws AngleOverflowException when creating an angle greater than +/-360°.
      */
-    public static function createFromDecimal(float $decimal_degrees): Angle
+    public static function createFromDecimal(float|SexadecimalDegrees $decimal_degrees): Angle
     {
         return new Angle(new FromDecimal($decimal_degrees));
     }
 
     /**
      * Creates an angle from its radian representation.
-     *
-     * @param float $radian
-     * @return Angle
-     * @throws AngleOverflowException when creating an angle greater than +/-360°.
      */
-    public static function createFromRadian(float $radian): Angle
+    public static function createFromRadian(float|Radian $radian): Angle
     {
          return new Angle(new FromRadian($radian));
     }
@@ -148,25 +132,20 @@ class Angle implements AngleInterface
      * Sums two relative angles.
      * 
      * The result can be positive or negative.
-     *
-     * @param AngleInterface $first_angle
-     * @param AngleInterface $second_angle
-     * @return Angle
      */
-    public static function sum(AngleInterface $first_angle, AngleInterface $second_angle): Angle
+    public static function sum(AngleInterface $alfa, AngleInterface $beta): Angle
     {
-        return new Angle(new FromAnglesToRelativeSum($first_angle, $second_angle));
+        return new Angle(new RelativeSum($alfa, $beta));
     }
 
     /**
      * Sums two absolute angles.
      * 
-     * The result can be only positive even if its inputs are negative angles,
-     * beacause they are treated as absolute angles.
+     * The result can be only positive.
      */
-    public static function absSum(AngleInterface $first_angle, AngleInterface $second_angle): Angle
+    public static function absSum(AngleInterface $alfa, AngleInterface $beta): Angle
     {
-        return new Angle(new FromAnglesToAbsoluteSum($first_angle, $second_angle));
+        return new Angle(new AbsoluteSum($alfa, $beta));
     }
 
     /**
@@ -196,8 +175,6 @@ class Angle implements AngleInterface
 
     /**
      * Check if this angle is clockwise or negative.
-     *
-     * @return boolean
      */
     public function isClockwise(): bool
     {
@@ -206,8 +183,6 @@ class Angle implements AngleInterface
 
     /**
      * Check if this angle is counterclockwise or positive.
-     *
-     * @return boolean
      */
     public function isCounterClockwise(): bool
     {
@@ -216,8 +191,6 @@ class Angle implements AngleInterface
 
     /**
      * Reverse the direction of the rotation.
-     *
-     * @return Angle A new instance with the opposite
      */
     public function toggleDirection(): Angle
     {
@@ -234,7 +207,6 @@ class Angle implements AngleInterface
      *
      * @param integer|null $precision The number of decimal digits. If sets to null,
      * it resolve the original precision at the time this Angle was built.
-     * @return float The angular value expressed as a decimal number.
      */
     public function toFloat(int|null $precision = null): float
     {
@@ -251,7 +223,7 @@ class Angle implements AngleInterface
     {
         if ($this->original_decimal !== null)
             return $this->original_decimal;
-        return new SexadecimalDegrees(
+        return $this->original_decimal = new SexadecimalDegrees(
             $this->degrees->value->plus(
                 $this->minutes->value->div(Minutes::MAX)
             )->plus(
@@ -263,8 +235,8 @@ class Angle implements AngleInterface
     /**
      * Gets the radian representation of this angle.
      *
-     * @param integer|null $precision The number of digits after the decimal point.
-     * @return float The angular value expressed as a radian number.
+     * @param integer|null $precision The number of decimal digits. If sets to null,
+     * it resolve the original precision at the time this Angle was built.
      */
     public function toRadian(int|null $precision = null): float
     {
@@ -276,7 +248,7 @@ class Angle implements AngleInterface
     /**
      * Check if this `Angle` is greater than `$angle`.
      * 
-     * @param int $precision The precision used when `$angle` is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function isGreaterThan(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -289,7 +261,7 @@ class Angle implements AngleInterface
     /**
      * Alias of `isGreaterThan()` method.
      *
-     * @param int $precision The precision used when `$angle` is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function gt(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -300,7 +272,7 @@ class Angle implements AngleInterface
     /**
      * Check if this `Angle` is greater than or equal to `$angle`.
      *
-     * @param int $precision The precision used when `$angle` is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function isGreaterThanOrEqualTo(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -313,7 +285,7 @@ class Angle implements AngleInterface
     /**
      * Alias of `isGreaterThanOrEqualTo()` method.
      *
-     * @param int $precision The precision used when $angle is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function gte(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -325,7 +297,7 @@ class Angle implements AngleInterface
      * Check if this `Angle` is less than another `$angle`.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when $angle is a `float`.
+     * @param int $precision TThe precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function isLessThan(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -339,7 +311,7 @@ class Angle implements AngleInterface
      * Alias of `isLessThan()` method.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when $angle is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function lt(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -351,7 +323,7 @@ class Angle implements AngleInterface
      * Check if this `Angle` is less than or equal to `$angle`.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when $angle is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function isLessThanOrEqualTo(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -366,7 +338,7 @@ class Angle implements AngleInterface
      * Alias of `isLessThanOrEqual()` method.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when $angle is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function lte(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -378,7 +350,7 @@ class Angle implements AngleInterface
      * Check if this `Angle` is equal to `$angle`.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when $angle is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function isEqualTo(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -392,7 +364,7 @@ class Angle implements AngleInterface
      * Alias of `isEqualTo()` method.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when $angle is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function eq(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -404,7 +376,7 @@ class Angle implements AngleInterface
      * Check if this `Angle` is different than `$angle`.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when $angle is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function isDifferentThan(string|int|float|AngleInterface $angle, int $precision = 54): bool
@@ -418,7 +390,7 @@ class Angle implements AngleInterface
      * Alias for `isDifferentThan()` method.
      *
      * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when $angle is a `float`.
+     * @param int $precision The precision used when `$angle` is a `float` type variable.
      * @throws RegExFailureException when there's a failure in regex parser engine.
      */
     public function not(string|int|float|AngleInterface $angle, int $precision = 54): bool {
@@ -427,25 +399,12 @@ class Angle implements AngleInterface
 
     /**
      * Return the sexagesimal value of this `Angle`.
-     *
-     * @return string
+     * 
      * @example `(string) $alfa`
      */
     public function __toString()
     {
         $sign = $this->isClockwise() ? "-" : "";
         return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";
-    }
-
-    /**
-     * Count the decimal digits of a decimal number.
-     *
-     * @param float $number
-     * @return integer The number of decimal digits after the decimal separator.
-     */
-    public static function countDecimalPlaces(float $number): int
-    {
-        for ($decimal_digits = 0; $number != round($number, $decimal_digits); $decimal_digits++);
-        return $decimal_digits;
     }
 }

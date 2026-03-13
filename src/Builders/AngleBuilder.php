@@ -11,7 +11,7 @@ use Marcoconsiglio\ModularArithmetic\ModularNumber;
 use RoundingMode;
 
 /**
- * Represents an angle builder.
+ * Represents an `Angle` builder.
  */
 abstract class AngleBuilder implements AngleBuilderInterface
 {
@@ -37,43 +37,31 @@ abstract class AngleBuilder implements AngleBuilderInterface
 
     /**
      * Check for overflow above/below ±360°.
-     *
-     * @return void
      */
-    abstract protected function checkOverflow();
+    abstract protected function checkOverflow(): void;
 
     /**
      * Calcs degrees.
-     *
-     * @return void
      */
-    abstract protected function calcDegrees();
+    abstract protected function calcDegrees(): void;
 
     /**
      * Calcs minutes.    
-     *
-     * @return void
      */
-    abstract protected function calcMinutes();
+    abstract protected function calcMinutes(): void;
 
     /**
      * Calcs seconds.
-     *
-     * @return void
      */
-    abstract protected function calcSeconds();
+    abstract protected function calcSeconds(): void;
 
     /**
      * Calcs direction.
-     *
-     * @return void
      */
-    abstract protected function calcSign();
+    abstract protected function calcSign(): void;
 
     /**
      * Fetch data to build an Angle class.
-     *
-     * @return array
      */
     abstract public function fetchData(): array;
 }

@@ -43,7 +43,7 @@ class FromDegrees extends AngleBuilder
      * 
      * @codeCoverageIgnore
      */
-    protected function checkOverflow() 
+    protected function checkOverflow(): void 
     { 
         /*
          * No need to check overflow beacause
@@ -52,7 +52,10 @@ class FromDegrees extends AngleBuilder
          */
     }
 
-    protected function calcDegrees() 
+    /**
+     * Calc sexagesimal degrees.
+     */
+    protected function calcDegrees(): void 
     {
         $this->degrees_input =
             $this->minutes_input->sub($this->minutes->value)
@@ -60,7 +63,10 @@ class FromDegrees extends AngleBuilder
         $this->degrees = new Degrees($this->degrees_input);
     }
 
-    protected function calcMinutes() 
+    /**
+     * Calc sexagesimal minutes.
+     */
+    protected function calcMinutes(): void 
     {
         $this->minutes = new Minutes($this->minutes_input);
         $this->minutes_input = 
@@ -69,12 +75,18 @@ class FromDegrees extends AngleBuilder
         $this->minutes = new Minutes($this->minutes_input);
     }
 
-    protected function calcSeconds() 
+    /**
+     * Calc sexagesimal seconds.
+     */
+    protected function calcSeconds(): void 
     {
         $this->seconds = new Seconds($this->seconds_input);
     }
 
-    protected function calcSign() 
+    /**
+     * Calc the `Angle`'s direction.
+     */
+    protected function calcSign(): void 
     {
         if ($this->isNullAngle())
             $this->direction = Direction::COUNTER_CLOCKWISE;
@@ -82,6 +94,10 @@ class FromDegrees extends AngleBuilder
             $this->direction = $this->direction_input;
     }
 
+    /**
+     * Return true if the sexagesimal values are 
+     * all zero, false otherwise.
+     */
     private function isNullAngle(): bool
     {
         return 
@@ -90,16 +106,25 @@ class FromDegrees extends AngleBuilder
             $this->hasZeroSeconds();
     }
 
+    /**
+     * Return true if degrees are zero, false otherwise.
+     */
     private function hasZeroDegrees(): bool
     {
         return $this->degrees->value->isEqual(0);
     }
 
+    /**
+     * Return true if minutes are zero, false otherwise.
+     */
     private function hasZeroMinutes(): bool
     {
         return $this->minutes->value->isEqual(0);
     }
 
+    /**
+     * Return true if seconds are zero, false otherwise.
+     */
     private function hasZeroSeconds(): bool
     {
         return $this->seconds->value->isEqual(0);

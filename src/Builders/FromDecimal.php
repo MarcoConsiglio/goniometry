@@ -26,11 +26,12 @@ class FromDecimal extends AngleBuilder
     private Number $reminder;
 
     /**
-     * Constructs an AngleBuilder with a $decimal value.
+     * Constructs an `AngleBuilder` with a `$decimal` value.
      */
-    public function __construct(float $decimal)
+    public function __construct(float|SexadecimalDegrees $decimal)
     {
-        $this->decimal = new SexadecimalDegrees($decimal);
+        if ($decimal instanceof SexadecimalDegrees) $this->decimal = $decimal;
+        else $this->decimal = new SexadecimalDegrees($decimal);
     }
 
     /**
@@ -38,14 +39,14 @@ class FromDecimal extends AngleBuilder
      * 
      * @codeCoverageIgnore
      */
-    protected function checkOverflow() {/* No need to check overflow. Overflow is allowed. */}
+    protected function checkOverflow(): void {/* No need to check overflow. Overflow is allowed. */}
 
     /**
      * Calc degrees.
      *
      * @return void
      */
-    protected function calcDegrees()
+    protected function calcDegrees(): void
     {
         $this->degrees = new Degrees($this->decimal->value->abs()->floor());
         $this->reminder = $this->decimal->value->abs()->sub($this->degrees->value);
@@ -56,7 +57,7 @@ class FromDecimal extends AngleBuilder
      *
      * @return void
      */
-    protected function calcMinutes()
+    protected function calcMinutes(): void
     {
         $this->minutes = new Minutes(
             $this->reminder->mul(Minutes::MAX)->floor()
@@ -72,7 +73,7 @@ class FromDecimal extends AngleBuilder
      *
      * @return void
      */
-    protected function calcSeconds()
+    protected function calcSeconds(): void
     {
         $this->seconds = new Seconds(
             $this->reminder->mul(Seconds::MAX)
@@ -84,7 +85,7 @@ class FromDecimal extends AngleBuilder
      *
      * @return void
      */
-    protected function calcSign()
+    protected function calcSign(): void
     {
         $this->direction = 
             $this->decimal->value->isPositive() ?

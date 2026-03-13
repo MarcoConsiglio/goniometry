@@ -47,7 +47,7 @@ class GreaterOrEqualFloatTest extends TestCase
          */
         // Arrange
         $alfa = $this->randomAngle();
-        $beta = $alfa->toFloat();
+        $beta = $alfa->toFloat(PHP_FLOAT_DIG - 1);
 
         // Act & Assert
         $this->assertTrue(new GreaterOrEqualFloat($alfa, $beta)->compare(),

@@ -25,9 +25,13 @@ class FromRadian extends AngleBuilder
     /**
      * Constructs an AngleBuilder with a decimal value.
      */
-    public function __construct(float $radian)
+    public function __construct(float|Radian $radian)
     {
-        $this->radian = new Radian($radian);
+        if ($radian instanceof Radian)
+            $this->radian = $radian;
+        else
+            $this->radian = new Radian($radian);
+
     }
 
     /**
@@ -35,7 +39,7 @@ class FromRadian extends AngleBuilder
      * 
      * @codeCoverageIgnore
      */
-    protected function calcDegrees() {}
+    protected function calcDegrees(): void {}
 
 
     /**
@@ -43,28 +47,28 @@ class FromRadian extends AngleBuilder
      * 
      * @codeCoverageIgnore
      */
-    protected function calcMinutes() {}
+    protected function calcMinutes(): void {}
 
     /**
      * Calcs seconds.
      * 
      * @codeCoverageIgnore
      */
-    protected function calcSeconds() {}
+    protected function calcSeconds(): void {}
 
     /**
      * Calcs sign.
      * 
      * @codeCoverageIgnore
      */
-    protected function calcSign() {}
+    protected function calcSign(): void {}
 
     /**
      * Checks for overflow above/below +/-360°.
      * 
      * @codeCoverageIgnore
      */
-    protected function checkOverflow() {/* No need check overflow. */}
+    protected function checkOverflow(): void {/* No need check overflow. */}
 
     /**
      * Fetches the data to build an Angle.

@@ -44,14 +44,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalDegrees::class)]
 class AngleTest extends TestCase
 {
-    /*
-     * This method is called before each test.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     #[TestDox("which is exactly 0° has always counter-clockwise direction.")]
     public function test_null_angle_direction(): void
     {

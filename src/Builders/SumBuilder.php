@@ -5,6 +5,7 @@ use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use RoundingMode;
 
 /**
@@ -13,30 +14,9 @@ use RoundingMode;
 abstract class SumBuilder extends AngleBuilder
 {
     /**
-     * The first addend.
-     *
-     * @var Angle
+     * The decimal sum of the two `Angle`s.
      */
-    protected Angle $alfa;
-
-    /**
-     * The second addend.
-     *
-     * @var Angle
-     */
-    protected Angle $beta;
-
-    /**
-     * The operation direction.
-     */
-    protected Direction $operation;
-
-    /**
-     * The decimal sum of the two angles.
-     * 
-     * @deprecated
-     */
-    protected float $decimal_sum = 0.0;
+    protected SexadecimalDegrees $decimal_sum;
 
     /**
      * The reminder used in calculations.
@@ -44,23 +24,10 @@ abstract class SumBuilder extends AngleBuilder
     protected Number $reminder;
 
     /**
-     * The precision of the decimal value used
-     * int the sum calculation.
-     * 
-     * @deprecated BCMath provides arbitrary precision.
+     * Construct the SumBuilder with two `Angle`s.
      */
-    protected int $decimal_precision = 0;
-
-    /**
-     * Construct the SumBuilder with two angles.
-     *
-     * @param Angle $alfa
-     * @param Angle $beta
-     */
-    public function __construct(Angle $alfa, Angle $beta)
+    public function __construct(protected Angle $alfa, protected Angle $beta)
     {
-        $this->alfa = $alfa;
-        $this->beta = $beta;
         $this->reminder = new Number(0);
     }
 
@@ -98,7 +65,6 @@ abstract class SumBuilder extends AngleBuilder
         return $this->isNullAngle($this->alfa) && $this->isNullAngle($this->beta);
     }
 
-
     /**
      * It checks that an $angle is a full angle.
      *
@@ -109,7 +75,7 @@ abstract class SumBuilder extends AngleBuilder
     protected function isFullAngle(Angle $angle, Direction $sign): bool
     {
         $sign = $sign >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE;
-        return $angle->direction == $sign && $angle->isEqual(Degrees::MAX) ;
+        return $angle->direction == $sign && $angle->isEqualTo(Degrees::MAX) ;
     }
 
     /**
@@ -120,6 +86,6 @@ abstract class SumBuilder extends AngleBuilder
      */
     protected function isNullAngle(Angle $angle): bool
     {
-        return $angle->isEqual(0);
+        return $angle->isEqualTo(0);
     }
 }
