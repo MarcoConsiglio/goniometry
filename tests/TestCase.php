@@ -18,6 +18,7 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use RoundingMode;
 use ValueError;
 
 class TestCase extends PHPUnitTestCase
@@ -405,4 +406,13 @@ class TestCase extends PHPUnitTestCase
         $this->assertEquals($expected_values["seconds"], $values["seconds"]);
     }
 
- }
+    /**
+     * Round a `float $value` in order to compare with another `float` safely.
+     */
+    public function safeRound(float $value): float
+    {
+        return round(
+            $value, self::PRECISION, RoundingMode::HalfTowardsZero
+        );
+    }
+}

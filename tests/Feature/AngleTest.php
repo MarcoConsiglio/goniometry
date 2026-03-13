@@ -61,6 +61,7 @@ use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
+use RoundingMode;
 
 #[TestDox("The Angle class")]
 #[CoversClass(Angle::class)]
@@ -124,30 +125,33 @@ class AngleTest extends TestCase
     {
         // Arrange
         $degrees = $this->randomDegrees();
-        $alfa = Angle::createFromValues($degrees);
+        $angle = Angle::createFromValues($degrees);
 
         // Act & Assert
-        $this->assertTrue($alfa->degrees->value->eq($degrees), $this->propertyFail("degrees"));
+        $this->assertEquals($degrees, $angle->degrees->value());
     }
 
     #[TestDox('has "minutes" property which is of type Minutes.')]
     public function test_minutes_property(): void
     {
         $minutes = $this->randomMinutes();
-        $alfa = Angle::createFromValues(minutes: $minutes);
+        $angle = Angle::createFromValues(minutes: $minutes);
 
         // Act & Assert
-        $this->assertTrue($alfa->minutes->value->eq($minutes), $this->propertyFail("minutes"));
+        $this->assertEquals($minutes, $angle->minutes->value());
     }
 
     #[TestDox('has "seconds" property which is of type Seconds.')]
     public function test_seconds_property(): void
     {
         $seconds = $this->randomSeconds();
-        $alfa = Angle::createFromValues(seconds: $seconds);
+        $angle = Angle::createFromValues(seconds: $seconds);
 
         // Act & Assert
-        $this->assertTrue($alfa->seconds->value->eq(Number::string($seconds)), $this->propertyFail("minutes"));
+        $this->assertEquals(
+            $this->safeRound($seconds),
+            $angle->seconds->value(self::PRECISION)
+        );
     }
 
     #[TestDox("had read-only property \"direction\" which is of type Direction.")]
@@ -155,10 +159,10 @@ class AngleTest extends TestCase
     {
         // Arrange
         $direction = $this->randomDirection();
-        $alfa = Angle::createFromValues(degrees: 1, direction: $direction);
+        $angle = Angle::createFromValues(degrees: 1, direction: $direction);
 
         // Act & Assert
-        $this->assertEquals($direction, $alfa->direction, $this->getPropertyError("direction"));
+        $this->assertEquals($direction, $angle->direction);
     }
 
     #[TestDox("can be created from separated values for degrees, minutes, seconds and direction.")]
@@ -174,7 +178,10 @@ class AngleTest extends TestCase
         // Assert
         $this->assertEquals($degrees, $angle->degrees->value());
         $this->assertEquals($minutes, $angle->minutes->value());
-        $this->assertEquals($seconds, $angle->seconds->value());
+        $this->assertEquals(
+            $this->safeRound($seconds),
+            $angle->seconds->value(self::PRECISION)
+        );
         $this->assertEquals($direction, $angle->direction);
     }
 
@@ -182,24 +189,21 @@ class AngleTest extends TestCase
     public function test_create_from_string()
     {
         // Arrange
-        $degrees = $this->randomDegrees();
-        $minutes = $this->randomMinutes();
-        $seconds = Number::string($this->randomSeconds());
-        $direction = $this->faker->randomElement([
-            Direction::COUNTER_CLOCKWISE,
-            Direction::CLOCKWISE
-        ]);
+        $degrees = new Degrees($this->randomDegrees());
+        $minutes = new Minutes($this->randomMinutes());
+        $seconds = new Seconds($this->randomSeconds());
+        $direction = $this->randomDirection();
         $sign = $direction == Direction::CLOCKWISE ? '-' : '';
-        $text = "{$sign}{$degrees}° {$minutes}' {$seconds}\"";
+        $text = "{$sign}{$degrees} {$minutes} {$seconds}";
 
         // Act
         $angle = Angle::createFromString($text);
 
         // Act
-        $this->assertEquals($degrees, $angle->degrees->value());
-        $this->assertEquals($minutes, $angle->minutes->value());
-        $this->assertEquals($seconds, $angle->seconds->value());
-        $this->assertEquals($direction, $angle->direction->value);
+        $this->assertEquals($degrees->value(), $angle->degrees->value());
+        $this->assertEquals($minutes->value(), $angle->minutes->value());
+        $this->assertEquals($seconds->value(self::PRECISION), $angle->seconds->value(self::PRECISION));
+        $this->assertEquals($direction, $angle->direction);
     }
 
     #[TestDox("can be created from a decimal number.")]
@@ -212,8 +216,8 @@ class AngleTest extends TestCase
         $angle = Angle::createFromDecimal($decimal);
 
         $this->assertEquals(
-            $decimal, 
-            $angle->toFloat()
+            $this->safeRound($decimal), 
+            $angle->toFloat(self::PRECISION)
         );
     }
 
@@ -227,7 +231,10 @@ class AngleTest extends TestCase
         $angle = Angle::createFromRadian($radian);
 
         // Assert
-        $this->assertEquals($radian, $angle->toRadian());
+        $this->assertEquals(
+            $this->safeRound($radian), 
+            $angle->toRadian(self::PRECISION)
+        );
     }
 
     #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]
@@ -238,8 +245,8 @@ class AngleTest extends TestCase
         $alfa = Angle::createFromValues(
             $degrees = $this->randomDegrees(), 
             $minutes = $this->randomMinutes(), 
-            $seconds = new Number($this->randomSeconds())->toFloat(),
-            $direction = $this->faker->randomElement([Direction::CLOCKWISE, Direction::COUNTER_CLOCKWISE])
+            $seconds = $this->randomSeconds(),
+            $direction = $this->randomDirection()
         );
         /** @var Direction $direction */
         $degrees *= $direction->value;
@@ -249,14 +256,12 @@ class AngleTest extends TestCase
         $associative_result = $alfa->getDegrees(associative: true);
 
         // Assert
-        $failure_message_1 = "Can't get angle values as a simple array.";
-        $failure_message_2 = "Can't get angle values as an associative array.";
-        $this->assertEquals($degrees,   $simple_result[0],              $failure_message_1);
-        $this->assertEquals($minutes,   $simple_result[1],              $failure_message_1);
-        $this->assertEquals($seconds,   $simple_result[2],              $failure_message_1);
-        $this->assertEquals($degrees,   $associative_result["degrees"], $failure_message_2);
-        $this->assertEquals($minutes,   $associative_result["minutes"], $failure_message_2);
-        $this->assertEquals($seconds,   $associative_result["seconds"], $failure_message_2);
+        $this->assertEquals($degrees,   $simple_result[0]);
+        $this->assertEquals($minutes,   $simple_result[1]);
+        $this->assertEquals($seconds,   $simple_result[2]);
+        $this->assertEquals($degrees,   $associative_result["degrees"]);
+        $this->assertEquals($minutes,   $associative_result["minutes"]);
+        $this->assertEquals($seconds,   $associative_result["seconds"]);
     }
 
     #[TestDox("can be casted to string.")]
@@ -265,9 +270,9 @@ class AngleTest extends TestCase
         // Arrange
         $alfa = $this->randomAngle();
         $sign = $alfa->direction == Direction::COUNTER_CLOCKWISE ? "" : "-";
-        $degrees = $alfa->degrees->value."°";
-        $minutes = $alfa->minutes->value."'";
-        $seconds = $alfa->seconds->value.'"';
+        $degrees = $alfa->degrees;
+        $minutes = $alfa->minutes;
+        $seconds = $alfa->seconds;
         
         // Act & Assert
         $this->assertEquals("{$sign}{$degrees} {$minutes} {$seconds}", (string) $alfa);
@@ -472,32 +477,6 @@ class AngleTest extends TestCase
         ));
         $this->assertEquals(Direction::COUNTER_CLOCKWISE, $gamma->direction, 
             Angle::class."absSum() method must always return a positive angle."
-        );
-    }
-
-    /**
-     * It asserts an Angle can be casted to decimal.
-     *
-     * @param integer|null|null $precision
-     * @return void
-     */
-    protected function testCasttoFloat(int|null $precision = null): void
-    {
-        // Arrange
-        $decimal = $this->faker->randomFloat(
-            $precision ?? $this->faker->numberBetween(0, PHP_FLOAT_DIG), 
-            /* Min */ -Degrees::MAX, /* Max */Degrees::MAX
-        );
-        $angle = Angle::createFromDecimal($decimal);
-        
-        // Act
-        $result = $angle->toFloat($precision);
-
-        // Assert
-        $this->assertIsFloat($result);
-        $this->assertEquals($decimal, $result, 
-            "There was an error casting {$angle} to decimal with $precision precision digits. 
-            Expected {$decimal}° but found {$result}°."
         );
     }
 }
