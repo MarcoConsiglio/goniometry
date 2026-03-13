@@ -50,8 +50,8 @@ class SexadecimalDegreesTest extends TestCase
     {
         // Arrange
         $value = $this->randomSexadecimal();
-        $sexadecimal = new SexadecimalDegrees(new Number($value)->round());
-        $expected_value = new Number($value)->;
+        $sexadecimal = new SexadecimalDegrees($value);
+        $expected_value = new Number($value);
 
         // Act
         $this->assertSame("{$expected_value}°", "$sexadecimal");       
