@@ -27,45 +27,72 @@ class FromDecimalTest extends TestCase
     #[TestDox("can create a counter-clockwise Angle from a positive sexadecimal value.")]
     public function test_create_angle_from_positive_decimal_degrees()
     {
+        /**
+         * Float type input
+         */
         // Arrange
-        $decimal_input = $this->positiveRandomSexadecimal();
-        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($decimal_input);
+        $float_input = $this->positiveRandomSexadecimal();
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($float_input);
 
         // Act
-        $angle = Angle::createFromDecimal($decimal_input);
+        $result = new FromDecimal($float_input)->fetchData();
 
         // Assert
-        $failure_message = "{$decimal_input}° should be equal to {$degrees}{$minutes}{$seconds}";
-        $this->assertTrue($angle->degrees->eq($degrees), $failure_message);
-        $this->assertTrue($angle->minutes->eq($minutes), $failure_message);
-        $this->assertTrue($angle->seconds->eq($seconds), $failure_message);
-        $this->assertEquals($direction, $angle->direction);
+        $this->assertEquals($degrees->value(), $result[0]->value());
+        $this->assertEquals($minutes->value(), $result[1]->value());
+        $this->assertEquals($seconds->value(), $result[2]->value());
+        $this->assertEquals($direction->value, $result[3]->value);
+
+        /**
+         * SexagesimalDegrees type input
+         */
+        // Arrange
+        $sexadecimal = new SexadecimalDegrees($this->positiveRandomSexadecimal());
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($sexadecimal->value());
+
+        // Act
+        $result = new FromDecimal($sexadecimal)->fetchData();
+
+        // Assert
+        $this->assertEquals($degrees->value(), $result[0]->value());
+        $this->assertEquals($minutes->value(), $result[1]->value());
+        $this->assertEquals($seconds->value(), $result[2]->value());
+        $this->assertEquals($direction->value, $result[3]->value);
     }
 
     #[TestDox("can create a clockwise Angle from a negative sexadecimal value.")]
     public function test_create_angle_from_negative_decimal_degrees()
     {
+        /**
+         * Float type input
+         */
         // Arrange
-        $decimal_input = $this->negativeRandomSexadecimal();
-        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($decimal_input);
+        $float_input = $this->negativeRandomSexadecimal();
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($float_input);
 
         // Act
-        $angle = Angle::createFromDecimal($decimal_input);
+        $result = new FromDecimal($float_input)->fetchData();
 
         // Assert
-        $failure_message = "{$decimal_input}° should be equal to -{$degrees}{$minutes}{$seconds}";
-        $this->assertTrue($angle->degrees->eq($degrees), $failure_message);
-        $this->assertTrue($angle->minutes->eq($minutes), $failure_message);
-        $this->assertTrue($angle->seconds->eq($seconds), $failure_message);
-        $this->assertEquals($direction, $angle->direction);
-    }
+        $this->assertEquals($degrees->value(), $result[0]->value());
+        $this->assertEquals($minutes->value(), $result[1]->value());
+        $this->assertEquals($seconds->value(), $result[2]->value());
+        $this->assertEquals($direction->value, $result[3]->value);
 
-    /**
-     * Returns the FromDecimal builder class.
-     * @return string
-     */
-    protected function getBuilderClass(): string
-    {
-        return FromDecimal::class;
+        /**
+         * SexadecimalDegrees type input
+         */
+        // Arrange
+        $sexadecimal = new SexadecimalDegrees($this->negativeRandomSexadecimal());
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($sexadecimal->value());
+
+        // Act
+        $result = new FromDecimal($sexadecimal)->fetchData();
+
+        // Assert
+        $this->assertEquals($degrees->value(), $result[0]->value());
+        $this->assertEquals($minutes->value(), $result[1]->value());
+        $this->assertEquals($seconds->value(), $result[2]->value());
+        $this->assertEquals($direction->value, $result[3]->value);
     }
 }
