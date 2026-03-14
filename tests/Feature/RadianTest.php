@@ -15,7 +15,6 @@ class RadianTest extends TestCase
     public function test_positive_radian(): void
     {
         // Arrange
-        $precision = PHP_FLOAT_DIG - 1;
         $value = $this->positiveRandomRadian();
         
         // Act
@@ -23,9 +22,8 @@ class RadianTest extends TestCase
 
         // Assert
         $this->assertEquals(
-            round($value, $precision, RoundingMode::HalfTowardsZero), 
-            $actual = $radian->value->toFloat($precision),
-            "$value ≠ $actual"    
+            $this->safeRound($value),
+            $radian->value(self::PRECISION)
         );
     }
 
@@ -40,8 +38,8 @@ class RadianTest extends TestCase
 
         // Assert
         $this->assertEquals(
-            $value, $actual = $radian->value->toFloat(),
-            "$value ≠ $actual"    
+            $this->safeRound($value), 
+            $radian->value(self::PRECISION)   
         );
     }
 }
