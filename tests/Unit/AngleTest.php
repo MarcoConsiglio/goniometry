@@ -71,12 +71,14 @@ class AngleTest extends TestCase
     public function test_create_from_radian_cast_to_radian_with_precision(): void
     {
         // Arrange
-        $precision = $this->positiveRandomInteger(max: PHP_FLOAT_DIG);
+        $precision = $this->randomPrecision();
         $radian = $this->randomRadian(precision: $precision);
         $angle = Angle::createFromRadian($radian);
 
         // Act & Assert
-        $this->assertEquals($radian, $actual = $angle->toRadian($precision), 
+        $this->assertEquals(
+            $radian, 
+            $actual = $angle->toRadian($precision), 
             $this->getCastToRadianFailMessage($radian, $actual, precision: $precision)
         );       
     }
