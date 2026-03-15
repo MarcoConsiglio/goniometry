@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Casting;
+namespace MarcoConsiglio\Goniometry\Interfaces\Casting;
 
 /**
  * The behavior of a Castable object.

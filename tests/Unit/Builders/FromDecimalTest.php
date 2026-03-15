@@ -62,7 +62,7 @@ class FromDecimalTest extends TestCase
         // Assert
         $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
         $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
-        $this->assertEquals($seconds->value(), $sexagesimal->seconds->value());
+        $this->assertEquals($seconds->value(self::PRECISION), $sexagesimal->seconds->value(self::PRECISION));
         $this->assertEquals($direction, $sexagesimal->direction);
         $this->assertEquals(
             $expected_sexadecimal->value(self::PRECISION),
@@ -106,7 +106,7 @@ class FromDecimalTest extends TestCase
         // Assert
         $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
         $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
-        $this->assertEquals($seconds->value(), $sexagesimal->seconds->value());
+        $this->assertEquals($seconds->value(self::PRECISION), $sexagesimal->seconds->value(self::PRECISION));
         $this->assertEquals($direction, $sexagesimal->direction);
         $this->assertEquals(
             $expected_sexadecimal->value(self::PRECISION),
