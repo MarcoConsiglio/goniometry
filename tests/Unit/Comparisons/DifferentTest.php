@@ -20,9 +20,11 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -51,7 +53,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(Direction::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexagesimalDegrees::class)]
 class DifferentTest extends TestCase
 {
     protected Angle $alfa;

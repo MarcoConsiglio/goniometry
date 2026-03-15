@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Casting\Sexadecimal;
 
-use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use RoundingMode;

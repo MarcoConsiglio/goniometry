@@ -1,12 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders;
 
-use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-use RoundingMode;
 
 /**
  * Represents a sum builder.

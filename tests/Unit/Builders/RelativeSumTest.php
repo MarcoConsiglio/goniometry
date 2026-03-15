@@ -5,9 +5,11 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\RelativeSum;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -20,7 +22,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(Direction::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexagesimalDegrees::class)]
 class RelativeSumTest extends TestCase
 {
     #[TestDox("can sum two Angles and return a positive sum.")]
@@ -37,13 +41,17 @@ class RelativeSumTest extends TestCase
         $gamma = Angle::createFromDecimal($expected_sum);
 
         // Act
-        $actual_sum = new RelativeSum($alfa, $beta)->fetchData();
+        [$sexagesimal, $sexadecimal] = new RelativeSum($alfa, $beta)->fetchData();
 
         // Assert
-        $this->assertEquals($gamma->degrees->value, $actual_sum[0]->value);
-        $this->assertEquals($gamma->minutes->value, $actual_sum[1]->value);
-        $this->assertEquals($gamma->seconds->value, $actual_sum[2]->value);
-        $this->assertEquals($gamma->direction, $actual_sum[3]);       
+        $this->assertEquals($gamma->degrees->value, $sexagesimal->degrees->value);
+        $this->assertEquals($gamma->minutes->value, $sexagesimal->minutes->value);
+        $this->assertEquals($gamma->seconds->value, $sexagesimal->seconds->value);
+        $this->assertEquals($gamma->direction,      $sexagesimal->direction);       
+        $this->assertEquals(
+            $expected_sum->value(self::PRECISION),
+            $sexadecimal->value(self::PRECISION)
+        );
     }
 
     #[TestDox("can sum two Angles and return a negative sum.")]
@@ -60,12 +68,16 @@ class RelativeSumTest extends TestCase
         $gamma = Angle::createFromDecimal($expected_sum);
 
         // Act
-        $actual_sum = new RelativeSum($alfa, $beta)->fetchData();
+        [$sexagesimal, $sexadecimal] = new RelativeSum($alfa, $beta)->fetchData();
 
         // Assert
-        $this->assertEquals($gamma->degrees->value, $actual_sum[0]->value);
-        $this->assertEquals($gamma->minutes->value, $actual_sum[1]->value);
-        $this->assertEquals($gamma->seconds->value, $actual_sum[2]->value);
-        $this->assertEquals($gamma->direction, $actual_sum[3]);       
+        $this->assertEquals($gamma->degrees->value, $sexagesimal->degrees->value);
+        $this->assertEquals($gamma->minutes->value, $sexagesimal->minutes->value);
+        $this->assertEquals($gamma->seconds->value, $sexagesimal->seconds->value);
+        $this->assertEquals($gamma->direction, $sexagesimal->direction); 
+        $this->assertEquals(
+            $expected_sum->value(self::PRECISION),
+            $sexadecimal->value(self::PRECISION)
+        );      
     }
 }

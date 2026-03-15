@@ -1,14 +1,11 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders;
 
-use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use Marcoconsiglio\ModularArithmetic\ModularNumber;
-use RoundingMode;
 
 /**
  * Represents an `Angle` builder.

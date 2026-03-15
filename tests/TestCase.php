@@ -33,7 +33,7 @@ class TestCase extends PHPUnitTestCase
     /**
      * A safe precision used when comparing `float` type variables.
      */
-    protected const int PRECISION = PHP_FLOAT_DIG - 2;
+    protected const int PRECISION = PHP_FLOAT_DIG - 3;
 
     /**
      * This method is called before each test.

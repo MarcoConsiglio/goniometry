@@ -29,7 +29,6 @@ class RoundTest extends TestCase
     public function test_cast_without_precision(): void
     {
         // Arrange
-        $precision = PHP_FLOAT_DIG - 1;
         $expected = $this->randomRadian();
         $radian = new Radian($expected);
 
@@ -37,9 +36,6 @@ class RoundTest extends TestCase
         $actual = new Round($radian)->cast();
 
         // Assert
-        $this->assertEquals(
-            round($expected, $precision, RoundingMode::HalfTowardsZero), 
-            round($actual, $precision, RoundingMode::HalfTowardsZero)
-        );       
+        $this->assertEquals($expected, $actual);       
     }
 }

@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-use Marcoconsiglio\ModularArithmetic\ModularNumber;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  * Builds an angle starting from a decimal value.
@@ -96,7 +96,7 @@ class FromDecimal extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array{Degrees,Minutes,Seconds,Direction,SexadecimalDegrees,null}
+     * @return array{SexagesimalDegrees,SexadecimalDegrees,null}
      */
     public function fetchData(): array
     {
@@ -105,10 +105,12 @@ class FromDecimal extends AngleBuilder
         $this->calcSeconds();
         $this->calcSign();
         return [
-            $this->degrees,
-            $this->minutes,
-            $this->seconds,
-            $this->direction,
+            new SexagesimalDegrees(
+                $this->degrees,
+                $this->minutes,
+                $this->seconds,
+                $this->direction
+            ),
             $this->decimal,
             null
         ];

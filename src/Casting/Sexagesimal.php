@@ -13,7 +13,10 @@ abstract class Sexagesimal
         protected Angle $angle,
         protected int|null $precision = null
     ) {
-        if ($this->hasPrecisionBeenSet()) $this->normalizePrecision();
+        if ($this->hasPrecisionBeenSet()) {
+            $this->disallowNegativePrecision();
+            $this->normalizePrecision();
+        }
     } 
 
     /**
@@ -22,6 +25,14 @@ abstract class Sexagesimal
     protected function hasPrecisionBeenSet(): bool
     {
         return $this->precision !== null;
+    }
+
+    /**
+     * Transform a negative precision into a positive precision.
+     */
+    protected function disallowNegativePrecision(): void
+    {
+        $this->precision = abs($this->precision);
     }
 
     /**
@@ -38,8 +49,7 @@ abstract class Sexagesimal
      */
     protected function normalizePrecision(): void
     {
-        $this->precision = 
-            abs($this->precision) > PHP_FLOAT_DIG ? 
-            PHP_FLOAT_DIG : abs($this->precision);
+        if ($this->precision > PHP_FLOAT_DIG)
+            $this->precision = PHP_FLOAT_DIG;
     }
 }

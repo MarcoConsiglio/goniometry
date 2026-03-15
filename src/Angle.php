@@ -1,13 +1,9 @@
 <?php declare(strict_types=1);
 namespace MarcoConsiglio\Goniometry;
 
-use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
-use MarcoConsiglio\Goniometry\Builders\FromAnglesToAbsoluteSum;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
-use MarcoConsiglio\Goniometry\Builders\FromAnglesToRelativeSum;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
@@ -50,32 +46,46 @@ class Angle implements AngleInterface
     /**
      * The degrees part.
      */
-    public protected(set) Degrees $degrees;
+    public Degrees $degrees {
+        get {return $this->sexagesimal->degrees;}
+    }
 
     /**
      * The minutes part.
      */
-    public protected(set) Minutes $minutes;
+    public Minutes $minutes {
+        get {return $this->sexagesimal->minutes;}
+    }
 
     /**
      * The seconds part.
      */
-    public protected(set) Seconds $seconds;
+    public Seconds $seconds {
+        get {return $this->sexagesimal->seconds;}
+    }
 
-    /** 
-     * The angle direction.
-     */
-    public protected(set) Direction $direction = Direction::COUNTER_CLOCKWISE;
     
     /** 
-     * The original sexadecimal degrees if the `Angle` is built `FromDecimal`.
+     * The angle direction.
+    */
+    public Direction $direction {
+        get {return $this->sexagesimal->direction;}
+    }
+
+    /**
+     * The sexagesimal value of this `Angle`.
      */
-    protected SexadecimalDegrees|null $original_decimal = null;
+    protected SexagesimalDegrees $sexagesimal;
+    
+    /** 
+     * The sexadecimal degrees value of this `Angle`.
+     */
+    protected SexadecimalDegrees|null $sexadecimal = null;
 
     /** 
-     * The original radian degrees if the `Angle` is built `FromRadian`.
+     * The radian degrees of this `Angle`.
      */
-    protected Radian|null $original_radian = null;
+    protected Radian|null $radian = null;
 
 
     /**
@@ -84,12 +94,9 @@ class Angle implements AngleInterface
     protected function __construct(AngleBuilder $builder)
     {
         [
-            $this->degrees, 
-            $this->minutes, 
-            $this->seconds, 
-            $this->direction,
-            $this->original_decimal,
-            $this->original_radian
+            $this->sexagesimal,
+            $this->sexadecimal,
+            $this->radian
         ] = $builder->fetchData();
     }
 
@@ -190,15 +197,13 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Reverse the direction of the rotation.
+     * Return the same instance but the opposite direction.
      */
     public function toggleDirection(): Angle
     {
         $clone = clone $this;
-        $clone->direction =
-            $clone->direction === Direction::COUNTER_CLOCKWISE ?
-            Direction::CLOCKWISE :
-            Direction::COUNTER_CLOCKWISE;
+        $clone->sexagesimal->direction =
+            $clone->sexagesimal->direction->opposite();
         return $clone;
     }
 
@@ -208,9 +213,9 @@ class Angle implements AngleInterface
      */
     public function toDecimal(): SexadecimalDegrees
     {
-        if ($this->original_decimal !== null)
-            return $this->original_decimal;
-        return $this->original_decimal = new SexadecimalDegrees(
+        if ($this->sexadecimal !== null)
+            return $this->sexadecimal;
+        return $this->sexadecimal = new SexadecimalDegrees(
             $this->degrees->value->plus(
                 $this->minutes->value->div(Minutes::MAX)
             )->plus(
@@ -227,21 +232,21 @@ class Angle implements AngleInterface
      */
     public function toFloat(int|null $precision = null): float
     {
-        if ($this->original_decimal !== null)
-            return new RoundFromSexadecimal($this->original_decimal, $precision)->cast();
+        if ($this->sexadecimal !== null)
+            return new RoundFromSexadecimal($this->sexadecimal, $precision)->cast();
         return new CastToSexadecimal($this, $precision)->cast();
     }
 
     /**
-     * Gets the radian representation of this angle.
+     * Return the radian representation of this angle.
      *
-     * @param integer|null $precision The number of decimal digits. If sets to null,
-     * it resolve the original precision at the time this Angle was built.
+     * @param integer|null $precision The number of decimal digits. If null, 
+     * return the value with the maximum available precision.
      */
     public function toRadian(int|null $precision = null): float
     {
-        if ($this->original_radian !== null)
-            return new RoundFromRadian($this->original_radian, $precision)->cast();
+        if ($this->radian !== null)
+            return new RoundFromRadian($this->radian, $precision)->cast();
         return new CastToRadian($this, $precision)->cast();
     }
 

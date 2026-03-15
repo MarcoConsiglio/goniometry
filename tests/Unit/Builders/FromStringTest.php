@@ -11,6 +11,7 @@ use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -25,6 +26,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Seconds::class)]
 #[UsesClass(NoMatchException::class)]
 #[UsesClass(RegExFailureException::class)]
+#[UsesClass(SexagesimalDegrees::class)]
 class FromStringTest extends TestCase
 {
     #[TestDox("can create a positive angle from a string value.")]
@@ -34,19 +36,18 @@ class FromStringTest extends TestCase
         $degrees = new Degrees($this->randomDegrees());
         $minutes = new Minutes($this->randomMinutes());
         $seconds = new Seconds($this->randomSeconds());
-        $seconds_string = Number::string($seconds);
         $direction = Direction::COUNTER_CLOCKWISE;
         $sign = '';
         
         // Act
-        $builder = new FromString("{$sign}{$degrees} {$minutes} {$seconds_string}");
-        $result = $builder->fetchData();
+        $builder = new FromString("{$sign}{$degrees} {$minutes} {$seconds}");
+        [$sexagesimal] = $builder->fetchData();
         
         //Assert
-        $this->assertEquals($degrees->value(), $result[0]->value());
-        $this->assertEquals($minutes->value(), $result[1]->value());
-        $this->assertEquals($seconds->value(), $result[2]->value());
-        $this->assertEquals($direction->value, $result[3]->value);
+        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
+        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
+        $this->assertEquals($seconds->value(), $sexagesimal->seconds->value());
+        $this->assertEquals($direction, $sexagesimal->direction);
     }
 
     #[TestDox("can create a negative angle from a string value.")]
@@ -56,19 +57,18 @@ class FromStringTest extends TestCase
         $degrees = new Degrees($this->randomDegrees());
         $minutes = new Minutes($this->randomMinutes());
         $seconds = new Seconds($this->randomSeconds());
-        $seconds_string = Number::string($seconds);
         $direction = Direction::CLOCKWISE;
         $sign = '-';
         
         // Act
-        $builder = new FromString("{$sign}{$degrees} {$minutes} {$seconds_string}");
-        $result = $builder->fetchData();
+        $builder = new FromString("{$sign}{$degrees} {$minutes} {$seconds}");
+        [$sexagesimal] = $builder->fetchData();
         
         //Assert
-        $this->assertEquals($degrees->value(), $result[0]->value());
-        $this->assertEquals($minutes->value(), $result[1]->value());
-        $this->assertEquals($seconds->value(), $result[2]->value());
-        $this->assertEquals($direction->value, $result[3]->value);
+        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
+        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
+        $this->assertEquals($seconds->value(), $sexagesimal->seconds->value());
+        $this->assertEquals($direction, $sexagesimal->direction);
     }
     
     #[TestDox("throws NoMatchException with more than 360° input.")]

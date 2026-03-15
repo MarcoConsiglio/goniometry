@@ -3,11 +3,12 @@ namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
-use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
-use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
+use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
+use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 
 /**
  *  Builds an angle starting from a string value.
@@ -201,7 +202,7 @@ class FromString extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array{Degrees,Minutes,Seconds,Direction,null,null}
+     * @return array{SexagesimalDegrees,null,null}
      */
     public function fetchData(): array
     {
@@ -210,10 +211,12 @@ class FromString extends AngleBuilder
         $this->calcSeconds();
         $this->calcSign();
         return [
-            $this->degrees,
-            $this->minutes,
-            $this->seconds,
-            $this->direction,
+            new SexagesimalDegrees(
+                $this->degrees,
+                $this->minutes,
+                $this->seconds,
+                $this->direction
+            ),
             null,
             null
         ];

@@ -8,9 +8,11 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -19,14 +21,16 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The DifferentString comparison strategy")]
 #[CoversClass(DifferentString::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(Degrees::class)]
 #[UsesClass(DifferentAngle::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(FromDecimal::class)]
 #[UsesClass(FromString::class)]
+#[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(Direction::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexagesimalDegrees::class)]
 class DifferentStringTest extends TestCase
 {
     protected string $comparison = '≠';

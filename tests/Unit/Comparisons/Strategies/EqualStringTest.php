@@ -7,9 +7,11 @@ use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Tests\Feature\AngleTest;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -19,13 +21,15 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The EqualString comparison strategy")]
 #[CoversClass(EqualString::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(Degrees::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(FromDecimal::class)]
 #[UsesClass(FromString::class)]
+#[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(Direction::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexagesimalDegrees::class)]
 class EqualStringTest extends TestCase
 {
     protected string $comparison = '=';

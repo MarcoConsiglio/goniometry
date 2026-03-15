@@ -21,6 +21,7 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -42,6 +43,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RoundFromRadian::class)]
 #[UsesClass(CastToRadian::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexagesimalDegrees::class)]
 class AngleTest extends TestCase
 {
     #[TestDox("which is exactly 0° has always counter-clockwise direction.")]

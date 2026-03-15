@@ -3,9 +3,8 @@ namespace MarcoConsiglio\Goniometry\Builders;
 
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  * Sum two `Angle`s resulting in an absolute sum.
@@ -16,15 +15,13 @@ class AbsoluteSum extends SumBuilder
      * Fetch data to build an `Angle` which is the absolute sum between two 
      * `Angle`s.
      *
-     * @return array{Degrees,Minutes,Seconds,Direction,SexadecimalDegrees,null}
+     * @return array{SexagesimalDegrees,SexadecimalDegrees,null}
      */
     public function fetchData(): array
     {
         $this->calcSum();
         $builder = new FromDecimal($this->decimal_sum);
-        $result = $builder->fetchData();
-        $result[] = null;
-        return $result;
+        return $builder->fetchData();
     }
 
     /**

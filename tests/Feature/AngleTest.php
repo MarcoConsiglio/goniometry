@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
-use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
@@ -57,11 +56,11 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use RoundingMode;
 
 #[TestDox("The Angle class")]
 #[CoversClass(Angle::class)]
@@ -75,6 +74,7 @@ use RoundingMode;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(Direction::class)]
 #[UsesClass(Comparison::class)]
 #[UsesClass(Equal::class)]
 #[UsesClass(Different::class)]
@@ -118,6 +118,7 @@ use RoundingMode;
 #[UsesClass(CastToSexadecimal::class)]
 #[UsesClass(RoundToSexadecimal::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexagesimalDegrees::class)]
 class AngleTest extends TestCase
 {    
     #[TestDox('has "degrees" property which is of type Degrees.')]

@@ -1,16 +1,9 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders;
 
-use MarcoConsiglio\BCMathExtended\Number;
-use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
-use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
-use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-use RoundingMode;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  *  Builds an angle starting from a radian value.
@@ -73,20 +66,20 @@ class FromRadian extends AngleBuilder
     /**
      * Fetches the data to build an Angle.
      *
-     * @return array{Degrees,Minutes,Seconds,Direction,SexadecimalDegrees,Radian}
+     * @return array{SexagesimalDegrees,SexadecimalDegrees,Radian}
      */
     public function fetchData(): array
     {
-        $result = new FromDecimal(
+        [
+            $sexagesimal,
+            $sexadecimal,
+        ] = new FromDecimal(
             $this->radian->value->toDegrees()->toFloat()
         )->fetchData();
         return [
-            $result[0],     // Degrees
-            $result[1],     // Minutes
-            $result[2],     // Seconds
-            $result[3],     // Direction
-            $result[4],     // Original decimal value
-            $this->radian,  // Original radian value
+            $sexagesimal,
+            $sexadecimal,
+            $this->radian
         ];
     }
 }
