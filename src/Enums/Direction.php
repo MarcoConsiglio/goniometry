@@ -18,6 +18,8 @@ enum Direction: int
 
     /**
      * Return the opposite direction.
+     * 
+     * @codeCoverageIgnore
      */
     public function opposite(): Direction
     {

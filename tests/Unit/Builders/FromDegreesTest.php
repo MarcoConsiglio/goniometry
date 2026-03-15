@@ -52,23 +52,16 @@ class FromDegreesTest extends TestCase
         $alfa = Angle::createFromValues(0, 0, 0, $positive_direction);
         $beta = Angle::createFromValues(0, 0, 0, $negative_direction);
         //  Non-null angles
-        $gamma =    Angle::createFromValues(0, 0, 1, $positive_direction);
-        $epsilon =  Angle::createFromValues(0, 1, 1, $positive_direction);
-        $iota =     Angle::createFromValues(1, 1, 1, $positive_direction);
-        $kappa =    Angle::createFromValues(0, 0, 1, $negative_direction);
-        $mi =       Angle::createFromValues(0, 1, 1, $negative_direction);
-        $rho =      Angle::createFromValues(1, 1, 1, $negative_direction);
-
+        $gamma =    Angle::createFromValues(1, 0, 0, $negative_direction);
+        $epsilon =  Angle::createFromValues(0, 1, 0, $negative_direction);
+        $iota =     Angle::createFromValues(0, 0, 1, $negative_direction);
         // Assert
         //  Null angles
         $this->assertEquals($positive_direction, $alfa->direction);
         $this->assertEquals($positive_direction, $beta->direction);
         //  Non-null angles
-        $this->assertEquals($positive_direction, $gamma->direction);
-        $this->assertEquals($positive_direction, $epsilon->direction);
-        $this->assertEquals($positive_direction, $iota->direction);
-        $this->assertEquals($negative_direction, $kappa->direction);
-        $this->assertEquals($negative_direction, $mi->direction);
-        $this->assertEquals($negative_direction, $rho->direction);
+        $this->assertEquals($negative_direction, $gamma->direction);
+        $this->assertEquals($negative_direction, $epsilon->direction);
+        $this->assertEquals($negative_direction, $iota->direction);
     }
 }

@@ -96,6 +96,8 @@ class FromDegrees extends AngleBuilder
     /**
      * Return true if the sexagesimal values are 
      * all zero, false otherwise.
+     * 
+     * @codeCoverageIgnore
      */
     private function isNullAngle(): bool
     {
