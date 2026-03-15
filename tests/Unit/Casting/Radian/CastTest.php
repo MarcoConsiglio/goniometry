@@ -33,7 +33,7 @@ class CastTest extends TestCase
         // Arrange
         $precision = $this->randomPrecision();
         $angle = $this->randomAngle();
-        $sexadecimal = $angle->toDecimal();
+        $sexadecimal = $angle->toSexadecimalDegrees();
         $radian = $sexadecimal->value->toRadian()->toFloat($precision);
 
         // Act
@@ -49,7 +49,7 @@ class CastTest extends TestCase
     {
         // Arrange
         $angle = $this->randomAngle();
-        $sexadecimal = $angle->toDecimal();
+        $sexadecimal = $angle->toSexadecimalDegrees();
         $radian = $sexadecimal->value->toRadian()->toFloat();
 
         // Act

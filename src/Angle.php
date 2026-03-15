@@ -211,7 +211,7 @@ class Angle implements AngleInterface
      * Return the sexadecimal value of this `Angle` with arbitrary 
      * precision.
      */
-    public function toDecimal(): SexadecimalDegrees
+    public function toSexadecimalDegrees(): SexadecimalDegrees
     {
         if ($this->sexadecimal !== null)
             return $this->sexadecimal;

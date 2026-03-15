@@ -34,8 +34,8 @@ class RelativeSumTest extends TestCase
         $alfa = $this->positiveRandomAngle();
         $beta = $this->positiveRandomAngle();
         $sum = 
-            $alfa->toDecimal()->value
-            ->plus($beta->toDecimal()->value)
+            $alfa->toSexadecimalDegrees()->value
+            ->plus($beta->toSexadecimalDegrees()->value)
             ->plus(Degrees::MAX);
         $expected_sum = new SexadecimalDegrees($sum);
         $gamma = Angle::createFromDecimal($expected_sum);
@@ -61,8 +61,8 @@ class RelativeSumTest extends TestCase
         $alfa = $this->negativeRandomAngle();
         $beta = $this->negativeRandomAngle();
         $sum = 
-            $alfa->toDecimal()->value
-            ->plus($beta->toDecimal()->value)
+            $alfa->toSexadecimalDegrees()->value
+            ->plus($beta->toSexadecimalDegrees()->value)
             ->plus(Degrees::MAX);
         $expected_sum = new SexadecimalDegrees($sum);
         $gamma = Angle::createFromDecimal($expected_sum);

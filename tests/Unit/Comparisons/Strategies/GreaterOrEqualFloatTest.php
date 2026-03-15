@@ -27,6 +27,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Round::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
+
 class GreaterOrEqualFloatTest extends TestCase
 {
     protected string $comparison = '≥';
@@ -51,7 +52,7 @@ class GreaterOrEqualFloatTest extends TestCase
          */
         // Arrange
         $alfa = $this->randomAngle();
-        $beta = $alfa->toFloat(PHP_FLOAT_DIG - 1);
+        $beta = $alfa->toFloat();
 
         // Act & Assert
         $this->assertTrue(new GreaterOrEqualFloat($alfa, $beta)->compare(),

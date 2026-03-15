@@ -14,8 +14,8 @@ class RelativeSum extends SumBuilder
      */
     protected function calcSum(): void
     {
-        $alfa = $this->alfa->toDecimal()->value;
-        $beta = $this->beta->toDecimal()->value;
+        $alfa = $this->alfa->toSexadecimalDegrees()->value;
+        $beta = $this->beta->toSexadecimalDegrees()->value;
         $this->decimal_sum = new SexadecimalDegrees(
             $alfa->plus($beta)
         );       

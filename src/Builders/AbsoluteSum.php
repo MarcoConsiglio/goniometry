@@ -30,8 +30,8 @@ class AbsoluteSum extends SumBuilder
     protected function calcSum()
     {
         $this->calcSign();
-        $alfa = $this->alfa->toDecimal()->value;
-        $beta = $this->beta->toDecimal()->value;
+        $alfa = $this->alfa->toSexadecimalDegrees()->value;
+        $beta = $this->beta->toSexadecimalDegrees()->value;
         $this->decimal_sum = new SexadecimalDegrees(
             $alfa->plus($beta)->plus(Degrees::MAX)
         );

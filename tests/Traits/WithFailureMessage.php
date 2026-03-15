@@ -115,7 +115,7 @@ trait WithFailureMessage
         if (is_int($beta)) return "$alfa $comparison {$beta}°";
         if (is_float($beta)) { 
             $float = new Number($beta)->value;
-            return "{$alfa->toDecimal()->value}° $comparison {$float}°";
+            return "{$alfa->toSexadecimalDegrees()->value}° $comparison {$float}°";
         }
         return "$alfa $comparison $beta";
     }

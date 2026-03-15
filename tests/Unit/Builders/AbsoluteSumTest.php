@@ -34,8 +34,8 @@ class AbsoluteSumTest extends TestCase
         $alfa = $this->randomAngle();
         $beta = $this->randomAngle();
         $sum = 
-            $alfa->toDecimal()->value
-            ->plus($beta->toDecimal()->value)
+            $alfa->toSexadecimalDegrees()->value
+            ->plus($beta->toSexadecimalDegrees()->value)
             ->plus(Degrees::MAX);
         $expected_sum = new SexadecimalDegrees($sum);
         $gamma = Angle::createFromDecimal($expected_sum);

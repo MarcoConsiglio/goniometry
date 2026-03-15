@@ -40,7 +40,7 @@ abstract class Sexagesimal
      */
     protected function toSexadecimal(): SexadecimalDegrees
     {
-        return $this->angle->toDecimal();
+        return $this->angle->toSexadecimalDegrees();
     }
 
     /**

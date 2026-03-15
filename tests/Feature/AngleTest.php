@@ -282,16 +282,19 @@ class AngleTest extends TestCase
     #[TestDox("can be casted to float.")]
     public function test_cast_to_float()
     {
-        /**
-         * Angle created FromDecimal,
-         * casted to float without precision.
-         */
         // Arrange
-        $float = $this->randomSexadecimal();
-        $alfa = Angle::createFromDecimal($float);
+        $angle = Angle::createFromValues(
+            $this->randomDegrees(),
+            $this->randomMinutes(),
+            $this->randomSeconds(),
+            $this->randomDirection()
+        );
 
-        // Act & Assert
-        $this->assertIsFloat($alfa->toFloat());
+        // Act
+        $actual = $angle->toFloat();
+
+        // Assert
+        $this->assertIsFloat($actual);
     }
 
     #[TestDox("can be casted to radian.")]

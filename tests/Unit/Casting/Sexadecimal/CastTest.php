@@ -38,7 +38,7 @@ class CastTest extends TestCase
     {
         parent::setUp();
         $this->angle = $this->randomAngle();
-        $this->sexadecimal = $this->angle->toDecimal();
+        $this->sexadecimal = $this->angle->toSexadecimalDegrees();
     }
 
     #[TestDox("can cast the Angle to a sexadecimal value with a specific precision.")]
