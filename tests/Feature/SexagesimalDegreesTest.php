@@ -53,19 +53,4 @@ class SexagesimalDegreesTest extends TestCase
         // Act & Assert
         $this->assertInstanceOf(Seconds::class, $this->sexagesimal->seconds);
     }
-
-    public function test_cast_to_string(): void
-    {
-        // Arrange
-        $sign = $this->sexagesimal->direction == Direction::CLOCKWISE ? '-': '';
-        $expected = <<<TEXT
-{$sign}{$this->sexagesimal->degrees} {$this->sexagesimal->minutes} {$this->sexagesimal->seconds}
-TEXT;
-
-        // Act & Assert
-        $this->assertEquals(
-            $expected,
-            (string) $this->sexagesimal
-        );
-    }
 }

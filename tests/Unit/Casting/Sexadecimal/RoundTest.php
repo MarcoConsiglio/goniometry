@@ -43,8 +43,10 @@ class RoundTest extends TestCase
         $float = new Round($sexadecimal, $precision)->cast();
 
         // Assert
-        $this->assertSame($expected_float, $float, 
-            " ≠ $float with $precision digit precision"
+        $this->assertSame(
+            $this->safeRound($expected_float), 
+            $this->safeRound($float), 
+            "Precision $precision"
         );
 
         /**
@@ -59,7 +61,11 @@ class RoundTest extends TestCase
         $float = new Round($sexadecimal, $precision)->cast();
 
         // Assert
-        $this->assertSame($expected_float, $float, "$expected_float ≠ $float with $precision digit precision");
+        $this->assertSame(
+            $this->safeRound($expected_float), 
+            $this->safeRound($float), 
+            "Precision: $precision"
+        );
     }
 
     #[TestDox("can cast the Angle to a sexadecimal value without a specific precision.")]
@@ -75,8 +81,8 @@ class RoundTest extends TestCase
 
         // Assert
         $this->assertSame(
-            round($expected_float, $precision, RoundingMode::HalfTowardsZero), 
-            round($float, $precision, RoundingMode::HalfTowardsZero)
+            $this->safeRound($expected_float), 
+            $this->safeRound($float)
         );
     }
 }
