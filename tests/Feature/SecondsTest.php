@@ -32,7 +32,18 @@ class SecondsTest extends TestCase
         $degrees = new Seconds($expected_value);
 
         // Act & Assert
-        $this->assertEquals((string) $expected_value . Seconds::MEASURE, (string) $degrees);
+        $this->assertEquals($expected_value, $degrees->value());
+    }
+
+    #[TestDox("can be casted to string.")]
+    public function test_cast_to_string(): void
+    {
+        // Arrange
+        $expected_value = $this->safeRound($this->randomSeconds());
+        $seconds = new Seconds($expected_value);
+
+        // Act & Assert
+        $this->assertEquals("{$expected_value}\"", (string) $seconds);
     }
 
     #[TestDox("can be compared with another instance of the same type.")]
