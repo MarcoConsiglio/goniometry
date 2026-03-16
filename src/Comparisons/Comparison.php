@@ -9,6 +9,9 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
+/**
+ * Represents a comparison between angles.
+ */
 abstract class Comparison
 {
     /**
@@ -75,6 +78,9 @@ abstract class Comparison
         return $this->comparison_strategy->compare();
     }
 
+    /**
+     * Set the precision to use when comparing.
+     */
     public function setPrecision(int $precision): void
     {
         $this->float_precision = $precision;
