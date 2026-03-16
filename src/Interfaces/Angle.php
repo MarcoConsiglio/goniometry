@@ -1,183 +1,120 @@
 <?php
 
 namespace MarcoConsiglio\Goniometry\Interfaces;
-use MarcoConsiglio\Goniometry\Angle as AngleObject;
 
 /**
- * The angle concept.
+ * The behavior of an angle.
  */
 interface Angle
 {
     /**
      * Creates an angle from its values.
-     *
-     * @param integer $degrees
-     * @param integer $minutes
-     * @param float   $seconds
-     * @return AngleObject
      */
-    public static function createFromValues(int $degrees, int $minutes, float $seconds): AngleObject;
+    public static function createFromValues(int $degrees, int $minutes, float $seconds): Angle;
 
     /**
      * Creates an angle from its textual representation.
-     *
-     * @param string $angle
-     * @return AngleObject
      */
-    public static function createFromString(string $angle): AngleObject;
+    public static function createFromString(string $angle): Angle;
 
     /**
      * Creates an angle from its decimal representation.
-     *
-     * @param float $decimal_degrees
-     * @return AngleObject
      */
-    public static function createFromDecimal(float $decimal_degrees): AngleObject;
+    public static function createFromDecimal(float $decimal_degrees): Angle;
 
     /**
      * Creates an angle from its radian representation.
-     *
-     * @param float $radian
-     * @return AngleObject
      */
-    public static function createFromRadian(float $radian): AngleObject;
+    public static function createFromRadian(float $radian): Angle;
 
     /**
      * Reverse the direction of rotation.
-     *
-     * @return AngleObject
      */
-    public function toggleDirection(): AngleObject;
+    public function toggleDirection(): Angle;
 
     /**
      * Return an array containing the values
      * of degrees, minutes, seconds.
-     *
-     * @return array
      */
     public function getDegrees(): array;
 
     /**
      * Check if this angle is clockwise or negative.
-     *
-     * @return boolean
      */
     public function isClockwise(): bool;
 
     /**
      * Check if this angle is counterclockwise or positive.
-     *
-     * @return boolean
      */
     public function isCounterClockwise(): bool;
 
     /**
      * Gets the decimal degrees representation of this angle.
-     *
-     * @return float
      */
     public function toFloat(): float;
 
     /**
      * Gets the radian representation of this angle.
-     *
-     * @return float
      */
     public function toRadian(): float;
 
     /**
      * Check if this angle is greater than $angle.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function isGreaterThan(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isGreaterThan(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Alias of isGreaterThan method.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function gt(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function gt(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is greater than or equal to $angle.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @param int $precision
-     * @return boolean
      */
-    public function isGreaterThanOrEqualTo(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isGreaterThanOrEqualTo(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Alias of isGreaterThanOrEqual method.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function gte(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function gte(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is less than $angle.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function isLessThan(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isLessThan(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Alias of isLessThan method.
-     *
-     * @param string|int|float|AngleObject $angle
      */
-    public function lt(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function lt(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is less than or equal to $angle.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function isLessThanOrEqualTo(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isLessThanOrEqualTo(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Alias of isLessThanOrEqual method.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function lte(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function lte(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is equal to $angle.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function isEqualTo(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isEqualTo(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Alias of isEqual method.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function eq(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function eq(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is different than $angle.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function isDifferentThan(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function isDifferentThan(string|int|float|Angle $angle, int $precision = 54): bool;
 
     /**
      * Alias for isDifferent method.
-     *
-     * @param string|int|float|AngleObject $angle
-     * @return boolean
      */
-    public function not(string|int|float|AngleObject $angle, int $precision = 1): bool;
+    public function not(string|int|float|Angle $angle, int $precision = 54): bool;
 }
