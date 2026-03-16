@@ -8,22 +8,22 @@ namespace MarcoConsiglio\Goniometry\Interfaces;
 interface Angle
 {
     /**
-     * Creates an angle from its values.
+     * Creates an `Angle` from its values.
      */
     public static function createFromValues(int $degrees, int $minutes, float $seconds): Angle;
 
     /**
-     * Creates an angle from its textual representation.
+     * Creates an `Angle` from its textual representation.
      */
     public static function createFromString(string $angle): Angle;
 
     /**
-     * Creates an angle from its decimal representation.
+     * Creates an `Angle` from its decimal representation.
      */
     public static function createFromDecimal(float $decimal_degrees): Angle;
 
     /**
-     * Creates an angle from its radian representation.
+     * Creates an `Angle` from its radian representation.
      */
     public static function createFromRadian(float $radian): Angle;
 
