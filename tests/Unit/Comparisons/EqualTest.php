@@ -5,13 +5,8 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromString;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
@@ -91,9 +86,20 @@ class EqualTest extends TestCase
         // Act & Assert
         $comparison = new Equal(
             $this->alfa, 
-            $this->positiveRandomFloat()
+            $this->randomSexadecimal()
         );
         $comparison->setPrecision($this->positiveRandomFloat(max: PHP_FLOAT_DIG));
+        $this->assertIsBool($comparison->compare());
+    }
+
+    public function test_compare_float_with_normalized_precision(): void
+    {
+        // Act & Assert
+        $comparison = new Equal(
+            $this->alfa,
+            $this->randomSexadecimal()
+        );
+        $comparison->setPrecision($this->negativeRandomInteger(min: 54));
         $this->assertIsBool($comparison->compare());
     }
 

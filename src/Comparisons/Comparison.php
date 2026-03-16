@@ -30,10 +30,15 @@ abstract class Comparison
      * The precision used when comparing an `Angle` against a `float` type 
      * variable.
      */
-    protected int $float_precision = 54;
+    protected int $float_precision = self::MAX_PRECISION;
 
     /**
-     * Construct the Comparison with the two angles $alfa and $beta.
+     * The maximum allowed precision in every comparison.
+     */
+    public const int MAX_PRECISION = 54;
+
+    /**
+     * Construct the `Comparison` with the two angles `$alfa` and `$beta`.
      */
     public function __construct(Angle $alfa, string|int|float|Angle $beta)
     {
@@ -73,5 +78,16 @@ abstract class Comparison
     public function setPrecision(int $precision): void
     {
         $this->float_precision = $precision;
+        $this->normalizePrecision();
+    }
+
+    /**
+     * Normalizes precision within the range 0 to 54.
+     */
+    protected function normalizePrecision(): void
+    {
+        $this->float_precision = abs($this->float_precision);
+        if ($this->float_precision > self::MAX_PRECISION) 
+            $this->float_precision = self::MAX_PRECISION;
     }
 }
