@@ -4,8 +4,6 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDecimal;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
@@ -18,7 +16,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The FromDecimal builder")]
 #[CoversClass(FromDecimal::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(AngleOverflowException::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]

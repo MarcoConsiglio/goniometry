@@ -5,7 +5,6 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -17,7 +16,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The FromDegrees builder")]
 #[CoversClass(FromDegrees::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(AngleOverflowException::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
