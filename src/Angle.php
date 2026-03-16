@@ -13,6 +13,7 @@ use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundFromRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundFromSexadecimal;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
@@ -101,7 +102,7 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Creates an angle from its values.
+     * Creates an `Angle` from its values.
      */
     public static function createFromValues(int $degrees = 0, int $minutes = 0, float $seconds = 0.0, Direction $direction = Direction::COUNTER_CLOCKWISE): Angle
     {
@@ -109,10 +110,11 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Creates an angle from its textual representation.
+     * Creates an `Angle` from its textual representation.
      * 
      * @throws NoMatchException when $angle has no match.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
     public static function createFromString(string $angle): Angle
     {
@@ -120,7 +122,7 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Creates an angle from its decimal representation.
+     * Creates an `Angle` from its decimal representation.
      */
     public static function createFromDecimal(float|SexadecimalDegrees $decimal_degrees): Angle
     {
@@ -128,7 +130,7 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Creates an angle from its radian representation.
+     * Creates an `Angle` from its radian representation.
      */
     public static function createFromRadian(float|Radian $radian): Angle
     {
@@ -136,7 +138,7 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Sums two relative angles.
+     * Sums two relative `Angle`s.
      * 
      * The result can be positive or negative.
      */
@@ -146,7 +148,7 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Sums two absolute angles.
+     * Sums two absolute `Angle`s.
      * 
      * The result can be only positive.
      */
@@ -156,11 +158,9 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Return an array containing the values
-     * of "degrees", "minutes" and "seconds".
+     * Return an array containing separate sexagesimal values.
      * 
-     * The sign/direction of the angle is in the
-     * degrees value.
+     * The direction of the `Angle` is the sign of `"degrees"` value.
      *
      * @param bool $associative Set to true it returns an associative array.
      * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
@@ -181,7 +181,7 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Check if this angle is clockwise or negative.
+     * Check if this `Angle` is clockwise or negative.
      */
     public function isClockwise(): bool
     {
@@ -189,7 +189,7 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Check if this angle is counterclockwise or positive.
+     * Check if this `Angle` is counterclockwise or positive.
      */
     public function isCounterClockwise(): bool
     {
@@ -197,7 +197,7 @@ class Angle implements AngleInterface
     }
 
     /**
-     * Return the same instance but the opposite direction.
+     * Return the same instance with the opposite direction.
      */
     public function toggleDirection(): Angle
     {
@@ -253,11 +253,15 @@ class Angle implements AngleInterface
     /**
      * Check if this `Angle` is greater than `$angle`.
      * 
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function isGreaterThan(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function isGreaterThan(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         $comparison = new Greater($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
         return $comparison->compare();
@@ -266,21 +270,30 @@ class Angle implements AngleInterface
     /**
      * Alias of `isGreaterThan()` method.
      *
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function gt(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function gt(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         return $this->isGreaterThan($angle, $precision);
     }
 
     /**
      * Check if this `Angle` is greater than or equal to `$angle`.
      *
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function isGreaterThanOrEqualTo(string|int|float|AngleInterface $angle, int $precision = 54): bool
+    public function isGreaterThanOrEqualTo(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool
     {
         $comparison = new GreaterOrEqual($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
@@ -290,23 +303,30 @@ class Angle implements AngleInterface
     /**
      * Alias of `isGreaterThanOrEqualTo()` method.
      *
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function gte(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function gte(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         return $this->isGreaterThanOrEqualTo($angle, $precision);
     }
 
     /**
      * Check if this `Angle` is less than another `$angle`.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int $precision TThe precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function isLessThan(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function isLessThan(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         $comparison = new Lesser($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
         return $comparison->compare();
@@ -315,24 +335,30 @@ class Angle implements AngleInterface
     /**
      * Alias of `isLessThan()` method.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function lt(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function lt(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         return $this->isLessThan($angle);
     }
 
     /**
      * Check if this `Angle` is less than or equal to `$angle`.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function isLessThanOrEqualTo(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function isLessThanOrEqualTo(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         $comparison = new LesserOrEqual($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
         return $comparison->compare();
@@ -342,24 +368,30 @@ class Angle implements AngleInterface
     /**
      * Alias of `isLessThanOrEqual()` method.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function lte(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function lte(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         return $this->isLessThanOrEqualTo($angle);
     }
 
     /**
      * Check if this `Angle` is equal to `$angle`.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function isEqualTo(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function isEqualTo(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         $comparison = new Equal($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
         return $comparison->compare();
@@ -368,24 +400,30 @@ class Angle implements AngleInterface
     /**
      * Alias of `isEqualTo()` method.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function eq(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function eq(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         return $this->isEqualTo($angle, $precision);
     }
 
     /**
      * Check if this `Angle` is different than `$angle`.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function isDifferentThan(string|int|float|AngleInterface $angle, int $precision = 54): bool
-    {
+    public function isDifferentThan(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         $comparison = new Different($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
         return $comparison->compare();
@@ -394,11 +432,15 @@ class Angle implements AngleInterface
     /**
      * Alias for `isDifferentThan()` method.
      *
-     * @param string|int|float|AngleInterface $angle
-     * @param int $precision The precision used when `$angle` is a `float` type variable.
-     * @throws RegExFailureException when there's a failure in regex parser engine.
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws RegExFailureException when there's a failure in regex parser 
+     * engine while `$angle` is a `string` type variable.
      */
-    public function not(string|int|float|AngleInterface $angle, int $precision = 54): bool {
+    public function not(
+        string|int|float|AngleInterface $angle, 
+        int $precision = Comparison::MAX_PRECISION
+    ): bool {
         return $this->isDifferentThan($angle, $precision);
     }
 
