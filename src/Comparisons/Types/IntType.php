@@ -14,7 +14,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategy;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * The beta angle `InputType` in a comparison between alfa and beta angle when

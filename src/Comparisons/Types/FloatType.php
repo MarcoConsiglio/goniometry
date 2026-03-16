@@ -14,7 +14,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategy;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * The beta angle `InputType` in a comparison between alfa and beta angle when

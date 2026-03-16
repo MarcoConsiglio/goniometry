@@ -3,11 +3,11 @@ namespace MarcoConsiglio\Goniometry\Comparisons;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\ComparisonType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 abstract class Comparison
 {

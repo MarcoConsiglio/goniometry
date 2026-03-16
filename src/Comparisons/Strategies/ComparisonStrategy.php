@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategy;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * A comparison strategy.

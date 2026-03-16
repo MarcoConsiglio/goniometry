@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Types;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Strategy;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * The beta angle InputType in a comparison between alfa and beta angles.

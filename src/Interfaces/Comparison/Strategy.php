@@ -1,7 +1,6 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Comparisons;
+namespace MarcoConsiglio\Goniometry\Interfaces\Comparison;
 
-use MarcoConsiglio\Goniometry\Angle;
 
 /**
  * The behavior of a comparing strategy between angles.
