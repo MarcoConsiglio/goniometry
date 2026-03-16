@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * The strategy that compares two Angle instances to check if they are different.
+ * The strategy that compares two `Angle` instances to check if they are different.
  */
 class DifferentAngle extends ComparisonStrategy
 {

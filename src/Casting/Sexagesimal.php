@@ -4,6 +4,10 @@ namespace MarcoConsiglio\Goniometry\Casting;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
+/**
+ * Represents the sexagesimal starting point value to 
+ * cast an `Angle` to other types.
+ */
 abstract class Sexagesimal
 {
     /**

@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
- * The Greater comparison between angles.
+ * The `Greater` comparison between angles.
  */
 class Greater extends Comparison
 {

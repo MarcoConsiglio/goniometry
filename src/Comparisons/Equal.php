@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Types\EqualComparison;
 
 /**
- * The Equal comparison between angles.
+ * The `Equal` comparison between angles.
  */
 class Equal extends Comparison
 {

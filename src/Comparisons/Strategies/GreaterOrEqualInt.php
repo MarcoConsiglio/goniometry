@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * The strategy that compares an Angle instance against a sexagesimal degrees 
+ * The strategy that compares an `Angle` instance against a sexagesimal degrees 
  * measure of an angle to check if the first is greater or equal than the last.
  */
 class GreaterOrEqualInt extends ComparisonStrategy

@@ -23,7 +23,7 @@ use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 class AngleType extends InputType
 {
     /**
-     * Construct the InputType of $beta.
+     * Construct the `InputType` of $beta.
      */
     public function __construct(protected Angle $beta) {}
 

@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
- * The LesserOrEqual comparison between angles.
+ * The `LesserOrEqual` comparison between angles.
  */
 class LesserOrEqual extends Comparison
 {

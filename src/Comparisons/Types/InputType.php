@@ -6,7 +6,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
- * The beta angle InputType in a comparison between alfa and beta angles.
+ * The beta angle `InputType` in a comparison between alfa and beta angles.
  */
 abstract class InputType
 {

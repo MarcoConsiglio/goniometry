@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * The strategy that compares an Angle instance against a sexagesimal string 
+ * The strategy that compares an `Angle` instance against a sexagesimal string 
  * measure of an angle to check if they are equal.
  */
 class EqualString extends ComparisonStrategy

@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * The strategy that compares an Angle instance against a sexagesimal integer 
+ * The strategy that compares an `Angle` instance against a sexagesimal integer 
  * degrees measure of an angle to check if they are different.
  */
 class DifferentInt extends ComparisonStrategy

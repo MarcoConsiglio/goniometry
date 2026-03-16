@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 
 /**
- * The strategy that compares an Angle instance against a sexagesimal degrees 
+ * The strategy that compares an `Angle` instance against a sexagesimal degrees 
  * measure of an angle to check if they are equal.
  */
 class EqualInt extends ComparisonStrategy

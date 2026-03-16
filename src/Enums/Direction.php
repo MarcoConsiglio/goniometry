@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Enums;
 
 /**
- * The direction of an Angle.
+ * The direction of an `Angle`.
  */
 enum Direction: int
 {

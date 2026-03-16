@@ -3,7 +3,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
- * The GreaterOrEqual comparison between angles.
+ * The `GreaterOrEqual` comparison between angles.
  */
 class GreaterOrEqual extends Comparison
 {

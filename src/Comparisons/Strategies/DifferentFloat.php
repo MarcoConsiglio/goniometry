@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * The strategy that compares an Angle instance against a sexadecimal angle 
+ * The strategy that compares an `Angle` instance against a sexadecimal angle 
  * measure to check if they are different.
  */
 class DifferentFloat extends FloatComparisonStrategy

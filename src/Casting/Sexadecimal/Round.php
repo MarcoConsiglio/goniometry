@@ -7,8 +7,7 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use RoundingMode;
 
 /**
- * Cast an `Angle` to a sexadecimal value when the same `Angle` has already 
- * been constructed with a sexadecimal value.
+ * Round a sexadecimal value.
  */
 class Round extends Sexagesimal implements ToSexadecimal
 {

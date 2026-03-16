@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithDispositionTesting;
 
 /**
- * The strategy that compares two Angle instances to check if they are equal.
+ * The strategy that compares two `Angle` instances to check if they are equal.
  */
 class EqualAngle extends ComparisonStrategy
 {

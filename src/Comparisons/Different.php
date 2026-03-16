@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
- * The Different comparison between angles.
+ * The `Different` comparison between angles.
  */
 class Different extends Comparison
 {

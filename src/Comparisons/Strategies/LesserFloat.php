@@ -5,7 +5,7 @@ use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
 
 /**
- * The strategy that compares an Angle instance against a sexadecimal angle 
+ * The strategy that compares an `Angle` instance against a sexadecimal angle 
  * measure to check if the first is lesser then the last.
  */
 class LesserFloat extends FloatComparisonStrategy
