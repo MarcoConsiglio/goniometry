@@ -88,7 +88,7 @@ class EqualTest extends TestCase
             $this->alfa, 
             $this->randomSexadecimal()
         );
-        $comparison->setPrecision($this->positiveRandomFloat(max: PHP_FLOAT_DIG));
+        $comparison->setPrecision($this->randomPrecision());
         $this->assertIsBool($comparison->compare());
     }
 

@@ -5,7 +5,6 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use Override;
@@ -18,7 +17,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexagesimalDegrees::class)]
 class SexagesimalDegreesTest extends TestCase
 {
     protected SexagesimalDegrees $sexagesimal;
@@ -51,7 +49,7 @@ TEXT;
         );
     }
 
-        #[TestDox("can be casted to a negative angle string.")]
+    #[TestDox("can be casted to a negative angle string.")]
     public function test_negative_angle_cast_to_string(): void
     {
         // Arrange

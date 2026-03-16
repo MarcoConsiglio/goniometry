@@ -88,7 +88,7 @@ class GreaterTest extends TestCase
             $this->alfa, 
             $this->positiveRandomFloat()
         );
-        $comparison->setPrecision($this->positiveRandomFloat(max: PHP_FLOAT_DIG));
+        $comparison->setPrecision($this->randomPrecision());
         $this->assertIsBool($comparison->compare());
     }
 
