@@ -6,7 +6,7 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
- *  Builds an angle starting from a radian value.
+ *  Builds an `Angle` starting from a radian value.
  */
 class FromRadian extends AngleBuilder
 {
@@ -16,7 +16,7 @@ class FromRadian extends AngleBuilder
     protected Radian $radian;
 
     /**
-     * Constructs an AngleBuilder with a decimal value.
+     * Constructs an `AngleBuilder` with a decimal value.
      */
     public function __construct(float|Radian $radian)
     {
@@ -64,7 +64,7 @@ class FromRadian extends AngleBuilder
     protected function checkOverflow(): void {/* No need check overflow. */}
 
     /**
-     * Fetches the data to build an Angle.
+     * Fetches the data to build an `Angle`.
      *
      * @return array{SexagesimalDegrees,SexadecimalDegrees,Radian}
      */

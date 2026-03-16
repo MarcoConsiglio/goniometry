@@ -11,12 +11,12 @@ use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 
 /**
- *  Builds an angle starting from a string value.
+ *  Builds an `Angle` starting from a string value.
  */
 class FromString extends AngleBuilder
 {
     /**
-     * The string measure of an Angle.
+     * The string measure of an angle.
      *
      * @var string
      */
@@ -65,7 +65,7 @@ class FromString extends AngleBuilder
     protected array $seconds_match = [];
 
     /**
-     * Builds an AngleBuilder with a string value.
+     * Builds an `AngleBuilder` with a string value.
      *
      * @param string $measure
      */
@@ -81,7 +81,7 @@ class FromString extends AngleBuilder
     /**
      * Parse an angle measure string and match degrees value.
      *
-     * @param string $angle The string format angle value.
+     * @param string $angle The string format angle value (sexagesimal).
      * @throws NoMatchException Bad formatted angle is found.
      * @throws RegExFailureException Error while parsing with a regular expression.
      */
@@ -200,7 +200,7 @@ class FromString extends AngleBuilder
     }
 
     /**
-     * Fetches the data to build an Angle.
+     * Fetches the data to build an `Angle`.
      *
      * @return array{SexagesimalDegrees,null,null}
      */

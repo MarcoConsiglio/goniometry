@@ -9,7 +9,7 @@ use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
- *  Builds an angle starting from degrees, minutes, seconds and direction.
+ *  Builds an `Angle` starting from degrees, minutes, seconds and direction.
  */
 class FromDegrees extends AngleBuilder
 {
@@ -23,7 +23,7 @@ class FromDegrees extends AngleBuilder
     protected Direction $direction_input;
 
     /**
-     * Constructs and AngleBuilder with degrees, minutes, seconds and direction.
+     * Constructs and `AngleBuilder` with degrees, minutes, seconds and direction.
      */
     public function __construct(int $degrees, int $minutes, float $seconds, Direction $direction = Direction::COUNTER_CLOCKWISE)
     {
