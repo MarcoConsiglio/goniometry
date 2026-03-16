@@ -6,6 +6,9 @@ use MarcoConsiglio\Goniometry\Interfaces\Casting\ToRadian;
 use MarcoConsiglio\Goniometry\Radian;
 use RoundingMode;
 
+/**
+ * Round a radian value
+ */
 class Round extends Sexagesimal implements ToRadian
 {
     /**
@@ -23,11 +26,7 @@ class Round extends Sexagesimal implements ToRadian
     {
         if ($this->hasPrecisionBeenSet()) {
             $this->normalizePrecision();
-            return round(
-                $this->radianToFloat(),
-                $this->precision,
-                RoundingMode::HalfTowardsZero
-            );
+            return $this->radianToFloat($this->precision);
         }
         return $this->radianToFloat();
     }
@@ -35,8 +34,8 @@ class Round extends Sexagesimal implements ToRadian
     /**
      * Return the radian value as a `float` type variable.
      */
-    protected function radianToFloat(): float
+    protected function radianToFloat(int|null $precision = null): float
     {
-        return $this->radian->value->toFloat();
+        return $this->radian->value->toFloat($precision);
     }
 }

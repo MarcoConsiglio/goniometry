@@ -27,11 +27,7 @@ class Round extends Sexagesimal implements ToSexadecimal
     {
         if ($this->hasPrecisionBeenSet()) {
             $this->normalizePrecision();
-            return round(
-                $this->sexadecimalToFloat(),
-                $this->precision,
-                RoundingMode::HalfTowardsZero
-            );
+            return $this->sexadecimalToFloat($this->precision);
         }
         return $this->sexadecimalToFloat();
     }
@@ -39,8 +35,8 @@ class Round extends Sexagesimal implements ToSexadecimal
     /**
      * Return the sexadecimal degrees value as a 'float` type variable.
      */
-    protected function sexadecimalToFloat(): float
+    protected function sexadecimalToFloat(int|null $precision = null): float
     {
-        return $this->sexadecimal->value->toFloat();
+        return $this->sexadecimal->value->toFloat($precision);
     }
 }
