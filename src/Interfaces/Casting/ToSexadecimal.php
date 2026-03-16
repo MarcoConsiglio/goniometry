@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Casting\Sexadecimal;
+namespace MarcoConsiglio\Goniometry\Interfaces\Casting;
 
 use MarcoConsiglio\Goniometry\Interfaces\Casting\CastableToFloat;
 

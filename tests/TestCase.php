@@ -347,12 +347,12 @@ class TestCase extends PHPUnitTestCase
     protected function toSexagesimal(float $sexadecimal): array
     {
         $direction = $sexadecimal >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE;
-        $sexadecimal = new SexadecimalDegrees($sexadecimal);
-        $degrees = new Degrees(intval($sexadecimal->value->abs()->floor()->value));
+        $sexadecimal = new SexadecimalDegrees(abs($sexadecimal));
+        $degrees = new Degrees($sexadecimal->value->floor());
         $sexadecimal = new SexadecimalDegrees($sexadecimal->value->abs()->sub($degrees->value));
-        $minutes = new Minutes(intval($sexadecimal->value->abs()->mul(Minutes::MAX)->value));
+        $minutes = new Minutes($sexadecimal->value->mul(Minutes::MAX)->floor());
         $sexadecimal = new SexadecimalDegrees($sexadecimal->value->abs()->mul(Minutes::MAX)->sub($minutes->value));
-        $seconds = new Seconds($sexadecimal->value->abs()->mul(Seconds::MAX)->value);
+        $seconds = new Seconds($sexadecimal->value->mul(Seconds::MAX));
         return [$degrees, $minutes, $seconds, $direction];
     }
 

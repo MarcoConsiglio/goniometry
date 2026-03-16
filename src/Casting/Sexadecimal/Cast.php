@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Casting\Sexadecimal;
 
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
+use MarcoConsiglio\Goniometry\Interfaces\Casting\ToSexadecimal;
 
 /**
  * Cast sexagesimal values to sexadecimal.

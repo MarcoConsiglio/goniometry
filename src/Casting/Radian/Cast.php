@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Casting\Radian;
 
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
+use MarcoConsiglio\Goniometry\Interfaces\Casting\ToRadian;
 
 /**
  * Cast sexagesimal values to radian.

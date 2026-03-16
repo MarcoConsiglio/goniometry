@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Casting\Radian;
 
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
+use MarcoConsiglio\Goniometry\Interfaces\Casting\ToRadian;
 use MarcoConsiglio\Goniometry\Radian;
 use RoundingMode;
 
