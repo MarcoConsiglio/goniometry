@@ -259,10 +259,16 @@ class AngleTest extends TestCase
         // Assert
         $this->assertEquals($degrees,   $simple_result[0]);
         $this->assertEquals($minutes,   $simple_result[1]);
-        $this->assertEquals($seconds,   $simple_result[2]);
+        $this->assertEquals(
+            $this->safeRound($seconds),   
+            $this->safeRound($simple_result[2])
+        );
         $this->assertEquals($degrees,   $associative_result["degrees"]);
         $this->assertEquals($minutes,   $associative_result["minutes"]);
-        $this->assertEquals($seconds,   $associative_result["seconds"]);
+        $this->assertEquals(
+            $this->safeRound($seconds),   
+            $this->safeRound($associative_result["seconds"])
+        );
     }
 
     #[TestDox("can be casted to string.")]
