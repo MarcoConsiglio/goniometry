@@ -29,8 +29,7 @@ use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\MockObject\MockObject;
-
+use PHPUnit\Framework\MockObject\Stub;
 
 #[TestDox("The StringType ")]
 #[CoversClass(StringType::class)]
@@ -58,7 +57,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[UsesClass(SexagesimalDegrees::class)]
 class StringTypeTest extends InputTypeTestCase
 {
-    protected Angle&MockObject $alfa;
+    protected Angle&Stub $alfa;
 
     protected string $beta;
 
@@ -68,7 +67,7 @@ class StringTypeTest extends InputTypeTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->alfa = $this->getMockedAngle();
+        $this->alfa = $this->createStub(Angle::class);
         $this->beta = (string) $this->randomAngle();
         $this->input_type = new StringType($this->beta);
     }
@@ -78,7 +77,7 @@ class StringTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Equal::class), 
+            $this->getStubComparison(Equal::class), 
             $this->alfa
         );
 
@@ -91,7 +90,7 @@ class StringTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Different::class),
+            $this->getStubComparison(Different::class),
             $this->alfa
         );
 
@@ -104,7 +103,7 @@ class StringTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Greater::class),
+            $this->getStubComparison(Greater::class),
             $this->alfa
         );
 
@@ -117,7 +116,7 @@ class StringTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(GreaterOrEqual::class),
+            $this->getStubComparison(GreaterOrEqual::class),
             $this->alfa
         );
 
@@ -130,7 +129,7 @@ class StringTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Lesser::class),
+            $this->getStubComparison(Lesser::class),
             $this->alfa
         );
 
@@ -143,29 +142,11 @@ class StringTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(LesserOrEqual::class),
+            $this->getStubComparison(LesserOrEqual::class),
             $this->alfa
         );
 
         // Assert
         $this->assertInstanceOf(LesserOrEqualString::class, $strategy);
     }
-
-    /**
-     * Return the mocked alfa Angle.
-     */
-    protected function getMockedAlfa(): Angle&MockObject
-    {
-        return $this->alfa;
-    }
-
-    /**
-     * Return the mocked beta Angle.
-     */
-    protected function getMockedBeta(): string
-    {
-        return $this->beta;
-    }
-
-
 }

@@ -22,8 +22,7 @@ use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\MockObject\MockObject;
-
+use PHPUnit\Framework\MockObject\Stub;
 
 #[TestDox("The FloatType ")]
 #[CoversClass(FloatType::class)]
@@ -43,7 +42,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[UsesClass(LesserOrEqualFloat::class)]
 class FloatTypeTest extends InputTypeTestCase
 {
-    protected Angle&MockObject $alfa;
+    protected Angle&Stub $alfa;
 
     protected float $beta;
 
@@ -53,7 +52,7 @@ class FloatTypeTest extends InputTypeTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->alfa = $this->getMockedAngle();
+        $this->alfa = $this->createStub(Angle::class);
         $this->beta = $this->randomSexadecimal();
         $this->input_type = new FloatType($this->beta);
     }
@@ -63,7 +62,7 @@ class FloatTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Equal::class), 
+            $this->getStubComparison(Equal::class), 
             $this->alfa
         );
 
@@ -76,7 +75,7 @@ class FloatTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Different::class),
+            $this->getStubComparison(Different::class),
             $this->alfa
         );
 
@@ -89,7 +88,7 @@ class FloatTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Greater::class),
+            $this->getStubComparison(Greater::class),
             $this->alfa
         );
 
@@ -102,7 +101,7 @@ class FloatTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(GreaterOrEqual::class),
+            $this->getStubComparison(GreaterOrEqual::class),
             $this->alfa
         );
 
@@ -115,7 +114,7 @@ class FloatTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Lesser::class),
+            $this->getStubComparison(Lesser::class),
             $this->alfa
         );
 
@@ -128,7 +127,7 @@ class FloatTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(LesserOrEqual::class),
+            $this->getStubComparison(LesserOrEqual::class),
             $this->alfa
         );
 
@@ -136,19 +135,4 @@ class FloatTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserOrEqualFloat::class, $strategy);
     }
 
-    /**
-     * Return the mocked alfa Angle.
-     */
-    protected function getMockedAlfa(): Angle&MockObject
-    {
-        return $this->alfa;
-    }
-
-    /**
-     * Return the mocked beta Angle.
-     */
-    protected function getMockedBeta(): float
-    {
-        return $this->beta;
-    }
 }

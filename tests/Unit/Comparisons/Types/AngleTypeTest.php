@@ -22,8 +22,7 @@ use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\MockObject\MockObject;
-
+use PHPUnit\Framework\MockObject\Stub;
 
 #[TestDox("The AngleType ")]
 #[CoversClass(AngleType::class)]
@@ -43,9 +42,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 #[UsesClass(LesserOrEqualAngle::class)]
 class AngleTypeTest extends InputTypeTestCase
 {
-    protected Angle&MockObject $alfa;
+    protected Angle&Stub $alfa;
 
-    protected Angle&MockObject $beta;
+    protected Angle&Stub $beta;
 
     protected InputType $input_type;
 
@@ -53,8 +52,8 @@ class AngleTypeTest extends InputTypeTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->alfa = $this->getMockedAngle();
-        $this->beta = $this->getMockedAngle();
+        $this->alfa = $this->createStub(Angle::class);
+        $this->beta = $this->createStub(Angle::class);
         $this->input_type = new AngleType($this->beta);
     }
 
@@ -63,7 +62,7 @@ class AngleTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Equal::class), 
+            $this->getStubComparison(Equal::class), 
             $this->alfa
         );
 
@@ -76,7 +75,7 @@ class AngleTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Different::class),
+            $this->getStubComparison(Different::class),
             $this->alfa
         );
 
@@ -89,7 +88,7 @@ class AngleTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Greater::class),
+            $this->getStubComparison(Greater::class),
             $this->alfa
         );
 
@@ -102,7 +101,7 @@ class AngleTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(GreaterOrEqual::class),
+            $this->getStubComparison(GreaterOrEqual::class),
             $this->alfa
         );
 
@@ -115,7 +114,7 @@ class AngleTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(Lesser::class),
+            $this->getStubComparison(Lesser::class),
             $this->alfa
         );
 
@@ -128,27 +127,11 @@ class AngleTypeTest extends InputTypeTestCase
     {
         // Act
         $strategy = $this->input_type->getStrategyFor(
-            $this->getMockedComparison(LesserOrEqual::class),
+            $this->getStubComparison(LesserOrEqual::class),
             $this->alfa
         );
 
         // Assert
         $this->assertInstanceOf(LesserOrEqualAngle::class, $strategy);
-    }
-
-    /**
-     * Return the mocked alfa Angle.
-     */
-    protected function getMockedAlfa(): Angle&MockObject
-    {
-        return $this->alfa;
-    }
-
-    /**
-     * Return the mocked beta Angle.
-     */
-    protected function getMockedBeta(): Angle&MockObject
-    {
-        return $this->beta;
     }
 }
