@@ -4,11 +4,12 @@ namespace MarcoConsiglio\Goniometry;
 use BcMath\Number;
 use MarcoConsiglio\BCMathExtended\Number as BCMathExtendedNumber;
 use Marcoconsiglio\ModularArithmetic\ModularNumber;
+use Stringable;
 
 /**
  * The seconds of an Angle.
  */
-class Seconds extends ModularNumber
+class Seconds extends ModularNumber implements Stringable
 {
     /**
      * The maximum allowed value in seconds.
