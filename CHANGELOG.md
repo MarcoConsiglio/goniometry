@@ -1,10 +1,35 @@
 # Changelog
 ## v3.0.0 2025-03-17
+### Added
+- `Degrees`, `Minutes` and `Second` that extends `ModularNumber` class to represents sexagesimal values with arbitrary precision in modular arithmetic.
+- `SexadecimalDegrees` class  to stores a sexadecimal value with arbitrary precision in modular arithmetic.
+- `Radian` class to store a radian value with arbitrary precision in modular arithmetic.
+- `Direction` enum to represents angle directions.
+- `SexagesimalDegrees` class to stores `Degrees`, `Minutes`, `Seconds` and `Direction` type values.
 ### Changed
-- Renamed `FromAnglesToAbsoluteSum` class to `AbsoluteSum`
-- Renamed `FromAnglesToRelativeSum` class to `RelativeSum`
-- `FromDecimal` builder class constructor now accept also `SexadecimalDegrees` type parameter.
-- `FromDegrees
+- `Angle` class constructor visibility from `public` to `protected`.
+- Renamed `FromAnglesToAbsoluteSum` class to `AbsoluteSum`.
+- Renamed `FromAnglesToRelativeSum` class to `RelativeSum`.
+- Renamed `FromDecimal` class to `FromSexadecimal`. 
+- Renamed `FromDegrees` class to `FromSexagesimal`.
+- Renamed `Angle::toDecimal()` method to `toFloat()`.
+- Renamed `Angle::isGreaterThanOrEqual()` method to `isGreaterThanOrEqualTo()`.
+- Renamed `Angle::isLessThanOrEqual()` method to `isLessThanOrEqualTo()`.
+- Renamed `Angle::isEqual()` method to `isEqualTo()`.
+- Renamed `Angle::isDifferent()` method to `isDifferentThan()`.
+- `FromRadian` class constructor now accept also a `Radian` type input parameter.
+- `FromString::fetchData()` method now return an array with {`SexagesimalDegrees`, `null`, `null`}.
+- `FromRadian::fetchData()` method now return an array with {`SexagesimalDegrees`, `SexadecimalDegrees`, `Radian`}.
+- `SumBuilder` class constructor parameters are renamed from `$first_angle` to `$alfa` and from `$second_angle` to `$beta`.
+- Replaced `Angle::CLOCKWISE` with `Direction::CLOCKWISE`.
+- Replaced `Angle::COUNTER_CLOCKWISE` with `Direction::COUNTER_CLOCKWISE`.
+- Replaced `Angle::MAX_DEGREES` with `Degrees::MAX`.
+- Replaced `Angle::MAX_MINUTES` with `Minutes::MAX`.
+- Replaced `Angle::MAX_SECONDS` with `Seconds::MAX`.
+- Replaced `Angle::MAX_RADIAN` with `Radian::MAX`.
+- API and README documentation.
+### Removed
+- `AngleOverflowException`.
 
 ## v2.0.1 2025-12-17
 ### Fixed
