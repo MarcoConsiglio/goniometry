@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ebbd2c1e41509b15f94d5568152dc2b",
+    "content-hash": "53362fd329eb7df39a1bd74871838182",
     "packages": [
         {
             "name": "fakerphp/faker",
@@ -126,6 +126,50 @@
                 "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.2.0"
             },
             "time": "2026-03-10T21:49:02+00:00"
+        },
+        {
+            "name": "marcoconsiglio/faker-php-number-helpers",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MarcoConsiglio/faker-php-number-helpers.git",
+                "reference": "2fb0f3c9724e863d93bdad8c954ef1620bfc6614"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MarcoConsiglio/faker-php-number-helpers/zipball/2fb0f3c9724e863d93bdad8c954ef1620bfc6614",
+                "reference": "2fb0f3c9724e863d93bdad8c954ef1620bfc6614",
+                "shasum": ""
+            },
+            "require": {
+                "fakerphp/faker": "^1.24"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^13.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MarcoConsiglio\\FakerPhpNumberHelpers\\": "src/",
+                    "MarcoConsiglio\\FakerPhpNumberHelpers\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Consiglio",
+                    "email": "mrccnsgl@gmail.com"
+                }
+            ],
+            "description": "Adds a helper trait that makes it easier to generate random numbers using FakerPHP.",
+            "support": {
+                "issues": "https://github.com/MarcoConsiglio/faker-php-number-helpers/issues",
+                "source": "https://github.com/MarcoConsiglio/faker-php-number-helpers/tree/v2.0.0"
+            },
+            "time": "2026-02-25T14:19:28+00:00"
         },
         {
             "name": "marcoconsiglio/modular-arithmetic",
@@ -297,50 +341,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "marcoconsiglio/faker-php-number-helpers",
-            "version": "v2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/MarcoConsiglio/faker-php-number-helpers.git",
-                "reference": "2fb0f3c9724e863d93bdad8c954ef1620bfc6614"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/faker-php-number-helpers/zipball/2fb0f3c9724e863d93bdad8c954ef1620bfc6614",
-                "reference": "2fb0f3c9724e863d93bdad8c954ef1620bfc6614",
-                "shasum": ""
-            },
-            "require": {
-                "fakerphp/faker": "^1.24"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^13.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MarcoConsiglio\\FakerPhpNumberHelpers\\": "src/",
-                    "MarcoConsiglio\\FakerPhpNumberHelpers\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Consiglio",
-                    "email": "mrccnsgl@gmail.com"
-                }
-            ],
-            "description": "Adds a helper trait that makes it easier to generate random numbers using FakerPHP.",
-            "support": {
-                "issues": "https://github.com/MarcoConsiglio/faker-php-number-helpers/issues",
-                "source": "https://github.com/MarcoConsiglio/faker-php-number-helpers/tree/v2.0.0"
-            },
-            "time": "2026-02-25T14:19:28+00:00"
-        },
         {
             "name": "myclabs/deep-copy",
             "version": "1.13.4",
@@ -2143,7 +2143,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.4"
+        "php": "^8.4",
+        "ext-bcmath": "^8.4"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
