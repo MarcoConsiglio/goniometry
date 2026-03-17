@@ -14,6 +14,7 @@ use MarcoConsiglio\Goniometry\Tests\Traits\WithDispositionTesting;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithEqualComparisonDispositionTesting;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The EqualAngle comparison strategy")]

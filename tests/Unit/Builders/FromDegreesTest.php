@@ -9,8 +9,10 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The FromSexagesimal builder")]
@@ -20,6 +22,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexagesimalDegrees::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class FromDegreesTest extends TestCase
 {
     #[TestDox("can create an angle from degrees values.")]

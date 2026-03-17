@@ -18,9 +18,11 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
+use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\Stub;
 
@@ -40,6 +42,7 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(GreaterOrEqualFloat::class)]
 #[UsesClass(LesserFloat::class)]
 #[UsesClass(LesserOrEqualFloat::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class FloatTypeTest extends InputTypeTestCase
 {
     protected Angle&Stub $alfa;

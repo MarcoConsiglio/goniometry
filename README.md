@@ -1,7 +1,7 @@
 # [goniometry](https://github.com/MarcoConsiglio/goniometry?tab=readme-ov-file#goniometry)
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v3.0.0-white)
+![Static Badge](https://img.shields.io/badge/version-v3.1.0-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
@@ -35,6 +35,7 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
     - [$\alpha \cong \beta$ (equal)](#equal)
     - [$\alpha \ncong \beta$ (different)](#different)
   - [Algebraic sum between two angles](#algebraic-sum-between-two-angles)
+- [FakerPHP support](#fakerphp-support)
 - [API documentation](#api-documentation)
 
 # Requirements
@@ -313,6 +314,10 @@ $beta = Angle::createFromDecimal(-270);
 $gamma = Angle::absSum($alfa, $beta); // 180° + (-270°) =
 (string) $gamma;                      // 270° 0' 0"
 ```
+# FakerPHP support <a id="faker_php"></a>
+This library provides support to [FakerPHP](https://fakerphp.org/) through the `WithAngleFaker` trait. 
+
+Check the [API documentation](#api-documentation) to find out random helper methods useful to generate random angles.
 
 # API documentation
 You can read the code documentation in `./docs/html/index.html`.

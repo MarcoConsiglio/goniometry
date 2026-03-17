@@ -4,12 +4,14 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Casting\Radian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
-use RoundingMode;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(Round::class)]
 #[UsesClass(Radian::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class RoundTest extends TestCase
 {
     public function test_cast_with_precision(): void
