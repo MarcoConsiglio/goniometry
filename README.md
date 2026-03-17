@@ -39,6 +39,7 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
 
 # Requirements
 - PHP v8.4+
+- [BC Math](https://www.php.net/manual/en/book.bc.php) PHP extension
 # Installation
 `composer require marcoconsiglio/goniometry`
 # Quick Start
@@ -46,10 +47,7 @@ Import this class to represent angles.
 ```php
 use MarcoConsiglio\Goniometry\Angle;
 ```
-Import this class to sum angles.
-```php
-use MarcoConsiglio\Goniometry\Operations\Sum;
-```
+
 Create an Angle object.
 ```php
 $alfa = Angle::createFromValues(180, 30);
@@ -59,21 +57,19 @@ $delta = Angle::createFromRadian(M_PI); // 180°
 ```
 # Usage
 ## Creating an angle
-### Degrees, minutes and seconds
+### Sexagesimal (`int` degrees, `int` minutes, `float` seconds)
 This creates an angle from its values in degrees, minutes and seconds:
 ```php
-$alfa = Angle::createFromValues(180, 12, 43, Direction::CLOCKWISE); // 180° 12' 43"
+$alfa = Angle::createFromValues(180, 12, 43.4618, Direction::CLOCKWISE); // -180° 12' 43.4618"
 ```
-`Direction::COUNTERCLOCKWISE` is the plus sign, `Direction::CLOCKWISE` is the minus sign.
+`Direction::COUNTER_CLOCKWISE` is the plus sign, `Direction::CLOCKWISE` is the minus sign.
 
-The `AngleOverflowException` is thrown when you try to create an angle:
-- with more than $\pm360^\circ$
-- with more than $59'$
-- with more than $59.\overline{9}''$.
-### String
+A null angle (exactly $0^\circ\space0'\space0"$) will always have a `Direction::COUNTER_CLOCKWISE`.
+
+### Sexagesimal (`string`)
 This creates an angle from its textual representation:
 ```php
-$beta = Angle::createFromString("180° 12' 43\""); // Input from the user
+$beta = Angle::createFromString("-180° 12' 43.4618\"");
 ```
 
 This is possible thanks to the regular expressions
@@ -91,83 +87,59 @@ The `NoMatchException` is thrown when you try to create an angle:
 - with more than $59'$
 - with more than $59.\overline{9}''$.
 
-### Decimal (float)
+### Sexadecimal value (`float`)
 This create an angle from its decimal representation:
 ```php
-$gamma = Angle::createFromDecimal(180.2119); // 180.2119°
+$gamma = Angle::createFromDecimal(180.2119);   //  180.2119°
+$gamma = Angle::createFromDecimal(-180.2119);  // -180.2119°
+$gamma = Angle::createFromDecimal(301.0);      //    1.0°
 ```
 
-The `AngleOverflowException` is thrown when you try to create an `Angle` with more than $\pm360.0^{\circ}$.
-
-### Radian (float)
+### Radian (`float`)
 This create an angle from its radian representation:
 ```php
-$delta = Angle::createFromRadian(M_PI); // deg2rad(M_PI) = 180°
+$delta = Angle::createFromRadian(M_PI);      //  π ≅  180°
+$delta = Angle::createFromRadian(
+  new Radian(Number::π())
+);                                           //  π =  180°
+$delta = Angle::createFromRadian(-M_PI);     // -π ≅ -180°
+$delta = Angle::createFromRadian(2 * M_PI);  // 2π ≅    0°
 ```
-The `AngleOverflowException` is thrown when you try to create an `Angle` with more than $\pm2\pi$.
+If you need a precise π value, you can pass a `Radian` object constructed with the `Number::π()` static method that return the π constant with an arbitrary precision up to 54 digits.
 
+The `Radian` class extend the `ModularNumber` class, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
+
+For more info on `Number::π()` check the API of [marcoconsiglio/bcmath-extended](https://github.com/MarcoConsiglio/bcmath-extended).
 ## Getting angle values
-You can obtain degrees values separated in an array (simple by default, or associative):
+You can obtain sexagesimal values separated in an array (simple by default, or associative):
 ```php
 $values = $alfa->getDegrees();
-echo $values[0]; // Degrees
-echo $values[1]; // Minutes
-echo $values[2]; // Seconds
+echo $values[0]; // int
+echo $values[1]; // int
+echo $values[2]; // float
 $values = $alfa->getDegrees(true);
-echo $value['degrees'];
-echo $value['minutes'];
-echo $value['seconds'];
+echo $value['degrees']; // int
+echo $value['minutes']; // int
+echo $value['seconds']; // float
 ```
+The angle's direction determines the sign of the degrees value.
+
 There are read-only properties too:
 ```php
-$alfa->degrees;   // 180
-$alfa->minutes;   // 12
-$alfa->seconds;   // 43
-$alfa->direction; // Direction::CLOCKWISE (-1)
+/** @var Degrees */
+(string) $alfa->degrees;  // 180°
+/** @var Minutes */
+(string) $alfa->minutes;  // 12'
+/** @var Seconds */
+(string) $alfa->seconds;  // 43"
+/** @var Direction */
+$alfa->direction;         // Direction::CLOCKWISE (-1)
 ```
-The Degrees, minutes, and seconds properties are of type `ModularNumber`, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
+The `Degrees`, `Minutes`, and `Seconds` extends `ModularNumber`, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
 
-### Casting
-When the precision parameter is needed, you can obtain your maximum available precision with
-the `PHP_FLOAT_DIG` constant.
+You can cast `Degrees`, `Minutes`, and `Seconds` to `string`.
 
-#### To decimal (float)
-You can cast the angle to decimal, with optional precision:
-```php
-$alfa->toDecimal(); // 180.2
-$alfa->toDecimal(4); // 180.2119
-$alfa->toDecimal(PHP_FLOAT_DIG) // 180.211971543295645
-```
-If the number of decimal places is not set, the casting operation preserve the original precision at the time the angle was built.
-
-You can obtain a suggested precision to correctly represent the sexadecimal value of the `Angle` instance.
-```php
-$precision = $alfa->suggested_decimal_precision;
-$alfa->toDecimal($precision);
-```
-#### To radian (float)
-You can cast the angle to radian, with optional precision:
-```php
-$alfa->toRadian(); // 3.1
-$alfa->toRadian(3); // 3.141
-$alfa->toRadian(PHP_FLOAT_DIG); // 3.141592653589793 
-```
-If the number of decimal places is not set, the casting operation preserve the original precision at the time the angle was built.
-
-You can obtain the original precision to correctly represent the radian value of the `Angle` instance.
-```php
-$precision = $alfa->original_radian_precision;
-$alfa->toRadian($precision);
-```
-
-#### To string
-You can cast the angle to a string representation:
-```php
-(string) $alfa; // 180° 30' 25.7"
-```
-In this case, maximum precision of seconds will be `PHP_FLOAT_DIG`.
-
-## Direction
+### Direction
 Positive angles are represented by the enum constant
 ```php
 Direction::COUNTER_CLOCKWISE; // 1
@@ -182,36 +154,85 @@ $beta = $alfa->toggleDirection();
 ```
 Since the `Angle` instance is immutable, the `toggleDirection()` method returns a copy with the opposite sign.
 
-You can check if an angle is clockwise or counterclockwise.
+You can check if an `Angle` is clockwise or counterclockwise.
 ```php
 // If $alfa is a positive angle
 $alfa->isCounterClockwise();    // true
 $alfa->isClockwise();           // false
+// If $beta is a negative angle
 $beta->isCounterClockwise();    // false
 $beta->isClockwise();           // true
 ```
 
+## Casting
+### To `float` sexadecimal degrees <a id="toFloat"></a>
+You can cast the angle to `float` type, with optional precision up to `PHP_FLOAT_DIG` decimal places:
+```php
+$alfa->toFloat();   // 180.211971543295645
+$alfa->toFloat(4);  // 180.2119
+$alfa->toFloat(200) // 180.211971543295645
+```
+You can specify a precision up to `PHP_FLOAT_DIG` decimal places.
+If the number of decimal places is not set, `PHP_FLOAT_DIG` is used.
+
+### To `SexadecimalDegrees` type
+If you need an arbitrary precision, you can obtain a `SexadecimalDegrees` instance representing the sexadecimal value of the angle.
+```php
+$sexadecimal = $alfa->toSexadecimalDegrees();
+/** @var Number */
+$sexadecimal->value;      // 180.2119715432956455962174521226543543
+/** @var float */
+$sexadecimal->value();    // 180.211971543295645
+/** @var float */
+$sexadecimal->value(3);   // 180.212
+/** @var float */
+$sexadecimal->value(12);  // 180.211971543296
+```
+The `$value` property is a `Number` object extending the `BCMath\Number` class, whose API is documented in [marcoconsiglio/bcmath-extended](https://github.com/MarcoConsiglio/bcmath-extended).
+
+The `value()` method cast the `SexadecimalDegrees` object to `float`.
+You can specify a precision up to `PHP_FLOAT_DIG` decimal places.
+If the number of decimal places is not set, `PHP_FLOAT_DIG` is used.
+
+### To `float` radian
+You can cast the angle to radian (`float`), with optional precision up to `PHP_FLOAT_DIG` decimal places:
+```php
+$alfa->toRadian();    // 3.141592653589793
+$alfa->toRadian(3);   // 3.141
+$alfa->toRadian(200); // 3.141592653589793 
+```
+You can specify a precision up to `PHP_FLOAT_DIG` decimal places.
+If the number of decimal places is not set, `PHP_FLOAT_DIG` is used.
+
+### To `string` sexagesimal
+You can cast the angle to a string representation:
+```php
+(string) $alfa; // 180° 30' 25.757385"
+```
+**WARNING!** In this case, maximum precision is _unknown_. The `Seconds` class uses the [BCMath extension](https://www.php.net/manual/en/book.bc.php) behind the scenes. The seconds value is stored with arbitrary precision, so in some cases the number of seconds could potentially have many digits, making the string very long.
+
 ## Comparison
-You can compare an angle with a numeric value (not radian but decimal), numeric string or another `Angle` object.
+You can compare an `Angle` object against a _sexadecimal_ or _sexagesimal_ value.
+
 Comparisons are performed with absolute values (congruent comparison), meaning that $-90^\circ\cong+90^\circ$.
 
-If you need a relative comparison, you should cast the angle to decimal and then perform the arithmetic comparison,
+If you need a relative comparison, you should [cast the angle to a sexadecimal `float`](#toFloat) and then perform the arithmetic comparison,
 meaning that $-90.0^\circ\lt+90.0^\circ$.
 
-Each comparison can be performed using 
-- a string angle, 
-- an integer (sexagesimal degrees), 
-- a decimal (sexadecimal degrees), 
+Each comparison can be performed against 
+- a `string` angle (sexagesimal), 
+- an `int` (sexagesimal degrees), 
+- a `float` (sexadecimal degrees), 
 - or another instance of `Angle`. 
 
 Comparisons via radian values ​​are not available.
 
-You can specify an optional precision expressed as the number of decimal places used to round the angle value. The precision is only used when comparing to an integer, decimal (degrees), or another `Angle` object.
+You can specify an optional precision expressed as the number of decimal places used to round the angle value. The precision is only used when comparing against a `float` (sexadecimal).
 
 ```php
-$alfa = Angle::createFromDecimal(179.999);
-$alfa->isEqual(90, 0);  // true
-$alfa->isEqual(90, 3);  // false
+$alfa = Angle::createFromDecimal(89.999);
+$alfa->isEqualTo(90.0, 0);  // true with precision 0
+$alfa->isEqualTo(90.0, 3);  // false with precision 3
 ```
 
 ### $\alpha > \beta$ (greater than) <a name="greater-than"></a>
@@ -230,9 +251,9 @@ $alfa->gt($gamma);              // false    180 > 360
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(90);
 $gamma = Angle::createFromDecimal(90);
-$alfa->isGreaterThanOrEqual(90);        // true 180 ≧  90
+$alfa->isGreaterThanOrEqualTo(90);        // true 180 ≧  90
 $alfa->gte("180 0' 0\"");               // true 180 ≧ 180
-$beta->isGreaterThanOrEqual($gamma);    // true  90 ≧  90
+$beta->isGreaterThanOrEqualTo($alfa);    // true  90 ≧ 180
 $beta->gte(90);                         // true  90 ≧  90
 ```
 
@@ -249,9 +270,9 @@ $beta->lt($alfa);           // false 180 < 90
 ```php
 $alfa = Angle::createFromDecimal(90);
 $beta = Angle::createFromDecimal(180);
-$alfa->isLessThanOrEqual(180);      // true 90 ≦ 180
+$alfa->isLessThanOrEqualTo(180);    // true 90 ≦ 180
 $alfa->lte(90);                     // true 90 ≦ 90
-$alfa->isLessThanOrEqual($beta);    // false 90 ≦ 180
+$alfa->isLessThanOrEqualTo($beta);  // false 90 ≦ 180
 $alfa->lte($beta);                  // false 90 ≦ 180
 ```
 ### $\alpha \cong \beta$ (equal) <a name="equal"></a>
@@ -259,16 +280,16 @@ $alfa->lte($beta);                  // false 90 ≦ 180
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(180);
 $gamma = Angle::createFromDecimal(-180);
-$alfa->isEqual($beta);  // true 180 ≅ 180
-$alfa->eq($gamma);      // true 180 ≅ -180
+$alfa->isEqualTo($beta);  // true 180 ≅ 180
+$alfa->eq($gamma);        // true 180 ≅ -180
 ```
 ### $\alpha \ncong \beta$ (different) <a name="different"></a>
 ```php
 $alfa = Angle::createFromDecimal(90);
 $beta = Angle::createFromDecimal(180);
-$alfa->isDifferent(180);            // true   90 ≇ 180
+$alfa->isDifferentThan(180);        // true   90 ≇ 180
 $alfa->not(180);                    // true   90 ≇ 180
-$alfa->isDifferent(-90);            // false  90 ≇ -90
+$alfa->isDifferentThan(-90);        // false  90 ≇ -90
 $beta->not($alfa);                  // true   180 ≇ 90
 ```
 
@@ -279,19 +300,17 @@ You can sum two angles
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::sum($alfa, $beta); // 180° + (-270°)
-(string) $gamma; // -90° 0' 0"
+$gamma = Angle::sum($alfa, $beta);  // 180° + (-270°) =
+(string) $gamma;                    // -90° 0' 0"
 ```
-Note that if the sum is less than $-360^\circ$ or more than $+360^\circ$, the resulting angle will be corrected to remain between these limits.
 
 ### Absolute sum
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::absSum($alfa, $beta); // 180° + (-270°)
-(string) $gamma; // 270° 0' 0"
+$gamma = Angle::absSum($alfa, $beta); // 180° + (-270°) =
+(string) $gamma;                      // 270° 0' 0"
 ```
-Note that if the sum is less than $0^\circ$ or more than $+360^\circ$, the resulting angle will be corrected to remain between these limits.
 
 # API documentation
 You can read the code documentation in `./docs/html/index.html`.
