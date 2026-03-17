@@ -1381,6 +1381,101 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/MarcoConsiglio-Goniometry-SexagesimalDegrees.html#property_direction"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker",
+            "name": "WithAngleFaker",
+            "summary": "Provides\u0020support\u0020for\u0020FakerPHP\u0020in\u0020order\u0020to\u0020generate\nrandom\u0020angular\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomPrecision\u0028\u0029",
+            "name": "randomPrecision",
+            "summary": "Return\u0020a\u0020random\u0020integer\u0020to\u0020be\u0020used\u0020as\u0020\u0060float\u0060\u0020rounding\u0020precision\u0020between\n0\u0020and\u0020PHP_FLOAT_DIG.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomPrecision"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomDegrees\u0028\u0029",
+            "name": "randomDegrees",
+            "summary": "Return\u0020a\u0020random\u0020degrees\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomDegrees"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomMinutes\u0028\u0029",
+            "name": "randomMinutes",
+            "summary": "Return\u0020a\u0020random\u0020minutes\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomMinutes"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomSeconds\u0028\u0029",
+            "name": "randomSeconds",
+            "summary": "Return\u0020a\u0020random\u0020seconds\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomSeconds"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomAngle\u0028\u0029",
+            "name": "randomAngle",
+            "summary": "Return\u0020a\u0020random\u0020Angle,\u0020whether\u0020positive\u0020or\u0020negative.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomAngle"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ApositiveRandomAngle\u0028\u0029",
+            "name": "positiveRandomAngle",
+            "summary": "Return\u0020a\u0020positive\u0020random\u0020Angle.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_positiveRandomAngle"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003AnegativeRandomAngle\u0028\u0029",
+            "name": "negativeRandomAngle",
+            "summary": "Return\u0020a\u0020negative\u0020random\u0020Angle",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_negativeRandomAngle"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomDirection\u0028\u0029",
+            "name": "randomDirection",
+            "summary": "Return\u0020a\u0020random\u0020angle\u0020direction.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomDirection"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomSexagesimalString\u0028\u0029",
+            "name": "randomSexagesimalString",
+            "summary": "Returns\u0020a\u0020random\u0020angle\u0020string.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomSexagesimalString"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomSexagesimal\u0028\u0029",
+            "name": "randomSexagesimal",
+            "summary": "Return\u0020random\u0020sexagesimal\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomSexagesimal"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ApositiveRandomSexagesimal\u0028\u0029",
+            "name": "positiveRandomSexagesimal",
+            "summary": "Return\u0020random\u0020sexagesimal\u0020values\u0020for\u0020a\u0020positive\u0020Angle.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_positiveRandomSexagesimal"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003AnegativeRandomSexagesimal\u0028\u0029",
+            "name": "negativeRandomSexagesimal",
+            "summary": "Return\u0020random\u0020sexagesimal\u0020values\u0020for\u0020a\u0020negative\u0020Angle.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_negativeRandomSexagesimal"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomSexadecimal\u0028\u0029",
+            "name": "randomSexadecimal",
+            "summary": "Return\u0020a\u0020random\u0020sexadecimal\u0020value,\u0020from\u00200\u00B0\u0020to\u0020360\u00B0,\nexcluded\u0020360\u00B0.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomSexadecimal"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ApositiveRandomSexadecimal\u0028\u0029",
+            "name": "positiveRandomSexadecimal",
+            "summary": "Return\u0020a\u0020random\u0020poisitve\u0020sexadecimal\u0020value,\u0020from\u00200\u00B0\u0020to\u0020360\u00B0,\nexcluded\u0020360\u00B0.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_positiveRandomSexadecimal"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003AnegativeRandomSexadecimal\u0028\u0029",
+            "name": "negativeRandomSexadecimal",
+            "summary": "Return\u0020a\u0020random\u0020negative\u0020sexadecimal\u0020value,\u0020from\u00200\u00B0\u0020to\u0020360\u00B0,\nexcluded\u0020360\u00B0.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_negativeRandomSexadecimal"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomRadian\u0028\u0029",
+            "name": "randomRadian",
+            "summary": "Return\u0020a\u0020random\u0020relative\u0020radian\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomRadian"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ApositiveRandomRadian\u0028\u0029",
+            "name": "positiveRandomRadian",
+            "summary": "Return\u0020a\u0020positive\u0020random\u0020radian\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_positiveRandomRadian"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003AnegativeRandomRadian\u0028\u0029",
+            "name": "negativeRandomRadian",
+            "summary": "Return\u0020a\u0020negative\u0020random\u0020radian\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_negativeRandomRadian"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -1455,5 +1550,10 @@ Search.appendIndex(
             "name": "Comparison",
             "summary": "",
             "url": "namespaces/marcoconsiglio-goniometry-interfaces-comparison.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits",
+            "name": "Traits",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-goniometry-traits.html"
         }            ]
 );
