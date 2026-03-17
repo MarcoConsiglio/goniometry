@@ -17,13 +17,13 @@ trait WithAngleFaker
     /**
      * The Smallest Significant Number.
      */
-    protected const float SSN = 0.0000000000001;
+    public const float SSN = 0.0000000000001;
 
     /**
      * Return a random integer to be used as `float` rounding precision between
      * 0 and PHP_FLOAT_DIG. 
      */
-    protected function randomPrecision(): int
+    public function randomPrecision(): int
     {
         return $this->positiveRandomInteger(0, PHP_FLOAT_DIG);
     }
@@ -31,7 +31,7 @@ trait WithAngleFaker
     /**
      * Return a random degrees value.
      */
-    protected function randomDegrees(int $min = 0, int $max = Degrees::MAX - 1): int
+    public function randomDegrees(int $min = 0, int $max = Degrees::MAX - 1): int
     {
         if ($min < 0 ) $min = abs($min);
         if ($min >= Degrees::MAX) $min = Degrees::MAX - 1;
@@ -43,7 +43,7 @@ trait WithAngleFaker
     /**
      * Return a random minutes value.
      */
-    protected function randomMinutes(int $min = 0, int $max = Minutes::MAX - 1): int
+    public function randomMinutes(int $min = 0, int $max = Minutes::MAX - 1): int
     {
         if ($min < 0 ) $min = abs($min);
         if ($min >= Minutes::MAX) $min = Minutes::MAX - 1;
@@ -55,7 +55,7 @@ trait WithAngleFaker
     /**
      * Return a random seconds value.
      */
-    protected function randomSeconds(
+    public function randomSeconds(
         float $min = 0, 
         float $max = Seconds::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
@@ -72,7 +72,7 @@ trait WithAngleFaker
     /**
      * Return a random Angle, whether positive or negative.
      */
-    protected function randomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
+    public function randomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
     {
         return $this->faker->randomElement([
             $this->positiveRandomAngle($min, $max),
@@ -83,7 +83,7 @@ trait WithAngleFaker
     /**
      * Return a positive random Angle.
      */
-    protected function positiveRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
+    public function positiveRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
     {
         assert($min >= 0 && $min < Degrees::MAX);
         assert($max >= 0 && $max < Degrees::MAX);
@@ -93,7 +93,7 @@ trait WithAngleFaker
     /**
      * Return a negative random Angle
      */
-    protected function negativeRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
+    public function negativeRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
     {
         $angle = $this->positiveRandomAngle($min, $max);
         return $angle->toggleDirection();
@@ -102,7 +102,7 @@ trait WithAngleFaker
     /**
      * Return a random angle direction.
      */
-    protected function randomDirection(): Direction
+    public function randomDirection(): Direction
     {
         return $this->faker->randomElement([
             Direction::COUNTER_CLOCKWISE,
@@ -113,7 +113,7 @@ trait WithAngleFaker
     /**
      * Returns a random angle string.
      */
-    protected function randomSexagesimalString(Direction $direction = Direction::COUNTER_CLOCKWISE)
+    public function randomSexagesimalString(Direction $direction = Direction::COUNTER_CLOCKWISE)
     {
         [$degrees, $minutes, $seconds, $direction] = 
             $this->randomSexagesimal($direction);
@@ -126,7 +126,7 @@ trait WithAngleFaker
      *
      * @return array{int,int,float,Direction}
      */
-    protected function randomSexagesimal(Direction|null $direction = null)
+    public function randomSexagesimal(Direction|null $direction = null)
     {
         if ($direction === null) $direction = $this->faker->randomElement([
             Direction::COUNTER_CLOCKWISE, Direction::CLOCKWISE
@@ -144,7 +144,7 @@ trait WithAngleFaker
      * 
      * @return array{int,int,float,Direction::COUNTER_CLOCKWISE}
      */
-    protected function positiveRandomSexagesimal(): array
+    public function positiveRandomSexagesimal(): array
     {
         return $this->randomSexagesimal(Direction::COUNTER_CLOCKWISE);
     }
@@ -154,7 +154,7 @@ trait WithAngleFaker
      * 
      * @return array{int,int,float,Direction::CLOCKWISE}
      */
-    protected function negativeRandomSexagesimal(): array
+    public function negativeRandomSexagesimal(): array
     {
         return $this->randomSexagesimal(Direction::CLOCKWISE);
     }
@@ -163,7 +163,7 @@ trait WithAngleFaker
      * Return a random sexadecimal value, from 0° to 360°,
      * excluded 360°.
      */
-    protected function randomSexadecimal(
+    public function randomSexadecimal(
         float $min = 0.0, 
         float $max = Degrees::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
@@ -176,7 +176,7 @@ trait WithAngleFaker
      * Return a random poisitve sexadecimal value, from 0° to 360°,
      * excluded 360°.
      */
-    protected function positiveRandomSexadecimal(
+    public function positiveRandomSexadecimal(
         float $min = 0.0, 
         float $max = Degrees::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
@@ -192,7 +192,7 @@ trait WithAngleFaker
      * Return a random negative sexadecimal value, from 0° to 360°,
      * excluded 360°.
      */
-    protected function negativeRandomSexadecimal(
+    public function negativeRandomSexadecimal(
         float $min = 0.0, 
         float $max = Degrees::MAX - self::SSN, 
         int $precision = PHP_FLOAT_DIG
@@ -203,7 +203,7 @@ trait WithAngleFaker
     /**
      * Return a random relative radian value.
      */
-    protected function randomRadian(
+    public function randomRadian(
         float $min = 0, 
         float $max = Radian::MAX - self::SSN,
         int $precision = PHP_FLOAT_DIG
@@ -215,7 +215,7 @@ trait WithAngleFaker
     /**
      * Return a positive random radian value.
      */
-    protected function positiveRandomRadian(
+    public function positiveRandomRadian(
         float $min = 0, 
         float $max = Radian::MAX - self::SSN,
         int $precision = PHP_FLOAT_DIG
@@ -226,7 +226,7 @@ trait WithAngleFaker
     /**
      * Return a negative random radian value.
      */
-    protected function negativeRandomRadian(
+    public function negativeRandomRadian(
         float $min = 0, 
         float $max = Radian::MAX - self::SSN,
         int $precision = PHP_FLOAT_DIG
