@@ -2,9 +2,17 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Casting\Radian\Round;
+use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -12,48 +20,46 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The FromRadian builder")]
 #[CoversClass(FromRadian::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(AngleOverflowException::class)]
-#[UsesClass(FromDecimal::class)]
-class FromRadianTest extends BuilderTestCase
+#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(Round::class)]
+#[UsesClass(Sexagesimal::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(Radian::class)]
+#[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexagesimalDegrees::class)]
+class FromRadianTest extends TestCase
 {
-    #[TestDox("can create a positive angle from a radian value.")]
-    public function test_can_create_positive_angle()
+    #[TestDox("can create an angle from a radian float value.")]
+    public function test_can_create_an_angle_from_float_value()
     {
-        $this->testAngleCreation(FromRadian::class);
-    }
+        // Arrange
+        $radian_value = $this->randomRadian();
 
-    #[TestDox("can create a negative angle from a radian value.")]
-    public function test_can_create_negative_angle()
-    {
-        $this->testAngleCreation(FromRadian::class, negative: true);
-    }
+        // Act
+        $angle = Angle::createFromRadian($radian_value);
 
-    #[TestDox("throws AngleOverflowException with more than +/-360° input.")]
-    public function test_exception_if_more_than_360_degrees()
-    {
         // Assert
-        $this->expectException(AngleOverflowException::class);
-        $this->expectExceptionMessage("The angle can't be greater than +/-360°.");
-
-        // Arrange & Act
-        new FromRadian(Angle::MAX_RADIAN + 0.00001);
+        $this->assertEquals(
+            $this->safeRound($radian_value),
+            $angle->toRadian(self::PRECISION)
+        );
     }
 
-    // public function test_missing_exception_if_equal_360_degrees()
-    // {
-    //     // Arrange & Act
-    //     new FromRadian(Angle::MAX_RADIAN);
-
-    //     // Assert
-    //     $this->expectNotToPerformAssertions();
-    // }
-
-    /**
-     * Returns the FromRadian builder class.
-     * @return string
-     */
-    protected function getBuilderClass(): string
+    #[TestDox("can create an angle from a Radian type value.")]
+    public function test_can_create_an_angle_from_radian_type()
     {
-        return FromRadian::class;
+        // Arrange
+        $radian_value = new Radian($this->randomRadian());
+
+        // Act
+        $angle = Angle::createFromRadian($radian_value);
+
+        // Assert
+        $this->assertEquals(
+            $radian_value->value(self::PRECISION),
+            $angle->toRadian(self::PRECISION)
+        );
     }
 }

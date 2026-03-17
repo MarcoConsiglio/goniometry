@@ -130,11 +130,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Builders/FromDecimal.php"><a href="files/src-builders-fromdecimal.html"><abbr title="src/Builders/FromDecimal.php">FromDecimal.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Builds an angle starting from a decimal value.</p>
+            <p class="phpdocumentor-summary">Builds an `Angle` starting from a sexadecimal value.</p>
 
 
 
@@ -166,14 +166,14 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Builders-FromDecimal.html#method___construct">__construct()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: mixed    </span>
 </dt>
-<dd>Constructs an AngleBuilder with a decimal value.</dd>
+<dd>Constructs an `AngleBuilder` with a `$decimal` value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Builders-FromDecimal.html#method_fetchData">fetchData()</a>
     <span>
-                                &nbsp;: array{int, int, float, int, int|null, float|null, int|null, float|null, int|null}    </span>
+                                &nbsp;: <abbr title="array{\MarcoConsiglio\Goniometry\SexagesimalDegrees, \MarcoConsiglio\Goniometry\SexadecimalDegrees, null}">SexadecimalDegrees, null}</abbr>    </span>
 </dt>
 <dd>Fetches the data to build an Angle.</dd>
 
@@ -205,15 +205,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Builders/FromDecimal.php"><a href="files/src-builders-fromdecimal.html"><abbr title="src/Builders/FromDecimal.php">FromDecimal.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Constructs an AngleBuilder with a decimal value.</p>
+        <p class="phpdocumentor-summary">Constructs an `AngleBuilder` with a `$decimal` value.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$decimal</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalDegrees">SexadecimalDegrees</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$decimal</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -223,7 +223,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$decimal</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float</span>
+                : <span class="phpdocumentor-argument-list__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalDegrees">SexadecimalDegrees</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -250,7 +250,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Builders/FromDecimal.php"><a href="files/src-builders-fromdecimal.html"><abbr title="src/Builders/FromDecimal.php">FromDecimal.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">140</span>
+    <span class="phpdocumentor-element-found-in__line">101</span>
 
     </aside>
 
@@ -258,7 +258,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">fetchData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{int, int, float, int, int|null, float|null, int|null, float|null, int|null}</span></code>
+                    <span class="phpdocumentor-signature__name">fetchData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="array{\MarcoConsiglio\Goniometry\SexagesimalDegrees, \MarcoConsiglio\Goniometry\SexadecimalDegrees, null}">SexadecimalDegrees, null}</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -271,7 +271,7 @@
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array{int, int, float, int, int|null, float|null, int|null, float|null, int|null}</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="array{\MarcoConsiglio\Goniometry\SexagesimalDegrees, \MarcoConsiglio\Goniometry\SexadecimalDegrees, null}">SexadecimalDegrees, null}</abbr></span>
             </section>
 
 </article>

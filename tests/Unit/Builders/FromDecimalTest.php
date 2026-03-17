@@ -2,71 +2,112 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The FromDecimal builder")]
-#[CoversClass(FromDecimal::class)]
+#[TestDox("The FromSexadecimal builder")]
+#[CoversClass(FromSexadecimal::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(AngleOverflowException::class)]
-class FromDecimalTest extends BuilderTestCase
+#[UsesClass(Degrees::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexagesimalDegrees::class)]
+class FromDecimalTest extends TestCase
 {
-    #[TestDox("can create a positive angle from a decimal value.")]
-    public function test_can_create_positive_angle()
+    #[TestDox("can create a counter-clockwise Angle from a positive sexadecimal value.")]
+    public function test_create_angle_from_positive_decimal_degrees()
     {
-        $this->testAngleCreation(FromDecimal::class);
-        $this->testAngleCreation(
-            FromDecimal::class, 
-            negative: false, 
-            precision: 17
-        );
-        $angle = Angle::createFromDecimal(0);
-        $this->assertEquals(0, $angle->toDecimal());
-    }
+        /**
+         * Float type input
+         */
+        // Arrange
+        $float_input = $this->positiveRandomSexadecimal();
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($float_input);
 
-    #[TestDox("can create a negative angle from a decimal value.")]
-    public function test_can_create_negative_angle()
-    {
-        $this->testAngleCreation(FromDecimal::class, negative: true);
-        $this->testAngleCreation(
-            FromDecimal::class, 
-            negative: true,
-            precision: 17
-        );
-        $angle = Angle::createFromDecimal(0);
-        $this->assertEquals(0, $angle->toDecimal());
-    }
+        // Act
+        [$sexagesimal, $sexadecimal] = new FromSexadecimal($float_input)->fetchData();
 
-    #[TestDox("throws AngleOverflowException with more than +/-360° input.")]
-    public function test_exception_if_greater_than_360_degrees()
-    {    
         // Assert
-        $this->expectException(AngleOverflowException::class);
-        $this->expectExceptionMessage("The angle can't be greather than 360°.");
+        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
+        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
+        $this->assertEquals($seconds->value(), $sexagesimal->seconds->value());
+        $this->assertEquals($direction, $sexagesimal->direction);
+        $this->assertEquals(
+            $this->safeRound($float_input),
+            $sexadecimal->value(self::PRECISION)
+        );
 
-        // Arrange & Act
-        new FromDecimal(360.00001);
+        /**
+         * SexagesimalDegrees type input
+         */
+        // Arrange
+        $expected_sexadecimal = new SexadecimalDegrees($this->positiveRandomSexadecimal());
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($expected_sexadecimal->value());
+
+        // Act
+        [$sexagesimal, $sexadecimal] = new FromSexadecimal($expected_sexadecimal)->fetchData();
+
+        // Assert
+        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
+        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
+        $this->assertEquals($seconds->value(self::PRECISION), $sexagesimal->seconds->value(self::PRECISION));
+        $this->assertEquals($direction, $sexagesimal->direction);
+        $this->assertEquals(
+            $expected_sexadecimal->value(self::PRECISION),
+            $sexadecimal->value(self::PRECISION)
+        );
     }
 
-    // #[TestDox("can create an angle of exact 360°.")]
-    // public function test_missing_exception_if_equal_to_360_degrees()
-    // {
-    //     // Arrange & Act
-    //     new FromDecimal(360);
-        
-    //     // Assert missing exception
-    //     $this->addToAssertionCount(1);
-    // }
-
-    /**
-     * Returns the FromDecimal builder class.
-     * @return string
-     */
-    protected function getBuilderClass(): string
+    #[TestDox("can create a clockwise Angle from a negative sexadecimal value.")]
+    public function test_create_angle_from_negative_decimal_degrees()
     {
-        return FromDecimal::class;
+        /**
+         * Float type input
+         */
+        // Arrange
+        $float_input = $this->negativeRandomSexadecimal();
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($float_input);
+
+        // Act
+        [$sexagesimal, $sexadecimal] = new FromSexadecimal($float_input)->fetchData();
+
+        // Assert
+        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
+        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
+        $this->assertEquals($seconds->value(), $sexagesimal->seconds->value());
+        $this->assertEquals($direction, $sexagesimal->direction);
+        $this->assertEquals(
+            $this->safeRound($float_input),
+            $sexadecimal->value(self::PRECISION)
+        );
+
+        /**
+         * SexadecimalDegrees type input
+         */
+        // Arrange
+        $expected_sexadecimal = new SexadecimalDegrees($this->negativeRandomSexadecimal());
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($expected_sexadecimal->value());
+
+        // Act
+        [$sexagesimal, $sexadecimal] = new FromSexadecimal($expected_sexadecimal)->fetchData();
+
+        // Assert
+        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
+        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
+        $this->assertEquals($seconds->value(self::PRECISION), $sexagesimal->seconds->value(self::PRECISION));
+        $this->assertEquals($direction, $sexagesimal->direction);
+        $this->assertEquals(
+            $expected_sexadecimal->value(self::PRECISION),
+            $sexadecimal->value(self::PRECISION)
+        );
     }
 }

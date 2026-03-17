@@ -1,122 +1,85 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders;
 
-use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Exceptions\AngleOverflowException;
-use RoundingMode;
+use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
- *  Builds an angle starting from a radian value.
+ *  Builds an `Angle` starting from a radian value.
  */
 class FromRadian extends AngleBuilder
 {
     /**
-     * The radian value used to build an Angle.
-     *
-     * @var float
+     * The radian value used to build an `Angle`.
      */
-    protected float $radian;
+    protected Radian $radian;
 
     /**
-     * Constructs an AngleBuilder with a decimal value.
-     *
-     * @param float $radian
+     * Constructs an `AngleBuilder` with a radian value.
      */
-    public function __construct(float $radian)
+    public function __construct(float|Radian $radian)
     {
-        $this->radian = $radian;
-        $this->checkOverflow($radian);
+        if ($radian instanceof Radian)
+            $this->radian = $radian;
+        else
+            $this->radian = new Radian($radian);
+
     }
 
     /**
      * Calc degrees.
-     *
-     * @return void
+     * 
      * @codeCoverageIgnore
      */
-    protected function calcDegrees() {}
+    protected function calcDegrees(): void {}
 
 
     /**
      * Calcs minutes.
-     *
-     * @return void
+     * 
      * @codeCoverageIgnore
      */
-    protected function calcMinutes() {}
+    protected function calcMinutes(): void {}
 
     /**
      * Calcs seconds.
-     *
-     * @return void
+     * 
      * @codeCoverageIgnore
      */
-    protected function calcSeconds() {}
+    protected function calcSeconds(): void {}
 
     /**
      * Calcs sign.
-     *
-     * @return void
+     * 
      * @codeCoverageIgnore
      */
-    protected function calcSign() {}
+    protected function calcSign(): void {}
 
     /**
      * Checks for overflow above/below +/-360°.
-     *
-     * @param mixed $data
-     * @return void
+     * 
+     * @codeCoverageIgnore
      */
-    protected function checkOverflow()
-    {
-        $this->validate($this->radian);
-    }
+    protected function checkOverflow(): void {/* No need check overflow. */}
 
     /**
-     * Tells if the radian is more than 2 * PI.
+     * Fetches the data to build an `Angle`.
      *
-     * @param float $data
-     * @return void
-     */
-    protected function validate(float $data)
-    {
-        if (abs($data) > Angle::MAX_RADIAN) {
-            throw new AngleOverflowException("The angle can't be greater than +/-360°.");
-        }
-    }
-
-    /**
-     * Fetches the data to build an Angle.
-     *
-     * @return array{
-     *      int,
-     *      int,
-     *      float,
-     *      int,
-     *      int|null,
-     *      float|null,
-     *      int|null,
-     *      float|null,
-     *      int|null
-     *  }
+     * @return array{SexagesimalDegrees,SexadecimalDegrees,Radian}
      */
     public function fetchData(): array
     {
-        $result = new FromDecimal(round(
-            rad2deg($this->radian),
-            Angle::countDecimalPlaces($this->radian),
-            RoundingMode::HalfTowardsZero
-        ))->fetchData();
+        [
+            $sexagesimal,
+            $sexadecimal,
+        ] = new FromSexadecimal(
+            $this->radian->value->toDegrees()->toFloat()
+        )->fetchData();
         return [
-            $result[0], // Degrees
-            $result[1], // Minutes
-            $result[2], // Seconds
-            $result[3], // Direction
-            $result[4], // Suggested decimal precision
-            $result[5], // Original decimal value
-            $result[6], // Original seconds precision
-            $this->radian, // Original radian value
-            Angle::countDecimalPlaces($this->radian) // Original radian precision
+            $sexagesimal,
+            $sexadecimal,
+            $this->radian
         ];
     }
 }
