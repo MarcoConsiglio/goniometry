@@ -1,7 +1,9 @@
 # Changelog
-## Unreleased
-### Add
+## v3.1.0 2025-03-17
+### Added
 - `WithAngleFaker` trait to support FakerPHP in order to generate random angular values.
+### Changed
+- README and API documentation.
 
 ## v3.0.0 2025-03-17
 ### Added
