@@ -1,4 +1,4 @@
-# goniometry
+# [goniometry](https://github.com/MarcoConsiglio/goniometry?tab=readme-ov-file#goniometry)
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
 ![Static Badge](https://img.shields.io/badge/version-v2.0.1-white)
@@ -7,24 +7,24 @@
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Path%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 
-
-
 A PHP support for string, decimal, radian and object angles, providing goniometric algebra and comparison between angles.
+
 # Index
-- [Index](#index)
+
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Usage](#usage)
   - [Creating an angle](#creating-an-angle)
-    - [Degrees, minutes and seconds](#degrees-minutes-and-seconds)
-    - [String](#string)
-    - [Decimal (float)](#decimal-float)
-    - [Radian (float)](#radian-float)
+    - [Sexagesimal (degrees, minutes, seconds)](#sexagesimal_values)
+    - [Sexagesimal string](#sexadecimal_value)
+    - [Sexadecimal float](#sexadecimal_value)
+    - [Radian float](#radian_value)
   - [Getting angle values](#getting-angle-values)
     - [Casting](#casting)
-      - [To decimal (float)](#to-decimal-float)
-      - [To radian (float)](#to-radian-float)
+      - [To sexadecimal (float)](#toFloat)
+      - [To sexadecimal (object)](#toSexadecimalDegrees)
+      - [To radian (float)](#toRadian)
       - [To string](#to-string)
   - [Direction](#direction)
   - [Comparison](#comparison)
@@ -57,7 +57,7 @@ $delta = Angle::createFromRadian(M_PI); // 180°
 ```
 # Usage
 ## Creating an angle
-### Sexagesimal (`int` degrees, `int` minutes, `float` seconds)
+### Sexagesimal (`int` degrees, `int` minutes, `float` seconds) <a id="sexagesimal_values"></a>
 This creates an angle from its values in degrees, minutes and seconds:
 ```php
 $alfa = Angle::createFromValues(180, 12, 43.4618, Direction::CLOCKWISE); // -180° 12' 43.4618"
@@ -66,7 +66,7 @@ $alfa = Angle::createFromValues(180, 12, 43.4618, Direction::CLOCKWISE); // -180
 
 A null angle (exactly $0^\circ\space0'\space0"$) will always have a `Direction::COUNTER_CLOCKWISE`.
 
-### Sexagesimal (`string`)
+### Sexagesimal (`string`)<a id="sexagesimal_string"></a>
 This creates an angle from its textual representation:
 ```php
 $beta = Angle::createFromString("-180° 12' 43.4618\"");
@@ -87,7 +87,7 @@ The `NoMatchException` is thrown when you try to create an angle:
 - with more than $59'$
 - with more than $59.\overline{9}''$.
 
-### Sexadecimal value (`float`)
+### Sexadecimal value (`float`)<a id="sexadecimal_value"></a>
 This create an angle from its decimal representation:
 ```php
 $gamma = Angle::createFromDecimal(180.2119);   //  180.2119°
@@ -95,7 +95,7 @@ $gamma = Angle::createFromDecimal(-180.2119);  // -180.2119°
 $gamma = Angle::createFromDecimal(301.0);      //    1.0°
 ```
 
-### Radian (`float`)
+### Radian (`float`) <a id="radian_value"></a>
 This create an angle from its radian representation:
 ```php
 $delta = Angle::createFromRadian(M_PI);      //  π ≅  180°
@@ -175,7 +175,7 @@ $alfa->toFloat(200) // 180.211971543295645
 You can specify a precision up to `PHP_FLOAT_DIG` decimal places.
 If the number of decimal places is not set, `PHP_FLOAT_DIG` is used.
 
-### To `SexadecimalDegrees` type
+### To `SexadecimalDegrees` type <a id="toSexadecimalDegrees"></a>
 If you need an arbitrary precision, you can obtain a `SexadecimalDegrees` instance representing the sexadecimal value of the angle.
 ```php
 $sexadecimal = $alfa->toSexadecimalDegrees();
@@ -194,7 +194,7 @@ The `value()` method cast the `SexadecimalDegrees` object to `float`.
 You can specify a precision up to `PHP_FLOAT_DIG` decimal places.
 If the number of decimal places is not set, `PHP_FLOAT_DIG` is used.
 
-### To `float` radian
+### To `float` radian <a id="toRadian"></a>
 You can cast the angle to radian (`float`), with optional precision up to `PHP_FLOAT_DIG` decimal places:
 ```php
 $alfa->toRadian();    // 3.141592653589793
@@ -204,7 +204,7 @@ $alfa->toRadian(200); // 3.141592653589793
 You can specify a precision up to `PHP_FLOAT_DIG` decimal places.
 If the number of decimal places is not set, `PHP_FLOAT_DIG` is used.
 
-### To `string` sexagesimal
+### To `string` sexagesimal <a id="toString"></a>
 You can cast the angle to a string representation:
 ```php
 (string) $alfa; // 180° 30' 25.757385"
