@@ -18,6 +18,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
+use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -40,6 +41,7 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(LesserInt::class)]
 #[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqualInt::class)]
+#[UsesClass(WithAngleFaker::class)]
 class IntTypeTest extends InputTypeTestCase
 {
     protected Angle&Stub $alfa;

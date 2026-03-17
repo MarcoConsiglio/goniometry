@@ -17,6 +17,7 @@ use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -36,7 +37,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Seconds::class)]
 #[UsesClass(Direction::class)]
 #[UsesClass(SexadecimalDegrees::class)]
-#[UsesClass(SexagesimalDegrees::class)]
+#[UsesClass(WithAngleFaker::class)]
 class LesserOrEqualStringTest extends TestCase
 {
     protected string $comparison = '≤';

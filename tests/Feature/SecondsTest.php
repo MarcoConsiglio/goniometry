@@ -3,11 +3,14 @@ namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Seconds type")]
 #[CoversClass(Seconds::class)]
+#[UsesClass(WithAngleFaker::class)]
 class SecondsTest extends TestCase
 {
     protected Seconds $a;
