@@ -65,9 +65,11 @@ class FromString extends AngleBuilder
     protected array $seconds_match = [];
 
     /**
-     * Builds an `AngleBuilder` with a string value.
+     * Construct an `AngleBuilder` with a sexagesimal string value.
      *
-     * @param string $measure
+     * @throws NoMatchException when bad formatted angle is found.
+     * @throws RegExFailureException while failing to parse text with a regular
+     * expression.
      */
     public function __construct(string $measure)
     {    
@@ -82,8 +84,9 @@ class FromString extends AngleBuilder
      * Parse an angle measure string and match degrees value.
      *
      * @param string $angle The string format angle value (sexagesimal).
-     * @throws NoMatchException Bad formatted angle is found.
-     * @throws RegExFailureException Error while parsing with a regular expression.
+     * @throws NoMatchException when bad formatted angle is found.
+     * @throws RegExFailureException while failing to parse text with a regular
+     * expression.
      */
     protected function parseDegreesString(): void
     {
@@ -94,8 +97,9 @@ class FromString extends AngleBuilder
      * Parse an angle measure string and match minutes value.
      *
      * @param string $angle The string format angle value.
-     * @throws NoMatchException Bad formatted angle is found.
-     * @throws RegExFailureException Error while parsing with a regular expression.
+     * @throws NoMatchException when bad formatted angle is found.
+     * @throws RegExFailureException while failing to parse text with a regular
+     * expression.
      */
     protected function parseMinutesString(): void
     {
@@ -106,8 +110,9 @@ class FromString extends AngleBuilder
      * Parse an angle measure string and match seconds value.
      *
      * @param string $angle The string format angle value.
-     * @throws NoMatchException Bad formatted angle is found.
-     * @throws RegExFailureException Error while parsing with a regular expression.
+     * @throws NoMatchException when bad formatted angle is found.
+     * @throws RegExFailureException while failing to parse text with a regular
+     * expression.
      */
     protected function parseSecondsString(): void
     {

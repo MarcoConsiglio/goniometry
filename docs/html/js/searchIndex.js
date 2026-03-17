@@ -191,36 +191,6 @@ Search.appendIndex(
             "summary": "Fetch\u0020data\u0020to\u0020build\u0020an\u0020Angle\u0020class.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-AngleBuilder.html#method_fetchData"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromDecimal",
-            "name": "FromDecimal",
-            "summary": "Builds\u0020an\u0020\u0060Angle\u0060\u0020starting\u0020from\u0020a\u0020sexadecimal\u0020value.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromDecimal.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromDecimal\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructs\u0020an\u0020\u0060AngleBuilder\u0060\u0020with\u0020a\u0020\u0060\u0024decimal\u0060\u0020value.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromDecimal.html#method___construct"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromDecimal\u003A\u003AfetchData\u0028\u0029",
-            "name": "fetchData",
-            "summary": "Fetches\u0020the\u0020data\u0020to\u0020build\u0020an\u0020Angle.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromDecimal.html#method_fetchData"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromDegrees",
-            "name": "FromDegrees",
-            "summary": "Builds\u0020an\u0020\u0060Angle\u0060\u0020starting\u0020from\u0020degrees,\u0020minutes,\u0020seconds\u0020and\u0020direction.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromDegrees.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromDegrees\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructs\u0020and\u0020\u0060AngleBuilder\u0060\u0020with\u0020degrees,\u0020minutes,\u0020seconds\u0020and\u0020direction.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromDegrees.html#method___construct"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromDegrees\u003A\u003AfetchData\u0028\u0029",
-            "name": "fetchData",
-            "summary": "Fetch\u0020data\u0020to\u0020build\u0020an\u0020Angle\u0020class.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromDegrees.html#method_fetchData"
-        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromRadian",
             "name": "FromRadian",
             "summary": "Builds\u0020an\u0020\u0060Angle\u0060\u0020starting\u0020from\u0020a\u0020radian\u0020value.",
@@ -228,13 +198,43 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromRadian\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructs\u0020an\u0020\u0060AngleBuilder\u0060\u0020with\u0020a\u0020decimal\u0020value.",
+            "summary": "Constructs\u0020an\u0020\u0060AngleBuilder\u0060\u0020with\u0020a\u0020radian\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-FromRadian.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromRadian\u003A\u003AfetchData\u0028\u0029",
             "name": "fetchData",
             "summary": "Fetches\u0020the\u0020data\u0020to\u0020build\u0020an\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-FromRadian.html#method_fetchData"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromSexadecimal",
+            "name": "FromSexadecimal",
+            "summary": "Builds\u0020an\u0020\u0060Angle\u0060\u0020starting\u0020from\u0020a\u0020sexadecimal\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromSexadecimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromSexadecimal\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructs\u0020an\u0020\u0060AngleBuilder\u0060\u0020with\u0020a\u0020sexadecimal\u0020degrees\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromSexadecimal.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromSexadecimal\u003A\u003AfetchData\u0028\u0029",
+            "name": "fetchData",
+            "summary": "Fetches\u0020the\u0020data\u0020to\u0020build\u0020an\u0020Angle.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromSexadecimal.html#method_fetchData"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromSexagesimal",
+            "name": "FromSexagesimal",
+            "summary": "Builds\u0020an\u0020\u0060Angle\u0060\u0020starting\u0020from\u0020degrees,\u0020minutes,\u0020seconds\u0020and\u0020direction.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromSexagesimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromSexagesimal\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructs\u0020and\u0020\u0060AngleBuilder\u0060\u0020with\u0020sexagesimal\u0020degrees,\u0020minutes,\u0020seconds\nand\u0020direction.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromSexagesimal.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromSexagesimal\u003A\u003AfetchData\u0028\u0029",
+            "name": "fetchData",
+            "summary": "Fetch\u0020data\u0020to\u0020build\u0020an\u0020Angle\u0020class.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-FromSexagesimal.html#method_fetchData"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromString",
             "name": "FromString",
@@ -243,7 +243,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromString\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Builds\u0020an\u0020\u0060AngleBuilder\u0060\u0020with\u0020a\u0020string\u0020value.",
+            "summary": "Construct\u0020an\u0020\u0060AngleBuilder\u0060\u0020with\u0020a\u0020sexagesimal\u0020string\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-FromString.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\FromString\u003A\u003AfetchData\u0028\u0029",
