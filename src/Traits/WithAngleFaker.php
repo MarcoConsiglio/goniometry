@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Traits;
 
+use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
@@ -14,6 +15,8 @@ use MarcoConsiglio\Goniometry\Seconds;
  */
 trait WithAngleFaker
 {
+    use WithFakerHelpers;
+    
     /**
      * The Smallest Significant Number.
      */

@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -14,7 +13,7 @@ use RoundingMode;
 
 class TestCase extends PHPUnitTestCase
 {
-    use WithFailureMessage, WithFakerHelpers, WithAngleFaker;
+    use WithFailureMessage, WithAngleFaker;
 
     /**
      * A safe precision used when comparing `float` type variables.
