@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\RelativeSum;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
@@ -18,7 +18,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The RelativeSum SumBuilder")]
 #[CoversClass(RelativeSum::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromDecimal::class)]
+#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]

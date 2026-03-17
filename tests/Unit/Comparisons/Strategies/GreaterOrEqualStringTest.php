@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The GreaterOrEqualString comparison strategy")]
 #[CoversClass(GreaterOrEqualString::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromDecimal::class)]
+#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromString::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(GreaterAngle::class)]

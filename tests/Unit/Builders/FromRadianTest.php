@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The FromRadian builder")]
 #[CoversClass(FromRadian::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromDecimal::class)]
+#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(Round::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(Degrees::class)]

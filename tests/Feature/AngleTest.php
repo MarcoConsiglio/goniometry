@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
@@ -67,7 +67,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(AbsoluteSum::class)]
 #[UsesClass(RelativeSum::class)]
 #[UsesClass(FromDegrees::class)]
-#[UsesClass(FromDecimal::class)]
+#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromString::class)]
 #[UsesClass(FromRadian::class)]
 #[UsesClass(SumBuilder::class)]

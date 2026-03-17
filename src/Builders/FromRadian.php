@@ -73,7 +73,7 @@ class FromRadian extends AngleBuilder
         [
             $sexagesimal,
             $sexadecimal,
-        ] = new FromDecimal(
+        ] = new FromSexadecimal(
             $this->radian->value->toDegrees()->toFloat()
         )->fetchData();
         return [

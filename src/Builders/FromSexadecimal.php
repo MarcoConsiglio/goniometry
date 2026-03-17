@@ -12,7 +12,7 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 /**
  * Builds an `Angle` starting from a sexadecimal value.
  */
-class FromDecimal extends AngleBuilder
+class FromSexadecimal extends AngleBuilder
 {
     /**
      * The decimal value used to build an angle.

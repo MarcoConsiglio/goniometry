@@ -30,7 +30,7 @@ class RelativeSum extends SumBuilder
     public function fetchData(): array
     {
         $this->calcSum();
-        $builder = new FromDecimal($this->decimal_sum);
+        $builder = new FromSexadecimal($this->decimal_sum);
         return $builder->fetchData();
     }
 

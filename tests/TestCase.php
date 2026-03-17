@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Tests;
 use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AngleBuilder;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
@@ -151,7 +151,7 @@ class TestCase extends PHPUnitTestCase
                 case FromDegrees::class:
                     return $this->randomSexagesimal($negative ? Direction::CLOCKWISE : Direction::COUNTER_CLOCKWISE);
                     break;
-                case FromDecimal::class:
+                case FromSexadecimal::class:
                     return $negative ? -$this->randomSexadecimal($precision) : $this->randomSexadecimal($precision);
                     break;
                 case FromRadian::class:

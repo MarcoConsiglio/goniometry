@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -13,8 +13,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The FromDecimal builder")]
-#[CoversClass(FromDecimal::class)]
+#[TestDox("The FromSexadecimal builder")]
+#[CoversClass(FromSexadecimal::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
@@ -34,7 +34,7 @@ class FromDecimalTest extends TestCase
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($float_input);
 
         // Act
-        [$sexagesimal, $sexadecimal] = new FromDecimal($float_input)->fetchData();
+        [$sexagesimal, $sexadecimal] = new FromSexadecimal($float_input)->fetchData();
 
         // Assert
         $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
@@ -54,7 +54,7 @@ class FromDecimalTest extends TestCase
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($expected_sexadecimal->value());
 
         // Act
-        [$sexagesimal, $sexadecimal] = new FromDecimal($expected_sexadecimal)->fetchData();
+        [$sexagesimal, $sexadecimal] = new FromSexadecimal($expected_sexadecimal)->fetchData();
 
         // Assert
         $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
@@ -78,7 +78,7 @@ class FromDecimalTest extends TestCase
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($float_input);
 
         // Act
-        [$sexagesimal, $sexadecimal] = new FromDecimal($float_input)->fetchData();
+        [$sexagesimal, $sexadecimal] = new FromSexadecimal($float_input)->fetchData();
 
         // Assert
         $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
@@ -98,7 +98,7 @@ class FromDecimalTest extends TestCase
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($expected_sexadecimal->value());
 
         // Act
-        [$sexagesimal, $sexadecimal] = new FromDecimal($expected_sexadecimal)->fetchData();
+        [$sexagesimal, $sexadecimal] = new FromSexadecimal($expected_sexadecimal)->fetchData();
 
         // Assert
         $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());

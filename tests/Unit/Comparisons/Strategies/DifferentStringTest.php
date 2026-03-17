@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentString;
@@ -23,7 +23,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Angle::class)]
 #[UsesClass(DifferentAngle::class)]
 #[UsesClass(EqualAngle::class)]
-#[UsesClass(FromDecimal::class)]
+#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromString::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]

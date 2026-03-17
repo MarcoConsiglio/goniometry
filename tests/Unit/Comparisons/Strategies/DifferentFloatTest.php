@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The DifferentFloat comparison strategy")]
 #[CoversClass(DifferentFloat::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromDecimal::class)]
+#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(EqualFloat::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]

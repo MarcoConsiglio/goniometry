@@ -1,4 +1,11 @@
 # Changelog
+## v3.0.0 2025-03-17
+### Changed
+- Renamed `FromAnglesToAbsoluteSum` class to `AbsoluteSum`
+- Renamed `FromAnglesToRelativeSum` class to `RelativeSum`
+- `FromDecimal` builder class constructor now accept also `SexadecimalDegrees` type parameter.
+- `FromDegrees
+
 ## v2.0.1 2025-12-17
 ### Fixed
 - `Angle::absSum()` not performing correctly the sum, because the two addends must not be absolute and can be relative, while only the result must be corrected to remain in the positive angle limits ($0^\circ$ / $360^\circ$).

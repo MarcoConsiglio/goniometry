@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry;
 use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
-use MarcoConsiglio\Goniometry\Builders\FromDecimal;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromDegrees;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
@@ -126,7 +126,7 @@ class Angle implements AngleInterface
      */
     public static function createFromDecimal(float|SexadecimalDegrees $decimal_degrees): Angle
     {
-        return new Angle(new FromDecimal($decimal_degrees));
+        return new Angle(new FromSexadecimal($decimal_degrees));
     }
 
     /**
