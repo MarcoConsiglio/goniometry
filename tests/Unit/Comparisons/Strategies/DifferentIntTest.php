@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
@@ -18,7 +18,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The DifferentInt comparison strategy")]
 #[CoversClass(DifferentInt::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromDegrees::class)]
+#[UsesClass(FromSexagesimal::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(EqualInt::class)]
 #[UsesClass(Degrees::class)]

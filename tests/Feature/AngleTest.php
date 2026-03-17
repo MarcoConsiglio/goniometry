@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Feature;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Builders\RelativeSum;
@@ -66,7 +66,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(Angle::class)]
 #[UsesClass(AbsoluteSum::class)]
 #[UsesClass(RelativeSum::class)]
-#[UsesClass(FromDegrees::class)]
+#[UsesClass(FromSexagesimal::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromString::class)]
 #[UsesClass(FromRadian::class)]

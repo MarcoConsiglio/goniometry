@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -13,8 +13,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The FromDegrees builder")]
-#[CoversClass(FromDegrees::class)]
+#[TestDox("The FromSexagesimal builder")]
+#[CoversClass(FromSexagesimal::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]

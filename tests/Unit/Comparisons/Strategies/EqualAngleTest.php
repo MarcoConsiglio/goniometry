@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -19,7 +19,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The EqualAngle comparison strategy")]
 #[CoversClass(EqualAngle::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromDegrees::class)]
+#[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]

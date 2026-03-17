@@ -11,7 +11,7 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 /**
  *  Builds an `Angle` starting from degrees, minutes, seconds and direction.
  */
-class FromDegrees extends AngleBuilder
+class FromSexagesimal extends AngleBuilder
 {
 
     protected Number $degrees_input;

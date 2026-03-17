@@ -5,7 +5,7 @@ use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AngleBuilder;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
@@ -148,7 +148,7 @@ class TestCase extends PHPUnitTestCase
     {
         if (class_exists($builder) && is_subclass_of($builder, AngleBuilder::class)) {
             switch ($builder) {
-                case FromDegrees::class:
+                case FromSexagesimal::class:
                     return $this->randomSexagesimal($negative ? Direction::CLOCKWISE : Direction::COUNTER_CLOCKWISE);
                     break;
                 case FromSexadecimal::class:

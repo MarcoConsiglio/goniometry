@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromDegrees;
+use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(GreaterInt::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(FromSexadecimal::class)]
-#[UsesClass(FromDegrees::class)]
+#[UsesClass(FromSexagesimal::class)]
 #[UsesClass(GreaterAngle::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
