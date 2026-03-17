@@ -15,12 +15,12 @@ interface Angle
     /**
      * Creates an `Angle` from its textual representation.
      */
-    public static function createFromString(string $angle): Angle;
+    public static function createFromString(string $sexagesimal): Angle;
 
     /**
      * Creates an `Angle` from its decimal representation.
      */
-    public static function createFromDecimal(float $decimal_degrees): Angle;
+    public static function createFromDecimal(float $sexadecimal): Angle;
 
     /**
      * Creates an `Angle` from its radian representation.

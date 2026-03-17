@@ -116,17 +116,17 @@ class Angle implements AngleInterface
      * @throws RegExFailureException when there's a failure in regex parser 
      * engine while `$angle` is a `string` type variable.
      */
-    public static function createFromString(string $angle): Angle
+    public static function createFromString(string $sexagesimal): Angle
     {
-        return new Angle(new FromString($angle));
+        return new Angle(new FromString($sexagesimal));
     }
 
     /**
      * Creates an `Angle` from its decimal representation.
      */
-    public static function createFromDecimal(float|SexadecimalDegrees $decimal_degrees): Angle
+    public static function createFromDecimal(float|SexadecimalDegrees $sexadecimal): Angle
     {
-        return new Angle(new FromSexadecimal($decimal_degrees));
+        return new Angle(new FromSexadecimal($sexadecimal));
     }
 
     /**
