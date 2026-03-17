@@ -7,10 +7,11 @@ use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(Round::class)]
 #[UsesClass(Radian::class)]
-#[UsesClass(WithAngleFaker::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class RoundTest extends TestCase
 {
     public function test_cast_with_precision(): void

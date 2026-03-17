@@ -16,6 +16,7 @@ use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The FromString builder")]
@@ -28,7 +29,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(NoMatchException::class)]
 #[UsesClass(RegExFailureException::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-#[UsesClass(WithAngleFaker::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class FromStringTest extends TestCase
 {
     #[TestDox("can create a positive angle from a string value.")]

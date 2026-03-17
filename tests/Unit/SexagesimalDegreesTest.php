@@ -11,6 +11,7 @@ use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The SexagesimalDegrees class")]
@@ -18,7 +19,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(WithAngleFaker::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class SexagesimalDegreesTest extends TestCase
 {
     protected SexagesimalDegrees $sexagesimal;

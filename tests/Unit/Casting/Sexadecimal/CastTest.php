@@ -16,6 +16,7 @@ use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Sexadecimal\Cast class")]
@@ -26,8 +27,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(Direction::class)]
+#[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SexadecimalDegrees::class)]
-#[UsesClass(WithAngleFaker::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class CastTest extends TestCase
 {
     protected Angle $angle;

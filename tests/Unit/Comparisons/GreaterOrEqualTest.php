@@ -29,6 +29,7 @@ use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The GreaterOrEqual comparison")]
@@ -54,7 +55,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Seconds::class)]
 #[UsesClass(Direction::class)]
 #[UsesClass(SexadecimalDegrees::class)]
-#[UsesClass(WithAngleFaker::class)]
+#[UsesClass(SexagesimalDegrees::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class GreaterOrEqualTest extends TestCase
 {
     protected Angle $alfa;

@@ -30,6 +30,7 @@ use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Different comparison")]
@@ -57,7 +58,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Direction::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-#[UsesClass(WithAngleFaker::class)]
+#[UsesClass(SexagesimalDegrees::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class DifferentTest extends TestCase
 {
     protected Angle $alfa;

@@ -22,6 +22,7 @@ use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\Stub;
 
@@ -41,7 +42,7 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(LesserInt::class)]
 #[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqualInt::class)]
-#[UsesClass(WithAngleFaker::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class IntTypeTest extends InputTypeTestCase
 {
     protected Angle&Stub $alfa;

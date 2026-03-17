@@ -17,6 +17,7 @@ use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The DifferentFloat comparison strategy")]
@@ -31,7 +32,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Round::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexadecimalDegrees::class)]
-#[UsesClass(WithAngleFaker::class)]
+#[UsesClass(SexagesimalDegrees::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class DifferentFloatTest extends TestCase
 {
     protected string $comparison = '≠';

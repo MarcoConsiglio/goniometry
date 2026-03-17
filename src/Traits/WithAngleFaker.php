@@ -100,6 +100,28 @@ trait WithAngleFaker
     }
 
     /**
+     * Return a random angle direction.
+     */
+    protected function randomDirection(): Direction
+    {
+        return $this->faker->randomElement([
+            Direction::COUNTER_CLOCKWISE,
+            Direction::CLOCKWISE
+        ]);
+    }
+
+    /**
+     * Returns a random angle string.
+     */
+    protected function randomSexagesimalString(Direction $direction = Direction::COUNTER_CLOCKWISE)
+    {
+        [$degrees, $minutes, $seconds, $direction] = 
+            $this->randomSexagesimal($direction);
+        $sign = $direction == Direction::COUNTER_CLOCKWISE ? "" : "-";
+        return "{$sign}{$degrees}° {$minutes}' {$seconds}\"";
+    }
+
+    /**
      * Return random sexagesimal values.
      *
      * @return array{int,int,float,Direction}
@@ -115,28 +137,6 @@ trait WithAngleFaker
             $this->randomSeconds(), 
             $direction
         ];
-    }
-
-    /**
-     * Return a random angle direction.
-     */
-    protected function randomDirection(): Direction
-    {
-        return $this->faker->randomElement([
-            Direction::COUNTER_CLOCKWISE,
-            Direction::CLOCKWISE
-        ]);
-    }
-
-    /**
-     * Returns a random angle string.
-     */
-    protected function getRandomAngleString(Direction $direction = Direction::COUNTER_CLOCKWISE)
-    {
-        [$degrees, $minutes, $seconds, $direction] = 
-            $this->randomSexagesimal($direction);
-        $sign = $direction == Direction::COUNTER_CLOCKWISE ? "" : "-";
-        return "{$sign}{$degrees}° {$minutes}' {$seconds}\"";
     }
 
     /**

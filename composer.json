@@ -23,11 +23,11 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.4",
-        "marcoconsiglio/modular-arithmetic": "^3.0"
+        "marcoconsiglio/modular-arithmetic": "^3.0",
+        "fakerphp/faker": "^1.24"
     },
     "require-dev": {
         "phpunit/phpunit": "^13",
-        "fakerphp/faker": "^1.24",
         "marcoconsiglio/faker-php-number-helpers": "^2.0"
     },
     "replace": {
