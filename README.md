@@ -297,6 +297,7 @@ $beta->not($alfa);                  // true   180 ≇ 90
 You can sum two angles
 
 ### Relative sum
+The relative sum can return both positive or negative angle.
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
@@ -305,6 +306,7 @@ $gamma = Angle::sum($alfa, $beta);  // 180° + (-270°) =
 ```
 
 ### Absolute sum
+The absolute sum will always return a positive angle.
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
