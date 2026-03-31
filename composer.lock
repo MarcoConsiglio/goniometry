@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53362fd329eb7df39a1bd74871838182",
+    "content-hash": "b371162d9f2fa3f3eb4d703ef79ebe44",
     "packages": [
         {
             "name": "fakerphp/faker",
@@ -71,16 +71,16 @@
         },
         {
             "name": "marcoconsiglio/bcmath-extended",
-            "version": "v2.2.0",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcoConsiglio/bcmath-extended.git",
-                "reference": "b4ee2b905708a541b02736c7e6ee9cbfb0765524"
+                "reference": "55f42d38ff00193fcb2e3be7da966f04361cc011"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/b4ee2b905708a541b02736c7e6ee9cbfb0765524",
-                "reference": "b4ee2b905708a541b02736c7e6ee9cbfb0765524",
+                "url": "https://api.github.com/repos/MarcoConsiglio/bcmath-extended/zipball/55f42d38ff00193fcb2e3be7da966f04361cc011",
+                "reference": "55f42d38ff00193fcb2e3be7da966f04361cc011",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
             },
             "require-dev": {
                 "fakerphp/faker": "^1.24",
-                "marcoconsiglio/faker-php-number-helpers": "^1.1",
+                "marcoconsiglio/faker-php-number-helpers": "^4",
                 "phpunit/phpunit": "^13.0"
             },
             "type": "library",
@@ -123,29 +123,32 @@
             ],
             "support": {
                 "issues": "https://github.com/MarcoConsiglio/bcmath-extended/issues",
-                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.2.0"
+                "source": "https://github.com/MarcoConsiglio/bcmath-extended/tree/v2.2.1"
             },
-            "time": "2026-03-10T21:49:02+00:00"
+            "time": "2026-03-31T14:34:07+00:00"
         },
         {
             "name": "marcoconsiglio/faker-php-number-helpers",
-            "version": "v2.0.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcoConsiglio/faker-php-number-helpers.git",
-                "reference": "2fb0f3c9724e863d93bdad8c954ef1620bfc6614"
+                "reference": "ebd99b84e5578b23cef6287c47777375b0dbb3a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/faker-php-number-helpers/zipball/2fb0f3c9724e863d93bdad8c954ef1620bfc6614",
-                "reference": "2fb0f3c9724e863d93bdad8c954ef1620bfc6614",
+                "url": "https://api.github.com/repos/MarcoConsiglio/faker-php-number-helpers/zipball/ebd99b84e5578b23cef6287c47777375b0dbb3a3",
+                "reference": "ebd99b84e5578b23cef6287c47777375b0dbb3a3",
                 "shasum": ""
             },
             "require": {
-                "fakerphp/faker": "^1.24"
+                "fakerphp/faker": "^1.24",
+                "nsfisis/next-after": "^1.1",
+                "php": ">=8.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "^13.0"
+                "phpunit/phpunit": "^13.0",
+                "rector/rector": "^2.3"
             },
             "type": "library",
             "autoload": {
@@ -167,22 +170,22 @@
             "description": "Adds a helper trait that makes it easier to generate random numbers using FakerPHP.",
             "support": {
                 "issues": "https://github.com/MarcoConsiglio/faker-php-number-helpers/issues",
-                "source": "https://github.com/MarcoConsiglio/faker-php-number-helpers/tree/v2.0.0"
+                "source": "https://github.com/MarcoConsiglio/faker-php-number-helpers/tree/v4.0.0"
             },
-            "time": "2026-02-25T14:19:28+00:00"
+            "time": "2026-03-30T13:46:47+00:00"
         },
         {
             "name": "marcoconsiglio/modular-arithmetic",
-            "version": "v3.3.0",
+            "version": "v3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarcoConsiglio/php-modular-arithmetic.git",
-                "reference": "7b14282350a9a3f12a3163c8685a343b459b6ce0"
+                "reference": "6aa11820f3546fa200c12f25dd61c927b9f94794"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/7b14282350a9a3f12a3163c8685a343b459b6ce0",
-                "reference": "7b14282350a9a3f12a3163c8685a343b459b6ce0",
+                "url": "https://api.github.com/repos/MarcoConsiglio/php-modular-arithmetic/zipball/6aa11820f3546fa200c12f25dd61c927b9f94794",
+                "reference": "6aa11820f3546fa200c12f25dd61c927b9f94794",
                 "shasum": ""
             },
             "require": {
@@ -191,7 +194,7 @@
             },
             "require-dev": {
                 "fakerphp/faker": "^1.24",
-                "marcoconsiglio/faker-php-number-helpers": "^1.0",
+                "marcoconsiglio/faker-php-number-helpers": "^4",
                 "phpunit/phpunit": "^13.0",
                 "rector/rector": "^2.3"
             },
@@ -215,9 +218,62 @@
             "description": "A PHP libarary to support modular arithmetic, aka clock arithmetic.",
             "support": {
                 "issues": "https://github.com/MarcoConsiglio/php-modular-arithmetic/issues",
-                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.3.0"
+                "source": "https://github.com/MarcoConsiglio/php-modular-arithmetic/tree/v3.3.1"
             },
-            "time": "2026-02-28T10:35:59+00:00"
+            "time": "2026-03-31T15:46:41+00:00"
+        },
+        {
+            "name": "nsfisis/next-after",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nsfisis/php-next-after.git",
+                "reference": "fa215815cf6f9db5c89ad6fe6153daf90fb08cf1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nsfisis/php-next-after/zipball/fa215815cf6f9db5c89ad6fe6153daf90fb08cf1",
+                "reference": "fa215815cf6f9db5c89ad6fe6153daf90fb08cf1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4"
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "^1.4.3",
+                "phpstan/phpstan": "^2.1.39",
+                "phpstan/phpstan-deprecation-rules": "^2.0.4",
+                "phpstan/phpstan-phpunit": "^2.0.16",
+                "phpstan/phpstan-strict-rules": "^2.0.10",
+                "phpunit/phpunit": "^12.5.11",
+                "symplify/easy-coding-standard": "^12.6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nsfisis\\NextAfter\\": "src/",
+                    "Nsfisis\\NextAfter\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "nsfisis"
+                }
+            ],
+            "description": "PHP port of java.lang.Math.nextAfter() family",
+            "homepage": "https://github.com/nsfisis/php-next-after",
+            "keywords": [
+                "float"
+            ],
+            "support": {
+                "issues": "https://github.com/nsfisis/php-next-after/issues",
+                "source": "https://github.com/nsfisis/php-next-after/tree/1.1.0"
+            },
+            "time": "2026-02-15T15:50:54+00:00"
         },
         {
             "name": "psr/container",
@@ -961,16 +1017,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "13.0.5",
+            "version": "13.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "d57826e8921a534680c613924bfd921ded8047f4"
+                "reference": "9e426f7282c313c9138eeb9f25461e1a6be1e647"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d57826e8921a534680c613924bfd921ded8047f4",
-                "reference": "d57826e8921a534680c613924bfd921ded8047f4",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9e426f7282c313c9138eeb9f25461e1a6be1e647",
+                "reference": "9e426f7282c313c9138eeb9f25461e1a6be1e647",
                 "shasum": ""
             },
             "require": {
@@ -992,7 +1048,7 @@
                 "sebastian/cli-parser": "^5.0.0",
                 "sebastian/comparator": "^8.0.0",
                 "sebastian/diff": "^8.0.0",
-                "sebastian/environment": "^9.0.0",
+                "sebastian/environment": "^9.1.0",
                 "sebastian/exporter": "^8.0.0",
                 "sebastian/global-state": "^9.0.0",
                 "sebastian/object-enumerator": "^8.0.0",
@@ -1039,31 +1095,15 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.0.5"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.0.6"
             },
             "funding": [
                 {
-                    "url": "https://phpunit.de/sponsors.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/sebastianbergmann",
-                    "type": "github"
-                },
-                {
-                    "url": "https://liberapay.com/sebastianbergmann",
-                    "type": "liberapay"
-                },
-                {
-                    "url": "https://thanks.dev/u/gh/sebastianbergmann",
-                    "type": "thanks_dev"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpunit/phpunit",
-                    "type": "tidelift"
+                    "url": "https://phpunit.de/sponsoring.html",
+                    "type": "other"
                 }
             ],
-            "time": "2026-02-18T12:40:03+00:00"
+            "time": "2026-03-31T06:44:39+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -1377,16 +1417,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "9.0.1",
+            "version": "9.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "e26e9a944bd9d27b3a38a82fc2093d440951bfbe"
+                "reference": "c4a2dc54b1a24e13ef1839cbb5947b967cbae853"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/e26e9a944bd9d27b3a38a82fc2093d440951bfbe",
-                "reference": "e26e9a944bd9d27b3a38a82fc2093d440951bfbe",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/c4a2dc54b1a24e13ef1839cbb5947b967cbae853",
+                "reference": "c4a2dc54b1a24e13ef1839cbb5947b967cbae853",
                 "shasum": ""
             },
             "require": {
@@ -1401,7 +1441,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "9.0-dev"
+                    "dev-main": "9.1-dev"
                 }
             },
             "autoload": {
@@ -1429,7 +1469,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/environment/issues",
                 "security": "https://github.com/sebastianbergmann/environment/security/policy",
-                "source": "https://github.com/sebastianbergmann/environment/tree/9.0.1"
+                "source": "https://github.com/sebastianbergmann/environment/tree/9.1.0"
             },
             "funding": [
                 {
@@ -1449,7 +1489,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-15T07:13:02+00:00"
+            "time": "2026-03-22T06:31:50+00:00"
         },
         {
             "name": "sebastian/exporter",
