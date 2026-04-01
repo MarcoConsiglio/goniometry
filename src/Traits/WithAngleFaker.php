@@ -12,9 +12,12 @@ use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\DegreesRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\MinutesRange;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 
 /**
@@ -72,13 +75,11 @@ trait WithAngleFaker
         float $max = Seconds::MAX, 
         int $precision = PHP_FLOAT_DIG
     ): float {
-        if ($min < 0 ) $min = abs($min);
-        if ($min >= Seconds::MAX) $min = NextFloat::before(Seconds::MAX);
-        if ($max < 0) $max = abs($max);
-        if ($max >= Seconds::MAX) $max = NextFloat::before(Seconds::MAX);
-        if ($precision < 0) $precision = abs($precision);
-        if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
-        return $this->positiveRandomFloat($min, $max, $precision);
+        return new SecondsGenerator(
+            self::$faker,
+            new SecondsValidator,
+            new SecondsRange($min, $max)
+        )->generate($precision);
     }
 
     /**
