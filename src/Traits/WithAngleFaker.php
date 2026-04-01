@@ -11,7 +11,10 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\DegreesRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\MinutesRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 
 /**
@@ -54,11 +57,11 @@ trait WithAngleFaker
      */
     public function randomMinutes(int $min = 0, int $max = Minutes::MAX - 1): int
     {
-        if ($min < 0 ) $min = abs($min);
-        if ($min >= Minutes::MAX) $min = Minutes::MAX - 1;
-        if ($max < 0) $max = abs($max);
-        if ($max >= Minutes::MAX) $max = Minutes::MAX - 1;
-        return $this->positiveRandomInteger($min, $max);
+        return new MinutesGenerator(
+            self::$faker,
+            new MinutesValidator,
+            new MinutesRange($min, $max)
+        )->generate();
     }
 
     /**
