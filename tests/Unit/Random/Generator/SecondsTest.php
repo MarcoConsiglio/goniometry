@@ -1,0 +1,32 @@
+<?php
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
+
+use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
+use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
+use MarcoConsiglio\Goniometry\Tests\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
+
+#[CoversClass(SecondsGenerator::class)]
+#[UsesClass(SecondsRange::class)]
+class SecondsTest extends TestCase
+{
+    public function test_random_generation(): void
+    {
+        // Arrange
+        $validator = $this->createMock(SecondsValidator::class);
+        $validator->expects($this->once())->method("validate");
+        $generator = new SecondsGenerator(
+            self::$faker,
+            $validator,
+            new SecondsRange(
+                SecondsRange::MIN,
+                SecondsRange::max()
+            )
+        );
+
+        // Act & Assert
+        $this->assertIsFloat($generator->generate());
+    }
+}

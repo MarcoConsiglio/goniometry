@@ -21,7 +21,10 @@ class DegreesTest extends TestCase
         $generator = new DegreesGenerator(
             self::$faker,
             $validator,
-            new DegreesRange(0, 59)
+            new DegreesRange(
+                DegreesRange::MIN, 
+                DegreesRange::MAX
+            )
         );
 
         // Act & Assert

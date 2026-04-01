@@ -21,7 +21,10 @@ class MinutesTest extends TestCase
         $generator = new MinutesGenerator(
             self::$faker,
             $validator,
-            new MinutesRange(0, 59)
+            new MinutesRange(
+                MinutesRange::MIN,
+                MinutesRange::MAX 
+            )
         );
 
         // Act & Assert
