@@ -17,13 +17,13 @@ class Degrees extends Validator
         $this->swap($min, $max);
     }
 
-    protected function avoidNegativeValues(float &$min, float &$max): void
+    protected function avoidNegativeValues(int &$min, int &$max): void
     {
         if ($this->isNegative($min)) $this->setMin($min);
         if ($this->isNegative($max)) $this->setMax($max);
     }
 
-    protected function avoidExceedingValues(float &$min, float &$max): void
+    protected function avoidExceedingValues(int &$min, int &$max): void
     {
         if ($this->greaterThanOrEqual($min, AngleDegrees::MAX)) $this->setMin($min);        
         if ($this->greaterThanOrEqual($max, AngleDegrees::MAX)) $this->setMax($max);

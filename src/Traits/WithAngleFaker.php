@@ -1,12 +1,17 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Traits;
 
+use Deprecated;
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Random\DegreesRange;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 
 /**
@@ -20,6 +25,7 @@ trait WithAngleFaker
     /**
      * The Smallest Significant Number.
      */
+    #[Deprecated("use NextFloat class instead", "v3.1.1")]
     public const float SSN = 0.0000000000001;
 
     /**
@@ -36,11 +42,11 @@ trait WithAngleFaker
      */
     public function randomDegrees(int $min = 0, int $max = Degrees::MAX - 1): int
     {
-        if ($min < 0 ) $min = abs($min);
-        if ($min >= Degrees::MAX) $min = Degrees::MAX - 1;
-        if ($max < 0) $max = abs($max);
-        if ($max >= Degrees::MAX) $max = Degrees::MAX - 1;
-        return $this->positiveRandomInteger($min, $max); 
+        return new DegreesGenerator(
+            self::$faker,
+            new DegreesValidator,
+            new DegreesRange($min, $max)
+        )->generate();
     }
 
     /**
@@ -60,13 +66,13 @@ trait WithAngleFaker
      */
     public function randomSeconds(
         float $min = 0, 
-        float $max = Seconds::MAX - self::SSN, 
+        float $max = Seconds::MAX, 
         int $precision = PHP_FLOAT_DIG
     ): float {
         if ($min < 0 ) $min = abs($min);
-        if ($min >= Seconds::MAX) $min = Seconds::MAX - self::SSN;
+        if ($min >= Seconds::MAX) $min = NextFloat::before(Seconds::MAX);
         if ($max < 0) $max = abs($max);
-        if ($max >= Seconds::MAX) $max = Seconds::MAX - self::SSN;
+        if ($max >= Seconds::MAX) $max = NextFloat::before(Seconds::MAX);
         if ($precision < 0) $precision = abs($precision);
         if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
         return $this->positiveRandomFloat($min, $max, $precision);
@@ -75,7 +81,7 @@ trait WithAngleFaker
     /**
      * Return a random Angle, whether positive or negative.
      */
-    public function randomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
+    public function randomAngle(float $min = 0, float $max = Degrees::MAX): Angle
     {
         return $this->faker->randomElement([
             $this->positiveRandomAngle($min, $max),

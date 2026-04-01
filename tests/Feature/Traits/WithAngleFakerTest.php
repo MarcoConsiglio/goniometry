@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Traits;
+namespace MarcoConsiglio\Goniometry\Tests\Feature\Traits;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
@@ -9,15 +9,15 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The WithAngleFaker trait")]
@@ -31,6 +31,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(Round::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
 class WithAngleFakerTest extends TestCase
 {
     use WithAngleFaker;
@@ -55,8 +57,8 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertIsInt($degrees);
-        $this->assertTrue($degrees >= 0);
-        $this->assertTrue($degrees < Degrees::MAX);
+        $this->assertGreaterThanOrEqual(0, $degrees);
+        $this->assertLessThan(Degrees::MAX, $degrees);
     }
 
     #[TestDox("can return a random minutes value of type int.")]
