@@ -13,13 +13,13 @@ class Minutes extends Validator
         $this->swap($min, $max);
     }
 
-    protected function avoidNegativeValues(float &$min, float &$max): void
+    protected function avoidNegativeValues(int &$min, int &$max): void
     {
         if ($this->isNegative($min)) $this->setMin($min);
         if ($this->isNegative($max)) $this->setMax($max);
     }
 
-    protected function avoidExceedingValues(float &$min, float &$max): void
+    protected function avoidExceedingValues(int &$min, int &$max): void
     {
         if ($this->greaterThanOrEqual($min, AngleMinutes::MAX)) $this->setMin($min);        
         if ($this->greaterThanOrEqual($max, AngleMinutes::MAX)) $this->setMax($max);
