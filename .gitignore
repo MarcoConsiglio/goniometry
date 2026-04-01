@@ -1,5 +1,6 @@
-vendor
-.phpunit.cache
 .phpdoc
-testbook.*
+.phpunit.cache
 .vscode
+composer.lock
+testbook.*
+vendor

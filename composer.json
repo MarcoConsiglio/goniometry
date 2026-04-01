@@ -25,7 +25,6 @@
         "php": "^8.4",
         "ext-bcmath": "^8.4",
         "marcoconsiglio/modular-arithmetic": "^3.0",
-        "fakerphp/faker": "^1.24",
         "marcoconsiglio/faker-php-number-helpers": "^4.0"
     },
     "require-dev": {
@@ -33,7 +32,5 @@
     },
     "replace": {
         "marcoconsiglio/trigonometry": "*"
-    },
-    "config": {
     }
 }
