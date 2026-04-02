@@ -6,12 +6,15 @@ use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
+#[TestDox("The PositiveSexadecimal random generator")]
 #[CoversClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(SexadecimalRange::class)]
 class PositiveSexadecimalTest extends TestCase
 {
+    #[TestDox("generates a positive random sexadecimal value.")]
     public function test_random_generation(): void
     {
         // Arrange
