@@ -12,10 +12,12 @@ use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
@@ -41,10 +43,12 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(MinutesGenerator::class)]
 #[UsesClass(SecondsGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
 #[UsesClass(MinutesValidator::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(NegativeSexadecimalValidator::class)]
 class WithAngleFakerTest extends TestCase
 {
     use WithAngleFaker;
