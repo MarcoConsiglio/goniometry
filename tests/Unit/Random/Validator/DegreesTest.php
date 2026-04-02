@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestCase("The Degrees validator")]
 #[CoversClass(DegreesValidator::class)]
-class DegreesTest extends TestCase
+class DegreesTest extends IntegerValidatorTestCase
 {
     #[TestDox("validates a DegreesRange.")]
     public function test_validate(): void
@@ -19,65 +19,55 @@ class DegreesTest extends TestCase
          * $max < 0
          */
         // Arrange
-        $min = -1;
-        $max = -1;
-        $validator = new DegreesValidator;
+        $this->setValidator();
+        $this->setRange(-1, -1);
 
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(0, $min);
-        $this->assertSame($this->maxMinutes(), $max);
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
          * $min ≥ 60
          * $max ≥ 60
          */
         // Arrange
-        $min = Degrees::MAX;
-        $max = Degrees::MAX;
+        $this->setRange(Degrees::MAX, Degrees::MAX);
 
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(0, $min);
-        $this->assertSame($this->maxMinutes(), $max);
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
          * $min < 0
          * $max ≥ 60
          */
         // Arrange
-        $min = -1;
-        $max = Degrees::MAX;
-
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(0, $min);
-        $this->assertSame($this->maxMinutes(), $max);
+        $this->setRange(-1, Degrees::MAX);
+        
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
          * $min ≥ 60
          * $max < 0
          */
         // Arrange
-        $min = Degrees::MAX;
-        $max = -1;
+        $this->setRange(Degrees::MAX, -1);
 
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(0, $min);
-        $this->assertSame($this->maxMinutes(), $max);
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
     }
 
-    protected function maxMinutes(): int
+    protected function allowedMin(): int
+    {
+        return 0;
+    }
+
+    protected function allowedMax(): int
     {
         return Degrees::MAX - 1;
+    }
+
+    protected function setValidator(): void
+    {
+        $this->validator = new DegreesValidator;
     }
 }
