@@ -11,9 +11,11 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
@@ -38,9 +40,11 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(MinutesGenerator::class)]
 #[UsesClass(SecondsGenerator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
 #[UsesClass(MinutesValidator::class)]
 #[UsesClass(SecondsValidator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
 class WithAngleFakerTest extends TestCase
 {
     use WithAngleFaker;
@@ -77,8 +81,8 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertIsInt($minutes);
-        $this->assertTrue($minutes >= 0);
-        $this->assertTrue($minutes < Minutes::MAX);
+        $this->assertGreaterThanOrEqual(0, $minutes);
+        $this->assertLessThan(Minutes::MAX, $minutes);
     }
 
     #[TestDox("can return a random seconds value of type float.")]
@@ -89,8 +93,8 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertIsFloat($seconds);
-        $this->assertTrue($seconds >= 0);
-        $this->assertTrue($seconds < Seconds::MAX);
+        $this->assertGreaterThanOrEqual(0, $seconds);
+        $this->assertLessThan(Seconds::MAX, $seconds);
     }
 
     #[TestDox("can return a random relative Angle instance.")]
@@ -186,8 +190,8 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertIsFloat($sexadecimal);
-        $this->assertTrue($sexadecimal >= 0);
-        $this->assertTrue($sexadecimal < Degrees::MAX);
+        $this->assertGreaterThanOrEqual(0, $sexadecimal);
+        $this->assertLessThan(Degrees::MAX, $sexadecimal);
     }
 
     #[TestDox("can return a random negative sexadecimal value.")]

@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Goniometry\Traits;
 
 use Deprecated;
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -12,11 +11,14 @@ use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\DegreesRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\MinutesRange;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 
@@ -191,14 +193,14 @@ trait WithAngleFaker
      */
     public function positiveRandomSexadecimal(
         float $min = 0.0, 
-        float $max = Degrees::MAX - self::SSN, 
+        float $max = Degrees::MAX, 
         int $precision = PHP_FLOAT_DIG
     ): float {
-        $min = abs($min); $max = abs($max); $precision = abs($precision);
-        if ($min > Degrees::MAX) $min = Degrees::MAX - self::SSN;
-        if ($max > Degrees::MAX) $max = Degrees::MAX - self::SSN;
-        if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
-        return $this->positiveRandomFloat($min, $max, $precision);
+        return new PositiveSexadecimalGenerator(
+            self::$faker,
+            new PositiveSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
