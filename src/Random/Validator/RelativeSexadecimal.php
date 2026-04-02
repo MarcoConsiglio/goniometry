@@ -5,12 +5,11 @@ use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
 use MarcoConsiglio\Goniometry\Degrees;
 
-class NegativeSexadecimal extends Validator
+class RelativeSexadecimal extends Validator
 {
     public function validate(float &$min, float &$max): void
     {
         $this->avoidInvalidFloats($min, $max);
-        $this->avoidPositiveValues($min, $max);
         $this->avoidExceedingValues($min, $max);
         $this->swap($min, $max);
     }
@@ -21,15 +20,21 @@ class NegativeSexadecimal extends Validator
         if ($this->notAllowedFloat($max)) $this->setMax($max);
     }
 
-    protected function avoidPositiveValues(float &$min, float &$max): void
-    {
-        if ($this->isPositive($min)) $this->setMin($min);
-        if ($this->isPositive($max)) $this->setMax($max);
-    }
-
     protected function avoidExceedingValues(float &$min, float &$max): void
     {
-        if ($this->lessThanOrEqual($min, -Degrees::MAX)) $this->setMin($min);        
+        $this->avoidTooHighValues($min, $max);
+        $this->avoidTooLowValues($min, $max);
+    }
+
+    protected function avoidTooHighValues(float &$min, float &$max): void
+    {
+        if ($this->greaterThanOrEqual($min, Degrees::MAX)) $this->setMin($min);
+        if ($this->greaterThanOrEqual($max, Degrees::MAX)) $this->setMax($max);
+    }
+
+    protected function avoidTooLowValues(float &$min, float &$max): void
+    {
+        if ($this->lessThanOrEqual($min, -Degrees::MAX)) $this->setMin($min);
         if ($this->lessThanOrEqual($max, -Degrees::MAX)) $this->setMax($max);
     }
 
@@ -40,6 +45,6 @@ class NegativeSexadecimal extends Validator
 
     protected function setMax(float &$value): void
     {
-        $value = NextFloat::beforeZero();
+        $value = NextFloat::before(Degrees::MAX);
     }
 }
