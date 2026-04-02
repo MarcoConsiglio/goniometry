@@ -13,6 +13,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\MinutesRange;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
@@ -21,6 +22,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 
@@ -181,12 +183,15 @@ trait WithAngleFaker
      * excluded 360°.
      */
     public function randomSexadecimal(
-        float $min = 0.0, 
-        float $max = Degrees::MAX - self::SSN, 
+        float $min = -Degrees::MAX, 
+        float $max = Degrees::MAX, 
         int $precision = PHP_FLOAT_DIG
     ): float {
-        $random_value = $this->positiveRandomSexadecimal($min, $max, $precision);
-        return $this->faker->randomElement([$random_value, -$random_value]);
+        return new RelativeSexadecimal(
+            self::$faker,
+            new RelativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
