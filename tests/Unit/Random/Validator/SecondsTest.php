@@ -4,13 +4,12 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 
 #[TestDox("The Seconds validator")]
 #[CoversClass(SecondsValidator::class)]
-class SecondsTest extends TestCase
+class SecondsTest extends FloatValidatorTestCase
 {
     #[TestDox("validates a SecondsRange.")]
     public function test_validate(): void
@@ -20,105 +19,84 @@ class SecondsTest extends TestCase
          * $max < 0
          */
         // Arrange
-        $min = -1;
-        $max = -1;
-        $validator = new SecondsValidator;
+        $this->setValidator();
+        $this->setRange(-1, -1);
 
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(0.0, $min);
-        $this->assertSame($this->maxSeconds(), $max);
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
          * $min < 0
          * $max ≥ 60
          */
         // Arrange
-        $min = -1;
-        $max = 60;
+        $this->setRange(-1, Seconds::MAX);
 
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(0.0, $min);
-        $this->assertSame($this->maxSeconds(), $max);
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
          * $min ≥ 60
          * $max ≥ 60
          */
         // Arrange
-        $min = 60;
-        $max = 60;
+        $this->setRange(Seconds::MAX, Seconds::MAX);
 
-        // Act
-        $validator->validate($min, $max);
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
          * $min ≥ 60
          * $max < 0
          */
         // Arrange
-        $min = 60;
-        $max = -1;
+        $this->setRange(Seconds::MAX, -1);
 
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(0.0, $min);
-        $this->assertSame($this->maxSeconds(), $max);
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
          * $min = INF
          * 0 ≤ $max < 60
          */
         // Arrange
-        $min = INF;
-        $max = 7;
+        $this->setRange(INF, 7);
 
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(0.0, $min);
-        $this->assertSame(7.0, $max);
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), 7);
 
         /**
          * 0 ≤ $min < 60
          * $max = INF
          */
         // Arrange
-        $min = 16;
-        $max = INF;
+        $this->setRange(16, INF);
 
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(16.0, $min);
-        $this->assertSame($this->maxSeconds(), $max);
+        // Act & Assert
+        $this->testValidator(16, $this->allowedMax());
 
         /**
          * $min = INF
          * $max = INF
          */
         // Arrange
-        $min = INF;
-        $max = INF;
+        $this->setRange(INF, INF);
 
-        // Act
-        $validator->validate($min, $max);
-
-        // Assert
-        $this->assertSame(0.0, $min);
-        $this->assertSame($this->maxSeconds(), $max);
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
     }
 
-    protected function maxSeconds(): float
+    protected function setValidator(): void
+    {
+        $this->validator = new SecondsValidator;
+    }
+
+    protected function allowedMin(): float
+    {
+        return 0.0;
+    }
+
+    protected function allowedMax(): float
     {
         return NextFloat::before(Seconds::MAX);
     }
