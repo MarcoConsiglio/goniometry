@@ -2,10 +2,10 @@
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
+use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Degrees;
 
-class PositiveSexadecimal extends Validator
+class PositiveSexadecimal extends SexadecimalValidator
 {
     public function validate(float &$min, float &$max): void
     {
@@ -13,12 +13,6 @@ class PositiveSexadecimal extends Validator
         $this->avoidNegativeValues($min, $max);
         $this->avoidExceedingValues($min, $max);
         $this->swap($min, $max);
-    }
-
-    protected function avoidInvalidFloats(float &$min, float &$max): void
-    {
-        if ($this->notAllowedFloat($min)) $this->setMin($min);
-        if ($this->notAllowedFloat($max)) $this->setMax($max);
     }
 
     protected function avoidNegativeValues(float &$min, float &$max): void
