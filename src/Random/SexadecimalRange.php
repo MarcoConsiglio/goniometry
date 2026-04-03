@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Random;
 use Deprecated;
 use MarcoConsiglio\FakerPhpNumberHelpers\FloatRange;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\Degrees;
 
 class SexadecimalRange extends FloatRange
 {
@@ -14,7 +14,7 @@ class SexadecimalRange extends FloatRange
      * @var float MAX
      */
     #[Deprecated("use max() method instead")]
-    public const float MAX = PHP_FLOAT_MAX;
+    public const float MAX = Degrees::MAX;
 
     /**
      * The minimum number allowed.
@@ -22,15 +22,15 @@ class SexadecimalRange extends FloatRange
      * @var float MIN
      */
     #[Deprecated("use min() method instead")]
-    public const float MIN = 0.0;
+    public const float MIN = -Degrees::MAX;
 
     public static function max(): float
     {
-        return NextFloat::before(Seconds::MAX);
+        return NextFloat::before(Degrees::MAX);
     }
 
     public static function min(): float
     {
-        return NextFloat::after(-Seconds::MAX);
+        return NextFloat::after(-Degrees::MAX);
     }
 }
