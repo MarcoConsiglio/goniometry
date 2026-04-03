@@ -13,7 +13,8 @@ use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator; 
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\MinutesRange;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
@@ -25,6 +26,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  * Provides support for FakerPHP in order to generate
@@ -159,13 +161,19 @@ trait WithAngleFaker
     }
 
     /**
-     * Return random sexagesimal values for a positive Angle.
-     * 
-     * @return array{int,int,float,Direction::COUNTER_CLOCKWISE}
+     * Return random sexagesimal values from a positive `Angle`.
      */
-    public function positiveRandomSexagesimal(): array
+    public function positiveRandomSexagesimal(
+        float $min = 0.0, 
+        float $max = Degrees::MAX, 
+        int $precision = PHP_FLOAT_DIG
+    ): SexagesimalDegrees
     {
-        return $this->randomSexagesimal(Direction::COUNTER_CLOCKWISE);
+        return new PositiveSexagesimalGenerator(
+            self::$faker,
+            new PositiveSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
@@ -187,7 +195,7 @@ trait WithAngleFaker
         float $max = Degrees::MAX, 
         int $precision = PHP_FLOAT_DIG
     ): float {
-        return new RelativeSexadecimal(
+        return new RelativeSexadecimalGenerator(
             self::$faker,
             new RelativeSexadecimalValidator,
             new SexadecimalRange($min, $max)
