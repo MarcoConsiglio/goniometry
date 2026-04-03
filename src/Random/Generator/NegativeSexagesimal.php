@@ -2,19 +2,21 @@
 namespace MarcoConsiglio\Goniometry\Random\Generator;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
-class PositiveSexagesimal extends SexagesimalGenerator
+class NegativeSexagesimal extends SexagesimalGenerator
 {
     public function generate(int $precision = PHP_FLOAT_DIG): SexagesimalDegrees
     {
-        $sexadecimal_generator = new PositiveSexadecimal(
+        $sexadecimal_generator = new NegativeSexadecimal(
             $this->generator,
             $this->validator,
             $this->range
-        )->generate($precision);
-        $angle = Angle::createFromDecimal($sexadecimal_generator);
+        );
+        $angle = Angle::createFromDecimal(
+            $sexadecimal_generator->generate($precision)
+        );
         return $angle->toSexagesimalDegrees();
     }
 }

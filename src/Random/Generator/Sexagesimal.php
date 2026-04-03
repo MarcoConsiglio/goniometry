@@ -18,4 +18,9 @@ abstract class Sexagesimal extends Generator
     }
 
     abstract public function generate(int $precision): SexagesimalDegrees;
+
+    protected function validate(): void
+    {
+        $this->range->validate($this->validator);
+    }
 } 
