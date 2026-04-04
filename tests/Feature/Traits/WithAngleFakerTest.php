@@ -10,10 +10,12 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
@@ -64,6 +66,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexagesimalGenerator::class)]
 #[UsesClass(NegativeSexagesimalGenerator::class)]
 #[UsesClass(RelativeSexagesimalGenerator::class)]
+#[UsesClass(AngleGenerator::class)]
+#[UsesClass(PositiveAngleGenerator::class)]
 class WithAngleFakerTest extends TestCase
 {
     use WithAngleFaker;
@@ -131,9 +135,7 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(Angle::class, $angle);
-        $this->assertTrue($angle->toFloat() >= 0);
-        $this->assertTrue($angle->toFloat() < Degrees::MAX);
-        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $angle->direction);
+        $this->assertSame(Direction::COUNTER_CLOCKWISE, $angle->direction);
     }
 
     #[TestDox("can return a random negative Angle instance.")]

@@ -14,6 +14,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
@@ -104,13 +105,18 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a positive random Angle.
+     * Return a positive random `Angle`.
      */
-    public function positiveRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
-    {
-        assert($min >= 0 && $min < Degrees::MAX);
-        assert($max >= 0 && $max < Degrees::MAX);
-        return Angle::createFromDecimal($this->positiveRandomSexadecimal($min, $max));
+    public function positiveRandomAngle(
+        float $min = 0.0, 
+        float $max = Degrees::MAX, 
+        int $precision = PHP_FLOAT_DIG
+    ): Angle {
+        return new PositiveAngleGenerator(
+            self::$faker,
+            new PositiveSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
