@@ -17,7 +17,7 @@ abstract class Angle extends Generator
         return parent::__construct($generator, $validator);
     }
 
-    abstract public function generate(int $precision): AngleObject;
+    abstract public function generate(int $precision = PHP_FLOAT_DIG): AngleObject;
 
     protected function validate(): void
     {
