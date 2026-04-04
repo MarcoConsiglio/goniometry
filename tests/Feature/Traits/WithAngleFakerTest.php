@@ -16,6 +16,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
@@ -59,6 +60,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(PositiveSexagesimalGenerator::class)]
 #[UsesClass(SexagesimalGenerator::class)]
 #[UsesClass(NegativeSexagesimalGenerator::class)]
+#[UsesClass(RelativeSexagesimalGenerator::class)]
 class WithAngleFakerTest extends TestCase
 {
     use WithAngleFaker;
@@ -160,13 +162,10 @@ class WithAngleFakerTest extends TestCase
     public function test_randomSexagesimal(): void
     {
         // Act
-        [$degrees, $minutes, $seconds, $direction] = $this->randomSexagesimal();
+        $sexagesimal_values = $this->randomSexagesimal();
 
         // Assert
-        $this->assertIsInt($degrees);
-        $this->assertIsInt($minutes);
-        $this->assertIsFloat($seconds);
-        $this->assertInstanceOf(Direction::class, $direction);
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal_values);
     }
 
     #[TestDox("can return random positive sexagesimal values composed of degrees, minutes, seconds and direction.")]

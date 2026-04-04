@@ -15,7 +15,8 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator; 
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\MinutesRange;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
@@ -148,17 +149,16 @@ trait WithAngleFaker
      *
      * @return array{int,int,float,Direction}
      */
-    public function randomSexagesimal(Direction|null $direction = null)
-    {
-        if ($direction === null) $direction = $this->faker->randomElement([
-            Direction::COUNTER_CLOCKWISE, Direction::CLOCKWISE
-        ]);
-        return [
-            $this->randomDegrees(), 
-            $this->randomMinutes(), 
-            $this->randomSeconds(), 
-            $direction
-        ];
+    public function randomSexagesimal(
+        float $min = -Degrees::MAX,
+        float $max = Degrees::MAX,
+        int $precision = PHP_FLOAT_DIG
+    ) {
+        return new RelativeSexagesimalGenerator(
+            self::$faker,
+            new RelativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
