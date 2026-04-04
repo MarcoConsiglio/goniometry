@@ -11,6 +11,7 @@ use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\DegreesRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
@@ -120,12 +121,18 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a negative random Angle
+     * Return a negative random `Angle`.
      */
-    public function negativeRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
-    {
-        $angle = $this->positiveRandomAngle($min, $max);
-        return $angle->toggleDirection();
+    public function negativeRandomAngle(
+        float $min = 0.0, 
+        float $max = Degrees::MAX,
+        int $precision = PHP_FLOAT_DIG
+    ): Angle {
+        return new NegativeAngleGenerator(
+            self::$faker,
+            new NegativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
