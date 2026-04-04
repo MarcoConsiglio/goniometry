@@ -13,6 +13,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator; 
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
@@ -167,8 +168,7 @@ trait WithAngleFaker
         float $min = 0.0, 
         float $max = Degrees::MAX, 
         int $precision = PHP_FLOAT_DIG
-    ): SexagesimalDegrees
-    {
+    ): SexagesimalDegrees {
         return new PositiveSexagesimalGenerator(
             self::$faker,
             new PositiveSexadecimalValidator,
@@ -178,12 +178,17 @@ trait WithAngleFaker
 
     /**
      * Return random sexagesimal values for a negative Angle.
-     * 
-     * @return array{int,int,float,Direction::CLOCKWISE}
      */
-    public function negativeRandomSexagesimal(): array
-    {
-        return $this->randomSexagesimal(Direction::CLOCKWISE);
+    public function negativeRandomSexagesimal(
+        float $min = -Degrees::MAX,
+        float $max = 0.0,
+        int $precision = PHP_FLOAT_DIG
+    ): SexagesimalDegrees {
+        return new NegativeSexagesimalGenerator(
+            self::$faker,
+            new NegativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
