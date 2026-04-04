@@ -7,7 +7,6 @@ use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
-use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Degrees type")]
 #[CoversClass(Degrees::class)]
