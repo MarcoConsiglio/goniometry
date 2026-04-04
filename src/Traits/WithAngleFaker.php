@@ -136,12 +136,22 @@ trait WithAngleFaker
     /**
      * Returns a random angle string.
      */
-    public function randomSexagesimalString(Direction $direction = Direction::COUNTER_CLOCKWISE)
-    {
-        [$degrees, $minutes, $seconds, $direction] = 
-            $this->randomSexagesimal($direction);
-        $sign = $direction == Direction::COUNTER_CLOCKWISE ? "" : "-";
-        return "{$sign}{$degrees}° {$minutes}' {$seconds}\"";
+    public function randomSexagesimalString(
+        float $min = -Degrees::MAX, 
+        float $max = Degrees::MAX,
+        int $precision = PHP_FLOAT_DIG
+    ) {
+        $sexagesimal_values = new RelativeSexagesimalGenerator(
+            self::$faker,
+            new RelativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
+        $sign = $sexagesimal_values->direction === Direction::CLOCKWISE ?
+            '-' : '';
+        $degrees = $sexagesimal_values->degrees;
+        $minutes = $sexagesimal_values->minutes;
+        $seconds = $sexagesimal_values->seconds;
+        return "{$sign}{$degrees} {$minutes} {$seconds}";
     }
 
     /**

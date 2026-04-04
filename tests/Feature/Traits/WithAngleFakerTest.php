@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature\Traits;
 
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
@@ -19,6 +20,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
@@ -41,6 +43,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(Sexagesimal::class)]
@@ -151,11 +154,30 @@ class WithAngleFakerTest extends TestCase
         $this->assertInstanceOf(Direction::class, $this->randomDirection());
     }
 
-    #[TestDox("can return a random sexagesimal string.")]
+    #[TestDox("can return a random relative sexagesimal string.")]
     public function test_randomSexagesimalString(): void
     {
-        // Act & Assert
-        $this->assertIsString($this->randomSexagesimalString());
+        /**
+         * Positive sexagesimal
+         */
+        // Act
+        $sexagesimal_string = $this->randomSexagesimalString(
+            0.0, SexadecimalRange::max()
+        );
+
+        // Assert
+        $this->assertStringNotContainsString('-', $sexagesimal_string);
+
+        /**
+         * Negative sexagesimal
+         */
+        // Act
+        $sexagesimal_string = $this->randomSexagesimalString(
+            SexadecimalRange::min(), NextFloat::beforeZero()
+        );
+        
+        // Assert
+        $this->assertStringContainsString('-', $sexagesimal_string);
     }
 
     #[TestDox("can return random sexagesimal values composed of degrees, minutes, seconds and direction.")]
@@ -199,7 +221,7 @@ class WithAngleFakerTest extends TestCase
         // Assert
         $this->assertIsFloat($sexadecimal);
         $this->assertGreaterThan(-Degrees::MAX, $sexadecimal);
-        $this->assertLessThanOrEqual(Degrees::MAX, $sexadecimal);
+        $this->assertLessThan(Degrees::MAX, $sexadecimal);
     }
 
     #[TestDox("can return a random positive sexadecimal value.")]
