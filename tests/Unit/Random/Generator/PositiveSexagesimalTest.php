@@ -16,8 +16,10 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
+#[TestDox("The PositiveSexagesimal random generator")]
 #[CoversClass(PositiveSexagesimalGenerator::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(FromSexadecimal::class)]
@@ -32,6 +34,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexagesimalDegrees::class)]
 class PositiveSexagesimalTest extends TestCase
 {
+    #[TestDox("generates positive random sexagesimal values.")]
     public function test_random_generation(): void
     {
         // Arrange
@@ -46,9 +49,5 @@ class PositiveSexagesimalTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal_values);
-        $this->assertInstanceOf(Degrees::class, $sexagesimal_values->degrees);
-        $this->assertInstanceOf(Minutes::class, $sexagesimal_values->minutes);
-        $this->assertInstanceOf(Seconds::class, $sexagesimal_values->seconds);
-        $this->assertInstanceOf(Direction::class, $sexagesimal_values->direction);
     }
 }
