@@ -19,6 +19,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
@@ -32,6 +33,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian as NegativeRadianV
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -266,12 +268,15 @@ trait WithAngleFaker
      * Return a random relative radian value.
      */
     public function randomRadian(
-        float $min = 0, 
-        float $max = Radian::MAX - self::SSN,
+        float $min = -Radian::MAX, 
+        float $max = Radian::MAX,
         int $precision = PHP_FLOAT_DIG
-    ): float {
-        $radian = $this->positiveRandomRadian($min, $max, $precision);
-        return $this->faker->randomElement([$radian, -$radian]);
+    ): Radian {
+        return new RelativeRadianGenerator(
+            self::$faker,
+            new RelativeRadianValidator,
+            new RadianRange($min, $max)
+        )->generate($precision);
     }
 
     /**

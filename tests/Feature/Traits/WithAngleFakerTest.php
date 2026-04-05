@@ -22,6 +22,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianG
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
@@ -35,6 +36,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -85,6 +87,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexagesimalGenerator::class)]
 #[UsesClass(NegativeRadianGenerator::class)]
 #[UsesClass(NegativeRadianValidator::class)]
+#[UsesClass(RelativeRadianGenerator::class)]
+#[UsesClass(RelativeRadianValidator::class)]
 class WithAngleFakerTest extends TestCase
 {
     use WithAngleFaker;
@@ -269,8 +273,11 @@ class WithAngleFakerTest extends TestCase
     #[TestDox("can return a random radian value.")]
     public function test_randomRadian(): void
     {
-        // Act & Assert
-        $this->assertIsFloat($this->randomRadian());
+        // Act
+        $radian = $this->randomRadian();
+
+        // Assert
+        $this->assertInstanceOf(Radian::class, $radian);
     }
 
     #[TestDox("can return a random positive radian value.")]
