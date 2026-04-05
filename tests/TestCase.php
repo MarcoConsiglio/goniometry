@@ -57,4 +57,24 @@ class TestCase extends PHPUnitTestCase
             $value, self::PRECISION, RoundingMode::HalfTowardsZero
         );
     }
+
+    protected function assertDegrees(Degrees $value_1, Degrees $value_2): void
+    {
+        $this->assertEquals($value_1->value(), $value_2->value());
+    }
+
+    protected function assertMinutes(Minutes $value_1, Minutes $value_2): void
+    {
+        $this->assertEquals($value_1->value(), $value_2->value());
+    }
+
+    protected function assertSeconds(Seconds $value_1, Seconds $value_2, int|null $precision = null): void
+    {
+        $this->assertEquals($value_1->value($precision), $value_2->value($precision));
+    }
+
+    protected function assertDirection(Direction $value_1, Direction $value_2): void
+    {
+        $this->assertEquals($value_1, $value_2);
+    }
 }
