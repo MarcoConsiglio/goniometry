@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
 
-abstract class Sexadecimal extends Validator
+abstract class Radian extends Validator
 {
     protected function avoidInvalidFloats(float &$min, float &$max): void
     {
@@ -13,5 +13,5 @@ abstract class Sexadecimal extends Validator
 
     abstract protected function setMin(float &$value): void;
 
-    abstract protected function setMax(float &$value): void;
+    abstract protected function setMax(float &$value): void;   
 } 
