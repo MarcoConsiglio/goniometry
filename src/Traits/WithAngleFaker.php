@@ -16,16 +16,19 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\MinutesRange;
+use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
@@ -274,10 +277,14 @@ trait WithAngleFaker
      */
     public function positiveRandomRadian(
         float $min = 0, 
-        float $max = Radian::MAX - self::SSN,
+        float $max = Radian::MAX,
         int $precision = PHP_FLOAT_DIG
-    ): float {
-        return $this->positiveRandomFloat($min, $max, $precision);
+    ): Radian {
+        return new PositiveRadianGenerator(
+            self::$faker,
+            new PositiveRadianValidator,
+            new RadianRange($min, $max)
+        )->generate($precision);
     }
 
     /**

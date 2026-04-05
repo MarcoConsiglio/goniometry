@@ -17,17 +17,22 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGen
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -55,9 +60,15 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(NegativeSexagesimalGenerator::class)]
 #[UsesClass(PositiveAngleGenerator::class)]
+#[UsesClass(PositiveRadianGenerator::class)]
+#[UsesClass(PositiveRadianValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(PositiveSexagesimalGenerator::class)]
+#[UsesClass(Radian::class)]
+#[UsesClass(RadianGenerator::class)]
+#[UsesClass(RadianRange::class)]
+#[UsesClass(RadianValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(RelativeSexagesimalGenerator::class)]
@@ -265,9 +276,7 @@ class WithAngleFakerTest extends TestCase
         $radian = $this->positiveRandomRadian();
 
         // Assert
-        $this->assertIsFloat($radian);
-        $this->assertTrue($radian >= 0);
-        $this->assertTrue($radian < Radian::MAX);
+        $this->assertInstanceOf(Radian::class, $radian);
     }
         
     #[TestDox("can return a random negative radian value.")]
