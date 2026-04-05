@@ -12,6 +12,7 @@ use MarcoConsiglio\Goniometry\Random\DegreesRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
@@ -27,6 +28,7 @@ use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian as NegativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
@@ -291,10 +293,14 @@ trait WithAngleFaker
      * Return a negative random radian value.
      */
     public function negativeRandomRadian(
-        float $min = 0, 
-        float $max = Radian::MAX - self::SSN,
+        float $min = -Radian::MAX, 
+        float $max = 0,
         int $precision = PHP_FLOAT_DIG
-    ): float {
-        return -$this->positiveRandomRadian($min, $max, $precision);
+    ): Radian {
+        return new NegativeRadianGenerator(
+            self::$faker,
+            new NegativeRadianValidator,
+            new RadianRange($min, $max)
+        )->generate($precision);
     }
 }
