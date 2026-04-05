@@ -1,10 +1,14 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -17,11 +21,15 @@ use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The FromSexadecimal builder")]
 #[CoversClass(FromSexadecimal::class)]
-#[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
+#[UsesClass(NegativeSexadecimalGenerator::class)]
+#[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class FromDecimalTest extends TestCase
@@ -33,40 +41,41 @@ class FromDecimalTest extends TestCase
          * Float type input
          */
         // Arrange
-        $float_input = $this->positiveRandomSexadecimal();
+        $float_input = $this->positiveRandomSexadecimal(precision: 1);
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($float_input);
 
         // Act
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($float_input)->fetchData();
 
         // Assert
-        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
-        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
-        $this->assertEquals($seconds->value(), $sexagesimal->seconds->value());
-        $this->assertEquals($direction, $sexagesimal->direction);
-        $this->assertEquals(
-            $this->safeRound($float_input),
-            $sexadecimal->value(self::PRECISION)
-        );
+        $this->assertDegrees($degrees, $sexagesimal->degrees);
+        $this->assertMinutes($minutes, $sexagesimal->minutes);
+        $this->assertSeconds($seconds, $sexagesimal->seconds);
+        $this->assertDirection($direction, $sexagesimal->direction);
+        $this->assertEquals($float_input, $sexadecimal->value(1));
 
         /**
          * SexagesimalDegrees type input
          */
         // Arrange
-        $expected_sexadecimal = new SexadecimalDegrees($this->positiveRandomSexadecimal());
-        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($expected_sexadecimal->value());
+        $expected_sexadecimal = new SexadecimalDegrees(
+            $this->positiveRandomSexadecimal(precision: 1)
+        );
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal(
+            $expected_sexadecimal->value()
+        );
 
         // Act
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($expected_sexadecimal)->fetchData();
 
         // Assert
-        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
-        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
-        $this->assertEquals($seconds->value(self::PRECISION), $sexagesimal->seconds->value(self::PRECISION));
-        $this->assertEquals($direction, $sexagesimal->direction);
+        $this->assertDegrees($degrees, $sexagesimal->degrees);
+        $this->assertMinutes($minutes, $sexagesimal->minutes);
+        $this->assertSeconds($seconds, $sexagesimal->seconds);
+        $this->assertDirection($direction, $sexagesimal->direction);
         $this->assertEquals(
-            $expected_sexadecimal->value(self::PRECISION),
-            $sexadecimal->value(self::PRECISION)
+            $expected_sexadecimal->value(1),
+            $sexadecimal->value(1)
         );
     }
 
@@ -77,40 +86,44 @@ class FromDecimalTest extends TestCase
          * Float type input
          */
         // Arrange
-        $float_input = $this->negativeRandomSexadecimal();
+        $float_input = $this->negativeRandomSexadecimal(precision: 1);
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($float_input);
 
         // Act
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($float_input)->fetchData();
 
         // Assert
-        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
-        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
-        $this->assertEquals($seconds->value(), $sexagesimal->seconds->value());
-        $this->assertEquals($direction, $sexagesimal->direction);
+        $this->assertDegrees($degrees, $sexagesimal->degrees);
+        $this->assertMinutes($minutes, $sexagesimal->minutes);
+        $this->assertSeconds($seconds, $sexagesimal->seconds);
+        $this->assertDirection($direction, $sexagesimal->direction);
         $this->assertEquals(
-            $this->safeRound($float_input),
-            $sexadecimal->value(self::PRECISION)
+            $float_input,
+            $sexadecimal->value(1)
         );
 
         /**
          * SexadecimalDegrees type input
          */
         // Arrange
-        $expected_sexadecimal = new SexadecimalDegrees($this->negativeRandomSexadecimal());
-        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal($expected_sexadecimal->value());
+        $expected_sexadecimal = new SexadecimalDegrees(
+            $this->negativeRandomSexadecimal(precision: 1)
+        );
+        [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal(
+            $expected_sexadecimal->value()
+        );
 
         // Act
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($expected_sexadecimal)->fetchData();
 
         // Assert
-        $this->assertEquals($degrees->value(), $sexagesimal->degrees->value());
-        $this->assertEquals($minutes->value(), $sexagesimal->minutes->value());
-        $this->assertEquals($seconds->value(self::PRECISION), $sexagesimal->seconds->value(self::PRECISION));
-        $this->assertEquals($direction, $sexagesimal->direction);
+        $this->assertDegrees($degrees, $sexagesimal->degrees);
+        $this->assertMinutes($minutes, $sexagesimal->minutes);
+        $this->assertSeconds($seconds, $sexagesimal->seconds);
+        $this->assertDirection($direction, $sexagesimal->direction);
         $this->assertEquals(
-            $expected_sexadecimal->value(self::PRECISION),
-            $sexadecimal->value(self::PRECISION)
+            $expected_sexadecimal->value(1),
+            $sexadecimal->value(1)
         );
     }
 }
