@@ -176,14 +176,12 @@ trait WithAngleFaker
 
     /**
      * Return random sexagesimal values.
-     *
-     * @return array{int,int,float,Direction}
      */
     public function randomSexagesimal(
         float $min = -Degrees::MAX,
         float $max = Degrees::MAX,
         int $precision = PHP_FLOAT_DIG
-    ) {
+    ): SexagesimalDegrees {
         return new RelativeSexagesimalGenerator(
             self::$faker,
             new RelativeSexadecimalValidator,
