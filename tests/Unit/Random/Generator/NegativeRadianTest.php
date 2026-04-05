@@ -29,7 +29,11 @@ class NegativeRadianTest extends TestCase
             new RadianRange(RadianRange::min(), NextFloat::beforeZero())
         );
 
-        // Act & Assert
-        $this->assertInstanceOf(Radian::class, $generator->generate());
+        // Act 
+        $radian = $generator->generate();
+
+        // Assert
+        $this->assertInstanceOf(Radian::class, $radian);
+        $this->assertLessThan(0, $radian->value());
     }
 }

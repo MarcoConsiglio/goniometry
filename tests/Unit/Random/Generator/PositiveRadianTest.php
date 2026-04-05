@@ -25,7 +25,11 @@ class PositiveRadianTest extends TestCase
             new RadianRange(0.0, RadianRange::max())
         );
 
-        // Act & Assert
-        $this->assertInstanceOf(Radian::class, $generator->generate());
+        // Act
+        $radian = $generator->generate();
+
+        // Assert
+        $this->assertInstanceOf(Radian::class, $radian);
+        $this->assertGreaterThanOrEqual(0, $radian->value());
     }
 }
