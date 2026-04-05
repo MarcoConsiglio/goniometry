@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
+use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -12,6 +13,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The Seconds random generator")]
 #[CoversClass(SecondsGenerator::class)]
 #[UsesClass(SecondsRange::class)]
+#[UsesClass(Seconds::class)]
 class SecondsTest extends TestCase
 {
     #[TestDox("generates a random seconds value.")]
@@ -30,6 +32,6 @@ class SecondsTest extends TestCase
         );
 
         // Act & Assert
-        $this->assertIsFloat($generator->generate());
+        $this->assertInstanceOf(Seconds::class, $generator->generate());
     }
 }

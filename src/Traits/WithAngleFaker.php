@@ -93,7 +93,7 @@ trait WithAngleFaker
         float $min = 0, 
         float $max = Seconds::MAX, 
         int $precision = PHP_FLOAT_DIG
-    ): float {
+    ): Seconds {
         return new SecondsGenerator(
             self::$faker,
             new SecondsValidator,
