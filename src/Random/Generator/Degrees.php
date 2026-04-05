@@ -14,7 +14,7 @@ class Degrees extends Generator
         Validator $validator, 
         protected DegreesRange $range
     ) {
-        return parent::__construct($generator, $validator, $range);
+        return parent::__construct($generator, $validator);
     }
 
     public function generate(): DegreesObject

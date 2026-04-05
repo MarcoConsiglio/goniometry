@@ -1,15 +1,18 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 
+use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\MinutesRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Minutes random generator")]
 #[CoversClass(MinutesGenerator::class)]
+#[UsesClass(Minutes::class)]
 class MinutesTest extends TestCase
 {
     #[TestDox("generates a random minutes value.")]
@@ -28,6 +31,6 @@ class MinutesTest extends TestCase
         );
 
         // Act & Assert
-        $this->assertIsInt($generator->generate());
+        $this->assertInstanceOf(Minutes::class, $generator->generate());
     }
 }

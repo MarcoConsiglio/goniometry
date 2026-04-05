@@ -122,9 +122,7 @@ class WithAngleFakerTest extends TestCase
         $minutes = $this->randomMinutes();
 
         // Assert
-        $this->assertIsInt($minutes);
-        $this->assertGreaterThanOrEqual(0, $minutes);
-        $this->assertLessThan(Minutes::MAX, $minutes);
+        $this->assertInstanceOf(Minutes::class, $minutes);
     }
 
     #[TestDox("can return a random seconds value of type float.")]

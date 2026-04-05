@@ -77,7 +77,7 @@ trait WithAngleFaker
     /**
      * Return a random minutes value.
      */
-    public function randomMinutes(int $min = 0, int $max = Minutes::MAX - 1): int
+    public function randomMinutes(int $min = 0, int $max = Minutes::MAX - 1): Minutes
     {
         return new MinutesGenerator(
             self::$faker,
