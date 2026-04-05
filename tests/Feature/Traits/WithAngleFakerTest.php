@@ -22,6 +22,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianG
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
@@ -60,6 +61,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(MinutesGenerator::class)]
 #[UsesClass(MinutesValidator::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
+#[UsesClass(NegativeRadianGenerator::class)]
+#[UsesClass(NegativeRadianValidator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(NegativeSexagesimalGenerator::class)]
@@ -73,6 +76,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
 #[UsesClass(RadianValidator::class)]
+#[UsesClass(RelativeAngleGenerator::class)]
+#[UsesClass(RelativeRadianGenerator::class)]
+#[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(RelativeSexagesimalGenerator::class)]
@@ -85,10 +91,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SexagesimalGenerator::class)]
-#[UsesClass(NegativeRadianGenerator::class)]
-#[UsesClass(NegativeRadianValidator::class)]
-#[UsesClass(RelativeRadianGenerator::class)]
-#[UsesClass(RelativeRadianValidator::class)]
 class WithAngleFakerTest extends TestCase
 {
     use WithAngleFaker;

@@ -19,6 +19,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
@@ -104,12 +105,16 @@ trait WithAngleFaker
     /**
      * Return a random Angle, whether positive or negative.
      */
-    public function randomAngle(float $min = 0, float $max = Degrees::MAX): Angle
-    {
-        return $this->faker->randomElement([
-            $this->positiveRandomAngle($min, $max),
-            $this->negativeRandomAngle($min, $max)
-        ]);
+    public function randomAngle(
+        float $min = -Degrees::MAX, 
+        float $max = Degrees::MAX,
+        int $precision = PHP_FLOAT_DIG    
+    ): Angle {
+        return new RelativeAngleGenerator(
+            self::$faker,
+            new RelativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
