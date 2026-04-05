@@ -159,12 +159,7 @@ trait WithAngleFaker
             new RelativeSexadecimalValidator,
             new SexadecimalRange($min, $max)
         )->generate($precision);
-        $sign = $sexagesimal_values->direction === Direction::CLOCKWISE ?
-            '-' : '';
-        $degrees = $sexagesimal_values->degrees;
-        $minutes = $sexagesimal_values->minutes;
-        $seconds = $sexagesimal_values->seconds;
-        return "{$sign}{$degrees} {$minutes} {$seconds}";
+        return "{$sexagesimal_values}";
     }
 
     /**
