@@ -1,15 +1,18 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Random\DegreesRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The Degrees random generator")]
 #[CoversClass(DegreesGenerator::class)]
+#[UsesClass(Degrees::class)]
 class DegreesTest extends TestCase
 {
     #[TestDox("generates a random degrees value.")]
@@ -28,6 +31,6 @@ class DegreesTest extends TestCase
         );
 
         // Act & Assert
-        $this->assertIsInt($generator->generate());
+        $this->assertInstanceOf(Degrees::class, $generator->generate());
     }
 }

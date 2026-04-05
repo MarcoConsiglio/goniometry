@@ -65,7 +65,7 @@ trait WithAngleFaker
     /**
      * Return a random degrees value.
      */
-    public function randomDegrees(int $min = 0, int $max = Degrees::MAX - 1): int
+    public function randomDegrees(int $min = 0, int $max = Degrees::MAX - 1): Degrees
     {
         return new DegreesGenerator(
             self::$faker,
