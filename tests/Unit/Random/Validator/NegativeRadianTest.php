@@ -1,15 +1,16 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
-use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[CoversClass(PositiveRadian::class)]
+#[CoversClass(NegativeRadian::class)]
 #[UsesClass(RadianRange::class)]
-class PositiveRadianTest extends FloatValidatorTestCase
+class NegativeRadianTest extends FloatValidatorTestCase
 {
     public function test_validate(): void
     {
@@ -25,87 +26,88 @@ class PositiveRadianTest extends FloatValidatorTestCase
         $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
-         * $min < 0
-         * $max < 0
+         * $min ≥ 0
+         * $max ≥ 0
          */
         // Arrange
-        $this->setRange(-1, -1);
+        $this->setRange(0, 0);
+        
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), $this->allowedMax());
+        
+        /**
+         * $min ≤ -2π
+         * $max ≤ -2π
+         */
+        // Arrange
+        $this->setRange(-Radian::MAX - 1, -Radian::MAX - 1);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
-         * $min < 0
-         * 0 ≤ $max < 2π
+         * -2π < $min < 0
+         * $max ≤ -2π 
          */
         // Arrange
-        $this->setRange(-1, RadianRange::max());
+        $this->setRange(-3.141593, -Radian::MAX - 1);
 
         // Act & Assert
-        $this->testValidator($this->allowedMin(), RadianRange::max());
+        $this->testValidator(-3.141593, $this->allowedMax());
 
         /**
-         * 0 ≤ $min < 2π
-         * $max < 0
+         * $min ≤ -2π 
+         * -2π < $max < 0
          */
         // Arrange
-        $this->setRange($this->allowedMin(), -1);
+        $this->setRange(-Radian::MAX - 1, -3.141593);
+
+        // Act & Assert
+        $this->testValidator($this->allowedMin(), -3.141593);
+
+        /**
+         * $min ≥ 0
+         * $max ≥ 0
+         */
+        // Arrange
+        $this->setRange(1, 1);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), $this->allowedMax());
 
         /**
-         * $min ≥ 2π
-         * $max ≥ 2π
+         * $min ≥ 0
+         * -2π < $max < 0
          */
         // Arrange
-        $this->setRange(Radian::MAX + 1, Radian::MAX + 1);
+        $this->setRange(1, -3.141593);
 
         // Act & Assert
-        $this->testValidator($this->allowedMin(), $this->allowedMax());
+        $this->testValidator($this->allowedMin(), -3.141593);
 
         /**
-         * 0 ≤ $min < 2π
-         * $max ≥ 2π
+         * -2π < $min < 0
+         * $max ≥ 0
          */
         // Arrange
-        $this->setRange($this->allowedMin(), Radian::MAX + 1);
+        $this->setRange(-3.141593, 1);
 
         // Act & Assert
-        $this->testValidator($this->allowedMin(), $this->allowedMax());
-
-        /**
-         * $min ≥ 2π
-         * 0 ≤ $max < 2π
-         */
-        // Arrange
-        $this->setRange(Radian::MAX + 1, $this->allowedMax());
-
-        // Act & Assert
-        $this->testValidator($this->allowedMin(), $this->allowedMax());
-
-        /**
-         * 0 ≤ $min < 2π
-         * 0 ≤ $max < 2π
-         */
-        $this->setRange(1.570796, 3.141593);
-
-        // Act & Assert
-        $this->testValidator(1.570796, 3.141593);
+        $this->testValidator(-3.141593, $this->allowedMax());
     }
 
     protected function setValidator(): void
     {
-        $this->validator = new PositiveRadian;
+        $this->validator = new NegativeRadian;
     }
 
     protected function allowedMin(): float
     {
-        return 0.0;
+        return RadianRange::min();
     }
 
     protected function allowedMax(): float
     {
-        return RadianRange::max();
+        return NextFloat::beforeZero();
     }
 }
