@@ -152,7 +152,7 @@ trait WithAngleFaker
      */
     public function randomDirection(): Direction
     {
-        return $this->faker->randomElement([
+        return self::$faker->randomElement([
             Direction::COUNTER_CLOCKWISE,
             Direction::CLOCKWISE
         ]);
