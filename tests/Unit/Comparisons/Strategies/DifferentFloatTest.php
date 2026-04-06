@@ -68,8 +68,8 @@ class DifferentFloatTest extends TestCase
          * Different
          */
         // Arrange
-        $alfa = $this->randomAngle(0, NextFloat::before(180));
-        $beta = $this->randomSexadecimal(min: 180, precision: 1);
+        $alfa = $this->positiveRandomAngle(max: NextFloat::before(180));
+        $beta = $this->positiveRandomSexadecimal(min: 180, precision: 1);
 
         // Act & Assert
         $this->assertTrue(
