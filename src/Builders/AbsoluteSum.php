@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders;
 
+use BcMath\Number;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
@@ -35,6 +36,11 @@ class AbsoluteSum extends SumBuilder
         $this->decimal_sum = new SexadecimalDegrees(
             $alfa->plus($beta)->plus(Degrees::MAX)
         );
+        if ($this->decimal_sum->value->isNegative()) {
+            $this->decimal_sum = new SexadecimalDegrees(
+                new Number(360)->sub($this->decimal_sum->value)
+            );
+        }
     }
 
     /**

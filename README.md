@@ -314,6 +314,12 @@ $beta = Angle::createFromDecimal(-270);
 $gamma = Angle::absSum($alfa, $beta); // 180° + (-270°) =
 (string) $gamma;                      // 270° 0' 0"
 ```
+```php
+$alfa = Angle::createFromDecimal(-180);
+$beta = Angle::createFromDecimal(-270);
+$gamma = Angle::absSum($alfa, $beta); // (-180°) + (-270°) =
+(string) $gamma;                      // 270° 0' 0"
+```
 # FakerPHP support <a id="faker_php"></a>
 This library provides support to [FakerPHP](https://fakerphp.org/) through the `WithAngleFaker` trait. 
 
