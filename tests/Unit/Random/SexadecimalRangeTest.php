@@ -2,8 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
-use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -17,7 +17,7 @@ class SexadecimalRangeTest extends TestCase
     {
         // Act & Assert
         $this->assertSame(
-            NextFloat::before(Seconds::MAX),
+            NextFloat::before(Degrees::MAX),
             SexadecimalRange::max()
         );
     }
@@ -27,7 +27,7 @@ class SexadecimalRangeTest extends TestCase
     {
         // Act & Assert
         $this->assertSame(
-            NextFloat::after(-Seconds::MAX),
+            NextFloat::after(-Degrees::MAX),
             SexadecimalRange::min()
         );
     }
