@@ -18,30 +18,44 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\MockObject\Stub;
 
 #[TestDox("The FloatType ")]
 #[CoversClass(FloatType::class)]
 #[UsesClass(Comparison::class)]
-#[UsesClass(Equal::class)]
-#[UsesClass(Different::class)]
-#[UsesClass(Greater::class)]
-#[UsesClass(GreaterOrEqual::class)]
-#[UsesClass(Lesser::class)]
-#[UsesClass(LesserOrEqual::class)]
 #[UsesClass(ComparisonStrategy::class)]
-#[UsesClass(EqualFloat::class)]
+#[UsesClass(Different::class)]
 #[UsesClass(DifferentFloat::class)]
+#[UsesClass(Equal::class)]
+#[UsesClass(EqualFloat::class)]
+#[UsesClass(Greater::class)]
 #[UsesClass(GreaterFloat::class)]
+#[UsesClass(GreaterOrEqual::class)]
 #[UsesClass(GreaterOrEqualFloat::class)]
+#[UsesClass(Lesser::class)]
 #[UsesClass(LesserFloat::class)]
+#[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqualFloat::class)]
+#[UsesClass(NegativeSexadecimalGenerator::class)]
+#[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(RelativeSexadecimalGenerator::class)]
+#[UsesClass(RelativeSexadecimalValidator::class)]
+#[UsesClass(SexadecimalValidator::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class FloatTypeTest extends InputTypeTestCase
 {
