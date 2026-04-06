@@ -61,8 +61,8 @@ class GreaterFloatTest extends TestCase
          * Greater
          */
         // Arrange
-        $alfa = $this->randomAngle(min: 180);
-        $beta = $this->positiveRandomAngle(max: NextFloat::before(180))->toFloat();
+        $alfa = $this->positiveRandomAngle(min: 180);
+        $beta = $this->randomAngle(min: NextFloat::after(-180), max: NextFloat::before(180))->toFloat();
 
         // Act & Assert
         $this->assertTrue(new GreaterFloat($alfa, $beta)->compare(),
@@ -73,8 +73,8 @@ class GreaterFloatTest extends TestCase
          * Lesser
          */
         // Arrange
-        $alfa = $this->randomAngle(max: 180 - self::SSN);
-        $beta = $this->randomAngle(min: 180)->toFloat();
+        $alfa = $this->positiveRandomAngle(max: NextFloat::before(180));
+        $beta = $this->positiveRandomAngle(min: 180)->toFloat();
 
         // Act & Assert
         $this->assertFalse(new GreaterFloat($alfa, $beta)->compare(),
