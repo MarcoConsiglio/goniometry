@@ -22,16 +22,16 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The DifferentInt comparison strategy")]
 #[CoversClass(DifferentInt::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromSexagesimal::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(EqualInt::class)]
-#[UsesClass(Degrees::class)]
+#[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-#[UsesClass(DegreesGenerator::class)]
-#[UsesClass(DegreesValidator::class)]
 class DifferentIntTest extends TestCase
 {
     protected string $comparison = '≠';
