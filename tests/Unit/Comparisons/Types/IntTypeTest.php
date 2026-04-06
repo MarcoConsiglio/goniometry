@@ -16,29 +16,35 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
+use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\MockObject\Stub;
 
 #[TestDox("The IntType ")]
 #[CoversClass(IntType::class)]
 #[UsesClass(Comparison::class)]
-#[UsesClass(Equal::class)]
-#[UsesClass(Different::class)]
-#[UsesClass(Greater::class)]
-#[UsesClass(GreaterOrEqual::class)]
-#[UsesClass(Lesser::class)]
 #[UsesClass(ComparisonStrategy::class)]
-#[UsesClass(EqualInt::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
+#[UsesClass(Different::class)]
 #[UsesClass(DifferentInt::class)]
+#[UsesClass(Equal::class)]
+#[UsesClass(EqualInt::class)]
+#[UsesClass(Greater::class)]
 #[UsesClass(GreaterInt::class)]
+#[UsesClass(GreaterOrEqual::class)]
 #[UsesClass(GreaterOrEqualInt::class)]
+#[UsesClass(Lesser::class)]
 #[UsesClass(LesserInt::class)]
 #[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqualInt::class)]
@@ -56,7 +62,7 @@ class IntTypeTest extends InputTypeTestCase
     {
         parent::setUp();
         $this->alfa = $this->createStub(Angle::class);
-        $this->beta = $this->randomDegrees();
+        $this->beta = $this->randomDegrees()->value();
         $this->input_type = new IntType($this->beta);
     }
 
