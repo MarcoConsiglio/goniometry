@@ -4,6 +4,12 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
@@ -11,8 +17,8 @@ use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The SexagesimalDegrees class")]
 #[CoversClass(SexagesimalDegrees::class)]
@@ -20,6 +26,14 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
 #[UsesTrait(WithAngleFaker::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(MinutesGenerator::class)]
+#[UsesClass(SecondsGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
+#[UsesClass(MinutesGenerator::class)]
+#[UsesClass(MinutesValidator::class)]
+#[UsesClass(SecondsGenerator::class)]
+#[UsesClass(SecondsValidator::class)]
 class SexagesimalDegreesTest extends TestCase
 {
     protected SexagesimalDegrees $sexagesimal;
@@ -29,9 +43,9 @@ class SexagesimalDegreesTest extends TestCase
     {
         parent::setUp();
         $this->sexagesimal = new SexagesimalDegrees(
-            new Degrees($this->randomDegrees()),
-            new Minutes($this->randomMinutes()),
-            new Seconds($this->randomSeconds()),
+            new Degrees($this->randomDegrees()->value()),
+            new Minutes($this->randomMinutes()->value()),
+            new Seconds($this->randomSeconds()->value()),
             $this->randomDirection()
         );
     }
