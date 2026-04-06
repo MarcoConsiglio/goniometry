@@ -23,17 +23,17 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[TestDox("The SexagesimalDegrees class")]
 #[CoversClass(SexagesimalDegrees::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(Minutes::class)]
-#[UsesClass(Seconds::class)]
-#[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(DegreesGenerator::class)]
-#[UsesClass(MinutesGenerator::class)]
-#[UsesClass(SecondsGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(MinutesGenerator::class)]
 #[UsesClass(MinutesGenerator::class)]
 #[UsesClass(MinutesValidator::class)]
+#[UsesClass(Seconds::class)]
+#[UsesClass(SecondsGenerator::class)]
 #[UsesClass(SecondsGenerator::class)]
 #[UsesClass(SecondsValidator::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class SexagesimalDegreesTest extends TestCase
 {
     protected SexagesimalDegrees $sexagesimal;
