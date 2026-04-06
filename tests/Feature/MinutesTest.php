@@ -33,7 +33,7 @@ class MinutesTest extends TestCase
     }
 
     #[TestDox("stores the measurement of minutes.")]
-    public function test_degrees_value(): void
+    public function test_minutes_value(): void
     {
         // Arrange
         $expected_value = $this->randomMinutes()->value();
@@ -55,7 +55,7 @@ class MinutesTest extends TestCase
     }
 
     #[TestDox("can be compared with another instance of the same type.")]
-    public function test_comparison_between_degrees(): void
+    public function test_comparison_between_minutes(): void
     {
         /**
          * Equal comparison
