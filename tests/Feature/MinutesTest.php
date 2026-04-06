@@ -2,15 +2,20 @@
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The Minutes type")]
 #[CoversClass(Minutes::class)]
 #[UsesTrait(WithAngleFaker::class)]
+#[UsesClass(MinutesGenerator::class)]
+#[UsesClass(MinutesValidator::class)]
 class MinutesTest extends TestCase
 {
     protected Minutes $a;
@@ -22,16 +27,16 @@ class MinutesTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->a = new Minutes($this->randomMinutes(min: 30));
+        $this->a = $this->randomMinutes(min: 30);
         $this->b = clone $this->a;
-        $this->c = new Minutes($this->randomMinutes(max: 29));
+        $this->c = $this->randomMinutes(max: 29);
     }
 
     #[TestDox("stores the measurement of minutes.")]
     public function test_degrees_value(): void
     {
         // Arrange
-        $expected_value = $this->randomMinutes();
+        $expected_value = $this->randomMinutes()->value();
         $degrees = new Minutes($expected_value);
 
         // Act & Assert
@@ -42,7 +47,7 @@ class MinutesTest extends TestCase
     public function test_cast_to_string(): void
     {
         // Arrange
-        $expected_value = $this->randomMinutes();
+        $expected_value = $this->randomMinutes()->value();
         $minutes = new Minutes($expected_value);
 
         // Act & Assert
