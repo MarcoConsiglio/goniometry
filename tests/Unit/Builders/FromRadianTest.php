@@ -55,12 +55,12 @@ class FromRadianTest extends TestCase
         $radian = $this->randomRadian(precision: 1);
 
         // Act
-        $angle = Angle::createFromRadian($radian);
+        $angle = Angle::createFromRadian($radian->value());
 
         // Assert
         $this->assertEquals(
-            $radian->value(1),
-            $angle->toRadian(1)
+            $radian->value(),
+            $angle->toRadian()
         );
     }
 
@@ -75,8 +75,8 @@ class FromRadianTest extends TestCase
 
         // Assert
         $this->assertEquals(
-            $radian_value->value(1),
-            $angle->toRadian(1)
+            $radian_value->value(),
+            $angle->toRadian()
         );
     }
 }
