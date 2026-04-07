@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Traits;
 
-use Deprecated;
 use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -47,12 +46,6 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 trait WithAngleFaker
 {
     use WithFakerHelpers;
-    
-    /**
-     * The Smallest Significant Number.
-     */
-    #[Deprecated("use NextFloat class instead", "v3.1.1")]
-    public const float SSN = 0.0000000000001;
 
     /**
      * Return a random integer to be used as `float` rounding precision between
