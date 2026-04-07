@@ -61,8 +61,11 @@ class CastTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->precision = $this->randomPrecision() - 2;
-        $this->angle = $this->randomAngle($this->precision + 2);
+        $this->precision = $this->randomPrecision();
+        if ($this->precision >= 2) $this->precision -= 2;
+        $this->angle = $this->randomAngle(
+            precision: $this->precision < 2 ? $this->precision + 2 : $this->precision
+        );
         $this->sexadecimal = $this->angle->toSexadecimalDegrees();
     }
 
