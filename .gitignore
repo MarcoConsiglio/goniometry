@@ -2,5 +2,4 @@
 .phpunit.cache
 .vscode
 composer.lock
-testbook.*
 vendor
