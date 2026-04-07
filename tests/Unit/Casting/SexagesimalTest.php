@@ -12,8 +12,10 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
+#[TestDox("The Sexagesimal class")]
 #[CoversClass(Sexagesimal::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(FromSexadecimal::class)]
@@ -25,6 +27,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexagesimalDegrees::class)]
 class SexagesimalTest extends TestCase
 {
+    #[TestDox("normalize precision to be inside 0 to PHP_FLOAT_DIG range.")]
     public function test_normalize_precision(): void
     {
         /**
