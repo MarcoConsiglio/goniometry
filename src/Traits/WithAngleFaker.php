@@ -246,8 +246,8 @@ trait WithAngleFaker
      * Return a random negative sexadecimal value.
      */
     public function negativeRandomSexadecimal(
-        float $min = 0.0, 
-        float $max = Degrees::MAX, 
+        float $min = -Degrees::MAX, 
+        float $max = 0.0, 
         int $precision = PHP_FLOAT_DIG
     ): float {
         return new NegativeSexadecimalGenerator(

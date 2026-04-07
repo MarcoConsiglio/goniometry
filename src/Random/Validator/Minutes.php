@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Integer\Validator;
-use MarcoConsiglio\Goniometry\Minutes as AngleMinutes;
+use MarcoConsiglio\Goniometry\Random\MinutesRange;
 
 class Minutes extends Validator
 {
@@ -30,8 +30,8 @@ class Minutes extends Validator
      */
     protected function avoidExceedingValues(int &$min, int &$max): void
     {
-        if ($this->greaterThanOrEqual($min, AngleMinutes::MAX)) $this->setMin($min);        
-        if ($this->greaterThanOrEqual($max, AngleMinutes::MAX)) $this->setMax($max);
+        if ($this->greaterThanOrEqual($min, MinutesRange::MAX)) $this->setMin($min);        
+        if ($this->greaterThanOrEqual($max, MinutesRange::MAX)) $this->setMax($max);
     }
 
     /**
@@ -39,7 +39,7 @@ class Minutes extends Validator
      */
     protected function setMin(int &$value): void
     {
-        $value = 0;
+        $value = MinutesRange::MIN;
     }
 
     /**
@@ -47,6 +47,6 @@ class Minutes extends Validator
      */
     protected function setMax(int &$value): void
     {
-        $value = AngleMinutes::MAX - 1;
+        $value = MinutesRange::MAX;
     }
 }

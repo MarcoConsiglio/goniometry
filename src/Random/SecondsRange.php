@@ -17,7 +17,7 @@ class SecondsRange extends FloatRange
      * @var float MAX
      */
     #[Deprecated("use max() method instead", "")]
-    public const float MAX = PHP_FLOAT_MAX;
+    public const float MAX = 60.0;
 
     /**
      * The minimum number allowed.

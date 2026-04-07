@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Seconds as AngleSeconds;
 
 class Seconds extends FloatValidator
@@ -41,7 +42,7 @@ class Seconds extends FloatValidator
      */
     protected function setMin(float &$value): void
     {
-        $value = 0.0;
+        $value = SecondsRange::MIN;
     }
 
     /**
@@ -49,6 +50,6 @@ class Seconds extends FloatValidator
      */
     protected function setMax(float &$value): void
     {
-        $value = NextFloat::before(AngleSeconds::MAX);
+        $value = SecondsRange::max();
     }
 }
