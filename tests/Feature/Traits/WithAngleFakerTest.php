@@ -29,6 +29,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
@@ -56,6 +57,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
+#[UsesClass(FloatValidator::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(MinutesGenerator::class)]
@@ -75,7 +77,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Radian::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
-#[UsesClass(FloatValidator::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeRadianGenerator::class)]
 #[UsesClass(RelativeRadianValidator::class)]
@@ -85,6 +86,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SecondsGenerator::class)]
+#[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalRange::class)]

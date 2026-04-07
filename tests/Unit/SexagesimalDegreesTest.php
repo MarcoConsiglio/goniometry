@@ -7,6 +7,7 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
@@ -32,6 +33,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Seconds::class)]
 #[UsesClass(SecondsGenerator::class)]
 #[UsesClass(SecondsGenerator::class)]
+#[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class SexagesimalDegreesTest extends TestCase

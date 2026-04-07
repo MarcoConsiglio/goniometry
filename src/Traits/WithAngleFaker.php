@@ -158,7 +158,7 @@ trait WithAngleFaker
         float $min = -Degrees::MAX, 
         float $max = Degrees::MAX,
         int $precision = PHP_FLOAT_DIG
-    ) {
+    ): string {
         $sexagesimal_values = new RelativeSexagesimalGenerator(
             self::$faker,
             new RelativeSexadecimalValidator,

@@ -70,6 +70,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
@@ -113,6 +114,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(EqualString::class)]
 #[UsesClass(FloatComparisonStrategy::class)]
 #[UsesClass(FloatType::class)]
+#[UsesClass(FloatValidator::class)]
 #[UsesClass(FromRadian::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
@@ -152,7 +154,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Radian::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
-#[UsesClass(FloatValidator::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeRadianGenerator::class)]
 #[UsesClass(RelativeRadianValidator::class)]
@@ -165,6 +166,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RoundToSexadecimal::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SecondsGenerator::class)]
+#[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalValidator::class)]

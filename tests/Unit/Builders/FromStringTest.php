@@ -13,6 +13,7 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
@@ -28,23 +29,24 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The FromString builder")]
 #[CoversClass(FromString::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Degrees::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
+#[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Minutes::class)]
-#[UsesClass(Seconds::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(MinutesGenerator::class)]
+#[UsesClass(MinutesValidator::class)]
 #[UsesClass(NoMatchException::class)]
 #[UsesClass(RegExFailureException::class)]
+#[UsesClass(Seconds::class)]
+#[UsesClass(Seconds::class)]
+#[UsesClass(SecondsGenerator::class)]
+#[UsesClass(SecondsRange::class)]
+#[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-#[UsesClass(Degrees::class)]
-#[UsesClass(Minutes::class)]
-#[UsesClass(Seconds::class)]
-#[UsesClass(DegreesValidator::class)]
-#[UsesClass(MinutesValidator::class)]
-#[UsesClass(SecondsValidator::class)]
-#[UsesClass(DegreesGenerator::class)]
-#[UsesClass(MinutesGenerator::class)]
-#[UsesClass(SecondsGenerator::class)]
 class FromStringTest extends TestCase
 {
     #[TestDox("can create a positive angle from a string value.")]

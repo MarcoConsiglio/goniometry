@@ -2,10 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Random\Generator\Minutes as GeneratorMinutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as GeneratorSeconds;
-use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
@@ -20,6 +18,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(GeneratorSeconds::class)]
 #[UsesClass(SecondsValidator::class)]
+#[UsesClass(SecondsRange::class)]
 class SecondsTest extends TestCase
 {
     protected Seconds $a;
