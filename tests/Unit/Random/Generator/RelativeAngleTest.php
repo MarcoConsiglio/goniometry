@@ -47,7 +47,8 @@ class RelativeAngleTest extends GeneratorTestCase
          * Positive range
          */
         // Arrange
-        $validator = $this->createMock(RelativeSexadecimalValidator::class);
+        $validator = $this->getMockBuilder(RelativeSexadecimalValidator::class);
+        $validator = $validator->onlyMethods(["validate"])->getMock();
         $validator->expects($this->once())->method("validate");
         $generator = new RelativeAngleGenerator(
             self::$faker,
@@ -62,7 +63,8 @@ class RelativeAngleTest extends GeneratorTestCase
          * Negative range
          */
         // Arrange
-        $validator = $this->createMock(RelativeSexadecimalValidator::class);
+        $validator = $this->getMockBuilder(RelativeSexadecimalValidator::class);
+        $validator = $validator->onlyMethods(["validate"])->getMock();
         $validator->expects($this->once())->method("validate");
         $generator = new RelativeAngleGenerator(
             self::$faker,
