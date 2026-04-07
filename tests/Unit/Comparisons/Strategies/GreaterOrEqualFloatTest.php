@@ -87,8 +87,8 @@ class GreaterOrEqualFloatTest extends TestCase
          * Lesser
          */
         // Arrange
-        $alfa = $this->randomAngle(max: 180 - self::SSN);
-        $beta = $this->randomAngle(min: 180)->toFloat();
+        $alfa = $this->randomAngle(NextFloat::after(-180), NextFloat::before(180));
+        $beta = $this->positiveRandomAngle(min: 180)->toFloat();
 
         // Act & Assert
         $this->assertFalse(new GreaterOrEqualFloat($alfa, $beta)->compare(),

@@ -34,11 +34,11 @@ class AbsoluteSum extends SumBuilder
         $alfa = $this->alfa->toSexadecimalDegrees()->value;
         $beta = $this->beta->toSexadecimalDegrees()->value;
         $this->decimal_sum = new SexadecimalDegrees(
-            $alfa->plus($beta)->plus(Degrees::MAX)
+            $alfa->plus($beta)
         );
         if ($this->decimal_sum->value->isNegative()) {
             $this->decimal_sum = new SexadecimalDegrees(
-                new Number(360)->sub($this->decimal_sum->value)
+                new Number(Degrees::MAX)->add($this->decimal_sum->value)
             );
         }
     }

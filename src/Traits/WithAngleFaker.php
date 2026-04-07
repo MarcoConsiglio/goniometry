@@ -136,8 +136,8 @@ trait WithAngleFaker
      * Return a negative random `Angle`.
      */
     public function negativeRandomAngle(
-        float $min = 0.0, 
-        float $max = Degrees::MAX,
+        float $min = -Degrees::MAX, 
+        float $max = 0.0,
         int $precision = PHP_FLOAT_DIG
     ): Angle {
         return new NegativeAngleGenerator(
