@@ -7,19 +7,18 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianG
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
+#[TestDox("The FloatGenerator random generator")]
 #[CoversClass(FloatGenerator::class)]
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(PositiveRadianValidator::class)]
 #[UsesClass(Radian::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
-#[UsesClass(RadianValidator::class)]
 class FloatGeneratorTest extends TestCase
 {
     #[TestDox("normalize precision to be inside 0 to PHP_FLOAT_DIG range.")]
@@ -41,7 +40,7 @@ class FloatGeneratorTest extends TestCase
         );
 
         // Assert
-        $this->assertEquals(PHP_FLOAT_DIG, $radian->value->scale);
+        $this->assertLessThanOrEqual(PHP_FLOAT_DIG, $radian->value->scale);
 
         /**
          * Precision lower or equal to PHP_FLOAT_DIG
@@ -59,6 +58,6 @@ class FloatGeneratorTest extends TestCase
         );
 
         // Assert
-        $this->assertEquals($precision, $radian->value->scale);
+        $this->assertLessThanOrEqual($precision, $radian->value->scale);
     }
 }

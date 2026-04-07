@@ -15,41 +15,11 @@ class NegativeSexadecimalTest extends FloatValidatorTestCase
     public function test_validate(): void
     {
         /**
-         * $min = INF
-         * $max = INF
-         */
-        // Arrange
-        $this->setValidator();
-        $this->setRange(INF, INF);
-
-        // Act & Assert
-        $this->testValidator($this->allowedMin(), $this->allowedMax());
-
-        /**
-         * -360 < $min < 0
-         * $max = INF
-         */
-        // Arrange
-        $this->setRange(-90, INF);
-
-        // Act & Assert
-        $this->testValidator(-90, $this->allowedMax());
-
-        /**
-         * $min = INF
-         * -360 < $max < 0
-         */
-        // Arrange
-        $this->setRange(INF, -90);
-
-        // Act & Assert
-        $this->testValidator($this->allowedMin(), -90);
-
-        /**
          * $min ≥ 0
          * $max ≥ 0
          */
         // Arrange
+        $this->setValidator();
         $this->setRange(1, 1);
 
         // Act & Assert

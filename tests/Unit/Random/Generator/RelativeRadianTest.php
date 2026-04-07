@@ -10,7 +10,6 @@ use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian as NegativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 
@@ -21,7 +20,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RadianRange::class)]
 #[UsesClass(NegativeRadianValidator::class)]
 #[UsesClass(PositiveRadianValidator::class)]
-#[UsesClass(RadianValidator::class)]
 #[UsesClass(RelativeRadianValidator::class)]
 class RelativeRadianTest extends GeneratorTestCase
 {

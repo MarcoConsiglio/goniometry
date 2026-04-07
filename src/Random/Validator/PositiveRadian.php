@@ -3,9 +3,8 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
-use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
 
-class PositiveRadian extends RadianValidator
+class PositiveRadian extends FloatValidator
 {
     public function validate(float &$min, float &$max): void
     {

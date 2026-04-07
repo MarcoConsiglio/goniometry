@@ -32,7 +32,7 @@ class SexadecimalDegreesTest extends TestCase
     public function test_value(): void
     {
         // Arrange
-        $value = $this->randomSexadecimal();
+        $value = $this->randomSexadecimal(precision: 1);
         $sexadecimal = new SexadecimalDegrees($value);
 
         // Act & Assert

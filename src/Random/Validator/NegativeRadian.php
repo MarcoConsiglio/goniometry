@@ -4,9 +4,8 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
-use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
 
-class NegativeRadian extends RadianValidator
+class NegativeRadian extends FloatValidator
 {
     public function validate(float &$min, float &$max): void
     {

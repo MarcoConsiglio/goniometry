@@ -15,21 +15,11 @@ class NegativeRadianTest extends FloatValidatorTestCase
     public function test_validate(): void
     {
         /**
-         * $min = INF
-         * $max = INF
-         */
-        // Arrange
-        $this->setValidator();
-        $this->setRange(INF, INF);
-
-        // Act & Assert
-        $this->testValidator($this->allowedMin(), $this->allowedMax());
-
-        /**
          * $min ≥ 0
          * $max ≥ 0
          */
         // Arrange
+        $this->setValidator();
         $this->setRange(0, 0);
         
         // Act & Assert

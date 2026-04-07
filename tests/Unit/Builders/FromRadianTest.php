@@ -14,7 +14,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianG
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
-use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
@@ -36,7 +36,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Radian::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
-#[UsesClass(RadianValidator::class)]
+#[UsesClass(FloatValidator::class)]
 #[UsesClass(RelativeRadianGenerator::class)]
 #[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(Round::class)]

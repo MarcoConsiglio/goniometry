@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
 
-abstract class Radian extends Validator
+abstract class FloatValidator extends Validator
 {
     protected function avoidInvalidFloats(float &$min, float &$max): void
     {

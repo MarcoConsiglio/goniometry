@@ -8,7 +8,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\Radian as GeneratorRadian;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian as NegativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -23,7 +23,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(GeneratorRadian::class)]
 #[UsesClass(RadianRange::class)]
 #[UsesClass(PositiveRadianValidator::class)]
-#[UsesClass(RadianValidator::class)]
+#[UsesClass(FloatValidator::class)]
 #[UsesClass(NegativeRadianGenerator::class)]
 #[UsesClass(NegativeRadianValidator::class)]
 class RadianTest extends TestCase

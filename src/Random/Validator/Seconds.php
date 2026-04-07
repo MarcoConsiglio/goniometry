@@ -5,7 +5,7 @@ use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
 use MarcoConsiglio\Goniometry\Seconds as AngleSeconds;
 
-class Seconds extends Validator
+class Seconds extends FloatValidator
 {
     public function validate(float &$min, float &$max): void
     {
@@ -13,12 +13,6 @@ class Seconds extends Validator
         $this->avoidNegativeValues($min, $max);
         $this->avoidExceedingValues($min, $max);
         $this->swap($min, $max);
-    }
-
-    protected function avoidInvalidFloats(float &$min, float &$max): void
-    {
-        if ($this->notAllowedFloat($min)) $this->setMin($min);
-        if ($this->notAllowedFloat($max)) $this->setMax($max);
     }
 
     protected function avoidNegativeValues(float &$min, float &$max): void

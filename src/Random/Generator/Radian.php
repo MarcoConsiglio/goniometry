@@ -2,16 +2,15 @@
 namespace MarcoConsiglio\Goniometry\Random\Generator;
 
 use Faker\Generator;
-use MarcoConsiglio\FakerPhpNumberHelpers\Random\Generator as RandomGenerator;
 use MarcoConsiglio\Goniometry\Radian as RadianObject;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
-use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 
 abstract class Radian extends FloatGenerator
 {
     public function __construct(
         Generator $generator, 
-        RadianValidator $validator,
+        FloatValidator $validator,
         protected RadianRange $range
     ) {
         return parent::__construct($generator, $validator);
