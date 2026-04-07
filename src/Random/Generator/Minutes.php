@@ -7,8 +7,14 @@ use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Validator;
 use MarcoConsiglio\Goniometry\Minutes as MinutesObject;
 use MarcoConsiglio\Goniometry\Random\MinutesRange;
 
+/**
+ * The `Minutes` random generator.
+ */
 class Minutes extends Generator
 {
+    /**
+     * Construct the `Minutes` random generator.
+     */
     public function __construct(
         FakerGenerator $generator, 
         Validator $validator, 
@@ -17,6 +23,9 @@ class Minutes extends Generator
         return parent::__construct($generator, $validator);
     }
 
+    /**
+     * Generate a random value.
+     */
     public function generate(): MinutesObject
     {
         $this->validate();
@@ -25,6 +34,9 @@ class Minutes extends Generator
         ));
     }
 
+    /**
+     * Validate the random range.
+     */
     protected function validate(): void
     {
         $this->range->validate($this->validator);

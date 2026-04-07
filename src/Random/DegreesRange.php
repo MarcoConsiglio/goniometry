@@ -4,6 +4,9 @@ namespace MarcoConsiglio\Goniometry\Random;
 use MarcoConsiglio\FakerPhpNumberHelpers\IntRange;
 use MarcoConsiglio\Goniometry\Degrees;
 
+/**
+ * The `Degrees` random range.
+ */
 class DegreesRange extends IntRange
 {
     /**

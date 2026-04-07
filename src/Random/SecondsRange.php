@@ -6,6 +6,9 @@ use MarcoConsiglio\FakerPhpNumberHelpers\FloatRange;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Seconds;
 
+/**
+ * The `Seconds` random range.
+ */
 class SecondsRange extends FloatRange
 {
     /**

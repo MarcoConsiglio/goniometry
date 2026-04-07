@@ -7,6 +7,9 @@ use MarcoConsiglio\Goniometry\Seconds as AngleSeconds;
 
 class Seconds extends FloatValidator
 {
+    /**
+     * Validate the range.
+     */
     public function validate(float &$min, float &$max): void
     {
         $this->avoidInvalidFloats($min, $max);
@@ -15,23 +18,35 @@ class Seconds extends FloatValidator
         $this->swap($min, $max);
     }
 
+    /**
+     * Avoid negative values.
+     */
     protected function avoidNegativeValues(float &$min, float &$max): void
     {
         if ($this->isNegative($min)) $this->setMin($min);
         if ($this->isNegative($max)) $this->setMax($max);
     }
 
+    /**
+     * Avoid values ​​that go beyond the permitted limit.
+     */
     protected function avoidExceedingValues(float &$min, float &$max): void
     {
         if ($this->greaterThanOrEqual($min, AngleSeconds::MAX)) $this->setMin($min);        
         if ($this->greaterThanOrEqual($max, AngleSeconds::MAX)) $this->setMax($max);
     }
 
+    /**
+     * Set the minimum allowed value.
+     */
     protected function setMin(float &$value): void
     {
         $value = 0.0;
     }
 
+    /**
+     * Set the maximum allowed value.
+     */
     protected function setMax(float &$value): void
     {
         $value = NextFloat::before(AngleSeconds::MAX);

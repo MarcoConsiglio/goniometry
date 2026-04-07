@@ -3,6 +3,9 @@ namespace MarcoConsiglio\Goniometry\Random\Generator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\Random\Generator as RandomGenerator;
 
+/**
+ * A `float` number random generator.
+ */
 abstract class FloatGenerator extends RandomGenerator
 {
     /**

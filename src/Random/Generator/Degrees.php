@@ -7,8 +7,14 @@ use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Validator;
 use MarcoConsiglio\Goniometry\Degrees as DegreesObject;
 use MarcoConsiglio\Goniometry\Random\DegreesRange;
 
+/**
+ * The `Degrees` random generator.
+ */
 class Degrees extends Generator
 {
+    /**
+     * Construct the `Degrees` random generator.
+     */
     public function __construct(
         FakerGenerator $generator, 
         Validator $validator, 
@@ -17,6 +23,9 @@ class Degrees extends Generator
         return parent::__construct($generator, $validator);
     }
 
+    /**
+     * Generate a random value.
+     */
     public function generate(): DegreesObject
     {
         $this->validate();
@@ -27,6 +36,9 @@ class Degrees extends Generator
         ));
     }
 
+    /**
+     * Validate the random range.
+     */
     protected function validate(): void
     {
         $this->range->validate($this->validator);

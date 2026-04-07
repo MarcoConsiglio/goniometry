@@ -4,6 +4,9 @@ namespace MarcoConsiglio\Goniometry\Random;
 use MarcoConsiglio\FakerPhpNumberHelpers\IntRange;
 use MarcoConsiglio\Goniometry\Minutes;
 
+/**
+ * The `Minutes` random range.
+ */
 class MinutesRange extends IntRange
 {
     /**

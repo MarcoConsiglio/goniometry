@@ -8,6 +8,9 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianG
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 
+/**
+ * The `Radian` random generator for relative radian values.
+ */
 class RelativeRadian extends RadianGenerator
 {
     public function generate(int $precision = PHP_FLOAT_DIG): Radian

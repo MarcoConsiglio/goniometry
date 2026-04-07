@@ -6,6 +6,9 @@ use MarcoConsiglio\FakerPhpNumberHelpers\FloatRange;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Radian;
 
+/**
+ * The `Radian` random range.
+ */
 class RadianRange extends FloatRange
 {
     /**

@@ -56,7 +56,7 @@ trait WithAngleFaker
 
     /**
      * Return a random integer to be used as `float` rounding precision between
-     * 0 and PHP_FLOAT_DIG. 
+     * `0` and `PHP_FLOAT_DIG`. 
      */
     public function randomPrecision(): int
     {
@@ -64,7 +64,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random degrees value.
+     * Return a random `Degrees` value.
      */
     public function randomDegrees(int $min = 0, int $max = Degrees::MAX - 1): Degrees
     {
@@ -76,7 +76,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random minutes value.
+     * Return a random `Minutes` value.
      */
     public function randomMinutes(int $min = 0, int $max = Minutes::MAX - 1): Minutes
     {
@@ -88,7 +88,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random seconds value.
+     * Return a random `Seconds` value.
      */
     public function randomSeconds(
         float $min = 0, 
@@ -103,7 +103,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random Angle, whether positive or negative.
+     * Return a random relative `Angle`.
      */
     public function randomAngle(
         float $min = -Degrees::MAX, 
@@ -148,7 +148,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random angle direction.
+     * Return a random angle `Direction`.
      */
     public function randomDirection(): Direction
     {
@@ -190,7 +190,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return random sexagesimal values from a positive `Angle`.
+     * Return positive random sexagesimal.
      */
     public function positiveRandomSexagesimal(
         float $min = 0.0, 
@@ -205,7 +205,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return random sexagesimal values for a negative Angle.
+     * Return negative random sexagesimal values.
      */
     public function negativeRandomSexagesimal(
         float $min = -Degrees::MAX,
@@ -220,8 +220,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random sexadecimal value, from 0° to 360°,
-     * excluded 360°.
+     * Return a random sexadecimal value.
      */
     public function randomSexadecimal(
         float $min = -Degrees::MAX, 
@@ -236,8 +235,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random poisitve sexadecimal value, from 0° to 360°,
-     * excluded 360°.
+     * Return a random positve sexadecimal value.
      */
     public function positiveRandomSexadecimal(
         float $min = 0.0, 
@@ -252,8 +250,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random negative sexadecimal value, from 0° to 360°,
-     * excluded 360°.
+     * Return a random negative sexadecimal value.
      */
     public function negativeRandomSexadecimal(
         float $min = 0.0, 
@@ -268,7 +265,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random relative radian value.
+     * Return a random relative `Radian` value.
      */
     public function randomRadian(
         float $min = -Radian::MAX, 
@@ -283,7 +280,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a positive random radian value.
+     * Return a positive random `Radian` value.
      */
     public function positiveRandomRadian(
         float $min = 0, 
@@ -298,7 +295,7 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a negative random radian value.
+     * Return a negative random `Radian` value.
      */
     public function negativeRandomRadian(
         float $min = -Radian::MAX, 

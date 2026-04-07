@@ -10,6 +10,9 @@ use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 
+/**
+ * The `Angle` random generator for relative angles.
+ */
 class RelativeAngle extends AngleGenerator
 {
     public function generate(int $precision = PHP_FLOAT_DIG): Angle

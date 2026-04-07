@@ -6,6 +6,9 @@ use MarcoConsiglio\FakerPhpNumberHelpers\FloatRange;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Degrees;
 
+/**
+ * The `SexadecimalDegrees` random range.
+ */
 class SexadecimalRange extends FloatRange
 {
     /**

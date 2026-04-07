@@ -7,8 +7,14 @@ use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Validator;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Seconds as SecondsObject;
 
+/**
+ * The `Seconds` random generator.
+ */
 class Seconds extends FloatGenerator
 {
+    /**
+     * Construct the `Degrees` random generator.
+     */
     public function __construct(
         FakerGenerator $generator, 
         Validator $validator, 
@@ -27,6 +33,9 @@ class Seconds extends FloatGenerator
         ));
     }
 
+    /**
+     * Validate the random range.
+     */
     protected function validate(): void
     {
         $this->range->validate($this->validator);

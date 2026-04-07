@@ -7,8 +7,14 @@ use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
+/**
+ * A `Sexagesimal` random generator.
+ */
 abstract class Sexagesimal extends Generator
 {
+    /**
+     * Construct a `Sexagesimal` random generator.
+     */
     public function __construct(
         FakerGenerator $generator, 
         SexadecimalValidator $validator,
@@ -21,6 +27,9 @@ abstract class Sexagesimal extends Generator
 
     /**
      * @codeCoverageIgnore
+     */
+    /**
+     * Validate the random range.
      */
     protected function validate(): void
     {
