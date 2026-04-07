@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\Radian as RadianObject;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
 
-abstract class Radian extends RandomGenerator
+abstract class Radian extends FloatGenerator
 {
     public function __construct(
         Generator $generator, 
@@ -22,15 +22,5 @@ abstract class Radian extends RandomGenerator
     protected function validate(): void
     {
         $this->range->validate($this->validator);
-    }
-
-    /**
-     * Limit the `$precision` between `0` and `PHP_FLOAT_DIG`.
-     */
-    protected function normalizePrecision(int $precision): int
-    {
-        $precision = abs($precision);
-        if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
-        return $precision;       
     }
 }

@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 
 use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Random\Generator\FloatGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
@@ -12,14 +13,14 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The Radian random generator")]
-#[CoversClass(RadianGenerator::class)]
-#[UsesClass(Radian::class)]
+#[CoversClass(FloatGenerator::class)]
 #[UsesClass(PositiveRadianGenerator::class)]
-#[UsesClass(RadianRange::class)]
 #[UsesClass(PositiveRadianValidator::class)]
+#[UsesClass(Radian::class)]
+#[UsesClass(RadianGenerator::class)]
+#[UsesClass(RadianRange::class)]
 #[UsesClass(RadianValidator::class)]
-class RadianTest extends TestCase
+class FloatGeneratorTest extends TestCase
 {
     #[TestDox("normalize precision to be inside 0 to PHP_FLOAT_DIG range.")]
     public function test_normalize_precision(): void
