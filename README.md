@@ -321,9 +321,30 @@ $gamma = Angle::absSum($alfa, $beta); // (-180°) + (-270°) =
 (string) $gamma;                      // 270° 0' 0"
 ```
 # FakerPHP support <a id="faker_php"></a>
-This library provides support to [FakerPHP](https://fakerphp.org/) through the `WithAngleFaker` trait. 
+This library provides support to [FakerPHP](https://fakerphp.org/) through the `WithAngleFaker` trait. Here's a list of the available methods.
 
-Check the [API documentation](#api-documentation) to find out random helper methods useful to generate random angles.
+| Method | Return type | Min (included) | Min (excluded) | Max (included) | Max (excluded) |
+| --- | --- | --- | --- | --- | --- |
+| `randomPrecision()` | `int` | 0 |  | `PHP_FLOAT_DIG` |  |
+| `randomDegrees()` | `Degrees` | 0° |  | 359° |  |
+| `randomMinutes()` | `Minutes` | 0' |  | 59' |  |
+| `randomSeconds()` | `Seconds` | 0" |  |  | 60" |
+| `randomAngle()` | `Angle` |  | -360° |  | +360° |
+| `positiveRandomAngle()` | `Angle` | 0° |  |  | +360° |
+| `negativeRandomAngle()` | `Angle` |  | -360° |  | 0° |
+| `randomDirection()` | `Direction` | `CLOCKWISE` |  | `COUNTER_CLOCKWISE` |  |
+| `randomSexagesimalString()` | `string` |  | -360° |  | +360° |
+| `randomSexagesimal()` | `SexagesimalDegrees` |  | -360° |  | +360° |
+| `positiveRandomSexagesimal()` | `SexagesimalDegrees` | 0° |  |  | +360° |
+| `negativeRandomSexagesimal()` | `SexagesimalDegrees` |  | -360° |  | 0° |
+| `randomSexadecimal()` | `float` |  | -360° |  | +360° |
+| `positiveRandomSexadecimal()` | `float` | 0° |  |  | +360° |
+| `negativeRandomSexadecimal()` | `float` |  | -360° |  | 0° |
+| `randomRadian()` | `Radian` |  | -2π |  | +2π |
+| `positiveRandomRadian()` | `Radian` | 0 |  |  | +2π |
+| `negativeRandomRadian()` | `Radian` |  | -2π |  | 0 |
+
+Check the [API documentation](#api-documentation) to find out more info about these methods.
 
 # API documentation
 You can read the code documentation in `./docs/html/index.html`.
