@@ -48,7 +48,7 @@ class RadianTest extends TestCase
     public function test_negative_radian(): void
     {
         // Arrange
-        $expected_value = $this->negativeRandomRadian()->value();
+        $expected_value = $this->negativeRandomRadian(precision: 6)->value();
 
         // Act
         $radian = new Radian($expected_value);

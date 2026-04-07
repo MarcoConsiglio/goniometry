@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
@@ -136,10 +137,10 @@ class LesserAngleTest extends TestCase
          */
         // Arrange
         $alfa = Angle::createFromValues(
-            180, 30, $this->randomSeconds(min: 30, precision: 1)->value()
+            180, 30, $this->randomSeconds(min: 30)->value()
         );
         $beta = Angle::createFromValues(
-            180, 30, $this->randomSeconds(max: 30, precision: 1)->value()
+            180, 30, $this->randomSeconds(max: 30)->value()
         );
 
         // Act & Assert

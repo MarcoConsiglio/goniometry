@@ -285,7 +285,7 @@ class AngleTest extends TestCase
     public function test_create_from_radiant()
     {
         // Arrange
-        $radian = $this->randomRadian(precision: 1);
+        $radian = $this->randomRadian(precision: 6);
 
         // Act
         $angle = Angle::createFromRadian($radian);
@@ -293,7 +293,7 @@ class AngleTest extends TestCase
         // Assert
         $this->assertEquals(
             $radian->value(), 
-            $angle->toRadian(1)
+            $angle->toRadian()
         );
     }
 
