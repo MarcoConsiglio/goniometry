@@ -9,8 +9,10 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianV
 use MarcoConsiglio\Goniometry\Random\Validator\Radian as RadianValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
+#[TestDox("The Radian random generator")]
 #[CoversClass(RadianGenerator::class)]
 #[UsesClass(Radian::class)]
 #[UsesClass(PositiveRadianGenerator::class)]
@@ -19,6 +21,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RadianValidator::class)]
 class RadianTest extends TestCase
 {
+    #[TestDox("normalize precision to be inside 0 to PHP_FLOAT_DIG range.")]
     public function test_normalize_precision(): void
     {
         /**
