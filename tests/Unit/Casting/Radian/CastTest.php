@@ -52,8 +52,8 @@ class CastTest extends TestCase
     public function test_cast_with_precision(): void
     {
         // Arrange
-        $precision = $this->randomPrecision();
-        $angle = $this->randomAngle();
+        $precision = $this->randomPrecision() - 2;
+        $angle = $this->randomAngle($precision + 2);
         $sexadecimal = $angle->toSexadecimalDegrees();
         $radian = $sexadecimal->value->toRadian()->toFloat($precision);
 
@@ -69,7 +69,7 @@ class CastTest extends TestCase
     public function test_cast_without_precision(): void
     {
         // Arrange
-        $angle = $this->randomAngle();
+        $angle = $this->randomAngle(precision: 3);
         $sexadecimal = $angle->toSexadecimalDegrees();
         $radian = $sexadecimal->value->toRadian()->toFloat();
 

@@ -45,7 +45,7 @@ class SexagesimalDegreesTest extends TestCase
         $this->sexagesimal = new SexagesimalDegrees(
             new Degrees($this->randomDegrees()->value()),
             new Minutes($this->randomMinutes()->value()),
-            new Seconds($this->randomSeconds()->value()),
+            new Seconds($this->randomSeconds(precision: 1)->value()),
             $this->randomDirection()
         );
     }

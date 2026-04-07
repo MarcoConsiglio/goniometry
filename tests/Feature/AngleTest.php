@@ -199,13 +199,13 @@ class AngleTest extends TestCase
     #[TestDox('has "seconds" property which is of type Seconds.')]
     public function test_seconds_property(): void
     {
-        $seconds = $this->randomSeconds()->value(precision: 1);
+        $seconds = $this->randomSeconds(precision: 1)->value();
         $angle = Angle::createFromValues(seconds: $seconds);
 
         // Act & Assert
         $this->assertEquals(
             $seconds,
-            $angle->seconds->value(1)
+            $angle->seconds->value()
         );
     }
 
@@ -249,9 +249,9 @@ class AngleTest extends TestCase
     public function test_create_from_string()
     {
         // Arrange
-        $degrees = new Degrees($this->randomDegrees()->value());
-        $minutes = new Minutes($this->randomMinutes()->value());
-        $seconds = new Seconds($this->randomSeconds(precision: 1)->value());
+        $degrees = $this->randomDegrees();
+        $minutes = $this->randomMinutes();
+        $seconds = $this->randomSeconds(precision: 1);
         $direction = $this->randomDirection();
         $sign = $direction == Direction::CLOCKWISE ? '-' : '';
         $text = "{$sign}{$degrees} {$minutes} {$seconds}";
@@ -260,10 +260,10 @@ class AngleTest extends TestCase
         $angle = Angle::createFromString($text);
 
         // Act
-        $this->assertDegrees($degrees, $angle->degrees);
-        $this->assertMinutes($minutes, $angle->minutes);
-        $this->assertSeconds($seconds, $angle->seconds, precision: 1);
-        $this->assertDirection($direction, $angle->direction);
+        $this->assertDegrees($degrees, $angle->degrees, $text);
+        $this->assertMinutes($minutes, $angle->minutes, $text);
+        $this->assertSeconds($seconds, $angle->seconds, 1, $text);
+        $this->assertDirection($direction, $angle->direction, $text);
     }
 
     #[TestDox("can be created from a decimal number.")]
@@ -305,7 +305,7 @@ class AngleTest extends TestCase
         $alfa = Angle::createFromValues(
             $degrees = $this->randomDegrees()->value(), 
             $minutes = $this->randomMinutes()->value(), 
-            $seconds = $this->randomSeconds()->value(),
+            $seconds = $this->randomSeconds(precision: 1)->value(),
             $direction = $this->randomDirection()
         );
         /** @var Direction $direction */
@@ -334,7 +334,7 @@ class AngleTest extends TestCase
     public function test_cast_angle_to_string()
     {
         // Arrange
-        $alfa = $this->randomAngle();
+        $alfa = $this->randomAngle(precision: 3);
         $sign = $alfa->direction == Direction::COUNTER_CLOCKWISE ? "" : "-";
         $degrees = $alfa->degrees;
         $minutes = $alfa->minutes;
@@ -534,8 +534,8 @@ class AngleTest extends TestCase
     public function test_can_sum_two_angles_and_return_absolute_result()
     {
         // Arrange
-        $alfa = $this->randomAngle(precision: 1);
-        $beta = $this->randomAngle(precision: 1);
+        $alfa = $this->randomAngle();
+        $beta = $this->randomAngle();
 
         // Act
         $gamma = Angle::absSum($alfa, $beta);

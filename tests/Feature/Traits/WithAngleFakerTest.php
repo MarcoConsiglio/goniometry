@@ -103,8 +103,8 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertIsInt($precision);
-        $this->assertTrue($precision >= 0);
-        $this->assertTrue($precision <= PHP_FLOAT_DIG);
+        $this->assertGreaterThanOrEqual(0, $precision);
+        $this->assertLessThanOrEqual(PHP_FLOAT_DIG, $precision);
     }
 
     #[TestDox("can return a random degrees value of type int.")]
@@ -263,7 +263,8 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertIsFloat($sexadecimal);
-        $this->assertTrue($sexadecimal < 0);
+        $this->assertGreaterThan(-Degrees::MAX, $sexadecimal);
+        $this->assertLessThan(0, $sexadecimal);
     }
 
     #[TestDox("can return a random radian value.")]

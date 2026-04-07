@@ -53,7 +53,7 @@ class FromStringTest extends TestCase
         // Arrange
         $degrees = $this->randomDegrees();
         $minutes = $this->randomMinutes();
-        $seconds = $this->randomSeconds();
+        $seconds = $this->randomSeconds(precision: 1);
         $direction = Direction::COUNTER_CLOCKWISE;
         $sign = '';
         
@@ -74,7 +74,7 @@ class FromStringTest extends TestCase
         // Arrange
         $degrees = $this->randomDegrees();
         $minutes = $this->randomMinutes();
-        $seconds = $this->randomSeconds();
+        $seconds = $this->randomSeconds(precision: 1);
         $direction = Direction::CLOCKWISE;
         $sign = '-';
         

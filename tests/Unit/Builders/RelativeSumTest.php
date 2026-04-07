@@ -52,8 +52,8 @@ class RelativeSumTest extends TestCase
     public function test_can_sum_angles_and_return_positive_sum(): void
     {
         // Arrange
-        $alfa = $this->randomAngle(precision: 1);
-        $beta = $this->randomAngle(precision: 1);
+        $alfa = $this->randomAngle(precision: 3);
+        $beta = $this->randomAngle(precision: 3);
         $sum = 
             $alfa->toSexadecimalDegrees()->value
             ->plus($beta->toSexadecimalDegrees()->value);
@@ -69,8 +69,8 @@ class RelativeSumTest extends TestCase
         $this->assertSeconds($gamma->seconds,       $sexagesimal->seconds);
         $this->assertDirection($gamma->direction,   $sexagesimal->direction);       
         $this->assertEquals(
-            $expected_sum->value(1),
-            $sexadecimal->value(1)
+            $expected_sum->value(),
+            $sexadecimal->value()
         );
     }
 }

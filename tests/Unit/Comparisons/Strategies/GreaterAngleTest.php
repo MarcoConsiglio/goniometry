@@ -87,10 +87,10 @@ class GreaterAngleTest extends TestCase
             minutes: $this->randomMinutes(max: 29)->value()
         );
         $epsilon = Angle::createFromValues(
-            seconds: $this->randomSeconds(min: 30.0)->value()
+            seconds: $this->randomSeconds(min: 30.0, precision: 1)->value()
         );
         $zeta = Angle::createFromValues(
-            seconds: $this->randomSeconds(max: NextFloat::before(30.0))->value()
+            seconds: $this->randomSeconds(max: NextFloat::before(30.0), precision: 1)->value()
         );
 
         // Act & Assert

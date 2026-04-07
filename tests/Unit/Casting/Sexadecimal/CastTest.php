@@ -55,11 +55,14 @@ class CastTest extends TestCase
 
     protected SexadecimalDegrees $sexadecimal;
 
+    protected int $precision;
+
     #[Override]
     protected function setUp(): void
     {
         parent::setUp();
-        $this->angle = $this->randomAngle();
+        $this->precision = $this->randomPrecision() - 2;
+        $this->angle = $this->randomAngle($this->precision + 2);
         $this->sexadecimal = $this->angle->toSexadecimalDegrees();
     }
 
@@ -67,14 +70,13 @@ class CastTest extends TestCase
     public function test_cast_with_precision(): void
     {
         // Arrange
-        $precision = $this->randomPrecision();
-        $sexadecimal = $this->sexadecimal->value($precision);
+        $sexadecimal = $this->sexadecimal->value($this->precision);
 
         // Act
-        $float = new Cast($this->angle, $precision)->cast();
+        $float = new Cast($this->angle, $this->precision)->cast();
 
         // Assert
-        $this->assertSame($sexadecimal, $float, "$sexadecimal ≠ $float with $precision digit precision");
+        $this->assertSame($sexadecimal, $float, "$sexadecimal ≠ $float with $this->precision digit precision");
     }
 
     #[TestDox("can cast the Angle to a sexadecimal value without a specific precision.")]

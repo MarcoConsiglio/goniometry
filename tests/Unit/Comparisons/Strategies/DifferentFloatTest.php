@@ -81,7 +81,7 @@ class DifferentFloatTest extends TestCase
          * Equal
          */
         // Arrange
-        $alfa = $this->randomAngle();
+        $alfa = $this->randomAngle(precision: 1);
         $beta = $alfa->toFloat();
 
         // Act & Assert

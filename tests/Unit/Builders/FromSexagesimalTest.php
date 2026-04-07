@@ -51,7 +51,7 @@ class FromSexagesimalTest extends TestCase
     public function test_can_create_an_angle()
     {
         // Arrange
-        $random = $this->randomSexagesimal();
+        $random = $this->randomSexagesimal(precision: 3);
 
         // Act
         $angle = Angle::createFromValues(
