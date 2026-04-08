@@ -1,5 +1,5 @@
 # Changelog
-## v4.0.0 2025-04-07
+## v4.0.0 2025-04-08
 ### Added
 - `Angle::toSexagesimalDegrees()` to return the `SexagesimalDegrees` values of an `Angle`.
 ### Changed
