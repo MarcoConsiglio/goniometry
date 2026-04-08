@@ -35,6 +35,8 @@
 - API and README documentation.
 ### Removed
 - `WithAngleFaker::SSN` constant
+### Fixed
+- Incorrect absolute sum when both `Angle`s are negative.
 
 ## v3.1.0 2025-03-17
 ### Added
