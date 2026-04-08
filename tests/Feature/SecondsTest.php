@@ -1,17 +1,24 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\Goniometry\Random\Generator\Seconds as GeneratorSeconds;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
+use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The Seconds type")]
 #[CoversClass(Seconds::class)]
 #[UsesTrait(WithAngleFaker::class)]
+#[UsesClass(GeneratorSeconds::class)]
+#[UsesClass(SecondsValidator::class)]
+#[UsesClass(SecondsRange::class)]
 class SecondsTest extends TestCase
 {
     protected Seconds $a;
@@ -23,16 +30,16 @@ class SecondsTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->a = new Seconds($this->randomSeconds(min: 30));
+        $this->a = $this->randomSeconds(min: 30, precision: 1);
         $this->b = clone $this->a;
-        $this->c = new Seconds($this->randomSeconds(max: 30 - PHP_FLOAT_MIN));
+        $this->c = $this->randomSeconds(max: NextFloat::before(30), precision: 1);
     }
 
     #[TestDox("stores the measurement of seconds.")]
-    public function test_degrees_value(): void
+    public function test_seconds_value(): void
     {
         // Arrange
-        $expected_value = $this->randomMinutes();
+        $expected_value = $this->randomSeconds(precision: 1)->value();
         $degrees = new Seconds($expected_value);
 
         // Act & Assert
@@ -43,7 +50,7 @@ class SecondsTest extends TestCase
     public function test_cast_to_string(): void
     {
         // Arrange
-        $expected_value = $this->safeRound($this->randomSeconds());
+        $expected_value = $this->randomSeconds(precision: 3)->value();
         $seconds = new Seconds($expected_value);
 
         // Act & Assert
@@ -51,7 +58,7 @@ class SecondsTest extends TestCase
     }
 
     #[TestDox("can be compared with another instance of the same type.")]
-    public function test_comparison_between_degrees(): void
+    public function test_comparison_between_seconds(): void
     {
         /**
          * Equal comparison

@@ -2,16 +2,20 @@
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The Degrees type")]
 #[CoversClass(Degrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
 class DegreesTest extends TestCase
 {
     protected Degrees $a;
@@ -23,16 +27,16 @@ class DegreesTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->a = new Degrees($this->randomDegrees(min: 180));
+        $this->a = $this->randomDegrees(min: 180);
         $this->b = clone $this->a;
-        $this->c = new Degrees($this->randomDegrees(max: 179));
+        $this->c = $this->randomDegrees(max: 179);
     }
 
     #[TestDox("stores the measurement of degrees.")]
     public function test_degrees_value(): void
     {
         // Arrange
-        $expected_value = $this->randomDegrees();
+        $expected_value = $this->randomDegrees()->value();
         $degrees = new Degrees($expected_value);
 
         // Act & Assert
@@ -43,7 +47,7 @@ class DegreesTest extends TestCase
     public function test_cast_to_string(): void
     {
         // Arrange
-        $expected_value = $this->randomDegrees();
+        $expected_value = $this->randomDegrees()->value();
         $degrees = new Degrees($expected_value);
 
         // Act & Assert

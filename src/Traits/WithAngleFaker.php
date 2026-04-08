@@ -7,7 +7,37 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Random\DegreesRange;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
+use MarcoConsiglio\Goniometry\Random\MinutesRange;
+use MarcoConsiglio\Goniometry\Random\RadianRange;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian as NegativeRadianValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  * Provides support for FakerPHP in order to generate
@@ -16,15 +46,10 @@ use MarcoConsiglio\Goniometry\Seconds;
 trait WithAngleFaker
 {
     use WithFakerHelpers;
-    
-    /**
-     * The Smallest Significant Number.
-     */
-    public const float SSN = 0.0000000000001;
 
     /**
      * Return a random integer to be used as `float` rounding precision between
-     * 0 and PHP_FLOAT_DIG. 
+     * `0` and `PHP_FLOAT_DIG`. 
      */
     public function randomPrecision(): int
     {
@@ -32,82 +57,95 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random degrees value.
+     * Return a random `Degrees` value.
      */
-    public function randomDegrees(int $min = 0, int $max = Degrees::MAX - 1): int
+    public function randomDegrees(int $min = 0, int $max = Degrees::MAX - 1): Degrees
     {
-        if ($min < 0 ) $min = abs($min);
-        if ($min >= Degrees::MAX) $min = Degrees::MAX - 1;
-        if ($max < 0) $max = abs($max);
-        if ($max >= Degrees::MAX) $max = Degrees::MAX - 1;
-        return $this->positiveRandomInteger($min, $max); 
+        return new DegreesGenerator(
+            self::$faker,
+            new DegreesValidator,
+            new DegreesRange($min, $max)
+        )->generate();
     }
 
     /**
-     * Return a random minutes value.
+     * Return a random `Minutes` value.
      */
-    public function randomMinutes(int $min = 0, int $max = Minutes::MAX - 1): int
+    public function randomMinutes(int $min = 0, int $max = Minutes::MAX - 1): Minutes
     {
-        if ($min < 0 ) $min = abs($min);
-        if ($min >= Minutes::MAX) $min = Minutes::MAX - 1;
-        if ($max < 0) $max = abs($max);
-        if ($max >= Minutes::MAX) $max = Minutes::MAX - 1;
-        return $this->positiveRandomInteger($min, $max);
+        return new MinutesGenerator(
+            self::$faker,
+            new MinutesValidator,
+            new MinutesRange($min, $max)
+        )->generate();
     }
 
     /**
-     * Return a random seconds value.
+     * Return a random `Seconds` value.
      */
     public function randomSeconds(
         float $min = 0, 
-        float $max = Seconds::MAX - self::SSN, 
+        float $max = Seconds::MAX, 
         int $precision = PHP_FLOAT_DIG
-    ): float {
-        if ($min < 0 ) $min = abs($min);
-        if ($min >= Seconds::MAX) $min = Seconds::MAX - self::SSN;
-        if ($max < 0) $max = abs($max);
-        if ($max >= Seconds::MAX) $max = Seconds::MAX - self::SSN;
-        if ($precision < 0) $precision = abs($precision);
-        if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
-        return $this->positiveRandomFloat($min, $max, $precision);
+    ): Seconds {
+        return new SecondsGenerator(
+            self::$faker,
+            new SecondsValidator,
+            new SecondsRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a random Angle, whether positive or negative.
+     * Return a random relative `Angle`.
      */
-    public function randomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
-    {
-        return $this->faker->randomElement([
-            $this->positiveRandomAngle($min, $max),
-            $this->negativeRandomAngle($min, $max)
-        ]);
+    public function randomAngle(
+        float $min = -Degrees::MAX, 
+        float $max = Degrees::MAX,
+        int $precision = PHP_FLOAT_DIG    
+    ): Angle {
+        return new RelativeAngleGenerator(
+            self::$faker,
+            new RelativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a positive random Angle.
+     * Return a positive random `Angle`.
      */
-    public function positiveRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
-    {
-        assert($min >= 0 && $min < Degrees::MAX);
-        assert($max >= 0 && $max < Degrees::MAX);
-        return Angle::createFromDecimal($this->positiveRandomSexadecimal($min, $max));
+    public function positiveRandomAngle(
+        float $min = 0.0, 
+        float $max = Degrees::MAX, 
+        int $precision = PHP_FLOAT_DIG
+    ): Angle {
+        return new PositiveAngleGenerator(
+            self::$faker,
+            new PositiveSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a negative random Angle
+     * Return a negative random `Angle`.
      */
-    public function negativeRandomAngle(float $min = 0, float $max = Degrees::MAX - self::SSN): Angle
-    {
-        $angle = $this->positiveRandomAngle($min, $max);
-        return $angle->toggleDirection();
+    public function negativeRandomAngle(
+        float $min = -Degrees::MAX, 
+        float $max = 0.0,
+        int $precision = PHP_FLOAT_DIG
+    ): Angle {
+        return new NegativeAngleGenerator(
+            self::$faker,
+            new NegativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a random angle direction.
+     * Return a random angle `Direction`.
      */
     public function randomDirection(): Direction
     {
-        return $this->faker->randomElement([
+        return self::$faker->randomElement([
             Direction::COUNTER_CLOCKWISE,
             Direction::CLOCKWISE
         ]);
@@ -116,124 +154,151 @@ trait WithAngleFaker
     /**
      * Returns a random angle string.
      */
-    public function randomSexagesimalString(Direction $direction = Direction::COUNTER_CLOCKWISE)
-    {
-        [$degrees, $minutes, $seconds, $direction] = 
-            $this->randomSexagesimal($direction);
-        $sign = $direction == Direction::COUNTER_CLOCKWISE ? "" : "-";
-        return "{$sign}{$degrees}° {$minutes}' {$seconds}\"";
+    public function randomSexagesimalString(
+        float $min = -Degrees::MAX, 
+        float $max = Degrees::MAX,
+        int $precision = PHP_FLOAT_DIG
+    ): string {
+        $sexagesimal_values = new RelativeSexagesimalGenerator(
+            self::$faker,
+            new RelativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
+        return "{$sexagesimal_values}";
     }
 
     /**
      * Return random sexagesimal values.
-     *
-     * @return array{int,int,float,Direction}
      */
-    public function randomSexagesimal(Direction|null $direction = null)
-    {
-        if ($direction === null) $direction = $this->faker->randomElement([
-            Direction::COUNTER_CLOCKWISE, Direction::CLOCKWISE
-        ]);
-        return [
-            $this->randomDegrees(), 
-            $this->randomMinutes(), 
-            $this->randomSeconds(), 
-            $direction
-        ];
+    public function randomSexagesimal(
+        float $min = -Degrees::MAX,
+        float $max = Degrees::MAX,
+        int $precision = PHP_FLOAT_DIG
+    ): SexagesimalDegrees {
+        return new RelativeSexagesimalGenerator(
+            self::$faker,
+            new RelativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return random sexagesimal values for a positive Angle.
-     * 
-     * @return array{int,int,float,Direction::COUNTER_CLOCKWISE}
+     * Return positive random sexagesimal.
      */
-    public function positiveRandomSexagesimal(): array
-    {
-        return $this->randomSexagesimal(Direction::COUNTER_CLOCKWISE);
+    public function positiveRandomSexagesimal(
+        float $min = 0.0, 
+        float $max = Degrees::MAX, 
+        int $precision = PHP_FLOAT_DIG
+    ): SexagesimalDegrees {
+        return new PositiveSexagesimalGenerator(
+            self::$faker,
+            new PositiveSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return random sexagesimal values for a negative Angle.
-     * 
-     * @return array{int,int,float,Direction::CLOCKWISE}
+     * Return negative random sexagesimal values.
      */
-    public function negativeRandomSexagesimal(): array
-    {
-        return $this->randomSexagesimal(Direction::CLOCKWISE);
+    public function negativeRandomSexagesimal(
+        float $min = -Degrees::MAX,
+        float $max = 0.0,
+        int $precision = PHP_FLOAT_DIG
+    ): SexagesimalDegrees {
+        return new NegativeSexagesimalGenerator(
+            self::$faker,
+            new NegativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a random sexadecimal value, from 0° to 360°,
-     * excluded 360°.
+     * Return a random sexadecimal value.
      */
     public function randomSexadecimal(
-        float $min = 0.0, 
-        float $max = Degrees::MAX - self::SSN, 
+        float $min = -Degrees::MAX, 
+        float $max = Degrees::MAX, 
         int $precision = PHP_FLOAT_DIG
     ): float {
-        $random_value = $this->positiveRandomSexadecimal($min, $max, $precision);
-        return $this->faker->randomElement([$random_value, -$random_value]);
+        return new RelativeSexadecimalGenerator(
+            self::$faker,
+            new RelativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a random poisitve sexadecimal value, from 0° to 360°,
-     * excluded 360°.
+     * Return a random positve sexadecimal value.
      */
     public function positiveRandomSexadecimal(
         float $min = 0.0, 
-        float $max = Degrees::MAX - self::SSN, 
+        float $max = Degrees::MAX, 
         int $precision = PHP_FLOAT_DIG
     ): float {
-        $min = abs($min); $max = abs($max); $precision = abs($precision);
-        if ($min > Degrees::MAX) $min = Degrees::MAX - self::SSN;
-        if ($max > Degrees::MAX) $max = Degrees::MAX - self::SSN;
-        if ($precision > PHP_FLOAT_DIG) $precision = PHP_FLOAT_DIG;
-        return $this->positiveRandomFloat($min, $max, $precision);
+        return new PositiveSexadecimalGenerator(
+            self::$faker,
+            new PositiveSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a random negative sexadecimal value, from 0° to 360°,
-     * excluded 360°.
+     * Return a random negative sexadecimal value.
      */
     public function negativeRandomSexadecimal(
-        float $min = 0.0, 
-        float $max = Degrees::MAX - self::SSN, 
+        float $min = -Degrees::MAX, 
+        float $max = 0.0, 
         int $precision = PHP_FLOAT_DIG
     ): float {
-        return -$this->positiveRandomSexadecimal($min, $max, $precision);
+        return new NegativeSexadecimalGenerator(
+            self::$faker,
+            new NegativeSexadecimalValidator,
+            new SexadecimalRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a random relative radian value.
+     * Return a random relative `Radian` value.
      */
     public function randomRadian(
-        float $min = 0, 
-        float $max = Radian::MAX - self::SSN,
+        float $min = -Radian::MAX, 
+        float $max = Radian::MAX,
         int $precision = PHP_FLOAT_DIG
-    ): float {
-        $radian = $this->positiveRandomRadian($min, $max, $precision);
-        return $this->faker->randomElement([$radian, -$radian]);
+    ): Radian {
+        return new RelativeRadianGenerator(
+            self::$faker,
+            new RelativeRadianValidator,
+            new RadianRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a positive random radian value.
+     * Return a positive random `Radian` value.
      */
     public function positiveRandomRadian(
         float $min = 0, 
-        float $max = Radian::MAX - self::SSN,
+        float $max = Radian::MAX,
         int $precision = PHP_FLOAT_DIG
-    ): float {
-        return $this->positiveRandomFloat($min, $max, $precision);
+    ): Radian {
+        return new PositiveRadianGenerator(
+            self::$faker,
+            new PositiveRadianValidator,
+            new RadianRange($min, $max)
+        )->generate($precision);
     }
 
     /**
-     * Return a negative random radian value.
+     * Return a negative random `Radian` value.
      */
     public function negativeRandomRadian(
-        float $min = 0, 
-        float $max = Radian::MAX - self::SSN,
+        float $min = -Radian::MAX, 
+        float $max = 0,
         int $precision = PHP_FLOAT_DIG
-    ): float {
-        return -$this->positiveRandomRadian($min, $max, $precision);
+    ): Radian {
+        return new NegativeRadianGenerator(
+            self::$faker,
+            new NegativeRadianValidator,
+            new RadianRange($min, $max)
+        )->generate($precision);
     }
 }

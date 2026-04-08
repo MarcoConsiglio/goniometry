@@ -61,6 +61,11 @@ Search.appendIndex(
             "summary": "Return\u0020the\u0020sexadecimal\u0020value\u0020of\u0020this\u0020\u0060Angle\u0060\u0020with\u0020arbitrary\nprecision.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_toSexadecimalDegrees"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AtoSexagesimalDegrees\u0028\u0029",
+            "name": "toSexagesimalDegrees",
+            "summary": "Return\u0020the\u0020sexagesimal\u0020values\u0020of\u0020this\u0020\u0060Angle\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_toSexagesimalDegrees"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AtoFloat\u0028\u0029",
             "name": "toFloat",
             "summary": "Return\u0020the\u0020sexadecimal\u0020value\u0020of\u0020this\u0020\u0060Angle\u0060.",
@@ -1231,6 +1236,431 @@ Search.appendIndex(
             "summary": "The\u0020max\u0020allowed\u0020radian\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Radian.html#constant_MAX"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\DegreesRange",
+            "name": "DegreesRange",
+            "summary": "The\u0020\u0060Degrees\u0060\u0020random\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-DegreesRange.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\DegreesRange\u003A\u003AMAX",
+            "name": "MAX",
+            "summary": "The\u0020maximum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-DegreesRange.html#constant_MAX"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\DegreesRange\u003A\u003AMIN",
+            "name": "MIN",
+            "summary": "The\u0020minimum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-DegreesRange.html#constant_MIN"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Angle",
+            "name": "Angle",
+            "summary": "An\u0020\u0060Angle\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Angle.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Angle\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020an\u0020\u0060Angle\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Angle.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Angle\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Angle.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Degrees",
+            "name": "Degrees",
+            "summary": "The\u0020\u0060Degrees\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Degrees.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Degrees\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020the\u0020\u0060Degrees\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Degrees.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Degrees\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Degrees.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\FloatGenerator",
+            "name": "FloatGenerator",
+            "summary": "A\u0020\u0060float\u0060\u0020number\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-FloatGenerator.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Minutes",
+            "name": "Minutes",
+            "summary": "The\u0020\u0060Minutes\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Minutes.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Minutes\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020the\u0020\u0060Minutes\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Minutes.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Minutes\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Minutes.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\NegativeAngle",
+            "name": "NegativeAngle",
+            "summary": "The\u0020\u0060Angle\u0060\u0020random\u0020generator\u0020for\u0020negative\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-NegativeAngle.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\NegativeAngle\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-NegativeAngle.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\NegativeRadian",
+            "name": "NegativeRadian",
+            "summary": "The\u0020\u0060Radian\u0060\u0020random\u0020generator\u0020for\u0020negative\u0020radian\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-NegativeRadian.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\NegativeRadian\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-NegativeRadian.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\NegativeSexadecimal",
+            "name": "NegativeSexadecimal",
+            "summary": "The\u0020\u0060Sexadecimal\u0060\u0020random\u0020generator\u0020for\u0020negative\u0020sexadecimal\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-NegativeSexadecimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\NegativeSexadecimal\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-NegativeSexadecimal.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\NegativeSexagesimal",
+            "name": "NegativeSexagesimal",
+            "summary": "The\u0020\u0060Sexagesimal\u0060\u0020random\u0020generator\u0020for\u0020negative\u0020sexagesimal\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-NegativeSexagesimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\NegativeSexagesimal\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-NegativeSexagesimal.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\PositiveAngle",
+            "name": "PositiveAngle",
+            "summary": "The\u0020\u0060Angle\u0060\u0020random\u0020generator\u0020for\u0020positive\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-PositiveAngle.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\PositiveAngle\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-PositiveAngle.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\PositiveRadian",
+            "name": "PositiveRadian",
+            "summary": "The\u0020\u0060Radian\u0060\u0020random\u0020generator\u0020for\u0020positive\u0020radian\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-PositiveRadian.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\PositiveRadian\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-PositiveRadian.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\PositiveSexadecimal",
+            "name": "PositiveSexadecimal",
+            "summary": "The\u0020\u0060Sexadecimal\u0060\u0020random\u0020generator\u0020for\u0020positive\u0020sexadecimal\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-PositiveSexadecimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\PositiveSexadecimal\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-PositiveSexadecimal.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\PositiveSexagesimal",
+            "name": "PositiveSexagesimal",
+            "summary": "The\u0020\u0060Sexagesimal\u0060\u0020random\u0020generator\u0020for\u0020positive\u0020sexagesimal\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-PositiveSexagesimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\PositiveSexagesimal\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-PositiveSexagesimal.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Radian",
+            "name": "Radian",
+            "summary": "A\u0020\u0060Radian\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Radian.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Radian\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020a\u0020\u0060Radian\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Radian.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Radian\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Radian.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\RelativeAngle",
+            "name": "RelativeAngle",
+            "summary": "The\u0020\u0060Angle\u0060\u0020random\u0020generator\u0020for\u0020relative\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-RelativeAngle.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\RelativeAngle\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "Generate\u0020a\u0020random\u0020value.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-RelativeAngle.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\RelativeRadian",
+            "name": "RelativeRadian",
+            "summary": "The\u0020\u0060Radian\u0060\u0020random\u0020generator\u0020for\u0020relative\u0020radian\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-RelativeRadian.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\RelativeRadian\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-RelativeRadian.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\RelativeSexadecimal",
+            "name": "RelativeSexadecimal",
+            "summary": "The\u0020\u0060Sexadecimal\u0060\u0020random\u0020generator\u0020for\u0020relative\u0020sexadecimal\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-RelativeSexadecimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\RelativeSexadecimal\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-RelativeSexadecimal.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\RelativeSexagesimal",
+            "name": "RelativeSexagesimal",
+            "summary": "The\u0020\u0060Sexagesimal\u0060\u0020random\u0020generator\u0020for\u0020relative\u0020sexagesimal\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-RelativeSexagesimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\RelativeSexagesimal\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-RelativeSexagesimal.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Seconds",
+            "name": "Seconds",
+            "summary": "The\u0020\u0060Seconds\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Seconds.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Seconds\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020the\u0020\u0060Degrees\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Seconds.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Seconds\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Seconds.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Sexagesimal",
+            "name": "Sexagesimal",
+            "summary": "A\u0020\u0060Sexagesimal\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Sexagesimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Sexagesimal\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020a\u0020\u0060Sexagesimal\u0060\u0020random\u0020generator.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Sexagesimal.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator\\Sexagesimal\u003A\u003Agenerate\u0028\u0029",
+            "name": "generate",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Generator-Sexagesimal.html#method_generate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\MinutesRange",
+            "name": "MinutesRange",
+            "summary": "The\u0020\u0060Minutes\u0060\u0020random\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-MinutesRange.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\MinutesRange\u003A\u003AMAX",
+            "name": "MAX",
+            "summary": "The\u0020maximum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-MinutesRange.html#constant_MAX"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\MinutesRange\u003A\u003AMIN",
+            "name": "MIN",
+            "summary": "The\u0020minimum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-MinutesRange.html#constant_MIN"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\RadianRange",
+            "name": "RadianRange",
+            "summary": "The\u0020\u0060Radian\u0060\u0020random\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-RadianRange.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\RadianRange\u003A\u003Amax\u0028\u0029",
+            "name": "max",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-RadianRange.html#method_max"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\RadianRange\u003A\u003Amin\u0028\u0029",
+            "name": "min",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-RadianRange.html#method_min"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\RadianRange\u003A\u003AMAX",
+            "name": "MAX",
+            "summary": "The\u0020maximum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-RadianRange.html#constant_MAX"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\RadianRange\u003A\u003AMIN",
+            "name": "MIN",
+            "summary": "The\u0020minimum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-RadianRange.html#constant_MIN"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\SecondsRange",
+            "name": "SecondsRange",
+            "summary": "The\u0020\u0060Seconds\u0060\u0020random\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-SecondsRange.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\SecondsRange\u003A\u003Amax\u0028\u0029",
+            "name": "max",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-SecondsRange.html#method_max"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\SecondsRange\u003A\u003AMAX",
+            "name": "MAX",
+            "summary": "The\u0020maximum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-SecondsRange.html#constant_MAX"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\SecondsRange\u003A\u003AMIN",
+            "name": "MIN",
+            "summary": "The\u0020minimum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-SecondsRange.html#constant_MIN"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\SexadecimalRange",
+            "name": "SexadecimalRange",
+            "summary": "The\u0020\u0060SexadecimalDegrees\u0060\u0020random\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-SexadecimalRange.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\SexadecimalRange\u003A\u003Amax\u0028\u0029",
+            "name": "max",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-SexadecimalRange.html#method_max"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\SexadecimalRange\u003A\u003Amin\u0028\u0029",
+            "name": "min",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-SexadecimalRange.html#method_min"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\SexadecimalRange\u003A\u003AMAX",
+            "name": "MAX",
+            "summary": "The\u0020maximum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-SexadecimalRange.html#constant_MAX"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\SexadecimalRange\u003A\u003AMIN",
+            "name": "MIN",
+            "summary": "The\u0020minimum\u0020number\u0020allowed.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-SexadecimalRange.html#constant_MIN"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Degrees",
+            "name": "Degrees",
+            "summary": "Validate\u0020a\u0020random\u0020degrees\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Degrees.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Degrees\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validate\u0020the\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Degrees.html#method_validate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\FloatValidator",
+            "name": "FloatValidator",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-FloatValidator.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Minutes",
+            "name": "Minutes",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Minutes.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Minutes\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validate\u0020the\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Minutes.html#method_validate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeRadian",
+            "name": "NegativeRadian",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-NegativeRadian.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeRadian\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validate\u0020the\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-NegativeRadian.html#method_validate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeRadian\u003A\u003AavoidPositiveValues\u0028\u0029",
+            "name": "avoidPositiveValues",
+            "summary": "Avoid\u0020positive\u0020values.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-NegativeRadian.html#method_avoidPositiveValues"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeRadian\u003A\u003AavoidExceedingValues\u0028\u0029",
+            "name": "avoidExceedingValues",
+            "summary": "Avoid\u0020values\u0020\u200B\u200Bthat\u0020go\u0020beyond\u0020the\u0020permitted\u0020limit.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-NegativeRadian.html#method_avoidExceedingValues"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeSexadecimal",
+            "name": "NegativeSexadecimal",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-NegativeSexadecimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeSexadecimal\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validate\u0020the\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-NegativeSexadecimal.html#method_validate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\PositiveRadian",
+            "name": "PositiveRadian",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-PositiveRadian.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\PositiveRadian\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validate\u0020the\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-PositiveRadian.html#method_validate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\PositiveSexadecimal",
+            "name": "PositiveSexadecimal",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-PositiveSexadecimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\PositiveSexadecimal\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validate\u0020the\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-PositiveSexadecimal.html#method_validate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\RelativeRadian",
+            "name": "RelativeRadian",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-RelativeRadian.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\RelativeRadian\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validate\u0020the\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-RelativeRadian.html#method_validate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\RelativeSexadecimal",
+            "name": "RelativeSexadecimal",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-RelativeSexadecimal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\RelativeSexadecimal\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validate\u0020the\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-RelativeSexadecimal.html#method_validate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Seconds",
+            "name": "Seconds",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Seconds.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Seconds\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "Validate\u0020the\u0020range.",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Seconds.html#method_validate"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Sexadecimal",
+            "name": "Sexadecimal",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Sexadecimal.html"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds",
             "name": "Seconds",
             "summary": "The\u0020seconds\u0020of\u0020an\u0020Angle.",
@@ -1388,42 +1818,42 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomPrecision\u0028\u0029",
             "name": "randomPrecision",
-            "summary": "Return\u0020a\u0020random\u0020integer\u0020to\u0020be\u0020used\u0020as\u0020\u0060float\u0060\u0020rounding\u0020precision\u0020between\n0\u0020and\u0020PHP_FLOAT_DIG.",
+            "summary": "Return\u0020a\u0020random\u0020integer\u0020to\u0020be\u0020used\u0020as\u0020\u0060float\u0060\u0020rounding\u0020precision\u0020between\n\u00600\u0060\u0020and\u0020\u0060PHP_FLOAT_DIG\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomPrecision"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomDegrees\u0028\u0029",
             "name": "randomDegrees",
-            "summary": "Return\u0020a\u0020random\u0020degrees\u0020value.",
+            "summary": "Return\u0020a\u0020random\u0020\u0060Degrees\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomDegrees"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomMinutes\u0028\u0029",
             "name": "randomMinutes",
-            "summary": "Return\u0020a\u0020random\u0020minutes\u0020value.",
+            "summary": "Return\u0020a\u0020random\u0020\u0060Minutes\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomMinutes"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomSeconds\u0028\u0029",
             "name": "randomSeconds",
-            "summary": "Return\u0020a\u0020random\u0020seconds\u0020value.",
+            "summary": "Return\u0020a\u0020random\u0020\u0060Seconds\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomSeconds"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomAngle\u0028\u0029",
             "name": "randomAngle",
-            "summary": "Return\u0020a\u0020random\u0020Angle,\u0020whether\u0020positive\u0020or\u0020negative.",
+            "summary": "Return\u0020a\u0020random\u0020relative\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomAngle"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ApositiveRandomAngle\u0028\u0029",
             "name": "positiveRandomAngle",
-            "summary": "Return\u0020a\u0020positive\u0020random\u0020Angle.",
+            "summary": "Return\u0020a\u0020positive\u0020random\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_positiveRandomAngle"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003AnegativeRandomAngle\u0028\u0029",
             "name": "negativeRandomAngle",
-            "summary": "Return\u0020a\u0020negative\u0020random\u0020Angle",
+            "summary": "Return\u0020a\u0020negative\u0020random\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_negativeRandomAngle"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomDirection\u0028\u0029",
             "name": "randomDirection",
-            "summary": "Return\u0020a\u0020random\u0020angle\u0020direction.",
+            "summary": "Return\u0020a\u0020random\u0020angle\u0020\u0060Direction\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomDirection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomSexagesimalString\u0028\u0029",
@@ -1438,42 +1868,42 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ApositiveRandomSexagesimal\u0028\u0029",
             "name": "positiveRandomSexagesimal",
-            "summary": "Return\u0020random\u0020sexagesimal\u0020values\u0020for\u0020a\u0020positive\u0020Angle.",
+            "summary": "Return\u0020positive\u0020random\u0020sexagesimal.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_positiveRandomSexagesimal"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003AnegativeRandomSexagesimal\u0028\u0029",
             "name": "negativeRandomSexagesimal",
-            "summary": "Return\u0020random\u0020sexagesimal\u0020values\u0020for\u0020a\u0020negative\u0020Angle.",
+            "summary": "Return\u0020negative\u0020random\u0020sexagesimal\u0020values.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_negativeRandomSexagesimal"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomSexadecimal\u0028\u0029",
             "name": "randomSexadecimal",
-            "summary": "Return\u0020a\u0020random\u0020sexadecimal\u0020value,\u0020from\u00200\u00B0\u0020to\u0020360\u00B0,\nexcluded\u0020360\u00B0.",
+            "summary": "Return\u0020a\u0020random\u0020sexadecimal\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomSexadecimal"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ApositiveRandomSexadecimal\u0028\u0029",
             "name": "positiveRandomSexadecimal",
-            "summary": "Return\u0020a\u0020random\u0020poisitve\u0020sexadecimal\u0020value,\u0020from\u00200\u00B0\u0020to\u0020360\u00B0,\nexcluded\u0020360\u00B0.",
+            "summary": "Return\u0020a\u0020random\u0020positve\u0020sexadecimal\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_positiveRandomSexadecimal"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003AnegativeRandomSexadecimal\u0028\u0029",
             "name": "negativeRandomSexadecimal",
-            "summary": "Return\u0020a\u0020random\u0020negative\u0020sexadecimal\u0020value,\u0020from\u00200\u00B0\u0020to\u0020360\u00B0,\nexcluded\u0020360\u00B0.",
+            "summary": "Return\u0020a\u0020random\u0020negative\u0020sexadecimal\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_negativeRandomSexadecimal"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ArandomRadian\u0028\u0029",
             "name": "randomRadian",
-            "summary": "Return\u0020a\u0020random\u0020relative\u0020radian\u0020value.",
+            "summary": "Return\u0020a\u0020random\u0020relative\u0020\u0060Radian\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_randomRadian"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003ApositiveRandomRadian\u0028\u0029",
             "name": "positiveRandomRadian",
-            "summary": "Return\u0020a\u0020positive\u0020random\u0020radian\u0020value.",
+            "summary": "Return\u0020a\u0020positive\u0020random\u0020\u0060Radian\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_positiveRandomRadian"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits\\WithAngleFaker\u003A\u003AnegativeRandomRadian\u0028\u0029",
             "name": "negativeRandomRadian",
-            "summary": "Return\u0020a\u0020negative\u0020random\u0020radian\u0020value.",
+            "summary": "Return\u0020a\u0020negative\u0020random\u0020\u0060Radian\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Traits-WithAngleFaker.html#method_negativeRandomRadian"
         },                {
             "fqsen": "\\",
@@ -1550,6 +1980,21 @@ Search.appendIndex(
             "name": "Comparison",
             "summary": "",
             "url": "namespaces/marcoconsiglio-goniometry-interfaces-comparison.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random",
+            "name": "Random",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-goniometry-random.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Generator",
+            "name": "Generator",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-goniometry-random-generator.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator",
+            "name": "Validator",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-goniometry-random-validator.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Traits",
             "name": "Traits",

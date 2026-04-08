@@ -1,7 +1,7 @@
 # [goniometry](https://github.com/MarcoConsiglio/goniometry?tab=readme-ov-file#goniometry)
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v3.1.0-white)
+![Static Badge](https://img.shields.io/badge/version-v4.0.0-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
@@ -314,10 +314,37 @@ $beta = Angle::createFromDecimal(-270);
 $gamma = Angle::absSum($alfa, $beta); // 180° + (-270°) =
 (string) $gamma;                      // 270° 0' 0"
 ```
+```php
+$alfa = Angle::createFromDecimal(-180);
+$beta = Angle::createFromDecimal(-270);
+$gamma = Angle::absSum($alfa, $beta); // (-180°) + (-270°) =
+(string) $gamma;                      // 270° 0' 0"
+```
 # FakerPHP support <a id="faker_php"></a>
-This library provides support to [FakerPHP](https://fakerphp.org/) through the `WithAngleFaker` trait. 
+This library provides support to [FakerPHP](https://fakerphp.org/) through the `WithAngleFaker` trait. Here's a list of the available methods.
 
-Check the [API documentation](#api-documentation) to find out random helper methods useful to generate random angles.
+| Method | Return type | Min (included) | Min (excluded) | Max (included) | Max (excluded) |
+| --- | --- | --- | --- | --- | --- |
+| `randomPrecision()` | `int` | 0 |  | `PHP_FLOAT_DIG` |  |
+| `randomDegrees()` | `Degrees` | 0° |  | 359° |  |
+| `randomMinutes()` | `Minutes` | 0' |  | 59' |  |
+| `randomSeconds()` | `Seconds` | 0" |  |  | 60" |
+| `randomAngle()` | `Angle` |  | -360° |  | +360° |
+| `positiveRandomAngle()` | `Angle` | 0° |  |  | +360° |
+| `negativeRandomAngle()` | `Angle` |  | -360° |  | 0° |
+| `randomDirection()` | `Direction` | `CLOCKWISE` |  | `COUNTER_CLOCKWISE` |  |
+| `randomSexagesimalString()` | `string` |  | -360° |  | +360° |
+| `randomSexagesimal()` | `SexagesimalDegrees` |  | -360° |  | +360° |
+| `positiveRandomSexagesimal()` | `SexagesimalDegrees` | 0° |  |  | +360° |
+| `negativeRandomSexagesimal()` | `SexagesimalDegrees` |  | -360° |  | 0° |
+| `randomSexadecimal()` | `float` |  | -360° |  | +360° |
+| `positiveRandomSexadecimal()` | `float` | 0° |  |  | +360° |
+| `negativeRandomSexadecimal()` | `float` |  | -360° |  | 0° |
+| `randomRadian()` | `Radian` |  | -2π |  | +2π |
+| `positiveRandomRadian()` | `Radian` | 0 |  |  | +2π |
+| `negativeRandomRadian()` | `Radian` |  | -2π |  | 0 |
+
+Check the [API documentation](#api-documentation) to find out more info about these methods.
 
 # API documentation
 You can read the code documentation in `./docs/html/index.html`.

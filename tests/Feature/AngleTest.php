@@ -3,9 +3,9 @@ namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
+use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Builders\RelativeSum;
 use MarcoConsiglio\Goniometry\Builders\SumBuilder;
@@ -54,6 +54,32 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\RadianRange;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -61,66 +87,93 @@ use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The Angle class")]
 #[CoversClass(Angle::class)]
 #[UsesClass(AbsoluteSum::class)]
-#[UsesClass(RelativeSum::class)]
-#[UsesClass(FromSexagesimal::class)]
-#[UsesClass(FromSexadecimal::class)]
-#[UsesClass(FromString::class)]
-#[UsesClass(FromRadian::class)]
-#[UsesClass(SumBuilder::class)]
-#[UsesClass(Degrees::class)]
-#[UsesClass(Minutes::class)]
-#[UsesClass(Seconds::class)]
-#[UsesClass(Direction::class)]
+#[UsesClass(AngleType::class)]
+#[UsesClass(CastToRadian::class)]
+#[UsesClass(CastToSexadecimal::class)]
 #[UsesClass(Comparison::class)]
-#[UsesClass(Equal::class)]
-#[UsesClass(Different::class)]
-#[UsesClass(Greater::class)]
-#[UsesClass(GreaterOrEqual::class)]
-#[UsesClass(Lesser::class)]
-#[UsesClass(LesserOrEqual::class)]
 #[UsesClass(ComparisonStrategy::class)]
-#[UsesClass(FloatComparisonStrategy::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
+#[UsesClass(Different::class)]
 #[UsesClass(DifferentAngle::class)]
 #[UsesClass(DifferentFloat::class)]
 #[UsesClass(DifferentInt::class)]
 #[UsesClass(DifferentString::class)]
+#[UsesClass(Direction::class)]
+#[UsesClass(Equal::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(EqualFloat::class)]
 #[UsesClass(EqualInt::class)]
 #[UsesClass(EqualString::class)]
+#[UsesClass(FloatComparisonStrategy::class)]
+#[UsesClass(FloatType::class)]
+#[UsesClass(FloatValidator::class)]
+#[UsesClass(FromRadian::class)]
+#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(FromSexagesimal::class)]
+#[UsesClass(FromString::class)]
+#[UsesClass(Greater::class)]
 #[UsesClass(GreaterAngle::class)]
 #[UsesClass(GreaterFloat::class)]
 #[UsesClass(GreaterInt::class)]
-#[UsesClass(GreaterString::class)]
+#[UsesClass(GreaterOrEqual::class)]
 #[UsesClass(GreaterOrEqualAngle::class)]
 #[UsesClass(GreaterOrEqualFloat::class)]
 #[UsesClass(GreaterOrEqualInt::class)]
 #[UsesClass(GreaterOrEqualString::class)]
+#[UsesClass(GreaterString::class)]
+#[UsesClass(IntType::class)]
+#[UsesClass(Lesser::class)]
 #[UsesClass(LesserAngle::class)]
 #[UsesClass(LesserFloat::class)]
 #[UsesClass(LesserInt::class)]
-#[UsesClass(LesserString::class)]
+#[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqualAngle::class)]
 #[UsesClass(LesserOrEqualFloat::class)]
 #[UsesClass(LesserOrEqualInt::class)]
 #[UsesClass(LesserOrEqualString::class)]
-#[UsesClass(AngleType::class)]
-#[UsesClass(FloatType::class)]
-#[UsesClass(IntType::class)]
-#[UsesClass(StringType::class)]
-#[UsesClass(RoundToRadian::class)]
-#[UsesClass(CastToRadian::class)]
+#[UsesClass(LesserString::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(MinutesGenerator::class)]
+#[UsesClass(MinutesValidator::class)]
+#[UsesClass(NegativeAngleGenerator::class)]
+#[UsesClass(NegativeRadianGenerator::class)]
+#[UsesClass(NegativeSexadecimalGenerator::class)]
+#[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveAngleGenerator::class)]
+#[UsesClass(PositiveRadian::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(Radian::class)]
-#[UsesClass(CastToSexadecimal::class)]
+#[UsesClass(RadianGenerator::class)]
+#[UsesClass(RadianRange::class)]
+#[UsesClass(RelativeAngleGenerator::class)]
+#[UsesClass(RelativeRadianGenerator::class)]
+#[UsesClass(RelativeRadianValidator::class)]
+#[UsesClass(RelativeSexadecimalGenerator::class)]
+#[UsesClass(RelativeSexadecimalValidator::class)]
+#[UsesClass(RelativeSexagesimalGenerator::class)]
+#[UsesClass(RelativeSexagesimalGenerator::class)]
+#[UsesClass(RelativeSum::class)]
+#[UsesClass(RoundToRadian::class)]
 #[UsesClass(RoundToSexadecimal::class)]
+#[UsesClass(Seconds::class)]
+#[UsesClass(SecondsGenerator::class)]
+#[UsesClass(SecondsRange::class)]
+#[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
+#[UsesClass(SexagesimalGenerator::class)]
+#[UsesClass(StringType::class)]
+#[UsesClass(SumBuilder::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngleTest extends TestCase
 {    
@@ -128,7 +181,7 @@ class AngleTest extends TestCase
     public function test_degrees_property(): void
     {
         // Arrange
-        $degrees = $this->randomDegrees();
+        $degrees = $this->randomDegrees()->value();
         $angle = Angle::createFromValues($degrees);
 
         // Act & Assert
@@ -138,7 +191,7 @@ class AngleTest extends TestCase
     #[TestDox('has "minutes" property which is of type Minutes.')]
     public function test_minutes_property(): void
     {
-        $minutes = $this->randomMinutes();
+        $minutes = $this->randomMinutes()->value();
         $angle = Angle::createFromValues(minutes: $minutes);
 
         // Act & Assert
@@ -148,13 +201,13 @@ class AngleTest extends TestCase
     #[TestDox('has "seconds" property which is of type Seconds.')]
     public function test_seconds_property(): void
     {
-        $seconds = $this->randomSeconds();
+        $seconds = $this->randomSeconds(precision: 1)->value();
         $angle = Angle::createFromValues(seconds: $seconds);
 
         // Act & Assert
         $this->assertEquals(
-            $this->safeRound($seconds),
-            $angle->seconds->value(self::PRECISION)
+            $seconds,
+            $angle->seconds->value()
         );
     }
 
@@ -173,29 +226,34 @@ class AngleTest extends TestCase
     public function test_create_from_values()
     {
         // Arrange
-        [$degrees, $minutes, $seconds, $direction] = 
-            $this->randomSexagesimal();
+        $sexagesimal = $this->randomSexagesimal();
 
         // Act
-        $angle = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
+        $angle = Angle::createFromValues(
+            $sexagesimal->degrees->value(), 
+            $sexagesimal->minutes->value(), 
+            $sexagesimal->seconds->value(), 
+            $sexagesimal->direction
+        );
 
         // Assert
-        $this->assertEquals($degrees, $angle->degrees->value());
-        $this->assertEquals($minutes, $angle->minutes->value());
-        $this->assertEquals(
-            $this->safeRound($seconds),
-            $angle->seconds->value(self::PRECISION)
+        $this->assertDegrees($sexagesimal->degrees, $angle->degrees);
+        $this->assertMinutes($sexagesimal->minutes, $angle->minutes);
+        $this->assertSeconds(
+            $sexagesimal->seconds,
+            $angle->seconds,
+            precision: 1
         );
-        $this->assertEquals($direction, $angle->direction);
+        $this->assertDirection($sexagesimal->direction, $angle->direction);
     }
 
     #[TestDox("can be created from a textual representation.")]
     public function test_create_from_string()
     {
         // Arrange
-        $degrees = new Degrees($this->randomDegrees());
-        $minutes = new Minutes($this->randomMinutes());
-        $seconds = new Seconds($this->randomSeconds());
+        $degrees = $this->randomDegrees();
+        $minutes = $this->randomMinutes();
+        $seconds = $this->randomSeconds(precision: 1);
         $direction = $this->randomDirection();
         $sign = $direction == Direction::CLOCKWISE ? '-' : '';
         $text = "{$sign}{$degrees} {$minutes} {$seconds}";
@@ -204,24 +262,24 @@ class AngleTest extends TestCase
         $angle = Angle::createFromString($text);
 
         // Act
-        $this->assertEquals($degrees->value(), $angle->degrees->value());
-        $this->assertEquals($minutes->value(), $angle->minutes->value());
-        $this->assertEquals($seconds->value(self::PRECISION), $angle->seconds->value(self::PRECISION));
-        $this->assertEquals($direction, $angle->direction);
+        $this->assertDegrees($degrees, $angle->degrees, $text);
+        $this->assertMinutes($minutes, $angle->minutes, $text);
+        $this->assertSeconds($seconds, $angle->seconds, 1, $text);
+        $this->assertDirection($direction, $angle->direction, $text);
     }
 
     #[TestDox("can be created from a decimal number.")]
     public function test_create_from_decimal()
     {
         // Arrange
-        $decimal = $this->randomSexadecimal();
+        $decimal = $this->randomSexadecimal(precision: 1);
 
         // Act
         $angle = Angle::createFromDecimal($decimal);
 
         $this->assertEquals(
-            $this->safeRound($decimal), 
-            $angle->toFloat(self::PRECISION)
+            $decimal, 
+            $angle->toFloat(1)
         );
     }
 
@@ -229,15 +287,15 @@ class AngleTest extends TestCase
     public function test_create_from_radiant()
     {
         // Arrange
-        $radian = $this->randomFloat(max: Radian::MAX - self::SSN);
+        $radian = $this->randomRadian(precision: 6);
 
         // Act
         $angle = Angle::createFromRadian($radian);
 
         // Assert
         $this->assertEquals(
-            $this->safeRound($radian), 
-            $angle->toRadian(self::PRECISION)
+            $radian->value(), 
+            $angle->toRadian()
         );
     }
 
@@ -247,9 +305,9 @@ class AngleTest extends TestCase
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
         $alfa = Angle::createFromValues(
-            $degrees = $this->randomDegrees(), 
-            $minutes = $this->randomMinutes(), 
-            $seconds = $this->randomSeconds(),
+            $degrees = $this->randomDegrees()->value(), 
+            $minutes = $this->randomMinutes()->value(), 
+            $seconds = $this->randomSeconds(precision: 1)->value(),
             $direction = $this->randomDirection()
         );
         /** @var Direction $direction */
@@ -278,7 +336,7 @@ class AngleTest extends TestCase
     public function test_cast_angle_to_string()
     {
         // Arrange
-        $alfa = $this->randomAngle();
+        $alfa = $this->randomAngle(precision: 3);
         $sign = $alfa->direction == Direction::COUNTER_CLOCKWISE ? "" : "-";
         $degrees = $alfa->degrees;
         $minutes = $alfa->minutes;
@@ -293,9 +351,9 @@ class AngleTest extends TestCase
     {
         // Arrange
         $angle = Angle::createFromValues(
-            $this->randomDegrees(),
-            $this->randomMinutes(),
-            $this->randomSeconds(),
+            $this->randomDegrees()->value(),
+            $this->randomMinutes()->value(),
+            $this->randomSeconds()->value(),
             $this->randomDirection()
         );
 
@@ -361,7 +419,7 @@ class AngleTest extends TestCase
     {
         // Arrange
         $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees();
+        $int_beta = $this->randomDegrees()->value();
         $string_beta = (string) $this->randomAngle();
         $float_beta = $this->randomAngle()->toFloat();
         $angle_beta = $this->randomAngle();
@@ -378,7 +436,7 @@ class AngleTest extends TestCase
     {
         // Arrange
         $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees();
+        $int_beta = $this->randomDegrees()->value();
         $string_beta = (string) $this->randomAngle();
         $float_beta = $this->randomAngle()->toFloat();
         $angle_beta = $this->randomAngle();
@@ -395,7 +453,7 @@ class AngleTest extends TestCase
     {
         // Arrange
         $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees();
+        $int_beta = $this->randomDegrees()->value();
         $string_beta = (string) $this->randomAngle();
         $float_beta = $this->randomAngle()->toFloat();
         $angle_beta = $this->randomAngle();
@@ -412,7 +470,7 @@ class AngleTest extends TestCase
     {
         // Arrange
         $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees();
+        $int_beta = $this->randomDegrees()->value();
         $string_beta = (string) $this->randomAngle();
         $float_beta = $this->randomAngle()->toFloat();
         $angle_beta = $this->randomAngle();
@@ -429,7 +487,7 @@ class AngleTest extends TestCase
     {
         // Arrange
         $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees();
+        $int_beta = $this->randomDegrees()->value();
         $string_beta = (string) $this->randomAngle();
         $float_beta = $this->randomAngle()->toFloat();
         $angle_beta = $this->randomAngle();
@@ -446,7 +504,7 @@ class AngleTest extends TestCase
     {
         // Arrange
         $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees();
+        $int_beta = $this->randomDegrees()->value();
         $string_beta = (string) $this->randomAngle();
         $float_beta = $this->randomAngle()->toFloat();
         $angle_beta = $this->randomAngle();
@@ -488,7 +546,7 @@ class AngleTest extends TestCase
         $this->assertInstanceOf(Angle::class, $gamma, $this->methodMustReturn(
             Angle::class, "absSum", Angle::class
         ));
-        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $gamma->direction, 
+        $this->assertDirection(Direction::COUNTER_CLOCKWISE, $gamma->direction, 
             Angle::class."absSum() method must always return a positive angle."
         );
     }

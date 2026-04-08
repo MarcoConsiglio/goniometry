@@ -225,6 +225,14 @@ class Angle implements AngleInterface
     }
 
     /**
+     * Return the sexagesimal values of this `Angle`.
+     */
+    public function toSexagesimalDegrees(): SexagesimalDegrees
+    {
+        return $this->sexagesimal;
+    }
+
+    /**
      * Return the sexadecimal value of this `Angle`.
      *
      * @param integer|null $precision The number of decimal digits. If sets to null,

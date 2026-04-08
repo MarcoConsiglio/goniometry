@@ -2,11 +2,22 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -19,21 +30,36 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(FromSexagesimal::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
+#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(Minutes::class)]
+#[UsesClass(NegativeSexadecimalGenerator::class)]
+#[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(RelativeSexadecimalGenerator::class)]
+#[UsesClass(RelativeSexadecimalValidator::class)]
+#[UsesClass(RelativeSexagesimalGenerator::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
+#[UsesClass(SexagesimalGenerator::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class FromDegreesTest extends TestCase
+class FromSexagesimalTest extends TestCase
 {
-    #[TestDox("can create an angle from degrees values.")]
+    #[TestDox("can create an angle from sexagesimal values.")]
     public function test_can_create_an_angle()
     {
         // Arrange
-        [$degrees, $minutes, $seconds, $direction] = 
-            $this->randomSexagesimal();
+        $random = $this->randomSexagesimal(precision: 3);
 
         // Act
-        $angle = Angle::createFromValues($degrees, $minutes, $seconds, $direction);
+        $angle = Angle::createFromValues(
+            $random->degrees->value(), 
+            $random->minutes->value(), 
+            $random->seconds->value(), 
+            $random->direction
+        );
 
         // Assert
         $this->assertInstanceOf(Angle::class, $angle,

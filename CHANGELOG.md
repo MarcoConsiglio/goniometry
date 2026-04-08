@@ -1,4 +1,43 @@
 # Changelog
+## v4.0.0 2025-04-07
+### Added
+- `Angle::toSexagesimalDegrees()` to return the `SexagesimalDegrees` values of an `Angle`.
+### Changed
+- `WithAngleFaker::{`  
+&ensp;&ensp;&ensp;&ensp;`randomDegrees()`  
+&ensp;&ensp;&ensp;&ensp;`randomMinutes()`  
+&ensp;&ensp;&ensp;&ensp;`randomSeconds()`  
+&ensp;&ensp;&ensp;&ensp;`randomAngle()`  
+&ensp;&ensp;&ensp;&ensp;`positiveRandomAngle()`  
+&ensp;&ensp;&ensp;&ensp;`negativeRandomAngle()`  
+&ensp;&ensp;&ensp;&ensp;`randomSexagesimalString()`  
+&ensp;&ensp;&ensp;&ensp;`randomSexagesimal()`  
+&ensp;&ensp;&ensp;&ensp;`positiveRandomSexagesimal()`  
+&ensp;&ensp;&ensp;&ensp;`negativeRandomSexagesimal()`  
+&ensp;&ensp;&ensp;&ensp;`randomSexadecimal()`  
+&ensp;&ensp;&ensp;&ensp;`positiveRandomSexadecimal()`  
+&ensp;&ensp;&ensp;&ensp;`negativeRandomSexadecimal()`  
+&ensp;&ensp;&ensp;&ensp;`randomRadian()`  
+&ensp;&ensp;&ensp;&ensp;`positiveRandomRadian()`  
+&ensp;&ensp;&ensp;&ensp;`negativeRandomRadian()`  
+`}` methods default parameters.
+- `WithAngleFaker::{`  
+&ensp;&ensp;&ensp;&ensp;`randomDegrees()`  
+&ensp;&ensp;&ensp;&ensp;`randomMinutes()`  
+&ensp;&ensp;&ensp;&ensp;`randomSeconds()`  
+&ensp;&ensp;&ensp;&ensp;`randomSexagesimal()`  
+&ensp;&ensp;&ensp;&ensp;`positiveRandomSexagesimal()`  
+&ensp;&ensp;&ensp;&ensp;`negativeRandomSexagesimal()`   
+&ensp;&ensp;&ensp;&ensp;`randomRadian()`  
+&ensp;&ensp;&ensp;&ensp;`positiveRandomRadian()`  
+&ensp;&ensp;&ensp;&ensp;`negativeRandomRadian()`  
+`}` return type.
+- API and README documentation.
+### Removed
+- `WithAngleFaker::SSN` constant
+### Fixed
+- Incorrect absolute sum when both `Angle`s are negative.
+
 ## v3.1.0 2025-03-17
 ### Added
 - `WithAngleFaker` trait to support FakerPHP in order to generate random angular values.

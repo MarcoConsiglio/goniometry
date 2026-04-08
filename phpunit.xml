@@ -23,8 +23,8 @@
         </testsuite>
     </testsuites>
     <logging>
-        <testdoxHtml outputFile="testbook.html"/>
-        <testdoxText outputFile="testbook.txt" />
+        <testdoxHtml outputFile="tests/testbook.html"/>
+        <testdoxText outputFile="tests/testbook.txt" />
     </logging>
     <coverage
         includeUncoveredFiles="true"

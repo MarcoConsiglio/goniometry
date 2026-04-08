@@ -8,6 +8,8 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
@@ -20,10 +22,12 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The DifferentInt comparison strategy")]
 #[CoversClass(DifferentInt::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromSexagesimal::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(EqualInt::class)]
-#[UsesClass(Degrees::class)]
+#[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexagesimalDegrees::class)]
@@ -40,10 +44,10 @@ class DifferentIntTest extends TestCase
          */
         // Arrange
         $beta = $this->randomDegrees(min : 1);
-        $alfa = Angle::createFromValues($beta - 1);
+        $alfa = Angle::createFromValues($beta->value() - 1);
 
         // Act & Assert
-        $this->assertTrue(new DifferentInt($alfa, $beta)->compare(),
+        $this->assertTrue(new DifferentInt($alfa, $beta->value())->compare(),
             $this->getFailMessage($alfa, $beta)
         );
 
@@ -52,10 +56,10 @@ class DifferentIntTest extends TestCase
          */
         // Arrange
         $beta = $this->randomDegrees();
-        $alfa = Angle::createFromValues($beta);
+        $alfa = Angle::createFromValues($beta->value());
 
         // Act & Assert
-        $this->assertFalse(new DifferentInt($alfa, $beta)->compare(),
+        $this->assertFalse(new DifferentInt($alfa, $beta->value())->compare(),
             $this->getFailMessage($alfa, $beta)
         );
     }

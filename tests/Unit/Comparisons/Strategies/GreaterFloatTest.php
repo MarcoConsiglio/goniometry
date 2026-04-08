@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
@@ -8,6 +9,14 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -21,12 +30,20 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The GreaterFloat comparison strategy")]
 #[CoversClass(GreaterFloat::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(Minutes::class)]
-#[UsesClass(Seconds::class)]
 #[UsesClass(Direction::class)]
+#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(NegativeAngleGenerator::class)]
+#[UsesClass(NegativeSexadecimalGenerator::class)]
+#[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveAngleGenerator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(RelativeAngleGenerator::class)]
+#[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Round::class)]
+#[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
@@ -41,8 +58,8 @@ class GreaterFloatTest extends TestCase
          * Greater
          */
         // Arrange
-        $alfa = $this->randomAngle(min: 180);
-        $beta = $this->randomAngle(max: 180 - self::SSN)->toFloat();
+        $alfa = $this->positiveRandomAngle(min: 180);
+        $beta = $this->randomAngle(min: NextFloat::after(-180), max: NextFloat::before(180))->toFloat();
 
         // Act & Assert
         $this->assertTrue(new GreaterFloat($alfa, $beta)->compare(),
@@ -53,8 +70,8 @@ class GreaterFloatTest extends TestCase
          * Lesser
          */
         // Arrange
-        $alfa = $this->randomAngle(max: 180 - self::SSN);
-        $beta = $this->randomAngle(min: 180)->toFloat();
+        $alfa = $this->positiveRandomAngle(max: NextFloat::before(180));
+        $beta = $this->positiveRandomAngle(min: 180)->toFloat();
 
         // Act & Assert
         $this->assertFalse(new GreaterFloat($alfa, $beta)->compare(),
