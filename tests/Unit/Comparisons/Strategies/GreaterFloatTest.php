@@ -47,7 +47,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-
 class GreaterFloatTest extends TestCase
 {
     protected string $comparison = '>';
