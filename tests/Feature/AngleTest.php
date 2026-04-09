@@ -397,7 +397,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can toggle its direction.")]
-    public function test_can_toggle_rotation_from_clockwise_to_counterclockwise()
+    public function test_can_toggle_rotation_direction()
     {
         // Arrange
         $alfa = $this->positiveRandomAngle();
@@ -411,7 +411,15 @@ class AngleTest extends TestCase
         $failure_message_1 = "The angle should be counterclockwise but found the opposite.";
         $failure_message_2 = "The angle should be clockwise but found the opposite.";
         $this->assertEquals(Direction::CLOCKWISE, $alfa_opposite->direction, $failure_message_2);
+        $this->assertEquals(
+            $alfa->toSexadecimalDegrees()->value->mul(-1)->toFloat(), 
+            $alfa_opposite->toSexadecimalDegrees()->value()
+        );
         $this->assertEquals(Direction::COUNTER_CLOCKWISE, $beta_opposite->direction, $failure_message_1);
+        $this->assertEquals(
+            $beta->toSexadecimalDegrees()->value->mul(-1)->toFloat(),
+            $beta_opposite->toSexadecimalDegrees()->value()
+        );
     }
 
     #[TestDox("can be equal compared against an int, float, string or Angle.")]

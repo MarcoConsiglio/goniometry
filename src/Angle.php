@@ -204,6 +204,10 @@ class Angle implements AngleInterface
         $clone = clone $this;
         $clone->sexagesimal->direction =
             $clone->sexagesimal->direction->opposite();
+        if ($clone->sexadecimal !== null)
+            $clone->sexadecimal = new SexadecimalDegrees(
+                $clone->sexadecimal->value->mul(-1)
+            );
         return $clone;
     }
 

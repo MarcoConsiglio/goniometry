@@ -65,8 +65,8 @@ class EqualFloatTest extends TestCase
          */
         // Arrange
         $precision = $this->randomPrecision();
-        $alfa = $this->randomAngle();
-        $beta = $alfa->toFloat($precision);
+        $alfa = $this->randomAngle(precision: 3);
+        $beta = $alfa->toFloat();
 
         // Act & Assert
         $this->assertTrue(new EqualFloat($alfa, $beta, $precision)->compare(),
