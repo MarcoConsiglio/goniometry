@@ -26,10 +26,9 @@ abstract class Sexagesimal extends Generator
     abstract public function generate(int $precision): SexagesimalDegrees;
 
     /**
-     * @codeCoverageIgnore
-     */
-    /**
      * Validate the random range.
+     * 
+     * @codeCoverageIgnore
      */
     protected function validate(): void
     {
