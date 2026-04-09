@@ -30,8 +30,8 @@ class Minutes extends Validator
      */
     protected function avoidExceedingValues(int &$min, int &$max): void
     {
-        if ($this->greaterThanOrEqual($min, MinutesRange::MAX)) $this->setMin($min);        
-        if ($this->greaterThanOrEqual($max, MinutesRange::MAX)) $this->setMax($max);
+        if ($this->greaterThan($min, MinutesRange::MAX)) $this->setMin($min);        
+        if ($this->greaterThan($max, MinutesRange::MAX)) $this->setMax($max);
     }
 
     /**

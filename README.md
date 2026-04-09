@@ -1,7 +1,7 @@
 # [goniometry](https://github.com/MarcoConsiglio/goniometry?tab=readme-ov-file#goniometry)
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v4.0.0-white)
+![Static Badge](https://img.shields.io/badge/version-v4.0.1-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))

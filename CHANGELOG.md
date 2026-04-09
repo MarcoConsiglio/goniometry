@@ -1,4 +1,8 @@
 # Changelog
+## v4.0.1 2025-04-09
+### Fixed
+- [#15](https://github.com/MarcoConsiglio/goniometry/issues/15).
+
 ## v4.0.0 2025-04-08
 ### Added
 - `Angle::toSexagesimalDegrees()` to return the `SexagesimalDegrees` values of an `Angle`.
