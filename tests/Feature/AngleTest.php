@@ -402,24 +402,40 @@ class AngleTest extends TestCase
         // Arrange
         $alfa = $this->positiveRandomAngle();
         $beta = $this->negativeRandomAngle();
+        $gamma = Angle::createFromValues(
+            $this->randomDegrees()->value(), 
+            direction: Direction::COUNTER_CLOCKWISE
+        );
+        $delta = Angle::createFromValues(
+            $this->randomDegrees()->value(), 
+            direction: Direction::CLOCKWISE
+        );
 
         // Act
-        $alfa_opposite = $alfa->toggleDirection(); /* From positive to negative */
-        $beta_opposite = $beta->toggleDirection(); /* From negative to positive */
+        //  With SexadecimalDegrees
+        $alfa_opposite = $alfa->toggleDirection();      // From positive to negative
+        $beta_opposite = $beta->toggleDirection();      // From negative to positive
+        //  Without SexadecimalDegrees
+        $gamma_opposite = $gamma->toggleDirection();    // From positive to negative 
+        $delta_opposite = $delta->toggleDirection();    // From negative to positive
 
         // Assert
         $failure_message_1 = "The angle should be counterclockwise but found the opposite.";
         $failure_message_2 = "The angle should be clockwise but found the opposite.";
-        $this->assertEquals(Direction::CLOCKWISE, $alfa_opposite->direction, $failure_message_2);
+        //  With SexadecimalDegrees
+        $this->assertDirection(Direction::CLOCKWISE, $alfa_opposite->direction, $failure_message_2);
         $this->assertEquals(
             $alfa->toSexadecimalDegrees()->value->mul(-1)->toFloat(), 
             $alfa_opposite->toSexadecimalDegrees()->value()
         );
-        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $beta_opposite->direction, $failure_message_1);
+        $this->assertDirection(Direction::COUNTER_CLOCKWISE, $beta_opposite->direction, $failure_message_1);
         $this->assertEquals(
             $beta->toSexadecimalDegrees()->value->mul(-1)->toFloat(),
             $beta_opposite->toSexadecimalDegrees()->value()
         );
+        // Without SexadecimalDegrees
+        $this->assertDirection(Direction::CLOCKWISE, $gamma_opposite->direction, $failure_message_2);
+        $this->assertDirection(Direction::COUNTER_CLOCKWISE, $delta_opposite->direction, $failure_message_1);
     }
 
     #[TestDox("can be equal compared against an int, float, string or Angle.")]
