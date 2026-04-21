@@ -27,8 +27,7 @@ class EqualAngle extends ComparisonStrategy
     {
         if (! $this->secondsAreEqual()) return false;
         if (! $this->minutesAreEqual()) return false;
-        if (! $this->degreesAreEqual()) return false;
-        return true;
+        return $this->degreesAreEqual();
     }
 
     /**

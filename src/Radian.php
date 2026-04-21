@@ -22,9 +22,9 @@ class Radian extends ModularNumber
     {
         $value = $this->normalizeArgument($value);
         if ($value->isPositive())
-            parent::__construct($value, $this->getMaxRadian());
+            parent::__construct($value, static::getMaxRadian());
         else
-            parent::__construct($value, $this->getMaxRadian()->mul(-1));
+            parent::__construct($value, static::getMaxRadian()->mul(-1));
     }
 
     /**

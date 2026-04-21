@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 class RegExFailureExceptionTest extends TestCase
 {
     #[TestDox("has a message which explain the regular expression failure.")]
-    public function test_regex_failure_exception()
+    public function test_regex_failure_exception(): void
     {
         // Arrange
         $message = "Oh my God! Something went wrong!";

@@ -149,7 +149,7 @@ trait WithDispositionTesting
     protected function getTotalDispositions(int $properties_number): int
     {
         $properties_number = abs($properties_number);
-        return pow(2, $properties_number);
+        return 2 ** $properties_number;
     }
 
     /**

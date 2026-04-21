@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 class NoMatchExceptionTest extends TestCase
 {
     #[TestDox("tells you're trying to create an angle from a bad formatted angle string.")]
-    public function test_no_match_exception()
+    public function test_no_match_exception(): void
     {
         // Arrange
         $message = " does not match an angle measure.";

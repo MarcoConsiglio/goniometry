@@ -15,16 +15,6 @@ use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 abstract class Comparison
 {
     /**
-     * The left operand of the comparison.
-     */
-    protected Angle $alfa;
-
-    /**
-     * The right operand of the comparison.
-     */
-    protected string|int|float|Angle $beta;
-
-    /**
      * The strategy used to compare two angles.
      */
     protected Strategy $comparison_strategy;
@@ -42,11 +32,14 @@ abstract class Comparison
 
     /**
      * Construct the `Comparison` with the two angles `$alfa` and `$beta`.
+     * 
+     * @param Angle $alfa The left operand of the comparison.
+     * @param string|int|float|Angle $beta The right operand of the comparison.
      */
-    public function __construct(Angle $alfa, string|int|float|Angle $beta)
-    {
-        $this->alfa = $alfa;
-        $this->beta = $beta;
+    public function __construct(
+        protected Angle $alfa,
+        protected string|int|float|Angle $beta
+    ) {
         $this->setComparisonStrategy();
     }
 

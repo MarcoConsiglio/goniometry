@@ -49,7 +49,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class FromRadianTest extends TestCase
 {
     #[TestDox("can create an angle from a radian float value.")]
-    public function test_can_create_an_angle_from_float_value()
+    public function test_can_create_an_angle_from_float_value(): void
     {
         // Arrange
         $radian = $this->randomRadian(precision: 1);
@@ -65,7 +65,7 @@ class FromRadianTest extends TestCase
     }
 
     #[TestDox("can create an angle from a Radian type value.")]
-    public function test_can_create_an_angle_from_radian_type()
+    public function test_can_create_an_angle_from_radian_type(): void
     {
         // Arrange
         $radian_value = $this->randomRadian(precision: 1);

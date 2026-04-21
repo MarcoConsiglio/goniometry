@@ -23,11 +23,12 @@ use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
+use Stringable;
 
 /**
  * Represents an angle.
  */
-class Angle implements AngleInterface
+class Angle implements AngleInterface, Stringable
 {
     /**
      * Regular expression used to parse degrees value as integer number.
@@ -167,7 +168,7 @@ class Angle implements AngleInterface
      */
     public function getDegrees(bool $associative = false): array
     {
-        $degrees = (int) $this->degrees->value() * $this->direction->value;
+        $degrees = $this->degrees->value() * $this->direction->value;
         $minutes = $this->minutes->value();
         $seconds = $this->seconds->value();
         if ($associative)
@@ -461,7 +462,7 @@ class Angle implements AngleInterface
      * 
      * @example `(string) $alfa`
      */
-    public function __toString()
+    public function __toString(): string
     {
         $sign = $this->isClockwise() ? "-" : "";
         return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";

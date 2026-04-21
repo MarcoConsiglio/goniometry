@@ -50,7 +50,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class FromStringTest extends TestCase
 {
     #[TestDox("can create a positive angle from a string value.")]
-    public function test_can_create_positive_angle()
+    public function test_can_create_positive_angle(): void
     {
         // Arrange
         $degrees = $this->randomDegrees();
@@ -71,7 +71,7 @@ class FromStringTest extends TestCase
     }
 
     #[TestDox("can create a negative angle from a string value.")]
-    public function test_can_create_negative_angle()
+    public function test_can_create_negative_angle(): void
     {
         // Arrange
         $degrees = $this->randomDegrees();
@@ -92,7 +92,7 @@ class FromStringTest extends TestCase
     }
     
     #[TestDox("throws NoMatchException with more than 360° input.")]
-    public function test_exception_if_more_than_360_degrees()
+    public function test_exception_if_more_than_360_degrees(): void
     {
         // Arrange
         $angle_string = "361° 0' 0\"";
@@ -106,7 +106,7 @@ class FromStringTest extends TestCase
     }
 
     #[TestDox("throws NoMatchException with more than 59' input.")]
-    public function test_exception_if_more_than_59_minutes()
+    public function test_exception_if_more_than_59_minutes(): void
     {
         // Arrange
         $angle_string = "0° 60' 0\"";
@@ -120,7 +120,7 @@ class FromStringTest extends TestCase
     }
 
     #[TestDox("throws NoMatchException with more than 59.9\" input.")]
-    public function test_exception_if_more_than_59_seconds()
+    public function test_exception_if_more_than_59_seconds(): void
     {
         // Arrange
         $angle_string = "0° 0' 60\"";

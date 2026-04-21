@@ -48,7 +48,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class FromSexagesimalTest extends TestCase
 {
     #[TestDox("can create an angle from sexagesimal values.")]
-    public function test_can_create_an_angle()
+    public function test_can_create_an_angle(): void
     {
         // Arrange
         $random = $this->randomSexagesimal(precision: 3);
@@ -68,7 +68,7 @@ class FromSexagesimalTest extends TestCase
     }
 
     #[TestDox("will always create a null angle with positive direction.")]
-    public function test_can_create_a_null_angle()
+    public function test_can_create_a_null_angle(): void
     {
         // Arrange
         $positive_direction = Direction::COUNTER_CLOCKWISE;
