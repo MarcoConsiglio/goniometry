@@ -25,8 +25,12 @@ class FromSexagesimal extends AngleBuilder
      * Constructs and `AngleBuilder` with sexagesimal degrees, minutes, seconds
      * and direction.
      */
-    public function __construct(int $degrees, int $minutes, float $seconds, Direction $direction = Direction::COUNTER_CLOCKWISE)
-    {
+    public function __construct(
+        int $degrees, 
+        int $minutes, 
+        float $seconds, 
+        Direction $direction = Direction::COUNTER_CLOCKWISE
+    ) {
         $this->degrees_input = new Number(abs($degrees));
         $this->minutes_input = new Number(abs($minutes));
         $this->seconds_input = new Number(abs($seconds));
@@ -42,7 +46,7 @@ class FromSexagesimal extends AngleBuilder
      * 
      * @codeCoverageIgnore
      */
-    protected function checkOverflow(): void 
+    protected function checkOverflow(): void
     { 
         /*
          * No need to check overflow beacause

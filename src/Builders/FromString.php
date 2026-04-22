@@ -16,13 +16,6 @@ use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 class FromString extends AngleBuilder
 {
     /**
-     * The string measure of an angle.
-     *
-     * @var string
-     */
-    protected string $measure;
-
-    /**
      * The parsing status for degrees value.
      *
      * @var mixed
@@ -67,16 +60,17 @@ class FromString extends AngleBuilder
     /**
      * Construct an `AngleBuilder` with a sexagesimal string value.
      *
+     * @param string $measure The string measure of an angle.
      * @throws NoMatchException when bad formatted angle is found.
      * @throws RegExFailureException while failing to parse text with a regular
      * expression.
      */
-    public function __construct(string $measure)
-    {    
-        $this->measure = $measure;
-        $this->parseDegreesString($this->measure);
-        $this->parseMinutesString($this->measure);
-        $this->parseSecondsString($this->measure);
+    public function __construct(    
+        protected string $measure
+    ) {    
+        $this->parseDegreesString();
+        $this->parseMinutesString();
+        $this->parseSecondsString();
         $this->checkOverflow();
     }
 

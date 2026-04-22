@@ -35,7 +35,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class FromDecimalTest extends TestCase
 {
     #[TestDox("can create a counter-clockwise Angle from a positive sexadecimal value.")]
-    public function test_create_angle_from_positive_decimal_degrees()
+    public function test_create_angle_from_positive_decimal_degrees(): void
     {
         /**
          * Float type input
@@ -80,7 +80,7 @@ class FromDecimalTest extends TestCase
     }
 
     #[TestDox("can create a clockwise Angle from a negative sexadecimal value.")]
-    public function test_create_angle_from_negative_decimal_degrees()
+    public function test_create_angle_from_negative_decimal_degrees(): void
     {
         /**
          * Float type input

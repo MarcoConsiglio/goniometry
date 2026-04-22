@@ -10,20 +10,10 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
- * Represents a comparison between angles.
+ * A comparison between angles.
  */
 abstract class Comparison
 {
-    /**
-     * The left operand of the comparison.
-     */
-    protected Angle $alfa;
-
-    /**
-     * The right operand of the comparison.
-     */
-    protected string|int|float|Angle $beta;
-
     /**
      * The strategy used to compare two angles.
      */
@@ -42,16 +32,19 @@ abstract class Comparison
 
     /**
      * Construct the `Comparison` with the two angles `$alfa` and `$beta`.
+     * 
+     * @param Angle $alfa The left operand of the comparison.
+     * @param string|int|float|Angle $beta The right operand of the comparison.
      */
-    public function __construct(Angle $alfa, string|int|float|Angle $beta)
-    {
-        $this->alfa = $alfa;
-        $this->beta = $beta;
+    public function __construct(
+        protected Angle $alfa,
+        protected string|int|float|Angle $beta
+    ) {
         $this->setComparisonStrategy();
     }
 
     /**
-     * Return an object that represent the type
+     * Return an `InputType` object that represent the type
      * of the right operand of the comparison.
      */
     protected function getBetaType(): InputType

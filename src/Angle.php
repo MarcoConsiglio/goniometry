@@ -16,6 +16,7 @@ use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundFromSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
@@ -23,11 +24,12 @@ use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
+use Stringable;
 
 /**
  * Represents an angle.
  */
-class Angle implements AngleInterface
+class Angle implements AngleInterface, Stringable
 {
     /**
      * Regular expression used to parse degrees value as integer number.
@@ -158,6 +160,26 @@ class Angle implements AngleInterface
     }
 
     /**
+     * Return an absolute `Angle`
+     */
+    public function absolute(): Angle
+    {
+        return Angle::createFromDecimal(
+            new SexadecimalDegrees(
+                $this->toSexadecimalDegrees()->value->abs()
+            )
+        );
+    }
+
+    /**
+     * Alias for `absolute()` method.
+     */
+    public function asb(): Angle
+    {
+        return $this->absolute();
+    }
+
+    /**
      * Return an array containing separate sexagesimal values.
      * 
      * The direction of the `Angle` is the sign of `"degrees"` value.
@@ -167,7 +189,7 @@ class Angle implements AngleInterface
      */
     public function getDegrees(bool $associative = false): array
     {
-        $degrees = (int) $this->degrees->value() * $this->direction->value;
+        $degrees = $this->degrees->value() * $this->direction->value;
         $minutes = $this->minutes->value();
         $seconds = $this->seconds->value();
         if ($associative)
@@ -457,11 +479,28 @@ class Angle implements AngleInterface
     }
 
     /**
+     * Check if this `Angle` is equal to `$beta` within an acceptable `$delta` 
+     * error angle.
+     */
+    public function fuzzyEqual(Angle $beta, Angle $delta): bool
+    {
+        return new FuzzyEqual($this, $beta, $delta)->compare();
+    }
+
+    /**
+     * Alias for `fuzzyEqual()` method.
+     */
+    public function feq(Angle $beta, Angle $delta): bool
+    {
+        return $this->fuzzyEqual($this, $beta, $delta);
+    }
+
+    /**
      * Return the sexagesimal value of this `Angle`.
      * 
      * @example `(string) $alfa`
      */
-    public function __toString()
+    public function __toString(): string
     {
         $sign = $this->isClockwise() ? "-" : "";
         return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";

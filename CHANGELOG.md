@@ -1,4 +1,11 @@
 # Changelog
+## v4.1.0 2025-04-22
+### Added
+- `Angle::fuzzyEqual` method to check if an `Angle` is almost equal to another one within an acceptable error.
+- `Angle::absolute()` method to always return an `Angle` with `Direction::COUNTER_CLOCKWISE`.
+### Changed
+- API and README documentation.
+
 ## v4.0.1 2025-04-09
 ### Fixed
 - [#15](https://github.com/MarcoConsiglio/goniometry/issues/15).

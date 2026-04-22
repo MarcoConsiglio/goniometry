@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
+use Override;
 
 /**
  * The strategy that compares two `Angle` instances to check if the first is 
@@ -23,14 +24,14 @@ class LesserAngle extends GreaterAngle
     /**
      * Perform the comparison.
      */
+    #[Override]
     public function compare(): bool
     {
         if ($this->degreesAreLess()) return true;
         if ($this->degreesAreGreater()) return false;
         if ($this->minutesAreLess()) return true;
         if ($this->minutesAreGreater()) return false;
-        if ($this->secondsAreLess()) return true;
         // if ($this->secondsAreGreater()) return false;
-        return false;
+        return $this->secondsAreLess();
     }
 }

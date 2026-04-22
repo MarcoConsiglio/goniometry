@@ -36,6 +36,16 @@ Search.appendIndex(
             "summary": "Sums\u0020two\u0020absolute\u0020\u0060Angle\u0060s.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_absSum"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Aabsolute\u0028\u0029",
+            "name": "absolute",
+            "summary": "Return\u0020an\u0020absolute\u0020\u0060Angle\u0060",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_absolute"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Aasb\u0028\u0029",
+            "name": "asb",
+            "summary": "Alias\u0020for\u0020\u0060absolute\u0028\u0029\u0060\u0020method.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_asb"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AgetDegrees\u0028\u0029",
             "name": "getDegrees",
             "summary": "Return\u0020an\u0020array\u0020containing\u0020separate\u0020sexagesimal\u0020values.",
@@ -135,6 +145,16 @@ Search.appendIndex(
             "name": "not",
             "summary": "Alias\u0020for\u0020\u0060isDifferentThan\u0028\u0029\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_not"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AfuzzyEqual\u0028\u0029",
+            "name": "fuzzyEqual",
+            "summary": "Check\u0020if\u0020this\u0020\u0060Angle\u0060\u0020is\u0020equal\u0020to\u0020\u0060\u0024beta\u0060\u0020within\u0020an\u0020acceptable\u0020\u0060\u0024delta\u0060\nerror\u0020angle.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_fuzzyEqual"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Afeq\u0028\u0029",
+            "name": "feq",
+            "summary": "Alias\u0020for\u0020\u0060fuzzyEqual\u0028\u0029\u0060\u0020method.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_feq"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
@@ -338,7 +358,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Comparison",
             "name": "Comparison",
-            "summary": "Represents\u0020a\u0020comparison\u0020between\u0020angles.",
+            "summary": "A\u0020comparison\u0020between\u0020angles.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Comparison.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Comparison\u003A\u003A__construct\u0028\u0029",
@@ -370,6 +390,36 @@ Search.appendIndex(
             "name": "Equal",
             "summary": "The\u0020\u0060Equal\u0060\u0020comparison\u0020between\u0020angles.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Equal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy\\Comparison",
+            "name": "Comparison",
+            "summary": "A\u0020comparison\u0020of\u0020angles\u0020within\u0020an\u0020acceptable\u0020error.",
+            "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Comparison.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy\\Comparison\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020the\u0020\u0060Comparison\u0060\u0020with\u0020the\u0020two\u0020angles\u0020\u0060\u0024alfa\u0060\u0020and\u0020\u0060\u0024beta\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Comparison.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy\\Equal",
+            "name": "Equal",
+            "summary": "The\u0020\u0060Equal\u0060\u0020fuzzy\u0020comparison\u0020between\u0020angles.",
+            "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Equal.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy\\Types\\AngleType",
+            "name": "AngleType",
+            "summary": "The\u0020beta\u0020angle\u0020\u0060InputType\u0060\u0020in\u0020a\u0020fuzzy\u0020comparison\u0020between\u0020alfa\u0020and\u0020beta\u0020angle\u0020when\nbeta\u0020is\u0020an\u0020\u0060Angle\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy\\Types\\AngleType\u003A\u003AgetStrategyFor\u0028\u0029",
+            "name": "getStrategyFor",
+            "summary": "Get\u0020the\u0020correct\u0020strategy\u0020for\u0020the\u0020current\u0020\u0024comparison\u0020operation.",
+            "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#method_getStrategyFor"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy\\Types\\AngleType\u003A\u003AsetDelta\u0028\u0029",
+            "name": "setDelta",
+            "summary": "Set\u0020the\u0020\u0060\u0024delta\u0060\u0020error\u0020of\u0020the\u0020fuzzy\u0020comparison.",
+            "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#method_setDelta"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Greater",
             "name": "Greater",
@@ -525,6 +575,21 @@ Search.appendIndex(
             "name": "FloatComparisonStrategy",
             "summary": "A\u0020comparison\u0020strategy\u0020against\u0020a\u0020\u0060float\u0060\u0020type\u0020variable.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-FloatComparisonStrategy.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Strategies\\Fuzzy\\EqualAngle",
+            "name": "EqualAngle",
+            "summary": "The\u0020strategy\u0020that\u0020compares\u0020two\u0020\u0060Angle\u0060\u0020instances\u0020to\u0020check\u0020if\u0020they\u0020are\u0020equal\ninside\u0020an\u0020acceptable\u0020error.",
+            "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-Fuzzy-EqualAngle.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Strategies\\Fuzzy\\EqualAngle\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020the\u0020comparison\u0020strategy.",
+            "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-Fuzzy-EqualAngle.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Strategies\\Fuzzy\\EqualAngle\u003A\u003Acompare\u0028\u0029",
+            "name": "compare",
+            "summary": "Perform\u0020the\u0020comparison.",
+            "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-Fuzzy-EqualAngle.html#method_compare"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Strategies\\GreaterAngle",
             "name": "GreaterAngle",
@@ -1946,10 +2011,25 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/marcoconsiglio-goniometry-comparisons.html"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy",
+            "name": "Fuzzy",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-goniometry-comparisons-fuzzy.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy\\Types",
+            "name": "Types",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-goniometry-comparisons-fuzzy-types.html"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Strategies",
             "name": "Strategies",
             "summary": "",
             "url": "namespaces/marcoconsiglio-goniometry-comparisons-strategies.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Strategies\\Fuzzy",
+            "name": "Fuzzy",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-goniometry-comparisons-strategies-fuzzy.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types",
             "name": "Types",

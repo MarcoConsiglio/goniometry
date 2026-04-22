@@ -16,6 +16,9 @@ use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundToSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Comparison as FuzzyComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType as FuzzyAngleType;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
@@ -30,6 +33,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\FloatComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
@@ -174,6 +178,10 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SexagesimalGenerator::class)]
 #[UsesClass(StringType::class)]
 #[UsesClass(SumBuilder::class)]
+#[UsesClass(FuzzyComparison::class)]
+#[UsesClass(FuzzyEqual::class)]
+#[UsesClass(FuzzyAngleType::class)]
+#[UsesClass(FuzzyEqualAngle::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngleTest extends TestCase
 {    
@@ -223,7 +231,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be created from separated values for degrees, minutes, seconds and direction.")]
-    public function test_create_from_values()
+    public function test_create_from_values(): void
     {
         // Arrange
         $sexagesimal = $this->randomSexagesimal();
@@ -248,7 +256,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be created from a textual representation.")]
-    public function test_create_from_string()
+    public function test_create_from_string(): void
     {
         // Arrange
         $degrees = $this->randomDegrees();
@@ -269,7 +277,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be created from a decimal number.")]
-    public function test_create_from_decimal()
+    public function test_create_from_decimal(): void
     {
         // Arrange
         $decimal = $this->randomSexadecimal(precision: 1);
@@ -284,7 +292,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be created from a radian number.")]
-    public function test_create_from_radiant()
+    public function test_create_from_radiant(): void
     {
         // Arrange
         $radian = $this->randomRadian(precision: 6);
@@ -299,8 +307,18 @@ class AngleTest extends TestCase
         );
     }
 
+    #[TestDox("can return its absolute value.")]
+    public function test_absolute(): void
+    {
+        // Arrange
+        $angle = $this->negativeRandomAngle();
+
+        // Act & Assert
+        $this->assertTrue($angle->asb()->isCounterClockwise());
+    }
+
     #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]
-    public function test_get_angle_values_in_array()
+    public function test_get_angle_values_in_array(): void
     {
         // Arrange
         /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
@@ -333,7 +351,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be casted to string.")]
-    public function test_cast_angle_to_string()
+    public function test_cast_angle_to_string(): void
     {
         // Arrange
         $alfa = $this->randomAngle(precision: 3);
@@ -347,7 +365,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be casted to float.")]
-    public function test_cast_to_float()
+    public function test_cast_to_float(): void
     {
         // Arrange
         $angle = Angle::createFromValues(
@@ -365,7 +383,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be casted to radian.")]
-    public function test_cast_to_radian()
+    public function test_cast_to_radian(): void
     {
         // Arrange
         $angle = $this->randomAngle();
@@ -375,7 +393,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be clockwise or negative.")]
-    public function test_angle_is_clockwise()
+    public function test_angle_is_clockwise(): void
     {
         // Arrange
         $alfa = $this->negativeRandomAngle();
@@ -386,7 +404,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be counterclockwise or positive.")]
-    public function test_angle_is_counterclockwise()
+    public function test_angle_is_counterclockwise(): void
     {
         // Arrange
         $alfa = $this->positiveRandomAngle();
@@ -397,7 +415,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can toggle its direction.")]
-    public function test_can_toggle_rotation_direction()
+    public function test_can_toggle_rotation_direction(): void
     {
         // Arrange
         $alfa = $this->positiveRandomAngle();
@@ -439,7 +457,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can be equal compared against an int, float, string or Angle.")]
-    public function test_equal_comparison()
+    public function test_equal_comparison(): void
     {
         // Arrange
         $alfa = $this->randomAngle();
@@ -540,8 +558,20 @@ class AngleTest extends TestCase
         $this->assertIsBool($alfa->lte($angle_beta));      
     }
 
+    #[TestDox("can be almost equal compared to another angle considering an acceptable error.")]
+    public function test_fuzzy_equal_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->positiveRandomAngle();
+        $beta = $this->positiveRandomAngle();
+        $delta = $this->positiveRandomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->feq($beta, $delta));
+    }
+
     #[TestDox("can sum two angles obtaining a relative result.")]
-    public function test_can_sum_two_angles_and_return_relative_result()
+    public function test_can_sum_two_angles_and_return_relative_result(): void
     {
         // Arrange
         $alfa = $this->randomAngle();
@@ -557,7 +587,7 @@ class AngleTest extends TestCase
     }
 
     #[TestDox("can sum two angles obtaining an absolute result.")]
-    public function test_can_sum_two_angles_and_return_absolute_result()
+    public function test_can_sum_two_angles_and_return_absolute_result(): void
     {
         // Arrange
         $alfa = $this->randomAngle();

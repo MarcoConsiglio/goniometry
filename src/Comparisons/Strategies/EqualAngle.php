@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Tests\Traits\WithDispositionTesting;
 
 /**
  * The strategy that compares two `Angle` instances to check if they are equal.
@@ -27,8 +26,7 @@ class EqualAngle extends ComparisonStrategy
     {
         if (! $this->secondsAreEqual()) return false;
         if (! $this->minutesAreEqual()) return false;
-        if (! $this->degreesAreEqual()) return false;
-        return true;
+        return $this->degreesAreEqual();
     }
 
     /**
