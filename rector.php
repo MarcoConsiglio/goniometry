@@ -17,6 +17,7 @@ return RectorConfig::configure()
     ->withCodeQualityLevel($level)
     ->withSkip([
         ClassPropertyAssignToConstructorPromotionRector::class => [
-            __DIR__ . '/src/Builders/FromSexagesimal.php'
+            __DIR__ . '/src/Builders/FromSexagesimal.php',
+            __DIR__ . '/src/Comparisons/Fuzzy/Comparison.php'
         ]
     ]);

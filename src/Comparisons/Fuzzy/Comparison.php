@@ -12,6 +12,11 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
 abstract class Comparison extends GoniometricComparison
 {
     /**
+     * The acceptable error within which comparison is successful.
+     */
+    protected Angle $delta;
+
+    /**
      * Construct the `Comparison` with the two angles `$alfa` and `$beta`.
      * 
      * @param Angle $alfa The left operand of the comparison.
@@ -21,10 +26,11 @@ abstract class Comparison extends GoniometricComparison
     public function __construct(
         Angle $alfa,
         Angle $beta,
-        protected Angle $delta
+        Angle $delta
     ) {
-        $this->alfa = $alfa;
-        $this->beta = $beta;
+        $this->alfa = $alfa->absolute();
+        $this->beta = $beta->absolute();
+        $this->delta = $delta->absolute();
         $this->setComparisonStrategy();
     }
 
