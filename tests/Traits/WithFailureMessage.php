@@ -11,7 +11,7 @@ use ValueError;
 trait WithFailureMessage
 {
     private array $allowed_comparisons = [
-        '<', '≤', '=', '≠', '>', '≥'
+        '<', '≤', '=', '≅', '≠', '>', '≥'
     ];
 
     /**
@@ -108,15 +108,36 @@ trait WithFailureMessage
     /**
      * Return a comparison fail message.
      */
-    protected function comparisonFail(Angle $alfa, string $comparison, int|float|string|Angle $beta): string
-    {
-        if (! in_array($comparison, $this->allowed_comparisons))
-            throw new ValueError("\"$comparison\" is not an allowed comparison.");
+    protected function comparisonFail(
+        Angle $alfa, 
+        string $comparison, 
+        int|float|string|Angle $beta
+    ): string {
+        $this->checkComparison($comparison);
         if (is_int($beta)) return "$alfa $comparison {$beta}°";
         if (is_float($beta)) { 
             $float = new Number($beta)->value;
-            return "{$alfa->toSexadecimalDegrees()->value}° $comparison {$float}°";
+            return "{$alfa->toSexadecimalDegrees()} $comparison {$float}°";
         }
         return "$alfa $comparison $beta";
+    }
+
+    /**
+     * Return a fuzzy comparison fail message.
+     */
+    protected function fuzzyComparisonFail(
+        Angle $alfa, 
+        string $comparison,
+        Angle $beta,
+        Angle $delta
+    ): string {
+        $this->checkComparison($comparison);
+        return "{$alfa->toSexadecimalDegrees()} $comparison {$beta->toSexadecimalDegrees()} with delta {$delta->toSexadecimalDegrees()}.";
+    }
+
+    protected function checkComparison(string $comparison): void
+    {
+        if (! in_array($comparison, $this->allowed_comparisons))
+            throw new ValueError("\"$comparison\" is not an allowed comparison.");
     }
 }

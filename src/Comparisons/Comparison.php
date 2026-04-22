@@ -10,7 +10,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
- * Represents a comparison between angles.
+ * A comparison between angles.
  */
 abstract class Comparison
 {
@@ -44,7 +44,7 @@ abstract class Comparison
     }
 
     /**
-     * Return an object that represent the type
+     * Return an `InputType` object that represent the type
      * of the right operand of the comparison.
      */
     protected function getBetaType(): InputType

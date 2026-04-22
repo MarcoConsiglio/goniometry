@@ -16,6 +16,7 @@ use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundFromSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
@@ -455,6 +456,23 @@ class Angle implements AngleInterface, Stringable
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isDifferentThan($angle, $precision);
+    }
+
+    /**
+     * Check if this `Angle` is equal to `$beta` within an acceptable `$delta` 
+     * error angle.
+     */
+    public function fuzzyEqual(Angle $beta, Angle $delta): bool
+    {
+        return new FuzzyEqual($this, $beta, $delta)->compare();
+    }
+
+    /**
+     * Alias for `fuzzyEqual()` method.
+     */
+    public function feq(Angle $beta, Angle $delta): bool
+    {
+        return $this->fuzzyEqual($this, $beta, $delta);
     }
 
     /**

@@ -16,6 +16,9 @@ use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundToSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Comparison as FuzzyComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType as FuzzyAngleType;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
@@ -30,6 +33,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\FloatComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
@@ -174,6 +178,10 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SexagesimalGenerator::class)]
 #[UsesClass(StringType::class)]
 #[UsesClass(SumBuilder::class)]
+#[UsesClass(FuzzyComparison::class)]
+#[UsesClass(FuzzyEqual::class)]
+#[UsesClass(FuzzyAngleType::class)]
+#[UsesClass(FuzzyEqualAngle::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngleTest extends TestCase
 {    
@@ -538,6 +546,18 @@ class AngleTest extends TestCase
         $this->assertIsBool($alfa->lte($string_beta));
         $this->assertIsBool($alfa->lte($float_beta));
         $this->assertIsBool($alfa->lte($angle_beta));      
+    }
+
+    #[TestDox("can be almost equal compared to another angle considering an acceptable error.")]
+    public function test_fuzzy_equal_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->positiveRandomAngle();
+        $beta = $this->positiveRandomAngle();
+        $delta = $this->positiveRandomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->feq($beta, $delta));
     }
 
     #[TestDox("can sum two angles obtaining a relative result.")]
