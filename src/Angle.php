@@ -172,7 +172,7 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Alias for `absolute()` Angle.
+     * Alias for `absolute()` method.
      */
     public function asb(): Angle
     {

@@ -101,15 +101,16 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio.html">MarcoConsiglio</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-goniometry.html">Goniometry</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-goniometry-comparisons.html">Comparisons</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-goniometry-comparisons-strategies.html">Strategies</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-goniometry-comparisons-fuzzy.html">Fuzzy</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/marcoconsiglio-goniometry-comparisons-fuzzy-types.html">Types</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    EqualAngle
+    AngleType
 
         <span class="phpdocumentor-element__extends">
-        extends <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-ComparisonStrategy.html"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy">ComparisonStrategy</abbr></a>
+        extends <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Types-AngleType.html"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Types\AngleType">AngleType</abbr></a>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -129,13 +130,14 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Comparisons/Strategies/EqualAngle.php"><a href="files/src-comparisons-strategies-equalangle.html"><abbr title="src/Comparisons/Strategies/EqualAngle.php">EqualAngle.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Comparisons/Fuzzy/Types/AngleType.php"><a href="files/src-comparisons-fuzzy-types-angletype.html"><abbr title="src/Comparisons/Fuzzy/Types/AngleType.php">AngleType.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">The strategy that compares two `Angle` instances to check if they are equal.</p>
+            <p class="phpdocumentor-summary">The beta angle `InputType` in a fuzzy comparison between alfa and beta angle when
+beta is an `Angle`.</p>
 
 
 
@@ -145,7 +147,7 @@
     
 <h3 id="toc">
     Table of Contents
-    <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -160,23 +162,30 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#method___construct">__construct()</a>
+    <a class="" href="classes/MarcoConsiglio-Goniometry-Comparisons-Types-AngleType.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Construct the comparison strategy.</dd>
+<dd>Construct the `InputType` of $beta.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#method_compare">compare()</a>
+    <a class="" href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#method_getStrategyFor">getStrategyFor()</a>
     <span>
-                                &nbsp;: bool    </span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Comparison-Strategy.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy">Strategy</abbr></a>    </span>
 </dt>
-<dd>Perform the comparison.</dd>
+<dd>Get the correct strategy for the current $comparison operation.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#method_setDelta">setDelta()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType">AngleType</abbr></a>    </span>
+</dt>
+<dd>Set the `$delta` error of the fuzzy comparison.</dd>
 
     </dl>
 
@@ -189,7 +198,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -200,21 +209,21 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Types-AngleType.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Comparisons/Strategies/EqualAngle.php"><a href="files/src-comparisons-strategies-equalangle.html"><abbr title="src/Comparisons/Strategies/EqualAngle.php">EqualAngle.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Comparisons/Types/AngleType.php"><a href="files/src-comparisons-types-angletype.html"><abbr title="src/Comparisons/Types/AngleType.php">AngleType.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Construct the comparison strategy.</p>
+        <p class="phpdocumentor-summary">Construct the `InputType` of $beta.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alfa</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$beta</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$beta</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -223,22 +232,11 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$alfa</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The left comparison operand.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$beta</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The right comparison operand.</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -254,36 +252,113 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_compare">
-        compare()
-        <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#method_compare" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getStrategyFor">
+        getStrategyFor()
+        <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#method_getStrategyFor" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Comparisons/Strategies/EqualAngle.php"><a href="files/src-comparisons-strategies-equalangle.html"><abbr title="src/Comparisons/Strategies/EqualAngle.php">EqualAngle.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Comparisons/Fuzzy/Types/AngleType.php"><a href="files/src-comparisons-fuzzy-types-angletype.html"><abbr title="src/Comparisons/Fuzzy/Types/AngleType.php">AngleType.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Perform the comparison.</p>
+        <p class="phpdocumentor-summary">Get the correct strategy for the current $comparison operation.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">compare</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">getStrategyFor</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Comparison.html"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison">Comparison</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$comparison</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alfa</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Comparison-Strategy.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy">Strategy</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$comparison</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Comparison.html"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison">Comparison</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$alfa</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#method_getStrategyFor#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Override">Override</abbr>]
+    </dt>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Comparison-Strategy.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy">Strategy</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setDelta">
+        setDelta()
+        <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#method_setDelta" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Comparisons/Fuzzy/Types/AngleType.php"><a href="files/src-comparisons-fuzzy-types-angletype.html"><abbr title="src/Comparisons/Fuzzy/Types/AngleType.php">AngleType.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">31</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Set the `$delta` error of the fuzzy comparison.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setDelta</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delta</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType">AngleType</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$delta</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
 
         
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType">AngleType</abbr></a></span>
             </section>
 
 </article>
@@ -293,7 +368,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Comparisons/Strategies/EqualAngle.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Comparisons/Fuzzy/Types/AngleType.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -394,7 +469,7 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
@@ -402,8 +477,9 @@
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#method_compare">compare()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Types-AngleType.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#method_getStrategyFor">getStrategyFor()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#method_setDelta">setDelta()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -423,7 +499,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Strategies-EqualAngle.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Types-AngleType.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
