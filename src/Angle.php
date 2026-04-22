@@ -160,6 +160,26 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
+     * Return an absolute `Angle`
+     */
+    public function absolute(): Angle
+    {
+        return Angle::createFromDecimal(
+            new SexadecimalDegrees(
+                $this->toSexadecimalDegrees()->value->abs()
+            )
+        );
+    }
+
+    /**
+     * Alias for `absolute()` Angle.
+     */
+    public function asb(): Angle
+    {
+        return $this->absolute();
+    }
+
+    /**
      * Return an array containing separate sexagesimal values.
      * 
      * The direction of the `Angle` is the sign of `"degrees"` value.

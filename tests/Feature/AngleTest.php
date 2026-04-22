@@ -307,6 +307,16 @@ class AngleTest extends TestCase
         );
     }
 
+    #[TestDox("can return its absolute value.")]
+    public function test_absolute(): void
+    {
+        // Arrange
+        $angle = $this->negativeRandomAngle();
+
+        // Act & Assert
+        $this->assertTrue($angle->asb()->isCounterClockwise());
+    }
+
     #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]
     public function test_get_angle_values_in_array(): void
     {
