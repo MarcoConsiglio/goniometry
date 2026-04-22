@@ -1,7 +1,7 @@
 # [goniometry](https://github.com/MarcoConsiglio/goniometry?tab=readme-ov-file#goniometry)
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v4.0.1-white)
+![Static Badge](https://img.shields.io/badge/version-v4.1.0-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
@@ -34,6 +34,8 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
     - [$\alpha \le \beta$ (less than or equal)](#less-than-or-equal)
     - [$\alpha \cong \beta$ (equal)](#equal)
     - [$\alpha \ncong \beta$ (different)](#different)
+  - [Fuzzy Comparison](#fuzzy-comparison)
+    - [$\alpha~ \char"224A ~\beta$ (almost equal)](#almost-equal)
   - [Algebraic sum between two angles](#algebraic-sum-between-two-angles)
 - [FakerPHP support](#fakerphp-support)
 - [API documentation](#api-documentation)
@@ -293,7 +295,19 @@ $alfa->not(180);                    // true   90 ≇ 180
 $alfa->isDifferentThan(-90);        // false  90 ≇ -90
 $beta->not($alfa);                  // true   180 ≇ 90
 ```
+## Fuzzy Comparison
+When comparing two `Angle`s sometimes their difference is negligible. In this case you can use a fuzzy comparison specifine a delta error `Angle` within which the comparison will be succesful.
 
+*Delta* (Δ) is the double of *epsilon* error (±ε).
+
+### $\alpha~ \char"224A ~\beta$ (almost equal)
+```php
+$alfa = Angle::createFromDecimal(90.345);
+$beta = Angle::createFromValue(90);
+$delta = Angle::createFromValue(4); // ±2° error
+$alfa->fuzzyEqual($beta, $delta); // true
+$alfa->feq($beta, $delta); // true
+```
 ## Algebraic sum between two angles
 You can sum two angles
 
