@@ -17,18 +17,23 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
- * The beta angle `InputType` in a comparison between alfa and beta angle when
- * beta is a `float`.
+ * The beta `InputType` in a comparison between alfa and beta angles when
+ * `$beta` is a `float`.
  */
 class FloatType extends InputType
 {
     /**
-     * Construct the `InputType` of $beta.
+     * Construct the `InputType` of `$beta`.
+     * 
+     * @param float $beta The right operand of the comparison.
+     * @param int $precision The number of decimal places used in the comparison.
      */
     public function __construct(protected float $beta, protected int $precision = 54) {}
 
     /**
-     * Get the correct strategy for the current $comparison operation.
+     * Get the correct strategy for the current `$comparison` operation.
+     * 
+     * @param Angle $alfa The left operand of the `$comparison`.
      */
     public function getStrategyFor(Comparison $comparison, Angle $alfa): Strategy
     {

@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Interfaces\Casting;
 
 /**
- * The behavior of a Castable object.
+ * The behavior of a castable object.
  */
 interface CastableToFloat
 {

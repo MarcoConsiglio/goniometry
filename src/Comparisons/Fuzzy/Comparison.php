@@ -17,7 +17,7 @@ abstract class Comparison extends GoniometricComparison
     protected Angle $delta;
 
     /**
-     * Construct the `Comparison` with the two angles `$alfa` and `$beta`.
+     * Construct the `Comparison` between the two angles `$alfa` and `$beta`.
      * 
      * @param Angle $alfa The left operand of the comparison.
      * @param Angle $beta The right operand of the comparison.

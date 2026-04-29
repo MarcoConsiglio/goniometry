@@ -1,8 +1,9 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
-
+/**
+ * A `SexadecimalRange` validator.
+ */
 abstract class Sexadecimal extends FloatValidator
 {
     /**

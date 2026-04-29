@@ -3,7 +3,6 @@ namespace MarcoConsiglio\Goniometry;
 
 use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
-use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\FromRadian;
@@ -27,7 +26,7 @@ use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
 use Stringable;
 
 /**
- * Represents an angle.
+ * Represent an `Angle`.
  */
 class Angle implements AngleInterface, Stringable
 {
@@ -114,9 +113,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Creates an `Angle` from its textual representation.
      * 
-     * @throws NoMatchException when $angle has no match.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public static function createFromString(string $sexagesimal): Angle
     {
@@ -289,8 +286,7 @@ class Angle implements AngleInterface, Stringable
      * 
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function isGreaterThan(
         string|int|float|AngleInterface $angle, 
@@ -306,8 +302,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function gt(
         string|int|float|AngleInterface $angle, 
@@ -321,8 +316,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function isGreaterThanOrEqualTo(
         string|int|float|AngleInterface $angle, 
@@ -339,8 +333,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function gte(
         string|int|float|AngleInterface $angle, 
@@ -354,8 +347,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function isLessThan(
         string|int|float|AngleInterface $angle, 
@@ -371,8 +363,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function lt(
         string|int|float|AngleInterface $angle, 
@@ -386,8 +377,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function isLessThanOrEqualTo(
         string|int|float|AngleInterface $angle, 
@@ -404,8 +394,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function lte(
         string|int|float|AngleInterface $angle, 
@@ -419,8 +408,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function isEqualTo(
         string|int|float|AngleInterface $angle, 
@@ -436,8 +424,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function eq(
         string|int|float|AngleInterface $angle, 
@@ -451,8 +438,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function isDifferentThan(
         string|int|float|AngleInterface $angle, 
@@ -468,8 +454,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws RegExFailureException when there's a failure in regex parser 
-     * engine while `$angle` is a `string` type variable.
+     * @throws NoMatchException when bad formatted angle is found.
      */
     public function not(
         string|int|float|AngleInterface $angle, 
@@ -492,7 +477,7 @@ class Angle implements AngleInterface, Stringable
      */
     public function feq(Angle $beta, Angle $delta): bool
     {
-        return $this->fuzzyEqual($this, $beta, $delta);
+        return $this->fuzzyEqual($beta, $delta);
     }
 
     /**

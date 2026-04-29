@@ -2,12 +2,12 @@
 namespace MarcoConsiglio\Goniometry\Interfaces;
 
 /**
- * How an angle should be constructed.
+ * How an `Angle` should be constructed.
  */
 interface AngleBuilder
 {
     /**
-     * Fetch the data that will bee used for an angle.
+     * Fetch the data that will be used to build an `Angle`.
      *
      * @return array
      */

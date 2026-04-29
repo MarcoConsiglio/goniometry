@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
 /**
- * Represents a sum builder.
+ * An `Angle` sum builder.
  */
 abstract class SumBuilder extends AngleBuilder
 {

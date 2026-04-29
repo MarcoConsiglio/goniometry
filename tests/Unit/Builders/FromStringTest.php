@@ -8,7 +8,6 @@ use MarcoConsiglio\Goniometry\Builders\FromString;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
-use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
@@ -39,7 +38,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(MinutesGenerator::class)]
 #[UsesClass(MinutesValidator::class)]
 #[UsesClass(NoMatchException::class)]
-#[UsesClass(RegExFailureException::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SecondsGenerator::class)]

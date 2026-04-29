@@ -11,7 +11,9 @@ use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 abstract class InputType
 {
     /**
-     * Get the correct strategy for the current $comparison operation.
+     * Get the correct strategy for the current `$comparison` operation.
+     * 
+     * @param Angle $alfa The left operand of the `$comparison`.
      */
     abstract public function getStrategyFor(Comparison $comparison, Angle $alfa): Strategy;
 }

@@ -6,6 +6,9 @@ use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Seconds as AngleSeconds;
 
+/**
+ * Validate a `SecondsRange`.
+ */
 class Seconds extends FloatValidator
 {
     /**

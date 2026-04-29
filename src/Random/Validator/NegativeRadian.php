@@ -5,6 +5,9 @@ use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 
+/**
+ * Validate a `RadianRange` allowing only negative values.
+ */
 class NegativeRadian extends FloatValidator
 {
     /**

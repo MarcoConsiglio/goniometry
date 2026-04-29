@@ -4,6 +4,9 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 
+/**
+ * Validate a `RadianRange`.
+ */
 class RelativeRadian extends FloatValidator
 {
     /**

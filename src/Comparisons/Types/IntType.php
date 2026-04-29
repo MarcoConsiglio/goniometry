@@ -17,18 +17,22 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
- * The beta angle `InputType` in a comparison between alfa and beta angle when
+ * The beta `InputType` in a comparison between alfa and beta angles when
  * beta is an `int`.
  */
 class IntType extends InputType
 {
     /**
-     * Construct the `InputType` of $beta.
+     * Construct the `InputType` of `$beta`.
+     * 
+     * @param int $beta The right operand of the comparison.
      */
     public function __construct(protected int $beta) {}
 
     /**
-     * Get the correct strategy for the current $comparison operation.
+     * Get the correct strategy for the current `$comparison` operation.
+     * 
+     * @param Angle $alfa The left operand of the `$comparison`.
      */
     public function getStrategyFor(Comparison $comparison, Angle $alfa): Strategy
     {
