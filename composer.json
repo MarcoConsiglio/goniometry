@@ -24,7 +24,7 @@
     "require": {
         "php": "^8.4",
         "ext-bcmath": "^8.4",
-        "marcoconsiglio/modular-arithmetic": "^3.0",
+        "marcoconsiglio/modular-arithmetic": "^4.0",
         "marcoconsiglio/faker-php-number-helpers": "^4.0"
     },
     "require-dev": {

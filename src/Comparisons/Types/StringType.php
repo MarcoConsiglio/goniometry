@@ -17,13 +17,15 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
- * The beta angle `InputType` in a comparison between alfa and beta angle when
- * beta is a `string`.
+ * The beta `InputType` in a comparison between alfa and beta angles when
+ * `$beta` is a `string`.
  */
 class StringType extends InputType
 {
     /**
-     * Construct the `InputType` of $beta.
+     * Construct the `InputType` of `$beta`.
+     * 
+     * @param string $beta The right operand of the comparison.
      */
     public function __construct(protected string $beta) {}
 

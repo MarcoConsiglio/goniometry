@@ -7,7 +7,6 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Exceptions\RegExFailureException;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 
 /**
@@ -62,8 +61,6 @@ class FromString extends AngleBuilder
      *
      * @param string $measure The string measure of an angle.
      * @throws NoMatchException when bad formatted angle is found.
-     * @throws RegExFailureException while failing to parse text with a regular
-     * expression.
      */
     public function __construct(    
         protected string $measure
@@ -76,11 +73,6 @@ class FromString extends AngleBuilder
 
     /**
      * Parse an angle measure string and match degrees value.
-     *
-     * @param string $angle The string format angle value (sexagesimal).
-     * @throws NoMatchException when bad formatted angle is found.
-     * @throws RegExFailureException while failing to parse text with a regular
-     * expression.
      */
     protected function parseDegreesString(): void
     {
@@ -89,11 +81,6 @@ class FromString extends AngleBuilder
 
     /**
      * Parse an angle measure string and match minutes value.
-     *
-     * @param string $angle The string format angle value.
-     * @throws NoMatchException when bad formatted angle is found.
-     * @throws RegExFailureException while failing to parse text with a regular
-     * expression.
      */
     protected function parseMinutesString(): void
     {
@@ -102,11 +89,6 @@ class FromString extends AngleBuilder
 
     /**
      * Parse an angle measure string and match seconds value.
-     *
-     * @param string $angle The string format angle value.
-     * @throws NoMatchException when bad formatted angle is found.
-     * @throws RegExFailureException while failing to parse text with a regular
-     * expression.
      */
     protected function parseSecondsString(): void
     {
@@ -129,7 +111,7 @@ class FromString extends AngleBuilder
     }
 
     /**
-     * Return true if there was a parsing error on degrees.
+     * Return `true` if there was a parsing error on degrees, `false` otherwise.
      */
     protected function degreesError(): bool
     {
@@ -137,7 +119,7 @@ class FromString extends AngleBuilder
     }
 
     /**
-     * Return true if there was a parsing error on minutes.
+     * Return `true` if there was a parsing error on minutes, `false` otherwise.
      */
     protected function minutesError(): bool
     {
@@ -145,7 +127,7 @@ class FromString extends AngleBuilder
     }
 
     /**
-     * Return true if there was a parsing error on seconds.
+     * Return `true` if there was a parsing error on seconds, `false` otherwise.
      */
     protected function secondsError(): bool
     {

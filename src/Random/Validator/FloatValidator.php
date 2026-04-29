@@ -3,6 +3,9 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
 
+/**
+ * A validator that validate a `float` range.
+ */
 abstract class FloatValidator extends Validator
 {
     protected function avoidInvalidFloats(float &$min, float &$max): void

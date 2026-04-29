@@ -23,7 +23,7 @@ abstract class Comparison
      * The precision used when comparing an `Angle` against a `float` type 
      * variable.
      */
-    protected int $float_precision = self::MAX_PRECISION;
+    protected int $precision = self::MAX_PRECISION;
 
     /**
      * The maximum allowed precision in every comparison.
@@ -45,7 +45,7 @@ abstract class Comparison
 
     /**
      * Return an `InputType` object that represent the type
-     * of the right operand of the comparison.
+     * of the right operand of the `Comparison`.
      */
     protected function getBetaType(): InputType
     {
@@ -54,12 +54,12 @@ abstract class Comparison
         }
         if (is_string($this->beta)) return new StringType($this->beta);
         if (is_int($this->beta)) return new IntType($this->beta);
-        return new FloatType($this->beta, $this->float_precision);
+        return new FloatType($this->beta, $this->precision);
     }
 
     /**
      * Set the comparison strategy based on the comparison type and
-     * the type of the right operand of the comparison.
+     * the type of the right operand of a `Comparison`.
      */
     abstract protected function setComparisonStrategy(): void;
 
@@ -76,17 +76,17 @@ abstract class Comparison
      */
     public function setPrecision(int $precision): void
     {
-        $this->float_precision = $precision;
+        $this->precision = $precision;
         $this->normalizePrecision();
     }
 
     /**
-     * Normalizes precision within the range 0 to 54.
+     * Normalize precision within the range 0 to `self::MAX_PRECISION`.
      */
     protected function normalizePrecision(): void
     {
-        $this->float_precision = abs($this->float_precision);
-        if ($this->float_precision > self::MAX_PRECISION) 
-            $this->float_precision = self::MAX_PRECISION;
+        $this->precision = abs($this->precision);
+        if ($this->precision > self::MAX_PRECISION) 
+            $this->precision = self::MAX_PRECISION;
     }
 }

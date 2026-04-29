@@ -6,7 +6,7 @@ use MarcoConsiglio\Goniometry\Degrees as AngleDegrees;
 use MarcoConsiglio\Goniometry\Random\DegreesRange;
 
 /**
- * Validate a random degrees range.
+ * Validate a random `DegreesRange`.
  */
 class Degrees extends Validator
 {

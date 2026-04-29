@@ -3,7 +3,7 @@ Search.appendIndex(
                 {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle",
             "name": "Angle",
-            "summary": "Represents\u0020an\u0020angle.",
+            "summary": "Represent\u0020an\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AcreateFromValues\u0028\u0029",
@@ -196,6 +196,11 @@ Search.appendIndex(
             "summary": "The\u0020angle\u0020direction.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#property_direction"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance",
+            "name": "AngularDistance",
+            "summary": "",
+            "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\AbsoluteSum",
             "name": "AbsoluteSum",
             "summary": "Sum\u0020two\u0020\u0060Angle\u0060s\u0020resulting\u0020in\u0020an\u0020absolute\u0020sum.",
@@ -288,7 +293,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\SumBuilder",
             "name": "SumBuilder",
-            "summary": "Represents\u0020a\u0020sum\u0020builder.",
+            "summary": "An\u0020\u0060Angle\u0060\u0020sum\u0020builder.",
             "url": "classes/MarcoConsiglio-Goniometry-Builders-SumBuilder.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\SumBuilder\u003A\u003A__construct\u0028\u0029",
@@ -398,7 +403,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy\\Comparison\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Construct\u0020the\u0020\u0060Comparison\u0060\u0020with\u0020the\u0020two\u0020angles\u0020\u0060\u0024alfa\u0060\u0020and\u0020\u0060\u0024beta\u0060.",
+            "summary": "Construct\u0020the\u0020\u0060Comparison\u0060\u0020between\u0020the\u0020two\u0020angles\u0020\u0060\u0024alfa\u0060\u0020and\u0020\u0060\u0024beta\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Fuzzy-Comparison.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Fuzzy\\Equal",
@@ -833,7 +838,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\AngleType",
             "name": "AngleType",
-            "summary": "The\u0020beta\u0020angle\u0020\u0060InputType\u0060\u0020in\u0020a\u0020comparison\u0020between\u0020alfa\u0020and\u0020beta\u0020angle\u0020when\nbeta\u0020is\u0020an\u0020\u0060Angle\u0060.",
+            "summary": "The\u0020beta\u0020\u0060InputType\u0060\u0020in\u0020a\u0020comparison\u0020between\u0020alfa\u0020and\u0020beta\u0020angles\u0020when\n\u0060\u0024beta\u0060\u0020is\u0020an\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-AngleType.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\AngleType\u003A\u003A__construct\u0028\u0029",
@@ -843,22 +848,22 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\AngleType\u003A\u003AgetStrategyFor\u0028\u0029",
             "name": "getStrategyFor",
-            "summary": "Get\u0020the\u0020correct\u0020strategy\u0020for\u0020the\u0020current\u0020\u0024comparison\u0020operation.",
+            "summary": "Get\u0020the\u0020correct\u0020strategy\u0020for\u0020the\u0020current\u0020\u0060\u0024comparison\u0060\u0020operation.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-AngleType.html#method_getStrategyFor"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\FloatType",
             "name": "FloatType",
-            "summary": "The\u0020beta\u0020angle\u0020\u0060InputType\u0060\u0020in\u0020a\u0020comparison\u0020between\u0020alfa\u0020and\u0020beta\u0020angle\u0020when\nbeta\u0020is\u0020a\u0020\u0060float\u0060.",
+            "summary": "The\u0020beta\u0020\u0060InputType\u0060\u0020in\u0020a\u0020comparison\u0020between\u0020alfa\u0020and\u0020beta\u0020angles\u0020when\n\u0060\u0024beta\u0060\u0020is\u0020a\u0020\u0060float\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-FloatType.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\FloatType\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Construct\u0020the\u0020\u0060InputType\u0060\u0020of\u0020\u0024beta.",
+            "summary": "Construct\u0020the\u0020\u0060InputType\u0060\u0020of\u0020\u0060\u0024beta\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-FloatType.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\FloatType\u003A\u003AgetStrategyFor\u0028\u0029",
             "name": "getStrategyFor",
-            "summary": "Get\u0020the\u0020correct\u0020strategy\u0020for\u0020the\u0020current\u0020\u0024comparison\u0020operation.",
+            "summary": "Get\u0020the\u0020correct\u0020strategy\u0020for\u0020the\u0020current\u0020\u0060\u0024comparison\u0060\u0020operation.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-FloatType.html#method_getStrategyFor"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\InputType",
@@ -868,32 +873,32 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\InputType\u003A\u003AgetStrategyFor\u0028\u0029",
             "name": "getStrategyFor",
-            "summary": "Get\u0020the\u0020correct\u0020strategy\u0020for\u0020the\u0020current\u0020\u0024comparison\u0020operation.",
+            "summary": "Get\u0020the\u0020correct\u0020strategy\u0020for\u0020the\u0020current\u0020\u0060\u0024comparison\u0060\u0020operation.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-InputType.html#method_getStrategyFor"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\IntType",
             "name": "IntType",
-            "summary": "The\u0020beta\u0020angle\u0020\u0060InputType\u0060\u0020in\u0020a\u0020comparison\u0020between\u0020alfa\u0020and\u0020beta\u0020angle\u0020when\nbeta\u0020is\u0020an\u0020\u0060int\u0060.",
+            "summary": "The\u0020beta\u0020\u0060InputType\u0060\u0020in\u0020a\u0020comparison\u0020between\u0020alfa\u0020and\u0020beta\u0020angles\u0020when\nbeta\u0020is\u0020an\u0020\u0060int\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-IntType.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\IntType\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Construct\u0020the\u0020\u0060InputType\u0060\u0020of\u0020\u0024beta.",
+            "summary": "Construct\u0020the\u0020\u0060InputType\u0060\u0020of\u0020\u0060\u0024beta\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-IntType.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\IntType\u003A\u003AgetStrategyFor\u0028\u0029",
             "name": "getStrategyFor",
-            "summary": "Get\u0020the\u0020correct\u0020strategy\u0020for\u0020the\u0020current\u0020\u0024comparison\u0020operation.",
+            "summary": "Get\u0020the\u0020correct\u0020strategy\u0020for\u0020the\u0020current\u0020\u0060\u0024comparison\u0060\u0020operation.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-IntType.html#method_getStrategyFor"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\StringType",
             "name": "StringType",
-            "summary": "The\u0020beta\u0020angle\u0020\u0060InputType\u0060\u0020in\u0020a\u0020comparison\u0020between\u0020alfa\u0020and\u0020beta\u0020angle\u0020when\nbeta\u0020is\u0020a\u0020\u0060string\u0060.",
+            "summary": "The\u0020beta\u0020\u0060InputType\u0060\u0020in\u0020a\u0020comparison\u0020between\u0020alfa\u0020and\u0020beta\u0020angles\u0020when\n\u0060\u0024beta\u0060\u0020is\u0020a\u0020\u0060string\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-StringType.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\StringType\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Construct\u0020the\u0020\u0060InputType\u0060\u0020of\u0020\u0024beta.",
+            "summary": "Construct\u0020the\u0020\u0060InputType\u0060\u0020of\u0020\u0060\u0024beta\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Comparisons-Types-StringType.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Comparisons\\Types\\StringType\u003A\u003AgetStrategyFor\u0028\u0029",
@@ -903,12 +908,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees",
             "name": "Degrees",
-            "summary": "The\u0020degrees\u0020of\u0020an\u0020Angle.",
+            "summary": "The\u0020\u0060Degrees\u0060\u0020of\u0020an\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Construct\u0020the\u0020degrees\u0020of\u0020an\u0020Angle.",
+            "summary": "Construct\u0020the\u0020degrees\u0020of\u0020an\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003Avalue\u0028\u0029",
@@ -923,62 +928,62 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003AisEqualTo\u0028\u0029",
             "name": "isEqualTo",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Degrees\u0060\u0020are\u0020equal\u0020to\u0020\u0060\u0024degrees\u0060,\u0020\u0060false\u0060\notherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_isEqualTo"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003Aeq\u0028\u0029",
             "name": "eq",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isEqualTo\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_eq"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003AisDifferentThan\u0028\u0029",
             "name": "isDifferentThan",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Degrees\u0060\u0020are\u0020different\u0020than\u0020\u0060\u0024degrees\u0060,\u0020\u0060false\u0060\notherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_isDifferentThan"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003Anot\u0028\u0029",
             "name": "not",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isDifferentThan\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_not"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003AisGreaterThan\u0028\u0029",
             "name": "isGreaterThan",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Degrees\u0060\u0020are\u0020greater\u0020than\u0020\u0060\u0024degrees\u0060,\u0020\u0060false\u0060\notherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_isGreaterThan"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003Agt\u0028\u0029",
             "name": "gt",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isGreaterThan\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_gt"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003AisGreaterThanOrEqual\u0028\u0029",
             "name": "isGreaterThanOrEqual",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Degrees\u0060\u0020are\u0020greater\u0020than\u0020or\u0020equal\u0020to\u0020\u0060\u0024degrees\u0060,\n\u0060false\u0060\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_isGreaterThanOrEqual"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003Agte\u0028\u0029",
             "name": "gte",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isGreaterThanOrEqual\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_gte"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003AisLessThan\u0028\u0029",
             "name": "isLessThan",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Degrees\u0060\u0020are\u0020less\u0020than\u0020\u0060\u0024degrees\u0060,\u0020\u0060false\u0060\notherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_isLessThan"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003Alt\u0028\u0029",
             "name": "lt",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isLessThan\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_lt"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003AisLessThanOrEqual\u0028\u0029",
             "name": "isLessThanOrEqual",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Degrees\u0060\u0020are\u0020less\u0020than\u0020or\u0020equal\u0020to\u0020\u0060\u0024degrees\u0060,\n\u0060false\u0060\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_isLessThanOrEqual"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003Alte\u0028\u0029",
             "name": "lte",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isLessThanOrEqual\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_lte"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003AMAX",
@@ -1018,7 +1023,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\NoMatchException\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "It\u0020construct\u0020the\u0020exception.",
+            "summary": "Construct\u0020the\u0020exception.",
             "url": "classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\RegExFailureException",
@@ -1148,17 +1153,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\AngleBuilder",
             "name": "AngleBuilder",
-            "summary": "How\u0020an\u0020angle\u0020should\u0020be\u0020constructed.",
+            "summary": "How\u0020an\u0020\u0060Angle\u0060\u0020should\u0020be\u0020constructed.",
             "url": "classes/MarcoConsiglio-Goniometry-Interfaces-AngleBuilder.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\AngleBuilder\u003A\u003AfetchData\u0028\u0029",
             "name": "fetchData",
-            "summary": "Fetch\u0020the\u0020data\u0020that\u0020will\u0020bee\u0020used\u0020for\u0020an\u0020angle.",
+            "summary": "Fetch\u0020the\u0020data\u0020that\u0020will\u0020be\u0020used\u0020to\u0020build\u0020an\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Interfaces-AngleBuilder.html#method_fetchData"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\Casting\\CastableToFloat",
             "name": "CastableToFloat",
-            "summary": "The\u0020behavior\u0020of\u0020a\u0020Castable\u0020object.",
+            "summary": "The\u0020behavior\u0020of\u0020a\u0020castable\u0020object.",
             "url": "classes/MarcoConsiglio-Goniometry-Interfaces-Casting-CastableToFloat.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\Casting\\CastableToFloat\u003A\u003Acast\u0028\u0029",
@@ -1188,7 +1193,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes",
             "name": "Minutes",
-            "summary": "The\u0020minutes\u0020of\u0020an\u0020Angle.",
+            "summary": "The\u0020\u0060Minutes\u0060\u0020of\u0020an\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003A__construct\u0028\u0029",
@@ -1208,62 +1213,62 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003AisEqualTo\u0028\u0029",
             "name": "isEqualTo",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Minutes\u0060\u0020are\u0020equal\u0020to\u0020\u0060\u0024minutes\u0060,\u0020false\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_isEqualTo"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003Aeq\u0028\u0029",
             "name": "eq",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isEqualTo\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_eq"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003AisDifferentThan\u0028\u0029",
             "name": "isDifferentThan",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Minutes\u0060\u0020are\u0020different\u0020than\u0020\u0060\u0024minutes\u0060,\u0020false\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_isDifferentThan"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003Anot\u0028\u0029",
             "name": "not",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isDifferentThan\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_not"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003AisGreaterThan\u0028\u0029",
             "name": "isGreaterThan",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Minutes\u0060\u0020are\u0020greater\u0020than\u0020\u0060\u0024minutes\u0060,\u0020false\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_isGreaterThan"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003Agt\u0028\u0029",
             "name": "gt",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isGreaterThan\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_gt"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003AisGreaterThanOrEqual\u0028\u0029",
             "name": "isGreaterThanOrEqual",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Minutes\u0060\u0020are\u0020greater\u0020than\u0020or\u0020equal\u0020to\u0020\u0060\u0024minutes\u0060,\u0020false\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_isGreaterThanOrEqual"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003Agte\u0028\u0029",
             "name": "gte",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isGreaterThanOrEqual\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_gte"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003AisLessThan\u0028\u0029",
             "name": "isLessThan",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Minutes\u0060\u0020are\u0020less\u0020than\u0020\u0060\u0024minutes\u0060,\u0020false\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_isLessThan"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003Alt\u0028\u0029",
             "name": "lt",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isLessThan\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_lt"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003AisLessThanOrEqual\u0028\u0029",
             "name": "isLessThanOrEqual",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Minutes\u0060\u0020are\u0020less\u0020than\u0020or\u0020equal\u0020to\u0020\u0060\u0024minutes\u0060,\u0020false\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_isLessThanOrEqual"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003Alte\u0028\u0029",
             "name": "lte",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isLessThanOrEqual\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_lte"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003AMAX",
@@ -1618,7 +1623,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Degrees",
             "name": "Degrees",
-            "summary": "Validate\u0020a\u0020random\u0020degrees\u0020range.",
+            "summary": "Validate\u0020a\u0020random\u0020\u0060DegreesRange\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Degrees.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Degrees\u003A\u003Avalidate\u0028\u0029",
@@ -1628,12 +1633,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\FloatValidator",
             "name": "FloatValidator",
-            "summary": "",
+            "summary": "A\u0020validator\u0020that\u0020validate\u0020a\u0020\u0060float\u0060\u0020range.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-FloatValidator.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Minutes",
             "name": "Minutes",
-            "summary": "",
+            "summary": "Validate\u0020a\u0020random\u0020\u0060MinutesRange\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Minutes.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Minutes\u003A\u003Avalidate\u0028\u0029",
@@ -1643,7 +1648,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeRadian",
             "name": "NegativeRadian",
-            "summary": "",
+            "summary": "Validate\u0020a\u0020\u0060RadianRange\u0060\u0020allowing\u0020only\u0020negative\u0020values.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-NegativeRadian.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeRadian\u003A\u003Avalidate\u0028\u0029",
@@ -1663,7 +1668,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeSexadecimal",
             "name": "NegativeSexadecimal",
-            "summary": "",
+            "summary": "Validate\u0020a\u0020\u0060SexadecimalRange\u0060\u0020allowing\u0020only\u0020negative\u0020values.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-NegativeSexadecimal.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\NegativeSexadecimal\u003A\u003Avalidate\u0028\u0029",
@@ -1673,7 +1678,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\PositiveRadian",
             "name": "PositiveRadian",
-            "summary": "",
+            "summary": "Validate\u0020a\u0020\u0060RadianRange\u0060\u0020allowing\u0020only\u0020positive\u0020values.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-PositiveRadian.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\PositiveRadian\u003A\u003Avalidate\u0028\u0029",
@@ -1683,7 +1688,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\PositiveSexadecimal",
             "name": "PositiveSexadecimal",
-            "summary": "",
+            "summary": "Validate\u0020a\u0020\u0060SexadecimalRange\u0060\u0020allowing\u0020only\u0020positive\u0020values.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-PositiveSexadecimal.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\PositiveSexadecimal\u003A\u003Avalidate\u0028\u0029",
@@ -1693,7 +1698,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\RelativeRadian",
             "name": "RelativeRadian",
-            "summary": "",
+            "summary": "Validate\u0020a\u0020\u0060RadianRange\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-RelativeRadian.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\RelativeRadian\u003A\u003Avalidate\u0028\u0029",
@@ -1703,7 +1708,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\RelativeSexadecimal",
             "name": "RelativeSexadecimal",
-            "summary": "",
+            "summary": "Validate\u0020a\u0020\u0060SexadecimalRange\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-RelativeSexadecimal.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\RelativeSexadecimal\u003A\u003Avalidate\u0028\u0029",
@@ -1713,7 +1718,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Seconds",
             "name": "Seconds",
-            "summary": "",
+            "summary": "Validate\u0020a\u0020\u0060SecondsRange\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Seconds.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Seconds\u003A\u003Avalidate\u0028\u0029",
@@ -1723,17 +1728,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Random\\Validator\\Sexadecimal",
             "name": "Sexadecimal",
-            "summary": "",
+            "summary": "A\u0020\u0060SexadecimalRange\u0060\u0020validator.",
             "url": "classes/MarcoConsiglio-Goniometry-Random-Validator-Sexadecimal.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds",
             "name": "Seconds",
-            "summary": "The\u0020seconds\u0020of\u0020an\u0020Angle.",
+            "summary": "The\u0020\u0060Seconds\u0060\u0020of\u0020an\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Construct\u0020the\u0020seconds\u0020of\u0020an\u0020Angle.",
+            "summary": "Construct\u0020the\u0020seconds\u0020of\u0020an\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003Avalue\u0028\u0029",
@@ -1748,62 +1753,62 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003AisEqualTo\u0028\u0029",
             "name": "isEqualTo",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Seconds\u0060\u0020are\u0020equal\u0020to\u0020\u0060\u0024seconds\u0060,\u0020\u0060false\u0060\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_isEqualTo"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003Aeq\u0028\u0029",
             "name": "eq",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isEqualTo\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_eq"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003AisDifferentThan\u0028\u0029",
             "name": "isDifferentThan",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Seconds\u0060\u0020are\u0020different\u0020than\u0020\u0060\u0024seconds\u0060,\u0020\u0060false\u0060\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_isDifferentThan"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003Anot\u0028\u0029",
             "name": "not",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isDifferentThan\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_not"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003AisGreaterThan\u0028\u0029",
             "name": "isGreaterThan",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Seconds\u0060\u0020are\u0020greater\u0020than\u0020\u0060\u0024seconds\u0060,\u0020\u0060false\u0060\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_isGreaterThan"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003Agt\u0028\u0029",
             "name": "gt",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isGreaterThan\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_gt"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003AisGreaterThanOrEqual\u0028\u0029",
             "name": "isGreaterThanOrEqual",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Seconds\u0060\u0020are\u0020greater\u0020than\u0020or\u0020equal\u0020to\u0020\u0060\u0024seconds\u0060,\u0020\u0060false\u0060\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_isGreaterThanOrEqual"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003Agte\u0028\u0029",
             "name": "gte",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isGreaterThanOrEqual\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_gte"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003AisLessThan\u0028\u0029",
             "name": "isLessThan",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Seconds\u0060\u0020are\u0020less\u0020than\u0020\u0060\u0024seconds\u0060,\u0020\u0060false\u0060\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_isLessThan"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003Alt\u0028\u0029",
             "name": "lt",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isLessThan\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_lt"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003AisLessThanOrEqual\u0028\u0029",
             "name": "isLessThanOrEqual",
-            "summary": "",
+            "summary": "Return\u0020\u0060true\u0060\u0020if\u0020these\u0020\u0060Seconds\u0060\u0020are\u0020less\u0020than\u0020or\u0020equal\u0020\u0060\u0024seconds\u0060,\u0020\u0060false\u0060\u0020otherwise.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_isLessThanOrEqual"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003Alte\u0028\u0029",
             "name": "lte",
-            "summary": "",
+            "summary": "Alias\u0020of\u0020\u0060isLessThanOrEqual\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Seconds.html#method_lte"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Seconds\u003A\u003AMAX",
@@ -1848,7 +1853,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\SexagesimalDegrees\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Construct\u0020a\u0020SexagesimalDegrees\u0020structure.",
+            "summary": "Construct\u0020a\u0020\u0060SexagesimalDegrees\u0060\u0020o.",
             "url": "classes/MarcoConsiglio-Goniometry-SexagesimalDegrees.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\SexagesimalDegrees\u003A\u003A__toString\u0028\u0029",

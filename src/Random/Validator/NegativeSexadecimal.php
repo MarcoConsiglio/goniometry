@@ -5,6 +5,9 @@ use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Degrees;
 
+/**
+ * Validate a `SexadecimalRange` allowing only negative values.
+ */
 class NegativeSexadecimal extends SexadecimalValidator
 {
     /**

@@ -39,6 +39,7 @@ class SexadecimalDegrees extends ModularNumber implements Stringable
     /**
      * Cast this instance to `string` type.
      */
+    #[\Override]
     public function __toString(): string
     {
         return "{$this->value}" . self::MEASURE;

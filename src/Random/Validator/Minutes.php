@@ -4,6 +4,9 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Integer\Validator;
 use MarcoConsiglio\Goniometry\Random\MinutesRange;
 
+/**
+ * Validate a random `MinutesRange`.
+ */
 class Minutes extends Validator
 {
     /**

@@ -10,7 +10,7 @@ use Exception;
 class NoMatchException extends Exception
 {
     /**
-     * It construct the exception.
+     * Construct the exception.
      *
      * @param string $angle The string angle provoking the exception.
      * @return void

@@ -11,7 +11,7 @@ class Equal extends Comparison
 {
     /**
      * Set the comparison strategy based on the comparison type and
-     * the type of the right operand of the comparison.
+     * the type of the right operand of this `Comparison`.
      */
     protected function setComparisonStrategy(): void
     {
