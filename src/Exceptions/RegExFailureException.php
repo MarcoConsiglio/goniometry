@@ -6,7 +6,7 @@ use Exception;
 /**
  * This exception is thrown when the angle regular expressions fails to find a string angle.
  * 
- * @deprecated <version> Use NoMatchException instead.
+ * @deprecated <> Use NoMatchException instead.
  */
 class RegExFailureException extends Exception
 {
