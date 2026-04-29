@@ -1,11 +1,10 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use BcMath\Number;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  * Sum two `Angle`s resulting in an absolute sum.

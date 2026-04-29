@@ -1,10 +1,7 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\Radian;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-
 /**
  *  Builds an `Angle` starting from a radian value.
  */

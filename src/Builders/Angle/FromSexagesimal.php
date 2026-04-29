@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Degrees;

@@ -1,8 +1,7 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  * Sum two `Angle`s resulting in a relative sum.

@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Builders;
+namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
