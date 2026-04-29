@@ -1,4 +1,10 @@
 # Changelog
+## v4.1.1 2025-04-29
+### Changed
+- API documentation.
+### Deprecated
+- `RegExFailureException` class, use `NoMatchException` instead.
+
 ## v4.1.0 2025-04-22
 ### Added
 - `Angle::fuzzyEqual` method to check if an `Angle` is almost equal to another one within an acceptable error.
