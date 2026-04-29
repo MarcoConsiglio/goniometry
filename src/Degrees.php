@@ -40,6 +40,7 @@ class Degrees extends ModularNumber implements Stringable
     /**
      * Cast degrees to string.
      */
+    #[\Override]
     public function __toString(): string
     {
         return $this->value->value . self::MEASURE;

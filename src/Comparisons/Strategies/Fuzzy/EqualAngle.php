@@ -50,6 +50,7 @@ class EqualAngle extends EqualAngleStrategy
     /**
      * Perform the comparison.
      */
+    #[\Override]
     public function compare(): bool
     {
         $alfa = $this->alfa->toSexadecimalDegrees()->value;

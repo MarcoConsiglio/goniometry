@@ -40,6 +40,7 @@ class Seconds extends ModularNumber implements Stringable
     /**
      * Cast seconds to string.
      */
+    #[\Override]
     public function __toString(): string
     {
         return $this->value->value . self::MEASURE;

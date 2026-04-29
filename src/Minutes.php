@@ -22,16 +22,17 @@ class Minutes extends ModularNumber implements Stringable
     public const string MEASURE = "'";
 
     /**
-     * Construct the minutes of an Angle.
+     * Construct the minutes of an `Angle`.
      */
     public function __construct(int|float|string|Number|BCMathExtendedNumber $minutes)
     {
-        return parent::__construct($minutes, self::MAX);
+        parent::__construct($minutes, self::MAX);
     }
 
     /**
      * Cast minutes to string.
      */
+    #[\Override]
     public function __toString(): string
     {
         return $this->value->value . self::MEASURE;

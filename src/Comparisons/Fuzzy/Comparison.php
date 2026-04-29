@@ -38,6 +38,7 @@ abstract class Comparison extends GoniometricComparison
      * Return an `InputType` object that represent the type
      * of the right operand of the fuzzy comparison.
      */
+    #[\Override]
     protected function getBetaType(): AngleType
     {
         return new AngleType($this->beta);
