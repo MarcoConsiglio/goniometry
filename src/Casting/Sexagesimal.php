@@ -2,6 +2,9 @@
 namespace MarcoConsiglio\Goniometry\Casting;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularDistance;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
 /**
@@ -14,7 +17,7 @@ abstract class Sexagesimal
      * Construct the `Cast` object.
      */
     public function __construct(
-        protected Angle $angle,
+        protected Angle|AngularDistance $angle,
         protected int|null $precision = null
     ) {
         if ($this->hasPrecisionBeenSet()) {
@@ -42,9 +45,11 @@ abstract class Sexagesimal
     /**
      * Calc the sexadecimal value.
      */
-    protected function toSexadecimal(): SexadecimalDegrees
+    protected function toSexadecimal(): SexadecimalDegrees|SexadecimalAngularDistance
     {
-        return $this->angle->toSexadecimalDegrees();
+        if ($this->angle instanceof Angle)
+            return $this->angle->toSexadecimalDegrees();
+        else return $this->angle->toSexadecimalAngularDistance();
     }
 
     /**

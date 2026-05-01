@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -32,7 +32,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class FromDecimalTest extends TestCase
+class FromSexadecimalTest extends TestCase
 {
     #[TestDox("can create a counter-clockwise Angle from a positive sexadecimal value.")]
     public function test_create_angle_from_positive_decimal_degrees(): void

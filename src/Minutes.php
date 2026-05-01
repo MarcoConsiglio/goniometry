@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry;
 
 use BcMath\Number;
 use MarcoConsiglio\BCMathExtended\Number as BCMathExtendedNumber;
-use Marcoconsiglio\ModularArithmetic\ModularNumber;
+use MarcoConsiglio\ModularArithmetic\ModularNumber;
 use Stringable;
 
 /**

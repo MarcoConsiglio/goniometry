@@ -10,7 +10,7 @@ use Stringable;
 class SexagesimalDegrees implements Stringable
 {
     /**
-     * Construct a `SexagesimalDegrees` o.
+     * Construct a `SexagesimalDegrees`.
      */
     public function __construct(
         public Degrees $degrees,

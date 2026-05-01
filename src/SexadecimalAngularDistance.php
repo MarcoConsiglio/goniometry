@@ -4,29 +4,36 @@ namespace MarcoConsiglio\Goniometry;
 use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
-use MarcoConsiglio\ModularArithmetic\ModularNumber;
-use Stringable;
+use MarcoConsiglio\ModularArithmetic\Builders\FromExtremes;
+use MarcoConsiglio\ModularArithmetic\ModularRelativeNumber;
 
-/**
- * The value of an `Angle` expressed as sexadecimal degrees.
- */
-class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
+class SexadecimalAngularDistance extends ModularRelativeNumber implements SexadecimalValue
 {
+
     /**
      * The symbol for the unit of measurement of sexadecimal degrees.
      */
     public const string MEASURE = '°';
 
     /**
-     * Construct a `SexadecimalDegrees` number.
+     * The maximum allowed value.
+     */
+    public const int MAX = 180;
+
+    /**
+     * The minimum allowed value.
+     */
+    public const int MIN = -self::MAX;
+
+    /**
+     * Construct a `SexadecimalAngularDistance` number.
      */
     public function __construct(int|float|string|BCMathNumber|Number $value)
     {
         $value = Number::normalize($value);
-        if ($value->isPositive())
-            parent::__construct($value, Degrees::MAX);
-        else
-            parent::__construct($value, -Degrees::MAX);
+        parent::__construct(
+            new FromExtremes($value, self::MIN, self::MAX)
+        );
     }
 
     /**

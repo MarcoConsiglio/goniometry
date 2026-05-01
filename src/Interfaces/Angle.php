@@ -2,28 +2,37 @@
 
 namespace MarcoConsiglio\Goniometry\Interfaces;
 
+use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
+
 /**
  * The behavior of an angle.
  */
 interface Angle
 {
     /**
-     * Creates an `Angle` from its values.
+     * Create an `Angle` from its sexagesimal values.
      */
-    public static function createFromValues(int $degrees, int $minutes, float $seconds): Angle;
+    public static function createFromValues(
+        int $degrees, 
+        int $minutes, 
+        float $seconds, 
+        Direction $direction
+    ): Angle;
 
     /**
-     * Creates an `Angle` from its textual representation.
+     * Create an `Angle` from its textual representation.
      */
     public static function createFromString(string $sexagesimal): Angle;
 
     /**
-     * Creates an `Angle` from its decimal representation.
+     * Create an `Angle` from its decimal representation.
      */
     public static function createFromDecimal(float $sexadecimal): Angle;
 
     /**
-     * Creates an `Angle` from its radian representation.
+     * Create an `Angle` from its radian representation.
      */
     public static function createFromRadian(float $radian): Angle;
 
@@ -49,14 +58,19 @@ interface Angle
     public function isCounterClockwise(): bool;
 
     /**
-     * Gets the decimal degrees representation of this angle.
+     * Return the sexagesimal values of this `Angle`.
      */
-    public function toFloat(): float;
+    public function toSexagesimalDegrees(): SexagesimalDegrees;
 
     /**
-     * Gets the radian representation of this angle.
+     * Cast this `Angle` to its `float` sexadecimal degrees representation.
      */
-    public function toRadian(): float;
+    public function toFloat(int $precision = PHP_FLOAT_DIG): float;
+
+    /**
+     * Cast this `Angle` to its `float` radian representation.
+     */
+    public function toRadian(int $precision = PHP_FLOAT_DIG): float;
 
     /**
      * Check if this angle is greater than $angle.

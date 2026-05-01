@@ -1,9 +1,9 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromRadian;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;

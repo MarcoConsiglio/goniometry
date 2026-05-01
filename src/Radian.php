@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry;
 
 use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
-use Marcoconsiglio\ModularArithmetic\ModularNumber;
+use MarcoConsiglio\ModularArithmetic\ModularNumber;
 
 /**
  * The value of an `Angle` expressed as a `Radian`.

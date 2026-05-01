@@ -1,11 +1,9 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders\Angle;
 
-use MarcoConsiglio\BCMathExtended\Number;
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\RelativeSum;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
@@ -28,8 +26,8 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The AbsoluteSum SumBuilder")]
-#[CoversClass(AbsoluteSum::class)]
+#[TestDox("The RelativeSum SumBuilder")]
+#[CoversClass(RelativeSum::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
 #[UsesClass(Degrees::class)]
@@ -48,57 +46,31 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class AbsoluteSumTest extends TestCase
+class RelativeSumTest extends TestCase
 {
-    #[TestDox("can sum two Angles and return an absolute sum.")]
-    public function test_can_sum_angles(): void
+    #[TestDox("can sum two Angles and return a relative sum.")]
+    public function test_can_sum_angles_and_return_positive_sum(): void
     {
-        /**
-         * Positive sum
-         */
         // Arrange
-        $alfa = $this->positiveRandomAngle(precision: 1);
-        $beta = $this->positiveRandomAngle(precision: 1);
+        $alfa = $this->randomAngle(precision: 3);
+        $beta = $this->randomAngle(precision: 3);
         $sum = 
             $alfa->toSexadecimalDegrees()->value
-            ->plus($beta->toSexadecimalDegrees()->value)
-            ->plus(Degrees::MAX);
-        $expected_sum = new SexadecimalDegrees($sum);
-        $gamma = Angle::createFromDecimal($expected_sum);
-
-        // Act
-        $actual_sum = new AbsoluteSum($alfa, $beta)->fetchData();
-        $sexagesimal = $actual_sum[0];
-
-        // Assert
-        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
-        $this->assertDegrees($gamma->degrees, $sexagesimal->degrees);
-        $this->assertMinutes($gamma->minutes, $sexagesimal->minutes);
-        $this->assertSeconds($gamma->seconds, $sexagesimal->seconds);
-        $this->assertDirection($gamma->direction, $sexagesimal->direction);
-
-        /**
-         * Negative sum
-         */
-        // Arrange
-        $alfa = $this->negativeRandomAngle(min: NextFloat::after(-180), precision: 1);
-        $beta = $this->negativeRandomAngle(min: NextFloat::after(-180), precision: 1);
-        $sum =
-            $alfa->toSexadecimalDegrees()->value
             ->plus($beta->toSexadecimalDegrees()->value);
-        $sum = new Number(Degrees::MAX)->add($sum);
         $expected_sum = new SexadecimalDegrees($sum);
         $gamma = Angle::createFromDecimal($expected_sum);
 
         // Act
-        $actual_sum = new AbsoluteSum($alfa, $beta)->fetchData();
-        $sexagesimal = $actual_sum[0];
+        [$sexagesimal, $sexadecimal] = new RelativeSum($alfa, $beta)->fetchData();
 
         // Assert
-        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
-        $this->assertDegrees($gamma->degrees, $sexagesimal->degrees);
-        $this->assertMinutes($gamma->minutes, $sexagesimal->minutes);
-        $this->assertSeconds($gamma->seconds, $sexagesimal->seconds);
-        $this->assertDirection($gamma->direction, $sexagesimal->direction);
+        $this->assertDegrees($gamma->degrees,       $sexagesimal->degrees);
+        $this->assertMinutes($gamma->minutes,       $sexagesimal->minutes);
+        $this->assertSeconds($gamma->seconds,       $sexagesimal->seconds);
+        $this->assertDirection($gamma->direction,   $sexagesimal->direction);       
+        $this->assertEquals(
+            $expected_sum->value(),
+            $sexadecimal->value()
+        );
     }
 }

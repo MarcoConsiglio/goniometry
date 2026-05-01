@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;

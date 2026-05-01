@@ -1,9 +1,9 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;

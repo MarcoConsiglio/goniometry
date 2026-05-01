@@ -1,23 +1,22 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Builders\Angle;
+namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
 use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
+use Override;
 
-/**
- * Builds an `Angle` starting from a sexadecimal value.
- */
 class FromSexadecimal extends AngleBuilder
 {
     /**
-     * The decimal value used to build an angle.
+     * The decimal value used to build an angular distance.
      */
-    protected SexadecimalDegrees $decimal;
+    protected SexadecimalAngularDistance $decimal;
 
     /**
      * The remainder that remains during the conversion steps from decimal to
@@ -26,25 +25,29 @@ class FromSexadecimal extends AngleBuilder
     private Number $reminder;
 
     /**
-     * Construct an `AngleBuilder` with a sexadecimal degrees value.
+     * Construct an `AngleBuilder`with from a sexadecimal angular distance value.
      */
-    public function __construct(float|SexadecimalDegrees $decimal)
+    public function __construct(float|SexadecimalAngularDistance $decimal)
     {
         $this->decimal =
-            $decimal instanceof SexadecimalDegrees ?
-            $decimal : new SexadecimalDegrees($decimal);
+            $decimal instanceof SexadecimalAngularDistance ?
+            $decimal : new SexadecimalAngularDistance($decimal);
     }
+
 
     /**
      * Check for overflow above/below +/-360°.
      * 
      * @codeCoverageIgnore
      */
+    #[Override]
     protected function checkOverflow(): void {/* No need to check overflow. Overflow is allowed. */}
+
 
     /**
      * Calc degrees.
      */
+    #[Override]
     protected function calcDegrees(): void
     {
         $this->degrees = new Degrees($this->decimal->value->abs()->floor());
@@ -54,6 +57,7 @@ class FromSexadecimal extends AngleBuilder
     /**
      * Calc minutes.
      */
+    #[Override]
     protected function calcMinutes(): void
     {
         $this->minutes = new Minutes(
@@ -68,6 +72,7 @@ class FromSexadecimal extends AngleBuilder
     /**
      * Calc seconds.
      */
+    #[Override]
     protected function calcSeconds(): void
     {
         $this->seconds = new Seconds(
@@ -78,6 +83,7 @@ class FromSexadecimal extends AngleBuilder
     /**
      * Calc sign.
      */
+    #[Override]
     protected function calcSign(): void
     {
         $this->direction = 
@@ -87,10 +93,11 @@ class FromSexadecimal extends AngleBuilder
     }
 
     /**
-     * Fetches the data to build an `Angle`.
-     *
-     * @return array{SexagesimalDegrees,SexadecimalDegrees,null}
+     * Fetches the data to build an `AngularDistance`.
+     * 
+     * @return array{SexagesimalDegrees,SexadecimalAngularDistance,null}
      */
+    #[Override]
     public function fetchData(): array
     {
         $this->calcDegrees();

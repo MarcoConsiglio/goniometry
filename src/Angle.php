@@ -103,15 +103,19 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Creates an `Angle` from its values.
+     * Creates an `Angle` from its sexagesimal values.
      */
-    public static function createFromValues(int $degrees = 0, int $minutes = 0, float $seconds = 0.0, Direction $direction = Direction::COUNTER_CLOCKWISE): Angle
-    {
+    public static function createFromValues(
+        int $degrees = 0, 
+        int $minutes = 0, 
+        float $seconds = 0.0, 
+        Direction $direction = Direction::COUNTER_CLOCKWISE
+    ): AngleInterface {
         return new Angle(new FromSexagesimal($degrees, $minutes, $seconds, $direction));
     }
 
     /**
-     * Creates an `Angle` from its textual representation.
+     * Creates an `Angle` from its textual sexagesimal representation.
      * 
      * @throws NoMatchException when bad formatted angle is found.
      */
@@ -121,7 +125,7 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Creates an `Angle` from its decimal representation.
+     * Creates an `Angle` from its sexadecimal representation.
      */
     public static function createFromDecimal(float|SexadecimalDegrees $sexadecimal): Angle
     {
@@ -141,7 +145,7 @@ class Angle implements AngleInterface, Stringable
      * 
      * The result can be positive or negative.
      */
-    public static function sum(AngleInterface $alfa, AngleInterface $beta): Angle
+    public static function sum(Angle $alfa, Angle $beta): Angle
     {
         return new Angle(new RelativeSum($alfa, $beta));
     }
@@ -151,7 +155,7 @@ class Angle implements AngleInterface, Stringable
      * 
      * The result can be only positive.
      */
-    public static function absSum(AngleInterface $alfa, AngleInterface $beta): Angle
+    public static function absSum(Angle $alfa, Angle $beta): Angle
     {
         return new Angle(new AbsoluteSum($alfa, $beta));
     }
@@ -171,7 +175,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Alias for `absolute()` method.
      */
-    public function asb(): Angle
+    public function asb(): AngleInterface
     {
         return $this->absolute();
     }
@@ -231,8 +235,7 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Return the sexadecimal value of this `Angle` with arbitrary 
-     * precision.
+     * Cast this `Angle` to `SexadecimalDegrees`.
      */
     public function toSexadecimalDegrees(): SexadecimalDegrees
     {
