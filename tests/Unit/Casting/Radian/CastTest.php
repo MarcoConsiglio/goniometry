@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Casting\Radian;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;

@@ -2,16 +2,16 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\FloatComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\FloatComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
@@ -39,8 +39,8 @@ use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The Lesser comparison")]
 #[CoversClass(Lesser::class)]

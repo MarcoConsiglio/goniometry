@@ -2,9 +2,9 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Fuzzy\Types;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\SumBuilder;
+use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;

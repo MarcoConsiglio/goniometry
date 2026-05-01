@@ -2,8 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Degrees;

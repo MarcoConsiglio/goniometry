@@ -2,9 +2,9 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;

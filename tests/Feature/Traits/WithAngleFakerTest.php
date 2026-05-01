@@ -3,7 +3,9 @@ namespace MarcoConsiglio\Goniometry\Tests\Feature\Traits;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as AngularDistanceFromSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -11,18 +13,22 @@ use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngularDistance as NegativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngularDistance as PositiveAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
@@ -34,14 +40,18 @@ use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeAngularDistance as NegativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian as NegativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveAngularDistance as PositiveAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
@@ -93,6 +103,16 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SexagesimalGenerator::class)]
+#[UsesClass(AngularDistance::class)]
+#[UsesClass(AngularDistanceFromSexadecimal::class)]
+#[UsesClass(AngularDistanceGenerator::class)]
+#[UsesClass(PositiveAngularDistanceGenerator::class)]
+#[UsesClass(PositiveAngularDistanceValidator::class)]
+#[UsesClass(SexadecimalAngularDistance::class)]
+#[UsesClass(NegativeAngularDistanceGenerator::class)]
+#[UsesClass(NegativeAngularDistanceValidator::class)]
+#[UsesClass(RelativeAngularDistanceGenerator::class)]
+#[UsesClass(RelativeAngularDistanceValidator::class)]
 class WithAngleFakerTest extends TestCase
 {
     use WithAngleFaker;
@@ -297,5 +317,35 @@ class WithAngleFakerTest extends TestCase
         
         // Assert
         $this->assertInstanceOf(Radian::class, $radian);
+    }
+
+    #[TestDox("can return a random positive AngularDistance.")]
+    public function test_positiveRandomAngularDistance(): void
+    {
+        // Act
+        $angular_distance = $this->positiveRandomAngularDistance();
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $angular_distance);
+    }
+
+    #[TestDox("can return a random negative AngularDistance.")]
+    public function test_negativeRandomAngularDistance(): void
+    {
+        // Act
+        $angular_distance = $this->negativeRandomAngularDistance();
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $angular_distance);
+    }
+
+    #[TestDox("can return a random AngularDistance.")]
+    public function test_randomAngularDistance(): void
+    {
+        // Act
+        $angular_distance = $this->randomAngularDistance();
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $angular_distance);
     }
 }

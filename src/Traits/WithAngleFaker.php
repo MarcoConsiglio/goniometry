@@ -3,22 +3,27 @@ namespace MarcoConsiglio\Goniometry\Traits;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\DegreesRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngularDistance as NegativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngularDistance as PositiveAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
@@ -29,14 +34,18 @@ use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeAngularDistance as NegativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian as NegativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveAngularDistance as PositiveAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
@@ -299,6 +308,42 @@ trait WithAngleFaker
             self::$faker,
             new NegativeRadianValidator,
             new RadianRange($min, $max)
+        )->generate($precision);
+    }
+
+    public function positiveRandomAngularDistance(
+        float $min = 0.0,
+        float $max = SexadecimalAngularDistance::MAX,
+        int $precision = PHP_FLOAT_DIG
+    ): AngularDistance {
+        return new PositiveAngularDistanceGenerator(
+            self::$faker,
+            new PositiveAngularDistanceValidator,
+            new AngularDistanceRange($min, $max)
+        )->generate($precision);
+    }
+
+    public function negativeRandomAngularDistance(
+        float $min = SexadecimalAngularDistance::MIN,
+        float $max = 0.0,
+        int $precision = PHP_FLOAT_DIG
+    ): AngularDistance {
+        return new NegativeAngularDistanceGenerator(
+            self::$faker,
+            new NegativeAngularDistanceValidator,
+            new AngularDistanceRange($min, $max)
+        )->generate($precision);
+    }
+
+    public function randomAngularDistance(
+        float $min = SexadecimalAngularDistance::MIN,
+        float $max = SexadecimalAngularDistance::MAX,
+        int $precision = PHP_FLOAT_DIG
+    ): AngularDistance {
+        return new RelativeAngularDistanceGenerator(
+            self::$faker,
+            new RelativeAngularDistanceValidator,
+            new AngularDistanceRange($min, $max)
         )->generate($precision);
     }
 }

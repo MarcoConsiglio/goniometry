@@ -1,66 +1,58 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Feature;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
-use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
-use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[CoversClass(AngularDistance::class)]
+#[CoversClass(RelativeAngularDistanceGenerator::class)]
+#[UsesClass(AngularDistance::class)]
 #[UsesClass(FromSexadecimal::class)]
-#[UsesClass(Round::class)]
-#[UsesClass(Sexagesimal::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
-#[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
-#[UsesTrait(WithAngleFaker::class)]
-class AngularDistanceTest extends TestCase
+class RelativeAngularDistanceTest extends TestCase
 {
-    #[TestDox("can be created from a decimal number.")]
-    public function test_create_from_decimal(): void
+    public function test_random_generation(): void
     {
         // Arrange
-        $decimal = $this->randomSexadecimal(
-            min: NextFloat::after(SexadecimalAngularDistance::MIN),
-            max: NextFloat::before(SexadecimalAngularDistance::MAX),
-            precision: 3
+        $validator = $this->createMock(RelativeAngularDistanceValidator::class);
+        $validator->expects($this->once())->method('validate');
+        $generator = new RelativeAngularDistanceGenerator(
+            self::$faker,
+            $validator,
+            new AngularDistanceRange(
+                NextFloat::after(SexadecimalAngularDistance::MIN),
+                NextFloat::after(SexadecimalAngularDistance::MAX)
+            )
         );
 
-        // Act
-        $angle = AngularDistance::createFromDecimal($decimal);
-
-        // Assert
-        $this->assertEquals(
-            $decimal, 
-            $angle->toFloat(3)
-        );
+        // Act & Assert
+        $this->assertInstanceOf(AngularDistance::class, $generator->generate());
     }
 }

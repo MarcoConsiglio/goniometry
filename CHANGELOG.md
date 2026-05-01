@@ -6,6 +6,11 @@
 - `SexadecimalAngularDistance` class to represent sexadecimal value of an `AngularDistance` object.
 - `AngularDistance::toSexadecimalAngularDistance()` to cast an `AngularDistance` object to a `SexadecimalAngularDistance` object.
 - `AngularDistance::toFloat()` method to cast an `AngularDistance` object to sexadecimal `float` value.
+- `WithAngleFaker::{`  
+&ensp;&ensp;&ensp;&ensp;`positiveRandomAngularDistance()`  
+&ensp;&ensp;&ensp;&ensp;`negativeRandomAngularDistance()`  
+&ensp;&ensp;&ensp;&ensp;`randomAngularDistance()`  
+`}` method to randomly generate `AngularDistance` objects.
 
 ## v4.1.1 2025-04-29
 ### Changed
