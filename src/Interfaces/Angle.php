@@ -3,7 +3,6 @@
 namespace MarcoConsiglio\Goniometry\Interfaces;
 
 use MarcoConsiglio\Goniometry\Enums\Direction;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**

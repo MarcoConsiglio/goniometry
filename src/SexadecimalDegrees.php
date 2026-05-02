@@ -5,8 +5,6 @@ use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\ModularArithmetic\ModularNumber;
-use Stringable;
-
 /**
  * The value of an `Angle` expressed as sexadecimal degrees.
  */

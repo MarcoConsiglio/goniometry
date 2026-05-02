@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry;
 
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
@@ -71,7 +72,9 @@ class AngularDistance implements AngleInterface, Stringable
         Direction $direction = Direction::COUNTER_CLOCKWISE
     ): AngularDistance
     {
-        throw new \Exception('Not implemented');
+        return new AngularDistance(
+            new FromSexagesimal($degrees, $minutes, $seconds, $direction)
+        );
     }
 
     /**

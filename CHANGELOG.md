@@ -3,6 +3,7 @@
 ## Added
 - `AngularDistance` class to represent angular distance between two objects.
 - `AngularDistance::createFromDecimal()` method to build an `AngularDistance` object from a `float` or `SexadecimalAngularDistance` type input.
+- `AngularDistance::createFromValues()` method to build an `AngularDistance` object from degrees (`int`), minutes (`int`), seconds (`float`) and `Direction`.
 - `SexadecimalAngularDistance` class to represent sexadecimal value of an `AngularDistance` object.
 - `AngularDistance::toSexadecimalAngularDistance()` to cast an `AngularDistance` object to a `SexadecimalAngularDistance` object.
 - `AngularDistance::toFloat()` method to cast an `AngularDistance` object to sexadecimal `float` value.

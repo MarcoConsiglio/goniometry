@@ -110,7 +110,7 @@ class Angle implements AngleInterface, Stringable
         int $minutes = 0, 
         float $seconds = 0.0, 
         Direction $direction = Direction::COUNTER_CLOCKWISE
-    ): AngleInterface {
+    ): Angle {
         return new Angle(new FromSexagesimal($degrees, $minutes, $seconds, $direction));
     }
 
