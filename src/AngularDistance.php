@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
@@ -96,7 +97,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public static function createFromString(string $sexagesimal): AngularDistance
     {
-        throw new \Exception('Not implemented');
+        return new AngularDistance(new FromString($sexagesimal));
     }
 
     /**

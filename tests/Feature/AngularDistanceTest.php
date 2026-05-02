@@ -140,4 +140,17 @@ class AngularDistanceTest extends TestCase
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $angle);
     }
+
+    #[TestDox("can be created from a sexagesimal string.")]
+    public function test_create_from_string(): void
+    {
+        // Arrange
+        $string = (string) $this->randomAngle(precision: 3);
+
+        // Act
+        $angle = AngularDistance::createFromString($string);
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $angle);
+    }
 }
