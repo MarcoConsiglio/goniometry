@@ -48,6 +48,8 @@ class FromSexadecimalTest extends TestCase
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($float_input)->fetchData();
 
         // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
@@ -69,6 +71,8 @@ class FromSexadecimalTest extends TestCase
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($expected_sexadecimal)->fetchData();
 
         // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
@@ -93,6 +97,8 @@ class FromSexadecimalTest extends TestCase
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($float_input)->fetchData();
 
         // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
@@ -117,6 +123,8 @@ class FromSexadecimalTest extends TestCase
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($expected_sexadecimal)->fetchData();
 
         // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);

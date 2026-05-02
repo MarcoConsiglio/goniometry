@@ -72,5 +72,6 @@ class FromSexagesimalTest extends TestCase
             $sexadecimal->value(precision: 3),
             $sexadecimal_angular_distance->value(precision: 3)
         );
+        $this->assertInstanceOf(SexagesimalDegrees::class, $result[0]);
     }
 }

@@ -3,27 +3,32 @@ namespace MarcoConsiglio\Goniometry;
 
 use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\Interfaces\Scalar;
 use MarcoConsiglio\ModularArithmetic\ModularNumber;
 
 /**
  * The value of an `Angle` expressed as a `Radian`.
  */
-class Radian extends ModularNumber
+class Radian extends ModularNumber implements Scalar
 {
     /**
-     * The max allowed radian value.
+     * The maximum allowed radian value.
      */
     public const float MAX = 2 * M_PI;
+
+    /**
+     * The minimum allowed radian value.
+     */
+    public const float MIN = -self::MAX;
 
     /**
      * Construct a `Radian` number.
      */
     public function __construct(int|float|string|BCMathNumber|Number $value)
     {
-        $value = $this->normalizeArgument($value);
-        if ($value->isPositive())
-            parent::__construct($value, static::getMaxRadian());
-        else
+        $value = Number::normalize($value);
+        $value->isPositive() ?
+            parent::__construct($value, static::getMaxRadian()) :
             parent::__construct($value, static::getMaxRadian()->mul(-1));
     }
 

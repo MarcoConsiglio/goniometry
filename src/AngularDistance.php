@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry;
 
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
@@ -47,7 +48,7 @@ class AngularDistance implements AngleInterface, Stringable
 
     public protected(set) SexadecimalAngularDistance|null $sexadecimal;
 
-    public protected(set) Radian|null $radian;
+    public protected(set) AngularDistanceRadian|null $radian;
 
     /**
      * Construct an `Angle`.
@@ -102,9 +103,9 @@ class AngularDistance implements AngleInterface, Stringable
      * Creates an `Angle` from its radian representation.
      */
     #[Override]
-    public static function createFromRadian(float|Radian $radian): AngularDistance
+    public static function createFromRadian(float|AngularDistanceRadian $radian): AngularDistance
     {
-        throw new \Exception('Not implemented');
+        return new AngularDistance(new FromRadian($radian));
     }
 
     #[Override]

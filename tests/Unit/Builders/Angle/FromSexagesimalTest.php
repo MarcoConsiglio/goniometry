@@ -52,19 +52,23 @@ class FromSexagesimalTest extends TestCase
     {
         // Arrange
         $random = $this->randomSexagesimal(precision: 3);
-
-        // Act
-        $angle = Angle::createFromValues(
-            $random->degrees->value(), 
-            $random->minutes->value(), 
-            $random->seconds->value(), 
+        $builder = new FromSexagesimal(
+            $random->degrees->value(),
+            $random->minutes->value(),
+            $random->seconds->value(),
             $random->direction
         );
 
+        // Act
+        $result = $builder->fetchData();
+        $actual = $result[0];
+
         // Assert
-        $this->assertInstanceOf(Angle::class, $angle,
-            $this->methodMustReturn(Angle::class, "createFromValues", Angle::class)
-        );
+        $this->assertInstanceOf(SexagesimalDegrees::class, $actual);
+        $this->assertDegrees($random->degrees, $actual->degrees);
+        $this->assertMinutes($random->minutes, $actual->minutes);
+        $this->assertSeconds($random->seconds, $actual->seconds);
+        $this->assertDirection($random->direction, $actual->direction);
     }
 
     #[TestDox("will always create a null angle with positive direction.")]

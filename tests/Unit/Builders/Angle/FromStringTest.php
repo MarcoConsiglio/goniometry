@@ -61,6 +61,7 @@ class FromStringTest extends TestCase
         [$sexagesimal] = $builder->fetchData();
         
         //Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
@@ -82,6 +83,7 @@ class FromStringTest extends TestCase
         [$sexagesimal] = $builder->fetchData();
         
         //Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);

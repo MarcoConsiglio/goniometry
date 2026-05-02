@@ -3,13 +3,14 @@ namespace MarcoConsiglio\Goniometry;
 
 use BcMath\Number;
 use MarcoConsiglio\BCMathExtended\Number as BCMathExtendedNumber;
+use MarcoConsiglio\Goniometry\Interfaces\Scalar;
 use MarcoConsiglio\ModularArithmetic\ModularNumber;
 use Stringable;
 
 /**
  * The `Degrees` of an `Angle`.
  */
-class Degrees extends ModularNumber implements Stringable
+class Degrees extends ModularNumber implements Stringable, Scalar
 {
     /**
      * The maximum allowed value in degrees.

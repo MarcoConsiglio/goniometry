@@ -64,6 +64,8 @@ class RelativeSumTest extends TestCase
         [$sexagesimal, $sexadecimal] = new RelativeSum($alfa, $beta)->fetchData();
 
         // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
         $this->assertDegrees($gamma->degrees,       $sexagesimal->degrees);
         $this->assertMinutes($gamma->minutes,       $sexagesimal->minutes);
         $this->assertSeconds($gamma->seconds,       $sexagesimal->seconds);

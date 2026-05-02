@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Interfaces;
 use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
 
-interface SexadecimalValue
+interface SexadecimalValue extends Scalar
 {
     /**
      * Construct a `SexadecimalValue` number.

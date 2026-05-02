@@ -69,6 +69,7 @@ class AbsoluteSumTest extends TestCase
         // Act
         $actual_sum = new AbsoluteSum($alfa, $beta)->fetchData();
         $sexagesimal = $actual_sum[0];
+        $sexadecimal = $actual_sum[1];
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
@@ -76,6 +77,7 @@ class AbsoluteSumTest extends TestCase
         $this->assertMinutes($gamma->minutes, $sexagesimal->minutes);
         $this->assertSeconds($gamma->seconds, $sexagesimal->seconds);
         $this->assertDirection($gamma->direction, $sexagesimal->direction);
+        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
 
         /**
          * Negative sum
@@ -93,6 +95,7 @@ class AbsoluteSumTest extends TestCase
         // Act
         $actual_sum = new AbsoluteSum($alfa, $beta)->fetchData();
         $sexagesimal = $actual_sum[0];
+        $sexadecimal = $actual_sum[1];
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
@@ -100,5 +103,6 @@ class AbsoluteSumTest extends TestCase
         $this->assertMinutes($gamma->minutes, $sexagesimal->minutes);
         $this->assertSeconds($gamma->seconds, $sexagesimal->seconds);
         $this->assertDirection($gamma->direction, $sexagesimal->direction);
+        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
     }
 }

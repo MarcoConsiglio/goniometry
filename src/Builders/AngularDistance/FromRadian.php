@@ -1,28 +1,23 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Builders\Angle;
+namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
-use MarcoConsiglio\Goniometry\Radian;
-/**
- *  Builds an `Angle` starting from a radian value.
- */
+use MarcoConsiglio\Goniometry\AngularDistanceRadian;
+use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromRadian as AngleFromRadian;
+use Override;
+
 class FromRadian extends AngleBuilder
 {
-    /**
-     * The radian value used to build an `Angle`.
-     */
-    protected Radian $radian;
+    protected AngularDistanceRadian $radian;
 
-    /**
-     * Constructs an `AngleBuilder` with a radian value.
-     */
-    public function __construct(float|Radian $radian)
+    public function __construct(float|AngularDistanceRadian $radian)
     {
         $this->radian = 
-            $radian instanceof Radian ?
-            $radian : new Radian($radian);
+            $radian instanceof AngularDistanceRadian ?
+            $radian : new AngularDistanceRadian($radian);
     }
 
-    /**
+   /**
      * Calc degrees.
      * 
      * @codeCoverageIgnore
@@ -59,10 +54,11 @@ class FromRadian extends AngleBuilder
     protected function checkOverflow(): void {/* No need check overflow. */}
 
     /**
-     * Fetches the data to build an `Angle`.
+     * Fetches the data to build an `AngularDistance`.
      *
-     * @return array{SexagesimalDegrees,SexadecimalDegrees,Radian}
-     */
+     * @return array{SexagesimalDegrees,SexadecimalAngularDistance,AngularDistanceRadian}
+     */    
+    #[Override]
     public function fetchData(): array
     {
         [$sexagesimal, $sexadecimal] = new FromSexadecimal(

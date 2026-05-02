@@ -47,6 +47,8 @@ class FromSexadecimalTest extends TestCase
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($float)->fetchData();
 
         // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertInstanceOf(SexadecimalAngularDistance::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
@@ -65,6 +67,8 @@ class FromSexadecimalTest extends TestCase
         )->fetchData();
 
         // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertInstanceOf(SexadecimalAngularDistance::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
@@ -85,10 +89,13 @@ class FromSexadecimalTest extends TestCase
         [$sexagesimal, $sexadecimal] = new FromSexadecimal($float)->fetchData();
 
         // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertInstanceOf(SexadecimalAngularDistance::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
         $this->assertDirection($direction, $sexagesimal->direction);
+        $this->assertInstanceOf(SexadecimalAngularDistance::class, $sexadecimal);
 
         /**
          * SexadecimalAngularDistance input
@@ -101,9 +108,12 @@ class FromSexadecimalTest extends TestCase
         [$sexagesimal, $sexadecimal] = new FromSexadecimal(new SexadecimalAngularDistance($float))->fetchData();
 
         // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertInstanceOf(SexadecimalAngularDistance::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
-        $this->assertDirection($direction, $sexagesimal->direction);        
+        $this->assertDirection($direction, $sexagesimal->direction);
+        $this->assertInstanceOf(SexadecimalAngularDistance::class, $sexadecimal);        
     }
 }
