@@ -237,4 +237,26 @@ class AngularDistanceTest extends TestCase
             $delta->toggleDirection()->toSexadecimalAngularDistance()
         );
     }
+
+    #[TestDox("can be clockwise or negative.")]
+    public function test_angle_is_clockwise(): void
+    {
+        // Arrange
+        $alfa = $this->negativeRandomAngularDistance();
+
+        // Act & assert
+        $this->assertTrue($alfa->isClockwise(), "The angle is clockwise but found the opposite.");
+        $this->assertFalse($alfa->isCounterClockwise(), "The angle is not counter clockwise but found the opposite.");
+    }
+
+    #[TestDox("can be counterclockwise or positive.")]
+    public function test_angle_is_counterclockwise(): void
+    {
+        // Arrange
+        $alfa = $this->positiveRandomAngularDistance();
+
+        // Act & assert
+        $this->assertTrue($alfa->isCounterClockwise(), "The angle is clockwise but found the opposite.");
+        $this->assertFalse($alfa->isClockwise(), "The angle is not clockwise but found the opposite.");
+    }
 }

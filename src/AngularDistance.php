@@ -155,13 +155,13 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function isClockwise(): bool
     {
-        throw new \Exception('Not implemented');
+        return $this->direction == Direction::CLOCKWISE;
     }
 
     #[Override]
     public function isCounterClockwise(): bool
     {
-        throw new \Exception('Not implemented');
+        return $this->direction == Direction::COUNTER_CLOCKWISE;
     }
 
     public function toSexadecimalAngularDistance(): SexadecimalAngularDistance

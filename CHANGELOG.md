@@ -12,6 +12,8 @@
 - `AngularDistance::toFloat()` method to cast an `AngularDistance` object to sexadecimal `float` value.
 - `AngularDistance::getDegrees()` method to return sexagesimal values in a simple or associative `array`. 
 - `AngularDistance::toggleDirection()` method to return an instance with opposite direction.
+- `AngularDistance::isClockwise()` method to check if the instance is clockwise.
+- `AngularDistance::isCounterClockwise()` method to check if the instance is counterclockwise.
 - `SexadecimalAngularDistance` class to represent sexadecimal value of an `AngularDistance` object.
 - `SexadecimalValue` interface to express the common behaviour of `SexadecimalDegrees` and `SexadecimalAngularDistance` classes.
 - `SexadecimalValue::toggleDirection()` to return the opposite direction of a sexadecimal value.
