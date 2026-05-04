@@ -180,7 +180,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function toSexagesimalDegrees(): SexagesimalDegrees
     {
-        throw new \Exception('Not implemented');
+        return $this->sexagesimal;
     }
 
     #[Override]

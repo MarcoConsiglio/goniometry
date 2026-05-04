@@ -342,6 +342,22 @@ class AngleTest extends TestCase
         $this->assertEquals($seconds,   $associative_result["seconds"]);
     }
 
+    #[TestDox("can be casted to SexagesimalDegrees.")]
+    public function test_cast_angle_to_sexagesimal(): void
+    {
+        // Arrange
+        $angle = $this->randomAngle(precision: 3);
+
+        // Act 
+        $sexagesimal = $angle->toSexagesimalDegrees();
+
+        // Assert
+        $this->assertDegrees($angle->degrees, $sexagesimal->degrees);
+        $this->assertMinutes($angle->minutes, $sexagesimal->minutes);
+        $this->assertSeconds($angle->seconds, $sexagesimal->seconds);
+        $this->assertDirection($angle->direction, $sexagesimal->direction);
+    }
+
     #[TestDox("can be casted to string.")]
     public function test_cast_angle_to_string(): void
     {

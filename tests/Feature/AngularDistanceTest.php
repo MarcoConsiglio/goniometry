@@ -32,6 +32,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianG
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
@@ -43,6 +44,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\NegativeAngularDistance as Negati
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveAngularDistance as PositiveAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianRadian;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
@@ -105,6 +107,8 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(PositiveAngularDistanceGenerator::class)]
 #[UsesClass(NegativeAngularDistanceValidator::class)]
 #[UsesClass(PositiveAngularDistanceValidator::class)]
+#[UsesClass(RelativeAngularDistanceGenerator::class)]
+#[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngularDistanceTest extends TestCase
 {
@@ -258,5 +262,21 @@ class AngularDistanceTest extends TestCase
         // Act & assert
         $this->assertTrue($alfa->isCounterClockwise(), "The angle is clockwise but found the opposite.");
         $this->assertFalse($alfa->isClockwise(), "The angle is not clockwise but found the opposite.");
+    }
+
+    #[TestDox("can be casted to SexagesimalDegrees.")]
+    public function test_cast_angle_to_sexagesimal(): void
+    {
+        // Arrange
+        $angle = $this->randomAngularDistance(precision: 3);
+
+        // Act 
+        $sexagesimal = $angle->toSexagesimalDegrees();
+
+        // Assert
+        $this->assertDegrees($angle->degrees, $sexagesimal->degrees);
+        $this->assertMinutes($angle->minutes, $sexagesimal->minutes);
+        $this->assertSeconds($angle->seconds, $sexagesimal->seconds);
+        $this->assertDirection($angle->direction, $sexagesimal->direction);
     }
 }
