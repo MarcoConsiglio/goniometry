@@ -52,7 +52,7 @@ class FromRadianTest extends TestCase
     public function test_can_create_an_angle_from_float_value(): void
     {
         // Arrange
-        $radian = $this->randomRadian();
+        $radian = $this->randomRadian()->value();
         $builder = new FromRadian($radian);
 
         // Act
@@ -60,7 +60,7 @@ class FromRadianTest extends TestCase
 
         // Assert
         $this->assertEquals(
-            $radian->value(),
+            $radian,
             $result[2]->value()
         );
         $this->assertInstanceOf(SexagesimalDegrees::class, $result[0]);
