@@ -186,13 +186,14 @@ class Angle implements AngleInterface, Stringable
      * The direction of the `Angle` is the sign of `"degrees"` value.
      *
      * @param bool $associative Set to true it returns an associative array.
+     * @param int $precision The precision used in seconds.
      * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
      */
-    public function getDegrees(bool $associative = false): array
+    public function getDegrees(bool $associative = false, int $precision = PHP_FLOAT_DIG): array
     {
         $degrees = $this->degrees->value() * $this->direction->value;
         $minutes = $this->minutes->value();
-        $seconds = $this->seconds->value();
+        $seconds = $this->seconds->value($precision);
         if ($associative)
             return [
                 "degrees" => $degrees,

@@ -321,33 +321,25 @@ class AngleTest extends TestCase
     public function test_get_angle_values_in_array(): void
     {
         // Arrange
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
         $alfa = Angle::createFromValues(
             $degrees = $this->randomDegrees()->value(), 
             $minutes = $this->randomMinutes()->value(), 
-            $seconds = $this->randomSeconds(precision: 1)->value(),
+            $seconds = $this->randomSeconds()->value(1),
             $direction = $this->randomDirection()
         );
-        /** @var Direction $direction */
         $degrees *= $direction->value;
 
         // Act
-        $simple_result = $alfa->getDegrees();
-        $associative_result = $alfa->getDegrees(associative: true);
+        $simple_result = $alfa->getDegrees(precision: 1);
+        $associative_result = $alfa->getDegrees(associative: true, precision: 1);
 
         // Assert
         $this->assertEquals($degrees,   $simple_result[0]);
         $this->assertEquals($minutes,   $simple_result[1]);
-        $this->assertEquals(
-            $this->safeRound($seconds),   
-            $this->safeRound($simple_result[2])
-        );
+        $this->assertEquals($seconds,   $simple_result[2]);
         $this->assertEquals($degrees,   $associative_result["degrees"]);
         $this->assertEquals($minutes,   $associative_result["minutes"]);
-        $this->assertEquals(
-            $this->safeRound($seconds),   
-            $this->safeRound($associative_result["seconds"])
-        );
+        $this->assertEquals($seconds,   $associative_result["seconds"]);
     }
 
     #[TestDox("can be casted to string.")]

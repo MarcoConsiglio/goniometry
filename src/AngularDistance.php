@@ -109,10 +109,29 @@ class AngularDistance implements AngleInterface, Stringable
         return new AngularDistance(new FromRadian($radian));
     }
 
+    /**
+     * Return an array containing separate sexagesimal values.
+     * 
+     * The direction of the `Angle` is the sign of `"degrees"` value.
+    *
+    * @param bool $associative Set to true it returns an associative array.
+    * @param int $precision The precision used in seconds.
+    * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
+    */
     #[Override]
-    public function getDegrees(): array
+    public function getDegrees(bool $associative = false, int $precision = PHP_FLOAT_DIG): array
     {
-        throw new \Exception('Not implemented');
+        $degrees = $this->degrees->value() * $this->direction->value;
+        $minutes = $this->minutes->value();
+        $seconds = $this->seconds->value($precision);
+        if ($associative)
+            return [
+                "degrees" => $degrees,
+                "minutes" => $minutes,
+                "seconds" => $seconds
+            ];
+        else
+            return [$degrees, $minutes, $seconds];
     }
 
     #[Override]

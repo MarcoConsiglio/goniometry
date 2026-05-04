@@ -10,6 +10,7 @@
 - `AngularDistanceRadian` class to represent a radian value of an `AngularDistance` object.
 - `AngularDistance::toSexadecimalAngularDistance()` to cast an `AngularDistance` object to a `SexadecimalAngularDistance` object.
 - `AngularDistance::toFloat()` method to cast an `AngularDistance` object to sexadecimal `float` value.
+- `AngularDistance::getDegrees()` method to return sexagesimal values in a simple or associative `array`. 
 - `WithAngleFaker::{`  
 &ensp;&ensp;&ensp;&ensp;`positiveRandomAngularDistance()`  
 &ensp;&ensp;&ensp;&ensp;`negativeRandomAngularDistance()`  

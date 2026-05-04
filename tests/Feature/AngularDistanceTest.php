@@ -153,4 +153,29 @@ class AngularDistanceTest extends TestCase
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $angle);
     }
+
+    #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]
+    public function test_get_angle_values_in_array(): void
+    {
+        // Arrange
+        $alfa = AngularDistance::createFromValues(
+            $degrees = $this->randomDegrees(max: 179)->value(), 
+            $minutes = $this->randomMinutes()->value(), 
+            $seconds = $this->randomSeconds()->value(1),
+            $direction = $this->randomDirection()
+        );
+        $degrees *= $direction->value;
+
+        // Act
+        $simple_result = $alfa->getDegrees(precision: 1);
+        $associative_result = $alfa->getDegrees(associative: true, precision: 1);
+
+        // Assert
+        $this->assertEquals($degrees,   $simple_result[0]);
+        $this->assertEquals($minutes,   $simple_result[1]);
+        $this->assertEquals($seconds,   $simple_result[2]);
+        $this->assertEquals($degrees,   $associative_result["degrees"]);
+        $this->assertEquals($minutes,   $associative_result["minutes"]);
+        $this->assertEquals($seconds,   $associative_result["seconds"]);
+    }
 }
