@@ -7,6 +7,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
@@ -33,11 +34,11 @@ abstract class Comparison
     /**
      * Construct the `Comparison` with the two angles `$alfa` and `$beta`.
      * 
-     * @param Angle $alfa The left operand of the comparison.
+     * @param AngleInterface $alfa The left operand of the comparison.
      * @param string|int|float|Angle $beta The right operand of the comparison.
      */
     public function __construct(
-        protected Angle $alfa,
+        protected AngleInterface $alfa,
         protected string|int|float|Angle $beta
     ) {
         $this->setComparisonStrategy();
@@ -49,7 +50,7 @@ abstract class Comparison
      */
     protected function getBetaType(): InputType
     {
-        if ($this->beta instanceof Angle) {
+        if ($this->beta instanceof AngleInterface) {
             return new AngleType($this->beta);
         }
         if (is_string($this->beta)) return new StringType($this->beta);

@@ -5,9 +5,11 @@ use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\AngularDistanceRadian;
+use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString as AngleFromString;
+use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
@@ -15,6 +17,46 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Comparison as FuzzyComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType as FuzzyAngleType;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
+use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
+use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
+use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
+use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -24,6 +66,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanc
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\FloatGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngularDistance as NegativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
@@ -61,27 +104,68 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(AngularDistance::class)]
+#[UsesClass(AbsoluteSum::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleFromSexadecimal::class)]
 #[UsesClass(AngleFromSexagesimal::class)]
 #[UsesClass(AngleFromString::class)]
 #[UsesClass(AngleGenerator::class)]
+#[UsesClass(AngleType::class)]
 #[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(AngularDistanceRadian::class)]
 #[UsesClass(CastToRadian::class)]
+#[UsesClass(Comparison::class)]
+#[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
+#[UsesClass(Different::class)]
+#[UsesClass(DifferentAngle::class)]
+#[UsesClass(DifferentFloat::class)]
+#[UsesClass(DifferentInt::class)]
+#[UsesClass(DifferentString::class)]
+#[UsesClass(Equal::class)]
+#[UsesClass(EqualAngle::class)]
+#[UsesClass(EqualFloat::class)]
+#[UsesClass(EqualInt::class)]
+#[UsesClass(EqualString::class)]
 #[UsesClass(FloatGenerator::class)]
+#[UsesClass(FloatType::class)]
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(FromRadian::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
 #[UsesClass(FromString::class)]
+#[UsesClass(FuzzyAngleType::class)]
+#[UsesClass(FuzzyComparison::class)]
+#[UsesClass(FuzzyEqual::class)]
+#[UsesClass(FuzzyEqualAngle::class)]
+#[UsesClass(Greater::class)]
+#[UsesClass(GreaterAngle::class)]
+#[UsesClass(GreaterFloat::class)]
+#[UsesClass(GreaterInt::class)]
+#[UsesClass(GreaterOrEqual::class)]
+#[UsesClass(GreaterOrEqualAngle::class)]
+#[UsesClass(GreaterOrEqualFloat::class)]
+#[UsesClass(GreaterOrEqualInt::class)]
+#[UsesClass(GreaterOrEqualString::class)]
+#[UsesClass(GreaterString::class)]
+#[UsesClass(IntType::class)]
+#[UsesClass(Lesser::class)]
+#[UsesClass(LesserAngle::class)]
+#[UsesClass(LesserFloat::class)]
+#[UsesClass(LesserInt::class)]
+#[UsesClass(LesserOrEqual::class)]
+#[UsesClass(LesserOrEqualAngle::class)]
+#[UsesClass(LesserOrEqualFloat::class)]
+#[UsesClass(LesserOrEqualInt::class)]
+#[UsesClass(LesserOrEqualString::class)]
+#[UsesClass(LesserString::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(MinutesGenerator::class)]
 #[UsesClass(MinutesValidator::class)]
+#[UsesClass(NegativeAngleGenerator::class)]
 #[UsesClass(NegativeAngularDistanceGenerator::class)]
 #[UsesClass(NegativeAngularDistanceValidator::class)]
 #[UsesClass(NegativeRadianGenerator::class)]
@@ -111,9 +195,12 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
+#[UsesClass(StringType::class)]
+#[UsesClass(SumBuilder::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngularDistanceTest extends TestCase
 {
+    #[TestDox("can be create from sexagesimal values.")]
     public function test_create_from_values(): void
     {
         // Act
@@ -290,5 +377,119 @@ class AngularDistanceTest extends TestCase
 
         // Act & Assert
         $this->assertIsFloat($angle->toRadian());
+    }
+
+    #[TestDox("can be equal compared against an int, float, string or Angle.")]
+    public function test_equal_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees()->value();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->eq($int_beta));
+        $this->assertIsBool($alfa->eq($string_beta));
+        $this->assertIsBool($alfa->eq($float_beta));
+        $this->assertIsBool($alfa->eq($angle_beta));
+    }
+
+    #[TestDox("can be different compared against an int, float, string or Angle.")]
+    public function test_different_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees()->value();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->not($int_beta));
+        $this->assertIsBool($alfa->not($string_beta));
+        $this->assertIsBool($alfa->not($float_beta));
+        $this->assertIsBool($alfa->not($angle_beta));
+    }
+
+    #[TestDox("can be greater compared against an int, float, string or Angle.")]
+    public function test_greater_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees()->value();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->gt($int_beta));
+        $this->assertIsBool($alfa->gt($string_beta));
+        $this->assertIsBool($alfa->gt($float_beta));
+        $this->assertIsBool($alfa->gt($angle_beta));
+    }
+
+    #[TestDox("can be greater or equal compared against an int, float, string or Angle.")]
+    public function test_greater_or_equal_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees()->value();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->gte($int_beta));
+        $this->assertIsBool($alfa->gte($string_beta));
+        $this->assertIsBool($alfa->gte($float_beta));
+        $this->assertIsBool($alfa->gte($angle_beta));
+    }
+
+    #[TestDox("can be lesser compared against an int, float, string or Angle.")]
+    public function test_lesser_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees()->value();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->lt($int_beta));
+        $this->assertIsBool($alfa->lt($string_beta));
+        $this->assertIsBool($alfa->lt($float_beta));
+        $this->assertIsBool($alfa->lt($angle_beta));       
+    }
+
+    #[TestDox("can be lesser or equal compared against an int, float, string or Angle.")]
+    public function test_lesser_or_equal_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $int_beta = $this->randomDegrees()->value();
+        $string_beta = (string) $this->randomAngle();
+        $float_beta = $this->randomAngle()->toFloat();
+        $angle_beta = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->lte($int_beta));
+        $this->assertIsBool($alfa->lte($string_beta));
+        $this->assertIsBool($alfa->lte($float_beta));
+        $this->assertIsBool($alfa->lte($angle_beta));      
+    }
+
+    #[TestDox("can be almost equal compared to another angle considering an acceptable error.")]
+    public function test_fuzzy_equal_comparison(): void
+    {
+        // Arrange
+        $alfa = $this->positiveRandomAngle();
+        $beta = $this->positiveRandomAngle();
+        $delta = $this->positiveRandomAngle();
+
+        // Act & Assert
+        $this->assertIsBool($alfa->feq($beta, $delta));
     }
 }

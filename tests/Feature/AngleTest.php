@@ -230,7 +230,7 @@ class AngleTest extends TestCase
         $this->assertEquals($direction, $angle->direction);
     }
 
-    #[TestDox("can be created from separated values for degrees, minutes, seconds and direction.")]
+    #[TestDox("can be created from sexagesimal values.")]
     public function test_create_from_values(): void
     {
         // Arrange

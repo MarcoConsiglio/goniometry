@@ -7,13 +7,19 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as FromSexadecimalToRadian;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as FromSexadecimalToFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as FromSexadecimalToFloat;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use Override;
 use Stringable;
 
@@ -206,7 +212,9 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        $comparison = new Equal($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     #[Override]
@@ -214,7 +222,7 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        return $this->isEqualTo($angle, $precision);
     }
 
     #[Override]
@@ -222,7 +230,9 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        $comparison = new Different($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     #[Override]
@@ -230,7 +240,7 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        return $this->isDifferentThan($angle, $precision);
     }
 
     #[Override]
@@ -238,7 +248,9 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        $comparison = new Greater($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     #[Override]
@@ -246,7 +258,7 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        return $this->isGreaterThan($angle, $precision);
     }
 
     #[Override]
@@ -254,7 +266,9 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        $comparison = new GreaterOrEqual($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     #[Override]
@@ -262,7 +276,7 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        return $this->isGreaterThan($angle, $precision);
     }
 
     #[Override]
@@ -270,7 +284,9 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        $comparison = new Lesser($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     #[Override]
@@ -278,7 +294,7 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        return $this->isLessThan($angle, $precision);
     }
 
     #[Override]
@@ -286,7 +302,9 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        $comparison = new LesserOrEqual($this, $angle);
+        if (is_float($angle)) $comparison->setPrecision($precision);
+        return $comparison->compare();
     }
 
     #[Override]
@@ -294,12 +312,18 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        throw new \Exception('Not implemented');
+        return $this->isLessThanOrEqualTo($angle, $precision);
     }
 
+    /**
+     * Return the sexagesimal value of this `Angle`.
+     * 
+     * @example `(string) $alfa`
+     */
     #[Override]
     public function __toString(): string
     {
-        throw new \Exception('Not implemented');
+        $sign = $this->isClockwise() ? "-" : "";
+        return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";
     }
 }
