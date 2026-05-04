@@ -33,4 +33,12 @@ class AngularDistanceRadian extends ModularRelativeNumber implements Scalar
     {
         return $this->value->toFloat($precision);
     }
+
+    /**
+     * Return the max allowed radian with a precision up to 54 decimal places.
+     */
+    public static function getMaxRadian(): Number
+    {
+        return Number::π();
+    }
 }

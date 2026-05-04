@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Casting\Radian;
 
+use MarcoConsiglio\Goniometry\AngularDistanceRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Interfaces\Casting\ToRadian;
 use MarcoConsiglio\Goniometry\Radian;
@@ -15,7 +16,7 @@ class Round extends Sexagesimal implements ToRadian
      * Construct the `Round` object.
      */
     public function __construct(
-        protected Radian $radian,
+        protected Radian|AngularDistanceRadian $radian,
         protected int|null $precision = null
     ) {}
 

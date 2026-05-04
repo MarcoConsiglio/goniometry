@@ -5,12 +5,14 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
+use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
+use MarcoConsiglio\Goniometry\Casting\Radian\Round as FromSexadecimalToRadian;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundFromSexadecimal;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as FromSexadecimalToFloat;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use Override;
 use Stringable;
@@ -187,14 +189,16 @@ class AngularDistance implements AngleInterface, Stringable
     public function toFloat(int|null $precision = null): float
     {
         if ($this->sexadecimal !== null)
-            return new RoundFromSexadecimal($this->sexadecimal, $precision)->cast();
+            return new FromSexadecimalToFloat($this->sexadecimal, $precision)->cast();
         return new CastToSexadecimal($this, $precision)->cast();
     }
 
     #[Override]
     public function toRadian(int|null $precision = null): float
     {
-        throw new \Exception('Not implemented');
+        if ($this->radian !== null)
+            return new FromSexadecimalToRadian($this->radian, $precision)->cast();
+        return new CastToRadian($this, $precision)->cast();
     }
 
     #[Override]
