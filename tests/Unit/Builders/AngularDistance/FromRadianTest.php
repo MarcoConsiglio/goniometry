@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders\AngularDistance;
 
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\AngularDistanceRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
@@ -20,6 +21,7 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
@@ -42,24 +44,49 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesTrait(WithAngleFaker::class)]
 class FromRadianTest extends TestCase
 {
-    public function test_create_from_radian(): void
+    #[TestDox("can create an angle from a radian float type value.")]
+    public function test_can_create_an_angle_from_float_value(): void
     {
         // Arrange
-        $radian = $this->randomRadian(Radian::MIN / 2, Radian::MAX / 2);
-        $builder = new FromRadian($radian->value());
+        $radian = $this->randomRadian(
+            min: NextFloat::after(AngularDistanceRadian::MIN),
+            max: NextFloat::before(AngularDistanceRadian::MAX)
+        )->value();
+        $builder = new FromRadian($radian);
 
         // Act
         $result = $builder->fetchData();
-        $actual = $result[2];
 
         // Assert
+        $this->assertEquals(
+            $radian,
+            $result[2]->value()
+        );
         $this->assertInstanceOf(SexagesimalDegrees::class, $result[0]);
         $this->assertInstanceOf(SexadecimalAngularDistance::class, $result[1]);
-        $this->assertInstanceOf(AngularDistanceRadian::class, $result[2]);
+    }
+
+    #[TestDox("can create an angle from a Radian type value.")]
+    public function test_can_create_an_angle_from_radian_type(): void
+    {
+        // Arrange
+        $radian = new AngularDistanceRadian(
+            $this->randomRadian(
+                min: NextFloat::after(AngularDistanceRadian::MIN),
+                max: NextFloat::before(AngularDistanceRadian::MAX)
+            )->value()
+        );
+        $builder = new FromRadian($radian);
+
+        // Act
+        $result = $builder->fetchData();
+
+        // Assert
         $this->assertEquals(
             $radian->value(),
-            $actual->value()
+            $result[2]->value()
         );
-
+        $this->assertInstanceOf(SexagesimalDegrees::class, $result[0]);
+        $this->assertInstanceOf(SexadecimalAngularDistance::class, $result[1]);
     }
 }

@@ -48,7 +48,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(NegativeRadianGenerator::class)]
 class FromRadianTest extends TestCase
 {
-    #[TestDox("can create an angle from a radian float value.")]
+    #[TestDox("can create an angle from a radian float type value.")]
     public function test_can_create_an_angle_from_float_value(): void
     {
         // Arrange
