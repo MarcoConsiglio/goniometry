@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests;
 
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
@@ -80,7 +81,11 @@ class TestCase extends PHPUnitTestCase
         int|null $precision = null, 
         string $message = ""
     ): void {
-        $this->assertEquals($expected->value($precision), $actual->value($precision), $message);
+        $this->assertEquals(
+            $expected->value($precision), 
+            $actual->value($precision), 
+            $message
+        );
     }
 
     protected function assertDirection(
@@ -89,5 +94,18 @@ class TestCase extends PHPUnitTestCase
         string $message = ""
     ): void {
         $this->assertEquals($expected, $actual, $message);
+    }
+
+    protected function assertSexadecimalDegrees(
+        SexadecimalValue $expected,
+        SexadecimalValue $actual,
+        int $precision = PHP_FLOAT_DIG,
+        string $message = ''
+    ): void {
+        $this->assertEquals(
+            $expected->value($precision),
+            $actual->value($precision),
+            $message
+        );
     }
 }

@@ -5,6 +5,8 @@ use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\ModularArithmetic\ModularNumber;
+use Override;
+
 /**
  * The value of an `Angle` expressed as sexadecimal degrees.
  */
@@ -38,9 +40,17 @@ class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
     /**
      * Cast this instance to `string` type.
      */
-    #[\Override]
+    #[Override]
     public function __toString(): string
     {
         return "{$this->value}" . self::MEASURE;
+    }
+
+    #[Override]
+    public function toggleDirection(): SexadecimalDegrees
+    {
+        return new SexadecimalDegrees(
+            $this->value->opposite()
+        );
     }
 }

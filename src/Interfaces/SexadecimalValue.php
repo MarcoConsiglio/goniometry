@@ -15,5 +15,6 @@ interface SexadecimalValue extends Scalar
      * Return the sexadecimal `float` value.
      */
     public function value(int|null $precision = null): float;
-    
+
+    public function toggleDirection(): SexadecimalValue;
 }

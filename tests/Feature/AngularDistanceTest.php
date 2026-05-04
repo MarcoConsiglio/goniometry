@@ -15,15 +15,19 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\FloatGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngularDistance as NegativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngularDistance as PositiveAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
@@ -35,7 +39,9 @@ use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeAngularDistance as NegativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveAngularDistance as PositiveAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianRadian;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
@@ -94,6 +100,11 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AngleGenerator::class)]
 #[UsesClass(PositiveAngleGenerator::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
+#[UsesClass(AngularDistanceGenerator::class)]
+#[UsesClass(NegativeAngularDistanceGenerator::class)]
+#[UsesClass(PositiveAngularDistanceGenerator::class)]
+#[UsesClass(NegativeAngularDistanceValidator::class)]
+#[UsesClass(PositiveAngularDistanceValidator::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngularDistanceTest extends TestCase
 {
@@ -177,5 +188,53 @@ class AngularDistanceTest extends TestCase
         $this->assertEquals($degrees,   $associative_result["degrees"]);
         $this->assertEquals($minutes,   $associative_result["minutes"]);
         $this->assertEquals($seconds,   $associative_result["seconds"]);
+    }
+
+    #[TestDox("can toggle its direction.")]
+    public function test_can_toggle_rotation_direction(): void
+    {
+        /**
+         * With SexadecimalDegrees
+         */
+        // Arrange
+        $failure_message_1 = "The angle should be counterclockwise but found the opposite.";
+        $failure_message_2 = "The angle should be clockwise but found the opposite.";
+        $alfa = $this->positiveRandomAngularDistance();
+        $beta = $this->negativeRandomAngularDistance();
+
+        // Act & Assert
+        $this->assertDirection(
+            $alfa->direction->opposite(), 
+            $alfa->toggleDirection()->direction, 
+            $failure_message_2
+        );
+        $this->assertDirection(
+            $beta->direction->opposite(), 
+            $beta->toggleDirection()->direction, 
+            $failure_message_1
+        );
+
+        /**
+         * With SexadecimalDegrees
+         */
+        // Arrange
+        $gamma = AngularDistance::createFromValues(
+            $this->randomDegrees(max: AngularDistance::MAX - 1)->value(), 
+            direction: Direction::COUNTER_CLOCKWISE
+        );
+        $delta = AngularDistance::createFromValues(
+            $this->randomDegrees(max: AngularDistance::MAX - 1)->value(), 
+            direction: Direction::CLOCKWISE
+        );
+
+        // Act & Assert
+        $this->assertSexadecimalDegrees(
+            $gamma->toSexadecimalAngularDistance()->toggleDirection(),
+            $gamma->toggleDirection()->toSexadecimalAngularDistance()
+        );
+        $this->assertSexadecimalDegrees(
+            $delta->toSexadecimalAngularDistance()->toggleDirection(),
+            $delta->toggleDirection()->toSexadecimalAngularDistance()
+        );
     }
 }

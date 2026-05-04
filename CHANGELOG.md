@@ -2,15 +2,19 @@
 ## Unreleased
 ## Added
 - `AngularDistance` class to represent angular distance between two objects.
+- `AngularDistance::MIN` and `AngularDistance::MAX` to represent the angular distance limits (-180°/+180°).
 - `AngularDistance::createFromDecimal()` method to build an `AngularDistance` object from a `float` or `SexadecimalAngularDistance` type input.
 - `AngularDistance::createFromValues()` method to build an `AngularDistance` object from degrees (`int`), minutes (`int`), seconds (`float`) and `Direction`.
 - `AngularDistance::createFromRadian()` method to build an `AngularDistance` object from a radian value.
 - `AngularDistance::createFromString()` method to build an `AngularDistance` object from its sexagesimal string.
-- `SexadecimalAngularDistance` class to represent sexadecimal value of an `AngularDistance` object.
 - `AngularDistanceRadian` class to represent a radian value of an `AngularDistance` object.
 - `AngularDistance::toSexadecimalAngularDistance()` to cast an `AngularDistance` object to a `SexadecimalAngularDistance` object.
 - `AngularDistance::toFloat()` method to cast an `AngularDistance` object to sexadecimal `float` value.
 - `AngularDistance::getDegrees()` method to return sexagesimal values in a simple or associative `array`. 
+- `AngularDistance::toggleDirection()` method to return an instance with opposite direction.
+- `SexadecimalAngularDistance` class to represent sexadecimal value of an `AngularDistance` object.
+- `SexadecimalValue` interface to express the common behaviour of `SexadecimalDegrees` and `SexadecimalAngularDistance` classes.
+- `SexadecimalValue::toggleDirection()` to return the opposite direction of a sexadecimal value.
 - `WithAngleFaker::{`  
 &ensp;&ensp;&ensp;&ensp;`positiveRandomAngularDistance()`  
 &ensp;&ensp;&ensp;&ensp;`negativeRandomAngularDistance()`  

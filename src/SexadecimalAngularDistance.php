@@ -6,6 +6,7 @@ use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\ModularArithmetic\Builders\FromExtremes;
 use MarcoConsiglio\ModularArithmetic\ModularRelativeNumber;
+use Override;
 
 class SexadecimalAngularDistance extends ModularRelativeNumber implements SexadecimalValue
 {
@@ -47,9 +48,15 @@ class SexadecimalAngularDistance extends ModularRelativeNumber implements Sexade
     /**
      * Cast this instance to `string` type.
      */
-    #[\Override]
+    #[Override]
     public function __toString(): string
     {
         return "{$this->value}" . self::MEASURE;
+    }
+
+    #[Override]
+    public function toggleDirection(): SexadecimalAngularDistance
+    {
+        return new SexadecimalAngularDistance($this->value->opposite());
     }
 }

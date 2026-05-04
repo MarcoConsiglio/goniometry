@@ -17,6 +17,10 @@ use Stringable;
 
 class AngularDistance implements AngleInterface, Stringable
 {
+    public const int MAX = 180;
+
+    public const int MIN = -self::MAX;
+    
     /**
      * The `Degrees` part.
      */
@@ -137,7 +141,15 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function toggleDirection(): AngularDistance
     {
-        throw new \Exception('Not implemented');
+        $clone = clone $this;
+        if ($clone->sexagesimal !== null)
+            $clone->sexagesimal->direction =
+                $clone->sexagesimal->direction->opposite();
+        if ($clone->sexadecimal !== null)
+            $clone->sexadecimal = new SexadecimalAngularDistance(
+                $clone->sexadecimal->value->mul(-1)
+            );
+        return $clone;
     }
 
     #[Override]
