@@ -49,7 +49,7 @@ abstract class Sexagesimal
     {
         if ($this->angle instanceof Angle)
             return $this->angle->toSexadecimalDegrees();
-        else return $this->angle->toSexadecimalAngularDistance();
+        else return $this->angle->toSexadecimalDegrees();
     }
 
     /**

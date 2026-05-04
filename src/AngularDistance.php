@@ -155,7 +155,7 @@ class AngularDistance implements AngleInterface, Stringable
     {
         return AngularDistance::createFromDecimal(
             new SexadecimalAngularDistance(
-                $this->toSexadecimalAngularDistance()->value->abs()
+                $this->toSexadecimalDegrees()->value->abs()
             )
         );
     }
@@ -195,7 +195,7 @@ class AngularDistance implements AngleInterface, Stringable
         return $this->direction == Direction::COUNTER_CLOCKWISE;
     }
 
-    public function toSexadecimalAngularDistance(): SexadecimalAngularDistance
+    public function toSexadecimalDegrees(): SexadecimalAngularDistance
     {
         if ($this->sexadecimal !== null)
             return $this->sexadecimal;

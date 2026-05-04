@@ -39,7 +39,7 @@ abstract class Comparison
      */
     public function __construct(
         protected AngleInterface $alfa,
-        protected string|int|float|Angle $beta
+        protected string|int|float|AngleInterface $beta
     ) {
         $this->setComparisonStrategy();
     }

@@ -72,6 +72,11 @@ interface Angle
     public function toSexagesimalDegrees(): SexagesimalDegrees;
 
     /**
+     * Return the sexadecimal values of this `Angle`.
+     */
+    public function toSexadecimalDegrees(): SexadecimalValue;
+
+    /**
      * Cast this `Angle` to its `float` sexadecimal degrees representation.
      */
     public function toFloat(int $precision = PHP_FLOAT_DIG): float;

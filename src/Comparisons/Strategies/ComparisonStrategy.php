@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
@@ -13,7 +13,7 @@ abstract class ComparisonStrategy implements Strategy
     /**
      * Construct the comparison strategy.
      * 
-     * @param Angle $alfa The left comparison operand.
+     * @param AngleInterface $alfa The left comparison operand.
      */
-    public function __construct(protected Angle $alfa) {}
+    public function __construct(protected AngleInterface $alfa) {}
 }

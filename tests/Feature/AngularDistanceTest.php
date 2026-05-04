@@ -332,12 +332,12 @@ class AngularDistanceTest extends TestCase
 
         // Act & Assert
         $this->assertSexadecimalDegrees(
-            $gamma->toSexadecimalAngularDistance()->toggleDirection(),
-            $gamma->toggleDirection()->toSexadecimalAngularDistance()
+            $gamma->toSexadecimalDegrees()->toggleDirection(),
+            $gamma->toggleDirection()->toSexadecimalDegrees()
         );
         $this->assertSexadecimalDegrees(
-            $delta->toSexadecimalAngularDistance()->toggleDirection(),
-            $delta->toggleDirection()->toSexadecimalAngularDistance()
+            $delta->toSexadecimalDegrees()->toggleDirection(),
+            $delta->toggleDirection()->toSexadecimalDegrees()
         );
     }
 

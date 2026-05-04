@@ -6,7 +6,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle as EqualAngleStrategy;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-use Override;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The strategy that compares two `Angle` instances to check if they are equal
@@ -17,29 +17,29 @@ class EqualAngle extends EqualAngleStrategy
     /**
      * The error `Angle`.
      */
-    protected Angle $epsilon;
+    protected AngleInterface $epsilon;
 
     /**
      * The low extreme of delta.
      */
-    protected Angle $low_extreme;
+    protected AngleInterface $low_extreme;
 
     /**
      * The high extreme of delta.
      */
-    protected Angle $high_extreme;
+    protected AngleInterface $high_extreme;
 
     /**
      * Construct the comparison strategy.
      * 
-     * @param Angle $alfa The left comparison operand.
-     * @param Angle $beta The right comparison operand.
-     * @param Angle $delta The error within which the comparison is succesful.
+     * @param AngleInterface $alfa The left comparison operand.
+     * @param AngleInterface $beta The right comparison operand.
+     * @param AngleInterface $delta The error within which the comparison is succesful.
      */
     public function __construct(
-        Angle $alfa, 
-        Angle $beta, 
-        protected Angle $delta
+        AngleInterface $alfa, 
+        AngleInterface $beta, 
+        protected AngleInterface $delta
     ) {
         parent::__construct($alfa, $beta);
         $this->calcEpsilon();
