@@ -5,6 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison as GoniometricComparison;
 use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * A comparison of angles within an acceptable error.
@@ -14,19 +15,19 @@ abstract class Comparison extends GoniometricComparison
     /**
      * The acceptable error within which comparison is successful.
      */
-    protected Angle $delta;
+    protected AngleInterface $delta;
 
     /**
      * Construct the `Comparison` between the two angles `$alfa` and `$beta`.
      * 
-     * @param Angle $alfa The left operand of the comparison.
-     * @param Angle $beta The right operand of the comparison.
-     * @param Angle $delta The acceptable error within which comparison is successful.
+     * @param AngleInterface $alfa The left operand of the comparison.
+     * @param AngleInterface $beta The right operand of the comparison.
+     * @param AngleInterface $delta The acceptable error within which comparison is successful.
      */
     public function __construct(
-        Angle $alfa,
-        Angle $beta,
-        Angle $delta
+        AngleInterface $alfa,
+        AngleInterface $beta,
+        AngleInterface $delta
     ) {
         $this->alfa = $alfa->absolute();
         $this->beta = $beta->absolute();

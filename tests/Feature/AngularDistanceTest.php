@@ -283,6 +283,16 @@ class AngularDistanceTest extends TestCase
         $this->assertEquals($seconds,   $associative_result["seconds"]);
     }
 
+    #[TestDox("can return its absolute value.")]
+    public function test_absolute(): void
+    {
+        // Arrange
+        $angle = $this->negativeRandomAngularDistance();
+
+        // Act & Assert
+        $this->assertTrue($angle->asb()->isCounterClockwise());
+    }
+
     #[TestDox("can toggle its direction.")]
     public function test_can_toggle_rotation_direction(): void
     {
@@ -383,11 +393,11 @@ class AngularDistanceTest extends TestCase
     public function test_equal_comparison(): void
     {
         // Arrange
-        $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees()->value();
-        $string_beta = (string) $this->randomAngle();
-        $float_beta = $this->randomAngle()->toFloat();
-        $angle_beta = $this->randomAngle();
+        $alfa = $this->randomAngularDistance();
+        $int_beta = $this->randomDegrees(max: AngularDistance::MAX - 1)->value();
+        $string_beta = (string) $this->randomAngularDistance();
+        $float_beta = $this->randomAngularDistance()->toFloat();
+        $angle_beta = $this->randomAngularDistance();
 
         // Act & Assert
         $this->assertIsBool($alfa->eq($int_beta));
@@ -400,11 +410,11 @@ class AngularDistanceTest extends TestCase
     public function test_different_comparison(): void
     {
         // Arrange
-        $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees()->value();
-        $string_beta = (string) $this->randomAngle();
-        $float_beta = $this->randomAngle()->toFloat();
-        $angle_beta = $this->randomAngle();
+        $alfa = $this->randomAngularDistance();
+        $int_beta = $this->randomDegrees(max: AngularDistance::MAX - 1)->value();
+        $string_beta = (string) $this->randomAngularDistance();
+        $float_beta = $this->randomAngularDistance()->toFloat();
+        $angle_beta = $this->randomAngularDistance();
 
         // Act & Assert
         $this->assertIsBool($alfa->not($int_beta));
@@ -417,11 +427,11 @@ class AngularDistanceTest extends TestCase
     public function test_greater_comparison(): void
     {
         // Arrange
-        $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees()->value();
-        $string_beta = (string) $this->randomAngle();
-        $float_beta = $this->randomAngle()->toFloat();
-        $angle_beta = $this->randomAngle();
+        $alfa = $this->randomAngularDistance();
+        $int_beta = $this->randomDegrees(max: AngularDistance::MAX - 1)->value();
+        $string_beta = (string) $this->randomAngularDistance();
+        $float_beta = $this->randomAngularDistance()->toFloat();
+        $angle_beta = $this->randomAngularDistance();
 
         // Act & Assert
         $this->assertIsBool($alfa->gt($int_beta));
@@ -434,11 +444,11 @@ class AngularDistanceTest extends TestCase
     public function test_greater_or_equal_comparison(): void
     {
         // Arrange
-        $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees()->value();
-        $string_beta = (string) $this->randomAngle();
-        $float_beta = $this->randomAngle()->toFloat();
-        $angle_beta = $this->randomAngle();
+        $alfa = $this->randomAngularDistance();
+        $int_beta = $this->randomDegrees(max: AngularDistance::MAX - 1)->value();
+        $string_beta = (string) $this->randomAngularDistance();
+        $float_beta = $this->randomAngularDistance()->toFloat();
+        $angle_beta = $this->randomAngularDistance();
 
         // Act & Assert
         $this->assertIsBool($alfa->gte($int_beta));
@@ -451,11 +461,11 @@ class AngularDistanceTest extends TestCase
     public function test_lesser_comparison(): void
     {
         // Arrange
-        $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees()->value();
-        $string_beta = (string) $this->randomAngle();
-        $float_beta = $this->randomAngle()->toFloat();
-        $angle_beta = $this->randomAngle();
+        $alfa = $this->randomAngularDistance();
+        $int_beta = $this->randomDegrees(max: AngularDistance::MAX - 1)->value();
+        $string_beta = (string) $this->randomAngularDistance();
+        $float_beta = $this->randomAngularDistance()->toFloat();
+        $angle_beta = $this->randomAngularDistance();
 
         // Act & Assert
         $this->assertIsBool($alfa->lt($int_beta));
@@ -468,11 +478,11 @@ class AngularDistanceTest extends TestCase
     public function test_lesser_or_equal_comparison(): void
     {
         // Arrange
-        $alfa = $this->randomAngle();
-        $int_beta = $this->randomDegrees()->value();
-        $string_beta = (string) $this->randomAngle();
-        $float_beta = $this->randomAngle()->toFloat();
-        $angle_beta = $this->randomAngle();
+        $alfa = $this->randomAngularDistance();
+        $int_beta = $this->randomDegrees(max: AngularDistance::MAX - 1)->value();
+        $string_beta = (string) $this->randomAngularDistance();
+        $float_beta = $this->randomAngularDistance()->toFloat();
+        $angle_beta = $this->randomAngularDistance();
 
         // Act & Assert
         $this->assertIsBool($alfa->lte($int_beta));
@@ -485,9 +495,9 @@ class AngularDistanceTest extends TestCase
     public function test_fuzzy_equal_comparison(): void
     {
         // Arrange
-        $alfa = $this->positiveRandomAngle();
-        $beta = $this->positiveRandomAngle();
-        $delta = $this->positiveRandomAngle();
+        $alfa = $this->positiveRandomAngularDistance();
+        $beta = $this->positiveRandomAngularDistance();
+        $delta = $this->positiveRandomAngularDistance();
 
         // Act & Assert
         $this->assertIsBool($alfa->feq($beta, $delta));

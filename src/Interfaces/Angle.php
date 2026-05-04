@@ -36,6 +36,16 @@ interface Angle
     public static function createFromRadian(float $radian): Angle;
 
     /**
+     * Return an absolute `Angle`
+     */
+    public function absolute(): Angle;
+
+    /**
+     * Alias of `absolute()` method.
+     */
+    public function asb(): Angle;
+
+    /**
      * Reverse the direction of rotation.
      */
     public function toggleDirection(): Angle;
@@ -130,4 +140,15 @@ interface Angle
      * Alias for isDifferent method.
      */
     public function not(string|int|float|Angle $angle, int $precision = 54): bool;
+
+    /**
+     * Check if this `Angle` is equal to `$beta` within an acceptable `$delta` 
+     * error angle.
+     */
+    public function fuzzyEqual(Angle $beta, Angle $delta): bool;
+
+    /**
+     * Alias for `fuzzyEqual()` method.
+     */
+    public function feq(Angle $beta, Angle $delta): bool;
 }

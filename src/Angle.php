@@ -472,7 +472,7 @@ class Angle implements AngleInterface, Stringable
      * Check if this `Angle` is equal to `$beta` within an acceptable `$delta` 
      * error angle.
      */
-    public function fuzzyEqual(Angle $beta, Angle $delta): bool
+    public function fuzzyEqual(AngleInterface $beta, AngleInterface $delta): bool
     {
         return new FuzzyEqual($this, $beta, $delta)->compare();
     }
@@ -480,7 +480,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Alias for `fuzzyEqual()` method.
      */
-    public function feq(Angle $beta, Angle $delta): bool
+    public function feq(AngleInterface $beta, AngleInterface $delta): bool
     {
         return $this->fuzzyEqual($beta, $delta);
     }

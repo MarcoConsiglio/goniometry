@@ -12,6 +12,7 @@ use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as FromSexadecimalToFloa
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
@@ -144,6 +145,28 @@ class AngularDistance implements AngleInterface, Stringable
             ];
         else
             return [$degrees, $minutes, $seconds];
+    }
+
+    /**
+     * Return an absolute `Angle`
+     */
+    #[Override]
+    public function absolute(): AngularDistance
+    {
+        return AngularDistance::createFromDecimal(
+            new SexadecimalAngularDistance(
+                $this->toSexadecimalAngularDistance()->value->abs()
+            )
+        );
+    }
+
+    /**
+     * Alias of `absolute()` method.
+     */
+    #[Override]
+    public function asb(): AngularDistance
+    {
+        return $this->absolute();
     }
 
     #[Override]
@@ -325,5 +348,24 @@ class AngularDistance implements AngleInterface, Stringable
     {
         $sign = $this->isClockwise() ? "-" : "";
         return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";
+    }
+
+    /**
+     * Check if this `Angle` is equal to `$beta` within an acceptable `$delta` 
+     * error angle.
+     */
+    #[Override]
+    public function fuzzyEqual(AngleInterface $beta, AngleInterface $delta): bool
+    {
+        return new FuzzyEqual($this, $beta, $delta)->compare();
+    }
+
+    /**
+     * Alias for `fuzzyEqual()` method.
+     */
+    #[Override]
+    public function feq(AngleInterface $beta, AngleInterface $delta): bool
+    {
+        return $this->fuzzyEqual($beta, $delta);
     }
 }
