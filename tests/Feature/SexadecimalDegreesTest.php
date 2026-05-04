@@ -1,6 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
@@ -40,5 +42,21 @@ class SexadecimalDegreesTest extends TestCase
             $value,
             $sexadecimal->value()
         );
+    }
+
+    #[TestDox("can toggle its direction.")]
+    public function test_toggle_direction(): void
+    {
+        // Arrange
+        $sexadecimal = new SexadecimalDegrees(
+            $this->randomSexadecimal(
+                min: NextFloat::after(SexadecimalDegrees::MIN),
+                max: NextFloat::before(SexadecimalDegrees::MAX)
+            )
+        );
+        $expected = $sexadecimal->value->opposite();
+
+        // Act & Assert
+        $this->assertEquals($expected, $sexadecimal->toggleDirection()->value);
     }
 }

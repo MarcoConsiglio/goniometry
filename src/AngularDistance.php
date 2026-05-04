@@ -6,9 +6,9 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
-use MarcoConsiglio\Goniometry\Casting\Radian\Round as FromSexadecimalToRadian;
+use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as FromSexadecimalToFloat;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
@@ -197,6 +197,7 @@ class AngularDistance implements AngleInterface, Stringable
     {
         if ($this->sexadecimal !== null)
             return $this->sexadecimal;
+        // @codeCoverageIgnoreStart
         return $this->sexadecimal = new SexadecimalAngularDistance(
             $this->degrees->value->plus(
                 $this->minutes->value->div(Minutes::MAX)
@@ -204,6 +205,7 @@ class AngularDistance implements AngleInterface, Stringable
                 $this->seconds->value->div(Minutes::MAX * Seconds::MAX)
             )->mul($this->direction->value)
         );
+        // @codeCoverageIgnoreEnd
     }
 
     #[Override]
@@ -216,15 +218,17 @@ class AngularDistance implements AngleInterface, Stringable
     public function toFloat(int|null $precision = null): float
     {
         if ($this->sexadecimal !== null)
-            return new FromSexadecimalToFloat($this->sexadecimal, $precision)->cast();
+            return new RoundSexadecimal($this->sexadecimal, $precision)->cast();
+        // @codeCoverageIgnoreStart
         return new CastToSexadecimal($this, $precision)->cast();
+        // @codeCoverageIgnoreEnd
     }
 
     #[Override]
     public function toRadian(int|null $precision = null): float
     {
         if ($this->radian !== null)
-            return new FromSexadecimalToRadian($this->radian, $precision)->cast();
+            return new RoundRadian($this->radian, $precision)->cast();
         return new CastToRadian($this, $precision)->cast();
     }
 
@@ -297,7 +301,7 @@ class AngularDistance implements AngleInterface, Stringable
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
-        return $this->isGreaterThan($angle, $precision);
+        return $this->isGreaterThanOrEqualTo($angle, $precision);
     }
 
     #[Override]

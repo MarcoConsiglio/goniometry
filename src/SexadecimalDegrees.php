@@ -18,6 +18,16 @@ class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
     public const string MEASURE = '°';
 
     /**
+     * The maximum allowed sexadecimal value.
+     */
+    public const float MAX = Degrees::MAX;
+
+    /**
+     * The minimum allowed sexadecimal value.
+     */
+    public const float MIN = -self::MAX;
+
+    /**
      * Construct a `SexadecimalDegrees` number.
      */
     public function __construct(int|float|string|BCMathNumber|Number $value)
@@ -46,6 +56,9 @@ class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
         return "{$this->value}" . self::MEASURE;
     }
 
+    /**
+     * Return this `SexadecimalDegrees` with opposite direction.
+     */
     #[Override]
     public function toggleDirection(): SexadecimalDegrees
     {

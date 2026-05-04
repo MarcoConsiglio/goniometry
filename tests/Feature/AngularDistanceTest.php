@@ -15,7 +15,8 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
+use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundRadian;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
@@ -58,7 +59,6 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
@@ -186,7 +186,8 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeRadianRadian::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
-#[UsesClass(Round::class)]
+#[UsesClass(RoundRadian::class)]
+#[UsesClass(RoundSexadecimal::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SecondsGenerator::class)]
 #[UsesClass(SecondsRange::class)]
@@ -359,8 +360,25 @@ class AngularDistanceTest extends TestCase
     #[TestDox("can be casted to radian.")]
     public function test_cast_to_radian(): void
     {
+        /**
+         * Without radian
+         */
         // Arrange
         $angle = $this->randomAngularDistance();
+
+        // Act & Assert
+        $this->assertIsFloat($angle->toRadian());
+
+        /**
+         * With radian
+         */
+        // Arrange
+        $angle = AngularDistance::createFromRadian(
+            $this->randomRadian(
+                min: NextFloat::after(AngularDistanceRadian::MIN),
+                max: NextFloat::before(AngularDistanceRadian::MAX)
+            )->value()
+        );
 
         // Act & Assert
         $this->assertIsFloat($angle->toRadian());

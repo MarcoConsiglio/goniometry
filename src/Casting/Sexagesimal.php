@@ -17,7 +17,7 @@ abstract class Sexagesimal
      * Construct the `Cast` object.
      */
     public function __construct(
-        protected Angle|AngularDistance $angle,
+        protected AngleInterface $angle,
         protected int|null $precision = null
     ) {
         if ($this->hasPrecisionBeenSet()) {

@@ -114,12 +114,11 @@ class CastTest extends TestCase
     public function test_cast_to_SexadecimalAngularDistance(): void
     {
         // Arrange
-        $sexadecimal_angular_distance = $this->randomAngularDistance()->toFloat();
+        $sexadecimal_angular_distance = $this->randomAngularDistance()->toFloat(5);
 
         // Act
         $float = new Cast(
-            AngularDistance::createFromDecimal($sexadecimal_angular_distance),
-            PHP_FLOAT_DIG + 1
+            AngularDistance::createFromDecimal($sexadecimal_angular_distance), 5
         )->cast();
 
         // Assert

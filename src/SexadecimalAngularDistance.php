@@ -54,6 +54,9 @@ class SexadecimalAngularDistance extends ModularRelativeNumber implements Sexade
         return "{$this->value}" . self::MEASURE;
     }
 
+    /**
+     * Return this `SexadecimalAngularDistance` with opposite direction.
+     */
     #[Override]
     public function toggleDirection(): SexadecimalAngularDistance
     {

@@ -64,4 +64,20 @@ class SexadecimalAngularDistanceTest extends TestCase
             "{$this->value}°", "{$this->sexadecimal}"
         );
     }
+
+    #[TestDox("can toggle its direction.")]
+    public function test_toggle_direction(): void
+    {
+        // Arrange
+        $sexadecimal = new SexadecimalAngularDistance(
+            $this->randomFloat(
+                min: NextFloat::after(SexadecimalAngularDistance::MIN),
+                max: NextFloat::before(SexadecimalAngularDistance::MAX)
+            )
+        );
+        $expected = $sexadecimal->value->opposite();
+
+        // Act & Assert
+        $this->assertEquals($expected, $sexadecimal->toggleDirection()->value);
+    }
 }
