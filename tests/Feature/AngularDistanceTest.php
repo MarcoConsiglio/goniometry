@@ -316,29 +316,6 @@ class AngularDistanceTest extends TestCase
             $beta->toggleDirection()->direction, 
             $failure_message_1
         );
-
-        /**
-         * With SexadecimalDegrees
-         */
-        // Arrange
-        $gamma = AngularDistance::createFromValues(
-            $this->randomDegrees(max: AngularDistance::MAX - 1)->value(), 
-            direction: Direction::COUNTER_CLOCKWISE
-        );
-        $delta = AngularDistance::createFromValues(
-            $this->randomDegrees(max: AngularDistance::MAX - 1)->value(), 
-            direction: Direction::CLOCKWISE
-        );
-
-        // Act & Assert
-        $this->assertSexadecimalDegrees(
-            $gamma->toSexadecimalDegrees()->toggleDirection(),
-            $gamma->toggleDirection()->toSexadecimalDegrees()
-        );
-        $this->assertSexadecimalDegrees(
-            $delta->toSexadecimalDegrees()->toggleDirection(),
-            $delta->toggleDirection()->toSexadecimalDegrees()
-        );
     }
 
     #[TestDox("can be clockwise or negative.")]

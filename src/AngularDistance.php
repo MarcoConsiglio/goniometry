@@ -173,13 +173,11 @@ class AngularDistance implements AngleInterface, Stringable
     public function toggleDirection(): AngularDistance
     {
         $clone = clone $this;
-        if ($clone->sexagesimal !== null)
-            $clone->sexagesimal->direction =
-                $clone->sexagesimal->direction->opposite();
-        if ($clone->sexadecimal !== null)
-            $clone->sexadecimal = new SexadecimalAngularDistance(
-                $clone->sexadecimal->value->mul(-1)
-            );
+        $clone->sexagesimal->direction =
+            $clone->sexagesimal->direction->opposite();
+        $clone->sexadecimal = new SexadecimalAngularDistance(
+            $clone->sexadecimal->value->mul(-1)
+        );
         return $clone;
     }
 

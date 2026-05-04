@@ -226,9 +226,8 @@ class Angle implements AngleInterface, Stringable
     public function toggleDirection(): Angle
     {
         $clone = clone $this;
-        if ($clone->sexagesimal !== null)
-            $clone->sexagesimal->direction =
-                $clone->sexagesimal->direction->opposite();
+        $clone->sexagesimal->direction =
+            $clone->sexagesimal->direction->opposite();
         if ($clone->sexadecimal !== null)
             $clone->sexadecimal = new SexadecimalDegrees(
                 $clone->sexadecimal->value->mul(-1)

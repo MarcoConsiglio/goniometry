@@ -447,7 +447,7 @@ class AngleTest extends TestCase
         );
 
         /**
-         * With SexadecimalDegrees
+         * Without SexadecimalDegrees
          */
         // Arrange
         $gamma = Angle::createFromValues(
@@ -458,14 +458,16 @@ class AngleTest extends TestCase
             $this->randomDegrees()->value(), 
             direction: Direction::CLOCKWISE
         );
+        $gamma_clone = clone $gamma;
+        $delta_clone = clone $delta;
 
         // Act & Assert
         $this->assertSexadecimalDegrees(
-            $gamma->toSexadecimalDegrees()->toggleDirection(),
+            $gamma_clone->toSexadecimalDegrees()->toggleDirection(),
             $gamma->toggleDirection()->toSexadecimalDegrees()
         );
         $this->assertSexadecimalDegrees(
-            $delta->toSexadecimalDegrees()->toggleDirection(),
+            $delta_clone->toSexadecimalDegrees()->toggleDirection(),
             $delta->toggleDirection()->toSexadecimalDegrees()
         );
     }
