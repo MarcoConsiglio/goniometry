@@ -64,13 +64,12 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGen
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
@@ -152,7 +151,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveAngleGenerator::class)]
-#[UsesClass(PositiveRadian::class)]
+#[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(Radian::class)]
@@ -163,8 +162,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
-#[UsesClass(RelativeSexagesimalGenerator::class)]
-#[UsesClass(RelativeSexagesimalGenerator::class)]
 #[UsesClass(RelativeSum::class)]
 #[UsesClass(RoundToRadian::class)]
 #[UsesClass(RoundToSexadecimal::class)]

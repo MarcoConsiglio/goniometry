@@ -32,7 +32,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
-#[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
 #[UsesClass(Direction::class)]
 #[UsesClass(FromSexadecimal::class)]

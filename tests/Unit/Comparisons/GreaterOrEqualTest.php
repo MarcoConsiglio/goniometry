@@ -75,7 +75,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
-#[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalValidator::class)]

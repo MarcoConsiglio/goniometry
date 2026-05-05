@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Traits;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use ValueError;
 
 /**
@@ -60,11 +61,11 @@ trait WithFailureMessage
     /**
      * Return an instance type failure message.
      *
-     * @param [type] $expected_class
-     * @param [type] $actual_class
+     * @param string $expected_class
+     * @param string $actual_class
      * @return string
      */
-    protected static function instanceTypeFail($expected_class, $actual_class): string
+    protected static function instanceTypeFail(string $expected_class, string $actual_class): string
     {
         return "Expected $expected_class class but found $actual_class class instead.";
     }
@@ -84,7 +85,7 @@ trait WithFailureMessage
     }
 
     /**
-     * It produces a casting error message.
+     * Produce a casting error message.
      *
      * @param string $type Type to cast to.
      * @return string
@@ -95,7 +96,7 @@ trait WithFailureMessage
     }
 
     /**
-     * It produces a property error message.
+     * Produce a property error message.
      *
      * @param string $property_name
      * @return string
@@ -135,9 +136,22 @@ trait WithFailureMessage
         return "{$alfa->toSexadecimalDegrees()} $comparison {$beta->toSexadecimalDegrees()} with delta {$delta->toSexadecimalDegrees()}.";
     }
 
+    /**
+     * Check if `$comparison` is allowed.
+     */
     protected function checkComparison(string $comparison): void
     {
         if (! in_array($comparison, $this->allowed_comparisons))
             throw new ValueError("\"$comparison\" is not an allowed comparison.");
+    }
+
+    /**
+     * Return a sexagesimal fail error.
+     */
+    protected function sexagesimalFail(
+        SexagesimalDegrees $expected, 
+        SexagesimalDegrees $actual
+    ): string {
+        return "{$expected} ≠ {$actual}"; 
     }
 }

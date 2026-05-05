@@ -34,7 +34,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Degrees::class)]
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(FromSexadecimal::class)]
-#[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]

@@ -81,7 +81,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-#[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(StringType::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class DifferentTest extends TestCase

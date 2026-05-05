@@ -59,6 +59,9 @@ class TestCase extends PHPUnitTestCase
         );
     }
 
+    /**
+     * Assert `$expected` `Degrees` are equal to `$actual` `Degrees`.
+     */
     protected function assertDegrees(
         Degrees $expected, 
         Degrees $actual, 
@@ -66,7 +69,10 @@ class TestCase extends PHPUnitTestCase
     ): void {
         $this->assertEquals($expected->value(), $actual->value(), $message);
     }
-
+    
+    /**
+     * Assert `$expected` `Minutes` are equal to `$actual` `Minutes`.
+     */    
     protected function assertMinutes(
         Minutes $expected, 
         Minutes $actual, 
@@ -75,6 +81,9 @@ class TestCase extends PHPUnitTestCase
         $this->assertEquals($expected->value(), $actual->value(), $message);
     }
 
+    /**
+     * Assert `$expected` `Seconds` are equal to `$actual` `Seconds`.
+     */        
     protected function assertSeconds(
         Seconds $expected, 
         Seconds $actual, 
@@ -88,6 +97,9 @@ class TestCase extends PHPUnitTestCase
         );
     }
 
+    /**
+     * Assert `$expected` `Direction` are equal to `$actual` `Direction`.
+     */    
     protected function assertDirection(
         Direction $expected, 
         Direction $actual, 
@@ -96,6 +108,9 @@ class TestCase extends PHPUnitTestCase
         $this->assertEquals($expected, $actual, $message);
     }
 
+    /**
+     * Assert `$expected` `SexadecimalValue` are equal to `$actual` `SexadecimalValue`.
+     */    
     protected function assertSexadecimalDegrees(
         SexadecimalValue $expected,
         SexadecimalValue $actual,

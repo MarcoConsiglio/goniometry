@@ -134,7 +134,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(FromRadian::class)]
 #[UsesClass(FromSexadecimal::class)]
-#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
 #[UsesClass(FromString::class)]
 #[UsesClass(FuzzyAngleType::class)]
