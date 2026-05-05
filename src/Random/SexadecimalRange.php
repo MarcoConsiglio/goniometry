@@ -8,6 +8,8 @@ use MarcoConsiglio\Goniometry\Degrees;
 
 /**
  * The `SexadecimalDegrees` random range.
+ * 
+ * @internal
  */
 class SexadecimalRange extends FloatRange
 {

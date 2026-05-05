@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The strategy that compares an `Angle` instance against a sexagesimal string 
  * measure of an angle to check if they are equal.
+ * 
+ * @internal
  */
 class EqualString extends ComparisonStrategy
 {

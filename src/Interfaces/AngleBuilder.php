@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Goniometry\Interfaces;
 
 /**
  * How an `Angle` should be constructed.
+ * 
+ * @internal
  */
 interface AngleBuilder
 {

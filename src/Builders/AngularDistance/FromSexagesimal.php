@@ -7,7 +7,9 @@ use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 
 /**
- *  Builds an `AngularDistance` starting from degrees, minutes, seconds and direction.
+ *  Builds an `AngularDistance` starting from sexagesimal values.
+ * 
+ * @internal
  */
 class FromSexagesimal extends AngleFromSexagesimal
 {

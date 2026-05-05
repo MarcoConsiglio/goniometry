@@ -7,6 +7,8 @@ use Override;
 
 /**
  * The `AngularDistance` random generator for negative values.
+ * 
+ * @internal
  */
 class NegativeAngularDistance extends AngularDistanceGenerator
 {

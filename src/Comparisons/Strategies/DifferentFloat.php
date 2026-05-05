@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The strategy that compares an `Angle` instance against a sexadecimal angle 
  * measure to check if they are different.
+ * 
+ * @internal
  */
 class DifferentFloat extends FloatComparisonStrategy
 {

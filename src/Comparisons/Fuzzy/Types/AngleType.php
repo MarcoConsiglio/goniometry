@@ -11,6 +11,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The beta angle `InputType` in a fuzzy comparison between alfa and beta angle when
  * beta is an `Angle`.
+ * 
+ * @internal
  */
 class AngleType extends BaseAngleType
 {

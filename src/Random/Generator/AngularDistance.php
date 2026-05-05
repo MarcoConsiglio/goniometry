@@ -9,6 +9,8 @@ use MarcoConsiglio\Goniometry\Random\Validator\AngularDistance as AngularDistanc
 
 /**
  * An `AngulaDistance` random generator.
+ * 
+ * @internal
  */
 abstract class AngularDistance extends Generator
 {

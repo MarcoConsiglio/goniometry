@@ -12,6 +12,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * A comparison between angles.
+ * 
+ * @internal
  */
 abstract class Comparison
 {

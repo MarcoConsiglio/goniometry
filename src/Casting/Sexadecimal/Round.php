@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 
 /**
  * Round a sexadecimal value.
+ * 
+ * @internal
  */
 class Round extends Sexagesimal implements ToSexadecimal
 {

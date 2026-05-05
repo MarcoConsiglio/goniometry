@@ -5,6 +5,8 @@ use MarcoConsiglio\FakerPhpNumberHelpers\Random\Generator as RandomGenerator;
 
 /**
  * A `float` number random generator.
+ * 
+ * @internal
  */
 abstract class FloatGenerator extends RandomGenerator
 {

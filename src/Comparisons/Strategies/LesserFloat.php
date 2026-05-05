@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The strategy that compares an `Angle` instance against a sexadecimal angle 
  * measure to check if the first is lesser then the last.
+ * 
+ * @internal
  */
 class LesserFloat extends FloatComparisonStrategy
 {

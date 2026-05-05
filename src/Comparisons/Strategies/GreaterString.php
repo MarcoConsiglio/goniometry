@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The strategy that compares an `Angle` instance against a sexagesimal string 
  * measure of an angle to check if the first is greater than the last.
+ * 
+ * @internal
  */
 class GreaterString extends ComparisonStrategy
 {    

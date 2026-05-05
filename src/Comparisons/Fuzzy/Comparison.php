@@ -9,6 +9,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * A comparison of angles within an acceptable error.
+ * 
+ * @internal
  */
 abstract class Comparison extends GoniometricComparison
 {

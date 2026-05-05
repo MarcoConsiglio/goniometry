@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * An `Angle` sum builder.
+ * 
+ * @internal
  */
 abstract class SumBuilder extends AngleBuilder
 {

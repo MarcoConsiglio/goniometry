@@ -11,6 +11,8 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  * Builds an `Angle` starting from a sexadecimal value.
+ * 
+ * @internal
  */
 class FromSexadecimal extends AngleBuilder
 {

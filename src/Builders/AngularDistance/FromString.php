@@ -7,7 +7,9 @@ use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 
 /**
- *  Builds an `AngularDistance` starting from a string value.
+ *  Builds an `AngularDistance` starting from a `string` sexagesimal value.
+ * 
+ * @internal
  */
 class FromString extends AngleFromString
 {

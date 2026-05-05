@@ -5,6 +5,8 @@ use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Comparison as FuzzyComparison;
 
 /**
  * The `Equal` fuzzy comparison between angles.
+ * 
+ * @internal
  */
 class Equal extends FuzzyComparison
 {

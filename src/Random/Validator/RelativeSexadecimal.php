@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 
 /**
  * Validate a `SexadecimalRange`.
+ * 
+ * @internal
  */
 class RelativeSexadecimal extends SexadecimalValidator
 {

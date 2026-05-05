@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The strategy that compares an `Angle` instance against a sexagesimal integer 
  * degrees measure of an angle to check if they are different.
+ * 
+ * @internal
  */
 class DifferentInt extends ComparisonStrategy
 {

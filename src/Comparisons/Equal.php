@@ -1,11 +1,10 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
-use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Comparisons\Types\EqualComparison;
-
 /**
  * The `Equal` comparison between angles.
+ * 
+ * @internal
  */
 class Equal extends Comparison
 {

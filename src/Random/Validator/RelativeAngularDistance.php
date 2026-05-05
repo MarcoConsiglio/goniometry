@@ -8,6 +8,8 @@ use Override;
 
 /**
  * The `AngularDistance` random generator for relative values.
+ * 
+ * @internal
  */
 class RelativeAngularDistance extends AngularDistance
 {

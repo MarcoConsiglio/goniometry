@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Random\MinutesRange;
 
 /**
  * Validate a random `MinutesRange`.
+ * 
+ * @internal
  */
 class Minutes extends Validator
 {

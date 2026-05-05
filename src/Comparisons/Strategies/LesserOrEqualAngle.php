@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The strategy that compares two `Angle` instances to check if the first is 
  * lesser or equal then the last.
+ * 
+ * @internal
  */
 class LesserOrEqualAngle extends ComparisonStrategy
 {

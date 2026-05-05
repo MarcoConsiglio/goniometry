@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 
 /**
  * The `Radian` random generator for positive radian values.
+ * 
+ * @internal
  */
 class PositiveRadian extends RadianGenerator
 {

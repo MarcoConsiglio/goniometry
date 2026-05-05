@@ -9,6 +9,8 @@ use MarcoConsiglio\Goniometry\Random\DegreesRange;
 
 /**
  * The `Degrees` random generator.
+ * 
+ * @internal
  */
 class Degrees extends Generator
 {

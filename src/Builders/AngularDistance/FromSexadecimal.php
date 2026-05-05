@@ -11,6 +11,11 @@ use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use Override;
 
+/**
+ *  Builds an `AngularDistance` starting from a sexadecimal value.
+ * 
+ * @internal
+ */
 class FromSexadecimal extends AngleBuilder
 {
     /**

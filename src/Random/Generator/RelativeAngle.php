@@ -12,6 +12,8 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSe
 
 /**
  * The `Angle` random generator for relative angles.
+ * 
+ * @internal
  */
 class RelativeAngle extends AngleGenerator
 {

@@ -5,6 +5,8 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
 /**
  * Sum two `Angle`s resulting in a relative sum.
+ * 
+ * @internal
  */
 class RelativeSum extends SumBuilder
 {

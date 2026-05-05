@@ -8,7 +8,9 @@ use MarcoConsiglio\Goniometry\Radian;
 use RoundingMode;
 
 /**
- * Round a radian value
+ * Round a radian value.
+ * 
+ * @internal
  */
 class Round extends Sexagesimal implements ToRadian
 {

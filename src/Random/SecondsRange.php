@@ -8,6 +8,8 @@ use MarcoConsiglio\Goniometry\Seconds;
 
 /**
  * The `Seconds` random range.
+ * 
+ * @internal
  */
 class SecondsRange extends FloatRange
 {

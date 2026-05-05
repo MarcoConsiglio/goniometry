@@ -5,9 +5,14 @@ use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
 
 /**
  * A validator that validate a `float` range.
+ * 
+ * @internal
  */
 abstract class FloatValidator extends Validator
 {
+    /**
+     * Avoid INF and NAN `float` values.
+     */
     protected function avoidInvalidFloats(float &$min, float &$max): void
     {
         if ($this->notAllowedFloat($min)) $this->setMin($min);

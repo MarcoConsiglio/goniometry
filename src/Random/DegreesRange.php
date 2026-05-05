@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Degrees;
 
 /**
  * The `Degrees` random range.
+ * 
+ * @internal
  */
 class DegreesRange extends IntRange
 {

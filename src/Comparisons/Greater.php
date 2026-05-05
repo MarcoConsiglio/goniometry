@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
  * The `Greater` comparison between angles.
+ * 
+ * @internal
  */
 class Greater extends Comparison
 {

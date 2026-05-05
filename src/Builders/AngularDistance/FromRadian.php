@@ -7,6 +7,8 @@ use Override;
 
 /**
  *  Builds an `AngularDistance` starting from a radian value.
+ * 
+ * @internal
  */
 class FromRadian extends AngleBuilder
 {

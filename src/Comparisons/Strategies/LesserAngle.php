@@ -7,6 +7,8 @@ use Override;
 /**
  * The strategy that compares two `Angle` instances to check if the first is 
  * lesser then the last.
+ * 
+ * @internal
  */
 class LesserAngle extends GreaterAngle
 {

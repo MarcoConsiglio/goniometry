@@ -7,6 +7,8 @@ use Override;
 
 /**
  * The `AngularDistance` random range.
+ * 
+ * @internal
  */
 class AngularDistanceRange extends SexadecimalRange
 {

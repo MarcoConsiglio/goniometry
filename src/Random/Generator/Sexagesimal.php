@@ -9,6 +9,8 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  * A `Sexagesimal` random generator.
+ * 
+ * @internal
  */
 abstract class Sexagesimal extends Generator
 {

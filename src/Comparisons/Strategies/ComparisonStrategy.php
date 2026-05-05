@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * A comparison strategy.
+ * 
+ * @internal
  */
 abstract class ComparisonStrategy implements Strategy
 {

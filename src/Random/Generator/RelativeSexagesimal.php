@@ -8,6 +8,8 @@ use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSe
 
 /**
  * The `Sexagesimal` random generator for relative sexagesimal values.
+ * 
+ * @internal
  */
 class RelativeSexagesimal extends SexagesimalGenerator
 {

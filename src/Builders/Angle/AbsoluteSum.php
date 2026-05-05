@@ -8,6 +8,8 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
 /**
  * Sum two `Angle`s resulting in an absolute sum.
+ * 
+ * @internal
  */
 class AbsoluteSum extends SumBuilder
 {

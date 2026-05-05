@@ -10,7 +10,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 
 /**
- *  Builds an `Angle` starting from a string value.
+ *  Builds an `Angle` starting from a `string` sexagesimal value.
+ * 
+ * @internal
  */
 class FromString extends AngleBuilder
 {

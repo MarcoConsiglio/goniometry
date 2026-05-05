@@ -10,6 +10,8 @@ use Override;
 
 /**
  * Validate a `AngularDistanceRange` allowing only negative values.
+ * 
+ * @internal
  */
 class NegativeAngularDistance extends AngularDistanceValidator
 {

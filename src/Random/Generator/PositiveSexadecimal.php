@@ -5,6 +5,8 @@ use MarcoConsiglio\FakerPhpNumberHelpers\Random\Float\Generator;
 
 /**
  * The `Sexadecimal` random generator for positive sexadecimal values.
+ * 
+ * @internal
  */
 class PositiveSexadecimal extends Generator
 {

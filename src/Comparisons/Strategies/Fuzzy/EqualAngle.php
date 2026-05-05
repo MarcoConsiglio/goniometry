@@ -11,6 +11,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The strategy that compares two `Angle` instances to check if they are equal
  * inside an acceptable error.
+ * 
+ * @internal
  */
 class EqualAngle extends EqualAngleStrategy
 {

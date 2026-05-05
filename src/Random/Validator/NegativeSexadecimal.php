@@ -8,6 +8,8 @@ use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 
 /**
  * Validate a `SexadecimalRange` allowing only negative values.
+ * 
+ * @internal
  */
 class NegativeSexadecimal extends SexadecimalValidator
 {

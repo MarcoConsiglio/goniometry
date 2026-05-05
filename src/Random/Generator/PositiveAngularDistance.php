@@ -8,6 +8,8 @@ use Override;
 
 /**
  * The `AngularDistance` random generator for positive values.
+ * 
+ * @internal
  */
 class PositiveAngularDistance extends AngularDistanceGenerator
 {

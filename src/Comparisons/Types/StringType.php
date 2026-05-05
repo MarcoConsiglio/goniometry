@@ -20,6 +20,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The beta `InputType` in a comparison between alfa and beta angles when
  * `$beta` is a `string`.
+ * 
+ * @internal
  */
 class StringType extends InputType
 {

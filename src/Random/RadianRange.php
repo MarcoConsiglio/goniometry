@@ -8,6 +8,8 @@ use MarcoConsiglio\Goniometry\Radian;
 
 /**
  * The `Radian` random range.
+ * 
+ * @internal
  */
 class RadianRange extends FloatRange
 {

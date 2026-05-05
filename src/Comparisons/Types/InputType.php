@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The beta angle `InputType` in a comparison between alfa and beta angles.
+ * 
+ * @internal
  */
 abstract class InputType
 {

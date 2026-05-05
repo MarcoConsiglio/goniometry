@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSe
 
 /**
  * The `Angle` random generator for positive angles.
+ * 
+ * @internal
  */
 class PositiveAngle extends AngleGenerator
 {

@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The strategy that compares an `Angle` instance against a sexagesimal degrees 
  * measure of an angle to check if the first is greater or equal than the last.
+ * 
+ * @internal
  */
 class GreaterOrEqualInt extends ComparisonStrategy
 {

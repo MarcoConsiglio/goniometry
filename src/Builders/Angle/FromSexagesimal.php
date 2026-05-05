@@ -10,6 +10,8 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  *  Builds an `Angle` starting from degrees, minutes, seconds and direction.
+ * 
+ * @internal
  */
 class FromSexagesimal extends AngleBuilder
 {

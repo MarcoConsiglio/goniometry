@@ -1,11 +1,15 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 
+/**
+ * Validate a `AngularDistanceRange` allowing only positive values.
+ * 
+ * @internal
+ */
 class PositiveAngularDistance extends AngularDistance
 {
     /**

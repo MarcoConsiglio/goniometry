@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The strategy that compares two `Angle` instances to check if the first is 
  * greater than the last.
+ * 
+ * @internal
  */
 class GreaterAngle extends ComparisonStrategy
 {

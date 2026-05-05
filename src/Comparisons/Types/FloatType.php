@@ -19,6 +19,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 /**
  * The beta `InputType` in a comparison between alfa and beta angles when
  * `$beta` is a `float`.
+ * 
+ * @internal
  */
 class FloatType extends InputType
 {
