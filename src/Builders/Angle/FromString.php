@@ -16,43 +16,31 @@ class FromString extends AngleBuilder
 {
     /**
      * The parsing status for degrees value.
-     *
-     * @var mixed
      */
     protected mixed $degrees_parsing_status;
 
     /**
      * The parsing status for minutes value.
-     *
-     * @var mixed
      */
     protected mixed $minutes_parsing_status;
 
     /**
      * The parsing status for seconds value.
-     *
-     * @var mixed
      */
     protected mixed $seconds_parsing_status;
 
     /**
      * The matched degrees by the regular expression.
-     *
-     * @var array
      */
     protected array $degrees_match = [];
 
     /**
      * The matched minutes by the regular expression.
-     *
-     * @var array
      */
     protected array $minutes_match = [];
 
     /**
      * The matched seconds by the regular expression.
-     *
-     * @var array
      */
     protected array $seconds_match = [];
 
@@ -136,8 +124,6 @@ class FromString extends AngleBuilder
 
     /**
      * Calc degrees.
-     *
-     * @return void
      */
     protected function calcDegrees(): void
     {
@@ -148,8 +134,6 @@ class FromString extends AngleBuilder
 
     /**
      * Calc minutes.
-     *
-     * @return void
      */
     protected function calcMinutes(): void
     {
@@ -160,8 +144,6 @@ class FromString extends AngleBuilder
 
     /**
      * Calc seconds.
-     *
-     * @return void
      */
     protected function calcSeconds(): void
     {
@@ -172,13 +154,11 @@ class FromString extends AngleBuilder
 
     /**
      * Calc sign.
-     *
-     * @return void
      */
     protected function calcSign(): void
     {
         $this->direction = 
-            str_contains($this->degrees_match[1], '-') ?
+            str_contains((string) $this->degrees_match[1], '-') ?
             Direction::CLOCKWISE :
             Direction::COUNTER_CLOCKWISE;
     }

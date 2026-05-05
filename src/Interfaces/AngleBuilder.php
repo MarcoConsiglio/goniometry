@@ -8,8 +8,6 @@ interface AngleBuilder
 {
     /**
      * Fetch the data that will be used to build an `Angle`.
-     *
-     * @return array
      */
     public function fetchData(): array;
 }

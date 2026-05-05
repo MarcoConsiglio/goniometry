@@ -143,8 +143,6 @@ trait WithDispositionTesting
      * Calculate the total dispositions with repetition of N properties
      * to be compared, considering the elements composing the disposistions
      * will be two, different comparison result and equal comparison result.
-     * 
-     * @param int $properties_number
      */
     protected function getTotalDispositions(int $properties_number): int
     {

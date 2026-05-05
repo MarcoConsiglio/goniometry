@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Casting;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
@@ -45,11 +46,9 @@ abstract class Sexagesimal
     /**
      * Calc the sexadecimal value.
      */
-    protected function toSexadecimal(): SexadecimalDegrees|SexadecimalAngularDistance
+    protected function toSexadecimal(): SexadecimalValue
     {
-        if ($this->angle instanceof Angle)
-            return $this->angle->toSexadecimalDegrees();
-        else return $this->angle->toSexadecimalDegrees();
+        return $this->angle->toSexadecimalDegrees();
     }
 
     /**

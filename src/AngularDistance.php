@@ -60,9 +60,9 @@ class AngularDistance implements AngleInterface, Stringable
 
     public protected(set) SexagesimalDegrees $sexagesimal;
 
-    public protected(set) SexadecimalAngularDistance|null $sexadecimal;
+    public protected(set) SexadecimalAngularDistance $sexadecimal;
 
-    public protected(set) AngularDistanceRadian|null $radian;
+    public protected(set) AngularDistanceRadian|null $radian = null;
 
     /**
      * Construct an `Angle`.

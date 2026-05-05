@@ -13,7 +13,6 @@ class NoMatchException extends Exception
      * Construct the exception.
      *
      * @param string $angle The string angle provoking the exception.
-     * @return void
      */
     public function __construct(string $angle)
     {

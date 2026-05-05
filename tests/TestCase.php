@@ -23,8 +23,6 @@ class TestCase extends PHPUnitTestCase
 
     /**
      * This method is called before each test.
-     *
-     * @return void
      */
     protected function setUp(): void
     {
