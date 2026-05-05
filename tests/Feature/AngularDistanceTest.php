@@ -275,12 +275,13 @@ class AngularDistanceTest extends TestCase
         $associative_result = $alfa->getDegrees(associative: true, precision: 1);
 
         // Assert
-        $this->assertEquals($degrees,   $simple_result[0]);
-        $this->assertEquals($minutes,   $simple_result[1]);
-        $this->assertEquals($seconds,   $simple_result[2]);
-        $this->assertEquals($degrees,   $associative_result["degrees"]);
-        $this->assertEquals($minutes,   $associative_result["minutes"]);
-        $this->assertEquals($seconds,   $associative_result["seconds"]);
+        $fail_message = "Input: {$alfa}\nOutput:{$degrees}°{$minutes}'{$seconds}\"";
+        $this->assertEquals($degrees, $simple_result[0], $fail_message);
+        $this->assertEquals($minutes, $simple_result[1], $fail_message);
+        $this->assertEquals($seconds, $simple_result[2], $fail_message);
+        $this->assertEquals($degrees, $associative_result["degrees"], $fail_message);
+        $this->assertEquals($minutes, $associative_result["minutes"], $fail_message);
+        $this->assertEquals($seconds, $associative_result["seconds"], $fail_message);
     }
 
     #[TestDox("can return its absolute value.")]

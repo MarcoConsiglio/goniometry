@@ -267,10 +267,11 @@ class AngleTest extends TestCase
         $angle = Angle::createFromString($text);
 
         // Act
-        $this->assertDegrees($degrees, $angle->degrees, $text);
-        $this->assertMinutes($minutes, $angle->minutes, $text);
-        $this->assertSeconds($seconds, $angle->seconds, 1, $text);
-        $this->assertDirection($direction, $angle->direction, $text);
+        $fail_message = "Input:{$text}\nOuput:{$degrees}°{$minutes}'{$seconds}\"";
+        $this->assertDegrees($degrees, $angle->degrees, $fail_message);
+        $this->assertMinutes($minutes, $angle->minutes, $fail_message);
+        $this->assertSeconds($seconds, $angle->seconds, 1, $fail_message);
+        $this->assertDirection($direction, $angle->direction, $fail_message);
     }
 
     #[TestDox("can be created from a decimal number.")]

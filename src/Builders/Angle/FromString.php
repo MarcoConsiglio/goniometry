@@ -177,7 +177,10 @@ class FromString extends AngleBuilder
      */
     protected function calcSign(): void
     {
-        $this->direction = ((int) $this->degrees_match[1]) >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE;
+        $this->direction = 
+            str_contains($this->degrees_match[1], '-') ?
+            Direction::CLOCKWISE :
+            Direction::COUNTER_CLOCKWISE;
     }
 
     /**
