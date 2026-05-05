@@ -4,12 +4,16 @@ namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString as AngleFromString;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
-use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use Override;
 
+/**
+ *  Builds an `AngularDistance` starting from a string value.
+ */
 class FromString extends AngleFromString
 {
     /**
+     * Fetches the data to build an `AngularDistance`.
+     * 
      * @return array{SexagesimalDegrees,SexadecimalAngularDistance,null}
      */
     #[Override]

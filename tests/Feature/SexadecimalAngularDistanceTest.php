@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
@@ -40,8 +41,8 @@ class SexadecimalAngularDistanceTest extends TestCase
         parent::setUp();
         $this->sexadecimal = new SexadecimalAngularDistance(
             $this->value = $this->randomSexadecimal(
-                min: NextFloat::after(SexadecimalAngularDistance::MIN),
-                max: NextFloat::before(SexadecimalAngularDistance::MAX),
+                min: AngularDistanceRange::min(),
+                max: AngularDistanceRange::max(),
                 precision: 3
             )
         );
@@ -71,8 +72,8 @@ class SexadecimalAngularDistanceTest extends TestCase
         // Arrange
         $sexadecimal = new SexadecimalAngularDistance(
             $this->randomFloat(
-                min: NextFloat::after(SexadecimalAngularDistance::MIN),
-                max: NextFloat::before(SexadecimalAngularDistance::MAX)
+                min: AngularDistanceRange::min(),
+                max: AngularDistanceRange::max()
             )
         );
         $expected = $sexadecimal->value->opposite();

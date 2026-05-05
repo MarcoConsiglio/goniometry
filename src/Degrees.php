@@ -8,7 +8,7 @@ use MarcoConsiglio\ModularArithmetic\ModularNumber;
 use Stringable;
 
 /**
- * The `Degrees` of an `Angle`.
+ * The sexagesimal `Degrees` type.
  */
 class Degrees extends ModularNumber implements Stringable, Scalar
 {

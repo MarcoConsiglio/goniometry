@@ -47,8 +47,8 @@ class RelativeAngularDistanceTest extends TestCase
             self::$faker,
             $validator,
             new AngularDistanceRange(
-                NextFloat::after(SexadecimalAngularDistance::MIN),
-                NextFloat::after(SexadecimalAngularDistance::MAX)
+                AngularDistanceRange::min(),
+                AngularDistanceRange::max()
             )
         );
 

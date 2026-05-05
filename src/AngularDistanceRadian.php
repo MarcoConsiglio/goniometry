@@ -8,6 +8,9 @@ use MarcoConsiglio\ModularArithmetic\Builders\FromExtremes;
 use MarcoConsiglio\ModularArithmetic\ModularRelativeNumber;
 use Override;
 
+/**
+ * The radian value of an `AngularDistance`.
+ */
 class AngularDistanceRadian extends ModularRelativeNumber implements Scalar
 {
     /**

@@ -26,6 +26,9 @@ class SecondsRange extends FloatRange
      */
     public const float MIN = 0.0;
 
+    /**
+     * The maximum number allowed.
+     */
     public static function max(): float
     {
         return NextFloat::before(Seconds::MAX);

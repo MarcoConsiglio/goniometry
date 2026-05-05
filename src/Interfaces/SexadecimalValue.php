@@ -4,6 +4,9 @@ namespace MarcoConsiglio\Goniometry\Interfaces;
 use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
 
+/**
+ * The behavior of a sexadecimal scalar value.
+ */
 interface SexadecimalValue extends Scalar
 {
     /**
@@ -13,6 +16,9 @@ interface SexadecimalValue extends Scalar
 
     /**
      * Return the sexadecimal `float` value.
+     * 
+     * @param int|null $precision Round the number to `$precision` decimal 
+     * places.
      */
     public function value(int|null $precision = null): float;
 

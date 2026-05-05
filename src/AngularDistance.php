@@ -24,10 +24,19 @@ use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
 use Override;
 use Stringable;
 
+/**
+ * The `AngularDistance` type.
+ */
 class AngularDistance implements AngleInterface, Stringable
 {
+    /**
+     * The maximum allowed value in degrees.
+     */
     public const int MAX = 180;
 
+    /**
+     * The minimum allowed value in degrees.
+     */
     public const int MIN = -self::MAX;
     
     /**
@@ -58,14 +67,23 @@ class AngularDistance implements AngleInterface, Stringable
         get {return $this->sexagesimal->direction;}
     }
 
+    /**
+     * The sexagesimal value of this `AngularDistance`.
+     */
     public protected(set) SexagesimalDegrees $sexagesimal;
-
+    
+    /** 
+     * The sexadecimal degrees value of this `AngularDistance`.
+     */
     public protected(set) SexadecimalAngularDistance $sexadecimal;
 
+    /** 
+     * The radian value of this `AngularDistance`.
+     */
     public protected(set) AngularDistanceRadian|null $radian = null;
 
     /**
-     * Construct an `Angle`.
+     * Construct an `AngularDistance`.
      */
     protected function __construct(AngleBuilder $builder)
     {
@@ -77,7 +95,7 @@ class AngularDistance implements AngleInterface, Stringable
     }
 
     /**
-     * Creates an `Angle` from its sexagesimal values.
+     * Creates an `AngularDistance` from its sexagesimal values.
      */
     #[Override]
     public static function createFromValues(
@@ -93,7 +111,7 @@ class AngularDistance implements AngleInterface, Stringable
     }
 
     /**
-     * Creates an `Angle` from its sexadecimal representation.
+     * Creates an `AngularDistance` from its sexadecimal representation.
      */
     #[Override]
     public static function createFromDecimal(
@@ -103,7 +121,7 @@ class AngularDistance implements AngleInterface, Stringable
     }
 
     /**
-     * Creates an `Angle` from its textual sexagesimal representation.
+     * Creates an `AngularDistance` from its textual sexagesimal representation.
      * 
      * @throws NoMatchException when bad formatted angle is found.
      */
@@ -114,7 +132,7 @@ class AngularDistance implements AngleInterface, Stringable
     }
 
     /**
-     * Creates an `Angle` from its radian representation.
+     * Creates an `AngularDistance` from its radian representation.
      */
     #[Override]
     public static function createFromRadian(float|AngularDistanceRadian $radian): AngularDistance
@@ -125,10 +143,10 @@ class AngularDistance implements AngleInterface, Stringable
     /**
      * Return an array containing separate sexagesimal values.
      * 
-     * The direction of the `Angle` is the sign of `"degrees"` value.
+     * The direction of the `AngularDistance` is the sign of `"degrees"` value.
     *
     * @param bool $associative Set to true it returns an associative array.
-    * @param int $precision The precision used in seconds.
+    * @param int $precision The precision used for seconds.
     * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
     */
     #[Override]
@@ -148,7 +166,7 @@ class AngularDistance implements AngleInterface, Stringable
     }
 
     /**
-     * Return an absolute `Angle`
+     * Return an absolute `AngularDistance`
      */
     #[Override]
     public function absolute(): AngularDistance
@@ -169,6 +187,9 @@ class AngularDistance implements AngleInterface, Stringable
         return $this->absolute();
     }
 
+    /**
+     * Return the same instance with the opposite direction.
+     */
     #[Override]
     public function toggleDirection(): AngularDistance
     {
@@ -181,18 +202,27 @@ class AngularDistance implements AngleInterface, Stringable
         return $clone;
     }
 
+    /**
+     * Check if this `AngularDistance` is clockwise or negative.
+     */
     #[Override]
     public function isClockwise(): bool
     {
         return $this->direction == Direction::CLOCKWISE;
     }
 
+    /**
+     * Check if this `AngularDistance` is counterclockwise or positive.
+     */
     #[Override]
     public function isCounterClockwise(): bool
     {
         return $this->direction == Direction::COUNTER_CLOCKWISE;
     }
 
+    /**
+     * Cast this `AngularDistance` to `SexadecimalAngularDistance`.
+     */
     public function toSexadecimalDegrees(): SexadecimalAngularDistance
     {
         if ($this->sexadecimal !== null)
@@ -208,12 +238,20 @@ class AngularDistance implements AngleInterface, Stringable
         // @codeCoverageIgnoreEnd
     }
 
+    /**
+     * Return the sexagesimal values of this `AngularDistance`.
+     */
     #[Override]
     public function toSexagesimalDegrees(): SexagesimalDegrees
     {
         return $this->sexagesimal;
     }
 
+    /**
+     * Return the sexadecimal `float` value of this `AngularDistance`.
+     *
+     * @param integer|null $precision The number of decimal digits.
+     */
     #[Override]
     public function toFloat(int|null $precision = null): float
     {
@@ -224,6 +262,11 @@ class AngularDistance implements AngleInterface, Stringable
         // @codeCoverageIgnoreEnd
     }
 
+    /**
+     * Return the radian representation of this `AngularDistance`e.
+     *
+     * @param integer|null $precision The number of decimal digits.
+     */
     #[Override]
     public function toRadian(int|null $precision = null): float
     {
@@ -232,6 +275,13 @@ class AngularDistance implements AngleInterface, Stringable
         return new CastToRadian($this, $precision)->cast();
     }
 
+    /**
+     * Check if this `AngularDistance` is equal to `$angle`.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function isEqualTo(
         string|int|float|AngleInterface $angle, 
@@ -242,6 +292,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $comparison->compare();
     }
 
+    /**
+     * Alias of `isEqualTo()` method.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function eq(
         string|int|float|AngleInterface $angle, 
@@ -250,6 +307,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $this->isEqualTo($angle, $precision);
     }
 
+    /**
+     * Check if this `AngularDistance` is different than `$angle`.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function isDifferentThan(
         string|int|float|AngleInterface $angle, 
@@ -260,6 +324,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $comparison->compare();
     }
 
+    /**
+     * Alias for `isDifferentThan()` method.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function not(
         string|int|float|AngleInterface $angle, 
@@ -268,6 +339,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $this->isDifferentThan($angle, $precision);
     }
 
+    /**
+     * Check if this `AngularDistance` is greater than `$angle`.
+     * 
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function isGreaterThan(
         string|int|float|AngleInterface $angle, 
@@ -278,6 +356,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $comparison->compare();
     }
 
+    /**
+     * Alias of `isGreaterThan()` method.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function gt(
         string|int|float|AngleInterface $angle, 
@@ -286,6 +371,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $this->isGreaterThan($angle, $precision);
     }
 
+    /**
+     * Check if this `AngularDistance` is greater than or equal to `$angle`.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function isGreaterThanOrEqualTo(
         string|int|float|AngleInterface $angle, 
@@ -296,6 +388,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $comparison->compare();
     }
 
+    /**
+     * Alias of `isGreaterThanOrEqualTo()` method.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function gte(
         string|int|float|AngleInterface $angle, 
@@ -304,6 +403,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $this->isGreaterThanOrEqualTo($angle, $precision);
     }
 
+    /**
+     * Check if this `AngularDistance` is less than another `$angle`.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function isLessThan(
         string|int|float|AngleInterface $angle, 
@@ -314,6 +420,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $comparison->compare();
     }
 
+    /**
+     * Alias of `isLessThan()` method.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function lt(
         string|int|float|AngleInterface $angle, 
@@ -322,6 +435,13 @@ class AngularDistance implements AngleInterface, Stringable
         return $this->isLessThan($angle, $precision);
     }
 
+    /**
+     * Check if this `AngularDistance` is less than or equal to `$angle`.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function isLessThanOrEqualTo(
         string|int|float|AngleInterface $angle, 
@@ -332,24 +452,19 @@ class AngularDistance implements AngleInterface, Stringable
         return $comparison->compare();
     }
 
+    /**
+     * Alias of `isLessThanOrEqual()` method.
+     *
+     * @param int $precision The precision used when `$angle` is a `float` type
+     * variable.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
+     */
     #[Override]
     public function lte(
         string|int|float|AngleInterface $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isLessThanOrEqualTo($angle, $precision);
-    }
-
-    /**
-     * Return the sexagesimal value of this `Angle`.
-     * 
-     * @example `(string) $alfa`
-     */
-    #[Override]
-    public function __toString(): string
-    {
-        $sign = $this->isClockwise() ? "-" : "";
-        return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";
     }
 
     /**
@@ -369,5 +484,17 @@ class AngularDistance implements AngleInterface, Stringable
     public function feq(AngleInterface $beta, AngleInterface $delta): bool
     {
         return $this->fuzzyEqual($beta, $delta);
+    }
+
+    /**
+     * Return the sexagesimal value of this `Angle`.
+     * 
+     * @example `(string) $alfa`
+     */
+    #[Override]
+    public function __toString(): string
+    {
+        $sign = $this->isClockwise() ? "-" : "";
+        return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";
     }
 }

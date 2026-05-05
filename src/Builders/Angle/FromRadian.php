@@ -13,7 +13,7 @@ class FromRadian extends AngleBuilder
     protected Radian $radian;
 
     /**
-     * Constructs an `AngleBuilder` with a radian value.
+     * Constructs `FromRadian` `AngleBuilder` with a `$radian` value.
      */
     public function __construct(float|Radian $radian)
     {

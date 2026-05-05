@@ -6,8 +6,14 @@ use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanc
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use Override;
 
+/**
+ * The `AngularDistance` random generator for positive values.
+ */
 class PositiveAngularDistance extends AngularDistanceGenerator
 {
+    /**
+     * Generate a random value.
+     */
     #[Override]
     public function generate(int $precision = PHP_FLOAT_DIG): AngularDistance
     {

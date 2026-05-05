@@ -25,7 +25,7 @@ class FromSexadecimal extends AngleBuilder
     private Number $reminder;
 
     /**
-     * Construct an `AngleBuilder`with from a sexadecimal angular distance value.
+     * Construct `FromSexadecimal` `AngleBuilder` with a sexadecimal angular distance value.
      */
     public function __construct(float|SexadecimalAngularDistance $decimal)
     {

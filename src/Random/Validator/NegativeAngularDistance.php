@@ -3,12 +3,19 @@
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Validator\AngularDistance as AngularDistanceValidator;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 
+/**
+ * Validate a `AngularDistanceRange` allowing only negative values.
+ */
 class NegativeAngularDistance extends AngularDistanceValidator
 {
+    /**
+     * Validate the range.
+     */
     #[Override]
     public function validate(float &$min, float &$max): void
     {
@@ -18,12 +25,18 @@ class NegativeAngularDistance extends AngularDistanceValidator
         $this->swap($min, $max);
     }
 
+    /**
+     * Avoid positive values.
+     */
     protected function avoidPositiveValues(float &$min, float &$max): void
     {
         if ($this->isPositive($min)) $this->setMin($min);
         if ($this->isPositive($max)) $this->setMax($max);
     }
 
+    /**
+     * Avoid values ​​that go beyond the permitted limit.
+     */
     protected function avoidExceedingValues(float &$min, float &$max): void
     {
         if ($this->lessThanOrEqual($min, SexadecimalAngularDistance::MIN))
@@ -32,12 +45,18 @@ class NegativeAngularDistance extends AngularDistanceValidator
             $this->setMax($max);
     }
 
+    /**
+     * Set the minimum allowed value.
+     */
     #[Override]
     protected function setMin(float &$value): void
     {
-        $value = NextFloat::after(SexadecimalAngularDistance::MIN);
+        $value = AngularDistanceRange::min();
     }
 
+    /**
+     * Set the maximum allowed value.
+     */
     #[Override]
     protected function setMax(float &$value): void
     {

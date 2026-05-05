@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
@@ -84,7 +85,7 @@ class NegativeAngularDistanceTest extends FloatValidatorTestCase
     #[Override]
     protected function allowedMin(): float
     {
-        return NextFloat::after(SexadecimalAngularDistance::MIN);
+        return AngularDistanceRange::min();
     }
 
     #[Override]

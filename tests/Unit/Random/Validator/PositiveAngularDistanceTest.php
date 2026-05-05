@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
@@ -89,6 +90,6 @@ class PositiveAngularDistanceTest extends FloatValidatorTestCase
     #[Override]
     protected function allowedMax(): float
     {
-        return NextFloat::before(SexadecimalAngularDistance::MAX);
+        return AngularDistanceRange::max();
     }
 }

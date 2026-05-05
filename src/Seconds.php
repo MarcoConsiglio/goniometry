@@ -8,7 +8,7 @@ use MarcoConsiglio\ModularArithmetic\ModularNumber;
 use Stringable;
 
 /**
- * The `Seconds` of an `Angle`.
+ * The sexagesimal `Seconds` type.
  */
 class Seconds extends ModularNumber implements Stringable, Scalar
 {

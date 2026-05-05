@@ -27,11 +27,17 @@ class SexadecimalRange extends FloatRange
     #[Deprecated("use min() method instead")]
     public const float MIN = -Degrees::MAX;
 
+    /**
+     * The maximum number allowed.
+     */
     public static function max(): float
     {
         return NextFloat::before(Degrees::MAX);
     }
 
+    /**
+     * The minimum number allowed.
+     */
     public static function min(): float
     {
         return NextFloat::after(-Degrees::MAX);

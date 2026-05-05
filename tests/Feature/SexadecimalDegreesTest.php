@@ -1,11 +1,10 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
@@ -50,8 +49,8 @@ class SexadecimalDegreesTest extends TestCase
         // Arrange
         $sexadecimal = new SexadecimalDegrees(
             $this->randomSexadecimal(
-                min: NextFloat::after(SexadecimalDegrees::MIN),
-                max: NextFloat::before(SexadecimalDegrees::MAX)
+                min: SexadecimalRange::min(),
+                max: SexadecimalRange::max()
             )
         );
         $expected = $sexadecimal->value->opposite();

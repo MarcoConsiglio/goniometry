@@ -61,6 +61,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
@@ -220,8 +221,8 @@ class AngularDistanceTest extends TestCase
     {
         // Arrange
         $decimal = $this->randomSexadecimal(
-            min: NextFloat::after(SexadecimalAngularDistance::MIN),
-            max: NextFloat::before(SexadecimalAngularDistance::MAX),
+            min: AngularDistanceRange::min(),
+            max: AngularDistanceRange::max(),
             precision: 3
         );
 

@@ -6,9 +6,14 @@ use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexages
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 
+/**
+ *  Builds an `AngularDistance` starting from degrees, minutes, seconds and direction.
+ */
 class FromSexagesimal extends AngleFromSexagesimal
 {
     /**
+     * Fetches the data to build an `AngularDistance`.
+     * 
      * @return array{SexagesimalDegrees,SexadecimalAngularDistance,null}
      */
     #[Override]

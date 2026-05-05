@@ -1,6 +1,6 @@
 # Changelog
 ## Unreleased
-## Added
+### Added
 - `AngularDistance` class implementing the `Angle` interface to represent angular distance between two objects.
 - `SexadecimalAngularDistance` class to represent sexadecimal value of an `AngularDistance` object.
 - `SexadecimalValue` interface to express the common behaviour of `SexadecimalDegrees` and `SexadecimalAngularDistance` classes.
@@ -10,6 +10,8 @@
 &ensp;&ensp;&ensp;&ensp;`negativeRandomAngularDistance()`  
 &ensp;&ensp;&ensp;&ensp;`randomAngularDistance()`  
 `}` method to randomly generate `AngularDistance` objects.
+### Changed
+- API documentation.
 
 ## v4.1.1 2025-04-29
 ### Changed

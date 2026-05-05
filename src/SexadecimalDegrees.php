@@ -8,7 +8,7 @@ use MarcoConsiglio\ModularArithmetic\ModularNumber;
 use Override;
 
 /**
- * The value of an `Angle` expressed as sexadecimal degrees.
+ * The sexadecimal value of an `Angle`.
  */
 class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
 {

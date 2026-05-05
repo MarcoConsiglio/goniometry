@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 
 /**
  * Validate a `SexadecimalRange`.
@@ -52,7 +52,7 @@ class RelativeSexadecimal extends SexadecimalValidator
      */
     protected function setMin(float &$value): void
     {
-        $value = NextFloat::after(-Degrees::MAX);
+        $value = SexadecimalRange::min();
     }
 
     /**
@@ -60,6 +60,6 @@ class RelativeSexadecimal extends SexadecimalValidator
      */
     protected function setMax(float &$value): void
     {
-        $value = NextFloat::before(Degrees::MAX);
+        $value = SexadecimalRange::max();
     }
 }

@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Enums\Direction;
 use Stringable;
 
 /**
- * The `SexagesimalDegrees` composed of `Degrees`, `Minutes`, `Seconds` and `Direction`.
+ * The `SexagesimalDegrees` type composed of `Degrees`, `Minutes`, `Seconds` and `Direction`.
  */
 class SexagesimalDegrees implements Stringable
 {

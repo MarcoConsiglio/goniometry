@@ -3,13 +3,21 @@ namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
 use MarcoConsiglio\Goniometry\AngularDistanceRadian;
 use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromRadian as AngleFromRadian;
 use Override;
 
+/**
+ *  Builds an `AngularDistance` starting from a radian value.
+ */
 class FromRadian extends AngleBuilder
 {
+    /**
+     * The input radian value.
+     */
     protected AngularDistanceRadian $radian;
 
+    /**
+     * Constructs `FromRadian` `AngleBuilder` with a `$radian` value.
+     */
     public function __construct(float|AngularDistanceRadian $radian)
     {
         $this->radian = 
@@ -17,7 +25,7 @@ class FromRadian extends AngleBuilder
             $radian : new AngularDistanceRadian($radian);
     }
 
-   /**
+    /**
      * Calc degrees.
      * 
      * @codeCoverageIgnore

@@ -8,6 +8,9 @@ use MarcoConsiglio\ModularArithmetic\Builders\FromExtremes;
 use MarcoConsiglio\ModularArithmetic\ModularRelativeNumber;
 use Override;
 
+/**
+ * The sexadecimal value of an `AngularDistance`.
+ */
 class SexadecimalAngularDistance extends ModularRelativeNumber implements SexadecimalValue
 {
 

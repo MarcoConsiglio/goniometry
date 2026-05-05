@@ -8,7 +8,7 @@ use MarcoConsiglio\ModularArithmetic\ModularNumber;
 use Stringable;
 
 /**
- * The `Minutes` of an `Angle`.
+ * The sexagesimal `Minutes` type.
  */
 class Minutes extends ModularNumber implements Stringable, Scalar
 {

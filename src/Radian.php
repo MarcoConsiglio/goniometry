@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\Interfaces\Scalar;
 use MarcoConsiglio\ModularArithmetic\ModularNumber;
 
 /**
- * The value of an `Angle` expressed as a `Radian`.
+ * The radian value of an `Angle`.
  */
 class Radian extends ModularNumber implements Scalar
 {

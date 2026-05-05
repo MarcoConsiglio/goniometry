@@ -2,11 +2,18 @@
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 
+/**
+ * The `AngularDistance` random generator for relative values.
+ */
 class RelativeAngularDistance extends AngularDistance
 {
+    /**
+     * Validate the range.
+     */
     #[Override]
     public function validate(float &$min, float &$max): void
     {
@@ -15,12 +22,18 @@ class RelativeAngularDistance extends AngularDistance
         $this->swap($min, $max);
     }
     
+    /**
+     * Avoid values ​​that go beyond the permitted limit.
+     */
     protected function avoidExceedingValues(float &$min, float &$max): void
     {
         $this->avoidTooLowValues($min, $max);
         $this->avoidTooHighValues($min, $max);
     }
 
+    /**
+     * Avoid too high values.
+     */
     protected function avoidTooHighValues(float &$min, float &$max): void
     {
         if ($this->greaterThanOrEqual($min, SexadecimalAngularDistance::MAX))
@@ -29,6 +42,9 @@ class RelativeAngularDistance extends AngularDistance
             $this->setMax($max);
     }
 
+    /**
+     * Avoid too low values.
+     */
     protected function avoidTooLowValues(float &$min, float &$max): void
     {
         if ($this->lessThanOrEqual($min, SexadecimalAngularDistance::MIN))
@@ -37,15 +53,21 @@ class RelativeAngularDistance extends AngularDistance
             $this->setMax($max);
     }
 
+    /**
+     * Set the minimum allowed value.
+     */
     #[Override]
     protected function setMin(float &$value): void
     {
-        $value = NextFloat::after(SexadecimalAngularDistance::MIN);
+        $value = AngularDistanceRange::min();
     }
 
+    /**
+     * Set the maximum allowed value.
+     */
     #[Override]
     protected function setMax(float &$value): void
     {
-        $value = NextFloat::before(SexadecimalAngularDistance::MAX);
+        $value = AngularDistanceRange::max();
     }
 }

@@ -8,7 +8,7 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 
 /**
- * Represents an `Angle` builder.
+ * Represents an `Interfaces\Angle` builder.
  */
 abstract class AngleBuilder implements AngleBuilderInterface
 {

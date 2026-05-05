@@ -24,6 +24,7 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -81,7 +82,7 @@ class EqualAngleTest extends TestCase
         [$min, $max] = $this->getDeltaExtremes($beta, $delta);
         if ($min->gt($max))
             $alfa = self::$faker->randomElement([
-                $this->positiveRandomAngle(min: $min->toFloat(), max: NextFloat::before(Degrees::MAX)),
+                $this->positiveRandomAngle(min: $min->toFloat(), max: SexadecimalRange::max()),
                 $this->positiveRandomAngle(max: $max->toFloat())
             ]);
         else
@@ -109,7 +110,7 @@ class EqualAngleTest extends TestCase
                 $this->positiveRandomAngle(max: NextFloat::before($min->toFloat())),
                 $this->positiveRandomAngle(
                     min: NextFloat::after($max->toFloat()),
-                    max: NextFloat::before(Degrees::MAX)
+                    max: SexadecimalRange::max()
                 )
             ]);
     }

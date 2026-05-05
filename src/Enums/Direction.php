@@ -1,11 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Enums;
 
-use Override;
-use Stringable;
-
 /**
- * The direction of an `Angle`.
+ * The direction of an angle.
  */
 enum Direction: int
 {

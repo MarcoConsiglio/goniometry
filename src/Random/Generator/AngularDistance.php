@@ -7,8 +7,14 @@ use MarcoConsiglio\Goniometry\AngularDistance as AngularDistanceObject;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Validator\AngularDistance as AngularDistanceValidator;
 
+/**
+ * An `AngulaDistance` random generator.
+ */
 abstract class AngularDistance extends Generator
 {
+    /**
+     * Construct the `AngulaDistance` generator.
+     */
     public function __construct(
         FakerGenerator $generator, 
         AngularDistanceValidator $validator,
