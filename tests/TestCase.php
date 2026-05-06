@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests;
 
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
@@ -22,8 +23,6 @@ class TestCase extends PHPUnitTestCase
 
     /**
      * This method is called before each test.
-     *
-     * @return void
      */
     protected function setUp(): void
     {
@@ -58,6 +57,9 @@ class TestCase extends PHPUnitTestCase
         );
     }
 
+    /**
+     * Assert `$expected` `Degrees` are equal to `$actual` `Degrees`.
+     */
     protected function assertDegrees(
         Degrees $expected, 
         Degrees $actual, 
@@ -65,7 +67,10 @@ class TestCase extends PHPUnitTestCase
     ): void {
         $this->assertEquals($expected->value(), $actual->value(), $message);
     }
-
+    
+    /**
+     * Assert `$expected` `Minutes` are equal to `$actual` `Minutes`.
+     */    
     protected function assertMinutes(
         Minutes $expected, 
         Minutes $actual, 
@@ -74,20 +79,46 @@ class TestCase extends PHPUnitTestCase
         $this->assertEquals($expected->value(), $actual->value(), $message);
     }
 
+    /**
+     * Assert `$expected` `Seconds` are equal to `$actual` `Seconds`.
+     */        
     protected function assertSeconds(
         Seconds $expected, 
         Seconds $actual, 
         int|null $precision = null, 
         string $message = ""
     ): void {
-        $this->assertEquals($expected->value($precision), $actual->value($precision), $message);
+        $this->assertEquals(
+            $expected->value($precision), 
+            $actual->value($precision), 
+            $message
+        );
     }
 
+    /**
+     * Assert `$expected` `Direction` are equal to `$actual` `Direction`.
+     */    
     protected function assertDirection(
         Direction $expected, 
         Direction $actual, 
         string $message = ""
     ): void {
         $this->assertEquals($expected, $actual, $message);
+    }
+
+    /**
+     * Assert `$expected` `SexadecimalValue` are equal to `$actual` `SexadecimalValue`.
+     */    
+    protected function assertSexadecimalDegrees(
+        SexadecimalValue $expected,
+        SexadecimalValue $actual,
+        int $precision = PHP_FLOAT_DIG,
+        string $message = ''
+    ): void {
+        $this->assertEquals(
+            $expected->value($precision),
+            $actual->value($precision),
+            $message
+        );
     }
 }

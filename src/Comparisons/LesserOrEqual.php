@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
  * The `LesserOrEqual` comparison between angles.
+ * 
+ * @internal
  */
 class LesserOrEqual extends Comparison
 {

@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Minutes;
 
 /**
  * The `Minutes` random range.
+ * 
+ * @internal
  */
 class MinutesRange extends IntRange
 {

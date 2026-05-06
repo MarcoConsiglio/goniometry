@@ -27,7 +27,7 @@ class RadianRangeTest extends TestCase
     {
         // Act & Assert
         $this->assertSame(
-            NextFloat::after(-Radian::MAX),
+            NextFloat::after(Radian::MIN),
             RadianRange::min()
         );
     }

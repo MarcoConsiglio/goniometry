@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualFloat;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -56,15 +56,16 @@ class GreaterOrEqualFloatTest extends TestCase
 {
     protected string $comparison = '≥';
 
-    #[TestDox("can compare an Angle and a sexadecimal angle measure.")]
+    #[TestDox("can compare an Angle and a sexadecimal float type angle measure.")]
     public function test_compare(): void
     {
         /**
          * Greater
          */
         // Arrange
-        $alfa = $this->positiveRandomAngle(min: 180);
-        $beta = $this->randomAngle(NextFloat::after(-180), NextFloat::before(180))->toFloat();
+        $precision = 5;
+        $alfa = $this->positiveRandomAngle(min: 180, precision: $precision);
+        $beta = $this->randomAngle(NextFloat::after(-180), NextFloat::before(180))->toFloat($precision);
 
         // Assert
         $this->assertTrue(new GreaterOrEqualFloat($alfa, $beta)->compare(),
@@ -75,8 +76,8 @@ class GreaterOrEqualFloatTest extends TestCase
          * Equal
          */
         // Arrange
-        $alfa = $this->randomAngle();
-        $beta = $alfa->toFloat();
+        $alfa = $this->randomAngle(precision: $precision);
+        $beta = $alfa->toFloat($precision);
 
         // Act & Assert
         $this->assertTrue(new GreaterOrEqualFloat($alfa, $beta)->compare(),
@@ -87,8 +88,8 @@ class GreaterOrEqualFloatTest extends TestCase
          * Lesser
          */
         // Arrange
-        $alfa = $this->randomAngle(NextFloat::after(-180), NextFloat::before(180));
-        $beta = $this->positiveRandomAngle(min: 180)->toFloat();
+        $alfa = $this->randomAngle(NextFloat::after(-180), NextFloat::before(180), $precision);
+        $beta = $this->positiveRandomAngle(min: 180)->toFloat($precision);
 
         // Act & Assert
         $this->assertFalse(new GreaterOrEqualFloat($alfa, $beta)->compare(),

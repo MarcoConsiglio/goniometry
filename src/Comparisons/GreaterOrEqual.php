@@ -4,6 +4,8 @@ namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
  * The `GreaterOrEqual` comparison between angles.
+ * 
+ * @internal
  */
 class GreaterOrEqual extends Comparison
 {

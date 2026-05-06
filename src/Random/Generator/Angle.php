@@ -9,6 +9,8 @@ use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidat
 
 /**
  * An `Angle` random generator.
+ * 
+ * @internal
  */
 abstract class Angle extends Generator
 {

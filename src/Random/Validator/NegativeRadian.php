@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Random\RadianRange;
 
 /**
  * Validate a `RadianRange` allowing only negative values.
+ * 
+ * @internal
  */
 class NegativeRadian extends FloatValidator
 {

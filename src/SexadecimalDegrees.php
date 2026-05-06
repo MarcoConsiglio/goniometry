@@ -3,13 +3,14 @@ namespace MarcoConsiglio\Goniometry;
 
 use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
-use Marcoconsiglio\ModularArithmetic\ModularNumber;
-use Stringable;
+use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
+use MarcoConsiglio\ModularArithmetic\ModularNumber;
+use Override;
 
 /**
- * The value of an `Angle` expressed as sexadecimal degrees.
+ * The sexadecimal value of an `Angle`.
  */
-class SexadecimalDegrees extends ModularNumber implements Stringable
+class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
 {
     /**
      * The symbol for the unit of measurement of sexadecimal degrees.
@@ -17,11 +18,21 @@ class SexadecimalDegrees extends ModularNumber implements Stringable
     public const string MEASURE = '°';
 
     /**
+     * The maximum allowed sexadecimal value.
+     */
+    public const float MAX = Degrees::MAX;
+
+    /**
+     * The minimum allowed sexadecimal value.
+     */
+    public const float MIN = -self::MAX;
+
+    /**
      * Construct a `SexadecimalDegrees` number.
      */
     public function __construct(int|float|string|BCMathNumber|Number $value)
     {
-        $value = $this->normalizeArgument($value);
+        $value = Number::normalize($value);
         if ($value->isPositive())
             parent::__construct($value, Degrees::MAX);
         else
@@ -29,7 +40,7 @@ class SexadecimalDegrees extends ModularNumber implements Stringable
     }
 
     /**
-     * Return the sexadecimal value.
+     * Return the sexadecimal `float` value.
      */
     public function value(int|null $precision = null): float
     {
@@ -39,9 +50,20 @@ class SexadecimalDegrees extends ModularNumber implements Stringable
     /**
      * Cast this instance to `string` type.
      */
-    #[\Override]
+    #[Override]
     public function __toString(): string
     {
         return "{$this->value}" . self::MEASURE;
+    }
+
+    /**
+     * Return this `SexadecimalDegrees` with opposite direction.
+     */
+    #[Override]
+    public function toggleDirection(): SexadecimalDegrees
+    {
+        return new SexadecimalDegrees(
+            $this->value->opposite()
+        );
     }
 }

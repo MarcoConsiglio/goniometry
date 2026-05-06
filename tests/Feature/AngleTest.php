@@ -2,13 +2,13 @@
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
-use MarcoConsiglio\Goniometry\Builders\FromRadian;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\FromString;
-use MarcoConsiglio\Goniometry\Builders\RelativeSum;
-use MarcoConsiglio\Goniometry\Builders\SumBuilder;
+use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromRadian;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
+use MarcoConsiglio\Goniometry\Builders\Angle\RelativeSum;
+use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundToRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
@@ -64,13 +64,12 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGen
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
@@ -152,7 +151,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveAngleGenerator::class)]
-#[UsesClass(PositiveRadian::class)]
+#[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(Radian::class)]
@@ -163,8 +162,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
-#[UsesClass(RelativeSexagesimalGenerator::class)]
-#[UsesClass(RelativeSexagesimalGenerator::class)]
 #[UsesClass(RelativeSum::class)]
 #[UsesClass(RoundToRadian::class)]
 #[UsesClass(RoundToSexadecimal::class)]
@@ -230,7 +227,7 @@ class AngleTest extends TestCase
         $this->assertEquals($direction, $angle->direction);
     }
 
-    #[TestDox("can be created from separated values for degrees, minutes, seconds and direction.")]
+    #[TestDox("can be created from sexagesimal values.")]
     public function test_create_from_values(): void
     {
         // Arrange
@@ -270,10 +267,11 @@ class AngleTest extends TestCase
         $angle = Angle::createFromString($text);
 
         // Act
-        $this->assertDegrees($degrees, $angle->degrees, $text);
-        $this->assertMinutes($minutes, $angle->minutes, $text);
-        $this->assertSeconds($seconds, $angle->seconds, 1, $text);
-        $this->assertDirection($direction, $angle->direction, $text);
+        $fail_message = "Input:{$text}\nOuput:{$degrees}°{$minutes}'{$seconds}\"";
+        $this->assertDegrees($degrees, $angle->degrees, $fail_message);
+        $this->assertMinutes($minutes, $angle->minutes, $fail_message);
+        $this->assertSeconds($seconds, $angle->seconds, 1, $fail_message);
+        $this->assertDirection($direction, $angle->direction, $fail_message);
     }
 
     #[TestDox("can be created from a decimal number.")]
@@ -321,33 +319,41 @@ class AngleTest extends TestCase
     public function test_get_angle_values_in_array(): void
     {
         // Arrange
-        /** @var \MarcoConsiglio\Goniometry\Angle&\PHPUnit\Framework\MockObject\MockObject $alfa */
         $alfa = Angle::createFromValues(
             $degrees = $this->randomDegrees()->value(), 
             $minutes = $this->randomMinutes()->value(), 
-            $seconds = $this->randomSeconds(precision: 1)->value(),
+            $seconds = $this->randomSeconds()->value(1),
             $direction = $this->randomDirection()
         );
-        /** @var Direction $direction */
         $degrees *= $direction->value;
 
         // Act
-        $simple_result = $alfa->getDegrees();
-        $associative_result = $alfa->getDegrees(associative: true);
+        $simple_result = $alfa->getDegrees(precision: 1);
+        $associative_result = $alfa->getDegrees(associative: true, precision: 1);
 
         // Assert
         $this->assertEquals($degrees,   $simple_result[0]);
         $this->assertEquals($minutes,   $simple_result[1]);
-        $this->assertEquals(
-            $this->safeRound($seconds),   
-            $this->safeRound($simple_result[2])
-        );
+        $this->assertEquals($seconds,   $simple_result[2]);
         $this->assertEquals($degrees,   $associative_result["degrees"]);
         $this->assertEquals($minutes,   $associative_result["minutes"]);
-        $this->assertEquals(
-            $this->safeRound($seconds),   
-            $this->safeRound($associative_result["seconds"])
-        );
+        $this->assertEquals($seconds,   $associative_result["seconds"]);
+    }
+
+    #[TestDox("can be casted to SexagesimalDegrees.")]
+    public function test_cast_angle_to_sexagesimal(): void
+    {
+        // Arrange
+        $angle = $this->randomAngle(precision: 3);
+
+        // Act 
+        $sexagesimal = $angle->toSexagesimalDegrees();
+
+        // Assert
+        $this->assertDegrees($angle->degrees, $sexagesimal->degrees);
+        $this->assertMinutes($angle->minutes, $sexagesimal->minutes);
+        $this->assertSeconds($angle->seconds, $sexagesimal->seconds);
+        $this->assertDirection($angle->direction, $sexagesimal->direction);
     }
 
     #[TestDox("can be casted to string.")]
@@ -417,9 +423,31 @@ class AngleTest extends TestCase
     #[TestDox("can toggle its direction.")]
     public function test_can_toggle_rotation_direction(): void
     {
+        /**
+         * With SexadecimalDegrees
+         */
         // Arrange
+        $failure_message_1 = "The angle should be counterclockwise but found the opposite.";
+        $failure_message_2 = "The angle should be clockwise but found the opposite.";
         $alfa = $this->positiveRandomAngle();
         $beta = $this->negativeRandomAngle();
+
+        // Act & Assert
+        $this->assertDirection(
+            $alfa->direction->opposite(), 
+            $alfa->toggleDirection()->direction, 
+            $failure_message_2
+        );
+        $this->assertDirection(
+            $beta->direction->opposite(), 
+            $beta->toggleDirection()->direction, 
+            $failure_message_1
+        );
+
+        /**
+         * Without SexadecimalDegrees
+         */
+        // Arrange
         $gamma = Angle::createFromValues(
             $this->randomDegrees()->value(), 
             direction: Direction::COUNTER_CLOCKWISE
@@ -428,32 +456,18 @@ class AngleTest extends TestCase
             $this->randomDegrees()->value(), 
             direction: Direction::CLOCKWISE
         );
+        $gamma_clone = clone $gamma;
+        $delta_clone = clone $delta;
 
-        // Act
-        //  With SexadecimalDegrees
-        $alfa_opposite = $alfa->toggleDirection();      // From positive to negative
-        $beta_opposite = $beta->toggleDirection();      // From negative to positive
-        //  Without SexadecimalDegrees
-        $gamma_opposite = $gamma->toggleDirection();    // From positive to negative 
-        $delta_opposite = $delta->toggleDirection();    // From negative to positive
-
-        // Assert
-        $failure_message_1 = "The angle should be counterclockwise but found the opposite.";
-        $failure_message_2 = "The angle should be clockwise but found the opposite.";
-        //  With SexadecimalDegrees
-        $this->assertDirection(Direction::CLOCKWISE, $alfa_opposite->direction, $failure_message_2);
-        $this->assertEquals(
-            $alfa->toSexadecimalDegrees()->value->mul(-1)->toFloat(), 
-            $alfa_opposite->toSexadecimalDegrees()->value()
+        // Act & Assert
+        $this->assertSexadecimalDegrees(
+            $gamma_clone->toSexadecimalDegrees()->toggleDirection(),
+            $gamma->toggleDirection()->toSexadecimalDegrees()
         );
-        $this->assertDirection(Direction::COUNTER_CLOCKWISE, $beta_opposite->direction, $failure_message_1);
-        $this->assertEquals(
-            $beta->toSexadecimalDegrees()->value->mul(-1)->toFloat(),
-            $beta_opposite->toSexadecimalDegrees()->value()
+        $this->assertSexadecimalDegrees(
+            $delta_clone->toSexadecimalDegrees()->toggleDirection(),
+            $delta->toggleDirection()->toSexadecimalDegrees()
         );
-        // Without SexadecimalDegrees
-        $this->assertDirection(Direction::CLOCKWISE, $gamma_opposite->direction, $failure_message_2);
-        $this->assertDirection(Direction::COUNTER_CLOCKWISE, $delta_opposite->direction, $failure_message_1);
     }
 
     #[TestDox("can be equal compared against an int, float, string or Angle.")]

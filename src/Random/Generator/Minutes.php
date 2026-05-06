@@ -9,6 +9,8 @@ use MarcoConsiglio\Goniometry\Random\MinutesRange;
 
 /**
  * The `Minutes` random generator.
+ * 
+ * @internal
  */
 class Minutes extends Generator
 {

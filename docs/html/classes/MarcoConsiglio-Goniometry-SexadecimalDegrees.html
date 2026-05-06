@@ -107,7 +107,7 @@
     SexadecimalDegrees
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Marcoconsiglio\ModularArithmetic\ModularNumber">ModularNumber</abbr>
+        extends <abbr title="\MarcoConsiglio\ModularArithmetic\ModularNumber">ModularNumber</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -120,7 +120,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <abbr title="\Stringable">Stringable</abbr>                    </span>
+                            <a href="classes/MarcoConsiglio-Goniometry-Interfaces-SexadecimalValue.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue">SexadecimalValue</abbr></a>                    </span>
     
     </h2>
 
@@ -132,11 +132,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SexadecimalDegrees.php"><a href="files/src-sexadecimaldegrees.html"><abbr title="src/SexadecimalDegrees.php">SexadecimalDegrees.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">The value of an `Angle` expressed as sexadecimal degrees.</p>
+            <p class="phpdocumentor-summary">The sexadecimal value of an `Angle`.</p>
 
 
 
@@ -158,7 +158,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Stringable">Stringable</abbr></dt>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-SexadecimalValue.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue">SexadecimalValue</abbr></a></dt><dd>The behavior of a sexadecimal scalar value.</dd>    </dl>
 
 
 
@@ -170,11 +170,25 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#constant_MAX">MAX</a>
+    <span>
+        &nbsp;= \MarcoConsiglio\Goniometry\Degrees::MAX                            </span>
+</dt>
+<dd>The maximum allowed sexadecimal value.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#constant_MEASURE">MEASURE</a>
     <span>
         &nbsp;= &#039;°&#039;                            </span>
 </dt>
 <dd>The symbol for the unit of measurement of sexadecimal degrees.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#constant_MIN">MIN</a>
+    <span>
+        &nbsp;= -self::MAX                            </span>
+</dt>
+<dd>The minimum allowed sexadecimal value.</dd>
 
     </dl>
 
@@ -201,11 +215,18 @@
 <dd>Cast this instance to `string` type.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method_toggleDirection">toggleDirection()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalDegrees">SexadecimalDegrees</abbr></a>    </span>
+</dt>
+<dd>Return this `SexadecimalDegrees` with opposite direction.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method_value">value()</a>
     <span>
                                 &nbsp;: float    </span>
 </dt>
-<dd>Return the sexadecimal value.</dd>
+<dd>Return the sexadecimal `float` value.</dd>
 
     </dl>
 
@@ -219,6 +240,37 @@
 
         </h3>
                     <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_MAX">
+        MAX
+        <a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#constant_MAX" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/SexadecimalDegrees.php"><a href="files/src-sexadecimaldegrees.html"><abbr title="src/SexadecimalDegrees.php">SexadecimalDegrees.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The maximum allowed sexadecimal value.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">MAX</span>
+    = <span class="phpdocumentor-signature__default-value">\MarcoConsiglio\Goniometry\Degrees::MAX</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
     <h4 class="phpdocumentor-element__name" id="constant_MEASURE">
         MEASURE
         <a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#constant_MEASURE" class="headerlink"><i class="fas fa-link"></i></a>
@@ -228,7 +280,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SexadecimalDegrees.php"><a href="files/src-sexadecimaldegrees.html"><abbr title="src/SexadecimalDegrees.php">SexadecimalDegrees.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -240,6 +292,37 @@
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">MEASURE</span>
     = <span class="phpdocumentor-signature__default-value">&#039;°&#039;</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_MIN">
+        MIN
+        <a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#constant_MIN" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/SexadecimalDegrees.php"><a href="files/src-sexadecimaldegrees.html"><abbr title="src/SexadecimalDegrees.php">SexadecimalDegrees.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">28</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The minimum allowed sexadecimal value.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">MIN</span>
+    = <span class="phpdocumentor-signature__default-value">-self::MAX</span>
 </code>
 
 
@@ -273,7 +356,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SexadecimalDegrees.php"><a href="files/src-sexadecimaldegrees.html"><abbr title="src/SexadecimalDegrees.php">SexadecimalDegrees.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
@@ -318,7 +401,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SexadecimalDegrees.php"><a href="files/src-sexadecimaldegrees.html"><abbr title="src/SexadecimalDegrees.php">SexadecimalDegrees.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -336,10 +419,71 @@
     
 
         
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method___toString#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Override">Override</abbr>]
+    </dt>
+    </dl>
+                    </section>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toggleDirection">
+        toggleDirection()
+        <a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method_toggleDirection" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/SexadecimalDegrees.php"><a href="files/src-sexadecimaldegrees.html"><abbr title="src/SexadecimalDegrees.php">SexadecimalDegrees.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">62</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Return this `SexadecimalDegrees` with opposite direction.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toggleDirection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalDegrees">SexadecimalDegrees</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method_toggleDirection#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Override">Override</abbr>]
+    </dt>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalDegrees">SexadecimalDegrees</abbr></a></span>
             </section>
 
 </article>
@@ -357,11 +501,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SexadecimalDegrees.php"><a href="files/src-sexadecimaldegrees.html"><abbr title="src/SexadecimalDegrees.php">SexadecimalDegrees.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Return the sexadecimal value.</p>
+        <p class="phpdocumentor-summary">Return the sexadecimal `float` value.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -378,7 +522,10 @@
                 : <span class="phpdocumentor-argument-list__argument__type">int|null</span>
                  = <span class="phpdocumentor-argument-list__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Round the number to <code class="prettyprint">$precision</code> decimal
+places.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -506,7 +653,9 @@
                             <li class="phpdocumentor-on-this-page-section__title">Constants</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#constant_MAX">MAX</a></li>
                                                     <li class=""><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#constant_MEASURE">MEASURE</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#constant_MIN">MIN</a></li>
                                             </ul>
                 </li>
             
@@ -516,6 +665,7 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method___toString">__toString()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method_toggleDirection">toggleDirection()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method_value">value()</a></li>
                                     </ul>
             </li>

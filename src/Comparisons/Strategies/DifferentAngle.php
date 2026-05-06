@@ -1,20 +1,22 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The strategy that compares two `Angle` instances to check if they are different.
+ * 
+ * @internal
  */
 class DifferentAngle extends ComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
      * 
-     * @param Angle $beta The left comparison operand.
-     * @param Angle $beta The right operand of the comparison.
+     * @param AngleInterface $beta The left comparison operand.
+     * @param AngleInterface $beta The right operand of the comparison.
      */
-    public function __construct(Angle $alfa, protected Angle $beta)
+    public function __construct(AngleInterface $alfa, protected AngleInterface $beta)
     {
         parent::__construct($alfa);
     }

@@ -1,12 +1,12 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Casting;
 
-use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 /**
- * Represents the sexagesimal starting point value to 
- * cast an `Angle` to other types.
+ * A caster object that cast from `Angle` interface type to other types.
+ * 
+ * @internal
  */
 abstract class Sexagesimal
 {
@@ -14,7 +14,7 @@ abstract class Sexagesimal
      * Construct the `Cast` object.
      */
     public function __construct(
-        protected Angle $angle,
+        protected AngleInterface $angle,
         protected int|null $precision = null
     ) {
         if ($this->hasPrecisionBeenSet()) {
@@ -42,7 +42,7 @@ abstract class Sexagesimal
     /**
      * Calc the sexadecimal value.
      */
-    protected function toSexadecimal(): SexadecimalDegrees
+    protected function toSexadecimal(): SexadecimalValue
     {
         return $this->angle->toSexadecimalDegrees();
     }

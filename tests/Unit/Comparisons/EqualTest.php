@@ -2,9 +2,9 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\FromString;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
@@ -76,7 +76,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalValidator::class)]
-#[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(StringType::class)]
 #[UsesTrait(WithAngleFaker::class)]

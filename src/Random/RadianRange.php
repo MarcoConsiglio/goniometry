@@ -8,6 +8,8 @@ use MarcoConsiglio\Goniometry\Radian;
 
 /**
  * The `Radian` random range.
+ * 
+ * @internal
  */
 class RadianRange extends FloatRange
 {
@@ -27,13 +29,19 @@ class RadianRange extends FloatRange
     #[Deprecated("use min() method instead")]
     public const float MIN = -Radian::MAX;
 
+    /**
+     * The maximum number allowed.
+     */
     public static function max(): float
     {
         return NextFloat::before(Radian::MAX);
     }
 
+    /**
+     * The minimum number allowed.
+     */
     public static function min(): float
     {
-        return NextFloat::after(-Radian::MAX);
+        return NextFloat::after(Radian::MIN);
     }
 }

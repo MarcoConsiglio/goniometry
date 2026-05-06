@@ -1,19 +1,21 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Types;
 
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The beta angle `InputType` in a comparison between alfa and beta angles.
+ * 
+ * @internal
  */
 abstract class InputType
 {
     /**
      * Get the correct strategy for the current `$comparison` operation.
      * 
-     * @param Angle $alfa The left operand of the `$comparison`.
+     * @param AngleInterface $alfa The left operand of the `$comparison`.
      */
-    abstract public function getStrategyFor(Comparison $comparison, Angle $alfa): Strategy;
+    abstract public function getStrategyFor(Comparison $comparison, AngleInterface $alfa): Strategy;
 }

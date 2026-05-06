@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -83,7 +84,7 @@ class NegativeSexadecimalTest extends FloatValidatorTestCase
 
     protected function allowedMin(): float
     {
-        return NextFloat::after(-Degrees::MAX);
+        return SexadecimalRange::min();
     }
 
     protected function allowedMax(): float

@@ -2,21 +2,24 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The strategy that compares an `Angle` instance against a sexagesimal string 
  * measure of an angle to check if the first is lesser than the last.
+ * 
+ * @internal
  */
 class LesserString extends ComparisonStrategy
 {    
     /**
      * Construct the comparison strategy.
      * 
-     * @param Angle $alfa The left comparison operand.
+     * @param AngleInterface $alfa The left comparison operand.
      * @param string $beta The right comparison operand expressed as a 
      * sexagesimal string angle measure.
      */
-    public function __construct(Angle $alfa, protected string $beta)
+    public function __construct(AngleInterface $alfa, protected string $beta)
     {
         parent::__construct($alfa);
     }

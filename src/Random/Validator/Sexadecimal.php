@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 /**
  * A `SexadecimalRange` validator.
+ * 
+ * @internal
  */
 abstract class Sexadecimal extends FloatValidator
 {

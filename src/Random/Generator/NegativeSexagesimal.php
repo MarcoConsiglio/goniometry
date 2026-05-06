@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  * The `Sexagesimal` random generator for negative sexagesimal values.
+ * 
+ * @internal
  */
 class NegativeSexagesimal extends SexagesimalGenerator
 {

@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Traits;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use ValueError;
 
 /**
@@ -16,9 +17,6 @@ trait WithFailureMessage
 
     /**
      * Return a property type failure message.
-     *
-     * @param string $property
-     * @return string
      */
     protected function typeFail(string $property): string
     {
@@ -37,9 +35,6 @@ trait WithFailureMessage
 
     /**
      * Return a getter failure message.
-     *
-     * @param string $property
-     * @return string
      */
     protected function getterFail(string $property): string
     {
@@ -48,9 +43,6 @@ trait WithFailureMessage
 
     /**
      * Return a function failure message.
-     *
-     * @param string $name
-     * @return string
      */
     protected function methodFail(string $name): string
     {
@@ -59,24 +51,15 @@ trait WithFailureMessage
 
     /**
      * Return an instance type failure message.
-     *
-     * @param [type] $expected_class
-     * @param [type] $actual_class
-     * @return string
      */
-    protected static function instanceTypeFail($expected_class, $actual_class): string
+    protected static function instanceTypeFail(string $expected_class, string $actual_class): string
     {
         return "Expected $expected_class class but found $actual_class class instead.";
     }
 
     /**
-     * Return a failure message when calling $called_class::$method doesn't return
-     * the expected $return_type.
-     *
-     * @param string $called_class
-     * @param string $method
-     * @param string $return_type
-     * @return string
+     * Return a failure message when calling `$called_class::$method` doesn't return
+     * the expected `$return_type`.
      */
     protected static function methodMustReturn(string $called_class, string $method, string $return_type): string
     {
@@ -84,10 +67,9 @@ trait WithFailureMessage
     }
 
     /**
-     * It produces a casting error message.
+     * Produce a casting error message.
      *
      * @param string $type Type to cast to.
-     * @return string
      */
     protected function getCastError(string $type): string
     {
@@ -95,10 +77,7 @@ trait WithFailureMessage
     }
 
     /**
-     * It produces a property error message.
-     *
-     * @param string $property_name
-     * @return string
+     * Produce a property error message.
      */
     protected function getPropertyError(string $property_name): string
     {
@@ -135,9 +114,22 @@ trait WithFailureMessage
         return "{$alfa->toSexadecimalDegrees()} $comparison {$beta->toSexadecimalDegrees()} with delta {$delta->toSexadecimalDegrees()}.";
     }
 
+    /**
+     * Check if `$comparison` is allowed.
+     */
     protected function checkComparison(string $comparison): void
     {
         if (! in_array($comparison, $this->allowed_comparisons))
             throw new ValueError("\"$comparison\" is not an allowed comparison.");
+    }
+
+    /**
+     * Return a sexagesimal fail error.
+     */
+    protected function sexagesimalFail(
+        SexagesimalDegrees $expected, 
+        SexagesimalDegrees $actual
+    ): string {
+        return "{$expected} ≠ {$actual}"; 
     }
 }

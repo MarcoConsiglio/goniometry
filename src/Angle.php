@@ -1,13 +1,12 @@
 <?php declare(strict_types=1);
 namespace MarcoConsiglio\Goniometry;
 
-use MarcoConsiglio\Goniometry\Builders\AbsoluteSum;
-use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\FromRadian;
-use MarcoConsiglio\Goniometry\Builders\FromString;
-use MarcoConsiglio\Goniometry\Builders\RelativeSum;
+use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromRadian;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
+use MarcoConsiglio\Goniometry\Builders\Angle\RelativeSum;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundFromRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
@@ -21,12 +20,13 @@ use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
 use Stringable;
 
 /**
- * Represent an `Angle`.
+ * The `Angle` type.
  */
 class Angle implements AngleInterface, Stringable
 {
@@ -85,7 +85,7 @@ class Angle implements AngleInterface, Stringable
     protected SexadecimalDegrees|null $sexadecimal = null;
 
     /** 
-     * The radian degrees of this `Angle`.
+     * The radian value of this `Angle`.
      */
     protected Radian|null $radian = null;
 
@@ -103,17 +103,21 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Creates an `Angle` from its values.
+     * Creates an `Angle` from its sexagesimal values.
      */
-    public static function createFromValues(int $degrees = 0, int $minutes = 0, float $seconds = 0.0, Direction $direction = Direction::COUNTER_CLOCKWISE): Angle
-    {
+    public static function createFromValues(
+        int $degrees = 0, 
+        int $minutes = 0, 
+        float $seconds = 0.0, 
+        Direction $direction = Direction::COUNTER_CLOCKWISE
+    ): Angle {
         return new Angle(new FromSexagesimal($degrees, $minutes, $seconds, $direction));
     }
 
     /**
-     * Creates an `Angle` from its textual representation.
+     * Creates an `Angle` from its textual sexagesimal representation.
      * 
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public static function createFromString(string $sexagesimal): Angle
     {
@@ -121,7 +125,7 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Creates an `Angle` from its decimal representation.
+     * Creates an `Angle` from its sexadecimal representation.
      */
     public static function createFromDecimal(float|SexadecimalDegrees $sexadecimal): Angle
     {
@@ -141,7 +145,7 @@ class Angle implements AngleInterface, Stringable
      * 
      * The result can be positive or negative.
      */
-    public static function sum(AngleInterface $alfa, AngleInterface $beta): Angle
+    public static function sum(Angle $alfa, Angle $beta): Angle
     {
         return new Angle(new RelativeSum($alfa, $beta));
     }
@@ -151,7 +155,7 @@ class Angle implements AngleInterface, Stringable
      * 
      * The result can be only positive.
      */
-    public static function absSum(AngleInterface $alfa, AngleInterface $beta): Angle
+    public static function absSum(AngleInterface $alfa, AngleInterface $beta): AngleInterface
     {
         return new Angle(new AbsoluteSum($alfa, $beta));
     }
@@ -171,7 +175,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Alias for `absolute()` method.
      */
-    public function asb(): Angle
+    public function asb(): AngleInterface
     {
         return $this->absolute();
     }
@@ -182,13 +186,14 @@ class Angle implements AngleInterface, Stringable
      * The direction of the `Angle` is the sign of `"degrees"` value.
      *
      * @param bool $associative Set to true it returns an associative array.
+     * @param int $precision The precision used for seconds.
      * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
      */
-    public function getDegrees(bool $associative = false): array
+    public function getDegrees(bool $associative = false, int $precision = PHP_FLOAT_DIG): array
     {
         $degrees = $this->degrees->value() * $this->direction->value;
         $minutes = $this->minutes->value();
-        $seconds = $this->seconds->value();
+        $seconds = $this->seconds->value($precision);
         if ($associative)
             return [
                 "degrees" => $degrees,
@@ -231,8 +236,7 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Return the sexadecimal value of this `Angle` with arbitrary 
-     * precision.
+     * Cast this `Angle` to `SexadecimalDegrees`.
      */
     public function toSexadecimalDegrees(): SexadecimalDegrees
     {
@@ -256,10 +260,9 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Return the sexadecimal value of this `Angle`.
+     * Return the sexadecimal `float` value of this `Angle`.
      *
-     * @param integer|null $precision The number of decimal digits. If sets to null,
-     * it resolve the original precision at the time this Angle was built.
+     * @param integer|null $precision The number of decimal digits.
      */
     public function toFloat(int|null $precision = null): float
     {
@@ -269,10 +272,9 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Return the radian representation of this angle.
+     * Return the radian representation of this `Angle`.
      *
-     * @param integer|null $precision The number of decimal digits. If null, 
-     * return the value with the maximum available precision.
+     * @param integer|null $precision The number of decimal digits.
      */
     public function toRadian(int|null $precision = null): float
     {
@@ -286,7 +288,7 @@ class Angle implements AngleInterface, Stringable
      * 
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isGreaterThan(
         string|int|float|AngleInterface $angle, 
@@ -302,7 +304,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function gt(
         string|int|float|AngleInterface $angle, 
@@ -316,7 +318,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isGreaterThanOrEqualTo(
         string|int|float|AngleInterface $angle, 
@@ -333,7 +335,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function gte(
         string|int|float|AngleInterface $angle, 
@@ -347,7 +349,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isLessThan(
         string|int|float|AngleInterface $angle, 
@@ -363,7 +365,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function lt(
         string|int|float|AngleInterface $angle, 
@@ -377,7 +379,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isLessThanOrEqualTo(
         string|int|float|AngleInterface $angle, 
@@ -388,13 +390,12 @@ class Angle implements AngleInterface, Stringable
         return $comparison->compare();
     }
 
-    
     /**
      * Alias of `isLessThanOrEqual()` method.
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function lte(
         string|int|float|AngleInterface $angle, 
@@ -408,7 +409,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isEqualTo(
         string|int|float|AngleInterface $angle, 
@@ -424,7 +425,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function eq(
         string|int|float|AngleInterface $angle, 
@@ -438,7 +439,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isDifferentThan(
         string|int|float|AngleInterface $angle, 
@@ -454,7 +455,7 @@ class Angle implements AngleInterface, Stringable
      *
      * @param int $precision The precision used when `$angle` is a `float` type
      * variable.
-     * @throws NoMatchException when bad formatted angle is found.
+     * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function not(
         string|int|float|AngleInterface $angle, 
@@ -467,7 +468,7 @@ class Angle implements AngleInterface, Stringable
      * Check if this `Angle` is equal to `$beta` within an acceptable `$delta` 
      * error angle.
      */
-    public function fuzzyEqual(Angle $beta, Angle $delta): bool
+    public function fuzzyEqual(AngleInterface $beta, AngleInterface $delta): bool
     {
         return new FuzzyEqual($this, $beta, $delta)->compare();
     }
@@ -475,7 +476,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Alias for `fuzzyEqual()` method.
      */
-    public function feq(Angle $beta, Angle $delta): bool
+    public function feq(AngleInterface $beta, AngleInterface $delta): bool
     {
         return $this->fuzzyEqual($beta, $delta);
     }

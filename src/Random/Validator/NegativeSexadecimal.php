@@ -4,9 +4,12 @@ namespace MarcoConsiglio\Goniometry\Random\Validator;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 
 /**
  * Validate a `SexadecimalRange` allowing only negative values.
+ * 
+ * @internal
  */
 class NegativeSexadecimal extends SexadecimalValidator
 {
@@ -44,7 +47,7 @@ class NegativeSexadecimal extends SexadecimalValidator
      */
     protected function setMin(float &$value): void
     {
-        $value = NextFloat::after(-Degrees::MAX);
+        $value = SexadecimalRange::min();
     }
 
     /**

@@ -3,8 +3,8 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -31,7 +31,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[CoversClass(GreaterInt::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
 #[UsesClass(Direction::class)]

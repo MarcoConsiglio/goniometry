@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Types;
 
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
@@ -14,27 +13,30 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * The beta `InputType` in a comparison between alfa and beta angles when
  * `$beta` is an `Angle`.
+ * 
+ * @internal
  */
 class AngleType extends InputType
 {
     /**
      * Construct the `InputType` of $beta.
      * 
-     * @param Angle $beta The right operand of the comparison.
+     * @param AngleInterface $beta The right operand of the comparison.
      */
-    public function __construct(protected Angle $beta) {}
+    public function __construct(protected AngleInterface $beta) {}
 
     /**
      * Get the correct strategy for the current `$comparison` operation.
      * 
-     * @param Angle $alfa The left operand of the `$comparison`.
+     * @param AngleInterface $alfa The left operand of the `$comparison`.
      */
-    public function getStrategyFor(Comparison $comparison, Angle $alfa): Strategy
+    public function getStrategyFor(Comparison $comparison, AngleInterface $alfa): Strategy
     {
         if ($comparison instanceof Equal) return new EqualAngle($alfa, $this->beta);
         if ($comparison instanceof Different) return new DifferentAngle($alfa, $this->beta);

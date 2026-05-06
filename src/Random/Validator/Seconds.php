@@ -1,13 +1,13 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\FakerPhpNumberHelpers\Validation\Float\Validator;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Seconds as AngleSeconds;
 
 /**
  * Validate a `SecondsRange`.
+ * 
+ * @internal
  */
 class Seconds extends FloatValidator
 {

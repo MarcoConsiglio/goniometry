@@ -3,13 +3,14 @@ namespace MarcoConsiglio\Goniometry;
 
 use BcMath\Number;
 use MarcoConsiglio\BCMathExtended\Number as BCMathExtendedNumber;
-use Marcoconsiglio\ModularArithmetic\ModularNumber;
+use MarcoConsiglio\Goniometry\Interfaces\Scalar;
+use MarcoConsiglio\ModularArithmetic\ModularNumber;
 use Stringable;
 
 /**
- * The `Seconds` of an `Angle`.
+ * The sexagesimal `Seconds` type.
  */
-class Seconds extends ModularNumber implements Stringable
+class Seconds extends ModularNumber implements Stringable, Scalar
 {
     /**
      * The maximum allowed value in seconds.

@@ -10,6 +10,8 @@ use MarcoConsiglio\Goniometry\Random\RadianRange;
 
 /**
  * The `Radian` random generator for relative radian values.
+ * 
+ * @internal
  */
 class RelativeRadian extends RadianGenerator
 {

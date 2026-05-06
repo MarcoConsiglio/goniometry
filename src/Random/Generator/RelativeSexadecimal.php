@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSe
 
 /**
  * The `Sexadecimal` random generator for relative sexadecimal values.
+ * 
+ * @internal
  */
 class RelativeSexadecimal extends Generator
 {

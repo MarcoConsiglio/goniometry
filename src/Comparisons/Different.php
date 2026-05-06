@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Goniometry\Comparisons;
 
 /**
  * The `Different` comparison between angles.
+ * 
+ * @internal
  */
 class Different extends Comparison
 {

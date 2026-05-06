@@ -8,6 +8,8 @@ use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 
 /**
  * A `Radian` random generator.
+ * 
+ * @internal
  */
 abstract class Radian extends FloatGenerator
 {

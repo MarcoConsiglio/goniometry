@@ -11,10 +11,7 @@ use Exception;
 class RegExFailureException extends Exception
 {
     /**
-     * It constructs the exception.
-     *
-     * @param string $message
-     * @return void
+     * Construct the `RegExFailureException`.
      */
     public function __construct(string $message = "")
     {

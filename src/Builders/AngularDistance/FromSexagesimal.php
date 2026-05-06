@@ -1,0 +1,34 @@
+<?php
+namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
+
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
+use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
+use Override;
+
+/**
+ *  Builds an `AngularDistance` starting from sexagesimal values.
+ * 
+ * @internal
+ */
+class FromSexagesimal extends AngleFromSexagesimal
+{
+    /**
+     * Fetches the data to build an `AngularDistance`.
+     * 
+     * @return array{SexagesimalDegrees,SexadecimalAngularDistance,null}
+     */
+    #[Override]
+    public function fetchData(): array
+    {
+        $angle = Angle::createFromValues(
+            $this->degrees->value(),
+            $this->minutes->value(),
+            $this->seconds->value(),
+            $this->direction
+        );
+        $sexadecimal = new SexadecimalAngularDistance($angle->toSexadecimalDegrees()->value);
+        $builder = new FromSexadecimal($sexadecimal);
+        return $builder->fetchData();
+    }
+}

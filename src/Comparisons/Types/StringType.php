@@ -15,10 +15,13 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The beta `InputType` in a comparison between alfa and beta angles when
  * `$beta` is a `string`.
+ * 
+ * @internal
  */
 class StringType extends InputType
 {
@@ -31,8 +34,10 @@ class StringType extends InputType
 
     /**
      * Get the correct strategy for the current $comparison operation.
+     * 
+     * @param AngleInterface $alfa The left operand of the `$comparison`.
      */
-    public function getStrategyFor(Comparison $comparison, Angle $alfa): Strategy
+    public function getStrategyFor(Comparison $comparison, AngleInterface $alfa): Strategy
     {
         if ($comparison instanceof Equal) return new EqualString($alfa, $this->beta);
         if ($comparison instanceof Different) return new DifferentString($alfa, $this->beta);

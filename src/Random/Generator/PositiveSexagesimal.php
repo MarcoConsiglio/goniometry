@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerat
 
 /**
  * The `Sexagesimal` random generator for positive sexagesimal values.
+ * 
+ * @internal
  */
 class PositiveSexagesimal extends SexagesimalGenerator
 {

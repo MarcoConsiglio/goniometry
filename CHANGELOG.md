@@ -1,4 +1,24 @@
 # Changelog
+## v4.2.0
+### Added
+- `AngularDistance` class implementing the `Angle` interface to represent angular distance between two objects.
+- `AngularDistanceRadian` class to express the radian value of an `AngularDistance`.
+- `Scalar` interface implemented by `Degrees`, `Minutes`, `Seconds` classes and extended by `SexadecimalValue` interface.
+- `SexadecimalValue` interface implemented by `SexadecimalAngularDistance` and `SexadecimalDegrees` classes.
+- `SexadecimalAngularDistance` class to represent sexadecimal value of an `AngularDistance` object.
+- `SexadecimalValue` interface to express the common behaviour of `SexadecimalDegrees` and `SexadecimalAngularDistance` classes.
+- `SexadecimalValue::toggleDirection()` to return the opposite direction of a sexadecimal value.
+- `Radian::MIN` constant.
+- `SexadecimalDegrees::{MIN,MAX}` constants.
+- `WithAngleFaker::{`  
+&ensp;&ensp;&ensp;&ensp;`positiveRandomAngularDistance()`  
+&ensp;&ensp;&ensp;&ensp;`negativeRandomAngularDistance()`  
+&ensp;&ensp;&ensp;&ensp;`randomAngularDistance()`  
+`}` method to randomly generate `AngularDistance` objects.
+### Changed
+- `Angle::getDegrees() now also accept the `$precision` parameter used to round the seconds value.
+- API documentation.
+
 ## v4.1.1 2025-04-29
 ### Changed
 - API documentation.

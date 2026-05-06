@@ -7,6 +7,8 @@ use MarcoConsiglio\Goniometry\Random\DegreesRange;
 
 /**
  * Validate a random `DegreesRange`.
+ * 
+ * @internal
  */
 class Degrees extends Validator
 {

@@ -5,12 +5,12 @@ use MarcoConsiglio\Goniometry\Enums\Direction;
 use Stringable;
 
 /**
- * The `SexagesimalDegrees` composed of `Degrees`, `Minutes`, `Seconds` and `Direction`.
+ * The `SexagesimalDegrees` type composed of `Degrees`, `Minutes`, `Seconds` and `Direction`.
  */
 class SexagesimalDegrees implements Stringable
 {
     /**
-     * Construct a `SexagesimalDegrees` o.
+     * Construct a `SexagesimalDegrees`.
      */
     public function __construct(
         public Degrees $degrees,

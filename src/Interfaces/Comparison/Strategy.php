@@ -4,6 +4,8 @@ namespace MarcoConsiglio\Goniometry\Interfaces\Comparison;
 
 /**
  * The behavior of a comparing strategy between angles.
+ * 
+ * @internal
  */
 interface Strategy
 {

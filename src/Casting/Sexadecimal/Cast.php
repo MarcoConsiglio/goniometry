@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Casting\ToSexadecimal;
 
 /**
  * Cast sexagesimal values to sexadecimal.
+ * 
+ * @internal
  */
 class Cast extends Sexagesimal implements ToSexadecimal
 {

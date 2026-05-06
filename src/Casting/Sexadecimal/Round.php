@@ -3,11 +3,12 @@ namespace MarcoConsiglio\Goniometry\Casting\Sexadecimal;
 
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Interfaces\Casting\ToSexadecimal;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-use RoundingMode;
+use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 
 /**
  * Round a sexadecimal value.
+ * 
+ * @internal
  */
 class Round extends Sexagesimal implements ToSexadecimal
 {
@@ -15,7 +16,7 @@ class Round extends Sexagesimal implements ToSexadecimal
      * Construct the `Round` object.
      */
     public function __construct(
-        protected SexadecimalDegrees $sexadecimal,
+        protected SexadecimalValue $sexadecimal,
         protected int|null $precision = null
     ) {}
 

@@ -9,6 +9,8 @@ use MarcoConsiglio\Goniometry\Seconds as SecondsObject;
 
 /**
  * The `Seconds` random generator.
+ * 
+ * @internal
  */
 class Seconds extends FloatGenerator
 {

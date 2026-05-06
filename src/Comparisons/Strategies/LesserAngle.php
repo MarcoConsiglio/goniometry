@@ -1,22 +1,24 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use Override;
 
 /**
  * The strategy that compares two `Angle` instances to check if the first is 
  * lesser then the last.
+ * 
+ * @internal
  */
 class LesserAngle extends GreaterAngle
 {
     /**
      * Construct the comparison strategy.
      * 
-     * @param Angle $alfa The left comparison operand.
-     * @param Angle $beta The right comparison operand.
+     * @param AngleInterface $alfa The left comparison operand.
+     * @param AngleInterface $beta The right comparison operand.
      */
-    public function __construct(Angle $alfa, Angle $beta)
+    public function __construct(AngleInterface $alfa, AngleInterface $beta)
     {
         parent::__construct($alfa, $beta);
     }

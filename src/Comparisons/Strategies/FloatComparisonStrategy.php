@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Strategies;
 
 /**
  * A comparison strategy against a `float` type variable.
+ * 
+ * @internal
  */
 abstract class FloatComparisonStrategy extends ComparisonStrategy
 {

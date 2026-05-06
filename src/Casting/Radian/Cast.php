@@ -6,6 +6,8 @@ use MarcoConsiglio\Goniometry\Interfaces\Casting\ToRadian;
 
 /**
  * Cast sexagesimal values to radian.
+ * 
+ * @internal
  */
 class Cast extends Sexagesimal implements ToRadian
 {
