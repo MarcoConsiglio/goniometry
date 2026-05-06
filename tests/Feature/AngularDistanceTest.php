@@ -512,7 +512,7 @@ class AngularDistanceTest extends TestCase
         $beta = $this->randomAngle();
 
         // Act
-        $result = $alfa->plus($beta);
+        $result = $alfa->sum($beta);
 
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $result);

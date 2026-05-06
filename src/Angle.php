@@ -145,9 +145,9 @@ class Angle implements AngleInterface, Stringable
      * 
      * The result can be positive or negative.
      */
-    public static function sum(Angle $alfa, Angle $beta): Angle
+    public function sum(AngleInterface $addend): Angle
     {
-        return new Angle(new RelativeSum($alfa, $beta));
+        return new Angle(new RelativeSum($this, $addend));
     }
 
     /**
@@ -155,9 +155,9 @@ class Angle implements AngleInterface, Stringable
      * 
      * The result can be only positive.
      */
-    public static function absSum(AngleInterface $alfa, AngleInterface $beta): AngleInterface
+    public function absSum(AngleInterface $addend): AngleInterface
     {
-        return new Angle(new AbsoluteSum($alfa, $beta));
+        return new Angle(new AbsoluteSum($this, $addend));
     }
 
     /**

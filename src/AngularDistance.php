@@ -490,17 +490,9 @@ class AngularDistance implements AngleInterface, Stringable
     /**
      * Sums an `AngularDistance` with an `Angle`.
      */
-    public function sum(AngleInterface $beta): AngularDistance
+    public function sum(AngleInterface $addend): AngularDistance
     {
-        return new AngularDistance(new RelativeSum($this, $beta));
-    }
-
-    /**
-     * Alias of `sum()` method.
-     */
-    public function plus(AngleInterface $beta): AngularDistance
-    {
-        return $this->sum($beta);
+        return new AngularDistance(new RelativeSum($this, $addend));
     }
 
     /**

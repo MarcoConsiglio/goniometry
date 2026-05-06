@@ -592,7 +592,7 @@ class AngleTest extends TestCase
         $beta = $this->randomAngle();
 
         // Act
-        $gamma = Angle::sum($alfa, $beta);
+        $gamma = $alfa->sum($beta);
 
         // Assert
         $this->assertInstanceOf(Angle::class, $gamma, $this->methodMustReturn(
@@ -608,7 +608,7 @@ class AngleTest extends TestCase
         $beta = $this->randomAngle();
 
         // Act
-        $gamma = Angle::absSum($alfa, $beta);
+        $gamma = $alfa->absSum($beta);
 
         // Assert
         $this->assertInstanceOf(Angle::class, $gamma, $this->methodMustReturn(
