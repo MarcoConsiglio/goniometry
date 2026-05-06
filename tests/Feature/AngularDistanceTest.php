@@ -14,6 +14,7 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundSexadecimal;
@@ -82,6 +83,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianG
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
@@ -114,6 +116,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AngleType::class)]
 #[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(AngularDistanceRadian::class)]
+#[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(CastToRadian::class)]
 #[UsesClass(Comparison::class)]
 #[UsesClass(ComparisonStrategy::class)]
@@ -186,6 +189,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeRadianRadian::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
+#[UsesClass(RelativeSum::class)]
 #[UsesClass(RoundRadian::class)]
 #[UsesClass(RoundSexadecimal::class)]
 #[UsesClass(Seconds::class)]
@@ -194,6 +198,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalRange::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(StringType::class)]
@@ -497,5 +502,19 @@ class AngularDistanceTest extends TestCase
 
         // Act & Assert
         $this->assertIsBool($alfa->feq($beta, $delta));
+    }
+
+    #[TestDox("can be added to another Angle.")]
+    public function test_sum(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngularDistance();
+        $beta = $this->randomAngle();
+
+        // Act
+        $result = $alfa->plus($beta);
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $result);
     }
 }

@@ -35,7 +35,7 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
     - [$\alpha \cong \beta$ (equal)](#equal)
     - [$\alpha \ncong \beta$ (different)](#different)
   - [Fuzzy Comparison](#fuzzy-comparison)
-    - [$\alpha~ \char"224A ~\beta$ (almost equal)](#almost-equal)
+    - [$\alpha \approxeq \beta$ (almost equal)](#almost-equal)
   - [Algebraic sum between two angles](#algebraic-sum-between-two-angles)
 - [FakerPHP support](#fakerphp-support)
 - [API documentation](#api-documentation)
