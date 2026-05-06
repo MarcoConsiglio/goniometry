@@ -51,13 +51,22 @@ Import this class to represent angles.
 use MarcoConsiglio\Goniometry\Angle;
 ```
 
-Create an Angle object.
+Create an `Angle` object (-360°/+360°).
 ```php
 $alfa = Angle::createFromValues(180, 30);
 $beta = Angle::createFromString("180° 30'");
 $gamma = Angle::createFromDecimal(180.5);
 $delta = Angle::createFromRadian(M_PI); // 180°
 ```
+Create an `AngularDistance` object (-180°/+180°).
+```php
+$alfa = AngularDistance::createFromValues(180, 30);
+$beta = AngularDistance::createFromString("180° 30'");
+$gamma = AngularDistance::createFromDecimal(180.5);
+$delta = AngularDistance::createFromRadian(M_PI); // 180°
+```
+
+Both `Angle` and `AngularDistance` implements the `Angle` interface.
 # Usage
 ## Creating an angle
 ### Sexagesimal (`int` degrees, `int` minutes, `float` seconds) <a id="sexagesimal_values"></a>
@@ -215,7 +224,7 @@ You can cast the angle to a string representation:
 **WARNING!** In this case, maximum precision is _unknown_. The `Seconds` class uses the [BCMath extension](https://www.php.net/manual/en/book.bc.php) behind the scenes. The seconds value is stored with arbitrary precision, so in some cases the number of seconds could potentially have many digits, making the string very long.
 
 ## Comparison
-You can compare an `Angle` object against a _sexadecimal_ or _sexagesimal_ value.
+You can compare an `Angle` or `AngularDistance` object against a _sexadecimal_ or _sexagesimal_ value.
 
 Comparisons are performed with absolute values (congruent comparison), meaning that $-90^\circ\cong+90^\circ$.
 
@@ -226,9 +235,9 @@ Each comparison can be performed against
 - a `string` angle (sexagesimal), 
 - an `int` (sexagesimal degrees), 
 - a `float` (sexadecimal degrees), 
-- or another instance of `Angle`. 
+- or another instance implementing the `Angle` interface. 
 
-Comparisons via radian values ​​are not available.
+*Comparisons via radian values ​​are not available.*
 
 You can specify an optional precision expressed as the number of decimal places used to round the angle value. The precision is only used when comparing against a `float` (sexadecimal).
 
@@ -296,7 +305,7 @@ $alfa->isDifferentThan(-90);        // false  90 ≇ -90
 $beta->not($alfa);                  // true   180 ≇ 90
 ```
 ## Fuzzy Comparison
-When comparing two `Angle`s sometimes their difference is negligible. In this case you can use a fuzzy comparison specifine a delta error `Angle` within which the comparison will be succesful.
+When comparing two `Angle`s sometimes their difference is negligible. In this case you can use a fuzzy comparison specifing a delta error `Angle` within which the comparison will be succesful.
 
 *Delta* (Δ) is the double of *epsilon* error (±ε).
 
@@ -357,6 +366,8 @@ This library provides support to [FakerPHP](https://fakerphp.org/) through the `
 | `randomRadian()` | `Radian` |  | -2π |  | +2π |
 | `positiveRandomRadian()` | `Radian` | 0 |  |  | +2π |
 | `negativeRandomRadian()` | `Radian` |  | -2π |  | 0 |
+
+Note: `AngularDistance` random generation is currently not supported.
 
 Check the [API documentation](#api-documentation) to find out more info about these methods.
 
