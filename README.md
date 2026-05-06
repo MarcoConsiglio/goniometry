@@ -366,8 +366,8 @@ This library provides support to [FakerPHP](https://fakerphp.org/) through the `
 | `randomRadian()` | `Radian` |  | -2π |  | +2π |
 | `positiveRandomRadian()` | `Radian` | 0 |  |  | +2π |
 | `negativeRandomRadian()` | `Radian` |  | -2π |  | 0 |
-
-Note: `AngularDistance` random generation is currently not supported.
+| `positiveRandomAngularDistance()` | `AngularDistance` | 0° | | +180°|
+| `negativeRandomAngularDistance()` | `AngularDistance` | -180° | | | 0° |
 
 Check the [API documentation](#api-documentation) to find out more info about these methods.
 
