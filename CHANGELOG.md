@@ -1,7 +1,11 @@
 # Changelog
 ## v5.0.0
+### Added
+- `AngularDistance::sum()` method to provide sum operation for `AngularDistance` angles.
 ### Changed
 - `Angle::{sum,absSum}()` methods signature.
+- README documentation.
+- API documentation.
 ### Removed
 - Deprecated `RegExFailureException` class since `v4.1.1`.
 
