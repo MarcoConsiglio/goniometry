@@ -341,6 +341,11 @@ Search.appendIndex(
             "summary": "Alias\u0020for\u0020\u0060fuzzyEqual\u0028\u0029\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_feq"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003Asum\u0028\u0029",
+            "name": "sum",
+            "summary": "Sums\u0020an\u0020\u0060AngularDistance\u0060\u0020with\u0020an\u0020\u0060Angle\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_sum"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "Return\u0020the\u0020sexagesimal\u0020value\u0020of\u0020this\u0020\u0060Angle\u0060.",
@@ -540,16 +545,6 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Construct\u0020the\u0020exception.",
             "url": "classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html#method___construct"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\RegExFailureException",
-            "name": "RegExFailureException",
-            "summary": "This\u0020exception\u0020is\u0020thrown\u0020when\u0020the\u0020angle\u0020regular\u0020expressions\u0020fails\u0020to\u0020find\u0020a\u0020string\u0020angle.",
-            "url": "classes/MarcoConsiglio-Goniometry-Exceptions-RegExFailureException.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Exceptions\\RegExFailureException\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Construct\u0020the\u0020\u0060RegExFailureException\u0060.",
-            "url": "classes/MarcoConsiglio-Goniometry-Exceptions-RegExFailureException.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\Angle",
             "name": "Angle",
