@@ -19,6 +19,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
@@ -62,6 +63,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalRange::class)]
+#[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]

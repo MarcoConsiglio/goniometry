@@ -1,43 +1,51 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Strategies;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders\AngularDistance;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
+use MarcoConsiglio\Goniometry\AngularDistance;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as AngularDistanceFromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
+use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The EqualFloat comparison strategy")]
-#[CoversClass(EqualFloat::class)]
+#[TestDox("The RelativeSum SumBuilder")]
+#[CoversClass(RelativeSum::class)]
 #[UsesClass(Angle::class)]
+#[UsesClass(AngleFromSexadecimal::class)]
 #[UsesClass(AngleGenerator::class)]
+#[UsesClass(AngularDistance::class)]
+#[UsesClass(AngularDistanceFromSexadecimal::class)]
+#[UsesClass(AngularDistanceGenerator::class)]
+#[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(Direction::class)]
-#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(FloatValidator::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
@@ -46,53 +54,35 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
+#[UsesClass(RelativeAngularDistanceGenerator::class)]
+#[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
-#[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalRange::class)]
-#[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class EqualFloatTest extends TestCase
+class RelativeSumTest extends TestCase
 {
-    protected string $comparison = '=';
-
-    #[TestDox("can compare an Angle and a sexadecimal angle measure.")]
-    public function test_compare(): void
+    #[TestDox("can sum two AngularDistances and return a relative sum.")]
+    public function test_can_sum_angles(): void
     {
-        /**
-         * Equal
-         */
         // Arrange
-        $precision = $this->randomPrecision();
-        $alfa = $this->randomAngle(precision: 3);
-        $beta = $alfa->toFloat();
-
-        // Act & Assert
-        $this->assertTrue(new EqualFloat($alfa, $beta, $precision)->compare(),
-            $this->getFailMessage($alfa, $beta)
+        $alfa = $this->randomAngularDistance();
+        $beta = $this->randomAngle();
+        $expected_sum = new SexadecimalAngularDistance(
+            $alfa->toSexadecimalDegrees()->value
+            ->plus($beta->toSexadecimalDegrees()->value)
         );
+        $builder = new RelativeSum($alfa, $beta);
 
-        /**
-         * Not equal
-         */
-        // Arrange
-        $alfa = $this->randomAngle(0, NextFloat::before(180));
-        $beta = $this->randomSexadecimal(180);
+        // Act
+        $result = $builder->fetchData();
+        $actual_sum = $result[1];
 
-        // Act & Assert
-        $this->assertFalse(new EqualFloat($alfa, $beta, $precision)->compare(),
-            $this->getFailMessage($alfa, $beta)
-        );
-    }
-
-    /**
-     * Return a fail message for this TestCase.
-     */
-    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
-    {
-        return $this->comparisonFail($alfa, $this->comparison, $beta);
+        // Assert
+        $this->assertEquals($expected_sum->value, $actual_sum->value);
     }
 }

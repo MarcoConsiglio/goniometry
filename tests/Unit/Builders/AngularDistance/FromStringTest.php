@@ -14,6 +14,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
@@ -30,25 +31,26 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(FromString::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(AngularDistance::class)]
 #[UsesClass(AngleFromSexadecimal::class)]
-#[UsesClass(FromSexadecimal::class)]
-#[UsesClass(Degrees::class)]
-#[UsesClass(Minutes::class)]
 #[UsesClass(AngleGenerator::class)]
+#[UsesClass(AngularDistance::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(FloatValidator::class)]
+#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
-#[UsesClass(RelativeAngleGenerator::class)]
-#[UsesClass(FloatValidator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveAngleGenerator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-#[UsesClass(PositiveAngleGenerator::class)]
-#[UsesClass(PositiveSexadecimalGenerator::class)]
-#[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class FromStringTest extends TestCase
 {

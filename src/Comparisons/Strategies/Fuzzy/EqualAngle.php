@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Strategies\Fuzzy;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle as EqualAngleStrategy;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
@@ -69,8 +70,9 @@ class EqualAngle extends EqualAngleStrategy
     protected function calcEpsilon(): void
     {
         $width = $this->delta->toSexadecimalDegrees()->value->abs();
-        $half_width = $width->div(2);
-        $this->epsilon = Angle::createFromDecimal(new SexadecimalDegrees($half_width));
+        $this->epsilon = Angle::createFromDecimal(
+            new SexadecimalDegrees($width->div(2))
+        );
     }
 
     /**
@@ -78,8 +80,8 @@ class EqualAngle extends EqualAngleStrategy
      */
     protected function calcLowExtreme(): void
     {
-        $this->low_extreme = Angle::absSum(
-            $this->beta, $this->epsilon->toggleDirection()
+        $this->low_extreme = $this->beta->absSum(
+            $this->epsilon->toggleDirection()
         );
     }
 
@@ -88,8 +90,6 @@ class EqualAngle extends EqualAngleStrategy
      */
     protected function calcHighExtreme(): void
     {
-        $this->high_extreme = Angle::absSum(
-            $this->beta, $this->epsilon
-        );
+        $this->high_extreme = $this->beta->absSum($this->epsilon);
     }
 }

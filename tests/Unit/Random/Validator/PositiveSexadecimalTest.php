@@ -3,12 +3,15 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The PositiveSexadecimal validator")]
 #[CoversClass(PositiveSexadecimal::class)]
+#[UsesClass(SexadecimalRange::class)]
 class PositiveSexadecimalTest extends FloatValidatorTestCase
 {
     #[TestDox("validated a positive SexadecimalRange.")]

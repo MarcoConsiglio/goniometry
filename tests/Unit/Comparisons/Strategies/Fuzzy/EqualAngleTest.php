@@ -20,6 +20,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
@@ -62,6 +63,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalRange::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SumBuilder::class)]
@@ -70,8 +72,8 @@ class EqualAngleTest extends TestCase
 {
     protected string $comparison = '≅';
 
-    #[TestDox("can compare two Angle instance within a delta error.")]
-    public function test_compare(): void
+    #[TestDox("can compare two Angle instances within a delta error.")]
+    public function test_compare_angles(): void
     {
         /**
          * Equal
@@ -118,7 +120,7 @@ class EqualAngleTest extends TestCase
     /**
      * Return a fail message for this `TestCase`.
      */
-    protected function getFailMessage(Angle $alfa, Angle $beta, Angle $delta): string
+    protected function getFailMessage(AngleInterface $alfa, AngleInterface $beta, AngleInterface $delta): string
     {
         return $this->fuzzyComparisonFail($alfa, $this->comparison, $beta, $delta);
     }
@@ -126,7 +128,7 @@ class EqualAngleTest extends TestCase
     /**
      * Divide `$delta` by 2.
      */
-    protected function getEpsilon(Angle $delta): Angle
+    protected function getEpsilon(AngleInterface $delta): Angle
     {
         return Angle::createFromDecimal(
             new SexadecimalDegrees(
@@ -143,8 +145,8 @@ class EqualAngleTest extends TestCase
     protected function getDeltaExtremes(Angle $beta, Angle $delta): array
     {
         $epsilon = $this->getEpsilon($delta);
-        $min = Angle::absSum($beta, $epsilon->toggleDirection());
-        $max = Angle::absSum($beta, $epsilon);
+        $min = $beta->absSum($epsilon->toggleDirection());
+        $max = $beta->absSum($epsilon);
         return [$min, $max];
     }
 }

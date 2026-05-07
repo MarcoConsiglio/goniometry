@@ -244,14 +244,14 @@
     <span>
                                 &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
 </dt>
-<dd>Return an absolute `Angle`</dd>
+<dd>Return this `Angle` as absolute (positive).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_absSum">absSum()</a>
     <span>
                                 &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a>    </span>
 </dt>
-<dd>Sums two absolute `Angle`s.</dd>
+<dd>Sum this `Angle` to an `$addend` two absolute `Angle`s. The resulting `Angle` can be only positive.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_asb">asb()</a>
@@ -413,7 +413,7 @@ error angle.</dd>
     <span>
                                 &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
 </dt>
-<dd>Sums two relative `Angle`s.</dd>
+<dd>Sum this `Angle` to an `$addend`. The resulting `Angle` can be positive or negative.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_toFloat">toFloat()</a>
@@ -801,7 +801,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">489</span>
+    <span class="phpdocumentor-element-found-in__line">485</span>
 
     </aside>
 
@@ -856,11 +856,11 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">166</span>
+    <span class="phpdocumentor-element-found-in__line">162</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Return an absolute `Angle`</p>
+        <p class="phpdocumentor-summary">Return this `Angle` as absolute (positive).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -885,7 +885,7 @@ error angle.</dd>
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
+                                                        "
 >
     <h4 class="phpdocumentor-element__name" id="method_absSum">
         absSum()
@@ -895,33 +895,24 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">158</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Sums two absolute `Angle`s.</p>
+        <p class="phpdocumentor-summary">Sum this `Angle` to an `$addend` two absolute `Angle`s. The resulting `Angle` can be only positive.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">absSum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alfa</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$beta</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">absSum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$addend</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>The result can be only positive.</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$alfa</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$beta</span>
+                <span class="phpdocumentor-argument-list__argument__name">$addend</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -953,7 +944,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">178</span>
+    <span class="phpdocumentor-element-found-in__line">174</span>
 
     </aside>
 
@@ -1226,7 +1217,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">430</span>
+    <span class="phpdocumentor-element-found-in__line">426</span>
 
     </aside>
 
@@ -1302,7 +1293,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">479</span>
+    <span class="phpdocumentor-element-found-in__line">475</span>
 
     </aside>
 
@@ -1358,7 +1349,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">471</span>
+    <span class="phpdocumentor-element-found-in__line">467</span>
 
     </aside>
 
@@ -1415,7 +1406,7 @@ error angle.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">192</span>
+    <span class="phpdocumentor-element-found-in__line">188</span>
 
     </aside>
 
@@ -1477,7 +1468,7 @@ error angle.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">309</span>
+    <span class="phpdocumentor-element-found-in__line">305</span>
 
     </aside>
 
@@ -1553,7 +1544,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">340</span>
+    <span class="phpdocumentor-element-found-in__line">336</span>
 
     </aside>
 
@@ -1629,7 +1620,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">210</span>
+    <span class="phpdocumentor-element-found-in__line">206</span>
 
     </aside>
 
@@ -1668,7 +1659,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">218</span>
+    <span class="phpdocumentor-element-found-in__line">214</span>
 
     </aside>
 
@@ -1707,7 +1698,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">444</span>
+    <span class="phpdocumentor-element-found-in__line">440</span>
 
     </aside>
 
@@ -1783,7 +1774,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">414</span>
+    <span class="phpdocumentor-element-found-in__line">410</span>
 
     </aside>
 
@@ -1859,7 +1850,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">293</span>
+    <span class="phpdocumentor-element-found-in__line">289</span>
 
     </aside>
 
@@ -1935,7 +1926,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">323</span>
+    <span class="phpdocumentor-element-found-in__line">319</span>
 
     </aside>
 
@@ -2011,7 +2002,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">354</span>
+    <span class="phpdocumentor-element-found-in__line">350</span>
 
     </aside>
 
@@ -2087,7 +2078,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">384</span>
+    <span class="phpdocumentor-element-found-in__line">380</span>
 
     </aside>
 
@@ -2163,7 +2154,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">370</span>
+    <span class="phpdocumentor-element-found-in__line">366</span>
 
     </aside>
 
@@ -2239,7 +2230,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">400</span>
+    <span class="phpdocumentor-element-found-in__line">396</span>
 
     </aside>
 
@@ -2315,7 +2306,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">460</span>
+    <span class="phpdocumentor-element-found-in__line">456</span>
 
     </aside>
 
@@ -2381,7 +2372,7 @@ variable.</p>
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
+                                                        "
 >
     <h4 class="phpdocumentor-element__name" id="method_sum">
         sum()
@@ -2391,34 +2382,25 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">148</span>
+    <span class="phpdocumentor-element-found-in__line">146</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Sums two relative `Angle`s.</p>
+        <p class="phpdocumentor-summary">Sum this `Angle` to an `$addend`. The resulting `Angle` can be positive or negative.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">sum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alfa</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$beta</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">sum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$addend</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>The result can be positive or negative.</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$alfa</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-argument-list__argument__name">$beta</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$addend</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -2449,7 +2431,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">267</span>
+    <span class="phpdocumentor-element-found-in__line">263</span>
 
     </aside>
 
@@ -2500,7 +2482,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">226</span>
+    <span class="phpdocumentor-element-found-in__line">222</span>
 
     </aside>
 
@@ -2539,7 +2521,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">279</span>
+    <span class="phpdocumentor-element-found-in__line">275</span>
 
     </aside>
 
@@ -2590,7 +2572,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">241</span>
+    <span class="phpdocumentor-element-found-in__line">237</span>
 
     </aside>
 
@@ -2629,7 +2611,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">257</span>
+    <span class="phpdocumentor-element-found-in__line">253</span>
 
     </aside>
 

@@ -12,6 +12,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
@@ -43,13 +44,14 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class RelativeSumTest extends TestCase
 {
     #[TestDox("can sum two Angles and return a relative sum.")]
-    public function test_can_sum_angles_and_return_positive_sum(): void
+    public function test_can_sum_angles(): void
     {
         // Arrange
         $alfa = $this->randomAngle(precision: 3);

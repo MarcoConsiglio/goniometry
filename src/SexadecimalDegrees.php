@@ -40,7 +40,7 @@ class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
     }
 
     /**
-     * Return the sexadecimal `float` value.
+     * Return the `SexadecimalDegrees` value.
      */
     public function value(int|null $precision = null): float
     {

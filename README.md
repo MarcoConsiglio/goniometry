@@ -1,7 +1,7 @@
 # [goniometry](https://github.com/MarcoConsiglio/goniometry?tab=readme-ov-file#goniometry)
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v4.2.0-white)
+![Static Badge](https://img.shields.io/badge/version-v5.0.0-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
@@ -35,7 +35,7 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
     - [$\alpha \cong \beta$ (equal)](#equal)
     - [$\alpha \ncong \beta$ (different)](#different)
   - [Fuzzy Comparison](#fuzzy-comparison)
-    - [$\alpha~ \char"224A ~\beta$ (almost equal)](#almost-equal)
+    - [$\alpha \approxeq \beta$ (almost equal)](#almost-equal)
   - [Algebraic sum between two angles](#algebraic-sum-between-two-angles)
 - [FakerPHP support](#fakerphp-support)
 - [API documentation](#api-documentation)
@@ -318,15 +318,17 @@ $alfa->fuzzyEqual($beta, $delta); // true
 $alfa->feq($beta, $delta); // true
 ```
 ## Algebraic sum between two angles
-You can sum two angles
+You can sum two angles. An angle of type `AngularDistance` do not have the `absSum()` methods.
 
 ### Relative sum
 The relative sum can return both positive or negative angle.
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::sum($alfa, $beta);  // 180° + (-270°) =
-(string) $gamma;                    // -90° 0' 0"
+$gamma = 
+         $alfa    //  180° + 
+   ->sum($beta);  // -270° =
+(string) $gamma;  //  -90° 
 ```
 
 ### Absolute sum
@@ -334,14 +336,18 @@ The absolute sum will always return a positive angle.
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::absSum($alfa, $beta); // 180° + (-270°) =
-(string) $gamma;                      // 270° 0' 0"
+$gamma = 
+           $alfa    // 180° +
+  ->absSum($beta);  //-270° =
+(string) $gamma;    // 270°
 ```
 ```php
 $alfa = Angle::createFromDecimal(-180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::absSum($alfa, $beta); // (-180°) + (-270°) =
-(string) $gamma;                      // 270° 0' 0"
+$gamma = 
+           $alfa    // -180° +
+  ->absSum($beta);  // -270°
+(string) $gamma;    //  270°
 ```
 # FakerPHP support <a id="faker_php"></a>
 This library provides support to [FakerPHP](https://fakerphp.org/) through the `WithAngleFaker` trait. Here's a list of the available methods.

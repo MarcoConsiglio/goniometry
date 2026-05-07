@@ -141,27 +141,23 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Sums two relative `Angle`s.
-     * 
-     * The result can be positive or negative.
+     * Sum this `Angle` to an `$addend`. The resulting `Angle` can be positive or negative.
      */
-    public static function sum(Angle $alfa, Angle $beta): Angle
+    public function sum(AngleInterface $addend): Angle
     {
-        return new Angle(new RelativeSum($alfa, $beta));
+        return new Angle(new RelativeSum($this, $addend));
     }
 
     /**
-     * Sums two absolute `Angle`s.
-     * 
-     * The result can be only positive.
+     * Sum this `Angle` to an `$addend` two absolute `Angle`s. The resulting `Angle` can be only positive.
      */
-    public static function absSum(AngleInterface $alfa, AngleInterface $beta): AngleInterface
+    public function absSum(AngleInterface $addend): AngleInterface
     {
-        return new Angle(new AbsoluteSum($alfa, $beta));
+        return new Angle(new AbsoluteSum($this, $addend));
     }
 
     /**
-     * Return an absolute `Angle`
+     * Return this `Angle` as absolute (positive).
      */
     public function absolute(): Angle
     {

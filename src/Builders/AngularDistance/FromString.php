@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString as AngleFromString;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees; // This is needed for static type checking.
 use Override;
 
 /**

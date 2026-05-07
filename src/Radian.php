@@ -33,7 +33,7 @@ class Radian extends ModularNumber implements Scalar
     }
 
     /**
-     * Return the radian value.
+     * Return the `Radian` value.
      */
     public function value(int|null $precision = null): float
     {

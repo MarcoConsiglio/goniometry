@@ -19,7 +19,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The SexadecimalDegrees class")]
 #[CoversClass(SexadecimalDegrees::class)]
-#[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
@@ -27,6 +26,8 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Sexadecimal::class)]
+#[UsesClass(SexadecimalRange::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class SexadecimalDegreesTest extends TestCase
 {
     #[TestDox("stores a sexadecimal value.")]

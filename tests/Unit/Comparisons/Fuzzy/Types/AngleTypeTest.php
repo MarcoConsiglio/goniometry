@@ -15,6 +15,7 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -29,23 +30,24 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The AngleType in fuzzy comparison")]
 #[CoversClass(AngleType::class)]
-#[UsesClass(Angle::class)]
 #[UsesClass(AbsoluteSum::class)]
-#[UsesClass(FromSexadecimal::class)]
-#[UsesClass(SumBuilder::class)]
-#[UsesClass(ComparisonStrategy::class)]
-#[UsesClass(EqualAngle::class)]
-#[UsesClass(FuzzyEqualAngle::class)]
-#[UsesClass(Degrees::class)]
-#[UsesClass(Minutes::class)]
+#[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
-#[UsesClass(PositiveAngleGenerator::class)]
-#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(ComparisonStrategy::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(EqualAngle::class)]
 #[UsesClass(FloatValidator::class)]
+#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(FuzzyEqualAngle::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(PositiveAngleGenerator::class)]
 #[UsesClass(PositiveSexadecimal::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexagesimalDegrees::class)]
+#[UsesClass(SumBuilder::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngleTypeTest extends TestCase
 {

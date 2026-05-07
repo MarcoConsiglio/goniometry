@@ -156,4 +156,14 @@ interface Angle
      * Alias for `fuzzyEqual()` method.
      */
     public function feq(Angle $beta, Angle $delta): bool;
+
+    /**
+     * The sum between two `Angle`s. The resulting `Angle` can be positive or negative.
+     */
+    public function sum(Angle $addend): Angle;
+
+    /**
+     * The sum between two `Angle`s. The resulting `Angle` can only be positive.
+     */
+    public function absSum(Angle $addend): Angle;
 }

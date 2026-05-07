@@ -40,7 +40,7 @@ class Minutes extends ModularNumber implements Stringable, Scalar
     }
 
     /**
-     * Return the minutes value.
+     * Return the `Minutes` value.
      */
     public function value(): int
     {

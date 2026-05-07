@@ -5,6 +5,7 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
@@ -484,6 +485,22 @@ class AngularDistance implements AngleInterface, Stringable
     public function feq(AngleInterface $beta, AngleInterface $delta): bool
     {
         return $this->fuzzyEqual($beta, $delta);
+    }
+
+    /**
+     * Sum this `AngularDistance` to another `$addend`.
+     */
+    public function sum(AngleInterface $addend): AngularDistance
+    {
+        return new AngularDistance(new RelativeSum($this, $addend));
+    }
+
+    /**
+     * Alias of `sum()` method.
+     */
+    public function absSum(AngleInterface $addend): AngularDistance
+    {
+        return $this->sum($addend);
     }
 
     /**

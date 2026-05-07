@@ -31,7 +31,7 @@ class Degrees extends ModularNumber implements Stringable, Scalar
     }
 
     /**
-     * Return the degrees value.
+     * Return the `Degrees` value.
      */
     public function value(): int
     {
