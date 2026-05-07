@@ -14,6 +14,7 @@ class RelativeSum extends AngleRelativeSum
     /**
      * Sum the two addend.
      */
+    #[\Override]
     protected function calcSum(): void
     {
         $alfa = $this->alfa->toSexadecimalDegrees()->value;
@@ -29,6 +30,7 @@ class RelativeSum extends AngleRelativeSum
      *
      * @return array{SexagesimalDegrees,SexadecimalAngularDistance,null}
      */
+    #[\Override]
     public function fetchData(): array
     {
         $this->calcSum();

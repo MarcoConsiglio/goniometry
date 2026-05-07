@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector;
 
-$level = 30;
+$level = 33;
 return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/src',
