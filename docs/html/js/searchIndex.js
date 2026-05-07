@@ -28,17 +28,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Asum\u0028\u0029",
             "name": "sum",
-            "summary": "Sums\u0020two\u0020relative\u0020\u0060Angle\u0060s.",
+            "summary": "Sum\u0020this\u0020\u0060Angle\u0060\u0020to\u0020an\u0020\u0060\u0024addend\u0060.\u0020The\u0020resulting\u0020\u0060Angle\u0060\u0020can\u0020be\u0020positive\u0020or\u0020negative.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_sum"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AabsSum\u0028\u0029",
             "name": "absSum",
-            "summary": "Sums\u0020two\u0020absolute\u0020\u0060Angle\u0060s.",
+            "summary": "Sum\u0020this\u0020\u0060Angle\u0060\u0020to\u0020an\u0020\u0060\u0024addend\u0060\u0020two\u0020absolute\u0020\u0060Angle\u0060s.\u0020The\u0020resulting\u0020\u0060Angle\u0060\u0020can\u0020be\u0020only\u0020positive.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_absSum"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Aabsolute\u0028\u0029",
             "name": "absolute",
-            "summary": "Return\u0020an\u0020absolute\u0020\u0060Angle\u0060",
+            "summary": "Return\u0020this\u0020\u0060Angle\u0060\u0020as\u0020absolute\u0020\u0028positive\u0029.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_absolute"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003Aasb\u0028\u0029",
@@ -343,7 +343,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003Asum\u0028\u0029",
             "name": "sum",
-            "summary": "Sums\u0020an\u0020\u0060AngularDistance\u0060\u0020with\u0020an\u0020\u0060Angle\u0060.",
+            "summary": "Sum\u0020this\u0020\u0060AngularDistance\u0060\u0020to\u0020another\u0020\u0060\u0024addend\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_sum"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003A__toString\u0028\u0029",
@@ -403,12 +403,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistanceRadian\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Construct\u0020the\u0020\u0060AngularDistanceRadian\u0060\u0020\u0060Scalar\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistanceRadian.html#method___construct"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistanceRadian\u003A\u003Avalue\u0028\u0029",
             "name": "value",
-            "summary": "Return\u0020the\u0020value\u0020of\u0020a\u0020scalar.",
+            "summary": "Return\u0020the\u0020value\u0020of\u0020this\u0020\u0060AngularDistanceRadian\u0060\u0020instance.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistanceRadian.html#method_value"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistanceRadian\u003A\u003AgetMaxRadian\u0028\u0029",
@@ -438,7 +438,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003Avalue\u0028\u0029",
             "name": "value",
-            "summary": "Return\u0020the\u0020degrees\u0020value.",
+            "summary": "Return\u0020the\u0020\u0060Degrees\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Degrees.html#method_value"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees\u003A\u003A__toString\u0028\u0029",
@@ -738,7 +738,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003Avalue\u0028\u0029",
             "name": "value",
-            "summary": "Return\u0020the\u0020minutes\u0020value.",
+            "summary": "Return\u0020the\u0020\u0060Minutes\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Minutes.html#method_value"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Minutes\u003A\u003AisEqualTo\u0028\u0029",
@@ -823,7 +823,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Radian\u003A\u003Avalue\u0028\u0029",
             "name": "value",
-            "summary": "Return\u0020the\u0020radian\u0020value.",
+            "summary": "Return\u0020the\u0020\u0060Radian\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Radian.html#method_value"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Radian\u003A\u003AgetMaxRadian\u0028\u0029",
@@ -983,7 +983,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\SexadecimalDegrees\u003A\u003Avalue\u0028\u0029",
             "name": "value",
-            "summary": "Return\u0020the\u0020sexadecimal\u0020\u0060float\u0060\u0020value.",
+            "summary": "Return\u0020the\u0020\u0060SexadecimalDegrees\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method_value"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\SexadecimalDegrees\u003A\u003A__toString\u0028\u0029",
