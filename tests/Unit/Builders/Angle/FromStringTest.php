@@ -74,9 +74,9 @@ class FromStringTest extends TestCase
         $seconds = $this->randomSeconds(precision: 1);
         $direction = Direction::CLOCKWISE;
         $sign = '-';
+        $builder = new FromString("{$sign}{$degrees} {$minutes} {$seconds}");
         
         // Act
-        $builder = new FromString("{$sign}{$degrees} {$minutes} {$seconds}");
         [$sexagesimal] = $builder->fetchData();
         
         //Assert

@@ -160,9 +160,19 @@ class FromString extends AngleBuilder
     protected function calcSign(): void
     {
         $this->direction = 
-            str_contains((string) $this->degrees_match[1], '-') ?
+            $this->haveMinusSign() ?
             Direction::CLOCKWISE :
             Direction::COUNTER_CLOCKWISE;
+    }
+
+    /**
+     * Return true if matched a negative degrees, false otherwise.+
+     * 
+     * @codeCoverageIgnore
+     */
+    protected function haveMinusSign(): bool
+    {
+        return str_contains((string) $this->degrees_match[1], '-');
     }
 
     /**
