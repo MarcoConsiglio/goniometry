@@ -70,10 +70,12 @@ use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexagesimal as RelativeSexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Sexagesimal as SexagesimalGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
@@ -122,6 +124,10 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
 #[UsesClass(FromString::class)]
+#[UsesClass(FuzzyAngleType::class)]
+#[UsesClass(FuzzyComparison::class)]
+#[UsesClass(FuzzyEqual::class)]
+#[UsesClass(FuzzyEqualAngle::class)]
 #[UsesClass(Greater::class)]
 #[UsesClass(GreaterAngle::class)]
 #[UsesClass(GreaterFloat::class)]
@@ -162,6 +168,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
+#[UsesClass(RelativeSexagesimalGenerator::class)]
 #[UsesClass(RelativeSum::class)]
 #[UsesClass(RoundToRadian::class)]
 #[UsesClass(RoundToSexadecimal::class)]
@@ -170,15 +177,12 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SexagesimalGenerator::class)]
 #[UsesClass(StringType::class)]
 #[UsesClass(SumBuilder::class)]
-#[UsesClass(FuzzyComparison::class)]
-#[UsesClass(FuzzyEqual::class)]
-#[UsesClass(FuzzyAngleType::class)]
-#[UsesClass(FuzzyEqualAngle::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngleTest extends TestCase
 {    
