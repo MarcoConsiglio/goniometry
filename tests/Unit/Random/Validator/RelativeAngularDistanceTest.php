@@ -7,8 +7,10 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(RelativeAngularDistance::class)]
+#[UsesClass(AngularDistanceRange::class)]
 class RelativeAngularDistanceTest extends FloatValidatorTestCase
 {
     public function test_validate(): void

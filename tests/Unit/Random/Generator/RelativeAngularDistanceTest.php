@@ -11,6 +11,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
@@ -24,18 +25,20 @@ use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(RelativeAngularDistanceGenerator::class)]
 #[UsesClass(AngularDistance::class)]
-#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(Minutes::class)]
-#[UsesClass(PositiveSexadecimalGenerator::class)]
-#[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(FloatValidator::class)]
-#[UsesClass(PositiveSexadecimalValidator::class)]
-#[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(SexagesimalDegrees::class)]
+#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(Minutes::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(RelativeSexadecimalGenerator::class)]
+#[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalAngularDistance::class)]
+#[UsesClass(SexadecimalRange::class)]
+#[UsesClass(SexagesimalDegrees::class)]
 class RelativeAngularDistanceTest extends TestCase
 {
     public function test_random_generation(): void

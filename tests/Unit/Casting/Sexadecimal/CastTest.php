@@ -10,6 +10,7 @@ use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
@@ -19,6 +20,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
@@ -39,32 +41,34 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[TestDox("The Sexadecimal\Cast class")]
 #[CoversClass(Cast::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(FromSexadecimal::class)]
-#[UsesClass(Degrees::class)]
-#[UsesClass(Minutes::class)]
-#[UsesClass(Seconds::class)]
-#[UsesClass(Direction::class)]
-#[UsesClass(SexagesimalDegrees::class)]
-#[UsesClass(SexadecimalDegrees::class)]
-#[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(AngleGenerator::class)]
-#[UsesClass(PositiveAngleGenerator::class)]
-#[UsesClass(PositiveSexadecimalGenerator::class)]
-#[UsesClass(RelativeAngleGenerator::class)]
-#[UsesClass(PositiveSexadecimalValidator::class)]
-#[UsesClass(SexadecimalValidator::class)]
+#[UsesClass(AngularDistance::class)]
+#[UsesClass(AngularDistanceFromSexadecimal::class)]
+#[UsesClass(AngularDistanceGenerator::class)]
+#[UsesClass(AngularDistanceRange::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(Direction::class)]
+#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
-#[UsesClass(RelativeSexadecimalValidator::class)]
-#[UsesClass(AngularDistance::class)]
-#[UsesClass(AngularDistanceFromSexadecimal::class)]
-#[UsesClass(Round::class)]
-#[UsesClass(AngularDistanceGenerator::class)]
+#[UsesClass(PositiveAngleGenerator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeAngularDistanceGenerator::class)]
-#[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeAngularDistanceValidator::class)]
+#[UsesClass(RelativeSexadecimalGenerator::class)]
+#[UsesClass(RelativeSexadecimalValidator::class)]
+#[UsesClass(Round::class)]
+#[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
+#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalRange::class)]
+#[UsesClass(SexadecimalValidator::class)]
+#[UsesClass(SexagesimalDegrees::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class CastTest extends TestCase
 {
     protected Angle $angle;

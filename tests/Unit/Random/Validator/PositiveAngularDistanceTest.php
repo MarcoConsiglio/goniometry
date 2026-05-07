@@ -1,14 +1,14 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveAngularDistance;
-use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(PositiveAngularDistance::class)]
+#[UsesClass(AngularDistanceRange::class)]
 class PositiveAngularDistanceTest extends FloatValidatorTestCase
 {
     public function test_validate(): void

@@ -62,6 +62,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalRange::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SumBuilder::class)]
@@ -143,8 +144,8 @@ class EqualAngleTest extends TestCase
     protected function getDeltaExtremes(Angle $beta, Angle $delta): array
     {
         $epsilon = $this->getEpsilon($delta);
-        $min = Angle::absSum($beta, $epsilon->toggleDirection());
-        $max = Angle::absSum($beta, $epsilon);
+        $min = $beta->absSum($epsilon->toggleDirection());
+        $max = $beta->absSum($epsilon);
         return [$min, $max];
     }
 }

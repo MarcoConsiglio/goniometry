@@ -12,6 +12,7 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
@@ -64,6 +65,10 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversTrait(WithAngleFaker::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
+#[UsesClass(AngularDistance::class)]
+#[UsesClass(AngularDistanceFromSexadecimal::class)]
+#[UsesClass(AngularDistanceGenerator::class)]
+#[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
@@ -73,12 +78,16 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(MinutesGenerator::class)]
 #[UsesClass(MinutesValidator::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
+#[UsesClass(NegativeAngularDistanceGenerator::class)]
+#[UsesClass(NegativeAngularDistanceValidator::class)]
 #[UsesClass(NegativeRadianGenerator::class)]
 #[UsesClass(NegativeRadianValidator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(NegativeSexagesimalGenerator::class)]
 #[UsesClass(PositiveAngleGenerator::class)]
+#[UsesClass(PositiveAngularDistanceGenerator::class)]
+#[UsesClass(PositiveAngularDistanceValidator::class)]
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(PositiveRadianValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
@@ -88,6 +97,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
+#[UsesClass(RelativeAngularDistanceGenerator::class)]
+#[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(RelativeRadianGenerator::class)]
 #[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
@@ -98,21 +109,12 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SecondsGenerator::class)]
 #[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
+#[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SexagesimalGenerator::class)]
-#[UsesClass(AngularDistance::class)]
-#[UsesClass(AngularDistanceFromSexadecimal::class)]
-#[UsesClass(AngularDistanceGenerator::class)]
-#[UsesClass(PositiveAngularDistanceGenerator::class)]
-#[UsesClass(PositiveAngularDistanceValidator::class)]
-#[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(NegativeAngularDistanceGenerator::class)]
-#[UsesClass(NegativeAngularDistanceValidator::class)]
-#[UsesClass(RelativeAngularDistanceGenerator::class)]
-#[UsesClass(RelativeAngularDistanceValidator::class)]
 class WithAngleFakerTest extends TestCase
 {
     use WithAngleFaker;

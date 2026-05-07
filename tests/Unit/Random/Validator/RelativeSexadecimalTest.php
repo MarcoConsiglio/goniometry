@@ -1,15 +1,15 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 
 #[TestDox("The RelativeSexadecimal validator")]
 #[CoversClass(RelativeSexadecimalValidator::class)]
+#[UsesClass(SexadecimalRange::class)]
 class RelativeSexadecimalTest extends FloatValidatorTestCase
 {
     #[TestDox("validates a relative SexadecimalRange.")]

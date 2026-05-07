@@ -21,13 +21,14 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The SexadecimalAngularDistance")]
 #[CoversClass(SexadecimalAngularDistance::class)]
-#[UsesClass(PositiveSexadecimalGenerator::class)]
-#[UsesClass(RelativeSexadecimalGenerator::class)]
+#[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(FloatValidator::class)]
-#[UsesClass(PositiveSexadecimalValidator::class)]
-#[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(RelativeSexadecimalGenerator::class)]
+#[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class SexadecimalAngularDistanceTest extends TestCase
 {

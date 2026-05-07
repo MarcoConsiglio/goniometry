@@ -4,6 +4,11 @@ namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 use MarcoConsiglio\Goniometry\Builders\Angle\RelativeSum as AngleRelativeSum;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 
+/**
+ * Sum two `Angle` resulting in a relative sum.
+ * 
+ * @internal
+ */
 class RelativeSum extends AngleRelativeSum
 {
     /**
