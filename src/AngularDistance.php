@@ -496,6 +496,14 @@ class AngularDistance implements AngleInterface, Stringable
     }
 
     /**
+     * Alias of `sum()` method.
+     */
+    public function absSum(AngleInterface $addend): AngularDistance
+    {
+        return $this->sum($addend);
+    }
+
+    /**
      * Return the sexagesimal value of this `Angle`.
      * 
      * @example `(string) $alfa`

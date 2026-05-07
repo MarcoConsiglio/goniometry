@@ -80,12 +80,9 @@ class EqualAngle extends EqualAngleStrategy
      */
     protected function calcLowExtreme(): void
     {
-        if ($this->beta instanceof AngularDistance)
-            $this->low_extreme = $this->beta->sum($this->epsilon->toggleDirection());
-        if ($this->beta instanceof Angle)
-            $this->low_extreme = $this->beta->absSum(
-                $this->epsilon->toggleDirection()
-            );
+        $this->low_extreme = $this->beta->absSum(
+            $this->epsilon->toggleDirection()
+        );
     }
 
     /**
@@ -93,9 +90,6 @@ class EqualAngle extends EqualAngleStrategy
      */
     protected function calcHighExtreme(): void
     {
-        if ($this->beta instanceof AngularDistance)
-            $this->high_extreme = $this->beta->sum($this->epsilon);
-        if ($this->beta instanceof Angle)
-            $this->high_extreme = $this->beta->absSum($this->epsilon);
+        $this->high_extreme = $this->beta->absSum($this->epsilon);
     }
 }

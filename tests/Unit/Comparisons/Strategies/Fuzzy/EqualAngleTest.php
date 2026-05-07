@@ -20,6 +20,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
@@ -71,8 +72,8 @@ class EqualAngleTest extends TestCase
 {
     protected string $comparison = '≅';
 
-    #[TestDox("can compare two Angle instance within a delta error.")]
-    public function test_compare(): void
+    #[TestDox("can compare two Angle instances within a delta error.")]
+    public function test_compare_angles(): void
     {
         /**
          * Equal
@@ -119,7 +120,7 @@ class EqualAngleTest extends TestCase
     /**
      * Return a fail message for this `TestCase`.
      */
-    protected function getFailMessage(Angle $alfa, Angle $beta, Angle $delta): string
+    protected function getFailMessage(AngleInterface $alfa, AngleInterface $beta, AngleInterface $delta): string
     {
         return $this->fuzzyComparisonFail($alfa, $this->comparison, $beta, $delta);
     }
@@ -127,7 +128,7 @@ class EqualAngleTest extends TestCase
     /**
      * Divide `$delta` by 2.
      */
-    protected function getEpsilon(Angle $delta): Angle
+    protected function getEpsilon(AngleInterface $delta): Angle
     {
         return Angle::createFromDecimal(
             new SexadecimalDegrees(
