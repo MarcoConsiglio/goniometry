@@ -141,9 +141,7 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Sums two relative `Angle`s.
-     * 
-     * The result can be positive or negative.
+     * Sums two `Angle`s. The resulting `Angle` can be positive or negative.
      */
     public function sum(AngleInterface $addend): Angle
     {
@@ -151,9 +149,7 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Sums two absolute `Angle`s.
-     * 
-     * The result can be only positive.
+     * Sums two absolute `Angle`s. The resulting `Angle` can be only positive.
      */
     public function absSum(AngleInterface $addend): AngleInterface
     {
@@ -161,7 +157,7 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Return an absolute `Angle`
+     * Return this `Angle` as absolute (positive).
      */
     public function absolute(): Angle
     {

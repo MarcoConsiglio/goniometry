@@ -488,7 +488,7 @@ class AngularDistance implements AngleInterface, Stringable
     }
 
     /**
-     * Sums an `AngularDistance` with an `Angle`.
+     * Sums an `AngularDistance` to another `Angle`.
      */
     public function sum(AngleInterface $addend): AngularDistance
     {

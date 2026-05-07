@@ -23,6 +23,9 @@ class AngularDistanceRadian extends ModularRelativeNumber implements Scalar
      */
     public const float MIN = -self::MAX;
 
+    /**
+     * Construct the `AngularDistanceRadian` `Scalar` value.
+     */
     public function __construct(int|float|string|BCMathNumber|Number $value)
     {
         $value = Number::normalize($value);
@@ -31,6 +34,9 @@ class AngularDistanceRadian extends ModularRelativeNumber implements Scalar
         ));
     }
 
+    /**
+     * Return the value of this `AngularDistanceRadian` instance.
+     */
     #[Override]
     public function value(int|null $precision = null): float
     {
