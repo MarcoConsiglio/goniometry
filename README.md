@@ -318,15 +318,17 @@ $alfa->fuzzyEqual($beta, $delta); // true
 $alfa->feq($beta, $delta); // true
 ```
 ## Algebraic sum between two angles
-You can sum two angles
+You can sum two angles. An angle of type `AngularDistance` do not have the `absSum()` methods.
 
 ### Relative sum
 The relative sum can return both positive or negative angle.
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::sum($alfa, $beta);  // 180° + (-270°) =
-(string) $gamma;                    // -90° 0' 0"
+$gamma = 
+         $alfa    //  180° + 
+   ->sum($beta);  // -270° =
+(string) $gamma;  //  -90° 
 ```
 
 ### Absolute sum
@@ -334,14 +336,18 @@ The absolute sum will always return a positive angle.
 ```php
 $alfa = Angle::createFromDecimal(180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::absSum($alfa, $beta); // 180° + (-270°) =
-(string) $gamma;                      // 270° 0' 0"
+$gamma = 
+           $alfa    // 180° +
+  ->absSum($beta);  //-270° =
+(string) $gamma;    // 270°
 ```
 ```php
 $alfa = Angle::createFromDecimal(-180);
 $beta = Angle::createFromDecimal(-270);
-$gamma = Angle::absSum($alfa, $beta); // (-180°) + (-270°) =
-(string) $gamma;                      // 270° 0' 0"
+$gamma = 
+           $alfa    // -180° +
+  ->absSum($beta);  // -270°
+(string) $gamma;    //  270°
 ```
 # FakerPHP support <a id="faker_php"></a>
 This library provides support to [FakerPHP](https://fakerphp.org/) through the `WithAngleFaker` trait. Here's a list of the available methods.
