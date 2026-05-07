@@ -2,6 +2,8 @@
 ## v5.0.0
 ### Added
 - `AngularDistance::sum()` method to provide sum operation for `AngularDistance` angles.
+- `AngularDistance::absSum()` method alias of `sum()` method.
+- `Interfaces\Angle::{sum,absSum}()`.
 ### Changed
 - `Angle::{sum,absSum}()` methods signature.
 - README documentation.
