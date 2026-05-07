@@ -1,4 +1,10 @@
 # Changelog
+## v5.0.0
+### Changed
+- `Angle::{sum,absSum}()` methods signature.
+### Removed
+- Deprecated `RegExFailureException` class since `v4.1.1`.
+
 ## v4.2.0
 ### Added
 - `AngularDistance` class implementing the `Angle` interface to represent angular distance between two objects.
