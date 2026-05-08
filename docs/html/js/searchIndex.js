@@ -221,6 +221,11 @@ Search.appendIndex(
             "summary": "Creates\u0020an\u0020\u0060AngularDistance\u0060\u0020from\u0020its\u0020radian\u0020representation.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromRadian"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003Abetween\u0028\u0029",
+            "name": "between",
+            "summary": "Calc\u0020the\u0020\u0060AngularDistance\u0060\u0020between\u0020\u0060\u0024alfa\u0060\u0020and\u0020\u0060\u0024beta\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_between"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003AgetDegrees\u0028\u0029",
             "name": "getDegrees",
             "summary": "Return\u0020an\u0020array\u0020containing\u0020separate\u0020sexagesimal\u0020values.",
@@ -346,6 +351,11 @@ Search.appendIndex(
             "summary": "Sum\u0020this\u0020\u0060AngularDistance\u0060\u0020to\u0020another\u0020\u0060\u0024addend\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_sum"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003AabsSum\u0028\u0029",
+            "name": "absSum",
+            "summary": "Alias\u0020of\u0020\u0060sum\u0028\u0029\u0060\u0020method.",
+            "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_absSum"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "Return\u0020the\u0020sexagesimal\u0020value\u0020of\u0020this\u0020\u0060Angle\u0060.",
@@ -425,6 +435,21 @@ Search.appendIndex(
             "name": "MIN",
             "summary": "The\u0020minimum\u0020allowed\u0020radian\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistanceRadian.html#constant_MIN"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\AngularDistance\\FromAngles",
+            "name": "FromAngles",
+            "summary": "Build\u0020an\u0020\u0060AngularDistance\u0060\u0020starting\u0020from\u0020two\u0020\u0060Angle\u0060s.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-AngularDistance-FromAngles.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\AngularDistance\\FromAngles\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Construct\u0020the\u0020\u0060FromAngles\u0060\u0020\u0060AngleBuilder\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-AngularDistance-FromAngles.html#method___construct"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\AngularDistance\\FromAngles\u003A\u003AfetchData\u0028\u0029",
+            "name": "fetchData",
+            "summary": "Fetch\u0020data\u0020to\u0020build\u0020an\u0020\u0060AngularDistance\u0060\u0020class.",
+            "url": "classes/MarcoConsiglio-Goniometry-Builders-AngularDistance-FromAngles.html#method_fetchData"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees",
             "name": "Degrees",
@@ -690,6 +715,16 @@ Search.appendIndex(
             "name": "feq",
             "summary": "Alias\u0020for\u0020\u0060fuzzyEqual\u0028\u0029\u0060\u0020method.",
             "url": "classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html#method_feq"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\Angle\u003A\u003Asum\u0028\u0029",
+            "name": "sum",
+            "summary": "The\u0020sum\u0020between\u0020two\u0020\u0060Angle\u0060s.\u0020The\u0020resulting\u0020\u0060Angle\u0060\u0020can\u0020be\u0020positive\u0020or\u0020negative.",
+            "url": "classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html#method_sum"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\Angle\u003A\u003AabsSum\u0028\u0029",
+            "name": "absSum",
+            "summary": "The\u0020sum\u0020between\u0020two\u0020\u0060Angle\u0060s.\u0020The\u0020resulting\u0020\u0060Angle\u0060\u0020can\u0020only\u0020be\u0020positive.",
+            "url": "classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html#method_absSum"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\Scalar",
             "name": "Scalar",
@@ -1170,6 +1205,16 @@ Search.appendIndex(
             "name": "MarcoConsiglio",
             "summary": "",
             "url": "namespaces/marcoconsiglio.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders",
+            "name": "Builders",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-goniometry-builders.html"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\AngularDistance",
+            "name": "AngularDistance",
+            "summary": "",
+            "url": "namespaces/marcoconsiglio-goniometry-builders-angulardistance.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Enums",
             "name": "Enums",
