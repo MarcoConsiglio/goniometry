@@ -9,7 +9,7 @@ use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
- *  Builds an `Angle` starting from degrees, minutes, seconds and direction.
+ *  Build an `Angle` starting from degrees, minutes, seconds and direction.
  * 
  * @internal
  */

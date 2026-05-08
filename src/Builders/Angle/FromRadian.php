@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\Radian;
 /**
- *  Builds an `Angle` starting from a radian value.
+ *  Build an `Angle` starting from a radian value.
  * 
  * @internal
  */

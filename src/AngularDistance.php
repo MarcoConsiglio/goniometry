@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry;
 
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromAngles;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
@@ -139,6 +140,14 @@ class AngularDistance implements AngleInterface, Stringable
     public static function createFromRadian(float|AngularDistanceRadian $radian): AngularDistance
     {
         return new AngularDistance(new FromRadian($radian));
+    }
+
+    /**
+     * Calc the `AngularDistance` between `$alfa` and `$beta`.
+     */
+    public static function between(Angle $alfa, Angle $beta): AngularDistance
+    {
+        return new AngularDistance(new FromAngles($alfa, $beta));
     }
 
     /**

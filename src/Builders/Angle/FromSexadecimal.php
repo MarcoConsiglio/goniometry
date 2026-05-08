@@ -10,7 +10,7 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
- * Builds an `Angle` starting from a sexadecimal value.
+ * Build an `Angle` starting from a sexadecimal value.
  * 
  * @internal
  */

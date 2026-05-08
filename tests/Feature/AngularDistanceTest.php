@@ -10,6 +10,7 @@ use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadec
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString as AngleFromString;
 use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromAngles;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
@@ -136,6 +137,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(FloatGenerator::class)]
 #[UsesClass(FloatType::class)]
 #[UsesClass(FloatValidator::class)]
+#[UsesClass(FromAngles::class)]
 #[UsesClass(FromRadian::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
@@ -262,6 +264,20 @@ class AngularDistanceTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $angle);
+    }
+
+    #[TestDox("can be calculated between two Angle instances.")]
+    public function test_create_from_angles(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $beta = $this->randomAngle();
+
+        // Act
+        $distance = AngularDistance::between($alfa, $beta);
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $distance);
     }
 
     #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]

@@ -8,7 +8,7 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees; // This is needed for static t
 use Override;
 
 /**
- *  Builds an `AngularDistance` starting from a `string` sexagesimal value.
+ *  Build an `AngularDistance` starting from a `string` sexagesimal value.
  * 
  * @internal
  */

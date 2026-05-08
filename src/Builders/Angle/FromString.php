@@ -10,7 +10,7 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 
 /**
- *  Builds an `Angle` starting from a `string` sexagesimal value.
+ *  Build an `Angle` starting from a `string` sexagesimal value.
  * 
  * @internal
  */

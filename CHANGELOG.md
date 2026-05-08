@@ -1,4 +1,8 @@
 # Changelog
+## Unreleased
+### Added
+- `AngularDistance::between()` to calc the angular distance between two angles.
+
 ## v5.0.0
 ### Added
 - `AngularDistance::sum()` method to provide sum operation for `AngularDistance` angles.

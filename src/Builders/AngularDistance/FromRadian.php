@@ -6,7 +6,7 @@ use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
 use Override;
 
 /**
- *  Builds an `AngularDistance` starting from a radian value.
+ *  Build an `AngularDistance` starting from a radian value.
  * 
  * @internal
  */
