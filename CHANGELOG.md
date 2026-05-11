@@ -6,6 +6,7 @@
 ### Renamed
 - `Direction` enum to `Rotation`.
 - `Interfaces\Angle::toggleDirection() method to `oppositeRotation()`. 
+- `Interfaces\Angle::opposite() method to `oppositeDirection()`. 
 
 ## v5.0.0
 ### Added
