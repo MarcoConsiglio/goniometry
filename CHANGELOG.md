@@ -5,6 +5,7 @@
 - `{Angle,AngularDistance}::opposite()` to calc the opposite angle.
 ### Renamed
 - `Direction` enum to `Rotation`.
+- `Interfaces\Angle::toggleDirection() method to `oppositeRotation()`. 
 
 ## v5.0.0
 ### Added
