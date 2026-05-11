@@ -2,6 +2,7 @@
 ## Unreleased
 ### Added
 - `AngularDistance::between()` to calc the angular distance between two angles.
+- `{Angle,AngularDistance}::opposite()` to calc the opposite angle.
 
 ## v5.0.0
 ### Added
