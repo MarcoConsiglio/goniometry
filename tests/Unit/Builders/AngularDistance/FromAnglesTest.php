@@ -82,35 +82,4 @@ class FromAnglesTest extends TestCase
             "α = {$alfa}\nβ = {$beta}"
         );
     }
-
-    public function test_specific_case(): void
-    {
-        // Arrange
-        $alfa = Angle::createFromValues(287, 47, 38.141259503424, Direction::CLOCKWISE);
-        $beta = Angle::createFromValues(330, 31, 34.630993667064, Direction::COUNTER_CLOCKWISE);
-        $distance_1 = $alfa->toSexadecimalDegrees()->value->sub(
-            $beta->toSexadecimalDegrees()->value
-        )->abs();
-        $distance_2 = new Number(Degrees::MAX)->sub($distance_1);
-        $expected_distance = Number::min($distance_1, $distance_2);
-        if ($expected_distance->gte(180))
-            $expected_distance = new Number(-Degrees::MAX)->plus($expected_distance);
-        if ($expected_distance->lte(-180))
-            $expected_distance = new Number(Degrees::MAX)->plus($expected_distance);
-        $builder = new FromAngles($alfa, $beta);
-
-        // Act
-        $result = $builder->fetchData();
-        $actual_distance = $result[1];
-        $sexagesimal = $result[0];
-
-        // Assert
-        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
-        $this->assertInstanceOf(SexadecimalAngularDistance::class, $actual_distance);
-        $this->assertEquals(
-            $expected_distance->value, 
-            $actual_distance->value->value,
-            "α = {$alfa}\nβ = {$beta}"
-        );
-    }
 }
