@@ -331,12 +331,12 @@ class AngularDistanceTest extends TestCase
         // Act & Assert
         $this->assertDirection(
             $alfa->direction->opposite(), 
-            $alfa->toggleDirection()->direction, 
+            $alfa->oppositeRotation()->direction, 
             $failure_message_2
         );
         $this->assertDirection(
             $beta->direction->opposite(), 
-            $beta->toggleDirection()->direction, 
+            $beta->oppositeRotation()->direction, 
             $failure_message_1
         );
     }

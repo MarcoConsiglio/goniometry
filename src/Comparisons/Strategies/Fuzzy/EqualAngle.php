@@ -81,7 +81,7 @@ class EqualAngle extends EqualAngleStrategy
     protected function calcLowExtreme(): void
     {
         $this->low_extreme = $this->beta->absSum(
-            $this->epsilon->toggleDirection()
+            $this->epsilon->oppositeRotation()
         );
     }
 

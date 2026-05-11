@@ -60,7 +60,7 @@ class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
      * Return this `SexadecimalDegrees` with opposite direction.
      */
     #[Override]
-    public function toggleDirection(): SexadecimalDegrees
+    public function oppositeRotation(): SexadecimalDegrees
     {
         return new SexadecimalDegrees(
             $this->value->opposite()

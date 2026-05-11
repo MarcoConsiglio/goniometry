@@ -80,6 +80,6 @@ class SexadecimalAngularDistanceTest extends TestCase
         $expected = $sexadecimal->value->opposite();
 
         // Act & Assert
-        $this->assertEquals($expected, $sexadecimal->toggleDirection()->value);
+        $this->assertEquals($expected, $sexadecimal->oppositeRotation()->value);
     }
 }

@@ -46,9 +46,9 @@ interface Angle
     public function asb(): Angle;
 
     /**
-     * Reverse the direction of rotation.
+     * Return an `Angle` with the opposite direction of rotation.
      */
-    public function toggleDirection(): Angle;
+    public function oppositeRotation(): Angle;
 
     /**
      * Return an array containing the values

@@ -439,12 +439,12 @@ class AngleTest extends TestCase
         // Act & Assert
         $this->assertDirection(
             $alfa->direction->opposite(), 
-            $alfa->toggleDirection()->direction, 
+            $alfa->oppositeRotation()->direction, 
             $failure_message_2
         );
         $this->assertDirection(
             $beta->direction->opposite(), 
-            $beta->toggleDirection()->direction, 
+            $beta->oppositeRotation()->direction, 
             $failure_message_1
         );
 
@@ -465,12 +465,12 @@ class AngleTest extends TestCase
 
         // Act & Assert
         $this->assertSexadecimalDegrees(
-            $gamma_clone->toSexadecimalDegrees()->toggleDirection(),
-            $gamma->toggleDirection()->toSexadecimalDegrees()
+            $gamma_clone->toSexadecimalDegrees()->oppositeRotation(),
+            $gamma->oppositeRotation()->toSexadecimalDegrees()
         );
         $this->assertSexadecimalDegrees(
-            $delta_clone->toSexadecimalDegrees()->toggleDirection(),
-            $delta->toggleDirection()->toSexadecimalDegrees()
+            $delta_clone->toSexadecimalDegrees()->oppositeRotation(),
+            $delta->oppositeRotation()->toSexadecimalDegrees()
         );
     }
 

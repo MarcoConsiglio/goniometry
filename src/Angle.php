@@ -69,7 +69,7 @@ class Angle implements AngleInterface, Stringable
 
     
     /** 
-     * The angle direction.
+     * The `Angle` `Rotation` direction.
     */
     public Rotation $direction {
         get {return $this->sexagesimal->direction;}
@@ -202,9 +202,9 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Return the same instance with the opposite direction.
+     * Return the same instance with the opposite `Rotation` direction.
      */
-    public function toggleDirection(): Angle
+    public function oppositeRotation(): Angle
     {
         $clone = clone $this;
         $clone->sexagesimal->direction =

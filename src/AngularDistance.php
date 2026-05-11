@@ -63,7 +63,7 @@ class AngularDistance implements AngleInterface, Stringable
     }
     
     /** 
-     * The `AngularDistance` `Rotation`.
+     * The `AngularDistance` `Rotation` direction.
     */
     public Rotation $direction {
         get {return $this->sexagesimal->direction;}
@@ -198,10 +198,10 @@ class AngularDistance implements AngleInterface, Stringable
     }
 
     /**
-     * Return the same instance with the opposite direction.
+     * Return the same instance with the opposite `Rotation` direction.
      */
     #[Override]
-    public function toggleDirection(): AngularDistance
+    public function oppositeRotation(): AngleInterface
     {
         $clone = clone $this;
         $clone->sexagesimal->direction =
