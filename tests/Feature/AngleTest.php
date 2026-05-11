@@ -623,8 +623,8 @@ class AngleTest extends TestCase
         );
     }
 
-    #[TestDox("can return the opposite Angle.")]
-    public function test_opposite(): void
+    #[TestDox("can return the opposite direction Angle.")]
+    public function test_opposite_direction(): void
     {
         // Arrange
         $angle = $this->randomAngle();
@@ -647,6 +647,5 @@ class AngleTest extends TestCase
             $opposite_angle->toSexadecimalDegrees()->value,
             "The opposite of {$angle} is {$opposite_angle}."
         );
-
     }
 }

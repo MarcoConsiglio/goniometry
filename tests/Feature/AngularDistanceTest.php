@@ -534,8 +534,8 @@ class AngularDistanceTest extends TestCase
         $this->assertInstanceOf(AngularDistance::class, $result);
     }
 
-    #[TestDox("can return the opposite AngularDistance.")]
-    public function test_opposite(): void
+    #[TestDox("can return the opposite direction AngularDistance.")]
+    public function test_opposite_direction(): void
     {
         // Arrange
         $angle = $this->randomAngularDistance();
