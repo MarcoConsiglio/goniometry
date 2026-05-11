@@ -533,4 +533,30 @@ class AngularDistanceTest extends TestCase
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $result);
     }
+
+    #[TestDox("can return the opposite AngularDistance.")]
+    public function test_opposite(): void
+    {
+        // Arrange
+        $angle = $this->randomAngularDistance();
+        if ($angle->isClockwise())
+            $opposite_sexadecimal = new SexadecimalAngularDistance(
+                $angle->toSexadecimalDegrees()->value->plus(-180)
+            );
+        else
+            $opposite_sexadecimal = new SexadecimalAngularDistance(
+                $angle->toSexadecimalDegrees()->value->plus(Degrees::MAX)->plus(-180)
+            );
+
+        // Act
+        $opposite_angle = $angle->opposite();
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $opposite_angle);
+        $this->assertEquals(
+            $opposite_sexadecimal->value, 
+            $opposite_angle->toSexadecimalDegrees()->value,
+            "The opposite of {$angle} is {$opposite_angle}."
+        );
+    }
 }

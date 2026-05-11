@@ -23,6 +23,7 @@ use MarcoConsiglio\Goniometry\Enums\Direction;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
+use Override;
 use Stringable;
 
 /**
@@ -138,22 +139,6 @@ class Angle implements AngleInterface, Stringable
     public static function createFromRadian(float|Radian $radian): Angle
     {
          return new Angle(new FromRadian($radian));
-    }
-
-    /**
-     * Sum this `Angle` to an `$addend`. The resulting `Angle` can be positive or negative.
-     */
-    public function sum(AngleInterface $addend): Angle
-    {
-        return new Angle(new RelativeSum($this, $addend));
-    }
-
-    /**
-     * Sum this `Angle` to an `$addend` two absolute `Angle`s. The resulting `Angle` can be only positive.
-     */
-    public function absSum(AngleInterface $addend): AngleInterface
-    {
-        return new Angle(new AbsoluteSum($this, $addend));
     }
 
     /**
@@ -475,6 +460,35 @@ class Angle implements AngleInterface, Stringable
     public function feq(AngleInterface $beta, AngleInterface $delta): bool
     {
         return $this->fuzzyEqual($beta, $delta);
+    }
+
+    /**
+     * Sum this `Angle` to an `$addend`. The resulting `Angle` can be positive or negative.
+     */
+    public function sum(AngleInterface $addend): Angle
+    {
+        return new Angle(new RelativeSum($this, $addend));
+    }
+
+    /**
+     * Sum this `Angle` to an `$addend` two absolute `Angle`s. The resulting `Angle` can be only positive.
+     */
+    public function absSum(AngleInterface $addend): AngleInterface
+    {
+        return new Angle(new AbsoluteSum($this, $addend));
+    }
+
+    /**
+     * Return the opposite `Angle`.
+     */
+    #[Override]
+    public function opposite(): Angle
+    {
+        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
+        if ($this->isClockwise())
+            return $this->sum($opposite);
+        else
+            return $this->absSum($opposite);
     }
 
     /**

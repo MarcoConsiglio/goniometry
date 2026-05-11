@@ -166,4 +166,9 @@ interface Angle
      * The sum between two `Angle`s. The resulting `Angle` can only be positive.
      */
     public function absSum(Angle $addend): Angle;
+
+    /**
+     * Return the opposite `Angle`.
+     */
+    public function opposite(): Angle;
 }
