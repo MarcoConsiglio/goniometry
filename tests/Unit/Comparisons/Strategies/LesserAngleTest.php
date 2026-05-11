@@ -74,10 +74,10 @@ class LesserAngleTest extends TestCase
          */
         // Arrange
         $alfa = Angle::createFromValues(
-            180, $this->randomMinutes(max: 30)->value()
+            180, $this->randomMinutes(max: 29)->value()
         );
         $beta = Angle::createFromValues(
-            180, $this->randomMinutes(min: 29)->value()
+            180, $this->randomMinutes(min: 30)->value()
         );
 
         // Act & Assert
