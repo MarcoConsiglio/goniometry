@@ -26,7 +26,8 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
       - [To sexadecimal (object)](#toSexadecimalDegrees)
       - [To radian (float)](#toRadian)
       - [To string](#to-string)
-  - [Direction](#direction)
+  - [Rotation direction](#rotation-direction)
+  - [Opposite direction](#opposite-direction)
   - [Comparison](#comparison)
     - [$\alpha \gt \beta$ (greater than)](#greater-than)
     - [$\alpha \ge \beta$ (greater than or equal)](#greater-than-or-equal)
@@ -72,11 +73,11 @@ Both `Angle` and `AngularDistance` implements the `Angle` interface.
 ### Sexagesimal (`int` degrees, `int` minutes, `float` seconds) <a id="sexagesimal_values"></a>
 This creates an angle from its values in degrees, minutes and seconds:
 ```php
-$alfa = Angle::createFromValues(180, 12, 43.4618, Direction::CLOCKWISE); // -180° 12' 43.4618"
+$alfa = Angle::createFromValues(180, 12, 43.4618, Rotation::CLOCKWISE); // -180° 12' 43.4618"
 ```
-`Direction::COUNTER_CLOCKWISE` is the plus sign, `Direction::CLOCKWISE` is the minus sign.
+`Rotation::COUNTER_CLOCKWISE` is the plus sign, `Rotation::CLOCKWISE` is the minus sign.
 
-A null angle (exactly $0^\circ\space0'\space0"$) will always have a `Direction::COUNTER_CLOCKWISE`.
+A null angle (exactly $0^\circ\space0'\space0"$) will always have a `Rotation::COUNTER_CLOCKWISE`.
 
 ### Sexagesimal (`string`)<a id="sexagesimal_string"></a>
 This creates an angle from its textual representation:
@@ -144,27 +145,27 @@ There are read-only properties too:
 (string) $alfa->minutes;  // 12'
 /** @var Seconds */
 (string) $alfa->seconds;  // 43"
-/** @var Direction */
-$alfa->direction;         // Direction::CLOCKWISE (-1)
+/** @var Rotation */
+$alfa->direction;         // Rotation::CLOCKWISE (-1)
 ```
 The `Degrees`, `Minutes`, and `Seconds` extends `ModularNumber`, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
 
 You can cast `Degrees`, `Minutes`, and `Seconds` to `string`.
 
-### Direction
+### Rotation direction
 Positive angles are represented by the enum constant
 ```php
-Direction::COUNTER_CLOCKWISE; // 1
+Rotation::COUNTER_CLOCKWISE; // 1
 ```
 while negative angles are represented by the opposite enum constant:
 ```php
-Direction::CLOCKWISE; // -1
+Rotation::CLOCKWISE; // -1
 ```
-You can toggle direction:
+You can toggle the rotation direction:
 ```php
-$beta = $alfa->toggleDirection();
+$beta = $alfa->oppositeRotation();
 ```
-Since the `Angle` instance is immutable, the `toggleDirection()` method returns a copy with the opposite sign.
+Since the `Angle` instance is immutable, the `toggleRotation()` method returns a copy with the opposite sign.
 
 You can check if an `Angle` is clockwise or counterclockwise.
 ```php
@@ -174,6 +175,14 @@ $alfa->isClockwise();           // false
 // If $beta is a negative angle
 $beta->isCounterClockwise();    // false
 $beta->isClockwise();           // true
+```
+
+### Opposite direction
+You can calc the opposite direction of an object implementing the `Angle` interface with the method `oppositeDirection()`.
+``` php
+$alfa = Angle::createFromDecimal(90.0);
+$beta = $alfa->oppositeDirection();
+(string) $beta; // 180° 0' 0"
 ```
 
 ## Casting
@@ -192,13 +201,13 @@ If you need an arbitrary precision, you can obtain a `SexadecimalDegrees` instan
 ```php
 $sexadecimal = $alfa->toSexadecimalDegrees();
 /** @var Number */
-$sexadecimal->value;      // 180.2119715432956455962174521226543543
+(string) $sexadecimal->value;// 180.2119715432956455962174521226543543
 /** @var float */
-$sexadecimal->value();    // 180.211971543295645
+$sexadecimal->value();       // 180.211971543295645
 /** @var float */
-$sexadecimal->value(3);   // 180.212
+$sexadecimal->value(3);      // 180.212
 /** @var float */
-$sexadecimal->value(12);  // 180.211971543296
+$sexadecimal->value(12);     // 180.211971543296
 ```
 The `$value` property is a `Number` object extending the `BCMath\Number` class, whose API is documented in [marcoconsiglio/bcmath-extended](https://github.com/MarcoConsiglio/bcmath-extended).
 
