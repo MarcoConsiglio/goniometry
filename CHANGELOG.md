@@ -1,4 +1,13 @@
 # Changelog
+## v6.0.0
+### Added
+- `AngularDistance::between()` to calc the angular distance between two angles.
+- `{Angle,AngularDistance}::opposite()` to calc the opposite angle.
+### Renamed
+- `Direction` enum to `Rotation`.
+- `Interfaces\Angle::toggleDirection() method to `oppositeRotation()`. 
+- `Interfaces\Angle::opposite() method to `oppositeDirection()`. 
+
 ## v5.0.0
 ### Added
 - `AngularDistance::sum()` method to provide sum operation for `AngularDistance` angles.

@@ -61,7 +61,7 @@ class SexadecimalAngularDistance extends ModularRelativeNumber implements Sexade
      * Return this `SexadecimalAngularDistance` with opposite direction.
      */
     #[Override]
-    public function toggleDirection(): SexadecimalAngularDistance
+    public function oppositeRotation(): SexadecimalAngularDistance
     {
         return new SexadecimalAngularDistance($this->value->opposite());
     }

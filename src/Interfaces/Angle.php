@@ -2,7 +2,7 @@
 
 namespace MarcoConsiglio\Goniometry\Interfaces;
 
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
@@ -17,7 +17,7 @@ interface Angle
         int $degrees, 
         int $minutes, 
         float $seconds, 
-        Direction $direction
+        Rotation $direction
     ): Angle;
 
     /**
@@ -46,9 +46,9 @@ interface Angle
     public function asb(): Angle;
 
     /**
-     * Reverse the direction of rotation.
+     * Return an `Angle` with the opposite direction of rotation.
      */
-    public function toggleDirection(): Angle;
+    public function oppositeRotation(): Angle;
 
     /**
      * Return an array containing the values
@@ -166,4 +166,9 @@ interface Angle
      * The sum between two `Angle`s. The resulting `Angle` can only be positive.
      */
     public function absSum(Angle $addend): Angle;
+
+    /**
+     * Return the opposite `Angle`.
+     */
+    public function oppositeDirection(): Angle;
 }

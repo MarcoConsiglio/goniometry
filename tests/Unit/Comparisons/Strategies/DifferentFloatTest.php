@@ -9,7 +9,7 @@ use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as GeneratorAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
@@ -37,7 +37,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(DifferentFloat::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(Direction::class)]
+#[UsesClass(Rotation::class)]
 #[UsesClass(EqualFloat::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(GeneratorAngle::class)]

@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests;
 
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -33,11 +33,11 @@ class TestCase extends PHPUnitTestCase
     /**
      * Convert a `$sexadecimal` value to sexagesimal values.
      * 
-     * @return array{Degrees,Minutes,Seconds,Direction}
+     * @return array{Degrees,Minutes,Seconds,Rotation}
      */
     protected function toSexagesimal(float $sexadecimal): array
     {
-        $direction = $sexadecimal >= 0 ? Direction::COUNTER_CLOCKWISE : Direction::CLOCKWISE;
+        $direction = $sexadecimal >= 0 ? Rotation::COUNTER_CLOCKWISE : Rotation::CLOCKWISE;
         $sexadecimal = new SexadecimalDegrees(abs($sexadecimal));
         $degrees = new Degrees($sexadecimal->value->floor());
         $sexadecimal = new SexadecimalDegrees($sexadecimal->value->abs()->sub($degrees->value));
@@ -96,11 +96,11 @@ class TestCase extends PHPUnitTestCase
     }
 
     /**
-     * Assert `$expected` `Direction` are equal to `$actual` `Direction`.
+     * Assert `$expected` `Rotation` are equal to `$actual` `Rotation`.
      */    
     protected function assertDirection(
-        Direction $expected, 
-        Direction $actual, 
+        Rotation $expected, 
+        Rotation $actual, 
         string $message = ""
     ): void {
         $this->assertEquals($expected, $actual, $message);

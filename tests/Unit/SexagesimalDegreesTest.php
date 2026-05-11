@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit;
 
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
@@ -54,7 +54,7 @@ class SexagesimalDegreesTest extends TestCase
     public function test_positive_angle_cast_to_string(): void
     {
         // Arrange
-        $this->sexagesimal->direction = Direction::COUNTER_CLOCKWISE;
+        $this->sexagesimal->direction = Rotation::COUNTER_CLOCKWISE;
         $expected = <<<TEXT
 {$this->sexagesimal->degrees} {$this->sexagesimal->minutes} {$this->sexagesimal->seconds}
 TEXT;
@@ -70,7 +70,7 @@ TEXT;
     public function test_negative_angle_cast_to_string(): void
     {
         // Arrange
-        $this->sexagesimal->direction = Direction::CLOCKWISE;
+        $this->sexagesimal->direction = Rotation::CLOCKWISE;
         $sign = '-';
         $expected = <<<TEXT
 {$sign}{$this->sexagesimal->degrees} {$this->sexagesimal->minutes} {$this->sexagesimal->seconds}

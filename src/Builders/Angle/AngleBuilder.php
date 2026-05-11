@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder as AngleBuilderInterface;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -32,7 +32,7 @@ abstract class AngleBuilder implements AngleBuilderInterface
     /**
      * Rotation direction.
      */
-    protected Direction $direction = Direction::COUNTER_CLOCKWISE;  
+    protected Rotation $direction = Rotation::COUNTER_CLOCKWISE;  
 
     /**
      * Check for overflow above/below ±360°.

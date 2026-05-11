@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
@@ -50,7 +50,7 @@ class FromStringTest extends TestCase
         $degrees = $this->randomDegrees();
         $minutes = $this->randomMinutes();
         $seconds = $this->randomSeconds(precision: 1);
-        $direction = Direction::COUNTER_CLOCKWISE;
+        $direction = Rotation::COUNTER_CLOCKWISE;
         $sign = '';
         
         // Act
@@ -72,7 +72,7 @@ class FromStringTest extends TestCase
         $degrees = $this->randomDegrees();
         $minutes = $this->randomMinutes();
         $seconds = $this->randomSeconds(precision: 1);
-        $direction = Direction::CLOCKWISE;
+        $direction = Rotation::CLOCKWISE;
         $sign = '-';
         $builder = new FromString("{$sign}{$degrees} {$minutes} {$seconds}");
         

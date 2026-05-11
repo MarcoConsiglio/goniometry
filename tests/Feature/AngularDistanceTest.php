@@ -10,6 +10,7 @@ use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadec
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString as AngleFromString;
 use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromAngles;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
@@ -136,6 +137,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(FloatGenerator::class)]
 #[UsesClass(FloatType::class)]
 #[UsesClass(FloatValidator::class)]
+#[UsesClass(FromAngles::class)]
 #[UsesClass(FromRadian::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
@@ -264,6 +266,20 @@ class AngularDistanceTest extends TestCase
         $this->assertInstanceOf(AngularDistance::class, $angle);
     }
 
+    #[TestDox("can be calculated between two Angle instances.")]
+    public function test_create_from_angles(): void
+    {
+        // Arrange
+        $alfa = $this->randomAngle();
+        $beta = $this->randomAngle();
+
+        // Act
+        $distance = AngularDistance::between($alfa, $beta);
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $distance);
+    }
+
     #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]
     public function test_get_angle_values_in_array(): void
     {
@@ -315,12 +331,12 @@ class AngularDistanceTest extends TestCase
         // Act & Assert
         $this->assertDirection(
             $alfa->direction->opposite(), 
-            $alfa->toggleDirection()->direction, 
+            $alfa->oppositeRotation()->direction, 
             $failure_message_2
         );
         $this->assertDirection(
             $beta->direction->opposite(), 
-            $beta->toggleDirection()->direction, 
+            $beta->oppositeRotation()->direction, 
             $failure_message_1
         );
     }
@@ -516,5 +532,31 @@ class AngularDistanceTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $result);
+    }
+
+    #[TestDox("can return the opposite direction AngularDistance.")]
+    public function test_opposite_direction(): void
+    {
+        // Arrange
+        $angle = $this->randomAngularDistance();
+        if ($angle->isClockwise())
+            $opposite_sexadecimal = new SexadecimalAngularDistance(
+                $angle->toSexadecimalDegrees()->value->plus(-180)
+            );
+        else
+            $opposite_sexadecimal = new SexadecimalAngularDistance(
+                $angle->toSexadecimalDegrees()->value->plus(Degrees::MAX)->plus(-180)
+            );
+
+        // Act
+        $opposite_angle = $angle->oppositeDirection();
+
+        // Assert
+        $this->assertInstanceOf(AngularDistance::class, $opposite_angle);
+        $this->assertEquals(
+            $opposite_sexadecimal->value, 
+            $opposite_angle->toSexadecimalDegrees()->value,
+            "The opposite of {$angle} is {$opposite_angle}."
+        );
     }
 }

@@ -26,7 +26,7 @@ class RelativeSum extends AngleRelativeSum
 
     /**
      * Fetch data to build an `AngularDistance` which is the sum
-     * between two `AngularDistance`s.
+     * between two `Angle`s.
      *
      * @return array{SexagesimalDegrees,SexadecimalAngularDistance,null}
      */

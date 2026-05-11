@@ -145,7 +145,7 @@ class EqualAngleTest extends TestCase
     protected function getDeltaExtremes(Angle $beta, Angle $delta): array
     {
         $epsilon = $this->getEpsilon($delta);
-        $min = $beta->absSum($epsilon->toggleDirection());
+        $min = $beta->absSum($epsilon->oppositeRotation());
         $max = $beta->absSum($epsilon);
         return [$min, $max];
     }

@@ -129,7 +129,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
@@ -199,9 +199,9 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#property_direction">$direction</a>
     <span>
-                        &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Enums-Direction.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Direction">Direction</abbr></a>            </span>
+                        &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation">Rotation</abbr></a>            </span>
 </dt>
-<dd>The `AngularDistance` `Direction`.</dd>
+<dd>The `AngularDistance` `Rotation` direction.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#property_minutes">$minutes</a>
@@ -261,11 +261,25 @@
 <dd>Return an absolute `AngularDistance`</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_absSum">absSum()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a>    </span>
+</dt>
+<dd>Alias of `sum()` method.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_asb">asb()</a>
     <span>
                                 &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a>    </span>
 </dt>
 <dd>Alias of `absolute()` method.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_between">between()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a>    </span>
+</dt>
+<dd>Calc the `AngularDistance` between `$alfa` and `$beta`.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromDecimal">createFromDecimal()</a>
@@ -416,6 +430,20 @@ error angle.</dd>
 <dd>Alias for `isDifferentThan()` method.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeDirection">oppositeDirection()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a>    </span>
+</dt>
+<dd>Return the opposite `AngularDistance`.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeRotation">oppositeRotation()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a>    </span>
+</dt>
+<dd>Return the same instance with the opposite `Rotation` direction.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_sum">sum()</a>
     <span>
                                 &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a>    </span>
@@ -428,13 +456,6 @@ error angle.</dd>
                                 &nbsp;: float    </span>
 </dt>
 <dd>Return the sexadecimal `float` value of this `AngularDistance`.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toggleDirection">toggleDirection()</a>
-    <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a>    </span>
-</dt>
-<dd>Return the same instance with the opposite direction.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toRadian">toRadian()</a>
@@ -478,7 +499,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -509,7 +530,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -556,7 +577,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -610,16 +631,16 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The `AngularDistance` `Direction`.</p>
+        <p class="phpdocumentor-summary">The `AngularDistance` `Rotation` direction.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Direction.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Direction">Direction</abbr></a></span>
+            <span class="phpdocumentor-signature__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation">Rotation</abbr></a></span>
     <span class="phpdocumentor-signature__name">$direction</span>
     </code>
 
@@ -631,7 +652,7 @@ error angle.</dd>
             <h5>Hooks</h5>
             <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Direction.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Direction">Direction</abbr></a></span>
+                <span class="phpdocumentor-signature__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation">Rotation</abbr></a></span>
         <span class="phpdocumentor-signature__name">get</span>
 </code>
 
@@ -664,7 +685,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
@@ -718,7 +739,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -756,7 +777,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -810,7 +831,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
@@ -848,7 +869,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -891,7 +912,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">503</span>
+    <span class="phpdocumentor-element-found-in__line">530</span>
 
     </aside>
 
@@ -957,7 +978,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">172</span>
+    <span class="phpdocumentor-element-found-in__line">181</span>
 
     </aside>
 
@@ -999,6 +1020,55 @@ error angle.</dd>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_absSum">
+        absSum()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_absSum" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">510</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Alias of `sum()` method.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">absSum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$addend</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$addend</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_asb">
         asb()
         <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_asb" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1007,7 +1077,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">185</span>
+    <span class="phpdocumentor-element-found-in__line">194</span>
 
     </aside>
 
@@ -1049,6 +1119,62 @@ error angle.</dd>
             -public
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_between">
+        between()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_between" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">148</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Calc the `AngularDistance` between `$alfa` and `$beta`.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">between</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$alfa</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$beta</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$alfa</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$beta</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
     <h4 class="phpdocumentor-element__name" id="method_createFromDecimal">
         createFromDecimal()
         <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromDecimal" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1057,7 +1183,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">118</span>
 
     </aside>
 
@@ -1117,7 +1243,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">138</span>
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
@@ -1177,7 +1303,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">129</span>
+    <span class="phpdocumentor-element-found-in__line">130</span>
 
     </aside>
 
@@ -1254,7 +1380,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">101</span>
+    <span class="phpdocumentor-element-found-in__line">102</span>
 
     </aside>
 
@@ -1262,7 +1388,7 @@ error angle.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromValues</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$degrees</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$minutes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$seconds</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0.0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Direction.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Direction">Direction</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$direction</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><a href="classes/MarcoConsiglio-Goniometry-Enums-Direction.html#enumcase_COUNTER_CLOCKWISE"><abbr title="\MarcoConsiglio\Goniometry\Enums\Direction::COUNTER_CLOCKWISE">Direction::COUNTER_CLOCKWISE</abbr></a></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromValues</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$degrees</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$minutes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$seconds</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0.0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation">Rotation</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$direction</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html#enumcase_COUNTER_CLOCKWISE"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation::COUNTER_CLOCKWISE">Rotation::COUNTER_CLOCKWISE</abbr></a></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1293,8 +1419,8 @@ error angle.</dd>
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$direction</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Direction.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Direction">Direction</abbr></a></span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><a href="classes/MarcoConsiglio-Goniometry-Enums-Direction.html#enumcase_COUNTER_CLOCKWISE"><abbr title="\MarcoConsiglio\Goniometry\Enums\Direction::COUNTER_CLOCKWISE">Direction::COUNTER_CLOCKWISE</abbr></a></span>            </dt>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation">Rotation</abbr></a></span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html#enumcase_COUNTER_CLOCKWISE"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation::COUNTER_CLOCKWISE">Rotation::COUNTER_CLOCKWISE</abbr></a></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
@@ -1335,7 +1461,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">303</span>
+    <span class="phpdocumentor-element-found-in__line">312</span>
 
     </aside>
 
@@ -1422,7 +1548,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">484</span>
+    <span class="phpdocumentor-element-found-in__line">493</span>
 
     </aside>
 
@@ -1489,7 +1615,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">475</span>
+    <span class="phpdocumentor-element-found-in__line">484</span>
 
     </aside>
 
@@ -1557,7 +1683,7 @@ error angle.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">153</span>
+    <span class="phpdocumentor-element-found-in__line">162</span>
 
     </aside>
 
@@ -1630,7 +1756,7 @@ error angle.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">367</span>
+    <span class="phpdocumentor-element-found-in__line">376</span>
 
     </aside>
 
@@ -1717,7 +1843,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">399</span>
+    <span class="phpdocumentor-element-found-in__line">408</span>
 
     </aside>
 
@@ -1804,7 +1930,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">209</span>
+    <span class="phpdocumentor-element-found-in__line">218</span>
 
     </aside>
 
@@ -1854,7 +1980,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">218</span>
+    <span class="phpdocumentor-element-found-in__line">227</span>
 
     </aside>
 
@@ -1904,7 +2030,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">318</span>
+    <span class="phpdocumentor-element-found-in__line">327</span>
 
     </aside>
 
@@ -1991,7 +2117,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">286</span>
+    <span class="phpdocumentor-element-found-in__line">295</span>
 
     </aside>
 
@@ -2078,7 +2204,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">350</span>
+    <span class="phpdocumentor-element-found-in__line">359</span>
 
     </aside>
 
@@ -2165,7 +2291,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">382</span>
+    <span class="phpdocumentor-element-found-in__line">391</span>
 
     </aside>
 
@@ -2252,7 +2378,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">414</span>
+    <span class="phpdocumentor-element-found-in__line">423</span>
 
     </aside>
 
@@ -2339,7 +2465,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">446</span>
+    <span class="phpdocumentor-element-found-in__line">455</span>
 
     </aside>
 
@@ -2426,7 +2552,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">431</span>
+    <span class="phpdocumentor-element-found-in__line">440</span>
 
     </aside>
 
@@ -2513,7 +2639,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">463</span>
+    <span class="phpdocumentor-element-found-in__line">472</span>
 
     </aside>
 
@@ -2600,7 +2726,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">335</span>
+    <span class="phpdocumentor-element-found-in__line">344</span>
 
     </aside>
 
@@ -2679,6 +2805,106 @@ variable.</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_oppositeDirection">
+        oppositeDirection()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeDirection" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">518</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Return the opposite `AngularDistance`.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">oppositeDirection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeDirection#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Override">Override</abbr>]
+    </dt>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_oppositeRotation">
+        oppositeRotation()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeRotation" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">203</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Return the same instance with the opposite `Rotation` direction.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">oppositeRotation</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeRotation#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Override">Override</abbr>]
+    </dt>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_sum">
         sum()
         <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_sum" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2687,7 +2913,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">493</span>
+    <span class="phpdocumentor-element-found-in__line">502</span>
 
     </aside>
 
@@ -2736,7 +2962,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">256</span>
+    <span class="phpdocumentor-element-found-in__line">265</span>
 
     </aside>
 
@@ -2790,56 +3016,6 @@ variable.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_toggleDirection">
-        toggleDirection()
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toggleDirection" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">194</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Return the same instance with the opposite direction.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">toggleDirection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-        
-            <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toggleDirection#attributes" class="headerlink"><i class="fas fa-link"></i></a>
-
-            </h5>
-                            <dl class="phpdocumentor-argument-list">
-    <dt class="phpdocumentor-argument-list__entry">
-        #[<abbr title="\Override">Override</abbr>]
-    </dt>
-    </dl>
-                    </section>
-    
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_toRadian">
         toRadian()
         <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toRadian" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2848,7 +3024,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">271</span>
+    <span class="phpdocumentor-element-found-in__line">280</span>
 
     </aside>
 
@@ -2910,7 +3086,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">227</span>
+    <span class="phpdocumentor-element-found-in__line">236</span>
 
     </aside>
 
@@ -2949,7 +3125,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">245</span>
+    <span class="phpdocumentor-element-found-in__line">254</span>
 
     </aside>
 
@@ -3123,7 +3299,9 @@ variable.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___toString">__toString()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_absolute">absolute()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_absSum">absSum()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_asb">asb()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_between">between()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromDecimal">createFromDecimal()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromRadian">createFromRadian()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromString">createFromString()</a></li>
@@ -3145,9 +3323,10 @@ variable.</p>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lt">lt()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lte">lte()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_not">not()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeDirection">oppositeDirection()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeRotation">oppositeRotation()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_sum">sum()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toFloat">toFloat()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toggleDirection">toggleDirection()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toRadian">toRadian()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toSexadecimalDegrees">toSexadecimalDegrees()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toSexagesimalDegrees">toSexagesimalDegrees()</a></li>

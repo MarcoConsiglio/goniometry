@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
@@ -39,7 +39,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
-#[UsesClass(Direction::class)]
+#[UsesClass(Rotation::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]

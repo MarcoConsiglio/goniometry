@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
@@ -44,7 +44,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
-#[UsesClass(Direction::class)]
+#[UsesClass(Rotation::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Minutes::class)]
@@ -92,10 +92,10 @@ class GreaterAngleTest extends TestCase
             minutes: $this->randomMinutes(max: 29)->value()
         );
         $epsilon = Angle::createFromValues(
-            seconds: $this->randomSeconds(min: 30.0, precision: 1)->value()
+            seconds: $this->randomSeconds(min: 30.0)->value()
         );
         $zeta = Angle::createFromValues(
-            seconds: $this->randomSeconds(max: NextFloat::before(30.0), precision: 1)->value()
+            seconds: $this->randomSeconds(max: NextFloat::before(30.0))->value()
         );
 
         // Act & Assert

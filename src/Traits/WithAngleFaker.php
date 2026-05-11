@@ -5,7 +5,7 @@ use MarcoConsiglio\FakerPhpNumberHelpers\WithFakerHelpers;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
@@ -150,13 +150,13 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random angle `Direction`.
+     * Return a random angle `Rotation`.
      */
-    public function randomDirection(): Direction
+    public function randomDirection(): Rotation
     {
         return self::$faker->randomElement([
-            Direction::COUNTER_CLOCKWISE,
-            Direction::CLOCKWISE
+            Rotation::COUNTER_CLOCKWISE,
+            Rotation::CLOCKWISE
         ]);
     }
 

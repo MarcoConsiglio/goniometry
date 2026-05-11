@@ -25,5 +25,5 @@ interface SexadecimalValue extends Scalar
     /**
      * Return a `SexadecimalValue` with opposite direction.
      */
-    public function toggleDirection(): SexadecimalValue;
+    public function oppositeRotation(): SexadecimalValue;
 }

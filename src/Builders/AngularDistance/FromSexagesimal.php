@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 
 /**
- *  Builds an `AngularDistance` starting from sexagesimal values.
+ *  Build an `AngularDistance` starting from sexagesimal values.
  * 
  * @internal
  */

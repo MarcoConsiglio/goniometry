@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry;
 
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromAngles;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
@@ -18,7 +19,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
@@ -62,9 +63,9 @@ class AngularDistance implements AngleInterface, Stringable
     }
     
     /** 
-     * The `AngularDistance` `Direction`.
+     * The `AngularDistance` `Rotation` direction.
     */
-    public Direction $direction {
+    public Rotation $direction {
         get {return $this->sexagesimal->direction;}
     }
 
@@ -103,7 +104,7 @@ class AngularDistance implements AngleInterface, Stringable
         int $degrees = 0, 
         int $minutes = 0, 
         float $seconds = 0.0, 
-        Direction $direction = Direction::COUNTER_CLOCKWISE
+        Rotation $direction = Rotation::COUNTER_CLOCKWISE
     ): AngularDistance
     {
         return new AngularDistance(
@@ -139,6 +140,14 @@ class AngularDistance implements AngleInterface, Stringable
     public static function createFromRadian(float|AngularDistanceRadian $radian): AngularDistance
     {
         return new AngularDistance(new FromRadian($radian));
+    }
+
+    /**
+     * Calc the `AngularDistance` between `$alfa` and `$beta`.
+     */
+    public static function between(Angle $alfa, Angle $beta): AngularDistance
+    {
+        return new AngularDistance(new FromAngles($alfa, $beta));
     }
 
     /**
@@ -189,10 +198,10 @@ class AngularDistance implements AngleInterface, Stringable
     }
 
     /**
-     * Return the same instance with the opposite direction.
+     * Return the same instance with the opposite `Rotation` direction.
      */
     #[Override]
-    public function toggleDirection(): AngularDistance
+    public function oppositeRotation(): AngleInterface
     {
         $clone = clone $this;
         $clone->sexagesimal->direction =
@@ -209,7 +218,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function isClockwise(): bool
     {
-        return $this->direction == Direction::CLOCKWISE;
+        return $this->direction == Rotation::CLOCKWISE;
     }
 
     /**
@@ -218,7 +227,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function isCounterClockwise(): bool
     {
-        return $this->direction == Direction::COUNTER_CLOCKWISE;
+        return $this->direction == Rotation::COUNTER_CLOCKWISE;
     }
 
     /**
@@ -501,6 +510,16 @@ class AngularDistance implements AngleInterface, Stringable
     public function absSum(AngleInterface $addend): AngularDistance
     {
         return $this->sum($addend);
+    }
+
+    /**
+     * Return the opposite `AngularDistance`.
+     */
+    #[Override]
+    public function oppositeDirection(): AngularDistance
+    {
+        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
+        return $this->sum($opposite);
     }
 
     /**
