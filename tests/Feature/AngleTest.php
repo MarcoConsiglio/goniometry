@@ -626,8 +626,36 @@ class AngleTest extends TestCase
     #[TestDox("can return the opposite direction Angle.")]
     public function test_opposite_direction(): void
     {
+        /**
+         * Positive angle
+         */
         // Arrange
-        $angle = $this->randomAngle();
+        $angle = $this->positiveRandomAngle();
+        if ($angle->isClockwise())
+            $opposite_sexadecimal = new SexadecimalDegrees(
+                $angle->toSexadecimalDegrees()->value->plus(-180)
+            );
+        else
+            $opposite_sexadecimal = new SexadecimalDegrees(
+                $angle->toSexadecimalDegrees()->value->plus(Degrees::MAX)->plus(-180)
+            );
+
+        // Act
+        $opposite_angle = $angle->oppositeDirection();
+
+        // Assert
+        $this->assertInstanceOf(Angle::class, $opposite_angle);
+        $this->assertEquals(
+            $opposite_sexadecimal->value, 
+            $opposite_angle->toSexadecimalDegrees()->value,
+            "The opposite of {$angle} is {$opposite_angle}."
+        );
+
+        /**
+         * Negative angle
+         */
+        // Arrange
+        $angle = $this->negativeRandomAngle();
         if ($angle->isClockwise())
             $opposite_sexadecimal = new SexadecimalDegrees(
                 $angle->toSexadecimalDegrees()->value->plus(-180)
