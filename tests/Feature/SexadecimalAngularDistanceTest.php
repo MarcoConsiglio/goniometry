@@ -67,7 +67,7 @@ class SexadecimalAngularDistanceTest extends TestCase
         );
     }
 
-    #[TestDox("can toggle its direction.")]
+    #[TestDox("can toggle its rotation direction.")]
     public function test_toggle_direction(): void
     {
         // Arrange

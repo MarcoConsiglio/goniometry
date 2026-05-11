@@ -170,5 +170,5 @@ interface Angle
     /**
      * Return the opposite `Angle`.
      */
-    public function opposite(): Angle;
+    public function oppositeDirection(): Angle;
 }

@@ -424,7 +424,7 @@ class AngleTest extends TestCase
         $this->assertFalse($alfa->isClockwise(), "The angle is not clockwise but found the opposite.");
     }
 
-    #[TestDox("can toggle its direction.")]
+    #[TestDox("can toggle its rotation direction.")]
     public function test_can_toggle_rotation_direction(): void
     {
         /**
@@ -638,7 +638,7 @@ class AngleTest extends TestCase
             );
 
         // Act
-        $opposite_angle = $angle->opposite();
+        $opposite_angle = $angle->oppositeDirection();
 
         // Assert
         $this->assertInstanceOf(Angle::class, $opposite_angle);

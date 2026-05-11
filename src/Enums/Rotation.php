@@ -17,7 +17,7 @@ enum Rotation: int
     case CLOCKWISE = -1;
 
     /**
-     * Return the opposite direction.
+     * Return the opposite `Rotation` direction.
      * 
      * @codeCoverageIgnore
      */

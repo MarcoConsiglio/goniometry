@@ -482,7 +482,7 @@ class Angle implements AngleInterface, Stringable
      * Return the opposite `Angle`.
      */
     #[Override]
-    public function opposite(): Angle
+    public function oppositeDirection(): Angle
     {
         $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
         if ($this->isClockwise())

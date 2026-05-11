@@ -516,7 +516,7 @@ class AngularDistance implements AngleInterface, Stringable
      * Return the opposite `AngularDistance`.
      */
     #[Override]
-    public function opposite(): AngularDistance
+    public function oppositeDirection(): AngularDistance
     {
         $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
         return $this->sum($opposite);

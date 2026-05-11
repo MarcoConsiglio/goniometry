@@ -549,7 +549,7 @@ class AngularDistanceTest extends TestCase
             );
 
         // Act
-        $opposite_angle = $angle->opposite();
+        $opposite_angle = $angle->oppositeDirection();
 
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $opposite_angle);
