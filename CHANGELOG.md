@@ -3,6 +3,8 @@
 ### Added
 - `AngularDistance::between()` to calc the angular distance between two angles.
 - `{Angle,AngularDistance}::opposite()` to calc the opposite angle.
+### Renamed
+- `Direction` enum to `Rotation`.
 
 ## v5.0.0
 ### Added

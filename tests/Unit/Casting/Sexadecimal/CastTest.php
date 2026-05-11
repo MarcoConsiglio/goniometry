@@ -8,7 +8,7 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as Angula
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
@@ -47,7 +47,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(Direction::class)]
+#[UsesClass(Rotation::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngleGenerator::class)]

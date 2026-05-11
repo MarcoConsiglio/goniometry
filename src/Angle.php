@@ -19,7 +19,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
@@ -71,7 +71,7 @@ class Angle implements AngleInterface, Stringable
     /** 
      * The angle direction.
     */
-    public Direction $direction {
+    public Rotation $direction {
         get {return $this->sexagesimal->direction;}
     }
 
@@ -110,7 +110,7 @@ class Angle implements AngleInterface, Stringable
         int $degrees = 0, 
         int $minutes = 0, 
         float $seconds = 0.0, 
-        Direction $direction = Direction::COUNTER_CLOCKWISE
+        Rotation $direction = Rotation::COUNTER_CLOCKWISE
     ): Angle {
         return new Angle(new FromSexagesimal($degrees, $minutes, $seconds, $direction));
     }
@@ -190,7 +190,7 @@ class Angle implements AngleInterface, Stringable
      */
     public function isClockwise(): bool
     {
-        return $this->direction == Direction::CLOCKWISE;
+        return $this->direction == Rotation::CLOCKWISE;
     }
 
     /**
@@ -198,7 +198,7 @@ class Angle implements AngleInterface, Stringable
      */
     public function isCounterClockwise(): bool
     {
-        return $this->direction == Direction::COUNTER_CLOCKWISE;
+        return $this->direction == Rotation::COUNTER_CLOCKWISE;
     }
 
     /**
@@ -484,7 +484,7 @@ class Angle implements AngleInterface, Stringable
     #[Override]
     public function opposite(): Angle
     {
-        $opposite = Angle::createFromValues(180, direction: Direction::CLOCKWISE);
+        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
         if ($this->isClockwise())
             return $this->sum($opposite);
         else

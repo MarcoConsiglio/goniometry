@@ -55,7 +55,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
@@ -111,7 +111,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(DifferentFloat::class)]
 #[UsesClass(DifferentInt::class)]
 #[UsesClass(DifferentString::class)]
-#[UsesClass(Direction::class)]
+#[UsesClass(Rotation::class)]
 #[UsesClass(Equal::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(EqualFloat::class)]
@@ -220,7 +220,7 @@ class AngleTest extends TestCase
         );
     }
 
-    #[TestDox("had read-only property \"direction\" which is of type Direction.")]
+    #[TestDox("had read-only property \"direction\" which is of type Rotation.")]
     public function test_direction_property(): void
     {
         // Arrange
@@ -264,7 +264,7 @@ class AngleTest extends TestCase
         $minutes = $this->randomMinutes();
         $seconds = $this->randomSeconds(precision: 1);
         $direction = $this->randomDirection();
-        $sign = $direction == Direction::CLOCKWISE ? '-' : '';
+        $sign = $direction == Rotation::CLOCKWISE ? '-' : '';
         $text = "{$sign}{$degrees} {$minutes} {$seconds}";
 
         // Act
@@ -365,7 +365,7 @@ class AngleTest extends TestCase
     {
         // Arrange
         $alfa = $this->randomAngle(precision: 3);
-        $sign = $alfa->direction == Direction::COUNTER_CLOCKWISE ? "" : "-";
+        $sign = $alfa->direction == Rotation::COUNTER_CLOCKWISE ? "" : "-";
         $degrees = $alfa->degrees;
         $minutes = $alfa->minutes;
         $seconds = $alfa->seconds;
@@ -454,11 +454,11 @@ class AngleTest extends TestCase
         // Arrange
         $gamma = Angle::createFromValues(
             $this->randomDegrees()->value(), 
-            direction: Direction::COUNTER_CLOCKWISE
+            direction: Rotation::COUNTER_CLOCKWISE
         );
         $delta = Angle::createFromValues(
             $this->randomDegrees()->value(), 
-            direction: Direction::CLOCKWISE
+            direction: Rotation::CLOCKWISE
         );
         $gamma_clone = clone $gamma;
         $delta_clone = clone $delta;
@@ -618,7 +618,7 @@ class AngleTest extends TestCase
         $this->assertInstanceOf(Angle::class, $gamma, $this->methodMustReturn(
             Angle::class, "absSum", Angle::class
         ));
-        $this->assertDirection(Direction::COUNTER_CLOCKWISE, $gamma->direction, 
+        $this->assertDirection(Rotation::COUNTER_CLOCKWISE, $gamma->direction, 
             Angle::class."absSum() method must always return a positive angle."
         );
     }

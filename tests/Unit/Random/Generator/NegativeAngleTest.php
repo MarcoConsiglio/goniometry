@@ -5,7 +5,7 @@ use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
@@ -52,6 +52,6 @@ class NegativeAngleTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(Angle::class, $angle);
-        $this->assertSame(Direction::CLOCKWISE, $angle->direction);
+        $this->assertSame(Rotation::CLOCKWISE, $angle->direction);
     }
 }

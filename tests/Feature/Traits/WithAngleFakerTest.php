@@ -9,7 +9,7 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as Angula
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
@@ -176,7 +176,7 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(Angle::class, $angle);
-        $this->assertSame(Direction::COUNTER_CLOCKWISE, $angle->direction);
+        $this->assertSame(Rotation::COUNTER_CLOCKWISE, $angle->direction);
     }
 
     #[TestDox("can return a random negative Angle instance.")]
@@ -187,14 +187,14 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(Angle::class, $angle);
-        $this->assertEquals(Direction::CLOCKWISE, $angle->direction);
+        $this->assertEquals(Rotation::CLOCKWISE, $angle->direction);
     }
 
     #[TestDox("can return a random direction.")]
     public function test_randomDirection(): void
     {
         // Act & Assert
-        $this->assertInstanceOf(Direction::class, $this->randomDirection());
+        $this->assertInstanceOf(Rotation::class, $this->randomDirection());
     }
 
     #[TestDox("can return a random relative sexagesimal string.")]
@@ -241,7 +241,7 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal_values);
-        $this->assertEquals(Direction::COUNTER_CLOCKWISE, $sexagesimal_values->direction);
+        $this->assertEquals(Rotation::COUNTER_CLOCKWISE, $sexagesimal_values->direction);
     }
 
     #[TestDox("can return random negative sexagesimal values composed of degrees, minutes, seconds and direction.")]
@@ -252,7 +252,7 @@ class WithAngleFakerTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal_values);
-        $this->assertEquals(Direction::CLOCKWISE, $sexagesimal_values->direction);
+        $this->assertEquals(Rotation::CLOCKWISE, $sexagesimal_values->direction);
     }
 
     #[TestDox("can return a random sexadecimal value.")]

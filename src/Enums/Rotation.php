@@ -2,17 +2,17 @@
 namespace MarcoConsiglio\Goniometry\Enums;
 
 /**
- * The direction of an angle.
+ * The rotation of an angle.
  */
-enum Direction: int
+enum Rotation: int
 {
     /**
-     * Positive direction.
+     * Positive rotation.
      */
     case COUNTER_CLOCKWISE = 1;
 
     /**
-     * Negative direction.
+     * Negative rotation.
      */
     case CLOCKWISE = -1;
 
@@ -21,11 +21,11 @@ enum Direction: int
      * 
      * @codeCoverageIgnore
      */
-    public function opposite(): Direction
+    public function opposite(): Rotation
     {
         return match($this) {
-            Direction::COUNTER_CLOCKWISE => Direction::CLOCKWISE,
-            Direction::CLOCKWISE => Direction::COUNTER_CLOCKWISE
+            Rotation::COUNTER_CLOCKWISE => Rotation::CLOCKWISE,
+            Rotation::CLOCKWISE => Rotation::COUNTER_CLOCKWISE
         };
     }
 }

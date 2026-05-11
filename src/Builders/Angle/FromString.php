@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 
@@ -161,8 +161,8 @@ class FromString extends AngleBuilder
     {
         $this->direction = 
             $this->haveMinusSign() ?
-            Direction::CLOCKWISE :
-            Direction::COUNTER_CLOCKWISE;
+            Rotation::CLOCKWISE :
+            Rotation::COUNTER_CLOCKWISE;
     }
 
     /**

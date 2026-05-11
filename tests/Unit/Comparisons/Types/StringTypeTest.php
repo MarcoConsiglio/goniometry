@@ -20,7 +20,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
 use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
 use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
@@ -53,7 +53,7 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Different::class)]
 #[UsesClass(DifferentString::class)]
-#[UsesClass(Direction::class)]
+#[UsesClass(Rotation::class)]
 #[UsesClass(Equal::class)]
 #[UsesClass(EqualString::class)]
 #[UsesClass(FromSexadecimal::class)]

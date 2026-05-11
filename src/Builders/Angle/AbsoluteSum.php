@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use BcMath\Number;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
@@ -51,7 +51,7 @@ class AbsoluteSum extends SumBuilder
      */
     protected function calcSign(): void
     {
-        $this->direction = Direction::COUNTER_CLOCKWISE;
+        $this->direction = Rotation::COUNTER_CLOCKWISE;
     }
 
     /**

@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
@@ -84,8 +84,8 @@ class FromSexadecimal extends AngleBuilder
     {
         $this->direction = 
             $this->decimal->value->isPositive() ?
-            Direction::COUNTER_CLOCKWISE :
-            Direction::CLOCKWISE;
+            Rotation::COUNTER_CLOCKWISE :
+            Rotation::CLOCKWISE;
     }
 
     /**

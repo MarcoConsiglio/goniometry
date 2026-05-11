@@ -3,7 +3,7 @@ namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -29,7 +29,7 @@ class FromSexagesimal extends AngleBuilder
         int $degrees, 
         int $minutes, 
         float $seconds, 
-        protected Direction $direction_input = Direction::COUNTER_CLOCKWISE
+        protected Rotation $direction_input = Rotation::COUNTER_CLOCKWISE
     ) {
         $this->degrees_input = new Number(abs($degrees));
         $this->minutes_input = new Number(abs($minutes));
@@ -91,7 +91,7 @@ class FromSexagesimal extends AngleBuilder
     protected function calcSign(): void 
     {
         if ($this->isNullAngle())
-            $this->direction = Direction::COUNTER_CLOCKWISE;
+            $this->direction = Rotation::COUNTER_CLOCKWISE;
         else
             $this->direction = $this->direction_input;
     }

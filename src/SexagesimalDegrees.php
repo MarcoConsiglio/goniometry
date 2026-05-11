@@ -1,11 +1,11 @@
 <?php
 namespace MarcoConsiglio\Goniometry;
 
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use Stringable;
 
 /**
- * The `SexagesimalDegrees` type composed of `Degrees`, `Minutes`, `Seconds` and `Direction`.
+ * The `SexagesimalDegrees` type composed of `Degrees`, `Minutes`, `Seconds` and `Rotation`.
  */
 class SexagesimalDegrees implements Stringable
 {
@@ -16,7 +16,7 @@ class SexagesimalDegrees implements Stringable
         public Degrees $degrees,
         public Minutes $minutes,
         public Seconds $seconds,
-        public Direction $direction
+        public Rotation $direction
     ) {}
 
     /**
@@ -25,7 +25,7 @@ class SexagesimalDegrees implements Stringable
     public function __toString(): string
     {
         $sign = 
-            $this->direction == Direction::CLOCKWISE ?
+            $this->direction == Rotation::CLOCKWISE ?
             '-' : '';
         return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";
     }

@@ -9,7 +9,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Direction;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
@@ -37,7 +37,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(Direction::class)]
+#[UsesClass(Rotation::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(GreaterAngle::class)]
