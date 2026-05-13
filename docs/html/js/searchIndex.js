@@ -766,6 +766,11 @@ Search.appendIndex(
             "summary": "Return\u0020the\u0020sexadecimal\u0020\u0060float\u0060\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-Interfaces-SexadecimalValue.html#method_value"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\SexadecimalValue\u003A\u003AgetParent\u0028\u0029",
+            "name": "getParent",
+            "summary": "Return\u0020the\u0020parent\u0020instance\u0020of\u0020this\u0020\u0060SexadecimalValue\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-Interfaces-SexadecimalValue.html#method_getParent"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\SexadecimalValue\u003A\u003AoppositeRotation\u0028\u0029",
             "name": "oppositeRotation",
             "summary": "Return\u0020a\u0020\u0060SexadecimalValue\u0060\u0020with\u0020opposite\u0020direction.",
@@ -1006,6 +1011,11 @@ Search.appendIndex(
             "summary": "Return\u0020this\u0020\u0060SexadecimalAngularDistance\u0060\u0020with\u0020opposite\u0020direction.",
             "url": "classes/MarcoConsiglio-Goniometry-SexadecimalAngularDistance.html#method_oppositeRotation"
         },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\SexadecimalAngularDistance\u003A\u003AgetParent\u0028\u0029",
+            "name": "getParent",
+            "summary": "Return\u0020the\u0020parent\u0020instance\u0020of\u0020this\u0020\u0060SexadecimalAngularDistance\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-SexadecimalAngularDistance.html#method_getParent"
+        },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\SexadecimalAngularDistance\u003A\u003AMEASURE",
             "name": "MEASURE",
             "summary": "The\u0020symbol\u0020for\u0020the\u0020unit\u0020of\u0020measurement\u0020of\u0020sexadecimal\u0020degrees.",
@@ -1045,6 +1055,11 @@ Search.appendIndex(
             "name": "oppositeRotation",
             "summary": "Return\u0020this\u0020\u0060SexadecimalDegrees\u0060\u0020with\u0020opposite\u0020direction.",
             "url": "classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method_oppositeRotation"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\SexadecimalDegrees\u003A\u003AgetParent\u0028\u0029",
+            "name": "getParent",
+            "summary": "Return\u0020the\u0020parent\u0020instance\u0020of\u0020this\u0020\u0060SexadecimalDegrees\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html#method_getParent"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\SexadecimalDegrees\u003A\u003AMEASURE",
             "name": "MEASURE",
