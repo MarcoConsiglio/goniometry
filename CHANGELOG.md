@@ -1,7 +1,9 @@
 # Changelog
-## v6.1.0
+## v6.1.0 2026-05-13
 ### Added
 - `SexadecimalValue::getParent()` to return the parent `Number` instance.
+### Changed
+- API documentation.
 
 ## v6.0.0
 ### Added
