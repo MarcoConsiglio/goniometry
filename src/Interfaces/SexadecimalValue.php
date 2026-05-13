@@ -23,6 +23,11 @@ interface SexadecimalValue extends Scalar
     public function value(int|null $precision = null): float;
 
     /**
+     * Return the parent instance of this `SexadecimalValue`.
+     */
+    public function getParent(): Number;
+
+    /**
      * Return a `SexadecimalValue` with opposite direction.
      */
     public function oppositeRotation(): SexadecimalValue;

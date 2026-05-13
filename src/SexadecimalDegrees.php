@@ -66,4 +66,13 @@ class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
             $this->value->opposite()
         );
     }
+
+    /**
+     * Return the parent instance of this `SexadecimalDegrees`.
+     */
+    #[Override]
+    public function getParent(): Number
+    {
+        return $this->value;
+    }
 }

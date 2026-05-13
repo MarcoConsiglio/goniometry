@@ -1,4 +1,8 @@
 # Changelog
+## v6.1.0
+### Added
+- `SexadecimalValue::getParent()` to return the parent `Number` instance.
+
 ## v6.0.0
 ### Added
 - `AngularDistance::between()` to calc the angular distance between two angles.

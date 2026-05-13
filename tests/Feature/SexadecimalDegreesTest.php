@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
+use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
@@ -58,5 +59,25 @@ class SexadecimalDegreesTest extends TestCase
 
         // Act & Assert
         $this->assertEquals($expected, $sexadecimal->oppositeRotation()->value);
+    }
+
+    #[TestDox("can return its Number instance.")]
+    public function test_getParent(): void
+    {
+        // Arrange
+        $sexadecimal = new SexadecimalDegrees(
+            $value = $this->randomFloat(
+                min: SexadecimalRange::min(),
+                max: SexadecimalRange::max(),
+                precision: $precision = 3
+            )
+        );
+
+        // Act
+        $parent = $sexadecimal->getParent();
+
+        // Assert
+        $this->assertInstanceOf(Number::class, $parent);
+        $this->assertEquals($value, $parent->toFloat($precision));
     }
 }
