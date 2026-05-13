@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
+use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
@@ -81,5 +81,25 @@ class SexadecimalAngularDistanceTest extends TestCase
 
         // Act & Assert
         $this->assertEquals($expected, $sexadecimal->oppositeRotation()->value);
+    }
+
+    #[TestDox("can return its Number instance.")]
+    public function test_getParent(): void
+    {
+        // Arrange
+        $sexadecimal = new SexadecimalAngularDistance(
+            $value = $this->randomFloat(
+                min: AngularDistanceRange::min(),
+                max: AngularDistanceRange::max(),
+                precision: $precision = 3
+            )
+        );
+
+        // Act
+        $parent = $sexadecimal->getParent();
+
+        // Assert
+        $this->assertInstanceOf(Number::class, $parent);
+        $this->assertEquals($value, $parent->toFloat($precision));
     }
 }

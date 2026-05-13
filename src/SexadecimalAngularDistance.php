@@ -65,4 +65,13 @@ class SexadecimalAngularDistance extends ModularRelativeNumber implements Sexade
     {
         return new SexadecimalAngularDistance($this->value->opposite());
     }
+
+    /**
+     * Return the parent instance of this `SexadecimalAngularDistance`.
+     */
+    #[Override]
+    public function getParent(): Number
+    {
+        return $this->value;
+    }
 }
