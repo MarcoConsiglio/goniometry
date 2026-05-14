@@ -436,16 +436,30 @@ class AngleTest extends TestCase
         $alfa = $this->positiveRandomAngle();
         $beta = $this->negativeRandomAngle();
 
+        // Act
+        $alfa_opposite = $alfa->oppositeRotation();
+        $beta_opposite = $beta->oppositeRotation();
+
         // Act & Assert
         $this->assertDirection(
-            $alfa->direction->opposite(), 
-            $alfa->oppositeRotation()->direction, 
+            Rotation::CLOCKWISE,
+            $alfa_opposite->direction, 
             $failure_message_2
         );
         $this->assertDirection(
-            $beta->direction->opposite(), 
-            $beta->oppositeRotation()->direction, 
+            Rotation::COUNTER_CLOCKWISE,
+            $alfa->direction,
             $failure_message_1
+        );
+        $this->assertDirection(
+            Rotation::COUNTER_CLOCKWISE, 
+            $beta_opposite->direction, 
+            $failure_message_1
+        );
+        $this->assertDirection(
+            Rotation::CLOCKWISE,
+            $beta->direction,
+            $failure_message_2
         );
 
         /**
@@ -460,17 +474,31 @@ class AngleTest extends TestCase
             $this->randomDegrees()->value(), 
             direction: Rotation::CLOCKWISE
         );
-        $gamma_clone = clone $gamma;
-        $delta_clone = clone $delta;
 
-        // Act & Assert
-        $this->assertSexadecimalDegrees(
-            $gamma_clone->toSexadecimalDegrees()->oppositeRotation(),
-            $gamma->oppositeRotation()->toSexadecimalDegrees()
+        // Act
+        $gamma_opposite = $gamma->oppositeRotation();
+        $delta_opposite = $delta->oppositeRotation();
+
+        // Assert
+        $this->assertDirection(
+            Rotation::CLOCKWISE,
+            $gamma_opposite->direction,
+            $failure_message_2
         );
-        $this->assertSexadecimalDegrees(
-            $delta_clone->toSexadecimalDegrees()->oppositeRotation(),
-            $delta->oppositeRotation()->toSexadecimalDegrees()
+        $this->assertDirection(
+            Rotation::COUNTER_CLOCKWISE,
+            $gamma->direction,
+            $failure_message_1
+        );
+        $this->assertDirection(
+            Rotation::COUNTER_CLOCKWISE,
+            $delta_opposite->direction,
+            $failure_message_1
+        );
+        $this->assertDirection(
+            Rotation::CLOCKWISE,
+            $delta->direction,
+            $failure_message_2
         );
     }
 

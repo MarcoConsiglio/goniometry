@@ -479,7 +479,7 @@ class Angle implements AngleInterface, Stringable
     }
 
     /**
-     * Return the opposite `Angle`.
+     * Return the opposite direction `Angle`.
      */
     #[Override]
     public function oppositeDirection(): Angle
@@ -500,5 +500,15 @@ class Angle implements AngleInterface, Stringable
     {
         $sign = $this->isClockwise() ? "-" : "";
         return "{$sign}{$this->degrees} {$this->minutes} {$this->seconds}";
+    }
+
+    /**
+     * Clone this `Angle`.
+     */
+    public function __clone()
+    {
+        $this->sexagesimal = is_null($this->sexagesimal) ? null : clone $this->sexagesimal;
+        $this->sexadecimal = is_null($this->sexadecimal) ? null : clone $this->sexadecimal;
+        $this->radian = is_null($this->radian) ? null : clone $this->radian;
     }
 }
