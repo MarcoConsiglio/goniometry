@@ -6,7 +6,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png"/>
     <link rel="icon" href="images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -169,14 +172,14 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#constant_MAX">MAX</a>
     <span>
-        &nbsp;= 180                            </span>
+        &nbsp;: int&nbsp;= 180                            </span>
 </dt>
 <dd>The maximum allowed value in degrees.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#constant_MIN">MIN</a>
     <span>
-        &nbsp;= -self::MAX                            </span>
+        &nbsp;: int&nbsp;= -self::MAX                            </span>
 </dt>
 <dd>The minimum allowed value in degrees.</dd>
 
@@ -246,6 +249,13 @@
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___clone">__clone()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Clone this `Angle`.</dd>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___toString">__toString()</a>
     <span>
@@ -434,7 +444,7 @@ error angle.</dd>
     <span>
                                 &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html"><abbr title="\MarcoConsiglio\Goniometry\AngularDistance">AngularDistance</abbr></a>    </span>
 </dt>
-<dd>Return the opposite `AngularDistance`.</dd>
+<dd>Return the opposite direction `AngularDistance`.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeRotation">oppositeRotation()</a>
@@ -508,7 +518,7 @@ error angle.</dd>
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">MAX</span>
     = <span class="phpdocumentor-signature__default-value">180</span>
 </code>
@@ -539,7 +549,7 @@ error angle.</dd>
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">MIN</span>
     = <span class="phpdocumentor-signature__default-value">-self::MAX</span>
 </code>
@@ -904,6 +914,41 @@ error angle.</dd>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method___clone">
+        __clone()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___clone" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularDistance.php"><a href="files/src-angulardistance.html"><abbr title="src/AngularDistance.php">AngularDistance.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">540</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Clone this `Angle`.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">__clone</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method___toString">
         __toString()
         <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
@@ -928,27 +973,26 @@ error angle.</dd>
     
     
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method___toString_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___toString#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___toString_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">example</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p><code class="prettyprint">(string) $alfa</code></p>
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">example</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                            <section class="phpdocumentor-description"><p><code class="prettyprint">(string) $alfa</code></p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___toString#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method___toString_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___toString_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -997,8 +1041,8 @@ error angle.</dd>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_absolute#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_absolute_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_absolute_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1096,8 +1140,8 @@ error angle.</dd>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_asb#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_asb_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_asb_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1212,8 +1256,8 @@ error angle.</dd>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromDecimal#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_createFromDecimal_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromDecimal_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1272,8 +1316,8 @@ error angle.</dd>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromRadian#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_createFromRadian_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromRadian_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1329,28 +1373,27 @@ error angle.</dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_createFromString_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromString#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromString_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted angle is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted angle is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromString#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_createFromString_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromString_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1430,8 +1473,8 @@ error angle.</dd>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromValues#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_createFromValues_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_createFromValues_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1497,28 +1540,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_eq_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_eq#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_eq_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_eq#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_eq_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_eq_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1584,8 +1626,8 @@ variable.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_feq#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_feq_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_feq_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1652,8 +1694,8 @@ error angle.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_fuzzyEqual#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_fuzzyEqual_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_fuzzyEqual_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1725,8 +1767,8 @@ error angle.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_getDegrees#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_getDegrees_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_getDegrees_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1792,28 +1834,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_gt_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_gt#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_gt_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_gt#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_gt_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_gt_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1879,28 +1920,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_gte_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_gte#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_gte_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_gte#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_gte_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_gte_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1949,8 +1989,8 @@ variable.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isClockwise#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_isClockwise_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isClockwise_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -1999,8 +2039,8 @@ variable.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isCounterClockwise#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_isCounterClockwise_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isCounterClockwise_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2066,28 +2106,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isDifferentThan_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isDifferentThan#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isDifferentThan_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isDifferentThan#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_isDifferentThan_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isDifferentThan_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2153,28 +2192,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isEqualTo_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isEqualTo#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isEqualTo_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isEqualTo#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_isEqualTo_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isEqualTo_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2240,28 +2278,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isGreaterThan_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isGreaterThan#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isGreaterThan_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isGreaterThan#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_isGreaterThan_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isGreaterThan_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2327,28 +2364,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isGreaterThanOrEqualTo_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isGreaterThanOrEqualTo#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isGreaterThanOrEqualTo_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isGreaterThanOrEqualTo#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_isGreaterThanOrEqualTo_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isGreaterThanOrEqualTo_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2414,28 +2450,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isLessThan_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isLessThan#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isLessThan_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isLessThan#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_isLessThan_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isLessThan_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2501,28 +2536,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isLessThanOrEqualTo_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isLessThanOrEqualTo#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isLessThanOrEqualTo_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isLessThanOrEqualTo#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_isLessThanOrEqualTo_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_isLessThanOrEqualTo_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2588,28 +2622,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_lt_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lt#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lt_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lt#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_lt_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lt_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2675,28 +2708,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_lte_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lte#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lte_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lte#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_lte_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_lte_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2762,28 +2794,27 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_not_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_not#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_not_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_not#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_not_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_not_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2817,7 +2848,7 @@ variable.</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Return the opposite `AngularDistance`.</p>
+        <p class="phpdocumentor-summary">Return the opposite direction `AngularDistance`.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2832,8 +2863,8 @@ variable.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeDirection#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_oppositeDirection_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeDirection_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2882,8 +2913,8 @@ variable.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeRotation#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_oppositeRotation_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeRotation_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2993,8 +3024,8 @@ variable.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toFloat#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_toFloat_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toFloat_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -3055,8 +3086,8 @@ variable.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toRadian#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_toRadian_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toRadian_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -3144,8 +3175,8 @@ variable.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toSexagesimalDegrees#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_toSexagesimalDegrees_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_toSexagesimalDegrees_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -3163,100 +3194,7 @@ variable.</p>
 </article>
             </section>
 
-        <div class="phpdocumentor-modal" id="source-view">
-    <div class="phpdocumentor-modal-bg" data-exit-button></div>
-    <div class="phpdocumentor-modal-container">
-        <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/AngularDistance.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
-        </div>
-        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
-    </div>
-</div>
-
-    <script type="text/javascript">
-        (function () {
-            function loadExternalCodeSnippet(el, url, line) {
-                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
-                    const language = 'php';
-
-                    const code = document.createElement('code');
-                    code.className = 'language-' + language;
-                    pre.textContent = '';
-                    pre.setAttribute('data-line', line)
-                    code.textContent = 'Loading…';
-                    pre.appendChild(code);
-
-                    var xhr = new XMLHttpRequest();
-
-                    xhr.open('GET', src, true);
-
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState !== 4) {
-                            return;
-                        }
-
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
-                            Prism.highlightElement(code);
-                            d=document.getElementsByClassName("line-numbers");
-                            d[0].scrollTop = d[0].children[1].offsetTop;
-                            return;
-                        }
-
-                        if (xhr.status === 404) {
-                            code.textContent = '✖ Error: File could not be found';
-                            return;
-                        }
-
-                        if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                            return;
-                        }
-
-                        code.textContent = '✖ Error: An unknown error occurred';
-                    };
-
-                    xhr.send(null);
-                });
-            }
-
-            const modalButtons = document.querySelectorAll("[data-modal]");
-            const openedAsLocalFile = window.location.protocol === 'file:';
-            if (modalButtons.length > 0 && openedAsLocalFile) {
-                console.warn(
-                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
-                    'browsers block XHR requests when a page is opened this way'
-                );
-            }
-
-            modalButtons.forEach(function (trigger) {
-                if (openedAsLocalFile) {
-                    trigger.setAttribute("hidden", "hidden");
-                }
-
-                trigger.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const modal = document.getElementById(trigger.dataset.modal);
-                    if (!modal) {
-                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
-                        return;
-                    }
-                    modal.classList.add("phpdocumentor-modal__open");
-
-                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
-                    const exits = modal.querySelectorAll("[data-exit-button]");
-                    exits.forEach(function (exit) {
-                        exit.addEventListener("click", function (event) {
-                            event.preventDefault();
-                            modal.classList.remove("phpdocumentor-modal__open");
-                        });
-                    });
-                });
-            });
-        })();
-    </script>
-
+        
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
@@ -3297,6 +3235,7 @@ variable.</p>
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___clone">__clone()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___toString">__toString()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_absolute">absolute()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_absSum">absSum()</a></li>
