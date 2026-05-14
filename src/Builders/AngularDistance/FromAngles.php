@@ -9,6 +9,8 @@ use Override;
 
 /**
  * Build an `AngularDistance` starting from two `Angle`s.
+ * 
+ * @internal
  */
 class FromAngles extends FromSexadecimal
 {

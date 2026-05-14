@@ -158,13 +158,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003AoppositeDirection\u0028\u0029",
             "name": "oppositeDirection",
-            "summary": "Return\u0020the\u0020opposite\u0020\u0060Angle\u0060.",
+            "summary": "Return\u0020the\u0020opposite\u0020direction\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method_oppositeDirection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "Return\u0020the\u0020sexagesimal\u0020value\u0020of\u0020this\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method___toString"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003A__clone\u0028\u0029",
+            "name": "__clone",
+            "summary": "Clone\u0020this\u0020\u0060Angle\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-Angle.html#method___clone"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Angle\u003A\u003ADEGREES_REGEX",
             "name": "DEGREES_REGEX",
@@ -363,13 +368,18 @@ Search.appendIndex(
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003AoppositeDirection\u0028\u0029",
             "name": "oppositeDirection",
-            "summary": "Return\u0020the\u0020opposite\u0020\u0060AngularDistance\u0060.",
+            "summary": "Return\u0020the\u0020opposite\u0020direction\u0020\u0060AngularDistance\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method_oppositeDirection"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003A__toString\u0028\u0029",
             "name": "__toString",
             "summary": "Return\u0020the\u0020sexagesimal\u0020value\u0020of\u0020this\u0020\u0060Angle\u0060.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___toString"
+        },                {
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003A__clone\u0028\u0029",
+            "name": "__clone",
+            "summary": "Clone\u0020this\u0020\u0060Angle\u0060.",
+            "url": "classes/MarcoConsiglio-Goniometry-AngularDistance.html#method___clone"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularDistance\u003A\u003AMAX",
             "name": "MAX",
@@ -445,21 +455,6 @@ Search.appendIndex(
             "name": "MIN",
             "summary": "The\u0020minimum\u0020allowed\u0020radian\u0020value.",
             "url": "classes/MarcoConsiglio-Goniometry-AngularDistanceRadian.html#constant_MIN"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\AngularDistance\\FromAngles",
-            "name": "FromAngles",
-            "summary": "Build\u0020an\u0020\u0060AngularDistance\u0060\u0020starting\u0020from\u0020two\u0020\u0060Angle\u0060s.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-AngularDistance-FromAngles.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\AngularDistance\\FromAngles\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Construct\u0020the\u0020\u0060FromAngles\u0060\u0020\u0060AngleBuilder\u0060.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-AngularDistance-FromAngles.html#method___construct"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\AngularDistance\\FromAngles\u003A\u003AfetchData\u0028\u0029",
-            "name": "fetchData",
-            "summary": "Fetch\u0020data\u0020to\u0020build\u0020an\u0020\u0060AngularDistance\u0060\u0020class.",
-            "url": "classes/MarcoConsiglio-Goniometry-Builders-AngularDistance-FromAngles.html#method_fetchData"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Degrees",
             "name": "Degrees",
@@ -1235,16 +1230,6 @@ Search.appendIndex(
             "name": "MarcoConsiglio",
             "summary": "",
             "url": "namespaces/marcoconsiglio.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders",
-            "name": "Builders",
-            "summary": "",
-            "url": "namespaces/marcoconsiglio-goniometry-builders.html"
-        },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Builders\\AngularDistance",
-            "name": "AngularDistance",
-            "summary": "",
-            "url": "namespaces/marcoconsiglio-goniometry-builders-angulardistance.html"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Enums",
             "name": "Enums",

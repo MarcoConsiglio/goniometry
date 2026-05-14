@@ -6,7 +6,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png"/>
     <link rel="icon" href="images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -169,21 +172,21 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_DEGREES_REGEX">DEGREES_REGEX</a>
     <span>
-        &nbsp;= &quot;/(?&lt;!\\d)(-?(?:360|3[0-5]\\d|[12]?\\d{1,2}))°/&quot;                            </span>
+        &nbsp;: mixed&nbsp;= &quot;/(?&lt;!\\d)(-?(?:360|3[0-5]\\d|[12]?\\d{1,2}))°/&quot;                            </span>
 </dt>
 <dd>Regular expression used to parse degrees value as integer number.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_MINUTES_REGEX">MINUTES_REGEX</a>
     <span>
-        &nbsp;= &#039;/\b([0-5]?\d)\&#039;/&#039;                            </span>
+        &nbsp;: mixed&nbsp;= &#039;/\b([0-5]?\d)\&#039;/&#039;                            </span>
 </dt>
 <dd>Regular expression used to parse minutes value as integer number.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_SECONDS_REGEX">SECONDS_REGEX</a>
     <span>
-        &nbsp;= &#039;/\b((?:[1-5]?\d)(?:\.\d+)?)&quot;/&#039;                            </span>
+        &nbsp;: mixed&nbsp;= &#039;/\b((?:[1-5]?\d)(?:\.\d+)?)&quot;/&#039;                            </span>
 </dt>
 <dd>Regular expression used to parse second value as decimal number.</dd>
 
@@ -232,6 +235,13 @@
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method___clone">__clone()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Clone this `Angle`.</dd>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method___toString">__toString()</a>
     <span>
@@ -413,7 +423,7 @@ error angle.</dd>
     <span>
                                 &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
 </dt>
-<dd>Return the opposite `Angle`.</dd>
+<dd>Return the opposite direction `Angle`.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_oppositeRotation">oppositeRotation()</a>
@@ -800,6 +810,41 @@ error angle.</dd>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method___clone">
+        __clone()
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method___clone" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">508</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Clone this `Angle`.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">__clone</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method___toString">
         __toString()
         <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
@@ -824,22 +869,21 @@ error angle.</dd>
     
     
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method___toString_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method___toString#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method___toString_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">example</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p><code class="prettyprint">(string) $alfa</code></p>
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">example</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
+                                                                                                            <section class="phpdocumentor-description"><p><code class="prettyprint">(string) $alfa</code></p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -1114,23 +1158,22 @@ error angle.</dd>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_createFromString_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_createFromString#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_createFromString_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -1260,23 +1303,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_eq_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_eq#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_eq_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -1511,23 +1553,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_gt_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_gt#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_gt_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -1587,23 +1628,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_gte_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_gte#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_gte_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -1741,23 +1781,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isDifferentThan_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isDifferentThan#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isDifferentThan_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -1817,23 +1856,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isEqualTo_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isEqualTo#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isEqualTo_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -1893,23 +1931,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isGreaterThan_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isGreaterThan#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isGreaterThan_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -1969,23 +2006,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isGreaterThanOrEqualTo_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isGreaterThanOrEqualTo#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isGreaterThanOrEqualTo_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -2045,23 +2081,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isLessThan_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isLessThan#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isLessThan_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -2121,23 +2156,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_isLessThanOrEqualTo_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isLessThanOrEqualTo#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isLessThanOrEqualTo_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -2197,23 +2231,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_lt_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_lt#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_lt_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -2273,23 +2306,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_lte_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_lte#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_lte_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -2349,23 +2381,22 @@ variable.</p>
             </dl>
 
     
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+    <h5 class="phpdocumentor-tag-list__heading" id="method_not_tags">
         Tags
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_not#tags" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_not_tags" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h5>
     <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
+                    <dt class="phpdocumentor-tag-list__entry">
+                <span class="phpdocumentor-tag__name">throws</span>
+            </dt>
+                            <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><a href="classes/MarcoConsiglio-Goniometry-Exceptions-NoMatchException.html"><abbr title="\MarcoConsiglio\Goniometry\Exceptions\NoMatchException">NoMatchException</abbr></a></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
+                                                                                        <section class="phpdocumentor-description"><p>when bad formatted <code class="prettyprint">string</code> <code class="prettyprint">$angle</code> is found.</p>
 </section>
 
                                     </dd>
-                                            </dl>
+                        </dl>
 
         
     
@@ -2393,7 +2424,7 @@ variable.</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Return the opposite `Angle`.</p>
+        <p class="phpdocumentor-summary">Return the opposite direction `Angle`.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -2408,8 +2439,8 @@ variable.</p>
 
         
             <section class="phpdocumentor-attributes">
-            <h5 class="phpdocumentor-elements__header" id="attributes">
-                Attributes <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_oppositeDirection#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+            <h5 class="phpdocumentor-elements__header" id="method_oppositeDirection_attributes">
+                Attributes <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_oppositeDirection_attributes" class="headerlink"><i class="fas fa-link"></i></a>
 
             </h5>
                             <dl class="phpdocumentor-argument-list">
@@ -2695,100 +2726,7 @@ variable.</p>
 </article>
             </section>
 
-        <div class="phpdocumentor-modal" id="source-view">
-    <div class="phpdocumentor-modal-bg" data-exit-button></div>
-    <div class="phpdocumentor-modal-container">
-        <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Angle.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
-        </div>
-        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
-    </div>
-</div>
-
-    <script type="text/javascript">
-        (function () {
-            function loadExternalCodeSnippet(el, url, line) {
-                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
-                    const language = 'php';
-
-                    const code = document.createElement('code');
-                    code.className = 'language-' + language;
-                    pre.textContent = '';
-                    pre.setAttribute('data-line', line)
-                    code.textContent = 'Loading…';
-                    pre.appendChild(code);
-
-                    var xhr = new XMLHttpRequest();
-
-                    xhr.open('GET', src, true);
-
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState !== 4) {
-                            return;
-                        }
-
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
-                            Prism.highlightElement(code);
-                            d=document.getElementsByClassName("line-numbers");
-                            d[0].scrollTop = d[0].children[1].offsetTop;
-                            return;
-                        }
-
-                        if (xhr.status === 404) {
-                            code.textContent = '✖ Error: File could not be found';
-                            return;
-                        }
-
-                        if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                            return;
-                        }
-
-                        code.textContent = '✖ Error: An unknown error occurred';
-                    };
-
-                    xhr.send(null);
-                });
-            }
-
-            const modalButtons = document.querySelectorAll("[data-modal]");
-            const openedAsLocalFile = window.location.protocol === 'file:';
-            if (modalButtons.length > 0 && openedAsLocalFile) {
-                console.warn(
-                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
-                    'browsers block XHR requests when a page is opened this way'
-                );
-            }
-
-            modalButtons.forEach(function (trigger) {
-                if (openedAsLocalFile) {
-                    trigger.setAttribute("hidden", "hidden");
-                }
-
-                trigger.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    const modal = document.getElementById(trigger.dataset.modal);
-                    if (!modal) {
-                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
-                        return;
-                    }
-                    modal.classList.add("phpdocumentor-modal__open");
-
-                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
-                    const exits = modal.querySelectorAll("[data-exit-button]");
-                    exits.forEach(function (exit) {
-                        exit.addEventListener("click", function (event) {
-                            event.preventDefault();
-                            modal.classList.remove("phpdocumentor-modal__open");
-                        });
-                    });
-                });
-            });
-        })();
-    </script>
-
+        
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
@@ -2827,6 +2765,7 @@ variable.</p>
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method___clone">__clone()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method___toString">__toString()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_absolute">absolute()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_absSum">absSum()</a></li>
