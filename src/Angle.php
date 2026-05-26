@@ -507,7 +507,7 @@ class Angle implements AngleInterface, Stringable
      */
     public function __clone()
     {
-        $this->sexagesimal = is_null($this->sexagesimal) ? null : clone $this->sexagesimal;
+        $this->sexagesimal = clone $this->sexagesimal;
         $this->sexadecimal = is_null($this->sexadecimal) ? null : clone $this->sexadecimal;
         $this->radian = is_null($this->radian) ? null : clone $this->radian;
     }

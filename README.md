@@ -1,11 +1,11 @@
 # [goniometry](https://github.com/MarcoConsiglio/goniometry?tab=readme-ov-file#goniometry)
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v6.1.1-white)
+![Static Badge](https://img.shields.io/badge/version-v6.1.2-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
-![Static Badge](https://img.shields.io/badge/Path%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
+![Static Badge](https://img.shields.io/badge/Path%20coverage-99%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 
 A PHP support for string, decimal, radian and object angles, providing goniometric algebra and comparison between angles.
 
@@ -318,7 +318,7 @@ When comparing two `Angle`s sometimes their difference is negligible. In this ca
 
 *Delta* (Δ) is the double of *epsilon* error (±ε).
 
-### $\alpha~ \char"224A ~\beta$ (almost equal)
+### $\alpha \approxeq \beta$ (almost equal)
 ```php
 $alfa = Angle::createFromDecimal(90.345);
 $beta = Angle::createFromValue(90);

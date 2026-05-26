@@ -1,4 +1,8 @@
 # Changelog
+## v6.1.2 2026-05-26
+### Fixed
+- [#25](https://github.com/MarcoConsiglio/goniometry/issues/25).
+
 ## v6.1.1 2026-05-14
 ### Fixed
 - [#23](https://github.com/MarcoConsiglio/goniometry/issues/23).
