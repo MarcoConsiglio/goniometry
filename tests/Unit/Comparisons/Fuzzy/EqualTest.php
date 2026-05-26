@@ -9,11 +9,14 @@ use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType as FuzzyAngleType;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -50,6 +53,9 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(GreaterAngle::class)]
 #[UsesClass(GreaterOrEqual::class)]
 #[UsesClass(GreaterOrEqualAngle::class)]
+#[UsesClass(LesserAngle::class)]
+#[UsesClass(LesserOrEqual::class)]
+#[UsesClass(LesserOrEqualAngle::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(PositiveAngleGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]

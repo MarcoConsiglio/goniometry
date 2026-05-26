@@ -83,6 +83,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as Relati
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
+use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
@@ -184,6 +185,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(Radian::class)]
 #[UsesClass(RadianGenerator::class)]
+#[UsesClass(RadianRange::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeAngularDistanceGenerator::class)]
 #[UsesClass(RelativeAngularDistanceValidator::class)]
@@ -558,5 +560,63 @@ class AngularDistanceTest extends TestCase
             $opposite_angle->toSexadecimalDegrees()->value,
             "The opposite of {$angle} is {$opposite_angle}."
         );
+    }
+
+    #[TestDox("can be cloned.")]
+    public function test_clone(): void
+    {
+        /**
+         * Built from sexagesimal values
+         */
+        // Arrange
+        $angle = AngularDistance::createFromValues(
+            $this->randomDegrees()->value(),
+            $this->randomMinutes()->value(),
+            $this->randomSeconds()->value(),
+            $this->randomDirection()
+        );
+
+        // Act
+        $clone = clone $angle;
+
+        // Assert
+        $this->assertDegrees($angle->degrees, $clone->degrees);
+        $this->assertMinutes($angle->minutes, $clone->minutes);
+        $this->assertSeconds($angle->seconds, $clone->seconds);
+        $this->assertDirection($angle->direction, $clone->direction);
+
+        /**
+         * Built from sexadecimal value
+         */
+        // Arrange
+        $angle = AngularDistance::createFromValues(
+            $this->randomSexadecimal()
+        );
+
+        // Act
+        $clone = clone $angle;
+
+        // Assert
+        $this->assertDegrees($angle->degrees, $clone->degrees);
+        $this->assertMinutes($angle->minutes, $clone->minutes);
+        $this->assertSeconds($angle->seconds, $clone->seconds);
+        $this->assertDirection($angle->direction, $clone->direction);
+        
+        /**
+         * Built from radian value
+        */
+        // Arrange
+        $angle = AngularDistance::createFromRadian(
+            $this->randomRadian()->value()
+        );
+
+        // Act
+        $clone = clone $angle;
+
+        // Assert
+        $this->assertDegrees($angle->degrees, $clone->degrees);
+        $this->assertMinutes($angle->minutes, $clone->minutes);
+        $this->assertSeconds($angle->seconds, $clone->seconds);
+        $this->assertDirection($angle->direction, $clone->direction);
     }
 }

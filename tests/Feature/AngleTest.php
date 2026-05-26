@@ -704,4 +704,62 @@ class AngleTest extends TestCase
             "The opposite of {$angle} is {$opposite_angle}."
         );
     }
+
+    #[TestDox("can be cloned.")]
+    public function test_clone(): void
+    {
+        /**
+         * Built from sexagesimal values
+         */
+        // Arrange
+        $angle = Angle::createFromValues(
+            $this->randomDegrees()->value(),
+            $this->randomMinutes()->value(),
+            $this->randomSeconds()->value(),
+            $this->randomDirection()
+        );
+
+        // Act
+        $clone = clone $angle;
+
+        // Assert
+        $this->assertDegrees($angle->degrees, $clone->degrees);
+        $this->assertMinutes($angle->minutes, $clone->minutes);
+        $this->assertSeconds($angle->seconds, $clone->seconds);
+        $this->assertDirection($angle->direction, $clone->direction);
+
+        /**
+         * Built from sexadecimal value
+         */
+        // Arrange
+        $angle = Angle::createFromValues(
+            $this->randomSexadecimal()
+        );
+
+        // Act
+        $clone = clone $angle;
+
+        // Assert
+        $this->assertDegrees($angle->degrees, $clone->degrees);
+        $this->assertMinutes($angle->minutes, $clone->minutes);
+        $this->assertSeconds($angle->seconds, $clone->seconds);
+        $this->assertDirection($angle->direction, $clone->direction);
+        
+        /**
+         * Built from radian value
+        */
+        // Arrange
+        $angle = Angle::createFromRadian(
+            $this->randomRadian()->value()
+        );
+
+        // Act
+        $clone = clone $angle;
+
+        // Assert
+        $this->assertDegrees($angle->degrees, $clone->degrees);
+        $this->assertMinutes($angle->minutes, $clone->minutes);
+        $this->assertSeconds($angle->seconds, $clone->seconds);
+        $this->assertDirection($angle->direction, $clone->direction);
+    }
 }
