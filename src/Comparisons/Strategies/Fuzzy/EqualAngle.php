@@ -2,10 +2,9 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Strategies\Fuzzy;
 
 use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\BCMathExtended\Range;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle as EqualAngleStrategy;
-use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
@@ -56,12 +55,15 @@ class EqualAngle extends EqualAngleStrategy
     #[\Override]
     public function compare(): bool
     {
-        $alfa = $this->alfa->toSexadecimalDegrees()->value;
-        $beta = $this->beta->toSexadecimalDegrees()->value;
-        $difference = $alfa->sub($beta)->abs();
-        $complementary_difference = new Number(Degrees::MAX)->sub($difference);
-        $distance = Number::min($difference, $complementary_difference);
-        return $this->delta->toSexadecimalDegrees()->value->gte($distance);
+        // $min ≤ $alfa ≤ $max
+        if ($this->low_extreme->gt($this->high_extreme))
+            return 
+                $this->alfa->gte($this->low_extreme) ||
+                $this->alfa->lte($this->high_extreme);
+        else
+            return
+                $this->alfa->gte($this->low_extreme) &&
+                $this->alfa->lte($this->high_extreme);
     }
 
     /**

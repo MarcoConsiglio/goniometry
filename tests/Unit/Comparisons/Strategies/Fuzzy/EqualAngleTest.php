@@ -104,8 +104,8 @@ class EqualAngleTest extends TestCase
         [$min, $max] = $this->getDeltaExtremes($beta, $delta);
         if ($min->gt($max))
             $alfa = $this->positiveRandomAngle(
-                min: NextFloat::before($max->toFloat()),
-                max: NextFloat::after($min->toFloat())
+                min: NextFloat::after($max->toFloat()),
+                max: NextFloat::before($min->toFloat())
             );
         else
             $alfa = self::$faker->randomElement([
@@ -115,6 +115,25 @@ class EqualAngleTest extends TestCase
                     max: SexadecimalRange::max()
                 )
             ]);
+
+        // Act & Assert
+        $this->assertFalse(
+            new EqualAngle($alfa, $beta, $delta)->compare(),
+            $this->getFailMessage($alfa, $beta, $delta)
+        );
+    }
+
+    public function test_specific_case(): void
+    {
+        // Arrange
+        $alfa = Angle::createFromDecimal(13.714157511571116);
+        $beta = Angle::createFromDecimal(56.16135670624737);
+        $delta = Angle::createFromDecimal(147.12547820393252);
+
+        // Act & Assert
+        $this->assertTrue(
+            new EqualAngle($alfa, $beta, $delta)->compare()
+        );
     }
 
     /**

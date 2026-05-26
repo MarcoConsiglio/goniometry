@@ -318,7 +318,7 @@ When comparing two `Angle`s sometimes their difference is negligible. In this ca
 
 *Delta* (Δ) is the double of *epsilon* error (±ε).
 
-### $\alpha~ \char"224A ~\beta$ (almost equal)
+### $\alpha \approxeq \beta$ (almost equal)
 ```php
 $alfa = Angle::createFromDecimal(90.345);
 $beta = Angle::createFromValue(90);
