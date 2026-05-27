@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**

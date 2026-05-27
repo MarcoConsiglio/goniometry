@@ -1,7 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\AngularMeasure;
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 
 /**
  * The strategy that compares two `Angle` instances to check if they are equal.
@@ -13,10 +14,10 @@ class EqualAngle extends ComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngleInterface $alfa The left comparison operand.
-     * @param AngleInterface $beta The right comparison operand.
+     * @param AngularMeasure $alfa The left comparison operand.
+     * @param AngularMeasure $beta The right comparison operand.
      */
-    public function __construct(AngleInterface $alfa, protected AngleInterface $beta)
+    public function __construct(AngularMeasure $alfa, protected AngularMeasure $beta)
     {
         parent::__construct($alfa);
     }

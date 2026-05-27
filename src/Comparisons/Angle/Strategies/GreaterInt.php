@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy as ComparisonsComparisonStrategy;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
@@ -11,7 +12,7 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
  * 
  * @internal
  */
-class GreaterInt extends ComparisonStrategy
+class GreaterInt extends ComparisonsComparisonStrategy
 {
     /**
      * Construct the comparison strategy.

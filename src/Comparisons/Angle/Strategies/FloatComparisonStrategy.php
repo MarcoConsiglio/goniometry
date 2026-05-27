@@ -1,6 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+
 /**
  * A comparison strategy against a `float` type variable.
  * 

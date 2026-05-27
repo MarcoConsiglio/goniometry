@@ -1,24 +1,11 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentInt;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentString;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\FloatComparisonStrategy;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\FloatType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\IntType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -40,35 +27,22 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
-use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The Different comparison")]
-#[CoversClass(Different::class)]
+#[TestDox("The EqualInt comparison strategy")]
+#[CoversClass(EqualInt::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
-#[UsesClass(AngleType::class)]
-#[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
-#[UsesClass(DifferentAngle::class)]
-#[UsesClass(DifferentFloat::class)]
-#[UsesClass(DifferentInt::class)]
-#[UsesClass(DifferentString::class)]
 #[UsesClass(Rotation::class)]
 #[UsesClass(EqualAngle::class)]
-#[UsesClass(EqualFloat::class)]
-#[UsesClass(EqualInt::class)]
-#[UsesClass(FloatComparisonStrategy::class)]
-#[UsesClass(FloatType::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
-#[UsesClass(FromString::class)]
-#[UsesClass(IntType::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
@@ -83,55 +57,44 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-#[UsesClass(StringType::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class DifferentTest extends TestCase
+class EqualIntTest extends TestCase
 {
-    protected Angle $alfa;
+    protected string $comparison = '=';
 
-    protected Angle $beta;
-
-    #[Override]
-    protected function setUp(): void
+    #[TestDox("can compare an Angle and a sexagesimal degrees angle measure.")]
+    public function test_compare(): void
     {
-        parent::setUp();
-        $this->alfa = $this->randomAngle();
-        $this->beta = $this->randomAngle();
-    }
+        /**
+         * Equal
+         */
+        // Arrange
+        $beta = $this->randomDegrees();
+        $alfa = Angle::createFromValues($beta->value());
 
-    #[TestDox("can compare against an Angle.")]
-    public function test_compare_angle(): void
-    {
         // Act & Assert
-        $comparison = new Different($this->alfa, $this->beta);
-        $this->assertIsBool($comparison->compare());
-    }
-
-    #[TestDox("can compare against an int.")]
-    public function test_compare_int(): void
-    {
-        // Act & Assert
-        $comparison = new Different($this->alfa, $this->randomDegrees()->value());
-        $this->assertIsBool($comparison->compare());
-    }
-
-    #[TestDox("can compare against a float with precision.")]
-    public function test_compare_float(): void
-    {
-        // Act & Assert
-        $comparison = new Different(
-            $this->alfa, 
-            $this->randomFloat()
+        $this->assertTrue(new EqualInt($alfa, $beta->value())->compare(),
+            $this->getFailMessage($alfa, $beta)
         );
-        $comparison->setPrecision($this->randomPrecision());
-        $this->assertIsBool($comparison->compare());
+
+        /**
+         * Not Equal
+         */
+        // Arrange
+        $beta = $this->randomDegrees();
+        $alfa = $this->randomAngle();
+
+        // Act & Assert
+        $this->assertFalse(new EqualInt($alfa, $beta->value())->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
     }
 
-    #[TestDox("can compare against a string.")]
-    public function test_compare_string(): void
+    /**
+     * Return a fail message for this TestCase.
+     */
+    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
     {
-        // Act & Assert
-        $comparison = new Different($this->alfa, (string) $this->beta);
-        $this->assertIsBool($comparison->compare());       
+        return $this->comparisonFail($alfa, $this->comparison, $beta);
     }
 }

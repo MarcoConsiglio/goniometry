@@ -6,7 +6,7 @@ use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt;
