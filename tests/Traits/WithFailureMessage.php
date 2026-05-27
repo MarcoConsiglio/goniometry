@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Traits;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use ValueError;
 
@@ -88,9 +89,9 @@ trait WithFailureMessage
      * Return a comparison fail message.
      */
     protected function comparisonFail(
-        Angle $alfa, 
+        AngularMeasure $alfa, 
         string $comparison, 
-        int|float|string|Angle $beta
+        int|float|string|AngularMeasure $beta
     ): string {
         $this->checkComparison($comparison);
         if (is_int($beta)) return "$alfa $comparison {$beta}°";
@@ -105,10 +106,10 @@ trait WithFailureMessage
      * Return a fuzzy comparison fail message.
      */
     protected function fuzzyComparisonFail(
-        Angle $alfa, 
+        AngularMeasure $alfa, 
         string $comparison,
-        Angle $beta,
-        Angle $delta
+        AngularMeasure $beta,
+        AngularMeasure $delta
     ): string {
         $this->checkComparison($comparison);
         return "{$alfa->toSexadecimalDegrees()} $comparison {$beta->toSexadecimalDegrees()} with delta {$delta->toSexadecimalDegrees()}.";

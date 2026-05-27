@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualAngularDistance;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[CoversClass(EqualAngle::class)]
+#[CoversClass(EqualAngularDistance::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngularDistance::class)]
 #[UsesClass(AngularMeasure::class)]
@@ -34,7 +34,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-class EqualAngleTest extends TestCase
+class EqualAngularDistanceTest extends TestCase
 {
     use WithEqualComparisonDispositionTesting;
 
@@ -112,7 +112,7 @@ class EqualAngleTest extends TestCase
     protected function testObjectsAreEqual(int $case_number, array $objects): void
     {
         $this->assertTrue(
-            new EqualAngle($objects[0], $objects[1])->compare(),
+            new EqualAngularDistance($objects[0], $objects[1])->compare(),
             $this->getComparisonFailureMessage($case_number, $objects)    
         );
     }
@@ -126,7 +126,7 @@ class EqualAngleTest extends TestCase
     protected function testObjectsAreNotEqual(int $case_number, array $objects): void
     {
         $this->assertFalse(
-            new EqualAngle($objects[0], $objects[1])->compare(),
+            new EqualAngularDistance($objects[0], $objects[1])->compare(),
             $this->getComparisonFailureMessage($case_number, $objects)
         );
     }

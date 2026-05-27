@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle as StrategiesEqualAngle;
 use Override;
 
-class EqualAngle extends StrategiesEqualAngle
+class EqualAngularDistance extends StrategiesEqualAngle
 {
     public function __construct(AngularDistance $alfa, AngularDistance $beta)
     {
