@@ -1,19 +1,19 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Types;
 
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
@@ -37,7 +37,7 @@ class IntType extends InputType
      * 
      * @param AngleInterface $alfa The left operand of the `$comparison`.
      */
-    public function getStrategyFor(GeneralComparison $comparison, AngleInterface $alfa): Strategy
+    public function getStrategyFor(Comparison $comparison, AngleInterface $alfa): Strategy
     {
         if ($comparison instanceof Equal) return new EqualInt($alfa, $this->beta);
         if ($comparison instanceof Different) return new DifferentInt($alfa, $this->beta);

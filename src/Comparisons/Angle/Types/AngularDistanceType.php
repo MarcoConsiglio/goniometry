@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Types;
 
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\InputType;
 use MarcoConsiglio\Goniometry\Interfaces\Angle;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;

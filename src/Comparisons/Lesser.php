@@ -1,5 +1,7 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Comparisons\Angle;
+namespace MarcoConsiglio\Goniometry\Comparisons;
+
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 
 /**
  * The `Lesser` comparison between angles.

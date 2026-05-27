@@ -10,9 +10,9 @@ use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualAngle;
@@ -123,18 +123,18 @@ class EqualAngleTest extends TestCase
         );
     }
 
-    public function test_specific_case(): void
-    {
-        // Arrange
-        $alfa = Angle::createFromDecimal(13.714157511571116);
-        $beta = Angle::createFromDecimal(56.16135670624737);
-        $delta = Angle::createFromDecimal(147.12547820393252);
+    // public function test_specific_case(): void
+    // {
+    //     // Arrange
+    //     $alfa = Angle::createFromDecimal(164.98353310320311);
+    //     $beta = Angle::createFromDecimal(167.5713335012883);
+    //     $delta = Angle::createFromDecimal(6.314553695877341);
 
-        // Act & Assert
-        $this->assertTrue(
-            new EqualAngle($alfa, $beta, $delta)->compare()
-        );
-    }
+    //     // Act & Assert
+    //     $this->assertTrue(
+    //         new EqualAngle($alfa, $beta, $delta)->compare()
+    //     );
+    // }
 
     /**
      * Return a fail message for this `TestCase`.

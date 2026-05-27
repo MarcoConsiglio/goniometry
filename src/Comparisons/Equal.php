@@ -1,12 +1,14 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Comparisons\Angle;
+namespace MarcoConsiglio\Goniometry\Comparisons;
+
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 
 /**
- * The `Greater` comparison between angles.
+ * The `Equal` comparison between angles.
  * 
  * @internal
  */
-class Greater extends Comparison
+class Equal extends Comparison
 {
     /**
      * Set the comparison strategy based on the comparison type and

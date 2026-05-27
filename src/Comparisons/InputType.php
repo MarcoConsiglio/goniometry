@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
 use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
@@ -17,5 +17,5 @@ abstract class InputType
      * 
      * @param AngularMeasure $alfa The left operand of the `$comparison`.
      */
-    abstract public function getStrategyFor(GeneralComparison $comparison, AngularMeasure $alfa): Strategy;
+    abstract public function getStrategyFor(Comparison $comparison, AngularMeasure $alfa): Strategy;
 }

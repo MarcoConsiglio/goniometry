@@ -2,11 +2,11 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Types;
 
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterFloat;

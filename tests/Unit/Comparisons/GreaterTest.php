@@ -5,7 +5,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterFloat;

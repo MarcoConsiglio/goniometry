@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy;
 
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison as AngleComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types\AngleType;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
@@ -10,7 +10,7 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
  * 
  * @internal
  */
-abstract class Comparison extends AngleComparison
+abstract class Comparison extends GeneralComparison
 {
     /**
      * The acceptable error within which comparison is successful.
