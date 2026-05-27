@@ -3,13 +3,14 @@ namespace MarcoConsiglio\Goniometry;
 
 use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
 use MarcoConsiglio\Goniometry\Interfaces\Scalar;
 use MarcoConsiglio\ModularArithmetic\ModularNumber;
 
 /**
  * The radian value of an `Angle`.
  */
-class Radian extends ModularNumber implements Scalar
+class Radian extends ModularNumber implements RadianValue
 {
     /**
      * The maximum allowed radian value.

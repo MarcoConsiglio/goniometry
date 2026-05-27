@@ -2,22 +2,22 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\InputType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\IntType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
@@ -31,7 +31,7 @@ use PHPUnit\Framework\MockObject\Stub;
 
 #[TestDox("The IntType ")]
 #[CoversClass(IntType::class)]
-#[UsesClass(Comparison::class)]
+#[UsesClass(GeneralComparison::class)]
 #[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]

@@ -9,16 +9,16 @@ use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\Fuzzy\EqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -44,7 +44,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
 #[UsesClass(AngleType::class)]
-#[UsesClass(Comparison::class)]
+#[UsesClass(GeneralComparison::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(FromSexadecimal::class)]

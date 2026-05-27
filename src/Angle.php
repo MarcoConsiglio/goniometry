@@ -11,98 +11,24 @@ use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundFromRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundFromSexadecimal;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Equal as FuzzyEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
-use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
 use Override;
-use Stringable;
 
 /**
  * The `Angle` type.
  */
-class Angle implements AngleInterface, Stringable
+class Angle extends AngularMeasure
 {
-    /**
-     * Regular expression used to parse degrees value as integer number.
-     */
-    public const DEGREES_REGEX = "/(?<!\d)(-?(?:360|3[0-5]\d|[12]?\d{1,2}))°/";
-
-    /**
-     * Regular expression used to parse minutes value as integer number.
-     */
-    public const MINUTES_REGEX = '/\b([0-5]?\d)\'/';
-
-    /**
-     * Regular expression used to parse second value as decimal number.
-     */
-    public const SECONDS_REGEX = '/\b((?:[1-5]?\d)(?:\.\d+)?)"/';
-
-    /**
-     * The degrees part.
-     */
-    public Degrees $degrees {
-        get {return $this->sexagesimal->degrees;}
-    }
-
-    /**
-     * The minutes part.
-     */
-    public Minutes $minutes {
-        get {return $this->sexagesimal->minutes;}
-    }
-
-    /**
-     * The seconds part.
-     */
-    public Seconds $seconds {
-        get {return $this->sexagesimal->seconds;}
-    }
-
-    
-    /** 
-     * The `Angle` `Rotation` direction.
-    */
-    public Rotation $direction {
-        get {return $this->sexagesimal->direction;}
-    }
-
-    /**
-     * The sexagesimal value of this `Angle`.
-     */
-    protected SexagesimalDegrees $sexagesimal;
-    
-    /** 
-     * The sexadecimal degrees value of this `Angle`.
-     */
-    protected SexadecimalDegrees|null $sexadecimal = null;
-
-    /** 
-     * The radian value of this `Angle`.
-     */
-    protected Radian|null $radian = null;
-
-
-    /**
-     * Construct an `Angle`.
-     */
-    protected function __construct(AngleBuilder $builder)
-    {
-        [
-            $this->sexagesimal,
-            $this->sexadecimal,
-            $this->radian
-        ] = $builder->fetchData();
-    }
-
     /**
      * Creates an `Angle` from its sexagesimal values.
      */

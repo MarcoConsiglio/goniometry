@@ -11,25 +11,23 @@ use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundSexadecimal;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Different;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Equal as FuzzyEqual;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
-use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
 use Override;
-use Stringable;
 
 /**
  * The `AngularDistance` type.
  */
-class AngularDistance implements AngleInterface, Stringable
+class AngularDistance extends AngularMeasure
 {
     /**
      * The maximum allowed value in degrees.
@@ -40,61 +38,6 @@ class AngularDistance implements AngleInterface, Stringable
      * The minimum allowed value in degrees.
      */
     public const int MIN = -self::MAX;
-    
-    /**
-     * The `Degrees` part.
-     */
-    public Degrees $degrees {
-        get {return $this->sexagesimal->degrees;}
-    }
-
-    /**
-     * The `Minutes` part.
-     */
-    public Minutes $minutes {
-        get {return $this->sexagesimal->minutes;}
-    }
-
-    /**
-     * The `Seconds` part.
-     */
-    public Seconds $seconds {
-        get {return $this->sexagesimal->seconds;}
-    }
-    
-    /** 
-     * The `AngularDistance` `Rotation` direction.
-    */
-    public Rotation $direction {
-        get {return $this->sexagesimal->direction;}
-    }
-
-    /**
-     * The sexagesimal value of this `AngularDistance`.
-     */
-    public protected(set) SexagesimalDegrees $sexagesimal;
-    
-    /** 
-     * The sexadecimal degrees value of this `AngularDistance`.
-     */
-    public protected(set) SexadecimalAngularDistance $sexadecimal;
-
-    /** 
-     * The radian value of this `AngularDistance`.
-     */
-    public protected(set) AngularDistanceRadian|null $radian = null;
-
-    /**
-     * Construct an `AngularDistance`.
-     */
-    protected function __construct(AngleBuilder $builder)
-    {
-        [
-            $this->sexagesimal,
-            $this->sexadecimal,
-            $this->radian
-        ] = $builder->fetchData();
-    }
 
     /**
      * Creates an `AngularDistance` from its sexagesimal values.
@@ -295,7 +238,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function isEqualTo(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new Equal($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
@@ -312,7 +255,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function eq(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isEqualTo($angle, $precision);
     }
@@ -327,7 +270,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function isDifferentThan(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new Different($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
@@ -344,7 +287,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function not(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isDifferentThan($angle, $precision);
     }
@@ -359,7 +302,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function isGreaterThan(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new Greater($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
@@ -376,7 +319,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function gt(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isGreaterThan($angle, $precision);
     }
@@ -391,7 +334,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function isGreaterThanOrEqualTo(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new GreaterOrEqual($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
@@ -408,7 +351,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function gte(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isGreaterThanOrEqualTo($angle, $precision);
     }
@@ -423,7 +366,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function isLessThan(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new Lesser($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
@@ -440,7 +383,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function lt(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isLessThan($angle, $precision);
     }
@@ -455,7 +398,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function isLessThanOrEqualTo(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new LesserOrEqual($this, $angle);
         if (is_float($angle)) $comparison->setPrecision($precision);
@@ -472,7 +415,7 @@ class AngularDistance implements AngleInterface, Stringable
     #[Override]
     public function lte(
         string|int|float|AngleInterface $angle, 
-        int $precision = Comparison::MAX_PRECISION
+        int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isLessThanOrEqualTo($angle, $precision);
     }

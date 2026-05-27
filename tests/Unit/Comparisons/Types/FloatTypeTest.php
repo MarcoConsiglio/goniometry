@@ -2,22 +2,22 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\FloatType;
+use MarcoConsiglio\Goniometry\Comparisons\InputType;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
@@ -34,9 +34,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\MockObject\Stub;
 
-#[TestDox("The FloatType ")]
+#[TestDox("The AngleFloatType ")]
 #[CoversClass(FloatType::class)]
-#[UsesClass(Comparison::class)]
+#[UsesClass(GeneralComparison::class)]
 #[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Different::class)]
 #[UsesClass(DifferentFloat::class)]

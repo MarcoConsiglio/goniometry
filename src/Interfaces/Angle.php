@@ -2,6 +2,7 @@
 
 namespace MarcoConsiglio\Goniometry\Interfaces;
 
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
@@ -18,7 +19,7 @@ interface Angle
         int $minutes, 
         float $seconds, 
         Rotation $direction
-    ): Angle;
+    ): AngularMeasure;
 
     /**
      * Create an `Angle` from its textual representation.
