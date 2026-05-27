@@ -9,7 +9,7 @@ trait WithEqualComparisonDispositionTesting
      * Test two objects are equal. This is a Parameterized Test.
      * 
      * @param int $case_number The case number being tested.
-     * @param array $records An array of two records that will be fed to the comparison method.
+     * @param array $objects An array of two records that will be fed to the comparison method.
      */
     abstract protected function testObjectsAreEqual(int $case_number, array $objects): void;
     // {

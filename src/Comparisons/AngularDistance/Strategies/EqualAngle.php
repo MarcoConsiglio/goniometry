@@ -7,7 +7,6 @@ use Override;
 
 class EqualAngle extends StrategiesEqualAngle
 {
-    #[Override]
     public function __construct(AngularDistance $alfa, AngularDistance $beta)
     {
         parent::__construct($alfa, $beta);

@@ -1,12 +1,19 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\AngularDistance;
+use MarcoConsiglio\Goniometry\AngularMeasure;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
+use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithEqualComparisonDispositionTesting;
@@ -14,24 +21,29 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The EqualAngle comparison strategy")]
 #[CoversClass(EqualAngle::class)]
 #[UsesClass(Angle::class)]
+#[UsesClass(AngularDistance::class)]
+#[UsesClass(AngularMeasure::class)]
+#[UsesClass(AngleFromSexagesimal::class)]
+#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalAngularDistance::class)]
+#[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 class EqualAngleTest extends TestCase
 {
     use WithEqualComparisonDispositionTesting;
 
     protected string $comparison = '=';
-    
+
     #[TestDox("can compare two Angle instances.")]
     public function test_compare(): void
     {
-        $this->testEqualComparison(3);
+        $this->testEqualComparison(4);
     }
 
     /**
@@ -47,7 +59,8 @@ class EqualAngleTest extends TestCase
      */
     protected function getComparisonDataset(): array
     {
-        $d1 = 180; $d2 = 90; $m1 = 20; $m2 = 30; $s1 = 10; $s2 = 50;
+        $d1 = 30; $d2 = 90; $m1 = 20; $m2 = 30; $s1 = 10; $s2 = 50;
+        $r1 = Rotation::COUNTER_CLOCKWISE; $r2 = Rotation::CLOCKWISE;
         return [
             0 => [
                 self::DIFFERENT => [$d1, $d2],
@@ -60,6 +73,10 @@ class EqualAngleTest extends TestCase
             2 => [
                 self::DIFFERENT => [$s1, $s2],
                 self::EQUAL => [$s1, $s1]
+            ],
+            3 => [
+                self::DIFFERENT => [$r1, $r2],
+                self::EQUAL => [$r1, $r1]
             ]
         ];
     }
@@ -72,15 +89,17 @@ class EqualAngleTest extends TestCase
     {
         $alfa = 0; $beta = 1;
         return [
-            Angle::createFromValues(
+            AngularDistance::createFromValues(
                 $property_couples[0][$alfa],
                 $property_couples[1][$alfa],
                 $property_couples[2][$alfa],
+                $property_couples[3][$alfa],
             ),
-            Angle::createFromValues(
+            AngularDistance::createFromValues(
                 $property_couples[0][$beta],
                 $property_couples[1][$beta],
                 $property_couples[2][$beta],
+                $property_couples[3][$beta],
             )
         ];
     }
@@ -88,7 +107,7 @@ class EqualAngleTest extends TestCase
     /**
      * Test two objects are equal. This is a Parameterized Test.
      * 
-     * @param Angle[] $objects An array of two `Angle` that will be fed to the comparison method.
+     * @param AngularDistance[] $objects An array of two `Angle` that will be fed to the comparison method.
      */
     protected function testObjectsAreEqual(int $case_number, array $objects): void
     {
@@ -102,7 +121,7 @@ class EqualAngleTest extends TestCase
      * Test two objects are different. This is a Parameterized Test.
      * 
      * @param int $case_number The case number being tested.
-     * @param Angle[] $objects An array of two `Angle` that will be fed to the comparison method.
+     * @param AngularDistance[] $objects An array of two `Angle` that will be fed to the comparison method.
      */
     protected function testObjectsAreNotEqual(int $case_number, array $objects): void
     {
