@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
 use MarcoConsiglio\BCMathExtended\Number;
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**

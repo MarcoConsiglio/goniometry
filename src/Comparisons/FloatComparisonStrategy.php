@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
+namespace MarcoConsiglio\Goniometry\Comparisons;
 
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 
