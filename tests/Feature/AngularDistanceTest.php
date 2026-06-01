@@ -30,36 +30,36 @@ use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
-use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentAngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentInt;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentString;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualString;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngle;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterInt;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualString;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterString;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserAngle;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserInt;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualString;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserString;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\AngularDistanceType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\FloatType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\IntType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Radian;
@@ -115,7 +115,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AngleFromSexagesimal::class)]
 #[UsesClass(AngleFromString::class)]
 #[UsesClass(AngleGenerator::class)]
-#[UsesClass(AngleType::class)]
+#[UsesClass(AngularDistanceType::class)]
 #[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(AngularDistanceRadian::class)]
 #[UsesClass(AngularDistanceRange::class)]
@@ -126,7 +126,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
 #[UsesClass(Different::class)]
-#[UsesClass(DifferentAngle::class)]
+#[UsesClass(DifferentAngularDistance::class)]
 #[UsesClass(DifferentFloat::class)]
 #[UsesClass(DifferentInt::class)]
 #[UsesClass(DifferentString::class)]

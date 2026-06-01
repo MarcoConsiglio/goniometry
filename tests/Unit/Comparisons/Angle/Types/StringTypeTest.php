@@ -45,7 +45,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\MockObject\Stub;
 
-#[TestDox("The StringType ")]
+#[TestDox("The Angle\Types\StringType ")]
 #[CoversClass(StringType::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]

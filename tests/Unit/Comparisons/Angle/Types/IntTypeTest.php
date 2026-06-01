@@ -30,7 +30,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\MockObject\Stub;
 
-#[TestDox("The IntType ")]
+#[TestDox("The Angle\Types\IntType ")]
 #[CoversClass(IntType::class)]
 #[UsesClass(Comparison::class)]
 #[UsesClass(ComparisonStrategy::class)]

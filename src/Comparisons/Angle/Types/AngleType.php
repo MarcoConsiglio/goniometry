@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Types;
 
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
@@ -28,9 +29,9 @@ class AngleType extends InputType
     /**
      * Construct the `InputType` of $beta.
      * 
-     * @param AngularMeasure $beta The right operand of the comparison.
+     * @param Angle $beta The right operand of the comparison.
      */
-    public function __construct(protected AngularMeasure $beta) {}
+    public function __construct(protected Angle $beta) {}
 
     /**
      * Get the correct strategy for the current `$comparison` operation.

@@ -35,7 +35,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\MockObject\Stub;
 
-#[TestDox("The AngleFloatType ")]
+#[TestDox("The Angle\Types\FloatType")]
 #[CoversClass(FloatType::class)]
 #[UsesClass(Comparison::class)]
 #[UsesClass(ComparisonStrategy::class)]
