@@ -2,10 +2,10 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle as StrategiesEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
 use Override;
 
-class EqualAngularDistance extends StrategiesEqualAngle
+class EqualAngularDistance extends EqualAngle
 {
     public function __construct(AngularDistance $alfa, AngularDistance $beta)
     {

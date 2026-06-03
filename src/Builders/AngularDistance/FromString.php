@@ -2,7 +2,9 @@
 namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString as AngleFromString;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees; // This is needed for static type checking.
 use Override;

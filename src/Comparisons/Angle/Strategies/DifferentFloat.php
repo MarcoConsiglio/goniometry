@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
@@ -15,13 +16,13 @@ class DifferentFloat extends FloatComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngleInterface $alfa The left comparison operand.
+     * @param AngularMeasure $alfa The left comparison operand.
      * @param float $beta The right operand of the comparison expressed as
      * a sexadecimal angle measure.
      * @param int $precision The precision used in the comparison.
      */
     public function __construct(
-        AngleInterface $alfa,
+        AngularMeasure $alfa,
         protected float $beta,
         protected int $precision = 54
     ) {

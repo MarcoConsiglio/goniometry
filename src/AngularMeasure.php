@@ -11,7 +11,7 @@ use Stringable;
 abstract class AngularMeasure implements Angle, Stringable
 {
     /**
-     * Construct an `Angle`.
+     * Construct an `AngularMeasure`.
      */
     protected function __construct(AngleBuilder $builder)
     {

@@ -3,9 +3,11 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Types
 
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualFloat as AngleEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
@@ -37,6 +39,7 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(SexadecimalRange::class)]
+#[UsesClass(DifferentFloat::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class FloatTypeTest extends InputTypeTestCase
 {
@@ -66,5 +69,18 @@ class FloatTypeTest extends InputTypeTestCase
 
         // Assert
         $this->assertInstanceOf(EqualFloat::class, $strategy);
+    }
+
+    #[TestDox("return the strategy for a Different comparison.")]
+    public function test_different_strategy(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Different::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(DifferentFloat::class, $strategy);
     }
 }

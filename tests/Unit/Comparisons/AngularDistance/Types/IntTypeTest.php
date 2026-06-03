@@ -3,9 +3,11 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Types
 
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt as AngleEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -27,6 +29,7 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
+#[UsesClass(DifferentInt::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class IntTypeTest extends InputTypeTestCase
 {
@@ -57,4 +60,17 @@ class IntTypeTest extends InputTypeTestCase
         // Assert
         $this->assertInstanceOf(EqualInt::class, $strategy);
     }    
+
+    #[TestDox("return the strategy for a Different comparison.")]
+    public function test_different_strategy(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Different::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(DifferentInt::class, $strategy);
+    }
 }
