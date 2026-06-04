@@ -2,8 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
 use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The strategy that compares an `Angle` instance against a sexadecimal angle 
@@ -16,12 +16,12 @@ class GreaterOrEqualFloat extends FloatComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngleInterface $alfa The left comparison operand.
+     * @param AngularMeasure $alfa The left comparison operand.
      * @param float $beta The right operand of the comparison.
      * @param int $precision The precision used in the comparison.
      */  
     public function __construct(
-        AngleInterface $alfa, 
+        AngularMeasure $alfa, 
         protected float $beta,
         protected int $precision = 54
     ) {
