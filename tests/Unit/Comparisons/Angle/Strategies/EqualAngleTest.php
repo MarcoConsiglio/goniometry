@@ -8,8 +8,8 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithEqualComparisonDispositionTesting;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -22,7 +22,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-class EqualAngleTest extends TestCase
+class EqualAngleTest extends StrategiesTestCase
 {
     use WithEqualComparisonDispositionTesting;
 

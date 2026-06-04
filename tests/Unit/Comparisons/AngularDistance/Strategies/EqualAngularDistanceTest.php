@@ -15,12 +15,13 @@ use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithEqualComparisonDispositionTesting;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
+#[TestDox("The EqualAngularDistance comparisong strategy")]
 #[CoversClass(EqualAngularDistance::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngularDistance::class)]
@@ -34,24 +35,17 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-class EqualAngularDistanceTest extends TestCase
+class EqualAngularDistanceTest extends StrategiesTestCase
 {
     use WithEqualComparisonDispositionTesting;
 
     protected string $comparison = '=';
 
-    #[TestDox("can compare two Angle instances.")]
+
+    #[TestDox("can compare two AngularDistance instances.")]
     public function test_compare(): void
     {
         $this->testEqualComparison(4);
-    }
-
-    /**
-     * Return a fail message for this TestCase.
-     */
-    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
-    {
-        return $this->comparisonFail($alfa, $this->comparison, $beta);
     }
 
     /**

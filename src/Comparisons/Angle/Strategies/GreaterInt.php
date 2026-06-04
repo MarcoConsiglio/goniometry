@@ -2,9 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy as ComparisonsComparisonStrategy;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The strategy that compares an `Angle` instance against a sexagesimal degrees 
@@ -17,11 +16,11 @@ class GreaterInt extends ComparisonsComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngleInterface $alfa The left comparison operand.
+     * @param AngularMeasure $alfa The left comparison operand.
      * @param int $beta The right comparison operand expressed as an integer
      * degrees measure.
      */
-    public function __construct(AngleInterface $alfa, protected int $beta)
+    public function __construct(AngularMeasure $alfa, protected int $beta)
     {
         parent::__construct($alfa);
     }

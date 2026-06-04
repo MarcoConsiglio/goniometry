@@ -4,12 +4,15 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Types
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualAngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\AngularDistanceType;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCase;
 use Override;
@@ -24,6 +27,7 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(DifferentAngle::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(EqualAngularDistance::class)]
+#[UsesClass(GreaterAngle::class)]
 class AngularDistanceTypeTest extends InputTypeTestCase
 {
     protected AngularDistance&Stub $alfa;
@@ -65,5 +69,18 @@ class AngularDistanceTypeTest extends InputTypeTestCase
 
         // Assert
         $this->assertInstanceOf(DifferentAngularDistance::class, $strategy);
+    }
+
+    #[TestDox("return the strategy for a Greater comparison.")]
+    public function test_greater_strategy(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Greater::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(GreaterAngularDistance::class, $strategy);
     }
 }

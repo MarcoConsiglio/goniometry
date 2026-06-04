@@ -22,12 +22,14 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as Relati
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
+#[TestDox("The DifferentAngularDistance comparisong strategy")]
 #[CoversClass(DifferentAngularDistance::class)]
 #[UsesClass(AngularDistance::class)]
 #[UsesClass(AngularMeasure::class)]
@@ -50,10 +52,11 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class DifferentAngularDistanceTest extends TestCase
+class DifferentAngularDistanceTest extends StrategiesTestCase
 {
     protected string $comparison = "≠";
 
+    #[TestDox("can compare two AngularDistance instances.")]
     public function test_compare(): void
     {
         /**

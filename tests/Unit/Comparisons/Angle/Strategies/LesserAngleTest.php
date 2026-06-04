@@ -15,7 +15,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -38,7 +38,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class LesserAngleTest extends TestCase
+class LesserAngleTest extends StrategiesTestCase
 {    
     protected string $comparison = '<';
 
@@ -148,13 +148,5 @@ class LesserAngleTest extends TestCase
         $this->assertFalse(new LesserAngle($alfa, $beta)->compare(),
             $this->getFailMessage($alfa, $beta)
         );
-    }
-
-    /**
-     * Return a fail message for this TestCase.
-     */
-    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
-    {
-        return $this->comparisonFail($alfa, $this->comparison, $beta);
     }
 }

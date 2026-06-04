@@ -1,16 +1,16 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies;
 
+use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromString as AngleFromString;
+use MarcoConsiglio\Goniometry\AngularMeasure;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
-use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
-use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualAngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualString;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
@@ -20,8 +20,6 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
@@ -34,64 +32,61 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The EqualString comparisong strategy")]
-#[CoversClass(EqualString::class)]
+#[TestDox("The GreaterInt comparison strategy")]
+#[CoversClass(GreaterInt::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(AngleFromString::class)]
 #[UsesClass(AngularDistance::class)]
-#[UsesClass(AngularDistanceGenerator::class)]
-#[UsesClass(AngularDistanceRange::class)]
-#[UsesClass(Degrees::class)]
-#[UsesClass(EqualAngle::class)]
-#[UsesClass(EqualAngularDistance::class)]
-#[UsesClass(FloatValidator::class)]
+#[UsesClass(AngularMeasure::class)]
+#[UsesClass(AngleFromSexagesimal::class)]
 #[UsesClass(FromSexadecimal::class)]
-#[UsesClass(FromString::class)]
+#[UsesClass(FromSexagesimal::class)]
+#[UsesClass(GreaterAngle::class)]
+#[UsesClass(GreaterAngularDistance::class)]
+#[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
+#[UsesClass(AngularDistanceRange::class)]
+#[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
-#[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
-#[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(RelativeAngularDistanceGenerator::class)]
-#[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
-#[UsesClass(Round::class)]
+#[UsesClass(FloatValidator::class)]
+#[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
-#[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class EqualStringTest extends StrategiesTestCase
+class GreaterIntTest extends StrategiesTestCase
 {
-    protected string $comparison = '=';
+    protected string $comparison = '>';
 
-    #[TestDox("can compare an AngularDistance and a sexagesimal string angular distance measure.")]
+    #[TestDox("can compare an AngularDistance and a sexagesimal degrees angular distance measure.")]
     public function test_compare(): void
     {
         /**
-         * Equal
+         * Greater
          */
         // Arrange
-        $alfa = $this->randomAngularDistance(precision: 3);
-        $beta = (string) AngularDistance::createFromDecimal($alfa->toFloat());
+        $alfa = $this->randomAngularDistance(min: 0);
+        $beta = $this->randomInteger(min: AngularDistance::MIN + 1, max: -1);
 
         // Act & Assert
         $this->assertTrue(
-            new EqualString($alfa, $beta)->compare(),
+            new GreaterInt($alfa, $beta)->compare(),
             $this->getFailMessage($alfa, $beta)
         );
 
         /**
-         * Different
+         * Less or equal
          */
         // Arrange
-        $alfa = $this->randomAngularDistance();
-        $beta = (string) $this->randomAngularDistance();
+        $alfa = $this->randomAngularDistance(max: NextFloat::beforeZero());
+        $beta = $this->randomInteger(min: 0, max: AngularDistance::MAX - 1);
 
         // Act & Assert
         $this->assertFalse(
-            new EqualString($alfa, $beta)->compare(),
+            new GreaterInt($alfa, $beta)->compare(),
             $this->getFailMessage($alfa, $beta)
         );
     }

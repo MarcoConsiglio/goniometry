@@ -25,13 +25,14 @@ use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
+#[TestDox("The EqualInt comparisong strategy")]
 #[CoversClass(EqualInt::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleFromSexagesimal::class)]
@@ -56,11 +57,11 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class EqualIntTest extends TestCase
+class EqualIntTest extends StrategiesTestCase
 {
     protected string $comparison = '=';
 
-    #[TestDox("can compare an AngularDistance and a sexagesimal degrees angle measure.")]
+    #[TestDox("can compare an AngularDistance and a sexagesimal degrees angular distance measure.")]
     public function test_compare(): void
     {
         /**
@@ -93,13 +94,5 @@ class EqualIntTest extends TestCase
             new EqualInt($alfa, $beta)->compare(),
             $this->getFailMessage($alfa, $beta)
         );
-    }
-
-    /**
-     * Return a fail message for this TestCase.
-     */
-    protected function getFailMessage(AngularDistance $alfa, int|float|string|AngularDistance $beta): string
-    {
-        return $this->comparisonFail($alfa, $this->comparison, $beta);
     }
 }

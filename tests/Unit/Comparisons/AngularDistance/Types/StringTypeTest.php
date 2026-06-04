@@ -6,12 +6,15 @@ use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualString as AngleEqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterString as AngleGreaterString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualString;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\StringType;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -44,9 +47,11 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(AngleEqualString::class)]
 #[UsesClass(AngleFromSexadecimal::class)]
 #[UsesClass(AngleGenerator::class)]
+#[UsesClass(AngleGreaterString::class)]
 #[UsesClass(AngularMeasure::class)]
 #[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
+#[UsesClass(DifferentString::class)]
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
@@ -61,7 +66,6 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-#[UsesClass(DifferentString::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class StringTypeTest extends InputTypeTestCase
 {
@@ -93,6 +97,7 @@ class StringTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(EqualString::class, $strategy);
     }
 
+    #[TestDox("return the strategy for an Different comparison.")]
     public function test_different_strategy(): void
     {
         // Act
@@ -103,5 +108,18 @@ class StringTypeTest extends InputTypeTestCase
 
         // Assert
         $this->assertInstanceOf(DifferentString::class, $strategy);
+    }
+
+    #[TestDox("return the strategy for an Greater comparison.")]
+    public function test_greater_strategy(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Greater::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(GreaterString::class, $strategy);
     }
 }

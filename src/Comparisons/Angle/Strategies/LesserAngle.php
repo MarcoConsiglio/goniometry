@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use Override;
 
 /**
@@ -15,10 +15,10 @@ class LesserAngle extends GreaterAngle
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngleInterface $alfa The left comparison operand.
-     * @param AngleInterface $beta The right comparison operand.
+     * @param AngularMeasure $alfa The left comparison operand.
+     * @param AngularMeasure $beta The right comparison operand.
      */
-    public function __construct(AngleInterface $alfa, AngleInterface $beta)
+    public function __construct(AngularMeasure $alfa, AngularMeasure $beta)
     {
         parent::__construct($alfa, $beta);
     }
@@ -33,7 +33,6 @@ class LesserAngle extends GreaterAngle
         if ($this->degreesAreGreater()) return false;
         if ($this->minutesAreLess()) return true;
         if ($this->minutesAreGreater()) return false;
-        // if ($this->secondsAreGreater()) return false;
         return $this->secondsAreLess();
     }
 }

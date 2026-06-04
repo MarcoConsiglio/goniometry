@@ -30,7 +30,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidat
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -67,16 +67,13 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class GreaterAngleTest extends TestCase
+class GreaterAngleTest extends StrategiesTestCase
 {
     protected string $comparison = '>';
 
     #[TestDox("can compare two Angle instances.")]
     public function test_compare(): void
     {
-        /** 
-         *  Greater 
-         */
         // Arrange
         $alfa = Angle::createFromValues(
             degrees: $this->randomDegrees(min: 180)->value()
@@ -97,6 +94,9 @@ class GreaterAngleTest extends TestCase
             seconds: $this->randomSeconds(max: NextFloat::before(30.0))->value()
         );
 
+        /** 
+         *  Greater 
+         */
         // Act & Assert
         $this->assertTrue(new GreaterAngle($alfa, $beta)->compare(),
             $this->getFailMessage($alfa, $beta)
@@ -111,7 +111,6 @@ class GreaterAngleTest extends TestCase
         /**
          *  Lesser
          */
-
         // Act & Assert
         $this->assertFalse(new GreaterAngle($beta, $alfa)->compare());
         $this->assertFalse(new GreaterAngle($delta, $gamma)->compare());
@@ -128,11 +127,5 @@ class GreaterAngleTest extends TestCase
         $this->assertFalse(new GreaterAngle($alfa, $beta)->compare());
     }
 
-    /**
-     * Return a fail message for this TestCase.
-     */
-    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
-    {
-        return $this->comparisonFail($alfa, $this->comparison, $beta);
-    }
+
 }

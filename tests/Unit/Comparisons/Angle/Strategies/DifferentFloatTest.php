@@ -26,7 +26,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidat
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -59,7 +59,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class DifferentFloatTest extends TestCase
+class DifferentFloatTest extends StrategiesTestCase
 {
     protected string $comparison = '≠';
 
@@ -91,13 +91,5 @@ class DifferentFloatTest extends TestCase
             new DifferentFloat($alfa, $beta)->compare(),
             $this->getFailMessage($alfa, $beta)
         );
-    }
-
-    /**
-     * Return a fail message for this TestCase.
-     */
-    protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
-    {
-        return $this->comparisonFail($alfa, $this->comparison, $beta);
     }
 }
