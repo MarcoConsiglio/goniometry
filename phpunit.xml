@@ -22,10 +22,9 @@
             <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
-    <logging>
-        <testdoxHtml outputFile="tests/testbook.html"/>
+    <!-- <logging>
         <testdoxText outputFile="tests/testbook.txt" />
-    </logging>
+    </logging> -->
     <coverage
         includeUncoveredFiles="true"
         pathCoverage="true">

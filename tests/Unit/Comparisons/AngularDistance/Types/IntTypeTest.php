@@ -8,6 +8,7 @@ use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentIn
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
@@ -15,6 +16,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
@@ -37,6 +39,7 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(DegreesValidator::class)]
 #[UsesClass(DifferentInt::class)]
 #[UsesClass(GreaterOrEqualInt::class)]
+#[UsesClass(LesserInt::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class IntTypeTest extends InputTypeTestCase
 {
@@ -105,5 +108,18 @@ class IntTypeTest extends InputTypeTestCase
 
         // Assert
         $this->assertInstanceOf(GreaterOrEqualInt::class, $strategy);
+    }
+
+    #[TestDox("return the strategy for a Lesser comparison.")]
+    public function test_lesser_strategy(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Lesser::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(LesserInt::class, $strategy);
     }
 }

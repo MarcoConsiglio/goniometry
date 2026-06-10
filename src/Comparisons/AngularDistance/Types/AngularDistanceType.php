@@ -8,11 +8,13 @@ use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentAn
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualAngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
 
@@ -32,5 +34,6 @@ class AngularDistanceType extends InputType
         if ($comparison instanceof Different) return new DifferentAngularDistance($alfa, $this->beta);
         if ($comparison instanceof Greater) return new GreaterAngularDistance($alfa, $this->beta);
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualAngularDistance($alfa, $this->beta);
+        if ($comparison instanceof Lesser) return new LesserAngularDistance($alfa, $this->beta);
     }
 }

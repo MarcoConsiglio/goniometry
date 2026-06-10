@@ -8,6 +8,7 @@ use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentFl
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\FloatType;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
@@ -15,6 +16,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
@@ -39,6 +41,8 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(DifferentFloat::class)]
 #[UsesClass(FloatValidator::class)]
+#[UsesClass(GreaterOrEqualFloat::class)]
+#[UsesClass(LesserFloat::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
@@ -46,7 +50,6 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(SexadecimalRange::class)]
-#[UsesClass(GreaterOrEqualFloat::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class FloatTypeTest extends InputTypeTestCase
 {
@@ -115,5 +118,18 @@ class FloatTypeTest extends InputTypeTestCase
 
         // Assert
         $this->assertInstanceOf(GreaterOrEqualFloat::class, $strategy);
+    }
+
+    #[TestDox("return the strategy for a Lesser comparison.")]
+    public function test_lesser_strategy(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Lesser::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(Lesser::class, $strategy);
     }
 }
