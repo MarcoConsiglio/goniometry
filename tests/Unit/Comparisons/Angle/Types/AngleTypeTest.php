@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
 
+use Error;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
@@ -18,6 +19,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
+use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCase;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -134,5 +136,18 @@ class AngleTypeTest extends InputTypeTestCase
 
         // Assert
         $this->assertInstanceOf(LesserOrEqualAngle::class, $strategy);
+    }
+
+    #[TestDox("throws an error if there's no strategy.")]
+    public function test_error(): void
+    {
+        // Assert
+        $this->expectException(Error::class);
+
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(UnknownComparison::class),
+            $this->alfa
+        );        
     }
 }

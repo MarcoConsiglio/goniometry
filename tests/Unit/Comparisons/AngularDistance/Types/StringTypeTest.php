@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Types;
 
+use Error;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\AngularMeasure;
@@ -36,6 +37,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSe
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
+use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
@@ -153,5 +155,18 @@ class StringTypeTest extends InputTypeTestCase
 
         // Assert
         $this->assertInstanceOf(LesserString::class, $strategy);
+    }
+
+    #[TestDox("throws an error if there's no strategy.")]
+    public function test_error(): void
+    {
+        // Assert
+        $this->expectException(Error::class);
+
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(UnknownComparison::class),
+            $this->alfa
+        );        
     }
 }

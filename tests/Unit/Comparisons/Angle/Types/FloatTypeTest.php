@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
 
+use Error;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
@@ -26,6 +27,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
+use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
@@ -153,6 +155,19 @@ class FloatTypeTest extends InputTypeTestCase
 
         // Assert
         $this->assertInstanceOf(LesserOrEqualFloat::class, $strategy);
+    }
+
+    #[TestDox("throws an error if there's no strategy.")]
+    public function test_error(): void
+    {
+        // Assert
+        $this->expectException(Error::class);
+
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(UnknownComparison::class),
+            $this->alfa
+        );        
     }
 
 }

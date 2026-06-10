@@ -19,14 +19,13 @@ class FromString extends AngleFromString
     /**
      * Fetches the data to build an `AngularDistance`.
      * 
-     * @return array{SexagesimalDegrees,SexadecimalAngularDistance,null}
+     * @return array{SexagesimalDegrees,null,null}
      */
     #[Override]
     public function fetchData(): array
     {
         [$sexagesimal] = parent::fetchData();
         $angle = Angle::createFromString($sexagesimal);
-        $sexadecimal = new SexadecimalAngularDistance($angle->toSexadecimalDegrees()->value);
-        return new FromSexadecimal($sexadecimal)->fetchData();
+        return [$angle->toSexagesimalDegrees(), null, null];
     }
 }
