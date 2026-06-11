@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
@@ -16,11 +17,11 @@ class DifferentString extends ComparisonStrategy
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngleInterface $alfa The left comparison operand.
+     * @param AngularMeasure $alfa The left comparison operand.
      * @param string $beta The right comparison operand expressed as a 
      * sexagesimal string angle measure.
      */
-    public function __construct(AngleInterface $alfa, protected string $beta)
+    public function __construct(AngularMeasure $alfa, protected string $beta)
     {
         parent::__construct($alfa);
     }

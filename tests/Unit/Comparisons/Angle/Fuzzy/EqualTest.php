@@ -42,7 +42,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
 #[UsesClass(AngleType::class)]
-#[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(FloatValidator::class)]

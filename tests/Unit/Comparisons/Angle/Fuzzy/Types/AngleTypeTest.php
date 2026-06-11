@@ -1,15 +1,17 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Fuzzy\Types;
 
+use Error;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types\AngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
@@ -21,6 +23,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
+use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -33,6 +36,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AbsoluteSum::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
+#[UsesClass(Comparison::class)]
 #[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(EqualAngle::class)]
@@ -57,7 +61,7 @@ class AngleTypeTest extends TestCase
         // Arrange
         $alfa = $this->positiveRandomAngle();
         $beta = $this->positiveRandomAngle();
-        $delta = $this->positiveRandomAngle();
+        $delta = $this->positiveRandomAngle(max: 90);
         $input_type = new AngleType($beta);
 
         // Act
@@ -70,5 +74,26 @@ class AngleTypeTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(FuzzyEqualAngle::class, $strategy);
+    }
+
+    public function test_error(): void
+    {
+        // Arrange
+        $alfa = $this->createStub(Angle::class);
+        $beta = $this->createStub(Angle::class);
+        $delta = $this->createStub(Angle::class);
+        $input_type = new AngleType($beta);
+
+        // Assert
+        $this->expectException(Error::class);
+
+        // Act
+        $strategy = 
+            $input_type
+            ->setDelta($delta)
+            ->getStrategyFor(
+                new UnknownComparison($alfa, $beta),
+                $alfa
+            );
     }
 }

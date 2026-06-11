@@ -43,11 +43,15 @@ use PHPUnit\Framework\MockObject\Stub;
 #[CoversClass(FloatType::class)]
 #[UsesClass(AngleEqualFloat::class)]
 #[UsesClass(AngleGreaterFloat::class)]
+#[UsesClass(AngleLesserOrEqualFloat::class)]
 #[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(DifferentFloat::class)]
+#[UsesClass(EqualFloat::class)]
 #[UsesClass(FloatValidator::class)]
+#[UsesClass(GreaterFloat::class)]
 #[UsesClass(GreaterOrEqualFloat::class)]
 #[UsesClass(LesserFloat::class)]
+#[UsesClass(LesserOrEqualFloat::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
@@ -55,7 +59,6 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(SexadecimalRange::class)]
-#[UsesClass(AngleLesserOrEqualFloat::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class FloatTypeTest extends InputTypeTestCase
 {

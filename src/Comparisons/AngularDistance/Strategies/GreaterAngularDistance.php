@@ -1,12 +1,18 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
+use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use Override;
 
 class GreaterAngularDistance extends GreaterAngle
 {
+    public function __construct(AngularDistance $alfa, AngularDistance $beta)
+    {
+        parent::__construct($alfa, $beta);
+    }
+
     #[Override]
     public function compare(): bool
     {

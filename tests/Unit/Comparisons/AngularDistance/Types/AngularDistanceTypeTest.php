@@ -35,13 +35,13 @@ use PHPUnit\Framework\MockObject\Stub;
 #[TestDox("The AngularDistanceType ")]
 #[CoversClass(AngularDistanceType::class)]
 #[UsesClass(ComparisonStrategy::class)]
-#[UsesClass(DifferentAngle::class)]
-#[UsesClass(EqualAngle::class)]
+#[UsesClass(DifferentAngularDistance::class)]
 #[UsesClass(EqualAngularDistance::class)]
-#[UsesClass(GreaterAngle::class)]
+#[UsesClass(GreaterAngularDistance::class)]
 #[UsesClass(GreaterOrEqualAngle::class)]
-#[UsesClass(LesserAngle::class)]
-#[UsesClass(LesserOrEqualAngle::class)]
+#[UsesClass(GreaterOrEqualAngularDistance::class)]
+#[UsesClass(LesserAngularDistance::class)]
+#[UsesClass(LesserOrEqualAngularDistance::class)]
 class AngularDistanceTypeTest extends InputTypeTestCase
 {
     protected AngularDistance&Stub $alfa;
