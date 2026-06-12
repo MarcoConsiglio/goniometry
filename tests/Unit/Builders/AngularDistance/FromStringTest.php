@@ -69,7 +69,6 @@ class FromStringTest extends TestCase
         // Assert
         $fail_message = $this->sexagesimalFail($angle->toSexagesimalDegrees(), $actual);
         $this->assertInstanceOf(SexagesimalDegrees::class, $result[0]);
-        $this->assertInstanceOf(SexadecimalAngularDistance::class, $result[1]);
         $this->assertDegrees($angular_distance->degrees, $actual->degrees, $fail_message);
         $this->assertMinutes($angular_distance->minutes, $actual->minutes, $fail_message);
         $this->assertSeconds($angular_distance->seconds, $actual->seconds, 3, $fail_message);

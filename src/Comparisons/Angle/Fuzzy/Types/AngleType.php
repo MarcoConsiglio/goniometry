@@ -1,6 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types;
 
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType as BaseAngleType;
@@ -15,15 +17,15 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
  */
 class AngleType extends BaseAngleType
 {
-    protected AngleInterface $delta;
+    protected Angle $delta;
 
     /**
      * Get the correct strategy for the current $comparison operation.
      * 
-     * @param AngleInterface $alfa The left operand of the `$comparison`.
+     * @param AngularMeasure $alfa The left operand of the `$comparison`.
      */
     #[Override]
-    public function getStrategyFor(Comparison $comparison, AngleInterface $alfa): Strategy
+    public function getStrategyFor(Comparison $comparison, AngularMeasure $alfa): Strategy
     {
         return new EqualAngle($alfa, $this->beta, $this->delta);
     }
@@ -31,7 +33,7 @@ class AngleType extends BaseAngleType
     /**
      * Set the `$delta` error of the fuzzy comparison.
      */
-    public function setDelta(AngleInterface $delta): AngleType
+    public function setDelta(Angle $delta): AngleType
     {
         $this->delta = $delta;
         return $this;
