@@ -8,10 +8,8 @@ use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterInt as AngleGr
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualInt as AngleLesserOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\IntType;
@@ -38,19 +36,16 @@ use PHPUnit\Framework\MockObject\Stub;
 
 #[TestDox("The AngularDistance\Types\IntType ")]
 #[CoversClass(IntType::class)]
-
+#[UsesClass(AngleEqualInt::class)]
+#[UsesClass(AngleGreaterInt::class)]
 #[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
 #[UsesClass(DifferentInt::class)]
-#[UsesClass(EqualInt::class)]
-#[UsesClass(EqualString::class)]
-#[UsesClass(GreaterInt::class)]
 #[UsesClass(GreaterOrEqualInt::class)]
-#[UsesClass(GreaterString::class)]
 #[UsesClass(LesserInt::class)]
-#[UsesClass(LesserOrEqualInt::class)]
+#[UsesClass(AngleLesserOrEqualInt::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class IntTypeTest extends InputTypeTestCase
 {

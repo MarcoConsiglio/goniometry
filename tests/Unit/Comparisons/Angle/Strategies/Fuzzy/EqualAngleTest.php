@@ -76,65 +76,37 @@ class EqualAngleTest extends TestCase
     public function test_compare_angles(): void
     {
         /**
-         * Equal
+         * $beta = 0°
          */
         // Arrange
-        $delta = $this->positiveRandomAngle(max: 180);
-        $beta = $this->positiveRandomAngle();
-        [$min, $max] = $this->getDeltaExtremes($beta, $delta);
-        if ($min->gt($max))
-            $alfa = self::$faker->randomElement([
-                $this->positiveRandomAngle(min: $min->toFloat(), max: SexadecimalRange::max()),
-                $this->positiveRandomAngle(max: $max->toFloat())
-            ]);
-        else
-            $alfa = $this->positiveRandomAngle($min->toFloat(),$max->toFloat());
+        $delta = Angle::createFromValues($delta_value = 4);
+        $alfa = $this->positiveRandomAngle(min: $min = Degrees::MAX - $delta_value / 2);
+        $beta = Angle::createFromValues(0);
+        $gamma = $this->positiveRandomAngle(max: $max = $delta_value / 2);
+        $epsilon = $this->positiveRandomAngle(min: NextFloat::after($min), max: NextFloat::before($max));
 
         // Act & Assert
-        $this->assertTrue(
-            new EqualAngle($alfa, $beta, $delta)->compare(),
-            $this->getFailMessage($alfa, $beta, $delta)
-        );
+        $this->assertTrue(new EqualAngle($alfa, $beta, $delta)->compare());
+        $this->assertTrue(new EqualAngle($gamma, $beta, $delta)->compare());
+        $this->assertFalse(new EqualAngle($epsilon, $beta, $delta)->compare());
 
         /**
-         * Different
+         * $beta = 180°
          */
-        $delta = $this->positiveRandomAngle(max: 180);
-        $beta = $this->positiveRandomAngle();
-        [$min, $max] = $this->getDeltaExtremes($beta, $delta);
-        if ($min->gt($max))
-            $alfa = $this->positiveRandomAngle(
-                min: NextFloat::after($max->toFloat()),
-                max: NextFloat::before($min->toFloat())
-            );
-        else
-            $alfa = self::$faker->randomElement([
-                $this->positiveRandomAngle(max: NextFloat::before($min->toFloat())),
-                $this->positiveRandomAngle(
-                    min: NextFloat::after($max->toFloat()),
-                    max: SexadecimalRange::max()
-                )
-            ]);
+        // Arrange
+        $alfa = $this->positiveRandomAngle(
+            min: $min = 180 - $delta_value / 2, 
+            max: $max = 180 + $delta_value / 2
+        );
+        $beta = Angle::createFromValues(180);
+        $gamma = $this->positiveRandomAngle(max: NextFloat::before($min));
+        $epsilon = $this->positiveRandomAngle(min: NextFloat::after($max));
 
         // Act & Assert
-        $this->assertFalse(
-            new EqualAngle($alfa, $beta, $delta)->compare(),
-            $this->getFailMessage($alfa, $beta, $delta)
-        );
+        $this->assertTrue(new EqualAngle($alfa, $beta, $delta)->compare());
+        $this->assertFalse(new EqualAngle($gamma, $beta, $delta)->compare());
+        $this->assertFalse(new EqualAngle($epsilon, $beta, $delta)->compare());
     }
-
-    // public function test_specific_case(): void
-    // {
-    //     // Arrange
-    //     $alfa = Angle::createFromDecimal(164.98353310320311);
-    //     $beta = Angle::createFromDecimal(167.5713335012883);
-    //     $delta = Angle::createFromDecimal(6.314553695877341);
-
-    //     // Act & Assert
-    //     $this->assertTrue(
-    //         new EqualAngle($alfa, $beta, $delta)->compare()
-    //     );
-    // }
 
     /**
      * Return a fail message for this `TestCase`.

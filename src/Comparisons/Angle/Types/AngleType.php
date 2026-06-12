@@ -31,9 +31,9 @@ class AngleType extends InputType
     /**
      * Construct the `InputType` of $beta.
      * 
-     * @param AngularMeasure $beta The right operand of the comparison.
+     * @param Angle $beta The right operand of the comparison.
      */
-    public function __construct(protected AngularMeasure $beta) {}
+    public function __construct(protected Angle $beta) {}
 
     /**
      * Get the correct strategy for the current `$comparison` operation.

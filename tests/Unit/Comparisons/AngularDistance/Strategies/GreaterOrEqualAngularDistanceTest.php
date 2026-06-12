@@ -19,7 +19,6 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -33,25 +32,24 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(GreaterOrEqualAngularDistance::class)]
 #[UsesClass(AngularDistance::class)]
-#[UsesClass(AngularDistanceGenerator::class)]
-#[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(AngularMeasure::class)]
-#[UsesClass(Degrees::class)]
-#[UsesClass(EqualAngle::class)]
-#[UsesClass(EqualAngularDistance::class)]
-#[UsesClass(FloatValidator::class)]
 #[UsesClass(FromSexadecimal::class)]
+#[UsesClass(EqualAngle::class)]
 #[UsesClass(GreaterAngle::class)]
+#[UsesClass(EqualAngularDistance::class)]
 #[UsesClass(GreaterAngularDistance::class)]
+#[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
+#[UsesClass(AngularDistanceRange::class)]
+#[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
-#[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
-#[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(RelativeAngularDistanceGenerator::class)]
-#[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
+#[UsesClass(FloatValidator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexagesimalDegrees::class)]

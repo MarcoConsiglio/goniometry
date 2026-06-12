@@ -8,11 +8,6 @@ use Override;
 
 class GreaterOrEqualInt extends AngleGreaterOrEqualInt
 {
-    public function __construct(AngularDistance $alfa, int $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
-
     #[Override]
     public function compare(): bool
     {

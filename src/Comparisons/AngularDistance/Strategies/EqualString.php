@@ -7,11 +7,6 @@ use Override;
 
 class EqualString extends AngleEqualString
 {
-    public function __construct(AngularDistance $alfa, string $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
-
     #[Override]
     public function compare(): bool
     {

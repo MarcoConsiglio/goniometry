@@ -1,18 +1,12 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
-use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use Override;
 
 class LesserAngularDistance extends LesserAngle
 {
-    public function __construct(AngularDistance $alfa, AngularDistance $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
-
     #[Override]
     public function compare(): bool
     {

@@ -7,11 +7,6 @@ use Override;
 
 class LesserOrEqualString extends AngleLesserOrEqualString
 {
-    public function __construct(AngularDistance $alfa, string $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
-
     #[Override]
     public function compare(): bool
     {

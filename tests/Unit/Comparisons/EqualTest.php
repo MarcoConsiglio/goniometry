@@ -58,6 +58,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(EqualFloat::class)]
 #[UsesClass(EqualInt::class)]
 #[UsesClass(EqualString::class)]
+#[UsesClass(FloatComparisonStrategy::class)]
 #[UsesClass(FloatType::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]

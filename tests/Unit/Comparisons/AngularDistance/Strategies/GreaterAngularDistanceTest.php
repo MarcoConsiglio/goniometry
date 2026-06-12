@@ -112,13 +112,11 @@ class GreaterAngularDistanceTest extends StrategiesTestCase
         $nu = AngularDistance::createFromValues(
             degrees: 90,
             minutes: $this->randomMinutes(min: 30)->value(),
-            seconds: 0,
             direction: $negative
         );
         $xi = AngularDistance::createFromValues(
             degrees: 90,
             minutes: $this->randomMinutes(max: 29)->value(),
-            seconds: 0,
             direction: $negative
         );
         $omicron = AngularDistance::createFromValues(

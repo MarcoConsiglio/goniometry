@@ -74,7 +74,7 @@ class SexadecimalDegreesTest extends TestCase
         );
 
         // Act
-        $parent = $sexadecimal->valueObject();
+        $parent = $sexadecimal->getParent();
 
         // Assert
         $this->assertInstanceOf(Number::class, $parent);
