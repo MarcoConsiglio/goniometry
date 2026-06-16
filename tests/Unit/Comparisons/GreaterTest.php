@@ -2,67 +2,89 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\AngularDistance;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromString as AngleFromString;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as AngularDistanceFromSexadecimal;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal as AngularDistanceFromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString as AngularDistanceFromString;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
+use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterInt;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterString;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\FloatComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterFloat as AngleGreaterFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterInt as AngleGreaterInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterString as AngleGreaterString;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\FloatType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\IntType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\StringType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\FloatType as AngleAndFloatType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\IntType as AngleAndIntType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\StringType as AngleAndStringType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterFloat as AngularDistanceGreaterFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterInt as AngularDistanceGreaterInt;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterString as AngularDistanceGreaterString;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\AngularDistanceType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\FloatType as AngularDistanceFloatType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\IntType as AngularDistanceIntType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\StringType as AngularDistanceStringType;
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
+use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
-use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
-use MarcoConsiglio\Goniometry\Random\Validator\Degrees as ValidatorDegrees;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\TestCase as ComparisonsTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
-use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\TestDox;
-use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The Greater comparison")]
 #[CoversClass(Greater::class)]
 #[UsesClass(Angle::class)]
-#[UsesClass(AngleGenerator::class)]
+#[UsesClass(AngleAndFloatType::class)]
+#[UsesClass(AngleAndIntType::class)]
+#[UsesClass(AngleAndStringType::class)]
+#[UsesClass(AngleFromSexadecimal::class)]
+#[UsesClass(AngleFromSexagesimal::class)]
+#[UsesClass(AngleFromString::class)]
+#[UsesClass(AngleGreaterFloat::class)]
+#[UsesClass(AngleGreaterInt::class)]
+#[UsesClass(AngleGreaterString::class)]
 #[UsesClass(AngleType::class)]
+#[UsesClass(AngularDistance::class)]
+#[UsesClass(AngularDistanceFloatType::class)]
+#[UsesClass(AngularDistanceFromSexadecimal::class)]
+#[UsesClass(AngularDistanceFromSexagesimal::class)]
+#[UsesClass(AngularDistanceFromString::class)]
+#[UsesClass(AngularDistanceGenerator::class)]
+#[UsesClass(AngularDistanceGreaterFloat::class)]
+#[UsesClass(AngularDistanceGreaterInt::class)]
+#[UsesClass(AngularDistanceGreaterString::class)]
+#[UsesClass(AngularDistanceIntType::class)]
+#[UsesClass(AngularDistanceRange::class)]
+#[UsesClass(AngularDistanceStringType::class)]
+#[UsesClass(AngularDistanceType::class)]
 #[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(DegreesGenerator::class)]
-#[UsesClass(Rotation::class)]
-#[UsesClass(FloatComparisonStrategy::class)]
-#[UsesClass(FloatType::class)]
-#[UsesClass(FromSexadecimal::class)]
-#[UsesClass(FromSexagesimal::class)]
-#[UsesClass(FromString::class)]
 #[UsesClass(GreaterAngle::class)]
-#[UsesClass(GreaterFloat::class)]
-#[UsesClass(GreaterInt::class)]
-#[UsesClass(GreaterString::class)]
-#[UsesClass(IntType::class)]
+#[UsesClass(GreaterAngularDistance::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
@@ -71,63 +93,21 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
+#[UsesClass(RelativeAngularDistanceGenerator::class)]
+#[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
+#[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(Sexadecimal::class)]
+#[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
-#[UsesClass(SexadecimalRange::class)]
+#[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-#[UsesClass(StringType::class)]
-#[UsesClass(ValidatorDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class GreaterTest extends TestCase
+class GreaterTest extends ComparisonsTestCase
 {
-    protected Angle $alfa;
-
-    protected Angle $beta;
-
-    #[Override]
-    protected function setUp(): void
+    public function test_compare(): void
     {
-        parent::setUp();
-        $this->alfa = $this->randomAngle();
-        $this->beta = $this->randomAngle();
-    }
-
-    #[TestDox("can compare against an Angle.")]
-    public function test_compare_angle(): void
-    {
-        // Act & Assert
-        $comparison = new Greater($this->alfa, $this->beta);
-        $this->assertIsBool($comparison->compare());
-    }
-
-    #[TestDox("can compare against an int.")]
-    public function test_compare_int(): void
-    {
-        // Act & Assert
-        $comparison = new Greater($this->alfa, $this->randomDegrees()->value());
-        $this->assertIsBool($comparison->compare());
-    }
-
-    #[TestDox("can compare against a float.")]
-    public function test_compare_float(): void
-    {
-        // Act & Assert
-        $comparison = new Greater(
-            $this->alfa, 
-            $this->positiveRandomFloat()
-        );
-        $comparison->setPrecision($this->randomPrecision());
-        $this->assertIsBool($comparison->compare());
-    }
-
-    #[TestDox("can compare against a string.")]
-    public function test_compare_string(): void
-    {
-        // Act & Assert
-        $comparison = new Greater($this->alfa, (string) $this->beta);
-        $this->assertIsBool($comparison->compare());       
+        $this->testComparison(Greater::class);
     }
 }
