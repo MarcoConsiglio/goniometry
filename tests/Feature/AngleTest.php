@@ -732,7 +732,7 @@ class AngleTest extends TestCase
          * Built from sexadecimal value
          */
         // Arrange
-        $angle = Angle::createFromValues(
+        $angle = Angle::createFromDecimal(
             $this->randomSexadecimal()
         );
 

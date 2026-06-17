@@ -13,12 +13,16 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngularDistance as NegativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngularDistance as PositiveAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeAngularDistance as NegativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveAngularDistance as PositiveAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -45,8 +49,12 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Minutes::class)]
+#[UsesClass(NegativeAngularDistanceGenerator::class)]
+#[UsesClass(NegativeAngularDistanceValidator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveAngularDistanceGenerator::class)]
+#[UsesClass(PositiveAngularDistanceValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(RelativeAngularDistanceGenerator::class)]
@@ -66,33 +74,52 @@ class EqualIntTest extends StrategiesTestCase
     {
         /**
          * Equal
+         * Both angles positive
          */
         // Arrange
-        $beta = $this->randomInteger(AngularDistance::MIN, AngularDistance::MAX);
+        $beta = $this->positiveRandomInteger(max: AngularDistance::MAX);
         $alfa = AngularDistance::createFromValues(
-            degrees: abs($beta),
-            direction: $beta >= 0 ?
-                Rotation::COUNTER_CLOCKWISE :
-                Rotation::CLOCKWISE
+            degrees: $beta,
+            direction: Rotation::COUNTER_CLOCKWISE
         );
 
         // Act & Assert
-        $this->assertTrue(
-            new EqualInt($alfa, $beta)->compare(),
-            $this->getFailMessage($alfa, $beta)
+        $this->testCompare(EqualInt::class, $alfa, $beta);
+
+        /**
+         * Equal
+         * Both angles negative
+         */
+        // Arrange
+        $beta = $this->negativeRandomInteger(min: AngularDistance::MIN);
+        $alfa = AngularDistance::createFromValues(
+            degrees: $beta,
+            direction: Rotation::CLOCKWISE
+        );
+
+        // Act & Assert
+        $this->testCompare(EqualInt::class, $alfa, $beta);
+
+        /**
+         * Different
+         * Both angles positive
+         */
+        $this->testCompare(
+            EqualInt::class, 
+            $this->positiveRandomAngularDistance(), 
+            $this->positiveRandomInteger(max: AngularDistance::MAX),
+            false
         );
 
         /**
          * Different
+         * Both angles negative
          */
-        // Arrange
-        $beta = $this->randomInteger(AngularDistance::MIN, AngularDistance::MAX);
-        $alfa = $this->randomAngularDistance();
-
-        // Act & Assert
-        $this->assertFalse(
-            new EqualInt($alfa, $beta)->compare(),
-            $this->getFailMessage($alfa, $beta)
+        $this->testCompare(
+            EqualInt::class,
+            $this->negativeRandomAngularDistance(),
+            $this->negativeRandomInteger(min: AngularDistance::MIN),
+            false
         );
     }
 }

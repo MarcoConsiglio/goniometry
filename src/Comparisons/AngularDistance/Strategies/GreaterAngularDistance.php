@@ -38,8 +38,8 @@ class GreaterAngularDistance extends GreaterAngle
     protected function degreesAreGreater(): bool
     {
         return 
-            $this->alfa->degrees->mul($this->alfa->direction->value)->value->gt(
-                $this->beta->degrees->mul($this->alfa->direction->value)->value
+            $this->alfa->degrees->value->mul($this->alfa->direction->value)->gt(
+                $this->beta->degrees->value->mul($this->beta->direction->value)
             );
     }
 
@@ -47,8 +47,8 @@ class GreaterAngularDistance extends GreaterAngle
     protected function degreesAreLess(): bool
     {
         return 
-            $this->alfa->degrees->mul($this->alfa->direction->value)->value->lt(
-                $this->beta->degrees->mul($this->alfa->direction->value)->value
+            $this->alfa->degrees->value->mul($this->alfa->direction->value)->lt(
+                $this->beta->degrees->value->mul($this->beta->direction->value)
             );
     }
 
@@ -56,8 +56,8 @@ class GreaterAngularDistance extends GreaterAngle
     protected function minutesAreGreater(): bool
     {
         return 
-            $this->alfa->minutes->mul($this->alfa->direction->value)->value->gt(
-                $this->beta->minutes->mul($this->alfa->direction->value)->value
+            $this->alfa->minutes->value->mul($this->alfa->direction->value)->gt(
+                $this->beta->minutes->value->mul($this->beta->direction->value)
             );
     }
 
@@ -65,8 +65,8 @@ class GreaterAngularDistance extends GreaterAngle
     protected function minutesAreLess(): bool
     {
         return 
-            $this->alfa->minutes->mul($this->alfa->direction->value)->value->lt(
-                $this->beta->minutes->mul($this->alfa->direction->value)->value
+            $this->alfa->minutes->value->mul($this->alfa->direction->value)->lt(
+                $this->beta->minutes->value->mul($this->beta->direction->value)
             );
     }
 
@@ -74,8 +74,8 @@ class GreaterAngularDistance extends GreaterAngle
     protected function secondsAreGreater(): bool
     {
         return 
-            $this->alfa->seconds->mul($this->alfa->direction->value)->value->gt(
-                $this->beta->seconds->mul($this->alfa->direction->value)->value
+            $this->alfa->seconds->value->mul($this->alfa->direction->value)->gt(
+                $this->beta->seconds->value->mul($this->beta->direction->value)
             );
     }
 
@@ -83,8 +83,8 @@ class GreaterAngularDistance extends GreaterAngle
     protected function secondsAreLess(): bool
     {
         return 
-            $this->alfa->seconds->mul($this->alfa->direction->value)->value->lt(
-                $this->beta->seconds->mul($this->alfa->direction->value)->value
+            $this->alfa->seconds->value->mul($this->alfa->direction->value)->lt(
+                $this->beta->seconds->value->mul($this->beta->direction->value)
             );
     }
 }

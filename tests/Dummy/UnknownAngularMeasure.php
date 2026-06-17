@@ -6,6 +6,7 @@ use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as InterfacesAngle;
+use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use Override;
@@ -22,43 +23,43 @@ class UnknownAngularMeasure extends AngularMeasure
     }
 
     #[Override]
-    public static function createFromString(string $sexagesimal): InterfacesAngle
+    public static function createFromString(string $sexagesimal): AngularMeasure
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public static function createFromDecimal(float $sexadecimal): InterfacesAngle
+    public static function createFromDecimal(float|SexadecimalValue $sexadecimal): AngularMeasure
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public static function createFromRadian(float $radian): InterfacesAngle
+    public static function createFromRadian(float|RadianValue $radian): AngularMeasure
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function absolute(): InterfacesAngle
+    public function absolute(): AngularMeasure
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function asb(): InterfacesAngle
+    public function asb(): AngularMeasure
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function oppositeRotation(): InterfacesAngle
+    public function oppositeRotation(): AngularMeasure
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function oppositeDirection(): InterfacesAngle
+    public function oppositeDirection(): AngularMeasure
     {
         throw new \Exception('Not implemented');
     }
@@ -106,97 +107,97 @@ class UnknownAngularMeasure extends AngularMeasure
     }
 
     #[Override]
-    public function isEqualTo(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function isEqualTo(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function eq(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function eq(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function isGreaterThan(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function isGreaterThan(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function gt(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function gt(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function isGreaterThanOrEqualTo(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function isGreaterThanOrEqualTo(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function gte(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function gte(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function isLessThan(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function isLessThan(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function lt(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function lt(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function isLessThanOrEqualTo(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function isLessThanOrEqualTo(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function lte(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function lte(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function isDifferentThan(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function isDifferentThan(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function not(string|int|float|InterfacesAngle $angle, int $precision = 54): bool
+    public function not(string|int|float|AngularMeasure $angle, int $precision = 54): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function fuzzyEqual(InterfacesAngle $beta, InterfacesAngle $delta): bool
+    public function fuzzyEqual(AngularMeasure $beta, AngularMeasure $delta): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function feq(InterfacesAngle $beta, InterfacesAngle $delta): bool
+    public function feq(AngularMeasure $beta, AngularMeasure $delta): bool
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function sum(InterfacesAngle $addend): InterfacesAngle
+    public function sum(AngularMeasure $addend): AngularMeasure
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function absSum(InterfacesAngle $addend): InterfacesAngle
+    public function absSum(AngularMeasure $addend): AngularMeasure
     {
         throw new \Exception('Not implemented');
     }

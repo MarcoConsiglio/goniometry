@@ -21,7 +21,8 @@ use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
+use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use Override;
 
 /**
@@ -54,7 +55,7 @@ class Angle extends AngularMeasure
     /**
      * Creates an `Angle` from its sexadecimal representation.
      */
-    public static function createFromDecimal(float|SexadecimalDegrees $sexadecimal): Angle
+    public static function createFromDecimal(float|SexadecimalValue $sexadecimal): Angle
     {
         return new Angle(new FromSexadecimal($sexadecimal));
     }
@@ -62,7 +63,7 @@ class Angle extends AngularMeasure
     /**
      * Creates an `Angle` from its radian representation.
      */
-    public static function createFromRadian(float|Radian $radian): Angle
+    public static function createFromRadian(float|RadianValue $radian): Angle
     {
          return new Angle(new FromRadian($radian));
     }
@@ -82,7 +83,7 @@ class Angle extends AngularMeasure
     /**
      * Alias for `absolute()` method.
      */
-    public function asb(): AngleInterface
+    public function asb(): Angle
     {
         return $this->absolute();
     }
@@ -198,7 +199,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isGreaterThan(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new Greater($this, $angle);
@@ -214,7 +215,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function gt(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isGreaterThan($angle, $precision);
@@ -228,7 +229,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isGreaterThanOrEqualTo(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool
     {
@@ -245,7 +246,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function gte(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isGreaterThanOrEqualTo($angle, $precision);
@@ -259,7 +260,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isLessThan(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new Lesser($this, $angle);
@@ -275,7 +276,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function lt(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isLessThan($angle);
@@ -289,7 +290,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isLessThanOrEqualTo(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new LesserOrEqual($this, $angle);
@@ -305,7 +306,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function lte(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isLessThanOrEqualTo($angle);
@@ -319,7 +320,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isEqualTo(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new Equal($this, $angle);
@@ -335,7 +336,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function eq(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isEqualTo($angle, $precision);
@@ -349,7 +350,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isDifferentThan(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new Different($this, $angle);
@@ -365,7 +366,7 @@ class Angle extends AngularMeasure
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function not(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isDifferentThan($angle, $precision);
@@ -375,7 +376,7 @@ class Angle extends AngularMeasure
      * Check if this `Angle` is equal to `$beta` within an acceptable `$delta` 
      * error angle.
      */
-    public function fuzzyEqual(AngleInterface $beta, AngleInterface $delta): bool
+    public function fuzzyEqual(AngularMeasure $beta, AngularMeasure $delta): bool
     {
         return new FuzzyEqual($this, $beta, $delta)->compare();
     }
@@ -383,7 +384,7 @@ class Angle extends AngularMeasure
     /**
      * Alias for `fuzzyEqual()` method.
      */
-    public function feq(AngleInterface $beta, AngleInterface $delta): bool
+    public function feq(AngularMeasure $beta, AngularMeasure $delta): bool
     {
         return $this->fuzzyEqual($beta, $delta);
     }
@@ -391,7 +392,7 @@ class Angle extends AngularMeasure
     /**
      * Sum this `Angle` to an `$addend`. The resulting `Angle` can be positive or negative.
      */
-    public function sum(AngleInterface $addend): Angle
+    public function sum(AngularMeasure $addend): Angle
     {
         return new Angle(new RelativeSum($this, $addend));
     }
@@ -399,7 +400,7 @@ class Angle extends AngularMeasure
     /**
      * Sum this `Angle` to an `$addend` two absolute `Angle`s. The resulting `Angle` can be only positive.
      */
-    public function absSum(AngleInterface $addend): AngleInterface
+    public function absSum(AngularMeasure $addend): Angle
     {
         return new Angle(new AbsoluteSum($this, $addend));
     }

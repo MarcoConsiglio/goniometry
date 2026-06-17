@@ -95,11 +95,22 @@ trait WithFailureMessage
     ): string {
         $this->checkComparison($comparison);
         if (is_int($beta)) return "$alfa $comparison {$beta}°";
-        if (is_float($beta)) { 
-            $float = new Number($beta)->value;
-            return "{$alfa->toSexadecimalDegrees()} $comparison {$float}°";
-        }
+        if (is_float($beta))
+            return "{$alfa->toSexadecimalDegrees()} $comparison {$beta}°";
         return "$alfa $comparison $beta";
+    }
+
+    protected function comparisonWithDeltaFail(
+        AngularMeasure $alfa,
+        string $comparison,
+        int|float|string|AngularMeasure $beta,
+        Angle $delta
+    ): string {
+        $error = $delta->toFloat() / 2;
+        if (is_int($beta)) return "$alfa $comparison {$beta}° with error ±{$error}°";
+        if (is_float($beta))
+            return "{$alfa->toSexadecimalDegrees()} $comparison {$beta}°  with error ±{$error}°";
+        return "$alfa $comparison $beta  with error ±{$error}°";
     }
 
     /**

@@ -22,6 +22,8 @@ use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
+use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use Override;
 
 /**
@@ -60,7 +62,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public static function createFromDecimal(
-        float|SexadecimalAngularDistance $sexadecimal
+        float|SexadecimalValue $sexadecimal
     ): AngularDistance {
         return new AngularDistance(new FromSexadecimal($sexadecimal));
     }
@@ -80,7 +82,7 @@ class AngularDistance extends AngularMeasure
      * Creates an `AngularDistance` from its radian representation.
      */
     #[Override]
-    public static function createFromRadian(float|AngularDistanceRadian $radian): AngularDistance
+    public static function createFromRadian(float|RadianValue $radian): AngularDistance
     {
         return new AngularDistance(new FromRadian($radian));
     }
@@ -144,7 +146,7 @@ class AngularDistance extends AngularMeasure
      * Return the same instance with the opposite `Rotation` direction.
      */
     #[Override]
-    public function oppositeRotation(): AngleInterface
+    public function oppositeRotation(): AngularDistance
     {
         $clone = clone $this;
         $clone->sexagesimal->direction =
@@ -237,7 +239,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function isEqualTo(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new Equal($this, $angle);
@@ -254,7 +256,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function eq(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isEqualTo($angle, $precision);
@@ -269,7 +271,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function isDifferentThan(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new Different($this, $angle);
@@ -286,7 +288,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function not(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isDifferentThan($angle, $precision);
@@ -301,7 +303,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function isGreaterThan(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new Greater($this, $angle);
@@ -318,7 +320,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function gt(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isGreaterThan($angle, $precision);
@@ -333,7 +335,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function isGreaterThanOrEqualTo(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new GreaterOrEqual($this, $angle);
@@ -350,7 +352,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function gte(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isGreaterThanOrEqualTo($angle, $precision);
@@ -365,7 +367,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function isLessThan(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new Lesser($this, $angle);
@@ -382,7 +384,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function lt(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isLessThan($angle, $precision);
@@ -397,7 +399,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function isLessThanOrEqualTo(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         $comparison = new LesserOrEqual($this, $angle);
@@ -414,7 +416,7 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public function lte(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = GeneralComparison::MAX_PRECISION
     ): bool {
         return $this->isLessThanOrEqualTo($angle, $precision);
@@ -425,7 +427,7 @@ class AngularDistance extends AngularMeasure
      * error angle.
      */
     #[Override]
-    public function fuzzyEqual(AngleInterface $beta, AngleInterface $delta): bool
+    public function fuzzyEqual(AngularMeasure $beta, AngularMeasure $delta): bool
     {
         return new FuzzyEqual($this, $beta, $delta)->compare();
     }
@@ -434,7 +436,7 @@ class AngularDistance extends AngularMeasure
      * Alias for `fuzzyEqual()` method.
      */
     #[Override]
-    public function feq(AngleInterface $beta, AngleInterface $delta): bool
+    public function feq(AngularMeasure $beta, AngularMeasure $delta): bool
     {
         return $this->fuzzyEqual($beta, $delta);
     }
@@ -442,7 +444,7 @@ class AngularDistance extends AngularMeasure
     /**
      * Sum this `AngularDistance` to another `$addend`.
      */
-    public function sum(AngleInterface $addend): AngularDistance
+    public function sum(AngularMeasure $addend): AngularDistance
     {
         return new AngularDistance(new RelativeSum($this, $addend));
     }
@@ -450,7 +452,7 @@ class AngularDistance extends AngularMeasure
     /**
      * Alias of `sum()` method.
      */
-    public function absSum(AngleInterface $addend): AngularDistance
+    public function absSum(AngularMeasure $addend): AngularDistance
     {
         return $this->sum($addend);
     }

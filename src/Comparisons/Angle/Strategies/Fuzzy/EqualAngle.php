@@ -2,9 +2,9 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle as EqualAngleStrategy;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The strategy that compares two `Angle` instances to check if they are equal
@@ -17,29 +17,29 @@ class EqualAngle extends EqualAngleStrategy
     /**
      * The error `Angle`.
      */
-    protected AngleInterface $epsilon;
+    protected Angle $epsilon;
 
     /**
      * The low extreme of delta.
      */
-    protected AngleInterface $low_extreme;
+    protected AngularMeasure $low_extreme;
 
     /**
      * The high extreme of delta.
      */
-    protected AngleInterface $high_extreme;
+    protected AngularMeasure $high_extreme;
 
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngleInterface $alfa The left comparison operand.
-     * @param AngleInterface $beta The right comparison operand.
-     * @param AngleInterface $delta The error within which the comparison is succesful.
+     * @param AngularMeasure $alfa The left comparison operand.
+     * @param AngularMeasure $beta The right comparison operand.
+     * @param Angle $delta The error within which the comparison is succesful.
      */
     public function __construct(
-        AngleInterface $alfa, 
-        AngleInterface $beta, 
-        protected AngleInterface $delta
+        AngularMeasure $alfa, 
+        AngularMeasure $beta, 
+        protected Angle $delta
     ) {
         parent::__construct($alfa, $beta);
         $this->calcEpsilon();

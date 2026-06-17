@@ -8,6 +8,7 @@ use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualString as AngleEqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterString as AngleGreaterString;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualString;
@@ -21,6 +22,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\InputType;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
@@ -60,6 +62,7 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(DifferentString::class)]
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(GreaterOrEqualString::class)]
+#[UsesClass(LesserOrEqualString::class)]
 #[UsesClass(LesserString::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngleGenerator::class)]
@@ -155,6 +158,19 @@ class StringTypeTest extends InputTypeTestCase
 
         // Assert
         $this->assertInstanceOf(LesserString::class, $strategy);
+    }
+
+    #[TestDox("return the strategy for a LesserOrEqual comparison.")]
+    public function test_lesser_or_equal_strategy(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(LesserOrEqual::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(LesserOrEqualString::class, $strategy);
     }
 
     #[TestDox("throws an error if there's no strategy.")]
