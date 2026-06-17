@@ -3,9 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Dummy;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as InterfacesAngle;
 use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;

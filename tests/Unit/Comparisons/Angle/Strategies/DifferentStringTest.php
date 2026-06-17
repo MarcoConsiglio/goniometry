@@ -29,11 +29,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The DifferentString comparison strategy")]
 #[CoversClass(DifferentString::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
@@ -63,7 +61,6 @@ class DifferentStringTest extends StrategiesTestCase
 {
     protected string $comparison = '≠';
     
-    #[TestDox("can compare an Angle and a sexagesimal string angle measure.")]
     public function test_compare(): void
     {
         /**

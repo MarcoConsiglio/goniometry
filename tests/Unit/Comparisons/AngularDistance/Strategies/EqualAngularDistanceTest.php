@@ -18,10 +18,8 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithEqualComparisonDispositionTesting;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The EqualAngularDistance comparisong strategy")]
 #[CoversClass(EqualAngularDistance::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngularDistance::class)]
@@ -42,7 +40,6 @@ class EqualAngularDistanceTest extends StrategiesTestCase
     protected string $comparison = '=';
 
 
-    #[TestDox("can compare two AngularDistance instances.")]
     public function test_compare(): void
     {
         $this->testEqualComparison(4);

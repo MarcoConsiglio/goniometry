@@ -13,11 +13,9 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianV
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The Radian\Round class")]
 #[CoversClass(Round::class)]
 #[UsesClass(Radian::class)]
 #[UsesTrait(WithAngleFaker::class)]
@@ -30,7 +28,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(PositiveRadianGenerator::class)]
 class RoundTest extends TestCase
 {
-    #[TestDox("can round an Angle to radian with precision.")]
     public function test_cast_with_precision(): void
     {
         // Arrange
@@ -45,7 +42,6 @@ class RoundTest extends TestCase
         $this->assertEquals($expected->value($precision), $actual);
     }
 
-    #[TestDox("can round an Angle to radian without precision.")]
     public function test_cast_without_precision(): void
     {
         // Arrange

@@ -3,15 +3,11 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 
-#[TestCase("The Minutes validator")]
 #[CoversClass(MinutesValidator::class)]
 class MinutesTest extends IntegerValidatorTestCase
 {
-    #[TestDox("validates a MinutesRange.")]
     public function test_validate(): void
     {
         /**

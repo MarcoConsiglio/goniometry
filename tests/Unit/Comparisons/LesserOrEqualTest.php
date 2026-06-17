@@ -67,11 +67,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\TestCase as ComparisonsTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The LesserOrEqual comparison")]
 #[CoversClass(LesserOrEqual::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleAndFloatType::class)]

@@ -33,11 +33,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The GreateAngle comparison strategy")]
 #[CoversClass(GreaterAngle::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
@@ -71,7 +69,6 @@ class GreaterAngleTest extends StrategiesTestCase
 {
     protected string $comparison = '>';
 
-    #[TestDox("can compare two Angle instances.")]
     public function test_compare(): void
     {
         // Arrange

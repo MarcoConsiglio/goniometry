@@ -6,15 +6,12 @@ use MarcoConsiglio\Goniometry\Random\SecondsRange;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The Seconds validator")]
 #[CoversClass(SecondsValidator::class)]
 #[UsesClass(SecondsRange::class)]
 class SecondsTest extends FloatValidatorTestCase
 {
-    #[TestDox("validates a SecondsRange.")]
     public function test_validate(): void
     {
         /**

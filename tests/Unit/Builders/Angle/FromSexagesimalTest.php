@@ -23,11 +23,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The FromSexagesimal builder")]
 #[CoversClass(FromSexagesimal::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
@@ -49,7 +47,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesTrait(WithAngleFaker::class)]
 class FromSexagesimalTest extends TestCase
 {
-    #[TestDox("can create an angle from sexagesimal values.")]
     public function test_can_create_an_angle(): void
     {
         // Arrange
@@ -73,7 +70,6 @@ class FromSexagesimalTest extends TestCase
         $this->assertDirection($random->direction, $actual->direction);
     }
 
-    #[TestDox("will always create a null angle with positive direction.")]
     public function test_can_create_a_null_angle(): void
     {
         // Arrange

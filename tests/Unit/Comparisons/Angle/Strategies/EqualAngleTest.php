@@ -11,10 +11,8 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithEqualComparisonDispositionTesting;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The EqualAngle comparison strategy")]
 #[CoversClass(EqualAngle::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(FromSexagesimal::class)]
@@ -28,7 +26,6 @@ class EqualAngleTest extends StrategiesTestCase
 
     protected string $comparison = '=';
     
-    #[TestDox("can compare two Angle instances.")]
     public function test_compare(): void
     {
         $this->testEqualComparison(3);

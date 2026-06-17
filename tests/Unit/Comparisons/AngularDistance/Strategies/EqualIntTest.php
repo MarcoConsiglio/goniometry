@@ -32,11 +32,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The EqualInt comparisong strategy")]
 #[CoversClass(EqualInt::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleFromSexagesimal::class)]
@@ -69,7 +67,6 @@ class EqualIntTest extends StrategiesTestCase
 {
     protected string $comparison = '=';
 
-    #[TestDox("can compare an AngularDistance and a sexagesimal degrees angular distance measure.")]
     public function test_compare(): void
     {
         /**

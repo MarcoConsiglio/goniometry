@@ -2,16 +2,12 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 
-#[TestCase("The Degrees validator")]
 #[CoversClass(DegreesValidator::class)]
 class DegreesTest extends IntegerValidatorTestCase
 {
-    #[TestDox("validates a DegreesRange.")]
     public function test_validate(): void
     {
         /**

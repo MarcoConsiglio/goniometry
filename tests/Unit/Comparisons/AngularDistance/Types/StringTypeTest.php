@@ -44,12 +44,10 @@ use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCa
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\MockObject\Stub;
 
-#[TestDox("The AngularDistance\Types\StringType ")]
 #[CoversClass(StringType::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleEqualString::class)]
@@ -95,7 +93,6 @@ class StringTypeTest extends InputTypeTestCase
         $this->input_type = new StringType($this->beta);
     }
 
-    #[TestDox("return the strategy for an Equal comparison.")]
     public function test_equal_strategy(): void
     {
         // Act
@@ -108,7 +105,6 @@ class StringTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(EqualString::class, $strategy);
     }
 
-    #[TestDox("return the strategy for an Different comparison.")]
     public function test_different_strategy(): void
     {
         // Act
@@ -121,7 +117,6 @@ class StringTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(DifferentString::class, $strategy);
     }
 
-    #[TestDox("return the strategy for an Greater comparison.")]
     public function test_greater_strategy(): void
     {
         // Act
@@ -134,7 +129,6 @@ class StringTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterString::class, $strategy);
     }
 
-    #[TestDox("return the strategy for an GreaterOrEqual comparison.")]
     public function test_greater_or_equal_strategy(): void
     {
         // Act
@@ -147,7 +141,6 @@ class StringTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterOrEqualString::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Lesser comparison.")]
     public function test_lesser_strategy(): void
     {
         // Act
@@ -160,7 +153,6 @@ class StringTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserString::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a LesserOrEqual comparison.")]
     public function test_lesser_or_equal_strategy(): void
     {
         // Act
@@ -173,7 +165,6 @@ class StringTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserOrEqualString::class, $strategy);
     }
 
-    #[TestDox("throws an error if there's no strategy.")]
     public function test_error(): void
     {
         // Assert

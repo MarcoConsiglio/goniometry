@@ -25,11 +25,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The AbsoluteSum SumBuilder")]
 #[CoversClass(AbsoluteSum::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
@@ -52,7 +50,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesTrait(WithAngleFaker::class)]
 class AbsoluteSumTest extends TestCase
 {
-    #[TestDox("can sum two Angles and return an absolute sum.")]
     public function test_can_sum_angles(): void
     {
         /**

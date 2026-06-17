@@ -14,11 +14,9 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The SexadecimalDegrees class")]
 #[CoversClass(SexadecimalDegrees::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
@@ -31,7 +29,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesTrait(WithAngleFaker::class)]
 class SexadecimalDegreesTest extends TestCase
 {
-    #[TestDox("can store a positive sexadecimal value.")]
     public function test_positive_sexadecimal(): void
     {
         // Arrange
@@ -47,7 +44,6 @@ class SexadecimalDegreesTest extends TestCase
         );
     }
 
-    #[TestDox("can store a negative sexadecimal value.")]
     public function test_negative_sexadecimal(): void
     {
         // Arrange

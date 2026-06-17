@@ -29,11 +29,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The LesserFloat comparison strategy")]
 #[CoversClass(LesserFloat::class)]
 #[UsesClass(AngularDistance::class)]
 #[UsesClass(AngularDistanceGenerator::class)]
@@ -64,7 +62,6 @@ class LesserFloatTest extends StrategiesTestCase
 {
     protected string $comparison = '<';
 
-    #[TestDox("can compare an Angle and a sexadecimal angle measure.")]
     public function test_compare(): void
     {
         /**

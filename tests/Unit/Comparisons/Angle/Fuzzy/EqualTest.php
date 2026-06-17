@@ -32,11 +32,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The fuzzy Equal comparison")]
 #[CoversClass(Equal::class)]
 #[UsesClass(AbsoluteSum::class)]
 #[UsesClass(Angle::class)]
@@ -68,7 +66,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesTrait(WithAngleFaker::class)]
 class EqualTest extends TestCase
 {
-    #[TestDox("can compare two angle within a angle error.")]
     public function test_compare_angle(): void
     {
         // Arrange

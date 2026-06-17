@@ -24,11 +24,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The GreaterInt comparison strategy")]
 #[CoversClass(GreaterInt::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
@@ -53,7 +51,6 @@ class GreaterIntTest extends StrategiesTestCase
 {
     protected string $comparison = '>';
  
-    #[TestDox("can compare an Angle and a sexagesimal degrees angle measure.")]
     public function test_compare(): void
     {
         /**

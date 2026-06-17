@@ -28,11 +28,9 @@ use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCase;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\Stub;
 
-#[TestDox("The AngularDistanceType ")]
 #[CoversClass(AngularDistanceType::class)]
 #[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(DifferentAngle::class)]
@@ -59,7 +57,6 @@ class AngularDistanceTypeTest extends InputTypeTestCase
         $this->input_type = new AngularDistanceType($this->beta);
     }
 
-    #[TestDox("return the strategy for an Equal comparison.")]
     public function test_equal_strategy(): void
     {
         // Act
@@ -72,7 +69,6 @@ class AngularDistanceTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(EqualAngularDistance::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Different comparison.")]
     public function test_different_strategy(): void
     {
         // Act
@@ -85,7 +81,6 @@ class AngularDistanceTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(DifferentAngularDistance::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Greater comparison.")]
     public function test_greater_strategy(): void
     {
         // Act
@@ -98,7 +93,6 @@ class AngularDistanceTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterAngularDistance::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a GreaterOrEqual comparison.")]
     public function test_greater_or_equal_strategy(): void
     {
         // Act
@@ -111,7 +105,6 @@ class AngularDistanceTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterOrEqualAngularDistance::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Lesser comparison.")]
     public function test_lesser_strategy(): void
     {
         // Act
@@ -124,7 +117,6 @@ class AngularDistanceTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserAngularDistance::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a LesserOrEqual comparison.")]
     public function test_lesser_or_equal_strategy(): void
     {
         // Act
@@ -137,7 +129,6 @@ class AngularDistanceTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserOrEqualAngularDistance::class, $strategy);
     }
 
-    #[TestDox("throws an error if there's no strategy.")]
     public function test_error(): void
     {
         // Assert

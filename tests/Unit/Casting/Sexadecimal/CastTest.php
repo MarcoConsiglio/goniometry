@@ -34,11 +34,9 @@ use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The Sexadecimal\Cast class")]
 #[CoversClass(Cast::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
@@ -89,7 +87,6 @@ class CastTest extends TestCase
         $this->sexadecimal = $this->angle->toSexadecimalDegrees();
     }
 
-    #[TestDox("can cast the Angle to a sexadecimal value with a specific precision.")]
     public function test_cast_with_precision(): void
     {
         // Arrange
@@ -102,7 +99,6 @@ class CastTest extends TestCase
         $this->assertSame($sexadecimal, $float, "$sexadecimal ≠ $float with $this->precision digit precision");
     }
 
-    #[TestDox("can cast the Angle to a sexadecimal value without a specific precision.")]
     public function test_cast_without_precision(): void
     {
         // Arrange

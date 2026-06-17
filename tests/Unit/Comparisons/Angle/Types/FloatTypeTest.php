@@ -32,12 +32,10 @@ use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCa
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\MockObject\Stub;
 
-#[TestDox("The Angle\Types\FloatType")]
 #[CoversClass(FloatType::class)]
 #[UsesClass(Comparison::class)]
 #[UsesClass(ComparisonStrategy::class)]
@@ -79,7 +77,6 @@ class FloatTypeTest extends InputTypeTestCase
         $this->input_type = new FloatType($this->beta);
     }
 
-    #[TestDox("return the strategy for an Equal comparison.")]
     public function test_equal_strategy(): void
     {
         // Act
@@ -92,7 +89,6 @@ class FloatTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(EqualFloat::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Different comparison.")]
     public function test_different_comparison(): void
     {
         // Act
@@ -105,7 +101,6 @@ class FloatTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(DifferentFloat::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Greater comparison.")]
     public function test_greater_comparison(): void
     {
         // Act
@@ -118,7 +113,6 @@ class FloatTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterFloat::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a GreaterOrEqual comparison.")]
     public function test_greater_or_equal_comparison(): void
     {
         // Act
@@ -131,7 +125,6 @@ class FloatTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterOrEqualFloat::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Lesser comparison.")]
     public function test_lesser_comparison(): void
     {
         // Act
@@ -144,7 +137,6 @@ class FloatTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserFloat::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a LesserOrEqual comparison.")]
     public function test_lesser_or_equal_comparison(): void
     {
         // Act
@@ -157,7 +149,6 @@ class FloatTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserOrEqualFloat::class, $strategy);
     }
 
-    #[TestDox("throws an error if there's no strategy.")]
     public function test_error(): void
     {
         // Assert

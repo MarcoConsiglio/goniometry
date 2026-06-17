@@ -35,11 +35,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The GreaterAngularDistance comparisong strategy")]
 #[CoversClass(GreaterAngularDistance::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngularDistance::class)]
@@ -74,7 +72,6 @@ class GreaterAngularDistanceTest extends StrategiesTestCase
 {
     protected string $comparison = '>';
 
-    #[TestDox("can compare two AngularDistance instances.")]
     public function test_compare(): void
     {
         // Arrange

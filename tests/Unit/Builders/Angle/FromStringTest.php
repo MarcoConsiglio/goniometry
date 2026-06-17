@@ -20,11 +20,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The FromString builder")]
 #[CoversClass(FromString::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
@@ -43,7 +41,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesTrait(WithAngleFaker::class)]
 class FromStringTest extends TestCase
 {
-    #[TestDox("can create a positive angle from a string value.")]
     public function test_can_create_positive_angle(): void
     {
         // Arrange
@@ -65,7 +62,6 @@ class FromStringTest extends TestCase
         $this->assertDirection($direction, $sexagesimal->direction);
     }
 
-    #[TestDox("can create a negative angle from a string value.")]
     public function test_can_create_negative_angle(): void
     {
         // Arrange
@@ -87,7 +83,6 @@ class FromStringTest extends TestCase
         $this->assertDirection($direction, $sexagesimal->direction);
     }
     
-    #[TestDox("throws NoMatchException with more than 360° input.")]
     public function test_exception_if_more_than_360_degrees(): void
     {
         // Arrange
@@ -101,7 +96,6 @@ class FromStringTest extends TestCase
         new FromString($angle_string);
     }
 
-    #[TestDox("throws NoMatchException with more than 59' input.")]
     public function test_exception_if_more_than_59_minutes(): void
     {
         // Arrange
@@ -115,7 +109,6 @@ class FromStringTest extends TestCase
         new FromString($angle_string);
     }
 
-    #[TestDox("throws NoMatchException with more than 59.9\" input.")]
     public function test_exception_if_more_than_59_seconds(): void
     {
         // Arrange

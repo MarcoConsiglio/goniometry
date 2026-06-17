@@ -23,11 +23,9 @@ use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCase;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\Stub;
 
-#[TestDox("The AngleType ")]
 #[CoversClass(AngleType::class)]
 #[UsesClass(Comparison::class)]
 #[UsesClass(Equal::class)]
@@ -60,7 +58,6 @@ class AngleTypeTest extends InputTypeTestCase
         $this->input_type = new AngleType($this->beta);
     }
 
-    #[TestDox("return the strategy for an Equal comparison.")]
     public function test_equal_strategy(): void
     {
         // Act
@@ -73,7 +70,6 @@ class AngleTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(EqualAngle::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Different comparison.")]
     public function test_different_comparison(): void
     {
         // Act
@@ -86,7 +82,6 @@ class AngleTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(DifferentAngle::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Greater comparison.")]
     public function test_greater_comparison(): void
     {
         // Act
@@ -99,7 +94,6 @@ class AngleTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterAngle::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a GreaterOrEqual comparison.")]
     public function test_greater_or_equal_comparison(): void
     {
         // Act
@@ -112,7 +106,6 @@ class AngleTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterOrEqualAngle::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Lesser comparison.")]
     public function test_lesser_comparison(): void
     {
         // Act
@@ -125,7 +118,6 @@ class AngleTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserAngle::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a LesserOrEqual comparison.")]
     public function test_lesser_or_equal_comparison(): void
     {
         // Act
@@ -138,7 +130,6 @@ class AngleTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserOrEqualAngle::class, $strategy);
     }
 
-    #[TestDox("throws an error if there's no strategy.")]
     public function test_error(): void
     {
         // Assert

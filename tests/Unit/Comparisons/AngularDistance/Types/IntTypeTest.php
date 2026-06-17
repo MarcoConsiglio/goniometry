@@ -29,12 +29,10 @@ use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCa
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\MockObject\Stub;
 
-#[TestDox("The AngularDistance\Types\IntType ")]
 #[CoversClass(IntType::class)]
 #[UsesClass(AngleEqualInt::class)]
 #[UsesClass(AngleGreaterInt::class)]
@@ -64,7 +62,6 @@ class IntTypeTest extends InputTypeTestCase
         $this->input_type = new IntType($this->beta);
     }
 
-    #[TestDox("return the strategy for an Equal comparison.")]
     public function test_equal_strategy(): void
     {
         // Act
@@ -77,7 +74,6 @@ class IntTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(EqualInt::class, $strategy);
     }    
 
-    #[TestDox("return the strategy for a Different comparison.")]
     public function test_different_strategy(): void
     {
         // Act
@@ -90,7 +86,6 @@ class IntTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(DifferentInt::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Greater comparison.")]
     public function test_greater_strategy(): void
     {
         // Act
@@ -103,7 +98,6 @@ class IntTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterInt::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a GreaterOrEqual comparison.")]
     public function test_greater_or_equal_strategy(): void
     {
         // Act
@@ -116,7 +110,6 @@ class IntTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(GreaterOrEqualInt::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a Lesser comparison.")]
     public function test_lesser_strategy(): void
     {
         // Act
@@ -129,7 +122,6 @@ class IntTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserInt::class, $strategy);
     }
 
-    #[TestDox("return the strategy for a LesserOrEqual comparison.")]
     public function test_lesser_or_equal_strategy(): void
     {
         // Act
@@ -142,7 +134,6 @@ class IntTypeTest extends InputTypeTestCase
         $this->assertInstanceOf(LesserOrEqualInt::class, $strategy);
     }
 
-    #[TestDox("throws an error if there's no strategy.")]
     public function test_error(): void
     {
         // Assert
