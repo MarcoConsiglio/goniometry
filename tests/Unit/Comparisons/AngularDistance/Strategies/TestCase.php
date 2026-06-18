@@ -15,15 +15,26 @@ abstract class TestCase extends BaseTestCase
         string $strategy_class, 
         AngularDistance $alfa,
         int|float|string|AngularDistance $beta,
-        bool $result = true
+        bool $expected_result = true
     ): void {
-        if (! class_exists($strategy_class)) 
-            throw new Error("$strategy_class class doesn't exist.");
-        if (! is_subclass_of($strategy_class, $base = ComparisonStrategy::class)) 
-            throw new Error("$strategy_class class is not a child of $strategy_class class.");
+        $this->checkStrategy($strategy_class);
         $strategy = new $strategy_class($alfa, $beta);
         $message = $this->getFailMessage($alfa, $beta);
-        if ($result === true) $this->assertCompareReturnTrue($strategy, $message);
+        if ($expected_result === true) $this->assertCompareReturnTrue($strategy, $message);
+        else $this->assertCompareReturnFalse($strategy, $message);
+    }
+
+    protected function testFuzzyCompare(
+        string $strategy_class,
+        AngularDistance $alfa,
+        AngularDistance $beta,
+        Angle $delta,
+        bool $expected_result = true
+    ): void {
+        $this->checkStrategy($strategy_class);
+        $strategy = new $strategy_class($alfa, $beta, $delta);
+        $message = $this->getFailMessageWithDelta($delta, $alfa, $beta);
+        if ($expected_result === true) $this->assertCompareReturnTrue($strategy, $message);
         else $this->assertCompareReturnFalse($strategy, $message);
     }
 
@@ -46,6 +57,17 @@ abstract class TestCase extends BaseTestCase
             $message
         );
     }
+
+    /**
+     * @throws Error if `$strategy` doesn't exist or is not a child of `ComparisonStrategy`.
+     */
+    private function checkStrategy(string $strategy): void
+    {
+        if (! class_exists($strategy)) 
+            throw new Error("$strategy class doesn't exist.");
+        if (! is_subclass_of($strategy, $base = ComparisonStrategy::class)) 
+            throw new Error("$strategy class is not a child of $base class.");
+    }
     
     /**
      * Return a fail message for this TestCase.
@@ -61,6 +83,6 @@ abstract class TestCase extends BaseTestCase
     protected function getFailMessageWithDelta(Angle $delta, AngularDistance $alfa, int|float|string|AngularDistance $beta): string
     {
         $delta = $delta->absolute();
-        return $this->comparisonFail($alfa, $this->comparison, $beta);
+        return $this->comparisonWithDeltaFail($alfa, $this->comparison, $beta, $delta);
     }
 }

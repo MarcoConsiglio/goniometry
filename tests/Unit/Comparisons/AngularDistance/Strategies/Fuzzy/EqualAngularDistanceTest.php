@@ -10,6 +10,8 @@ use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as AngularDistanceFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal as AngularDistanceFromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
+use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
+use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
@@ -55,7 +57,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AngularDistanceFromSexagesimal::class)]
 #[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(AngularDistanceRange::class)]
-#[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(AngularDistanceType::class)]
 #[UsesClass(Comparison::class)]
 #[UsesClass(Degrees::class)]
@@ -69,40 +70,24 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(GreaterOrEqualAngularDistance::class)]
 #[UsesClass(LesserAngle::class)]
 #[UsesClass(LesserAngularDistance::class)]
-#[UsesClass(LesserAngularDistance::class)]
-#[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqualAngle::class)]
-#[UsesClass(LesserOrEqualAngle::class)]
-#[UsesClass(LesserOrEqualAngularDistance::class)]
 #[UsesClass(LesserOrEqualAngularDistance::class)]
 #[UsesClass(Minutes::class)]
-#[UsesClass(Minutes::class)]
-#[UsesClass(NegativeAngularDistanceGenerator::class)]
 #[UsesClass(NegativeAngularDistanceGenerator::class)]
 #[UsesClass(NegativeAngularDistanceValidator::class)]
-#[UsesClass(NegativeAngularDistanceValidator::class)]
-#[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(PositiveAngularDistanceGenerator::class)]
-#[UsesClass(PositiveAngularDistanceGenerator::class)]
-#[UsesClass(PositiveAngularDistanceValidator::class)]
 #[UsesClass(PositiveAngularDistanceValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
-#[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(RelativeSum::class)]
-#[UsesClass(RelativeSum::class)]
-#[UsesClass(Seconds::class)]
+#[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
-#[UsesClass(SexadecimalDegrees::class)]
-#[UsesClass(SexagesimalDegrees::class)]
+#[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SumBuilder::class)]
-#[UsesClass(SumBuilder::class)]
-#[UsesTrait(WithAngleFaker::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class EqualAngularDistanceTest extends StrategiesTestCase
 {
@@ -112,19 +97,90 @@ class EqualAngularDistanceTest extends StrategiesTestCase
     {
         /**
          * Equal
+         * $alfa = -2°
+         * $beta = 0°
          */
         // Arrange
         $delta = Angle::createFromValues(4);
         $beta = AngularDistance::createFromValues();
-        $alfa = self::$faker->randomElement([
-            $this->positiveRandomAngularDistance(max: 2),
-            $this->negativeRandomAngularDistance(min: -2)
-        ]);
+        $alfa = AngularDistance::createFromDecimal(-2);
 
         // Act & Assert
-        $this->assertTrue(
-            new FuzzyEqualAngularDistance($alfa, $beta, $delta)->compare(),
-            $this->getFailMessageWithDelta($delta, $alfa, $beta)
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta
+        );
+
+        /**
+         * Equal
+         * $alfa = +2°
+         * $beta = 0°
+         */
+        // Arrange
+        $alfa = AngularDistance::createFromValues(2);
+
+        // Act & Assert
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta
+        );
+
+        /**
+         * Equal
+         * $alfa = -179°
+         * $beta = -180°
+         */
+        // Arrange
+        $alfa = AngularDistance::createFromDecimal(-179);
+        $beta = AngularDistance::createFromDecimal(-180);
+
+        // Act & Assert
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta
+        );
+
+        /**
+         * Equal
+         * $alfa = +179°
+         * $beta = -180°
+         */
+        // Arrange
+        $alfa = AngularDistance::createFromValues(179);
+
+        // Act & Assert
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta
+        );
+
+        /**
+         * Equal
+         * $alfa = -179°
+         * $beta = +180°
+         */
+        // Arrange
+        $alfa = AngularDistance::createFromDecimal(-179);
+        $beta = AngularDistance::createFromValues(180);
+
+        // Act & Assert
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta
+        );
+
+        /**
+         * Equal
+         * $alfa = +179°
+         * $beta = +180°
+         */
+        // Arrange
+        $alfa = AngularDistance::createFromValues(179);
+
+        // Act & Assert
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta
         );
 
         /**

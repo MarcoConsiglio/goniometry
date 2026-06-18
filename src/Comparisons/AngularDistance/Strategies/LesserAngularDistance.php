@@ -1,6 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
+use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use Override;
@@ -32,5 +34,56 @@ class LesserAngularDistance extends LesserAngle
         return
             $this->alfa->direction === Rotation::CLOCKWISE &&
             $this->beta->direction === Rotation::COUNTER_CLOCKWISE;
+    }
+
+    #[Override]
+    protected function degreesAreGreater(): bool
+    {
+        return $this->degrees($this->alfa)->gt($this->degrees($this->beta));
+    }
+
+    #[Override]
+    protected function degreesAreLess(): bool
+    {
+        return $this->degrees($this->alfa)->lt($this->degrees($this->beta));
+    }
+
+    #[Override]
+    protected function minutesAreGreater(): bool
+    {
+        return $this->minutes($this->alfa)->gt($this->minutes($this->beta));
+    }
+
+    #[Override]
+    protected function minutesAreLess(): bool
+    {
+        return $this->minutes($this->alfa)->lt($this->minutes($this->beta));
+    }
+
+    #[Override]
+    protected function secondsAreGreater(): bool
+    {
+        return $this->seconds($this->alfa)->gt($this->seconds($this->beta));
+    }
+    
+    #[Override]
+    protected function secondsAreLess(): bool
+    {
+        return $this->seconds($this->alfa)->lt($this->seconds($this->beta));
+    }
+
+    protected function degrees(AngularDistance $angle): Number
+    {
+        return $angle->degrees->value->mul($angle->direction->value);
+    }
+
+    protected function minutes(AngularDistance $angle): Number
+    {
+        return $angle->minutes->value->mul($angle->direction->value);
+    }
+
+    protected function seconds(AngularDistance $angle): Number
+    {
+        return $angle->seconds->value->mul($angle->direction->value);
     }
 }
