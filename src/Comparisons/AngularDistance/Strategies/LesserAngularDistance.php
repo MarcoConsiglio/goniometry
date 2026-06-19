@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use Override;
 
@@ -12,6 +13,7 @@ class LesserAngularDistance extends LesserAngle
     #[Override]
     public function compare(): bool
     {
+        if ($this->bothAre180()) return false;
         if ($this->alfaIsPositiveBetaIsNegative()) return false;
         if ($this->alfaIsNegativeBetaIsPositive()) return true;
         if ($this->degreesAreGreater()) return false;
@@ -20,6 +22,13 @@ class LesserAngularDistance extends LesserAngle
         if ($this->minutesAreLess()) return true;
         if ($this->secondsAreGreater()) return false;
         return $this->secondsAreLess();
+    }
+
+    protected function bothAre180(): bool
+    {
+        return 
+            $this->alfa->degrees->eq(new Degrees(180)) &&
+            $this->beta->degrees->eq(new Degrees(180));
     }
 
     protected function alfaIsPositiveBetaIsNegative(): bool

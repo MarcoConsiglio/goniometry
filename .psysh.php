@@ -234,7 +234,7 @@ return [
 
     // Enable inline autosuggestions (fish-style ghost text) in interactive
     // readline. Still a bit rough around the edges.
-    // 'useSuggestions' => true,
+    'useSuggestions' => true,
 
     // Enable bracketed paste support when the active readline implementation
     // supports it.
@@ -285,23 +285,24 @@ return [
     // available to tab completion and commands like `ls`, `doc` and `show`.
     //
     // If `true`, this is equivalent to the `--warm-autoload` command line flag.
-    'warmAutoload' => [
-        'includeVendor' => true, // Include vendor packages
-        'includeTests' => true,  // Include test classes
+    'warmAutoload' => false,
+    // 'warmAutoload' => [
+    //     'includeVendor' => true, // Include vendor packages
+    //     'includeTests' => true,  // Include test classes
 
-        // Include (or exclude) specific namespaces
-        // 'includeNamespaces' => ['App\\', 'Lib\\'],
-        'includeNamespaces' => ['MarcoConsiglio\\Goniometry\\'],
-        // 'excludeNamespaces' => ['App\\Legacy\\'],
-        'excludeNamespaces' => [],
+    //     // Include (or exclude) specific namespaces
+    //     // 'includeNamespaces' => ['App\\', 'Lib\\'],
+    //     'includeNamespaces' => [],
+    //     // 'excludeNamespaces' => ['App\\Legacy\\'],
+    //     'excludeNamespaces' => [],
 
-        // Include (or exclude) specific vendor namespaces
-        // 'includeVendorNamespaces' => ['Symfony\\Component\\', 'Doctrine\\'],
-        // 'excludeVendorNamespaces' => ['Symfony\\VarDumper\\'],
+    //     // Include (or exclude) specific vendor namespaces
+    //     // 'includeVendorNamespaces' => ['Symfony\\Component\\', 'Doctrine\\'],
+    //     // 'excludeVendorNamespaces' => ['Symfony\\VarDumper\\'],
 
-        // Custom warmers can be implemented via `AutoloadWarmerInterface`
-        // 'warmers' => [new MyCustomWarmer()],
-    ],
+    //     // Custom warmers can be implemented via `AutoloadWarmerInterface`
+    //     // 'warmers' => [new MyCustomWarmer()],
+    // ],
 
     // If multiple versions of the same configuration or data file exist, PsySH
     // will use the file with highest precedence, and will silently ignore all

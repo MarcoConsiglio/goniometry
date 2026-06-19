@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
+use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use Override;
 
@@ -10,6 +11,7 @@ class GreaterAngularDistance extends GreaterAngle
     #[Override]
     public function compare(): bool
     {
+        if ($this->bothAre180()) return false;
         if ($this->alfaIsNegativeBetaIsPositive()) return false;
         if ($this->alfaIsPositiveBetaIsNegative()) return true;
         if ($this->degreesAreGreater()) return true;
@@ -18,6 +20,13 @@ class GreaterAngularDistance extends GreaterAngle
         if ($this->minutesAreLess()) return false;
         if ($this->secondsAreGreater()) return true;
         return ! $this->secondsAreLess();
+    }
+
+    protected function bothAre180(): bool
+    {
+        return
+            $this->alfa->degrees->eq(new Degrees(180)) &&
+            $this->beta->degrees->eq(new Degrees(180));
     }
 
     protected function alfaIsPositiveBetaIsNegative(): bool

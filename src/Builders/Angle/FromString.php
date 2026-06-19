@@ -92,12 +92,19 @@ class FromString extends AngleBuilder
      */
     protected function checkOverflow(): void
     {
-        if ($this->degreesError())
+        if ($this->thereAreParsingErrors())
             throw new NoMatchException("Can't recognize the string $this->measure.");
-        if ($this->minutesError())
-            throw new NoMatchException("Can't recognize the string $this->measure.");
-        if ($this->secondsError())
-            throw new NoMatchException("Can't recognize the string $this->measure.");
+        // if ($this->degreesError())
+            // throw new NoMatchException("Can't recognize the string $this->measure.");
+        // if ($this->minutesError())
+        //     throw new NoMatchException("Can't recognize the string $this->measure.");
+        // if ($this->secondsError())
+        //     throw new NoMatchException("Can't recognize the string $this->measure.");
+    }
+
+    protected function thereAreParsingErrors(): bool
+    {
+        return $this->degreesError() && $this->minutesError() && $this->secondsError();
     }
 
     /**
@@ -129,9 +136,11 @@ class FromString extends AngleBuilder
      */
     protected function calcDegrees(): void
     {
-        $this->degrees = new Degrees(
-            abs((int) $this->degrees_match[1])
-        );
+        if (! $this->degreesError())
+            $this->degrees = new Degrees(
+                abs((int) $this->degrees_match[1])
+            );
+        else $this->degrees = new Degrees(0);
     }
 
     /**
@@ -139,9 +148,11 @@ class FromString extends AngleBuilder
      */
     protected function calcMinutes(): void
     {
-        $this->minutes = new Minutes(
-            $this->minutes_match[1]
-        );
+        if (! $this->minutesError())
+            $this->minutes = new Minutes(
+                $this->minutes_match[1]
+            );
+        else $this->minutes = new Minutes(0);
     }
 
     /**
@@ -149,9 +160,11 @@ class FromString extends AngleBuilder
      */
     protected function calcSeconds(): void
     {
-        $this->seconds = new Seconds(
-            $this->seconds_match[1]
-        );
+        if (! $this->secondsError())
+            $this->seconds = new Seconds(
+                $this->seconds_match[1]
+            );
+        else $this->seconds = new Seconds(0);
     }
 
     /**
