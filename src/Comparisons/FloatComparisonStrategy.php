@@ -15,7 +15,9 @@ abstract class FloatComparisonStrategy extends ComparisonStrategy
      * 
      * @codeCoverageIgnore
      */
-    protected function checkPrecision(int $precision) {
-        assert($precision >= 0 && $precision <= 54);
+    protected function normalizePrecision(int $precision) {
+        $precision = abs($precision);
+        if ($precision > Comparison::MAX_PRECISION) 
+            $precision = Comparison::MAX_PRECISION;
     }
 }

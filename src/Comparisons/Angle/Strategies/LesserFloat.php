@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\AngularMeasure;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
 
 /**
@@ -23,9 +24,9 @@ class LesserFloat extends FloatComparisonStrategy
     public function __construct(
         AngularMeasure $alfa,
         protected float $beta,
-        protected int $precision = 54
+        protected int $precision = Comparison::MAX_PRECISION
     ) {
-        $this->checkPrecision($precision);
+        $this->normalizePrecision($precision);
         parent::__construct($alfa);
     }
 

@@ -11,7 +11,7 @@ class LesserFloat extends AngleLesserFloat
     public function compare(): bool
     {
         return 
-            $this->alfa->toSexadecimalDegrees()->value->round($this->precision)
+            $this->alfa->toSexadecimalDegrees()->valueObject()->round($this->precision)
             ->lt(new Number($this->beta)->round($this->precision));
     }
 }

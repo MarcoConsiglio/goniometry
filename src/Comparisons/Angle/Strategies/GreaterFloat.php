@@ -25,7 +25,7 @@ class GreaterFloat extends FloatComparisonStrategy
         protected float $beta, 
         protected int $precision = 54
     ) {
-        $this->checkPrecision($precision);
+        $this->normalizePrecision($precision);
         parent::__construct($alfa);
     }
 
