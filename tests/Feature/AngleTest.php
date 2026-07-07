@@ -278,7 +278,7 @@ class AngleTest extends TestCase
         $this->assertDirection($direction, $angle->direction, $fail_message);
     }
 
-    #[TestDox("can be created from a decimal number.")]
+    #[TestDox("can be created from a sexadecimal number.")]
     public function test_create_from_decimal(): void
     {
         // Arrange
@@ -309,7 +309,7 @@ class AngleTest extends TestCase
         );
     }
 
-    #[TestDox("can return its absolute value.")]
+    #[TestDox("can return the positive counter-clockwise angle.")]
     public function test_absolute(): void
     {
         // Arrange
@@ -374,8 +374,8 @@ class AngleTest extends TestCase
         $this->assertEquals("{$sign}{$degrees} {$minutes} {$seconds}", (string) $alfa);
     }
 
-    #[TestDox("can be casted to float.")]
-    public function test_cast_to_float(): void
+    #[TestDox("can be casted to sexadecimal float.")]
+    public function test_cast_to_sexadecimal_float(): void
     {
         // Arrange
         $angle = Angle::createFromValues(
@@ -392,8 +392,8 @@ class AngleTest extends TestCase
         $this->assertIsFloat($actual);
     }
 
-    #[TestDox("can be casted to radian.")]
-    public function test_cast_to_radian(): void
+    #[TestDox("can be casted to radian float.")]
+    public function test_cast_to_radian_float(): void
     {
         // Arrange
         $angle = $this->randomAngle();

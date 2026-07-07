@@ -233,7 +233,7 @@ class AngularDistanceTest extends TestCase
         $this->assertInstanceOf(AngularDistance::class, $angle);
     }
 
-    #[TestDox("can be created from a decimal number.")]
+    #[TestDox("can be created from a sexadecimal number.")]
     public function test_create_from_decimal(): void
     {
         // Arrange
@@ -597,7 +597,7 @@ class AngularDistanceTest extends TestCase
          * Built from sexadecimal value
          */
         // Arrange
-        $angle = AngularDistance::createFromValues(
+        $angle = AngularDistance::createFromDecimal(
             $this->randomSexadecimal()
         );
 

@@ -171,4 +171,17 @@ class GreaterAngularDistanceTest extends StrategiesTestCase
             $this->getFailMessage($omicron, $pi)
         );
     }
+
+    public function test_negative_and_positive_180_degrees_are_equal(): void
+    {
+        // Arrange
+        $alfa = AngularDistance::createFromValues(180, direction: Rotation::COUNTER_CLOCKWISE);
+        $beta = AngularDistance::createFromValues(180, direction: Rotation::CLOCKWISE);
+
+        // Act & Assert
+        $this->assertFalse(
+            new GreaterAngularDistance($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
+    }
 }

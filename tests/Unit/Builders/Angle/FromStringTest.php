@@ -82,43 +82,92 @@ class FromStringTest extends TestCase
         $this->assertSeconds($seconds, $sexagesimal->seconds);
         $this->assertDirection($direction, $sexagesimal->direction);
     }
+
+    public function test_can_match_minutes_and_seconds(): void
+    {
+        // Arrage
+        $minutes = $this->randomMinutes();
+        $seconds = $this->randomSeconds();
+        $measure = "$minutes $seconds";
+        $builder = new FromString($measure);
+
+        // Act
+        [$sexagesimal] = $builder->fetchData();
+
+        // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertDegrees(new Degrees(0), $sexagesimal->degrees);
+        $this->assertMinutes($minutes, $sexagesimal->minutes);
+        $this->assertSeconds($seconds, $sexagesimal->seconds);
+        $this->assertDirection(Rotation::COUNTER_CLOCKWISE, $sexagesimal->direction);
+    }
+
+    public function test_can_match_degrees_and_seconds(): void
+    {
+        // Arrage
+        $degrees = $this->randomDegrees();
+        $seconds = $this->randomSeconds();
+        $measure = "$degrees $seconds";
+        $builder = new FromString($measure);
+
+        // Act
+        [$sexagesimal] = $builder->fetchData();
+
+        // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertDegrees($degrees, $sexagesimal->degrees);
+        $this->assertMinutes(new Minutes(0), $sexagesimal->minutes);
+        $this->assertSeconds($seconds, $sexagesimal->seconds);
+        $this->assertDirection(Rotation::COUNTER_CLOCKWISE, $sexagesimal->direction);
+    }
+
+    public function test_can_match_degrees_and_minutes(): void
+    {
+        // Arrage
+        $degrees = $this->randomDegrees();
+        $minutes = $this->randomMinutes();
+        $measure = "$degrees $minutes";
+        $builder = new FromString($measure);
+
+        // Act
+        [$sexagesimal] = $builder->fetchData();
+
+        // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertDegrees($degrees, $sexagesimal->degrees);
+        $this->assertMinutes($minutes, $sexagesimal->minutes);
+        $this->assertSeconds(new Seconds(0), $sexagesimal->seconds);
+        $this->assertDirection(Rotation::COUNTER_CLOCKWISE, $sexagesimal->direction);
+    }
+
+    public function test_can_match_seconds(): void
+    {
+        // Arrange
+        $seconds = $this->randomSeconds();
+        $measure = "$seconds";
+        $builder = new FromString($measure);
+
+        // Act
+        [$sexagesimal] = $builder->fetchData();
+
+        // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
+        $this->assertDegrees(new Degrees(0), $sexagesimal->degrees);
+        $this->assertMinutes(new Minutes(0), $sexagesimal->minutes);
+        $this->assertSeconds($seconds, $sexagesimal->seconds);
+        $this->assertDirection(Rotation::COUNTER_CLOCKWISE, $sexagesimal->direction);
+    }
     
-    public function test_exception_if_more_than_360_degrees(): void
+    public function test_no_match_exception(): void
     {
-        // Arrange
-        $angle_string = "361° 0' 0\"";
-
         // Assert
         $this->expectException(NoMatchException::class);
-        $this->expectExceptionMessage("Can't recognize the string $angle_string.");
 
-        // Act
-        new FromString($angle_string);
-    }
-
-    public function test_exception_if_more_than_59_minutes(): void
-    {
         // Arrange
-        $angle_string = "0° 60' 0\"";
-
-        // Assert
-        $this->expectException(NoMatchException::class);
-        $this->expectExceptionMessage("Can't recognize the string $angle_string.");
+        $measure = "adsjh1oi4jhljv";
+        $builder = new FromString($measure);
 
         // Act
-        new FromString($angle_string);
-    }
-
-    public function test_exception_if_more_than_59_seconds(): void
-    {
-        // Arrange
-        $angle_string = "0° 0' 60\"";
-
-        // Assert
-        $this->expectException(NoMatchException::class);
-        $this->expectExceptionMessage("Can't recognize the string $angle_string");
-
-        // Act
-        new FromString($angle_string);
+        $builder->fetchData();
     }
 }

@@ -16,12 +16,14 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngularDistance as NegativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngularDistance as PositiveAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeAngularDistance as NegativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
@@ -69,6 +71,8 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class LesserIntTest extends StrategiesTestCase
 {
@@ -93,8 +97,7 @@ class LesserIntTest extends StrategiesTestCase
          * Equal
          */
         // Arrange
-        $alfa = $this->randomAngularDistance();
-        $beta = $alfa->toFloat();
+        $alfa = AngularDistance::createFromValues($beta = $this->randomDegrees()->value());
 
         // Act & Assert
         $this->assertFalse(
@@ -107,7 +110,7 @@ class LesserIntTest extends StrategiesTestCase
          */
         // Arrange
         $alfa = $this->positiveRandomAngularDistance();
-        $beta = $this->negativeRandomFloat(min: -180);
+        $beta = $this->negativeRandomInteger(min: -180);
 
         // Act & Assert
         $this->assertFalse(

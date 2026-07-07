@@ -16,16 +16,37 @@ class EqualAngularDistance extends EqualAngle
     #[Override]
     public function compare(): bool
     {
-        if ($this->low_extreme->gt($this->high_extreme)) {
+        if ($this->extremeAreSwapped()) {
             if ($this->alfa->isCounterClockwise()) 
-                return 
-                    $this->alfa->gte($this->low_extreme) &&
-                    $this->alfa->gte($this->high_extreme);
+                return $this->isAlfaGreaterThanOrEqualToBothExtremes();
             else
-                return
-                    $this->alfa->lte($this->low_extreme) &&
-                    $this->alfa->lte($this->high_extreme);
-        } else return
+                return $this->isAlfaLessThanOrEqualToBothExtremes();
+        }
+        return $this->isAlfaInBetweenBothExtremes();
+    }
+
+    protected function extremeAreSwapped(): bool
+    {
+        return $this->low_extreme->gt($this->high_extreme);
+    }
+
+    protected function isAlfaGreaterThanOrEqualToBothExtremes(): bool
+    {
+        return 
+            $this->alfa->gte($this->low_extreme) &&
+            $this->alfa->gte($this->high_extreme);
+    }
+
+    protected function isAlfaLessThanOrEqualToBothExtremes(): bool
+    {
+        return
+            $this->alfa->lte($this->low_extreme) &&
+            $this->alfa->lte($this->high_extreme);
+    }
+
+    protected function isAlfaInBetweenBothExtremes(): bool
+    {
+        return
             $this->alfa->gte($this->low_extreme) &&
             $this->alfa->lte($this->high_extreme);
     }

@@ -10,6 +10,7 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserAngularDistance;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
@@ -178,5 +179,19 @@ class LesserAngularDistanceTest extends StrategiesTestCase
             new LesserAngularDistance($alfa, $beta)->compare(),
             $this->getFailMessage($alfa, $beta)
         ); 
+    }
+
+    public function test_negative_and_positive_180_degrees_are_equal(): void
+    {
+        // Arrange
+        $precision = $this->randomPrecision();
+        $alfa = AngularDistance::createFromValues(180, direction: Rotation::COUNTER_CLOCKWISE);
+        $beta = AngularDistance::createFromValues(-180, direction: Rotation::CLOCKWISE);
+
+        // Act & Assert
+        $this->assertFalse(
+            new LesserAngularDistance($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
     }
 }

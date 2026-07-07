@@ -108,7 +108,7 @@ class FromString extends AngleBuilder
     }
 
     /**
-     * Return `true` if there was a parsing error on degrees, `false` otherwise.
+     * Return `true` if there was a parsing error on degrees or no degrees has been matched, `false` otherwise.
      */
     protected function degreesError(): bool
     {
@@ -116,7 +116,7 @@ class FromString extends AngleBuilder
     }
 
     /**
-     * Return `true` if there was a parsing error on minutes, `false` otherwise.
+     * Return `true` if there was a parsing error on minutes or no minutes has been matched, `false` otherwise.
      */
     protected function minutesError(): bool
     {
@@ -124,7 +124,7 @@ class FromString extends AngleBuilder
     }
 
     /**
-     * Return `true` if there was a parsing error on seconds, `false` otherwise.
+     * Return `true` if there was a parsing error on seconds or no seconds has been matched, `false` otherwise.
      */
     protected function secondsError(): bool
     {
@@ -185,7 +185,9 @@ class FromString extends AngleBuilder
      */
     protected function haveMinusSign(): bool
     {
-        return str_contains((string) $this->degrees_match[1], '-');
+        if (isset($this->degrees_match[1]))
+            return str_contains((string) $this->degrees_match[1], '-');
+        else return false;
     }
 
     /**

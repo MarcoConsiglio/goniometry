@@ -45,6 +45,19 @@ class EqualAngularDistanceTest extends StrategiesTestCase
         $this->testEqualComparison(4);
     }
 
+    public function test_negative_and_positive_180_degrees_are_equal(): void
+    {
+        // Arrange
+        $alfa = AngularDistance::createFromValues(180, direction: Rotation::COUNTER_CLOCKWISE);
+        $beta = AngularDistance::createFromValues(180, direction: Rotation::CLOCKWISE);
+
+        // Act & Assert
+        $this->assertTrue(
+            new EqualAngularDistance($alfa, $beta)->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
+    }
+
     /**
      * Return a comparison dataset with different and equal arguments.
      */

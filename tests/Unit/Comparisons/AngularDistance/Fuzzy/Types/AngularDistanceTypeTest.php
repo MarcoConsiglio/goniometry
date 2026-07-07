@@ -65,7 +65,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeSum::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SumBuilder::class)]

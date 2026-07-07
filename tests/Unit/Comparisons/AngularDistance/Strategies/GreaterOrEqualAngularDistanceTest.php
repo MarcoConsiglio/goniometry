@@ -47,7 +47,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(NegativeSexadecimal::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
-#[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(RelativeAngularDistanceGenerator::class)]
 #[UsesClass(RelativeAngularDistanceValidator::class)]

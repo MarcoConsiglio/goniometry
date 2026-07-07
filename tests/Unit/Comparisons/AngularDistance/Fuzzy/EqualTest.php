@@ -81,7 +81,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqualAngle::class)]
 #[UsesClass(LesserOrEqualAngularDistance::class)]
-#[UsesClass(LesserOrEqualAngularDistance::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]

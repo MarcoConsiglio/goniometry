@@ -28,6 +28,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
@@ -193,9 +194,68 @@ class EqualAngularDistanceTest extends StrategiesTestCase
         ]);
 
         // Act & Assert
-        $this->assertFalse(
-            new FuzzyEqualAngularDistance($alfa, $beta, $delta)->compare(),
-            $this->getFailMessageWithDelta($delta, $alfa, $beta)
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta, expected_result: false    
+        );
+
+        /**
+         * Different
+         * $alfa = -175°
+         * $beta = -180°
+         */
+        // Arrange
+        $alfa = AngularDistance::createFromValues(175, direction: Rotation::CLOCKWISE);
+        $beta = AngularDistance::createFromValues(180, direction: Rotation::CLOCKWISE);
+
+        // Act & Assert
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta, expected_result: false
+        );
+
+        /**
+         * Different
+         * $alfa = +175°
+         * $beta = -180°
+         */
+        // Arrange
+        $alfa = AngularDistance::createFromValues(175, direction: Rotation::COUNTER_CLOCKWISE);
+
+        // Act & Assert
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta, expected_result: false
+        );
+
+        /**
+         * Different
+         * $alfa = -175°
+         * $beta = +180°
+         */
+        // Arrange
+        $alfa = AngularDistance::createFromValues(175, direction: Rotation::COUNTER_CLOCKWISE);
+        $beta = AngularDistance::createFromValues(180);
+
+        // Act & Assert
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta, expected_result: false
+        );
+
+        /**
+         * Different
+         * $alfa = +175°
+         * $beta = +180°
+         */
+        // Arrange
+        $alfa = AngularDistance::createFromValues(175, direction: Rotation::CLOCKWISE);
+        $beta = AngularDistance::createFromValues(180);
+
+        // Act & Assert
+        $this->testFuzzyCompare(
+            FuzzyEqualAngularDistance::class,
+            $alfa, $beta, $delta, expected_result: false
         );
     }
 }
