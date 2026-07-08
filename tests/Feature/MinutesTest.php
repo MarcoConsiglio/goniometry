@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The Minutes type")]
+#[TestDox("The Minutes class")]
 #[CoversClass(Minutes::class)]
 #[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(MinutesGenerator::class)]

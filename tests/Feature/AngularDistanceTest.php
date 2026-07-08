@@ -112,6 +112,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
+#[TestDox("The AngularDistance")]
 #[CoversClass(AngularDistance::class)]
 #[UsesClass(AbsoluteSum::class)]
 #[UsesClass(Angle::class)]

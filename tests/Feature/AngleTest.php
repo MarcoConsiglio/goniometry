@@ -256,7 +256,7 @@ class AngleTest extends TestCase
         $this->assertDirection($sexagesimal->direction, $angle->direction);
     }
 
-    #[TestDox("can be created from a textual representation.")]
+    #[TestDox("can be created from a sexagesimal string.")]
     public function test_create_from_string(): void
     {
         // Arrange

@@ -15,19 +15,19 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Usage](#usage)
-  - [Creating an angle](#creating-an-angle)
-    - [Sexagesimal (degrees, minutes, seconds)](#sexagesimal_values)
-    - [Sexagesimal string](#sexadecimal_value)
-    - [Sexadecimal float](#sexadecimal_value)
+  - [Creating an `AngularMeasure` object](#creating-an-angularmeasure-object)
+    - [Sexagesimal (`int` degrees, `int` minutes, `float` seconds)](#sexagesimal_values)
+    - [Sexagesimal `string`](#sexagesimal_string)
+    - [Sexadecimal `float`](#sexadecimal_float)
     - [Radian float](#radian_value)
   - [Getting angle values](#getting-angle-values)
-    - [Casting](#casting)
-      - [To sexadecimal (float)](#toFloat)
-      - [To sexadecimal (object)](#toSexadecimalDegrees)
-      - [To radian (float)](#toRadian)
-      - [To string](#to-string)
-  - [Rotation direction](#rotation-direction)
-  - [Opposite direction](#opposite-direction)
+    - [Rotation direction](#rotation-direction)
+    - [Opposite direction](#opposite-direction)
+  - [Casting](#casting)
+    - [To sexadecimal (float)](#toFloat)
+    - [To sexadecimal (object)](#toSexadecimalDegrees)
+    - [To radian (float)](#toRadian)
+    - [To string](#to-string)
   - [Comparison](#comparison)
     - [$\alpha \gt \beta$ (greater than)](#greater-than)
     - [$\alpha \ge \beta$ (greater than or equal)](#greater-than-or-equal)
@@ -67,9 +67,9 @@ $gamma = AngularDistance::createFromDecimal(180.5);
 $delta = AngularDistance::createFromRadian(M_PI); // 180°
 ```
 
-Both `Angle` and `AngularDistance` implements the `Angle` interface.
+Both `Angle` and `AngularDistance` are `AngularMeasure` types that implement the `Angle` interface.
 # Usage
-## Creating an angle
+## Creating an `AngularMeasure` object
 ### Sexagesimal (`int` degrees, `int` minutes, `float` seconds) <a id="sexagesimal_values"></a>
 This creates an angle from its values in degrees, minutes and seconds:
 ```php
@@ -95,12 +95,9 @@ These regex expressions treat degrees and minutes as `int` type, but seconds are
 
 You can create a negative `Angle` if the string representation start with the minus (`-`) sign.
 
-The `NoMatchException` is thrown when you try to create an angle:
-- with more than $\pm360^\circ$
-- with more than $59'$
-- with more than $59.\overline{9}''$.
+The `NoMatchException` is thrown when you try to create an `AngularMeasure` with a bad formatted string.
 
-### Sexadecimal value (`float`)<a id="sexadecimal_value"></a>
+### Sexadecimal (`float`)<a id="sexadecimal_float"></a>
 This create an angle from its decimal representation:
 ```php
 $gamma = Angle::createFromDecimal(180.2119);   //  180.2119°
@@ -118,7 +115,7 @@ $delta = Angle::createFromRadian(
 $delta = Angle::createFromRadian(-M_PI);     // -π ≅ -180°
 $delta = Angle::createFromRadian(2 * M_PI);  // 2π ≅    0°
 ```
-If you need a precise π value, you can pass a `Radian` object constructed with the `Number::π()` static method that return the π constant with an arbitrary precision up to 54 digits.
+If you need a precise  $\pi$ value, you can pass a `Radian` object constructed with the `Number::π()` static method that return the π constant with an arbitrary precision up to 54 digits.
 
 The `Radian` class extend the `ModularNumber` class, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
 
@@ -148,9 +145,9 @@ There are read-only properties too:
 /** @var Rotation */
 $alfa->direction;         // Rotation::CLOCKWISE (-1)
 ```
-The `Degrees`, `Minutes`, and `Seconds` extends `ModularNumber`, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
+The `Degrees` and `Minutes` to `int`, and `Seconds` to `float`. These three classes extends `ModularNumber`, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
 
-You can cast `Degrees`, `Minutes`, and `Seconds` to `string`.
+You can cast `Degrees`, `Minutes`, and `Seconds` to `string` automatically putting their variables in a string.
 
 ### Rotation direction
 Positive angles are represented by the enum constant
@@ -178,11 +175,17 @@ $beta->isClockwise();           // true
 ```
 
 ### Opposite direction
-You can calc the opposite direction of an object implementing the `Angle` interface with the method `oppositeDirection()`.
+You can calc the opposite direction of an `AngulaMeasure` interface with the method `oppositeDirection()`.
 ``` php
 $alfa = Angle::createFromDecimal(90.0);
 $beta = $alfa->oppositeDirection();
 (string) $beta; // 180° 0' 0"
+```
+### Absolute value
+The `absolute()` method return a copy of the `AngularMeasure` without the negative sign.
+```php
+$negative_angle = Angle::createFromDecimal(-180); // -180°
+$positive_angle = $negative_angle->absolute();    // +180°
 ```
 
 ## Casting
@@ -235,10 +238,9 @@ You can cast the angle to a string representation:
 ## Comparison
 You can compare an `Angle` or `AngularDistance` object against a _sexadecimal_ or _sexagesimal_ value.
 
-Comparisons are performed with absolute values (congruent comparison), meaning that $-90^\circ\cong+90^\circ$.
+Comparisons are performed with absolute values (congruent comparison) when comparing `Angle`s, meaning that $-90^\circ\cong+90^\circ$, while are performed with relative values when comparing `AngularDistance`s, meaning that $-90^\circ\ncong+90^\circ$
 
-If you need a relative comparison, you should [cast the angle to a sexadecimal `float`](#toFloat) and then perform the arithmetic comparison,
-meaning that $-90.0^\circ\lt+90.0^\circ$.
+If you need a relative comparison for `Angle`s, you should [cast the angle to a sexadecimal `float`](#toFloat) and then perform the arithmetic comparison, meaning that $-90.0^\circ\lt+90.0^\circ$, but you will lose the benefit of arbitrary precision math provided by `BcMath` extension.
 
 Each comparison can be performed against 
 - a `string` angle (sexagesimal), 
@@ -357,6 +359,14 @@ $gamma =
            $alfa    // -180° +
   ->absSum($beta);  // -270°
 (string) $gamma;    //  270°
+```
+
+### Relative distance
+You can calculate the relative distance between two `Angle`s.
+```php
+$alfa = Angle::createFromValues(180);
+$beta = Angle::createFromValues(90);
+$distance = AngularDistance::between($alfa, $beta);
 ```
 # FakerPHP support <a id="faker_php"></a>
 This library provides support to [FakerPHP](https://fakerphp.org/) through the `WithAngleFaker` trait. Here's a list of the available methods.
