@@ -4,8 +4,6 @@ namespace MarcoConsiglio\Goniometry\Interfaces;
 
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
-use MarcoConsiglio\Goniometry\Radian;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
