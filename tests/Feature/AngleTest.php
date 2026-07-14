@@ -16,44 +16,44 @@ use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundToSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Comparison as FuzzyComparison;
-use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Types\AngleType as FuzzyAngleType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Comparison as FuzzyComparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Equal as FuzzyEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types\AngleType as FuzzyAngleType;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\ComparisonStrategy;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\DifferentString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\EqualString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\FloatComparisonStrategy;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterOrEqualString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\GreaterString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualFloat;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserOrEqualString;
-use MarcoConsiglio\Goniometry\Comparisons\Strategies\LesserString;
-use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentString;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualString;
+use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterString;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualString;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserString;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\FloatType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\IntType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -256,7 +256,7 @@ class AngleTest extends TestCase
         $this->assertDirection($sexagesimal->direction, $angle->direction);
     }
 
-    #[TestDox("can be created from a textual representation.")]
+    #[TestDox("can be created from a sexagesimal string.")]
     public function test_create_from_string(): void
     {
         // Arrange
@@ -278,7 +278,7 @@ class AngleTest extends TestCase
         $this->assertDirection($direction, $angle->direction, $fail_message);
     }
 
-    #[TestDox("can be created from a decimal number.")]
+    #[TestDox("can be created from a sexadecimal number.")]
     public function test_create_from_decimal(): void
     {
         // Arrange
@@ -309,7 +309,7 @@ class AngleTest extends TestCase
         );
     }
 
-    #[TestDox("can return its absolute value.")]
+    #[TestDox("can return the positive counter-clockwise angle.")]
     public function test_absolute(): void
     {
         // Arrange
@@ -374,8 +374,8 @@ class AngleTest extends TestCase
         $this->assertEquals("{$sign}{$degrees} {$minutes} {$seconds}", (string) $alfa);
     }
 
-    #[TestDox("can be casted to float.")]
-    public function test_cast_to_float(): void
+    #[TestDox("can be casted to sexadecimal float.")]
+    public function test_cast_to_sexadecimal_float(): void
     {
         // Arrange
         $angle = Angle::createFromValues(
@@ -392,8 +392,8 @@ class AngleTest extends TestCase
         $this->assertIsFloat($actual);
     }
 
-    #[TestDox("can be casted to radian.")]
-    public function test_cast_to_radian(): void
+    #[TestDox("can be casted to radian float.")]
+    public function test_cast_to_radian_float(): void
     {
         // Arrange
         $angle = $this->randomAngle();
@@ -732,7 +732,7 @@ class AngleTest extends TestCase
          * Built from sexadecimal value
          */
         // Arrange
-        $angle = Angle::createFromValues(
+        $angle = Angle::createFromDecimal(
             $this->randomSexadecimal()
         );
 

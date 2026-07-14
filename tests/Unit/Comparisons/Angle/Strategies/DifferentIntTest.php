@@ -1,0 +1,63 @@
+<?php
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies;
+
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentInt;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt;
+use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Minutes;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
+use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
+use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
+use PHPUnit\Framework\Attributes\UsesClass;
+
+#[CoversClass(DifferentInt::class)]
+#[UsesClass(Angle::class)]
+#[UsesClass(Degrees::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
+#[UsesClass(EqualAngle::class)]
+#[UsesClass(EqualInt::class)]
+#[UsesClass(FromSexagesimal::class)]
+#[UsesClass(Minutes::class)]
+#[UsesClass(Seconds::class)]
+#[UsesClass(SexagesimalDegrees::class)]
+#[UsesTrait(WithAngleFaker::class)]
+class DifferentIntTest extends StrategiesTestCase
+{
+    protected string $comparison = '≠';
+
+    public function test_compare(): void
+    {
+        /**
+         * Different
+         */
+        // Arrange
+        $beta = $this->randomDegrees(min : 1);
+        $alfa = Angle::createFromValues($beta->value() - 1);
+
+        // Act & Assert
+        $this->assertTrue(new DifferentInt($alfa, $beta->value())->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
+
+        /**
+         * Equal
+         */
+        // Arrange
+        $beta = $this->randomDegrees();
+        $alfa = Angle::createFromValues($beta->value());
+
+        // Act & Assert
+        $this->assertFalse(new DifferentInt($alfa, $beta->value())->compare(),
+            $this->getFailMessage($alfa, $beta)
+        );
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace MarcoConsiglio\Goniometry\Interfaces;
 
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
@@ -18,7 +19,7 @@ interface Angle
         int $minutes, 
         float $seconds, 
         Rotation $direction
-    ): Angle;
+    ): AngularMeasure;
 
     /**
      * Create an `Angle` from its textual representation.
@@ -28,12 +29,12 @@ interface Angle
     /**
      * Create an `Angle` from its decimal representation.
      */
-    public static function createFromDecimal(float $sexadecimal): Angle;
+    public static function createFromDecimal(float|SexadecimalValue $sexadecimal): Angle;
 
     /**
      * Create an `Angle` from its radian representation.
      */
-    public static function createFromRadian(float $radian): Angle;
+    public static function createFromRadian(float|RadianValue $radian): Angle;
 
     /**
      * Return an absolute `Angle`
@@ -89,86 +90,86 @@ interface Angle
     /**
      * Check if this angle is greater than $angle.
      */
-    public function isGreaterThan(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function isGreaterThan(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Alias of isGreaterThan method.
      */
-    public function gt(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function gt(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is greater than or equal to $angle.
      */
-    public function isGreaterThanOrEqualTo(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function isGreaterThanOrEqualTo(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Alias of isGreaterThanOrEqual method.
      */
-    public function gte(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function gte(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is less than $angle.
      */
-    public function isLessThan(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function isLessThan(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Alias of isLessThan method.
      */
-    public function lt(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function lt(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is less than or equal to $angle.
      */
-    public function isLessThanOrEqualTo(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function isLessThanOrEqualTo(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Alias of isLessThanOrEqual method.
      */
-    public function lte(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function lte(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is equal to $angle.
      */
-    public function isEqualTo(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function isEqualTo(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Alias of isEqual method.
      */
-    public function eq(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function eq(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Check if this angle is different than $angle.
      */
-    public function isDifferentThan(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function isDifferentThan(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Alias for isDifferent method.
      */
-    public function not(string|int|float|Angle $angle, int $precision = 54): bool;
+    public function not(string|int|float|AngularMeasure $angle, int $precision = 54): bool;
 
     /**
      * Check if this `Angle` is equal to `$beta` within an acceptable `$delta` 
      * error angle.
      */
-    public function fuzzyEqual(Angle $beta, Angle $delta): bool;
+    public function fuzzyEqual(AngularMeasure $beta, AngularMeasure $delta): bool;
 
     /**
      * Alias for `fuzzyEqual()` method.
      */
-    public function feq(Angle $beta, Angle $delta): bool;
+    public function feq(AngularMeasure $beta, AngularMeasure $delta): bool;
 
     /**
      * The sum between two `Angle`s. The resulting `Angle` can be positive or negative.
      */
-    public function sum(Angle $addend): Angle;
+    public function sum(AngularMeasure $addend): AngularMeasure;
 
     /**
      * The sum between two `Angle`s. The resulting `Angle` can only be positive.
      */
-    public function absSum(Angle $addend): Angle;
+    public function absSum(AngularMeasure $addend): AngularMeasure;
 
     /**
      * Return the opposite `Angle`.
      */
-    public function oppositeDirection(): Angle;
+    public function oppositeDirection(): AngularMeasure;
 }

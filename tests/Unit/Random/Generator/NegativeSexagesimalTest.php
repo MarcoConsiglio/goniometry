@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexagesimal as NegativeSexagesimalGenerator;
@@ -16,10 +15,8 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The NegativeSexagesimal random generator")]
 #[CoversClass(NegativeSexagesimalGenerator::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
@@ -34,7 +31,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SexagesimalDegrees::class)]
 class NegativeSexagesimalTest extends TestCase
 {
-    #[TestDox("generates negative random sexagesimal values.")]
     public function test_random_generation(): void
     {
         // Arrange

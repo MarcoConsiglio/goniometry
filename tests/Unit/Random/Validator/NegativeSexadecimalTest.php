@@ -5,15 +5,12 @@ use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The NegativeSexadecimal validator")]
 #[CoversClass(NegativeSexadecimal::class)]
 #[UsesClass(SexadecimalRange::class)]
 class NegativeSexadecimalTest extends FloatValidatorTestCase
 {
-    #[TestDox("validates a negative SexadecimalRange.")]
     public function test_validate(): void
     {
         /**

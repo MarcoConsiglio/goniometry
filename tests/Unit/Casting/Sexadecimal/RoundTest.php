@@ -19,11 +19,9 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The Round class")]
 #[CoversClass(Round::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
@@ -43,7 +41,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 class RoundTest extends TestCase
 {
 
-    #[TestDox("can cast the Angle to a sexadecimal value with a specific precision.")]
     public function test_cast_with_precision(): void
     {
         /**
@@ -67,7 +64,6 @@ class RoundTest extends TestCase
         );
     }
 
-    #[TestDox("can cast the Angle to a sexadecimal value without a specific precision.")]
     public function test_cast_without_precision(): void
     {
         // Arrange

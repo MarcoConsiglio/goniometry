@@ -20,7 +20,7 @@ class FromAngles extends FromSexadecimal
     public function __construct(protected Angle $alfa, protected Angle $beta) {}
 
     /**
-     * Check for overflow above/below ±360°.
+     * Not implemented as overflow above/below +/-360° is allowed.
      * 
      * @codeCoverageIgnore
      */

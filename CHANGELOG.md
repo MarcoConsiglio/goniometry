@@ -1,4 +1,13 @@
 # Changelog
+## v7.0.0 2026-07-14
+### Fixed
+- [#27](https://github.com/MarcoConsiglio/goniometry/issues/27)
+### Changed
+- `SexadecimalValue::getParent()` method to `valueObject()`.
+- {`Angle`,`AngularDistance`} interface from `Angle` interface to abstract class `AngularMeasure`.
+- {`Radian`,`AngularDistanceRadian`} interface from `Scalar` to `RadianValue`.
+- API and README documentation.
+
 ## v6.1.2 2026-05-26
 ### Fixed
 - [#25](https://github.com/MarcoConsiglio/goniometry/issues/25).

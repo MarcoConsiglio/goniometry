@@ -13,7 +13,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The Seconds type")]
+#[TestDox("The Seconds class")]
 #[CoversClass(Seconds::class)]
 #[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(GeneratorSeconds::class)]

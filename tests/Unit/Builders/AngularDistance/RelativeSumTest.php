@@ -31,11 +31,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The RelativeSum SumBuilder")]
 #[CoversClass(RelativeSum::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleFromSexadecimal::class)]
@@ -66,7 +64,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesTrait(WithAngleFaker::class)]
 class RelativeSumTest extends TestCase
 {
-    #[TestDox("can sum two AngularDistances and return a relative sum.")]
     public function test_can_sum_angles(): void
     {
         // Arrange

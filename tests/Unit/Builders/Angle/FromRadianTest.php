@@ -22,11 +22,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The FromRadian builder")]
 #[CoversClass(FromRadian::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(Degrees::class)]
@@ -48,7 +46,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(NegativeRadianGenerator::class)]
 class FromRadianTest extends TestCase
 {
-    #[TestDox("can create an angle from a radian float type value.")]
     public function test_can_create_an_angle_from_float_value(): void
     {
         // Arrange
@@ -67,7 +64,6 @@ class FromRadianTest extends TestCase
         $this->assertInstanceOf(SexadecimalDegrees::class, $result[1]);
     }
 
-    #[TestDox("can create an angle from a Radian type value.")]
     public function test_can_create_an_angle_from_radian_type(): void
     {
         // Arrange

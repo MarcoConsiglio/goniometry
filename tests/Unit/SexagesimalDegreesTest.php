@@ -17,11 +17,9 @@ use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The SexagesimalDegrees class")]
 #[CoversClass(SexagesimalDegrees::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
@@ -50,7 +48,6 @@ class SexagesimalDegreesTest extends TestCase
         );
     }
 
-    #[TestDox("can be casted to a positive angle string.")]
     public function test_positive_angle_cast_to_string(): void
     {
         // Arrange
@@ -66,7 +63,6 @@ TEXT;
         );
     }
 
-    #[TestDox("can be casted to a negative angle string.")]
     public function test_negative_angle_cast_to_string(): void
     {
         // Arrange

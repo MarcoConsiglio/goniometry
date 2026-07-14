@@ -25,7 +25,7 @@ interface SexadecimalValue extends Scalar
     /**
      * Return the parent instance of this `SexadecimalValue`.
      */
-    public function getParent(): Number;
+    public function valueObject(): Number;
 
     /**
      * Return a `SexadecimalValue` with opposite direction.

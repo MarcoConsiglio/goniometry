@@ -57,7 +57,7 @@ class FromRadian extends AngleBuilder
     protected function calcSign(): void {}
 
     /**
-     * Checks for overflow above/below +/-360°.
+     * Not implemented as there's no need to check for overflow above/below +/-360°.
      * 
      * @codeCoverageIgnore
      */

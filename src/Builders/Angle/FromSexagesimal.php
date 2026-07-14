@@ -41,7 +41,7 @@ class FromSexagesimal extends AngleBuilder
     }
 
     /**
-     * Check for overflow above/below +/-360°.
+     * Not implemented as there's no need to check for overflow above/below +/-360°.
      * 
      * @codeCoverageIgnore
      */

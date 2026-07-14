@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The Degrees type")]
+#[TestDox("The Degrees class")]
 #[CoversClass(Degrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(DegreesGenerator::class)]

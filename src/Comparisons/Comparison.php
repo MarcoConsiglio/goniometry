@@ -1,13 +1,19 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
+use Error;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Comparisons\Types\AngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\FloatType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\InputType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\IntType;
-use MarcoConsiglio\Goniometry\Comparisons\Types\StringType;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\AngularDistance;
+use MarcoConsiglio\Goniometry\AngularMeasure;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\FloatType as AngleAndFloatType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType;
+use MarcoConsiglio\Goniometry\Comparisons\InputType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\IntType as AngleAndIntType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\StringType as AngleAndStringType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\AngularDistanceType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\FloatType as AngularDistanceAndFloatType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\IntType as AngularDistanceAndIntType;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\StringType as AngularDistanceAndStringType;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
@@ -18,11 +24,6 @@ use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 abstract class Comparison
 {
     /**
-     * The strategy used to compare two angles.
-     */
-    protected Strategy $comparison_strategy;
-
-    /**
      * The precision used when comparing an `Angle` against a `float` type 
      * variable.
      */
@@ -31,17 +32,22 @@ abstract class Comparison
     /**
      * The maximum allowed precision in every comparison.
      */
-    public const int MAX_PRECISION = 54;
+    public const int MAX_PRECISION = 54;   
+    
+    /**
+     * The strategy used to compare two angles.
+     */
+    protected Strategy $comparison_strategy;
 
     /**
      * Construct the `Comparison` with the two angles `$alfa` and `$beta`.
      * 
-     * @param AngleInterface $alfa The left operand of the comparison.
-     * @param string|int|float|Angle $beta The right operand of the comparison.
+     * @param AngularMeasure $alfa The left operand of the comparison.
+     * @param string|int|float|AngularMeasure $beta The right operand of the comparison.
      */
     public function __construct(
-        protected AngleInterface $alfa,
-        protected string|int|float|AngleInterface $beta
+        protected AngularMeasure $alfa,
+        protected string|int|float|AngularMeasure $beta
     ) {
         $this->setComparisonStrategy();
     }
@@ -49,15 +55,25 @@ abstract class Comparison
     /**
      * Return an `InputType` object that represent the type
      * of the right operand of the `Comparison`.
+     * 
+     * @throws Error if there are no comparison strategies available for the type of `$alfa`.
      */
     protected function getBetaType(): InputType
     {
-        if ($this->beta instanceof AngleInterface) {
-            return new AngleType($this->beta);
+        if ($this->alfa instanceof Angle) {
+            if ($this->beta instanceof Angle) return new AngleType($this->beta);
+            if (is_string($this->beta)) return new AngleAndStringType($this->beta);
+            if (is_int($this->beta)) return new AngleAndIntType($this->beta);
+            return new AngleAndFloatType($this->beta, $this->precision);
         }
-        if (is_string($this->beta)) return new StringType($this->beta);
-        if (is_int($this->beta)) return new IntType($this->beta);
-        return new FloatType($this->beta, $this->precision);
+        if ($this->alfa instanceof AngularDistance) {
+            if ($this->beta instanceof AngularDistance) return new AngularDistanceType($this->beta);
+            if (is_string($this->beta)) return new AngularDistanceAndStringType($this->beta);
+            if (is_int($this->beta)) return new AngularDistanceAndIntType($this->beta);
+            return new AngularDistanceAndFloatType($this->beta);
+        }
+        $unknown_class = get_class($this->alfa);
+        throw new Error("There are no comparison strategies available for class {$unknown_class}.");
     }
 
     /**

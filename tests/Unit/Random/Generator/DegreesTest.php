@@ -7,15 +7,12 @@ use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The Degrees random generator")]
 #[CoversClass(DegreesGenerator::class)]
 #[UsesClass(Degrees::class)]
 class DegreesTest extends TestCase
 {
-    #[TestDox("generates a random degrees value.")]
     public function test_random_generation(): void
     {
         // Arrange

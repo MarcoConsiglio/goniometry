@@ -68,10 +68,10 @@ class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
     }
 
     /**
-     * Return the parent instance of this `SexadecimalDegrees`.
+     * Return the `$value` instance of this `SexadecimalDegrees`.
      */
     #[Override]
-    public function getParent(): Number
+    public function valueObject(): Number
     {
         return $this->value;
     }

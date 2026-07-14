@@ -1,0 +1,164 @@
+<?php
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
+
+use Error;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\FloatType;
+use MarcoConsiglio\Goniometry\Comparisons\InputType;
+use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
+use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
+use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCase;
+use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
+use Override;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\UsesTrait;
+use PHPUnit\Framework\MockObject\Stub;
+
+#[CoversClass(FloatType::class)]
+#[UsesClass(Comparison::class)]
+#[UsesClass(ComparisonStrategy::class)]
+#[UsesClass(Different::class)]
+#[UsesClass(DifferentFloat::class)]
+#[UsesClass(Equal::class)]
+#[UsesClass(EqualFloat::class)]
+#[UsesClass(Greater::class)]
+#[UsesClass(GreaterFloat::class)]
+#[UsesClass(GreaterOrEqual::class)]
+#[UsesClass(GreaterOrEqualFloat::class)]
+#[UsesClass(Lesser::class)]
+#[UsesClass(LesserFloat::class)]
+#[UsesClass(LesserOrEqual::class)]
+#[UsesClass(LesserOrEqualFloat::class)]
+#[UsesClass(NegativeSexadecimalGenerator::class)]
+#[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(PositiveSexadecimalGenerator::class)]
+#[UsesClass(PositiveSexadecimalValidator::class)]
+#[UsesClass(RelativeSexadecimalGenerator::class)]
+#[UsesClass(RelativeSexadecimalValidator::class)]
+#[UsesClass(SexadecimalRange::class)]
+#[UsesClass(SexadecimalValidator::class)]
+#[UsesTrait(WithAngleFaker::class)]
+class FloatTypeTest extends InputTypeTestCase
+{
+    protected Angle&Stub $alfa;
+
+    protected float $beta;
+
+    protected InputType $input_type;
+
+    #[Override]
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->alfa = $this->createStub(Angle::class);
+        $this->beta = $this->randomSexadecimal();
+        $this->input_type = new FloatType($this->beta);
+    }
+
+    public function test_equal_strategy(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Equal::class), 
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(EqualFloat::class, $strategy);
+    }
+
+    public function test_different_comparison(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Different::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(DifferentFloat::class, $strategy);
+    }
+
+    public function test_greater_comparison(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Greater::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(GreaterFloat::class, $strategy);
+    }
+
+    public function test_greater_or_equal_comparison(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(GreaterOrEqual::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(GreaterOrEqualFloat::class, $strategy);
+    }
+
+    public function test_lesser_comparison(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(Lesser::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(LesserFloat::class, $strategy);
+    }
+
+    public function test_lesser_or_equal_comparison(): void
+    {
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(LesserOrEqual::class),
+            $this->alfa
+        );
+
+        // Assert
+        $this->assertInstanceOf(LesserOrEqualFloat::class, $strategy);
+    }
+
+    public function test_error(): void
+    {
+        // Assert
+        $this->expectException(Error::class);
+
+        // Act
+        $strategy = $this->input_type->getStrategyFor(
+            $this->getStubComparison(UnknownComparison::class),
+            $this->alfa
+        );        
+    }
+
+}

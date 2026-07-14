@@ -17,11 +17,6 @@ class TestCase extends PHPUnitTestCase
     use WithFailureMessage, WithAngleFaker;
 
     /**
-     * A safe precision used when comparing `float` type variables.
-     */
-    protected const int PRECISION = PHP_FLOAT_DIG - 4;
-
-    /**
      * This method is called before each test.
      */
     protected function setUp(): void
@@ -45,16 +40,6 @@ class TestCase extends PHPUnitTestCase
         $sexadecimal = new SexadecimalDegrees($sexadecimal->value->abs()->mul(Minutes::MAX)->sub($minutes->value));
         $seconds = new Seconds($sexadecimal->value->mul(Seconds::MAX));
         return [$degrees, $minutes, $seconds, $direction];
-    }
-
-    /**
-     * Round a `float $value` in order to compare with another `float` safely.
-     */
-    public function safeRound(float $value): float
-    {
-        return round(
-            $value, self::PRECISION, RoundingMode::HalfTowardsZero
-        );
     }
 
     /**

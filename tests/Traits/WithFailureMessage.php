@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Traits;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use ValueError;
 
@@ -88,27 +89,38 @@ trait WithFailureMessage
      * Return a comparison fail message.
      */
     protected function comparisonFail(
-        Angle $alfa, 
+        AngularMeasure $alfa, 
         string $comparison, 
-        int|float|string|Angle $beta
+        int|float|string|AngularMeasure $beta
     ): string {
         $this->checkComparison($comparison);
         if (is_int($beta)) return "$alfa $comparison {$beta}°";
-        if (is_float($beta)) { 
-            $float = new Number($beta)->value;
-            return "{$alfa->toSexadecimalDegrees()} $comparison {$float}°";
-        }
+        if (is_float($beta))
+            return "{$alfa->toSexadecimalDegrees()} $comparison {$beta}°";
         return "$alfa $comparison $beta";
+    }
+
+    protected function comparisonWithDeltaFail(
+        AngularMeasure $alfa,
+        string $comparison,
+        int|float|string|AngularMeasure $beta,
+        Angle $delta
+    ): string {
+        $error = $delta->toFloat() / 2;
+        if (is_int($beta)) return "$alfa $comparison {$beta}° with error ±{$error}°";
+        if (is_float($beta))
+            return "{$alfa->toSexadecimalDegrees()} $comparison {$beta}°  with error ±{$error}°";
+        return "$alfa $comparison $beta  with error ±{$error}°";
     }
 
     /**
      * Return a fuzzy comparison fail message.
      */
     protected function fuzzyComparisonFail(
-        Angle $alfa, 
+        AngularMeasure $alfa, 
         string $comparison,
-        Angle $beta,
-        Angle $delta
+        AngularMeasure $beta,
+        AngularMeasure $delta
     ): string {
         $this->checkComparison($comparison);
         return "{$alfa->toSexadecimalDegrees()} $comparison {$beta->toSexadecimalDegrees()} with delta {$delta->toSexadecimalDegrees()}.";

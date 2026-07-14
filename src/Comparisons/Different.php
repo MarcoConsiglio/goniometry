@@ -1,6 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+
 /**
  * The `Different` comparison between angles.
  * 

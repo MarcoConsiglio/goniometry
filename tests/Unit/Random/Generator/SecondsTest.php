@@ -7,16 +7,13 @@ use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The Seconds random generator")]
 #[CoversClass(SecondsGenerator::class)]
 #[UsesClass(SecondsRange::class)]
 #[UsesClass(Seconds::class)]
 class SecondsTest extends TestCase
 {
-    #[TestDox("generates a random seconds value.")]
     public function test_random_generation(): void
     {
         // Arrange

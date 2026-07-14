@@ -23,11 +23,9 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesTrait;
 use PHPUnit\Framework\Attributes\UsesClass;
 
-#[TestDox("The Radian\Cast class")]
 #[CoversClass(Cast::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
@@ -50,7 +48,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesTrait(WithAngleFaker::class)]
 class CastTest extends TestCase
 {
-    #[TestDox("can cast an Angle to radian with a specified precision.")]
     public function test_cast_with_precision(): void
     {
         // Arrange

@@ -15,7 +15,7 @@ class NoMatchExceptionTest extends TestCase
     {
         // Arrange
         $message = " does not match an angle measure.";
-        $angle = "361° 72' 88\"";
+        $angle = "fgwkgmòklm";
         
         // Act
         $exception = new NoMatchException($angle);

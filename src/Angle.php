@@ -14,95 +14,22 @@ use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundFromSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Fuzzy\Equal as FuzzyEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Equal as FuzzyEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
-use MarcoConsiglio\Goniometry\Interfaces\AngleBuilder;
+use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
+use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use Override;
-use Stringable;
 
 /**
  * The `Angle` type.
  */
-class Angle implements AngleInterface, Stringable
+class Angle extends AngularMeasure
 {
-    /**
-     * Regular expression used to parse degrees value as integer number.
-     */
-    public const DEGREES_REGEX = "/(?<!\d)(-?(?:360|3[0-5]\d|[12]?\d{1,2}))°/";
-
-    /**
-     * Regular expression used to parse minutes value as integer number.
-     */
-    public const MINUTES_REGEX = '/\b([0-5]?\d)\'/';
-
-    /**
-     * Regular expression used to parse second value as decimal number.
-     */
-    public const SECONDS_REGEX = '/\b((?:[1-5]?\d)(?:\.\d+)?)"/';
-
-    /**
-     * The degrees part.
-     */
-    public Degrees $degrees {
-        get {return $this->sexagesimal->degrees;}
-    }
-
-    /**
-     * The minutes part.
-     */
-    public Minutes $minutes {
-        get {return $this->sexagesimal->minutes;}
-    }
-
-    /**
-     * The seconds part.
-     */
-    public Seconds $seconds {
-        get {return $this->sexagesimal->seconds;}
-    }
-
-    
-    /** 
-     * The `Angle` `Rotation` direction.
-    */
-    public Rotation $direction {
-        get {return $this->sexagesimal->direction;}
-    }
-
-    /**
-     * The sexagesimal value of this `Angle`.
-     */
-    protected SexagesimalDegrees $sexagesimal;
-    
-    /** 
-     * The sexadecimal degrees value of this `Angle`.
-     */
-    protected SexadecimalDegrees|null $sexadecimal = null;
-
-    /** 
-     * The radian value of this `Angle`.
-     */
-    protected Radian|null $radian = null;
-
-
-    /**
-     * Construct an `Angle`.
-     */
-    protected function __construct(AngleBuilder $builder)
-    {
-        [
-            $this->sexagesimal,
-            $this->sexadecimal,
-            $this->radian
-        ] = $builder->fetchData();
-    }
-
     /**
      * Creates an `Angle` from its sexagesimal values.
      */
@@ -128,7 +55,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Creates an `Angle` from its sexadecimal representation.
      */
-    public static function createFromDecimal(float|SexadecimalDegrees $sexadecimal): Angle
+    public static function createFromDecimal(float|SexadecimalValue $sexadecimal): Angle
     {
         return new Angle(new FromSexadecimal($sexadecimal));
     }
@@ -136,7 +63,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Creates an `Angle` from its radian representation.
      */
-    public static function createFromRadian(float|Radian $radian): Angle
+    public static function createFromRadian(float|RadianValue $radian): Angle
     {
          return new Angle(new FromRadian($radian));
     }
@@ -156,7 +83,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Alias for `absolute()` method.
      */
-    public function asb(): AngleInterface
+    public function asb(): Angle
     {
         return $this->absolute();
     }
@@ -272,7 +199,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isGreaterThan(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new Greater($this, $angle);
@@ -288,7 +215,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function gt(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isGreaterThan($angle, $precision);
@@ -302,7 +229,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isGreaterThanOrEqualTo(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool
     {
@@ -319,7 +246,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function gte(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isGreaterThanOrEqualTo($angle, $precision);
@@ -333,7 +260,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isLessThan(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new Lesser($this, $angle);
@@ -349,7 +276,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function lt(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isLessThan($angle);
@@ -363,7 +290,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isLessThanOrEqualTo(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new LesserOrEqual($this, $angle);
@@ -379,7 +306,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function lte(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isLessThanOrEqualTo($angle);
@@ -393,7 +320,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isEqualTo(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new Equal($this, $angle);
@@ -409,7 +336,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function eq(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isEqualTo($angle, $precision);
@@ -423,7 +350,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function isDifferentThan(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         $comparison = new Different($this, $angle);
@@ -439,7 +366,7 @@ class Angle implements AngleInterface, Stringable
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
     public function not(
-        string|int|float|AngleInterface $angle, 
+        string|int|float|AngularMeasure $angle, 
         int $precision = Comparison::MAX_PRECISION
     ): bool {
         return $this->isDifferentThan($angle, $precision);
@@ -449,7 +376,7 @@ class Angle implements AngleInterface, Stringable
      * Check if this `Angle` is equal to `$beta` within an acceptable `$delta` 
      * error angle.
      */
-    public function fuzzyEqual(AngleInterface $beta, AngleInterface $delta): bool
+    public function fuzzyEqual(AngularMeasure $beta, AngularMeasure $delta): bool
     {
         return new FuzzyEqual($this, $beta, $delta)->compare();
     }
@@ -457,7 +384,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Alias for `fuzzyEqual()` method.
      */
-    public function feq(AngleInterface $beta, AngleInterface $delta): bool
+    public function feq(AngularMeasure $beta, AngularMeasure $delta): bool
     {
         return $this->fuzzyEqual($beta, $delta);
     }
@@ -465,7 +392,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Sum this `Angle` to an `$addend`. The resulting `Angle` can be positive or negative.
      */
-    public function sum(AngleInterface $addend): Angle
+    public function sum(AngularMeasure $addend): Angle
     {
         return new Angle(new RelativeSum($this, $addend));
     }
@@ -473,7 +400,7 @@ class Angle implements AngleInterface, Stringable
     /**
      * Sum this `Angle` to an `$addend` two absolute `Angle`s. The resulting `Angle` can be only positive.
      */
-    public function absSum(AngleInterface $addend): AngleInterface
+    public function absSum(AngularMeasure $addend): Angle
     {
         return new Angle(new AbsoluteSum($this, $addend));
     }
