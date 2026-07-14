@@ -6,8 +6,19 @@ use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Degrees;
 use Override;
 
+/**
+ * The strategy that compares two `AngularDistance` instances to check if they are equal.
+ * 
+ * @internal
+ */
 class EqualAngularDistance extends EqualAngle
 {
+    /**
+     * Construct the comparison strategy.
+     * 
+     * @param AngularDistance $alfa The left comparison operand.
+     * @param AngularDistance $beta The right comparison operand.
+     */
     public function __construct(AngularDistance $alfa, AngularDistance $beta)
     {
         parent::__construct($alfa, $beta);

@@ -55,7 +55,7 @@ class AbsoluteSum extends SumBuilder
     }
 
     /**
-     * Check for overflow above/below ±360°.
+     * Not implemented as this is already done in `calcSum()` method.
      * 
      * @codeCoverageIgnore
      */

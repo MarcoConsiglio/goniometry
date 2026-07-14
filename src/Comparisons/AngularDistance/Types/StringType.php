@@ -20,6 +20,12 @@ use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
 
+/**
+ * The beta `InputType` in a comparison between alfa and beta angles when
+ * `$beta` is a `string`.
+ * 
+ * @internal
+ */
 class StringType extends AngleStringType
 {
     /**

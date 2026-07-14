@@ -8,6 +8,9 @@ use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use Stringable;
 
+/**
+ * The concept of an angular measure.
+ */
 abstract class AngularMeasure implements Angle, Stringable
 {
     /**

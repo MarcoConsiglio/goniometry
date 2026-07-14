@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * The strategy that compares an `Angle` instance against a sexadecimal angle 

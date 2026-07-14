@@ -35,7 +35,7 @@ abstract class AngleBuilder implements AngleBuilderInterface
     protected Rotation $direction = Rotation::COUNTER_CLOCKWISE;  
 
     /**
-     * Check for overflow above/below ±360°.
+     * Check for overflow above/below ±360° or check bad formatted string.
      */
     abstract protected function checkOverflow(): void;
 

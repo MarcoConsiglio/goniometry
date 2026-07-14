@@ -86,7 +86,8 @@ class FromString extends AngleBuilder
     }
 
     /**
-     * Check for overflow above/below +/-360°.
+     * In previous versions, this method checked for overflow above/below +/-360°.
+     * Now check only parsing error and decide to throw a `NoMatchException`.
      * 
      * @throws NoMatchException when a bad formatted angle is matched.
      */

@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+
 /**
  * The strategy that compares an `Angle` instance against a sexagesimal degrees 
  * measure of an angle to check if they are equal.

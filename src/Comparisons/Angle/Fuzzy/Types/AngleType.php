@@ -17,6 +17,9 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
  */
 class AngleType extends BaseAngleType
 {
+    /**
+     * The delta error.
+     */
     protected Angle $delta;
 
     /**

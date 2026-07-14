@@ -64,7 +64,7 @@ class RelativeSum extends SumBuilder
     protected function calcDegrees(): void {/* No need to calc degrees as it is done in fetchData() */}
 
     /**
-     * Check for overflow above/below ±360°.
+     * Not implemented as there's no need to check for overflow above/below +/-360°.
      * 
      * @codeCoverageIgnore
      */
