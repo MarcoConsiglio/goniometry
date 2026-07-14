@@ -4,6 +4,11 @@ namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Comparison as FuzzyComparison;
 use Override;
 
+/**
+ * The `Equal` fuzzy comparison between angular distances.
+ * 
+ * @internal
+ */
 class Equal extends FuzzyComparison
 {
     #[Override]
