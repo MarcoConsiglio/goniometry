@@ -6,7 +6,7 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
@@ -19,7 +19,7 @@ class FromSexadecimal extends AngleBuilder
     /**
      * The decimal value used to build an angle.
      */
-    protected SexadecimalDegrees $decimal;
+    protected SexadecimalAngle $decimal;
 
     /**
      * The remainder that remains during the conversion steps from decimal to
@@ -30,11 +30,11 @@ class FromSexadecimal extends AngleBuilder
     /**
      * Construct `FromSexadecimal` `AngleBuilder` with a sexadecimal degrees value.
      */
-    public function __construct(float|SexadecimalDegrees $decimal)
+    public function __construct(float|SexadecimalAngle $decimal)
     {
         $this->decimal =
-            $decimal instanceof SexadecimalDegrees ?
-            $decimal : new SexadecimalDegrees($decimal);
+            $decimal instanceof SexadecimalAngle ?
+            $decimal : new SexadecimalAngle($decimal);
     }
 
     /**
@@ -91,7 +91,7 @@ class FromSexadecimal extends AngleBuilder
     /**
      * Fetches the data to build an `Angle`.
      *
-     * @return array{SexagesimalDegrees,SexadecimalDegrees,null}
+     * @return array{SexagesimalDegrees,SexadecimalAngle,null}
      */
     public function fetchData(): array
     {

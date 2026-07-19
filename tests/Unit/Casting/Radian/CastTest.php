@@ -1,9 +1,9 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Casting\Radian;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Casting\RadianAngle;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Casting\Radian\Cast;
+use MarcoConsiglio\Goniometry\Casting\RadianAngle\Cast;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;

@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Feature;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\AngularDistanceRadian;
+use MarcoConsiglio\Goniometry\RadianAngularDistance;
 use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
@@ -66,7 +66,7 @@ use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
@@ -102,6 +102,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianV
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -121,7 +122,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AngleFromString::class)]
 #[UsesClass(AngleGenerator::class)]
 #[UsesClass(AngularDistanceGenerator::class)]
-#[UsesClass(AngularDistanceRadian::class)]
+#[UsesClass(RadianAngularDistance::class)]
 #[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(AngularDistanceType::class)]
 #[UsesClass(CastToRadian::class)]
@@ -192,7 +193,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
@@ -210,7 +211,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
@@ -255,10 +256,10 @@ class AngularDistanceTest extends TestCase
     public function test_create_from_radian(): void
     {
         // Arrange
-        $radian = $this->randomRadian(Radian::MIN / 2, Radian::MAX / 2);
+        $radian = $this->randomRadian(RadianAngle::MIN / 2, RadianAngle::MAX / 2);
 
         // Act
-        $angle = AngularDistance::createFromRadian(new AngularDistanceRadian($radian->value));
+        $angle = AngularDistance::createFromRadian(new RadianAngularDistance($radian->value));
 
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $angle);
@@ -408,8 +409,8 @@ class AngularDistanceTest extends TestCase
         // Arrange
         $angle = AngularDistance::createFromRadian(
             $this->randomRadian(
-                min: NextFloat::after(AngularDistanceRadian::MIN),
-                max: NextFloat::before(AngularDistanceRadian::MAX)
+                min: NextFloat::after(RadianAngularDistance::MIN),
+                max: NextFloat::before(RadianAngularDistance::MAX)
             )->value()
         );
 

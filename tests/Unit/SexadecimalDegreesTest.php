@@ -10,14 +10,14 @@ use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[CoversClass(SexadecimalDegrees::class)]
+#[CoversClass(SexadecimalAngle::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
@@ -35,7 +35,7 @@ class SexadecimalDegreesTest extends TestCase
         $value = $this->positiveRandomSexadecimal(precision: 1);
 
         // Act
-        $sexadecimal = new SexadecimalDegrees($value);
+        $sexadecimal = new SexadecimalAngle($value);
 
         // Assert
         $this->assertEquals(
@@ -50,7 +50,7 @@ class SexadecimalDegreesTest extends TestCase
         $value = $this->negativeRandomSexadecimal(precision: 1);
 
         // Act
-        $sexadecimal = new SexadecimalDegrees($value);
+        $sexadecimal = new SexadecimalAngle($value);
 
         // Assert
         $this->assertEquals(
@@ -63,7 +63,7 @@ class SexadecimalDegreesTest extends TestCase
     {
         // Arrange
         $value = $this->randomSexadecimal();
-        $sexadecimal = new SexadecimalDegrees($value);
+        $sexadecimal = new SexadecimalAngle($value);
         $expected_value = new Number($value);
 
         // Act

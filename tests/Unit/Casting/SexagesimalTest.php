@@ -8,6 +8,7 @@ use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
@@ -21,7 +22,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 class SexagesimalTest extends TestCase
 {
@@ -32,7 +32,7 @@ class SexagesimalTest extends TestCase
          */
         // Arrange
         $caster = new Cast(
-            Angle::createFromDecimal($sexadecimal = new SexadecimalDegrees("180.012345678901234567890123456"))   
+            Angle::createFromDecimal($sexadecimal = new SexadecimalAngle("180.012345678901234567890123456"))   
         );
 
         // Assert
@@ -43,7 +43,7 @@ class SexagesimalTest extends TestCase
          */
         // Arrange
         $caster = new Cast(
-            Angle::createFromDecimal($sexadecimal = new SexadecimalDegrees("180.0123"))               
+            Angle::createFromDecimal($sexadecimal = new SexadecimalAngle("180.0123"))               
         );
 
         // Assert

@@ -1,10 +1,10 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\FloatGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RadianAngle as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(FloatGenerator::class)]
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(PositiveRadianValidator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
 class FloatGeneratorTest extends TestCase

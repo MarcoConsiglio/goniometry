@@ -20,7 +20,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -43,7 +43,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
@@ -62,7 +62,7 @@ class AbsoluteSumTest extends TestCase
             $alfa->toSexadecimalDegrees()->value
             ->plus($beta->toSexadecimalDegrees()->value)
             ->plus(Degrees::MAX);
-        $expected_sum = new SexadecimalDegrees($sum);
+        $expected_sum = new SexadecimalAngle($sum);
         $gamma = Angle::createFromDecimal($expected_sum);
 
         // Act
@@ -76,7 +76,7 @@ class AbsoluteSumTest extends TestCase
         $this->assertMinutes($gamma->minutes, $sexagesimal->minutes);
         $this->assertSeconds($gamma->seconds, $sexagesimal->seconds);
         $this->assertDirection($gamma->direction, $sexagesimal->direction);
-        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
+        $this->assertInstanceOf(SexadecimalAngle::class, $sexadecimal);
 
         /**
          * Negative sum
@@ -88,7 +88,7 @@ class AbsoluteSumTest extends TestCase
             $alfa->toSexadecimalDegrees()->value
             ->plus($beta->toSexadecimalDegrees()->value);
         $sum = new Number(Degrees::MAX)->add($sum);
-        $expected_sum = new SexadecimalDegrees($sum);
+        $expected_sum = new SexadecimalAngle($sum);
         $gamma = Angle::createFromDecimal($expected_sum);
 
         // Act
@@ -102,6 +102,6 @@ class AbsoluteSumTest extends TestCase
         $this->assertMinutes($gamma->minutes, $sexagesimal->minutes);
         $this->assertSeconds($gamma->seconds, $sexagesimal->seconds);
         $this->assertDirection($gamma->direction, $sexagesimal->direction);
-        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
+        $this->assertInstanceOf(SexadecimalAngle::class, $sexadecimal);
     }
 }

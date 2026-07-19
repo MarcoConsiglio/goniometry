@@ -10,7 +10,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -19,7 +19,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[TestDox("The SexadecimalDegrees class")]
-#[CoversClass(SexadecimalDegrees::class)]
+#[CoversClass(SexadecimalAngle::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
@@ -36,7 +36,7 @@ class SexadecimalDegreesTest extends TestCase
     {
         // Arrange
         $value = $this->randomSexadecimal(precision: 1);
-        $sexadecimal = new SexadecimalDegrees($value);
+        $sexadecimal = new SexadecimalAngle($value);
 
         // Act & Assert
         $this->assertEquals(
@@ -49,7 +49,7 @@ class SexadecimalDegreesTest extends TestCase
     public function test_toggle_direction(): void
     {
         // Arrange
-        $sexadecimal = new SexadecimalDegrees(
+        $sexadecimal = new SexadecimalAngle(
             $this->randomSexadecimal(
                 min: SexadecimalRange::min(),
                 max: SexadecimalRange::max()
@@ -65,7 +65,7 @@ class SexadecimalDegreesTest extends TestCase
     public function test_getParent(): void
     {
         // Arrange
-        $sexadecimal = new SexadecimalDegrees(
+        $sexadecimal = new SexadecimalAngle(
             $value = $this->randomFloat(
                 min: SexadecimalRange::min(),
                 max: SexadecimalRange::max(),

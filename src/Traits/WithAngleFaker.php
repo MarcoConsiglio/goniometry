@@ -7,7 +7,7 @@ use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\DegreesRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
@@ -267,13 +267,13 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a random relative `Radian` value.
+     * Return a random relative `RadianAngle` value.
      */
     public function randomRadian(
-        float $min = -Radian::MAX, 
-        float $max = Radian::MAX,
+        float $min = -RadianAngle::MAX, 
+        float $max = RadianAngle::MAX,
         int $precision = PHP_FLOAT_DIG
-    ): Radian {
+    ): RadianAngle {
         return new RelativeRadianGenerator(
             self::$faker,
             new RelativeRadianValidator,
@@ -282,13 +282,13 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a positive random `Radian` value.
+     * Return a positive random `RadianAngle` value.
      */
     public function positiveRandomRadian(
         float $min = 0, 
-        float $max = Radian::MAX,
+        float $max = RadianAngle::MAX,
         int $precision = PHP_FLOAT_DIG
-    ): Radian {
+    ): RadianAngle {
         return new PositiveRadianGenerator(
             self::$faker,
             new PositiveRadianValidator,
@@ -297,13 +297,13 @@ trait WithAngleFaker
     }
 
     /**
-     * Return a negative random `Radian` value.
+     * Return a negative random `RadianAngle` value.
      */
     public function negativeRandomRadian(
-        float $min = -Radian::MAX, 
+        float $min = -RadianAngle::MAX, 
         float $max = 0,
         int $precision = PHP_FLOAT_DIG
-    ): Radian {
+    ): RadianAngle {
         return new NegativeRadianGenerator(
             self::$faker,
             new NegativeRadianValidator,

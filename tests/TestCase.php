@@ -1,16 +1,15 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests;
-##########
+
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;
-use RoundingMode;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;use RoundingMode;
 
 class TestCase extends PHPUnitTestCase
 {
@@ -33,11 +32,11 @@ class TestCase extends PHPUnitTestCase
     protected function toSexagesimal(float $sexadecimal): array
     {
         $direction = $sexadecimal >= 0 ? Rotation::COUNTER_CLOCKWISE : Rotation::CLOCKWISE;
-        $sexadecimal = new SexadecimalDegrees(abs($sexadecimal));
+        $sexadecimal = new SexadecimalAngle(abs($sexadecimal));
         $degrees = new Degrees($sexadecimal->value->floor());
-        $sexadecimal = new SexadecimalDegrees($sexadecimal->value->abs()->sub($degrees->value));
+        $sexadecimal = new SexadecimalAngle($sexadecimal->value->abs()->sub($degrees->value));
         $minutes = new Minutes($sexadecimal->value->mul(Minutes::MAX)->floor());
-        $sexadecimal = new SexadecimalDegrees($sexadecimal->value->abs()->mul(Minutes::MAX)->sub($minutes->value));
+        $sexadecimal = new SexadecimalAngle($sexadecimal->value->abs()->mul(Minutes::MAX)->sub($minutes->value));
         $seconds = new Seconds($sexadecimal->value->mul(Seconds::MAX));
         return [$degrees, $minutes, $seconds, $direction];
     }

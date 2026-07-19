@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle as EqualAngleStrategy;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
 /**
@@ -71,7 +72,7 @@ class EqualAngle extends EqualAngleStrategy
     {
         $width = $this->delta->toSexadecimalDegrees()->value->abs();
         $this->epsilon = Angle::createFromDecimal(
-            new SexadecimalDegrees($width->div(2))
+            new SexadecimalAngle($width->div(2))
         );
     }
 

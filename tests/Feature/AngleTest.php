@@ -9,8 +9,8 @@ use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
 use MarcoConsiglio\Goniometry\Builders\Angle\RelativeSum;
 use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
-use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
-use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundToRadian;
+use MarcoConsiglio\Goniometry\Casting\RadianAngle\Cast as CastToRadian;
+use MarcoConsiglio\Goniometry\Casting\RadianAngle\Round as RoundToRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundToSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
@@ -57,7 +57,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
@@ -66,7 +66,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RadianAngle as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
@@ -86,6 +86,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSe
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
@@ -160,7 +161,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
@@ -660,11 +661,11 @@ class AngleTest extends TestCase
         // Arrange
         $angle = $this->positiveRandomAngle();
         if ($angle->isClockwise())
-            $opposite_sexadecimal = new SexadecimalDegrees(
+            $opposite_sexadecimal = new SexadecimalAngle(
                 $angle->toSexadecimalDegrees()->value->plus(-180)
             );
         else
-            $opposite_sexadecimal = new SexadecimalDegrees(
+            $opposite_sexadecimal = new SexadecimalAngle(
                 $angle->toSexadecimalDegrees()->value->plus(Degrees::MAX)->plus(-180)
             );
 
@@ -685,11 +686,11 @@ class AngleTest extends TestCase
         // Arrange
         $angle = $this->negativeRandomAngle();
         if ($angle->isClockwise())
-            $opposite_sexadecimal = new SexadecimalDegrees(
+            $opposite_sexadecimal = new SexadecimalAngle(
                 $angle->toSexadecimalDegrees()->value->plus(-180)
             );
         else
-            $opposite_sexadecimal = new SexadecimalDegrees(
+            $opposite_sexadecimal = new SexadecimalAngle(
                 $angle->toSexadecimalDegrees()->value->plus(Degrees::MAX)->plus(-180)
             );
 

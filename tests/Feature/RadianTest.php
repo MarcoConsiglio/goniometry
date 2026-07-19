@@ -1,10 +1,10 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\Radian as GeneratorRadian;
+use MarcoConsiglio\Goniometry\Random\Generator\RadianAngle as GeneratorRadian;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian as NegativeRadianValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian as PositiveRadianValidator;
@@ -16,8 +16,8 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The Radian class")]
-#[CoversClass(Radian::class)]
+#[TestDox("The RadianAngle class")]
+#[CoversClass(RadianAngle::class)]
 #[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(GeneratorRadian::class)]
@@ -35,7 +35,7 @@ class RadianTest extends TestCase
         $expected_value = $this->positiveRandomRadian(precision: 1);
         
         // Act
-        $radian = new Radian($expected_value->value());
+        $radian = new RadianAngle($expected_value->value());
 
         // Assert
         $this->assertEquals(
@@ -51,7 +51,7 @@ class RadianTest extends TestCase
         $expected_value = $this->negativeRandomRadian(precision: 6)->value();
 
         // Act
-        $radian = new Radian($expected_value);
+        $radian = new RadianAngle($expected_value);
 
         // Assert
         $this->assertEquals(

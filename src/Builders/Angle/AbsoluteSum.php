@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Builders\Angle;
 use BcMath\Number;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 
 /**
  * Sum two `Angle`s resulting in an absolute sum.
@@ -34,11 +34,11 @@ class AbsoluteSum extends SumBuilder
         $this->calcSign();
         $alfa = $this->alfa->toSexadecimalDegrees()->value;
         $beta = $this->beta->toSexadecimalDegrees()->value;
-        $this->decimal_sum = new SexadecimalDegrees(
+        $this->decimal_sum = new SexadecimalAngle(
             $alfa->plus($beta)
         );
         if ($this->decimal_sum->value->isNegative()) {
-            $this->decimal_sum = new SexadecimalDegrees(
+            $this->decimal_sum = new SexadecimalAngle(
                 new Number(Degrees::MAX)->add($this->decimal_sum->value)
             );
         }

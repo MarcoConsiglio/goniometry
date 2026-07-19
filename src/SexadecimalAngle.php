@@ -10,7 +10,7 @@ use Override;
 /**
  * The sexadecimal value of an `Angle`.
  */
-class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
+class SexadecimalAngle extends ModularNumber implements SexadecimalValue
 {
     /**
      * The symbol for the unit of measurement of sexadecimal degrees.
@@ -60,9 +60,9 @@ class SexadecimalDegrees extends ModularNumber implements SexadecimalValue
      * Return this `SexadecimalDegrees` with opposite direction.
      */
     #[Override]
-    public function oppositeRotation(): SexadecimalDegrees
+    public function oppositeRotation(): SexadecimalAngle
     {
-        return new SexadecimalDegrees(
+        return new SexadecimalAngle(
             $this->value->opposite()
         );
     }

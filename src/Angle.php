@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry;
 
 use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
+use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
@@ -11,16 +12,20 @@ use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundFromRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundFromSexadecimal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Equal as FuzzyEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Equal as FuzzyEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Greater;
 use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
+use MarcoConsiglio\Goniometry\Interfaces\Angle\BuildableFromRadian;
+use MarcoConsiglio\Goniometry\Interfaces\Angle\BuildableFromSexadecimal;
+use MarcoConsiglio\Goniometry\Interfaces\Angle\Comparable;
+use MarcoConsiglio\Goniometry\Interfaces\Angle\FuzzyComparable;
 use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use Override;
@@ -28,8 +33,34 @@ use Override;
 /**
  * The `Angle` type.
  */
-class Angle extends AngularMeasure
+class Angle extends AngularMeasure implements 
+    BuildableFromRadian, 
+    BuildableFromSexadecimal,
+    Comparable,
+    FuzzyComparable
 {
+    /** 
+     * The sexadecimal degrees value of this `Angle`.
+     */
+    protected SexadecimalAngle|null $sexadecimal = null;
+
+    /** 
+     * The radian value of this `Angle`.
+     */
+    protected RadianAngle|null $radian = null;
+
+    /**
+     * Construct an `Angle`.
+     */
+    protected function __construct(AngleBuilder $builder)
+    {
+        [
+            $this->sexagesimal,
+            $this->sexadecimal,
+            $this->radian
+        ] = $builder->fetchData();
+    }
+
     /**
      * Creates an `Angle` from its sexagesimal values.
      */
@@ -38,8 +69,8 @@ class Angle extends AngularMeasure
         int $minutes = 0, 
         float $seconds = 0.0, 
         Rotation $direction = Rotation::COUNTER_CLOCKWISE
-    ): Angle {
-        return new Angle(new FromSexagesimal($degrees, $minutes, $seconds, $direction));
+    ): static {
+        return new static(new FromSexagesimal($degrees, $minutes, $seconds, $direction));
     }
 
     /**
@@ -47,34 +78,34 @@ class Angle extends AngularMeasure
      * 
      * @throws NoMatchException when bad formatted `string` `$angle` is found.
      */
-    public static function createFromString(string $sexagesimal): Angle
+    public static function createFromString(string $sexagesimal): static
     {
-        return new Angle(new FromString($sexagesimal));
+        return new static(new FromString($sexagesimal));
     }
 
     /**
      * Creates an `Angle` from its sexadecimal representation.
      */
-    public static function createFromDecimal(float|SexadecimalValue $sexadecimal): Angle
+    public static function createFromDecimal(float|SexadecimalValue $sexadecimal): static
     {
-        return new Angle(new FromSexadecimal($sexadecimal));
+        return new static(new FromSexadecimal($sexadecimal));
     }
 
     /**
      * Creates an `Angle` from its radian representation.
      */
-    public static function createFromRadian(float|RadianValue $radian): Angle
+    public static function createFromRadian(float|RadianValue $radian): static
     {
-         return new Angle(new FromRadian($radian));
+         return new static(new FromRadian($radian));
     }
 
     /**
      * Return this `Angle` as absolute (positive).
      */
-    public function absolute(): Angle
+    public function absolute(): static
     {
-        return Angle::createFromDecimal(
-            new SexadecimalDegrees(
+        return static::createFromDecimal(
+            new SexadecimalAngle(
                 $this->toSexadecimalDegrees()->value->abs()
             )
         );
@@ -83,33 +114,9 @@ class Angle extends AngularMeasure
     /**
      * Alias for `absolute()` method.
      */
-    public function asb(): Angle
+    public function asb(): static
     {
         return $this->absolute();
-    }
-
-    /**
-     * Return an array containing separate sexagesimal values.
-     * 
-     * The direction of the `Angle` is the sign of `"degrees"` value.
-     *
-     * @param bool $associative Set to true it returns an associative array.
-     * @param int $precision The precision used for seconds.
-     * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
-     */
-    public function getDegrees(bool $associative = false, int $precision = PHP_FLOAT_DIG): array
-    {
-        $degrees = $this->degrees->value() * $this->direction->value;
-        $minutes = $this->minutes->value();
-        $seconds = $this->seconds->value($precision);
-        if ($associative)
-            return [
-                "degrees" => $degrees,
-                "minutes" => $minutes,
-                "seconds" => $seconds
-            ];
-        else
-            return [$degrees, $minutes, $seconds];
     }
 
     /**
@@ -131,13 +138,13 @@ class Angle extends AngularMeasure
     /**
      * Return the same instance with the opposite `Rotation` direction.
      */
-    public function oppositeRotation(): Angle
+    public function oppositeRotation(): static
     {
         $clone = clone $this;
         $clone->sexagesimal->direction =
             $clone->sexagesimal->direction->opposite();
         if ($clone->sexadecimal !== null)
-            $clone->sexadecimal = new SexadecimalDegrees(
+            $clone->sexadecimal = new SexadecimalAngle(
                 $clone->sexadecimal->value->mul(-1)
             );
         return $clone;
@@ -146,11 +153,11 @@ class Angle extends AngularMeasure
     /**
      * Cast this `Angle` to `SexadecimalDegrees`.
      */
-    public function toSexadecimalDegrees(): SexadecimalDegrees
+    public function toSexadecimalDegrees(): SexadecimalAngle
     {
         if ($this->sexadecimal !== null)
             return $this->sexadecimal;
-        return $this->sexadecimal = new SexadecimalDegrees(
+        return $this->sexadecimal = new SexadecimalAngle(
             $this->degrees->value->plus(
                 $this->minutes->value->div(Minutes::MAX)
             )->plus(
@@ -392,26 +399,26 @@ class Angle extends AngularMeasure
     /**
      * Sum this `Angle` to an `$addend`. The resulting `Angle` can be positive or negative.
      */
-    public function sum(AngularMeasure $addend): Angle
+    public function sum(AngularMeasure $addend): static
     {
-        return new Angle(new RelativeSum($this, $addend));
+        return new static(new RelativeSum($this, $addend));
     }
 
     /**
      * Sum this `Angle` to an `$addend` two absolute `Angle`s. The resulting `Angle` can be only positive.
      */
-    public function absSum(AngularMeasure $addend): Angle
+    public function absSum(AngularMeasure $addend): static
     {
-        return new Angle(new AbsoluteSum($this, $addend));
+        return new static(new AbsoluteSum($this, $addend));
     }
 
     /**
      * Return the opposite direction `Angle`.
      */
     #[Override]
-    public function oppositeDirection(): Angle
+    public function oppositeDirection(): static
     {
-        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
+        $opposite = static::createFromValues(180, direction: Rotation::CLOCKWISE);
         if ($this->isClockwise())
             return $this->sum($opposite);
         else

@@ -12,7 +12,7 @@ use Override;
 /**
  * The radian value of an `AngularDistance`.
  */
-class AngularDistanceRadian extends ModularRelativeNumber implements RadianValue
+class RadianAngularDistance extends ModularRelativeNumber implements RadianValue
 {
     /**
      * The maximum allowed radian value.
@@ -25,7 +25,7 @@ class AngularDistanceRadian extends ModularRelativeNumber implements RadianValue
     public const float MIN = -self::MAX;
 
     /**
-     * Construct the `AngularDistanceRadian` `Scalar` value.
+     * Construct the `RadianAngularDistance`.
      */
     public function __construct(int|float|string|BCMathNumber|Number $value)
     {
@@ -36,7 +36,7 @@ class AngularDistanceRadian extends ModularRelativeNumber implements RadianValue
     }
 
     /**
-     * Return the value of this `AngularDistanceRadian` instance.
+     * Return the value of this `RadianAngularDistance` instance.
      */
     #[Override]
     public function value(int|null $precision = null): float

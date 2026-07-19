@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
-use MarcoConsiglio\Goniometry\AngularDistanceRadian;
+use MarcoConsiglio\Goniometry\RadianAngularDistance;
 use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
 use Override;
 
@@ -15,16 +15,16 @@ class FromRadian extends AngleBuilder
     /**
      * The input radian value.
      */
-    protected AngularDistanceRadian $radian;
+    protected RadianAngularDistance $radian;
 
     /**
      * Constructs `FromRadian` `AngleBuilder` with a `$radian` value.
      */
-    public function __construct(float|AngularDistanceRadian $radian)
+    public function __construct(float|RadianAngularDistance $radian)
     {
         $this->radian = 
-            $radian instanceof AngularDistanceRadian ?
-            $radian : new AngularDistanceRadian($radian);
+            $radian instanceof RadianAngularDistance ?
+            $radian : new RadianAngularDistance($radian);
     }
 
     /**
@@ -66,7 +66,7 @@ class FromRadian extends AngleBuilder
     /**
      * Fetches the data to build an `AngularDistance`.
      *
-     * @return array{SexagesimalDegrees,SexadecimalAngularDistance,AngularDistanceRadian}
+     * @return array{SexagesimalDegrees,SexadecimalAngularDistance,RadianAngularDistance}
      */    
     #[Override]
     public function fetchData(): array

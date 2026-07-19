@@ -11,7 +11,7 @@ use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
@@ -27,7 +27,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngularDistance as Positi
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexagesimal as PositiveSexagesimalGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RadianAngle as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
@@ -93,7 +93,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(PositiveSexagesimalGenerator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
@@ -298,7 +298,7 @@ class WithAngleFakerTest extends TestCase
         $radian = $this->randomRadian();
 
         // Assert
-        $this->assertInstanceOf(Radian::class, $radian);
+        $this->assertInstanceOf(RadianAngle::class, $radian);
     }
 
     #[TestDox("can return a random positive radian value.")]
@@ -308,7 +308,7 @@ class WithAngleFakerTest extends TestCase
         $radian = $this->positiveRandomRadian();
 
         // Assert
-        $this->assertInstanceOf(Radian::class, $radian);
+        $this->assertInstanceOf(RadianAngle::class, $radian);
     }
         
     #[TestDox("can return a random negative radian value.")]
@@ -318,7 +318,7 @@ class WithAngleFakerTest extends TestCase
         $radian = $this->negativeRandomRadian();
         
         // Assert
-        $this->assertInstanceOf(Radian::class, $radian);
+        $this->assertInstanceOf(RadianAngle::class, $radian);
     }
 
     #[TestDox("can return a random positive AngularDistance.")]

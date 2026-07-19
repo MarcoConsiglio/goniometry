@@ -8,7 +8,7 @@ use MarcoConsiglio\Goniometry\Casting\Radian\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
@@ -17,6 +17,7 @@ use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
@@ -31,7 +32,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(PositiveRadianGenerator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
 #[UsesClass(FloatValidator::class)]
@@ -39,7 +40,6 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
@@ -61,7 +61,7 @@ class FromRadianTest extends TestCase
             $result[2]->value(5)
         );
         $this->assertInstanceOf(SexagesimalDegrees::class, $result[0]);
-        $this->assertInstanceOf(SexadecimalDegrees::class, $result[1]);
+        $this->assertInstanceOf(SexadecimalAngle::class, $result[1]);
     }
 
     public function test_can_create_an_angle_from_radian_type(): void
@@ -79,6 +79,6 @@ class FromRadianTest extends TestCase
             $result[2]->value()
         );
         $this->assertInstanceOf(SexagesimalDegrees::class, $result[0]);
-        $this->assertInstanceOf(SexadecimalDegrees::class, $result[1]);
+        $this->assertInstanceOf(SexadecimalAngle::class, $result[1]);
     }
 }

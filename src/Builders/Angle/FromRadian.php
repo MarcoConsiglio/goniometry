@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 /**
  *  Build an `Angle` starting from a radian value.
  * 
@@ -12,16 +12,16 @@ class FromRadian extends AngleBuilder
     /**
      * The radian value used to build an `Angle`.
      */
-    protected Radian $radian;
+    protected RadianAngle $radian;
 
     /**
      * Constructs `FromRadian` `AngleBuilder` with a `$radian` value.
      */
-    public function __construct(float|Radian $radian)
+    public function __construct(float|RadianAngle $radian)
     {
         $this->radian = 
-            $radian instanceof Radian ?
-            $radian : new Radian($radian);
+            $radian instanceof RadianAngle ?
+            $radian : new RadianAngle($radian);
     }
 
     /**
@@ -63,7 +63,7 @@ class FromRadian extends AngleBuilder
     /**
      * Fetches the data to build an `Angle`.
      *
-     * @return array{SexagesimalDegrees,SexadecimalDegrees,Radian}
+     * @return array{SexagesimalDegrees,SexadecimalDegrees,RadianAngle}
      */
     public function fetchData(): array
     {

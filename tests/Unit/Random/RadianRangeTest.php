@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -15,7 +15,7 @@ class RadianRangeTest extends TestCase
     {
         // Act & Assert
         $this->assertSame(
-            NextFloat::before(Radian::MAX),
+            NextFloat::before(RadianAngle::MAX),
             RadianRange::max()
         );
     }
@@ -24,7 +24,7 @@ class RadianRangeTest extends TestCase
     {
         // Act & Assert
         $this->assertSame(
-            NextFloat::after(Radian::MIN),
+            NextFloat::after(RadianAngle::MIN),
             RadianRange::min()
         );
     }

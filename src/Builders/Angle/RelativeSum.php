@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 
 /**
@@ -17,7 +18,7 @@ class RelativeSum extends SumBuilder
     {
         $alfa = $this->alfa->toSexadecimalDegrees()->value;
         $beta = $this->beta->toSexadecimalDegrees()->value;
-        $this->decimal_sum = new SexadecimalDegrees(
+        $this->decimal_sum = new SexadecimalAngle(
             $alfa->plus($beta)
         );       
     }

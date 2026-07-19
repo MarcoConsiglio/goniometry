@@ -4,13 +4,12 @@ namespace MarcoConsiglio\Goniometry;
 use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
-use MarcoConsiglio\Goniometry\Interfaces\Scalar;
 use MarcoConsiglio\ModularArithmetic\ModularNumber;
 
 /**
  * The radian value of an `Angle`.
  */
-class Radian extends ModularNumber implements RadianValue
+class RadianAngle extends ModularNumber implements RadianValue
 {
     /**
      * The maximum allowed radian value.
@@ -23,7 +22,7 @@ class Radian extends ModularNumber implements RadianValue
     public const float MIN = -self::MAX;
 
     /**
-     * Construct a `Radian` number.
+     * Construct a `RadianAngle` number.
      */
     public function __construct(int|float|string|BCMathNumber|Number $value)
     {
@@ -34,7 +33,7 @@ class Radian extends ModularNumber implements RadianValue
     }
 
     /**
-     * Return the `Radian` value.
+     * Return the `RadianAngle` value.
      */
     public function value(int|null $precision = null): float
     {

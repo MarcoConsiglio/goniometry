@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -29,7 +29,7 @@ class RelativeRadianTest extends FloatValidatorTestCase
          * $max ≥ 2π
          */
         // Arrange
-        $this->setRange(Radian::MAX, Radian::MAX);
+        $this->setRange(RadianAngle::MAX, RadianAngle::MAX);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), $this->allowedMax());
@@ -39,7 +39,7 @@ class RelativeRadianTest extends FloatValidatorTestCase
          * $max ≥ 2π
          */
         // Arrange
-        $this->setRange(3.141593, Radian::MAX);
+        $this->setRange(3.141593, RadianAngle::MAX);
 
         // Act & Assert
         $this->testValidator(3.141593, $this->allowedMax());
@@ -49,7 +49,7 @@ class RelativeRadianTest extends FloatValidatorTestCase
          * -2π < $max < 2π
          */
         // Arrange
-        $this->setRange(Radian::MAX, 3.141593);
+        $this->setRange(RadianAngle::MAX, 3.141593);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), 3.141593);
@@ -59,7 +59,7 @@ class RelativeRadianTest extends FloatValidatorTestCase
          * $max ≤ -2π
          */
         // Arrange
-        $this->setRange(-Radian::MAX, -Radian::MAX);
+        $this->setRange(-RadianAngle::MAX, -RadianAngle::MAX);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), $this->allowedMax());
@@ -69,7 +69,7 @@ class RelativeRadianTest extends FloatValidatorTestCase
          * -2π < $max < 2π
          */
         // Arrange
-        $this->setRange(-Radian::MAX, 3.141593);
+        $this->setRange(-RadianAngle::MAX, 3.141593);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), 3.141593);
@@ -79,7 +79,7 @@ class RelativeRadianTest extends FloatValidatorTestCase
          * $max ≤ -2π
          */
         // Arrange
-        $this->setRange(-3.141593, -Radian::MAX);
+        $this->setRange(-3.141593, -RadianAngle::MAX);
 
         // Act & Assert
         $this->testValidator(-3.141593, $this->allowedMax());

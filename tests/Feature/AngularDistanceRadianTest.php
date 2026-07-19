@@ -1,10 +1,9 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
-use BcMath\Number;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\AngularDistanceRadian;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngularDistance;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\FloatGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
@@ -19,12 +18,12 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[TestDox("The AngularDistanceRadian")]
-#[CoversClass(AngularDistanceRadian::class)]
+#[TestDox("The RadianAngularDistance")]
+#[CoversClass(RadianAngularDistance::class)]
 #[UsesClass(FloatGenerator::class)]
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(NegativeRadianGenerator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RelativeRadianGenerator::class)]
 #[UsesClass(RelativeRadianValidator::class)]
@@ -36,10 +35,10 @@ class AngularDistanceRadianTest extends TestCase
     public function test_cast_to_float(): void
     {
         // Arrange
-        $radian = new AngularDistanceRadian(
+        $radian = new RadianAngularDistance(
             $float = $this->randomRadian(
-                min: NextFloat::after(AngularDistanceRadian::MIN),
-                max: NextFloat::before(AngularDistanceRadian::MAX)
+                min: NextFloat::after(RadianAngularDistance::MIN),
+                max: NextFloat::before(RadianAngularDistance::MAX)
             )->value()
         );
 
@@ -56,7 +55,7 @@ class AngularDistanceRadianTest extends TestCase
         // Act & Assert
         $this->assertEquals(
             $pi,
-            AngularDistanceRadian::getMaxRadian()->value
+            RadianAngularDistance::getMaxRadian()->value
         );
     }
 }

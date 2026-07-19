@@ -119,7 +119,7 @@ class EqualAngleTest extends TestCase
     protected function getEpsilon(AngleInterface $delta): Angle
     {
         return Angle::createFromDecimal(
-            new SexadecimalDegrees(
+            new SexadecimalAngle(
                 $delta->toSexadecimalDegrees()->value->div(2)
             )
         );

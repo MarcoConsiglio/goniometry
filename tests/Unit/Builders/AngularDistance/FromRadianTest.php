@@ -2,16 +2,16 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Builders\AngularDistance;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\AngularDistanceRadian;
+use MarcoConsiglio\Goniometry\RadianAngularDistance;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\FloatGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\RadianAngle as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
@@ -25,11 +25,11 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(FromRadian::class)]
-#[UsesClass(AngularDistanceRadian::class)]
+#[UsesClass(RadianAngularDistance::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(Minutes::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(FloatGenerator::class)]
 #[UsesClass(NegativeRadianGenerator::class)]
 #[UsesClass(RadianGenerator::class)]
@@ -47,8 +47,8 @@ class FromRadianTest extends TestCase
     {
         // Arrange
         $radian = $this->randomRadian(
-            min: NextFloat::after(AngularDistanceRadian::MIN),
-            max: NextFloat::before(AngularDistanceRadian::MAX)
+            min: NextFloat::after(RadianAngularDistance::MIN),
+            max: NextFloat::before(RadianAngularDistance::MAX)
         )->value();
         $builder = new FromRadian($radian);
 
@@ -67,10 +67,10 @@ class FromRadianTest extends TestCase
     public function test_can_create_an_angle_from_radian_type(): void
     {
         // Arrange
-        $radian = new AngularDistanceRadian(
+        $radian = new RadianAngularDistance(
             $this->randomRadian(
-                min: NextFloat::after(AngularDistanceRadian::MIN),
-                max: NextFloat::before(AngularDistanceRadian::MAX)
+                min: NextFloat::after(RadianAngularDistance::MIN),
+                max: NextFloat::before(RadianAngularDistance::MAX)
             )->value()
         );
         $builder = new FromRadian($radian);

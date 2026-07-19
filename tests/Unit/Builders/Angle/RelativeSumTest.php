@@ -18,7 +18,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -41,7 +41,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
@@ -56,7 +56,7 @@ class RelativeSumTest extends TestCase
         $sum = 
             $alfa->toSexadecimalDegrees()->value
             ->plus($beta->toSexadecimalDegrees()->value);
-        $expected_sum = new SexadecimalDegrees($sum);
+        $expected_sum = new SexadecimalAngle($sum);
         $gamma = Angle::createFromDecimal($expected_sum);
 
         // Act
@@ -64,7 +64,7 @@ class RelativeSumTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
-        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
+        $this->assertInstanceOf(SexadecimalAngle::class, $sexadecimal);
         $this->assertDegrees($gamma->degrees,       $sexagesimal->degrees);
         $this->assertMinutes($gamma->minutes,       $sexagesimal->minutes);
         $this->assertSeconds($gamma->seconds,       $sexagesimal->seconds);

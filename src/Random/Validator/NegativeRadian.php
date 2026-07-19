@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 
 /**
@@ -37,8 +37,8 @@ class NegativeRadian extends FloatValidator
      */
     public function avoidExceedingValues(float &$min, float &$max): void
     {
-        if ($this->lessThanOrEqual($min, -Radian::MAX)) $this->setMin($min);
-        if ($this->lessThanOrEqual($max, -Radian::MAX)) $this->setMax($max);
+        if ($this->lessThanOrEqual($min, -RadianAngle::MAX)) $this->setMin($min);
+        if ($this->lessThanOrEqual($max, -RadianAngle::MAX)) $this->setMax($max);
     }
 
     /**

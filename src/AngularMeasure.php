@@ -1,30 +1,28 @@
 <?php
 namespace MarcoConsiglio\Goniometry;
 
-use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
-use MarcoConsiglio\Goniometry\Interfaces\Angle;
-use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
+use MarcoConsiglio\Goniometry\Interfaces\BuildableFromSexagesimal;
+use MarcoConsiglio\Goniometry\Interfaces\BuildableFromSexagesimalString;
+use MarcoConsiglio\Goniometry\Interfaces\CastableToRadian;
+use MarcoConsiglio\Goniometry\Interfaces\CastableToSexadecimal;
+use MarcoConsiglio\Goniometry\Interfaces\CastableToSexagesimal;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
+use MarcoConsiglio\Goniometry\Interfaces\Summable;
 use Stringable;
 
 /**
  * The concept of an angular measure.
  */
-abstract class AngularMeasure implements Angle, Stringable
+abstract class AngularMeasure implements 
+    Stringable,
+    BuildableFromSexagesimalString,
+    BuildableFromSexagesimal,
+    CastableToSexagesimal,
+    CastableToSexadecimal,
+    CastableToRadian,
+    Summable
 {
-    /**
-     * Construct an `AngularMeasure`.
-     */
-    protected function __construct(AngleBuilder $builder)
-    {
-        [
-            $this->sexagesimal,
-            $this->sexadecimal,
-            $this->radian
-        ] = $builder->fetchData();
-    }
-
     /**
      * Regular expression used to parse degrees value as integer number.
      */
@@ -73,14 +71,61 @@ abstract class AngularMeasure implements Angle, Stringable
      * The sexagesimal value of this `Angle`.
      */
     protected SexagesimalDegrees $sexagesimal;
-    
-    /** 
-     * The sexadecimal degrees value of this `Angle`.
-     */
-    protected SexadecimalValue|null $sexadecimal = null;
 
-    /** 
-     * The radian value of this `Angle`.
+    abstract public static function createFromValues(
+        int $degrees, 
+        int $minutes, 
+        float $seconds, 
+        Rotation $direction
+    ): static;
+    
+    abstract public static function createFromString(string $sexagesimal): static;
+
+    abstract public function toRadian(int $precision = PHP_FLOAT_DIG): float;
+
+    abstract public function sum(Summable&AngularMeasure $addend): static;
+
+    abstract public function absSum(Summable&AngularMeasure $addend): static;
+
+    abstract public function toSexadecimalDegrees(): SexadecimalValue;
+
+    abstract public function toFloat(int $precision = PHP_FLOAT_DIG): float;
+
+    abstract public function toSexagesimalDegrees(): SexagesimalDegrees;
+
+    abstract public function absolute(): static;
+
+    abstract public function asb(): static;
+
+    abstract public function oppositeRotation(): static;
+
+    abstract public function oppositeDirection(): static;
+
+    abstract public function isClockwise(): bool;
+
+    abstract public function isCounterClockwise(): bool;
+    
+    /**
+     * Return an array containing separate sexagesimal values.
+     * 
+     * The direction of the `Angle` is the sign of `"degrees"` value.
+     *
+     * @param bool $associative Set to true it returns an associative array.
+     * @param int $precision The precision used for seconds.
+     * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
      */
-    protected RadianValue|null $radian = null;
+    public function getDegrees(bool $associative = false, int $precision = PHP_FLOAT_DIG): array
+    {
+        $degrees = $this->degrees->value() * $this->direction->value;
+        $minutes = $this->minutes->value();
+        $seconds = $this->seconds->value($precision);
+        if ($associative)
+            return [
+                "degrees" => $degrees,
+                "minutes" => $minutes,
+                "seconds" => $seconds
+            ];
+        else
+            return [$degrees, $minutes, $seconds];
+    }
 }
