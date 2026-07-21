@@ -3,9 +3,10 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle as EqualAngleStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Interfaces\Angle\Comparable;
 use MarcoConsiglio\Goniometry\SexadecimalAngle;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use Override;
 
 /**
  * The strategy that compares two `Angle` instances to check if they are equal
@@ -13,7 +14,7 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
  * 
  * @internal
  */
-class EqualAngle extends EqualAngleStrategy
+class EqualAngle extends ComparisonStrategy
 {
     /**
      * The error `Angle`.
@@ -38,11 +39,10 @@ class EqualAngle extends EqualAngleStrategy
      * @param Angle $delta The error within which the comparison is succesful.
      */
     public function __construct(
-        AngularMeasure $alfa, 
-        AngularMeasure $beta, 
+        protected AngularMeasure $alfa, 
+        protected AngularMeasure $beta, 
         protected Angle $delta
     ) {
-        parent::__construct($alfa, $beta);
         $this->calcEpsilon();
         $this->calcLowExtreme();
         $this->calcHighExtreme();
@@ -51,7 +51,6 @@ class EqualAngle extends EqualAngleStrategy
     /**
      * Perform the comparison.
      */
-    #[\Override]
     public function compare(): bool
     {
         // $min ≤ $alfa ≤ $max

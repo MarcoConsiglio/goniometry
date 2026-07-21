@@ -2,12 +2,12 @@
 namespace MarcoConsiglio\Goniometry;
 
 use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
-use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
 use MarcoConsiglio\Goniometry\Builders\Angle\RelativeSum;
+use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundFromRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
@@ -52,7 +52,7 @@ class Angle extends AngularMeasure implements
     /**
      * Construct an `Angle`.
      */
-    protected function __construct(AngleBuilder $builder)
+    protected function __construct(Builder $builder)
     {
         [
             $this->sexagesimal,

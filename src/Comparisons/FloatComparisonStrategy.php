@@ -2,13 +2,14 @@
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * A comparison strategy against a `float` type variable.
  * 
  * @internal
  */
-abstract class FloatComparisonStrategy extends ComparisonStrategy
+abstract class FloatComparisonStrategy implements Strategy
 {
     /**
      * Check that the accuracy is within the permitted limits.

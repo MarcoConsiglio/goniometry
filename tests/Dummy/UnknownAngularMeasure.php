@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Goniometry\Tests\Dummy;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
-use MarcoConsiglio\Goniometry\Interfaces\Summable;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use Override;
 
@@ -81,18 +80,6 @@ class UnknownAngularMeasure extends AngularMeasure
 
     #[Override]
     public function toRadian(int $precision = PHP_FLOAT_DIG): float
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function sum(Summable&AngularMeasure $addend): static
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function absSum(Summable&AngularMeasure $addend): static
     {
         throw new \Exception('Not implemented');
     }

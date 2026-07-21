@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
-use MarcoConsiglio\Goniometry\AngularMeasure;
+use MarcoConsiglio\Goniometry\Angle;
 use Override;
 
 /**
@@ -15,13 +15,13 @@ class LesserAngle extends GreaterAngle
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngularMeasure $alfa The left comparison operand.
-     * @param AngularMeasure $beta The right comparison operand.
+     * @param Angle $alfa The left comparison operand.
+     * @param Angle $beta The right comparison operand.
      */
-    public function __construct(AngularMeasure $alfa, AngularMeasure $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
+    public function __construct(
+        protected Angle $alfa, 
+        protected Angle $beta
+    ) {}
 
     /**
      * Perform the comparison.

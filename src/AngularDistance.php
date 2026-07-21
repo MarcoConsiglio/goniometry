@@ -8,6 +8,7 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
+use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
@@ -63,7 +64,7 @@ class AngularDistance extends AngularMeasure implements
     /**
      * Construct an `AngularDistance`.
      */
-    protected function __construct(AngleBuilder $builder)
+    protected function __construct(Builder $builder)
     {
         [
             $this->sexagesimal,
