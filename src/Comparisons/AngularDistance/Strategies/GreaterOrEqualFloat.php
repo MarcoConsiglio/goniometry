@@ -1,9 +1,9 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
-use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualFloat as AngleGreaterOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
 use Override;
 
 /**
@@ -12,7 +12,7 @@ use Override;
  * 
  * @internal
  */
-class GreaterOrEqualFloat extends AngleGreaterOrEqualFloat
+class GreaterOrEqualFloat extends FloatComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
@@ -20,9 +20,12 @@ class GreaterOrEqualFloat extends AngleGreaterOrEqualFloat
      * @param AngularDistance $alfa The left comparison operand.
      * @param float $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, float $beta)
-    {
-        parent::__construct($alfa, $beta);
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected float $beta,
+        int $precision = Comparison::MAX_PRECISION
+    ) {
+        $this->normalizePrecision($precision);
     }
 
     /**
@@ -31,10 +34,8 @@ class GreaterOrEqualFloat extends AngleGreaterOrEqualFloat
     #[Override]
     public function compare(): bool
     {
-        return
-            $this->alfa->toSexadecimalDegrees()->value->round($this->precision)
-            ->gte(
-                new Number($this->beta)->round($this->precision)
-            );
+        return 
+            new EqualFloat($this->alfa, $this->beta, $this->precision)->compare() ||
+            new GreaterFloat($this->alfa, $this->beta, $this->precision)->compare();
     }    
 }

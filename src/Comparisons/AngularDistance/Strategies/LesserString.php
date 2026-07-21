@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserString as AngleLesserString;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
 
 /**
@@ -11,7 +11,7 @@ use Override;
  * 
  * @internal
  */
-class LesserString extends AngleLesserString
+class LesserString implements Strategy
 {
     /**
      * Construct the comparison strategy.
@@ -19,10 +19,10 @@ class LesserString extends AngleLesserString
      * @param AngularDistance $alfa The left comparison operand.
      * @param string $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, string $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected string $beta
+    ) {}
 
     #[Override]
     public function compare(): bool

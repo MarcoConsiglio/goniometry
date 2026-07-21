@@ -2,8 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualString as AngleEqualString;
-use Override;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * The strategy that compares an `AngularDistance` instance against a sexagesimal string 
@@ -11,7 +10,7 @@ use Override;
  * 
  * @internal
  */
-class EqualString extends AngleEqualString
+class EqualString implements Strategy
 {
     /**
      * Construct the comparison strategy.
@@ -19,12 +18,11 @@ class EqualString extends AngleEqualString
      * @param AngularDistance $alfa The left comparison operand.
      * @param string $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, string $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected string $beta
+    ) {}
 
-    #[Override]
     public function compare(): bool
     {
         return new EqualAngularDistance(

@@ -2,7 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualFloat as AngleLesserOrEqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
 use Override;
 
 /**
@@ -11,7 +12,7 @@ use Override;
  * 
  * @internal
  */
-class LesserOrEqualFloat extends AngleLesserOrEqualFloat
+class LesserOrEqualFloat extends FloatComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
@@ -20,9 +21,12 @@ class LesserOrEqualFloat extends AngleLesserOrEqualFloat
      * @param float $beta The right comparison operand.
      * @param int $precision The precision used in the comparison.
      */
-    public function __construct(AngularDistance $alfa, float $beta, int $precision = 54)
-    {
-        parent::__construct($alfa, $beta, $precision);
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected float $beta, 
+        int $precision = Comparison::MAX_PRECISION
+    ) {
+        $this->normalizePrecision($precision);
     }
 
     #[Override]

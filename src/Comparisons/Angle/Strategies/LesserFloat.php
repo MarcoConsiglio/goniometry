@@ -24,7 +24,7 @@ class LesserFloat extends FloatComparisonStrategy
     public function __construct(
         protected Angle $alfa,
         protected float $beta,
-        protected int $precision = Comparison::MAX_PRECISION
+        int $precision = Comparison::MAX_PRECISION
     ) {
         $this->normalizePrecision($precision);
     }

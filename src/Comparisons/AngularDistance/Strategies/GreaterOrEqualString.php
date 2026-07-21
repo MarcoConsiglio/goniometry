@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualString as AngleGreaterOrEqualString;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
 
 /**
@@ -11,7 +11,7 @@ use Override;
  * 
  * @internal
  */
-class GreaterOrEqualString extends AngleGreaterOrEqualString
+class GreaterOrEqualString implements Strategy
 {
     /**
      * Construct the comparison strategy.
@@ -19,16 +19,17 @@ class GreaterOrEqualString extends AngleGreaterOrEqualString
      * @param AngularDistance $alfa The left comparison operand.
      * @param string $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, string $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected string $beta
+    ) {}
 
     #[Override]
     public function compare(): bool
     {
+        $beta = AngularDistance::createFromString($this->beta);
         return 
-            new EqualString($this->alfa, $this->beta)->compare() ||
-            new GreaterString($this->alfa, $this->beta)->compare();
+            new EqualAngularDistance($this->alfa, $beta)->compare() ||
+            new GreaterAngularDistance($this->alfa, $beta)->compare();
     }
 }

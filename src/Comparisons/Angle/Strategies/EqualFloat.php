@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
 
 /**
@@ -24,7 +25,7 @@ class EqualFloat extends FloatComparisonStrategy
     public function __construct(
         protected Angle $alfa, 
         protected float $beta, 
-        protected int $precision = 54
+        int $precision = Comparison::MAX_PRECISION
     ) {
         $this->normalizePrecision($precision);
     }

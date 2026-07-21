@@ -5,6 +5,7 @@ use Error;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use MarcoConsiglio\Goniometry\Tests\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -39,7 +40,7 @@ abstract class TestCase extends BaseTestCase
     }
 
     private function assertCompareReturnTrue(
-        ComparisonStrategy $strategy, 
+        Strategy $strategy, 
         string $message
     ): void {
         $this->assertTrue(
@@ -49,7 +50,7 @@ abstract class TestCase extends BaseTestCase
     }
 
     private function assertCompareReturnFalse(
-        ComparisonStrategy $strategy, 
+        Strategy $strategy, 
         string $message
     ): void {
         $this->assertFalse(
@@ -65,7 +66,7 @@ abstract class TestCase extends BaseTestCase
     {
         if (! class_exists($strategy)) 
             throw new Error("$strategy class doesn't exist.");
-        if (! is_subclass_of($strategy, $base = ComparisonStrategy::class)) 
+        if (! is_subclass_of($strategy, $base = Strategy::class)) 
             throw new Error("$strategy class is not a child of $base class.");
     }
     
