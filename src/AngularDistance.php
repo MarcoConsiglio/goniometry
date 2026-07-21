@@ -26,6 +26,7 @@ use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\BuildableFromRadian;
 use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\BuildableFromSexadecimal;
 use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\Comparable;
 use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\FuzzyComparable;
+use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\Summable;
 use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
 use Override;
 
@@ -36,7 +37,8 @@ class AngularDistance extends AngularMeasure implements
     BuildableFromRadian,
     BuildableFromSexadecimal,
     Comparable,
-    FuzzyComparable
+    FuzzyComparable,
+    Summable
 {
     /**
      * The maximum allowed value in degrees.
@@ -451,14 +453,6 @@ class AngularDistance extends AngularMeasure implements
     public function sum(AngularMeasure $addend): static
     {
         return new static(new RelativeSum($this, $addend));
-    }
-
-    /**
-     * Alias of `sum()` method.
-     */
-    public function absSum(AngularMeasure $addend): static
-    {
-        return $this->sum($addend);
     }
 
     /**

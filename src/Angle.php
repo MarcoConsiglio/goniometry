@@ -26,8 +26,7 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle\BuildableFromRadian;
 use MarcoConsiglio\Goniometry\Interfaces\Angle\BuildableFromSexadecimal;
 use MarcoConsiglio\Goniometry\Interfaces\Angle\Comparable;
 use MarcoConsiglio\Goniometry\Interfaces\Angle\FuzzyComparable;
-use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
-use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
+use MarcoConsiglio\Goniometry\Interfaces\Angle\Summable;
 use Override;
 
 /**
@@ -37,7 +36,8 @@ class Angle extends AngularMeasure implements
     BuildableFromRadian, 
     BuildableFromSexadecimal,
     Comparable,
-    FuzzyComparable
+    FuzzyComparable,
+    Summable
 {
     /** 
      * The sexadecimal degrees value of this `Angle`.
@@ -86,7 +86,7 @@ class Angle extends AngularMeasure implements
     /**
      * Creates an `Angle` from its sexadecimal representation.
      */
-    public static function createFromDecimal(float|SexadecimalValue $sexadecimal): static
+    public static function createFromDecimal(float|SexadecimalAngle $sexadecimal): static
     {
         return new static(new FromSexadecimal($sexadecimal));
     }
@@ -94,7 +94,7 @@ class Angle extends AngularMeasure implements
     /**
      * Creates an `Angle` from its radian representation.
      */
-    public static function createFromRadian(float|RadianValue $radian): static
+    public static function createFromRadian(float|RadianAngle $radian): static
     {
          return new static(new FromRadian($radian));
     }

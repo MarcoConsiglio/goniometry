@@ -8,7 +8,6 @@ use MarcoConsiglio\Goniometry\Interfaces\CastableToRadian;
 use MarcoConsiglio\Goniometry\Interfaces\CastableToSexadecimal;
 use MarcoConsiglio\Goniometry\Interfaces\CastableToSexagesimal;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
-use MarcoConsiglio\Goniometry\Interfaces\Summable;
 use Stringable;
 
 /**
@@ -20,8 +19,7 @@ abstract class AngularMeasure implements
     BuildableFromSexagesimal,
     CastableToSexagesimal,
     CastableToSexadecimal,
-    CastableToRadian,
-    Summable
+    CastableToRadian
 {
     /**
      * Regular expression used to parse degrees value as integer number.
@@ -82,10 +80,6 @@ abstract class AngularMeasure implements
     abstract public static function createFromString(string $sexagesimal): static;
 
     abstract public function toRadian(int $precision = PHP_FLOAT_DIG): float;
-
-    abstract public function sum(Summable&AngularMeasure $addend): static;
-
-    abstract public function absSum(Summable&AngularMeasure $addend): static;
 
     abstract public function toSexadecimalDegrees(): SexadecimalValue;
 

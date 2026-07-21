@@ -6,7 +6,7 @@ namespace MarcoConsiglio\Goniometry\Interfaces;
  * 
  * @internal
  */
-interface AngleBuilder
+interface AngularMeasureBuilder
 {
     /**
      * Fetch the data that will be used to build an `Angle`.
