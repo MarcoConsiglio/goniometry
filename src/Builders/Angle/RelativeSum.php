@@ -35,39 +35,4 @@ class RelativeSum extends SumBuilder
         $builder = new FromSexadecimal($this->decimal_sum);
         return $builder->fetchData();
     }
-
-    /**
-     * It calcs the result sign.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcSign(): void {/* No need to calc sign as it is done in fetchData() */}
-
-    /**
-     * Calc seconds.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcSeconds(): void {/* No need to calc seconds as it is done in fetchData() */}
-
-    /**
-     * Calc minutes.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcMinutes(): void {/* No need to calc minutes as it is done in fetchData() */}
-
-    /**
-     * Calc degrees.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcDegrees(): void {/* No need to calc degrees as it is done in fetchData() */}
-
-    /**
-     * Not implemented as there's no need to check for overflow above/below +/-360°.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function checkOverflow(): void{/* No need to check overflow */}
 }

@@ -1,13 +1,16 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
+use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\RadianAngle;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
+
 /**
  *  Build an `Angle` starting from a radian value.
  * 
  * @internal
  */
-class FromRadian extends AngleBuilder
+class FromRadian extends FromSexadecimal
 {
     /**
      * The radian value used to build an `Angle`.
@@ -22,43 +25,8 @@ class FromRadian extends AngleBuilder
         $this->radian = 
             $radian instanceof RadianAngle ?
             $radian : new RadianAngle($radian);
+        $this->decimal = new SexadecimalAngle($this->radian->value->toDegrees());
     }
-
-    /**
-     * Calc degrees.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcDegrees(): void {}
-
-
-    /**
-     * Calcs minutes.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcMinutes(): void {}
-
-    /**
-     * Calcs seconds.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcSeconds(): void {}
-
-    /**
-     * Calcs sign.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcSign(): void {}
-
-    /**
-     * Not implemented as there's no need to check for overflow above/below +/-360°.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function checkOverflow(): void {/* No need check overflow. */}
 
     /**
      * Fetches the data to build an `Angle`.
@@ -67,9 +35,7 @@ class FromRadian extends AngleBuilder
      */
     public function fetchData(): array
     {
-        [$sexagesimal, $sexadecimal] = new FromSexadecimal(
-            $this->radian->value->toDegrees()->toFloat()
-        )->fetchData();
+        [$sexagesimal, $sexadecimal] = parent::fetchData();
         return [
             $sexagesimal,
             $sexadecimal,

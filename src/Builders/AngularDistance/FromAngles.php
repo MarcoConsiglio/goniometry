@@ -20,43 +20,6 @@ class FromAngles extends FromSexadecimal
     public function __construct(protected Angle $alfa, protected Angle $beta) {}
 
     /**
-     * Not implemented as overflow above/below +/-360° is allowed.
-     * 
-     * @codeCoverageIgnore
-     */
-    #[Override]
-    protected function checkOverflow(): void
-    { /* No need to check overflow. Overflow is allowed. */ } 
-
-    /**
-     * Calcs degrees.
-     */
-    #[Override]
-    protected function calcDegrees(): void
-    { parent::calcDegrees(); } 
-
-    /**
-     * Calcs minutes.    
-     */
-    #[Override]
-    protected function calcMinutes(): void
-    { parent::calcMinutes(); } 
-
-    /**
-     * Calcs seconds.
-     */
-    #[Override]
-    protected function calcSeconds(): void
-    { parent::calcSeconds(); } 
-
-    /**
-     * Calcs direction.
-     */
-    #[Override]
-    protected function calcSign(): void
-    { parent::calcSign(); } 
-
-    /**
      * Fetch data to build an `AngularDistance` class.
      * 
      * @return array{SexagesimalDegrees,SexadecimalAngularDistance,null}

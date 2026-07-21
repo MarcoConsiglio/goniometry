@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
-use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use Override;
 
@@ -21,6 +20,7 @@ class FromSexagesimal extends AngleFromSexagesimal
     #[Override]
     public function fetchData(): array
     {
+        $this->calcFromLessToMostSignificantValue();
         return [
             new SexagesimalDegrees(
                 $this->degrees,

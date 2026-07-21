@@ -53,32 +53,4 @@ class AbsoluteSum extends SumBuilder
     {
         $this->direction = Rotation::COUNTER_CLOCKWISE;
     }
-
-    /**
-     * Not implemented as this is already done in `calcSum()` method.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function checkOverflow(): void {/* This is already done in calcSum() */}
-
-    /**
-     * Calc seconds.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcSeconds(): void {/* No need to calc seconds as it is done in fetchData() */}
-
-    /**
-     * Calc minutes.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcMinutes(): void {/* No need to calc minutes as it is done in fetchData() */}
-
-    /**
-     * Calc degrees.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcDegrees(): void {/* No need to calc degrees as it is done in fetchData() */}
 }

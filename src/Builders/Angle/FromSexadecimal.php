@@ -2,6 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\Builders\Builder;
+use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -14,8 +16,10 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
  * 
  * @internal
  */
-class FromSexadecimal extends AngleBuilder
+class FromSexadecimal extends Builder
 {
+    use CalcOrderForSexagesimals;
+
     /**
      * The decimal value used to build an angle.
      */
@@ -36,13 +40,6 @@ class FromSexadecimal extends AngleBuilder
             $decimal instanceof SexadecimalAngle ?
             $decimal : new SexadecimalAngle($decimal);
     }
-
-    /**
-     * Not implemented as overflow above/below +/-360° is allowed.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function checkOverflow(): void {/* No need to check overflow. Overflow is allowed. */}
 
     /**
      * Calc degrees.
@@ -95,10 +92,7 @@ class FromSexadecimal extends AngleBuilder
      */
     public function fetchData(): array
     {
-        $this->calcDegrees();
-        $this->calcMinutes();
-        $this->calcSeconds();
-        $this->calcSign();
+        $this->calcFromMostToLessSignificantValue();
         return [
             new SexagesimalDegrees(
                 $this->degrees,
@@ -107,7 +101,7 @@ class FromSexadecimal extends AngleBuilder
                 $this->direction
             ),
             $this->decimal,
-            null
+            null // Radian
         ];
     }
 }

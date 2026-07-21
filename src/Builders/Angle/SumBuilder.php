@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\AngularMeasure;
+use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 
 /**
@@ -9,7 +10,7 @@ use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
  * 
  * @internal
  */
-abstract class SumBuilder extends AngleBuilder
+abstract class SumBuilder extends Builder
 {
     /**
      * The decimal sum of the two `Angle`s.

@@ -3,6 +3,8 @@ namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
+use MarcoConsiglio\Goniometry\Builders\Builder;
+use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -16,8 +18,10 @@ use Override;
  * 
  * @internal
  */
-class FromSexadecimal extends AngleBuilder
+class FromSexadecimal extends Builder
 {
+    use CalcOrderForSexagesimals;
+
     /**
      * The decimal value used to build an angular distance.
      */
@@ -38,16 +42,6 @@ class FromSexadecimal extends AngleBuilder
             $decimal instanceof SexadecimalAngularDistance ?
             $decimal : new SexadecimalAngularDistance($decimal);
     }
-
-
-    /**
-     * Not implemented as overflow above/below +/-360° is allowed.
-     * 
-     * @codeCoverageIgnore
-     */
-    #[Override]
-    protected function checkOverflow(): void {/* No need to check overflow. Overflow is allowed. */}
-
 
     /**
      * Calc degrees.
@@ -105,10 +99,7 @@ class FromSexadecimal extends AngleBuilder
     #[Override]
     public function fetchData(): array
     {
-        $this->calcDegrees();
-        $this->calcMinutes();
-        $this->calcSeconds();
-        $this->calcSign();
+        $this->calcFromMostToLessSignificantValue();
         return [
             new SexagesimalDegrees(
                 $this->degrees,
