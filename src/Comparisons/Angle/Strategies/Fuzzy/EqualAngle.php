@@ -3,8 +3,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
-use MarcoConsiglio\Goniometry\Interfaces\Angle\Comparable;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use Override;
 
@@ -14,7 +13,7 @@ use Override;
  * 
  * @internal
  */
-class EqualAngle extends ComparisonStrategy
+class EqualAngle implements Strategy
 {
     /**
      * The error `Angle`.
@@ -24,23 +23,23 @@ class EqualAngle extends ComparisonStrategy
     /**
      * The low extreme of delta.
      */
-    protected AngularMeasure $low_extreme;
+    protected Angle $low_extreme;
 
     /**
      * The high extreme of delta.
      */
-    protected AngularMeasure $high_extreme;
+    protected Angle $high_extreme;
 
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngularMeasure $alfa The left comparison operand.
-     * @param AngularMeasure $beta The right comparison operand.
+     * @param Angle $alfa The left comparison operand.
+     * @param Angle $beta The right comparison operand.
      * @param Angle $delta The error within which the comparison is succesful.
      */
     public function __construct(
-        protected AngularMeasure $alfa, 
-        protected AngularMeasure $beta, 
+        protected Angle $alfa, 
+        protected Angle $beta, 
         protected Angle $delta
     ) {
         $this->calcEpsilon();
