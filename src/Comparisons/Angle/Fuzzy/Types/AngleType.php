@@ -3,19 +3,17 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType as BaseAngleType;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 /**
  * The beta angle `InputType` in a fuzzy comparison between alfa and beta angle when
  * beta is an `Angle`.
  * 
  * @internal
  */
-class AngleType extends BaseAngleType
+class AngleType extends InputType
 {
     /**
      * The delta error.
@@ -28,7 +26,7 @@ class AngleType extends BaseAngleType
      * @param AngularMeasure $alfa The left operand of the `$comparison`.
      */
     #[Override]
-    public function getStrategyFor(Comparison $comparison, AngularMeasure $alfa): Strategy
+    public function getStrategyFor(Comparison $comparison, Angle $alfa): Strategy
     {
         return new EqualAngle($alfa, $this->beta, $this->delta);
     }

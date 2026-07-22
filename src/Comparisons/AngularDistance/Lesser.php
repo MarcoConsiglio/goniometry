@@ -1,15 +1,12 @@
 <?php
-
-namespace MarcoConsiglio\Goniometry\Comparisons;
-
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance;
 
 /**
- * The `GreaterOrEqual` comparison between angles.
+ * The `Lesser` comparison between angles.
  * 
  * @internal
  */
-class GreaterOrEqual extends Comparison
+class Lesser extends Comparison
 {
     /**
      * Set the comparison strategy based on the comparison type and

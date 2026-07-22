@@ -1,7 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Comparisons;
-
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance;
 
 /**
  * The `Different` comparison between angles.

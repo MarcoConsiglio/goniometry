@@ -2,22 +2,21 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Types;
 
 use Error;
-use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\InputType;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\InputType;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
@@ -38,10 +37,10 @@ class IntType extends InputType
     /**
      * Get the correct strategy for the current `$comparison` operation.
      * 
-     * @param AngularMeasure $alfa The left operand of the `$comparison`.
+     * @param Angle $alfa The left operand of the `$comparison`.
      * @throws Error if there's no strategy for `$comparison`.
      */
-    public function getStrategyFor(Comparison $comparison, AngularMeasure $alfa): Strategy
+    public function getStrategyFor(Comparison $comparison, Angle $alfa): Strategy
     {
         if ($comparison instanceof Equal) return new EqualInt($alfa, $this->beta);
         if ($comparison instanceof Different) return new DifferentInt($alfa, $this->beta);
@@ -49,7 +48,6 @@ class IntType extends InputType
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualInt($alfa, $this->beta);
         if ($comparison instanceof Lesser) return new LesserInt($alfa, $this->beta);
         if ($comparison instanceof LesserOrEqual) return new LesserOrEqualInt($alfa, $this->beta); 
-        $unknown_class = get_class($comparison);
-        throw new Error("There's no strategy for {$unknown_class} comparison.");
+        return $this->throwError($comparison);
     }
 }

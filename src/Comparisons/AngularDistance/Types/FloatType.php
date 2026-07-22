@@ -2,8 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types;
 
 use Error;
-use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\FloatType as AngleFloatType;
+use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterFloat;
@@ -26,16 +25,27 @@ use Override;
  * 
  * @internal
  */
-class FloatType extends AngleFloatType
+class FloatType extends InputType
 {
+    /**
+     * Construct the `InputType` of `$beta`.
+     * 
+     * @param float $beta The right operand of the comparison.
+     * @param int $precision The number of decimal places used in the comparison.
+     */
+    public function __construct(
+        protected float $beta, 
+        protected int $precision = Comparison::MAX_PRECISION
+    ) {}
+
     /**
      * Get the correct strategy for the current `$comparison` operation.
      * 
-     * @param AngularMeasure $alfa The left operand of the `$comparison`.
+     * @param AngularDistance $alfa The left operand of the `$comparison`.
      * @throws Error if there's no strategy for `$comparison`.
      */
     #[Override]
-    public function getStrategyFor(Comparison $comparison, AngularMeasure $alfa): Strategy
+    public function getStrategyFor(Comparison $comparison, AngularDistance $alfa): Strategy
     {
         if ($comparison instanceof Equal) return new EqualFloat($alfa, $this->beta, $this->precision);
         if ($comparison instanceof Different) return new DifferentFloat($alfa, $this->beta, $this->precision);
@@ -43,7 +53,6 @@ class FloatType extends AngleFloatType
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualFloat($alfa, $this->beta, $this->precision);
         if ($comparison instanceof Lesser) return new LesserFloat($alfa, $this->beta, $this->precision);
         if ($comparison instanceof LesserOrEqual) return new LesserOrEqualFloat($alfa, $this->beta);
-        $unknown_class = get_class($comparison);
-        throw new Error("There's no strategy for {$unknown_class} comparison.");
+        return $this->throwError($comparison);
     }
 }

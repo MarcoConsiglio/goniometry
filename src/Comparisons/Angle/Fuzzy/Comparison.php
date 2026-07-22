@@ -5,7 +5,6 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types\AngleType;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 
 /**
  * A comparison of angles within an acceptable error.
@@ -15,6 +14,16 @@ use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 abstract class Comparison extends GeneralComparison
 {
     /**
+     * The left operand of the comparison.
+     */
+    protected Angle $alfa;
+
+    /**
+     * The right operand of the comparison.
+     */    
+    protected Angle $beta;
+
+    /**
      * The acceptable error within which comparison is successful.
      */
     protected Angle $delta;
@@ -22,13 +31,13 @@ abstract class Comparison extends GeneralComparison
     /**
      * Construct the `Comparison` between the two angles `$alfa` and `$beta`.
      * 
-     * @param AngularMeasure $alfa The left operand of the comparison.
-     * @param AngularMeasure $beta The right operand of the comparison.
+     * @param Angle $alfa The left operand of the comparison.
+     * @param Angle $beta The right operand of the comparison.
      * @param Angle $delta The acceptable error within which comparison is successful.
      */
     public function __construct(
-        AngularMeasure $alfa,
-        AngularMeasure $beta,
+        Angle $alfa,
+        Angle $beta,
         Angle $delta
     ) {
         $this->alfa = $alfa->absolute();
@@ -41,7 +50,6 @@ abstract class Comparison extends GeneralComparison
      * Return an `InputType` object that represent the type
      * of the right operand of the fuzzy comparison.
      */
-    #[\Override]
     protected function getBetaType(): AngleType
     {
         return new AngleType($this->beta);
