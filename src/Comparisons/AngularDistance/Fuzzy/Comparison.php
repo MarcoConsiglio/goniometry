@@ -26,6 +26,7 @@ abstract class Comparison extends GeneralComparison
         protected Angle $delta
     ) {
         $this->delta = $delta->absolute();
+        $this->setComparisonStrategy();
     }
 
     /**
@@ -34,6 +35,6 @@ abstract class Comparison extends GeneralComparison
      */
     protected function getBetaType(): AngularDistanceType
     {
-        return new AngularDistanceType($this->beta);
+        return new AngularDistanceType($this->beta, $this->delta);
     }
 }

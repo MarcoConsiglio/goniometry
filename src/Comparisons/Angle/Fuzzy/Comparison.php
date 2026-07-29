@@ -52,6 +52,6 @@ abstract class Comparison extends GeneralComparison
      */
     protected function getBetaType(): AngleType
     {
-        return new AngleType($this->beta);
+        return new AngleType($this->beta, $this->delta);
     }
 }

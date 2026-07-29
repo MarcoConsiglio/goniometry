@@ -1,19 +1,26 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Dummy;
 
+use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use Override;
 
-class UnknownAngularMeasure extends AngularMeasure
+class UnknownAngularMeasure extends Angle
 {
     public function __construct()
     {}
 
     #[Override]
-    public static function createFromValues(int $degrees, int $minutes, float $seconds, Rotation $direction): static
+    public static function createFromValues(
+        int $degrees = 0, 
+        int $minutes = 0, 
+        float $seconds = 0.0, 
+        Rotation $direction = Rotation::COUNTER_CLOCKWISE
+    ): static
     {
         throw new \Exception('Not implemented');
     }
@@ -67,19 +74,19 @@ class UnknownAngularMeasure extends AngularMeasure
     }
 
     #[Override]
-    public function toSexadecimalDegrees(): SexadecimalValue
+    public function toSexadecimalDegrees(): SexadecimalAngle
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function toFloat(int $precision = PHP_FLOAT_DIG): float
+    public function toFloat(int|null $precision = null): float
     {
         throw new \Exception('Not implemented');
     }
 
     #[Override]
-    public function toRadian(int $precision = PHP_FLOAT_DIG): float
+    public function toRadian(int|null $precision = null): float
     {
         throw new \Exception('Not implemented');
     }

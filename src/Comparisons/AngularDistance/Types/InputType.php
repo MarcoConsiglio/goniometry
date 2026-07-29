@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\InputType as BaseInputType;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 

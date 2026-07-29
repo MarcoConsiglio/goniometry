@@ -3,10 +3,11 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strat
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualFloat;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualFloat;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -33,10 +34,11 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AngularDistance::class)]
 #[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(AngularDistanceRange::class)]
-#[UsesClass(AngularMeasure::class)]
 #[UsesClass(Degrees::class)]
+#[UsesClass(EqualFloat::class)]
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(FromSexadecimal::class)]
+#[UsesClass(GreaterFloat::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]

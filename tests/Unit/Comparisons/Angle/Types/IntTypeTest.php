@@ -1,153 +1,56 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
 
-use Error;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\InputType;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\IntType;
-use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
-use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
-use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
-use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCase;
-use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\TestCase;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\Attributes\UsesTrait;
-use PHPUnit\Framework\MockObject\Stub;
 
 #[CoversClass(IntType::class)]
-#[UsesClass(Comparison::class)]
-#[UsesClass(ComparisonStrategy::class)]
-#[UsesClass(Degrees::class)]
-#[UsesClass(DegreesGenerator::class)]
-#[UsesClass(DegreesValidator::class)]
-#[UsesClass(Different::class)]
 #[UsesClass(DifferentInt::class)]
-#[UsesClass(Equal::class)]
 #[UsesClass(EqualInt::class)]
-#[UsesClass(Greater::class)]
 #[UsesClass(GreaterInt::class)]
-#[UsesClass(GreaterOrEqual::class)]
 #[UsesClass(GreaterOrEqualInt::class)]
-#[UsesClass(Lesser::class)]
 #[UsesClass(LesserInt::class)]
-#[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqualInt::class)]
-#[UsesTrait(WithAngleFaker::class)]
-class IntTypeTest extends InputTypeTestCase
+class IntTypeTest extends TestCase
 {
-    protected Angle&Stub $alfa;
-
-    protected int $beta;
-
-    protected InputType $input_type;
+    #[Override]
+    protected function getBeta(): int
+    {
+        return $this->randomInteger(
+            Angle::MIN,
+            Angle::MAX
+        );
+    }
 
     #[Override]
-    protected function setUp(): void
+    protected function getInputTypeClass(): string
     {
-        parent::setUp();
-        $this->alfa = $this->createStub(Angle::class);
-        $this->beta = $this->randomDegrees()->value();
-        $this->input_type = new IntType($this->beta);
+        return IntType::class;
     }
 
-    public function test_equal_strategy(): void
+    public function test_getStrategyFor(): void
     {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(Equal::class), 
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(EqualInt::class, $strategy);
-    }
-
-    public function test_different_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(Different::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(DifferentInt::class, $strategy);
-    }
-
-    public function test_greater_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(Greater::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(GreaterInt::class, $strategy);
-    }
-
-    public function test_greater_or_equal_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(GreaterOrEqual::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(GreaterOrEqualInt::class, $strategy);
-    }
-
-    public function test_lesser_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(Lesser::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(LesserInt::class, $strategy);
-    }
-
-    public function test_lesser_or_equal_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(LesserOrEqual::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(LesserOrEqualInt::class, $strategy);
-    }
-
-    public function test_error(): void
-    {
-        // Assert
-        $this->expectException(Error::class);
-
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(UnknownComparison::class),
-            $this->alfa
-        );        
+        $this->testInputType(Equal::class, EqualInt::class);
+        $this->testInputType(Different::class, DifferentInt::class);
+        $this->testInputType(Greater::class, GreaterInt::class);
+        $this->testInputType(GreaterOrEqual::class, GreaterOrEqualInt::class);
+        $this->testInputType(Lesser::class, LesserInt::class);
+        $this->testInputType(LesserOrEqual::class, LesserOrEqualInt::class);
     }
 }

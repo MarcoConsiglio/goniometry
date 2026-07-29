@@ -1,27 +1,23 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
 
-use Error;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentString;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterString;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserString;
-use MarcoConsiglio\Goniometry\Comparisons\InputType;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
@@ -30,40 +26,30 @@ use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGen
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
+use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
-use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
-use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\InputTypeTestCase;
+use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use Override;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
-use PHPUnit\Framework\MockObject\Stub;
 
 #[CoversClass(StringType::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
-#[UsesClass(Comparison::class)]
-#[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(Different::class)]
 #[UsesClass(DifferentString::class)]
-#[UsesClass(Rotation::class)]
-#[UsesClass(Equal::class)]
 #[UsesClass(EqualString::class)]
+#[UsesClass(FloatValidator::class)]
 #[UsesClass(FromSexadecimal::class)]
-#[UsesClass(Greater::class)]
-#[UsesClass(GreaterOrEqual::class)]
 #[UsesClass(GreaterOrEqualString::class)]
 #[UsesClass(GreaterString::class)]
-#[UsesClass(Lesser::class)]
-#[UsesClass(LesserOrEqual::class)]
 #[UsesClass(LesserOrEqualString::class)]
 #[UsesClass(LesserString::class)]
 #[UsesClass(Minutes::class)]
@@ -76,109 +62,32 @@ use PHPUnit\Framework\MockObject\Stub;
 #[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
-#[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
+#[UsesTrait(CalcOrderForSexagesimals::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class StringTypeTest extends InputTypeTestCase
+class StringTypeTest extends TestCase
 {
-    protected Angle&Stub $alfa;
-
-    protected string $beta;
-
-    protected InputType $input_type;
+    #[Override]
+    protected function getBeta(): string
+    {
+        return (string) $this->randomAngle();
+    }
 
     #[Override]
-    protected function setUp(): void
+    protected function getInputTypeClass(): string
     {
-        parent::setUp();
-        $this->alfa = $this->createStub(Angle::class);
-        $this->beta = (string) $this->randomAngle();
-        $this->input_type = new StringType($this->beta);
+        return StringType::class;
     }
 
-    public function test_equal_strategy(): void
+    public function test_getStrategyFor(): void
     {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(Equal::class), 
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(EqualString::class, $strategy);
-    }
-
-    public function test_different_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(Different::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(DifferentString::class, $strategy);
-    }
-
-    public function test_greater_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(Greater::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(GreaterString::class, $strategy);
-    }
-
-    public function test_greater_or_equal_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(GreaterOrEqual::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(GreaterOrEqualString::class, $strategy);
-    }
-
-    public function test_lesser_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(Lesser::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(LesserString::class, $strategy);
-    }
-
-    public function test_lesser_or_equal_comparison(): void
-    {
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(LesserOrEqual::class),
-            $this->alfa
-        );
-
-        // Assert
-        $this->assertInstanceOf(LesserOrEqualString::class, $strategy);
-    }
-
-    public function test_error(): void
-    {
-        // Assert
-        $this->expectException(Error::class);
-
-        // Act
-        $strategy = $this->input_type->getStrategyFor(
-            $this->getStubComparison(UnknownComparison::class),
-            $this->alfa
-        );        
+        $this->testInputType(Equal::class, EqualString::class);
+        $this->testInputType(Different::class, DifferentString::class);
+        $this->testInputType(Greater::class, GreaterString::class);
+        $this->testInputType(GreaterOrEqual::class, GreaterOrEqualString::class);
+        $this->testInputType(Lesser::class, LesserString::class);
+        $this->testInputType(LesserOrEqual::class, LesserOrEqualString::class);
     }
 }

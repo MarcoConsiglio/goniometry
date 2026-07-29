@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests;
 
+use Error;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
@@ -104,5 +105,23 @@ class TestCase extends PHPUnitTestCase
             $actual->value($precision),
             $message
         );
+    }
+
+    /**
+     * Check if `$class`exists.
+     * 
+     * @throws Error if `$class` do not exist.
+     */
+    protected function checkClassExists(string $class): void
+    {
+        if (! class_exists($class)) throw new Error("$class class doesn't exist.");
+    }
+
+    /**
+     * @throws Error because `$class` is not an allowed class.
+     */
+    protected function throwNotAllowedClassError(string $class): void
+    {
+        throw new Error("$class is not an allowed class.");
     }
 }

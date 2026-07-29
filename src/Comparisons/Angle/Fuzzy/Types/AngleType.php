@@ -16,9 +16,15 @@ use Override;
 class AngleType extends InputType
 {
     /**
-     * The delta error.
+     * Construct the `InputType`.
+     * 
+     * @param Angle $beta The right operand of the comparison.
+     * @param Angle $delta The delta error.
      */
-    protected Angle $delta;
+    public function __construct(Angle $beta, protected Angle $delta)
+    {
+        parent::__construct($beta);
+    }
 
     /**
      * Get the correct strategy for the current $comparison operation.

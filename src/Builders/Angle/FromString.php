@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -70,7 +71,7 @@ class FromString extends Builder
      */
     protected function parseDegreesString(): void
     {
-        $this->degrees_parsing_status = preg_match(Angle::DEGREES_REGEX, $this->measure, $this->degrees_match);
+        $this->degrees_parsing_status = preg_match(AngularMeasure::DEGREES_REGEX, $this->measure, $this->degrees_match);
     }
 
     /**
@@ -78,7 +79,7 @@ class FromString extends Builder
      */
     protected function parseMinutesString(): void
     {
-        $this->minutes_parsing_status = preg_match(Angle::MINUTES_REGEX, $this->measure, $this->minutes_match);
+        $this->minutes_parsing_status = preg_match(AngularMeasure::MINUTES_REGEX, $this->measure, $this->minutes_match);
     }
 
     /**
@@ -86,7 +87,7 @@ class FromString extends Builder
      */
     protected function parseSecondsString(): void
     {
-        $this->seconds_parsing_status = preg_match(Angle::SECONDS_REGEX, $this->measure, $this->seconds_match);
+        $this->seconds_parsing_status = preg_match(AngularMeasure::SECONDS_REGEX, $this->measure, $this->seconds_match);
     }
 
     /**

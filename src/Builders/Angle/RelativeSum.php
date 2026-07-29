@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\Goniometry\SexadecimalAngle;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+
 
 /**
  * Sum two `Angle`s resulting in a relative sum.

@@ -3,6 +3,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\Fuzz
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
@@ -10,17 +11,17 @@ use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\Interfaces\Angle as AngleInterface;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
@@ -29,7 +30,7 @@ use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -37,7 +38,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[CoversClass(EqualAngle::class)]
+#[CoversClass(FuzzyEqualAngle::class)]
 #[UsesClass(AbsoluteSum::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
@@ -47,6 +48,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
+#[UsesClass(EqualAngle::class)]
 #[UsesClass(Greater::class)]
 #[UsesClass(GreaterAngle::class)]
 #[UsesClass(GreaterOrEqual::class)]
@@ -60,7 +62,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
@@ -83,9 +85,9 @@ class EqualAngleTest extends TestCase
         $epsilon = $this->positiveRandomAngle(min: NextFloat::after($min), max: NextFloat::before($max));
 
         // Act & Assert
-        $this->assertTrue(new EqualAngle($alfa, $beta, $delta)->compare());
-        $this->assertTrue(new EqualAngle($gamma, $beta, $delta)->compare());
-        $this->assertFalse(new EqualAngle($epsilon, $beta, $delta)->compare());
+        $this->assertTrue(new FuzzyEqualAngle($alfa, $beta, $delta)->compare());
+        $this->assertTrue(new FuzzyEqualAngle($gamma, $beta, $delta)->compare());
+        $this->assertFalse(new FuzzyEqualAngle($epsilon, $beta, $delta)->compare());
 
         /**
          * $beta = 180°
@@ -100,15 +102,15 @@ class EqualAngleTest extends TestCase
         $epsilon = $this->positiveRandomAngle(min: NextFloat::after($max));
 
         // Act & Assert
-        $this->assertTrue(new EqualAngle($alfa, $beta, $delta)->compare());
-        $this->assertFalse(new EqualAngle($gamma, $beta, $delta)->compare());
-        $this->assertFalse(new EqualAngle($epsilon, $beta, $delta)->compare());
+        $this->assertTrue(new FuzzyEqualAngle($alfa, $beta, $delta)->compare());
+        $this->assertFalse(new FuzzyEqualAngle($gamma, $beta, $delta)->compare());
+        $this->assertFalse(new FuzzyEqualAngle($epsilon, $beta, $delta)->compare());
     }
 
     /**
      * Return a fail message for this `TestCase`.
      */
-    protected function getFailMessage(AngleInterface $alfa, AngleInterface $beta, AngleInterface $delta): string
+    protected function getFailMessage(AngularMeasure $alfa, AngularMeasure $beta, AngularMeasure $delta): string
     {
         return $this->fuzzyComparisonFail($alfa, $this->comparison, $beta, $delta);
     }
@@ -116,7 +118,7 @@ class EqualAngleTest extends TestCase
     /**
      * Divide `$delta` by 2.
      */
-    protected function getEpsilon(AngleInterface $delta): Angle
+    protected function getEpsilon(AngularMeasure $delta): Angle
     {
         return Angle::createFromDecimal(
             new SexadecimalAngle(

@@ -12,7 +12,6 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -26,7 +25,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Seconds::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(SexadecimalRange::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+
 #[UsesClass(SexagesimalDegrees::class)]
 class NegativeAngleTest extends TestCase
 {

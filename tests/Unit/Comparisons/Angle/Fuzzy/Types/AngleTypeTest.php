@@ -20,7 +20,7 @@ use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -32,7 +32,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AbsoluteSum::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
-#[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(EqualAngle::class)]
 #[UsesClass(FloatValidator::class)]
@@ -43,9 +42,9 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(PositiveSexadecimal::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexagesimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SumBuilder::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngleTypeTest extends TestCase
@@ -56,7 +55,7 @@ class AngleTypeTest extends TestCase
         $alfa = $this->positiveRandomAngle();
         $beta = $this->positiveRandomAngle();
         $delta = $this->positiveRandomAngle();
-        $input_type = new AngleType($beta);
+        $input_type = new AngleType($beta, $delta);
 
         // Act
         $strategy = $input_type

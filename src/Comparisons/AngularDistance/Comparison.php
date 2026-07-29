@@ -8,7 +8,6 @@ use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\StringType;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison as BaseComparison;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\InputType;
-use Override;
 
 abstract class Comparison extends BaseComparison
 {
