@@ -52,6 +52,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianV
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -110,7 +111,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
-
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
