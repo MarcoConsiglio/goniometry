@@ -11,11 +11,12 @@ use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\FloatGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\RadianAngle as RadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
@@ -25,21 +26,22 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(FromRadian::class)]
-#[UsesClass(RadianAngularDistance::class)]
-#[UsesClass(FromSexadecimal::class)]
 #[UsesClass(Degrees::class)]
-#[UsesClass(Minutes::class)]
-#[UsesClass(RadianAngle::class)]
 #[UsesClass(FloatGenerator::class)]
+#[UsesClass(FloatValidator::class)]
+#[UsesClass(FromSexadecimal::class)]
+#[UsesClass(Minutes::class)]
 #[UsesClass(NegativeRadianGenerator::class)]
+#[UsesClass(PositiveRadianGenerator::class)]
+#[UsesClass(RadianAngle::class)]
+#[UsesClass(RadianAngularDistance::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RelativeRadianGenerator::class)]
-#[UsesClass(FloatValidator::class)]
 #[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexagesimalDegrees::class)]
-#[UsesClass(PositiveRadianGenerator::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class FromRadianTest extends TestCase
 {

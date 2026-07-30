@@ -10,6 +10,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -29,9 +30,10 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SexadecimalAngularDistance::class)]
 
 #[UsesClass(SexagesimalDegrees::class)]
-#[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
+#[UsesClass(SexadecimalAngle::class)]
+#[UsesTrait(WithAngleFaker::class)]
 class FromSexadecimalTest extends TestCase
 {
     public function test_create_from_in_range_positive_sexadecimal_degrees(): void

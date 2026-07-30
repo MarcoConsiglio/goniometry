@@ -8,14 +8,22 @@ use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\FloatGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngularDistance as RelativeAngularDistanceGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Seconds as SecondsGenerator;
+use MarcoConsiglio\Goniometry\Random\SecondsRange;
+use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Minutes as MinutesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
+use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -31,8 +39,13 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(Degrees::class)]
+#[UsesClass(DegreesGenerator::class)]
+#[UsesClass(DegreesValidator::class)]
+#[UsesClass(FloatGenerator::class)]
 #[UsesClass(FloatValidator::class)]
 #[UsesClass(Minutes::class)]
+#[UsesClass(MinutesGenerator::class)]
+#[UsesClass(MinutesValidator::class)]
 #[UsesClass(NegativeSexadecimalGenerator::class)]
 #[UsesClass(NegativeSexadecimalValidator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
@@ -41,6 +54,9 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SecondsGenerator::class)]
+#[UsesClass(SecondsRange::class)]
+#[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
@@ -49,12 +65,15 @@ class FromSexagesimalTest extends TestCase
     public function test_can_create_an_angular_distance_from_sexagesimal_degrees(): void
     {
         // Arrange
-        $angle = $this->randomAngularDistance();
+        $degrees = $this->randomDegrees(max: 179);
+        $minutes = $this->randomMinutes();
+        $seconds = $this->randomSeconds();
+        $direction = $this->randomDirection();
         $builder = new FromSexagesimal(
-            $angle->degrees->value(),
-            $angle->minutes->value(),
-            $angle->seconds->value(),
-            $angle->direction
+            $degrees->value(), 
+            $minutes->value(), 
+            $seconds->value(), 
+            $direction
         );
 
         // Act
@@ -62,9 +81,9 @@ class FromSexagesimalTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $result);
-        $this->assertDegrees($angle->degrees, $result->degrees);
-        $this->assertMinutes($angle->minutes, $result->minutes);
-        $this->assertSeconds($angle->seconds, $result->seconds);
-        $this->assertDirection($angle->direction, $result->direction);
+        $this->assertDegrees($degrees, $result->degrees);
+        $this->assertMinutes($minutes, $result->minutes);
+        $this->assertSeconds($seconds, $result->seconds);
+        $this->assertDirection($direction, $result->direction);
     }
 }

@@ -3,8 +3,7 @@ namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
@@ -12,14 +11,14 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use Override;
+use MarcoConsiglio\ModularArithmetic\ModularRelativeNumber;
 
 /**
  *  Build an `AngularDistance` starting from sexagesimal values.
  * 
  * @internal
  */
-class FromSexagesimal extends AngleFromSexagesimal
+class FromSexagesimal extends Builder
 {
     use CalcOrderForSexagesimals;
 
@@ -28,6 +27,8 @@ class FromSexagesimal extends AngleFromSexagesimal
     protected Number $minutes_input;
 
     protected Number $seconds_input;
+
+    protected Rotation $direction;
 
     /**
      * Constructs and `AngleBuilder` with sexagesimal `$degrees`, `$minutes`, `$seconds`
@@ -49,11 +50,21 @@ class FromSexagesimal extends AngleFromSexagesimal
      */
     protected function calcDegrees(): void 
     {
-        $this->degrees_input =
-            $this->minutes_input->sub($this->minutes->value)
-            ->div(Minutes::MAX)->plus($this->degrees_input)
-            ->mod(AngularDistance::MAX);
-        $this->degrees = new Degrees($this->degrees_input);
+        $degrees = 
+            ModularRelativeNumber::createFromExtremes(
+                $this->degrees->value
+                     ->plus($this->degrees_input)
+                     ->mul($this->direction_input->value),
+                AngularDistance::MIN,
+                AngularDistance::MAX
+            )->value;
+        $this->degrees = new Degrees(
+            $degrees->abs()->value
+        );
+        $this->direction = 
+            $degrees->isPositive() ?
+            Rotation::COUNTER_CLOCKWISE :
+            Rotation::CLOCKWISE;
     }
 
     /**
@@ -61,11 +72,17 @@ class FromSexagesimal extends AngleFromSexagesimal
      */
     protected function calcMinutes(): void 
     {
-        $this->minutes = new Minutes($this->minutes_input);
-        $this->minutes_input = 
-            $this->minutes_input->sub($this->minutes->value)
-            ->div(Seconds::MAX)->plus($this->minutes_input);
-        $this->minutes = new Minutes($this->minutes_input);
+        $this->degrees = new Degrees(
+            $this->minutes_input
+                 ->plus($this->minutes->value)
+                 ->div(Minutes::MAX)
+                 ->floor()
+        );
+        $this->minutes = new Minutes(
+            $this->minutes_input
+                 ->sub($this->degrees->value->mul(Minutes::MAX))
+                 ->plus($this->minutes->value)
+        );
     }
 
     /**
@@ -73,7 +90,12 @@ class FromSexagesimal extends AngleFromSexagesimal
      */
     protected function calcSeconds(): void 
     {
-        $this->seconds = new Seconds($this->seconds_input);
+        $this->minutes = new Minutes(
+            $this->seconds_input->div(Seconds::MAX)->floor()
+        );
+        $this->seconds = new Seconds(
+            $this->seconds_input->sub($this->minutes->value->mul(Seconds::MAX))
+        );
     }
 
     /**
@@ -83,8 +105,6 @@ class FromSexagesimal extends AngleFromSexagesimal
     {
         if ($this->isNullAngle())
             $this->direction = Rotation::COUNTER_CLOCKWISE;
-        else
-            $this->direction = $this->direction_input;
     }
 
     /**
@@ -132,17 +152,15 @@ class FromSexagesimal extends AngleFromSexagesimal
      */
     public function fetchData(): array
     {
-        $sexadecimal = new SexadecimalAngularDistance(
-            $this->degrees_input->plus(
-                $this->minutes_input->div(Minutes::MAX)
-            )->plus(
-                $this->seconds_input->div(Minutes::MAX * Seconds::MAX)
-            )->mul($this->direction_input->value)
-        );
-        $angular_distance = AngularDistance::createFromDecimal($sexadecimal);
+        $this->calcFromLessToMostSignificantValue();
         return [
-            $angular_distance->toSexagesimalDegrees(),
-            $angular_distance->toSexadecimalDegrees(),
+            new SexagesimalDegrees(
+                $this->degrees,
+                $this->minutes,
+                $this->seconds,
+                $this->direction
+            ),
+            null, // Sexadecimal
             null  // Radian
         ];
     }

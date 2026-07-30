@@ -40,6 +40,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
