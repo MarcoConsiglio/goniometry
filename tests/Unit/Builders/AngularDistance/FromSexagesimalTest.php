@@ -63,13 +63,38 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesTrait(WithAngleFaker::class)]
 class FromSexagesimalTest extends TestCase
 {
-    public function test_can_create_an_angular_distance(): void
+    public function test_can_create_a_positive_angular_distance(): void
     {
         // Arrange
         $degrees = $this->randomDegrees(max: 179);
         $minutes = $this->randomMinutes();
         $seconds = $this->randomSeconds();
-        $direction = $this->randomDirection();
+        $direction = Rotation::COUNTER_CLOCKWISE;
+        $builder = new FromSexagesimal(
+            $degrees->value(), 
+            $minutes->value(), 
+            $seconds->value(), 
+            $direction
+        );
+
+        // Act
+        $result = $builder->fetchData()[0];
+
+        // Assert
+        $this->assertInstanceOf(SexagesimalDegrees::class, $result);
+        $this->assertDegrees($degrees, $result->degrees);
+        $this->assertMinutes($minutes, $result->minutes);
+        $this->assertSeconds($seconds, $result->seconds);
+        $this->assertDirection($direction, $result->direction);
+    }
+
+    public function test_can_create_a_negative_angular_distance(): void
+    {
+        // Arrange
+        $degrees = $this->randomDegrees(max: 179);
+        $minutes = $this->randomMinutes();
+        $seconds = $this->randomSeconds();
+        $direction = Rotation::CLOCKWISE;
         $builder = new FromSexagesimal(
             $degrees->value(), 
             $minutes->value(), 
