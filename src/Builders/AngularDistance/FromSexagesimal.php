@@ -28,7 +28,13 @@ class FromSexagesimal extends Builder
 
     protected Number $seconds_input;
 
+    protected Number $reminder;
+
     protected Rotation $direction;
+
+    protected SexadecimalAngularDistance $sexadecimal;
+
+    protected bool $is_sexadecimal_positive;
 
     /**
      * Constructs and `AngleBuilder` with sexagesimal `$degrees`, `$minutes`, `$seconds`
@@ -43,6 +49,12 @@ class FromSexagesimal extends Builder
         $this->degrees_input = new Number(abs($degrees));
         $this->minutes_input = new Number(abs($minutes));
         $this->seconds_input = new Number(abs($seconds));
+        $decimal = $this->seconds_input->div(Minutes::MAX * Seconds::MAX);
+        $decimal = $decimal->plus($this->minutes_input->div(Minutes::MAX));
+        $decimal = $decimal->plus($this->degrees_input);
+        $decimal = $decimal->mul($this->direction_input->value);
+        $this->sexadecimal = new SexadecimalAngularDistance($decimal);
+        $this->is_sexadecimal_positive = $this->sexadecimal->value->isPositive();
     }
 
     /**
@@ -51,20 +63,14 @@ class FromSexagesimal extends Builder
     protected function calcDegrees(): void 
     {
         $degrees = 
-            ModularRelativeNumber::createFromExtremes(
-                $this->degrees->value
-                     ->plus($this->degrees_input)
-                     ->mul($this->direction_input->value),
-                AngularDistance::MIN,
-                AngularDistance::MAX
-            )->value;
-        $this->degrees = new Degrees(
-            $degrees->abs()->value
-        );
-        $this->direction = 
-            $degrees->isPositive() ?
-            Rotation::COUNTER_CLOCKWISE :
-            Rotation::CLOCKWISE;
+            $this->is_sexadecimal_positive ?
+            $this->sexadecimal->value->floor()->abs() :
+            $this->sexadecimal->value->ceil()->abs();
+        $this->degrees = new Degrees($degrees);
+        $this->reminder = 
+            $this->is_sexadecimal_positive ?
+            $this->sexadecimal->value->sub($degrees) :
+            $this->sexadecimal->value->plus($degrees);
     }
 
     /**
@@ -72,17 +78,12 @@ class FromSexagesimal extends Builder
      */
     protected function calcMinutes(): void 
     {
-        $this->degrees = new Degrees(
-            $this->minutes_input
-                 ->plus($this->minutes->value)
-                 ->div(Minutes::MAX)
-                 ->floor()
-        );
-        $this->minutes = new Minutes(
-            $this->minutes_input
-                 ->sub($this->degrees->value->mul(Minutes::MAX))
-                 ->plus($this->minutes->value)
-        );
+        $minutes = $this->reminder->abs()->mul(Minutes::MAX)->floor();
+        $this->minutes = new Minutes($minutes);
+        $this->reminder = 
+            $this->is_sexadecimal_positive ?
+            $this->reminder->sub($minutes->div(Minutes::MAX)) :
+            $this->reminder->plus($minutes->div(Minutes::MAX));
     }
 
     /**
@@ -90,11 +91,8 @@ class FromSexagesimal extends Builder
      */
     protected function calcSeconds(): void 
     {
-        $this->minutes = new Minutes(
-            $this->seconds_input->div(Seconds::MAX)->floor()
-        );
         $this->seconds = new Seconds(
-            $this->seconds_input->sub($this->minutes->value->mul(Seconds::MAX))
+            $this->reminder->abs()->mul(Minutes::MAX * Seconds::MAX)
         );
     }
 
@@ -105,6 +103,10 @@ class FromSexagesimal extends Builder
     {
         if ($this->isNullAngle())
             $this->direction = Rotation::COUNTER_CLOCKWISE;
+        else
+            $this->sexadecimal->value->isPositive() ?
+            $this->direction = Rotation::COUNTER_CLOCKWISE :
+            $this->direction = Rotation::CLOCKWISE;
     }
 
     /**
@@ -152,7 +154,7 @@ class FromSexagesimal extends Builder
      */
     public function fetchData(): array
     {
-        $this->calcFromLessToMostSignificantValue();
+        $this->calcFromMostToLessSignificantValue();
         return [
             new SexagesimalDegrees(
                 $this->degrees,

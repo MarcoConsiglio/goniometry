@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Feature;
 
+use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\RadianAngularDistance;
 use MarcoConsiglio\Goniometry\RadianAngle;
@@ -50,12 +51,11 @@ class RadianAngularDistanceTest extends TestCase
     public function test_max_radian(): void
     {
         // Arrange
-        $pi = "3.14159265358979323846264338327950288419716939937510582";
+        $pi = new Number("3.14159265358979323846264338327950288419716939937510582");
 
         // Act & Assert
-        $this->assertEquals(
-            $pi,
-            RadianAngularDistance::getMaxRadian()->value
+        $this->assertTrue(
+            $pi->isEqual(RadianAngularDistance::getMaxRadian())
         );
     }
 }

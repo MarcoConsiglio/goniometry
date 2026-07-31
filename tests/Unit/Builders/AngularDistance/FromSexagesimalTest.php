@@ -5,6 +5,7 @@ use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as AngularDistanceFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Degrees;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
@@ -62,7 +63,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesTrait(WithAngleFaker::class)]
 class FromSexagesimalTest extends TestCase
 {
-    public function test_can_create_an_angular_distance_from_sexagesimal_degrees(): void
+    public function test_can_create_an_angular_distance(): void
     {
         // Arrange
         $degrees = $this->randomDegrees(max: 179);
@@ -85,5 +86,29 @@ class FromSexagesimalTest extends TestCase
         $this->assertMinutes($minutes, $result->minutes);
         $this->assertSeconds($seconds, $result->seconds);
         $this->assertDirection($direction, $result->direction);
+    }
+
+    public function test_can_create_a_null_angle(): void
+    {
+        // Arrange
+        $positive_direction = Rotation::COUNTER_CLOCKWISE;
+        $negative_direction = Rotation::CLOCKWISE;
+
+        // Act
+        //  Null angles
+        $alfa = AngularDistance::createFromValues(0, 0, 0, $positive_direction);
+        $beta = AngularDistance::createFromValues(0, 0, 0, $negative_direction);
+        //  Non-null angles
+        $gamma =    AngularDistance::createFromValues(1, 0, 0, $negative_direction);
+        $epsilon =  AngularDistance::createFromValues(0, 1, 0, $negative_direction);
+        $iota =     AngularDistance::createFromValues(0, 0, 1, $negative_direction);
+        // Assert
+        //  Null angles
+        $this->assertEquals($positive_direction, $alfa->direction);
+        $this->assertEquals($positive_direction, $beta->direction);
+        //  Non-null angles
+        $this->assertEquals($negative_direction, $gamma->direction);
+        $this->assertEquals($negative_direction, $epsilon->direction);
+        $this->assertEquals($negative_direction, $iota->direction);
     }
 }
