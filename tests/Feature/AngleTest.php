@@ -9,21 +9,20 @@ use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromString;
 use MarcoConsiglio\Goniometry\Builders\Angle\RelativeSum;
 use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
-use MarcoConsiglio\Goniometry\Casting\RadianAngle\Cast as CastToRadian;
-use MarcoConsiglio\Goniometry\Casting\RadianAngle\Round as RoundToRadian;
+use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
+use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundToRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundToSexadecimal;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Comparison as FuzzyComparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Equal as FuzzyEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types\AngleType as FuzzyAngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentInt;
@@ -66,7 +65,7 @@ use MarcoConsiglio\Goniometry\Random\Generator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveAngle as PositiveAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveSexadecimal as PositiveSexadecimalGenerator;
-use MarcoConsiglio\Goniometry\Random\Generator\RadianAngle as RadianGenerator;
+use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeAngle as RelativeAngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeSexadecimal as RelativeSexadecimalGenerator;
@@ -173,10 +172,10 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RoundToRadian::class)]
 #[UsesClass(RoundToSexadecimal::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SecondsGenerator::class)]
 #[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
-
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]

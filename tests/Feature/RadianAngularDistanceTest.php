@@ -29,7 +29,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeRadianValidator::class)]
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class AngularDistanceRadianTest extends TestCase
+class RadianAngularDistanceTest extends TestCase
 {
     #[TestDox("can be casted to a radian float value.")]
     public function test_cast_to_float(): void

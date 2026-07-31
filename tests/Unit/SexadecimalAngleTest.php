@@ -27,7 +27,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesTrait(WithAngleFaker::class)]
-class SexadecimalDegreesTest extends TestCase
+class SexadecimalAngleTest extends TestCase
 {
     public function test_positive_sexadecimal(): void
     {
