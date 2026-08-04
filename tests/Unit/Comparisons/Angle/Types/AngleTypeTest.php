@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
@@ -56,5 +56,6 @@ class AngleTypeTest extends TestCase
         $this->testInputType(GreaterOrEqual::class, GreaterOrEqualAngle::class);
         $this->testInputType(Lesser::class, LesserAngle::class);
         $this->testInputType(LesserOrEqual::class, LesserOrEqualAngle::class);
+        $this->testInputTypeError();
     }
 }

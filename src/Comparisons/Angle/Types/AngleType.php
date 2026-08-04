@@ -48,6 +48,6 @@ class AngleType extends InputType
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualAngle($alfa, $this->beta);
         if ($comparison instanceof Lesser) return new LesserAngle($alfa, $this->beta);
         if ($comparison instanceof LesserOrEqual) return new LesserOrEqualAngle($alfa, $this->beta);
-        return $this->throwError($comparison);
+        return $this->throwError($comparison); // @codeCoverageIgnore
     }
 }

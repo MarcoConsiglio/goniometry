@@ -49,6 +49,6 @@ class IntType extends InputType
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualInt($alfa, $this->beta);
         if ($comparison instanceof Lesser) return new LesserInt($alfa, $this->beta);
         if ($comparison instanceof LesserOrEqual) return new LesserOrEqualInt($alfa, $this->beta);
-        return $this->throwError($comparison);
+        return $this->throwError($comparison); // @codeCoverageIgnore
     }
 }

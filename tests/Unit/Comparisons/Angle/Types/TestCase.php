@@ -6,6 +6,7 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\InputType;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
+use MarcoConsiglio\Goniometry\Tests\Dummy\Angle\UnknownComparison;
 use MarcoConsiglio\Goniometry\Tests\TestCase as BaseTestCase;
 use Override;
 use PHPUnit\Framework\MockObject\Stub;
@@ -46,7 +47,7 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * This is a Parameterized Test.
+     * Test the `InputType` return the correct strategy. This is a Parameterized Test.
      * 
      * @param string $comparison The comparison class.
      * @param string $strategy The strategy class this `InputType` should return.
@@ -62,6 +63,24 @@ abstract class TestCase extends BaseTestCase
             $this->alfa
         );
         $this->assertInstanceOf($strategy, $strategy_object);
+    }
+
+    /**
+     * Test the `InputType` throws an `Error` if `$comparison` is an invalid type.
+     */
+    protected function testInputTypeError(): void
+    {
+        // Arrange
+        $beta = $this->getBeta();
+
+        // Assert
+        $this->expectException(Error::class);
+
+        // Act
+        $this->input_type->getStrategyFor(
+            new UnknownComparison($this->alfa, $beta),
+            $beta
+        );
     }
 
     /**

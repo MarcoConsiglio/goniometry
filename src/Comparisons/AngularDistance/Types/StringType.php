@@ -49,6 +49,6 @@ class StringType extends InputType
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualString($alfa, $this->beta);
         if ($comparison instanceof Lesser) return new LesserString($alfa, $this->beta);
         if ($comparison instanceof LesserOrEqual) return new LesserOrEqualString($alfa, $this->beta);
-        return $this->throwError($comparison);
+        return $this->throwError($comparison); // @codeCoverageIgnore
     }
 }

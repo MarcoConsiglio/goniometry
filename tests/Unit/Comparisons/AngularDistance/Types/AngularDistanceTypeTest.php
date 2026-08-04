@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Types;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngularDistance;
@@ -22,6 +23,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\MockObject\Stub;
 
 #[CoversClass(AngularDistanceType::class)]
+#[UsesClass(Comparison::class)]
 #[UsesClass(DifferentAngularDistance::class)]
 #[UsesClass(EqualAngularDistance::class)]
 #[UsesClass(EqualAngularDistance::class)]
@@ -51,5 +53,6 @@ class AngularDistanceTypeTest extends TestCase
         $this->testInputType(GreaterOrEqual::class, GreaterOrEqualAngularDistance::class);
         $this->testInputType(Lesser::class,         LesserAngularDistance::class);
         $this->testInputType(LesserOrEqual::class,  LesserOrEqualAngularDistance::class);
+        $this->testInputTypeError();
     }
 }

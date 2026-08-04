@@ -2,6 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Types;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Different;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Greater;
@@ -25,6 +26,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(IntType::class)]
+#[UsesClass(Comparison::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
@@ -60,5 +62,6 @@ class IntTypeTest extends TestCase
         $this->testInputType(GreaterOrEqual::class, GreaterOrEqualInt::class);
         $this->testInputType(Lesser::class, LesserInt::class);
         $this->testInputType(LesserOrEqual::class, LesserOrEqualInt::class);
+        $this->testInputTypeError();
     }
 }

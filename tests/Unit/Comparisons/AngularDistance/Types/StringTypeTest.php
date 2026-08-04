@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Types
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualString;
@@ -38,8 +39,8 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(StringType::class)]
 #[UsesClass(AngularDistance::class)]
-#[UsesClass(AngularDistance::class)]
 #[UsesClass(AngularDistanceRange::class)]
+#[UsesClass(Comparison::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DifferentString::class)]
 #[UsesClass(EqualString::class)]
@@ -83,5 +84,6 @@ class StringTypeTest extends TestCase
         $this->testInputType(GreaterOrEqual::class, GreaterOrEqualString::class);
         $this->testInputType(Lesser::class, LesserString::class);
         $this->testInputType(LesserOrEqual::class, LesserOrEqualString::class);
+        $this->testInputTypeError();
     }
 }

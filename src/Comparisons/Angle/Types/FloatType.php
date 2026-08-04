@@ -52,6 +52,6 @@ class FloatType extends InputType
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualFloat($alfa, $this->beta, $this->precision);
         if ($comparison instanceof Lesser) return new LesserFloat($alfa, $this->beta, $this->precision);
         if ($comparison instanceof LesserOrEqual) return new LesserOrEqualFloat($alfa, $this->beta, $this->precision);
-        return $this->throwError($comparison);
+        return $this->throwError($comparison); // @codeCoverageIgnore
     }
 }

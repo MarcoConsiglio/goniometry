@@ -1,7 +1,7 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Dummy;
+namespace MarcoConsiglio\Goniometry\Tests\Dummy\Angle;
 
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison;
 use Override;
 
 class UnknownComparison extends Comparison

@@ -1,9 +1,10 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
@@ -43,6 +44,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[CoversClass(StringType::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
+#[UsesClass(Comparison::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DifferentString::class)]
 #[UsesClass(EqualString::class)]
@@ -89,5 +91,6 @@ class StringTypeTest extends TestCase
         $this->testInputType(GreaterOrEqual::class, GreaterOrEqualString::class);
         $this->testInputType(Lesser::class, LesserString::class);
         $this->testInputType(LesserOrEqual::class, LesserOrEqualString::class);
+        $this->testInputTypeError();
     }
 }

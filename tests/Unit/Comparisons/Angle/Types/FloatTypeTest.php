@@ -1,6 +1,7 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Types;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Types;
 
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
@@ -21,6 +22,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(FloatType::class)]
+#[UsesClass(Comparison::class)]
 #[UsesClass(DifferentFloat::class)]
 #[UsesClass(EqualFloat::class)]
 #[UsesClass(GreaterFloat::class)]
@@ -52,5 +54,6 @@ class FloatTypeTest extends TestCase
         $this->testInputType(GreaterOrEqual::class, GreaterOrEqualFloat::class);
         $this->testInputType(Lesser::class, LesserFloat::class);
         $this->testInputType(LesserOrEqual::class, LesserOrEqualFloat::class);
+        $this->testInputTypeError();
     }
 }

@@ -50,6 +50,6 @@ class AngularDistanceType extends InputType
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualAngularDistance($alfa, $this->beta);
         if ($comparison instanceof Lesser) return new LesserAngularDistance($alfa, $this->beta);
         if ($comparison instanceof LesserOrEqual) return new LesserOrEqualAngularDistance($alfa, $this->beta);
-        return $this->throwError($comparison);
+        return $this->throwError($comparison); // @codeCoverageIgnore
     }
 }
