@@ -1,8 +1,8 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Casting\Radian;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Casting\RadianAngle;
 
 use MarcoConsiglio\Goniometry\Casting\Radian\Round;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
@@ -17,7 +17,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(Round::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesTrait(WithAngleFaker::class)]
 #[UsesClass(NegativeRadianGenerator::class)]
 #[UsesClass(RadianGenerator::class)]
@@ -33,7 +33,7 @@ class RoundTest extends TestCase
         // Arrange
         $precision = $this->randomPrecision();
         $expected = $this->randomRadian();
-        $radian = new Radian($expected->value());
+        $radian = new RadianAngle($expected->value());
 
         // Act
         $actual = new Round($radian, $precision)->cast();
@@ -46,7 +46,7 @@ class RoundTest extends TestCase
     {
         // Arrange
         $expected = $this->randomRadian();
-        $radian = new Radian($expected->value);
+        $radian = new RadianAngle($expected->value);
 
         // Act
         $actual = new Round($radian)->cast();

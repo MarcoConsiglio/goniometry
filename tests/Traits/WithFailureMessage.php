@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Traits;
 
-use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
@@ -21,7 +20,7 @@ trait WithFailureMessage
      */
     protected function typeFail(string $property): string
     {
-        return "'$property' type not expected.";
+        return "'{$property}' type not expected.";
     }
 
     /**
@@ -39,7 +38,7 @@ trait WithFailureMessage
      */
     protected function getterFail(string $property): string
     {
-        return "'$property' property is not working properly.";
+        return "'{$property}' property is not working properly.";
     }
 
     /**
@@ -47,7 +46,7 @@ trait WithFailureMessage
      */
     protected function methodFail(string $name): string
     {
-        return "'$name()' method is not working properly.";
+        return "'{$name}()' method is not working properly.";
     }
 
     /**
@@ -55,7 +54,7 @@ trait WithFailureMessage
      */
     protected static function instanceTypeFail(string $expected_class, string $actual_class): string
     {
-        return "Expected $expected_class class but found $actual_class class instead.";
+        return "Expected {$expected_class} class but found {$actual_class} class instead.";
     }
 
     /**
@@ -64,7 +63,7 @@ trait WithFailureMessage
      */
     protected static function methodMustReturn(string $called_class, string $method, string $return_type): string
     {
-        return "Calling $called_class::$method() must return a $return_type instance.";
+        return "Calling {$called_class}::{$method}() must return a {$return_type} instance.";
     }
 
     /**
@@ -74,7 +73,7 @@ trait WithFailureMessage
      */
     protected function getCastError(string $type): string
     {
-        return "Something is not working when casting to $type.";
+        return "Something is not working when casting to {$type}.";
     }
 
     /**
@@ -94,10 +93,10 @@ trait WithFailureMessage
         int|float|string|AngularMeasure $beta
     ): string {
         $this->checkComparison($comparison);
-        if (is_int($beta)) return "$alfa $comparison {$beta}°";
+        if (is_int($beta)) return "{$alfa} {$comparison} {$beta}°";
         if (is_float($beta))
-            return "{$alfa->toSexadecimalDegrees()} $comparison {$beta}°";
-        return "$alfa $comparison $beta";
+            return "{$alfa->toSexadecimalDegrees()} {$comparison} {$beta}°";
+        return "{$alfa} {$comparison} {$beta}";
     }
 
     protected function comparisonWithDeltaFail(
@@ -107,10 +106,10 @@ trait WithFailureMessage
         Angle $delta
     ): string {
         $error = $delta->toFloat() / 2;
-        if (is_int($beta)) return "$alfa $comparison {$beta}° with error ±{$error}°";
+        if (is_int($beta)) return "{$alfa} {$comparison} {$beta}° with error ±{$error}°";
         if (is_float($beta))
-            return "{$alfa->toSexadecimalDegrees()} $comparison {$beta}°  with error ±{$error}°";
-        return "$alfa $comparison $beta  with error ±{$error}°";
+            return "{$alfa->toSexadecimalDegrees()} {$comparison} {$beta}°  with error ±{$error}°";
+        return "{$alfa} {$comparison} {$beta}  with error ±{$error}°";
     }
 
     /**
@@ -123,7 +122,7 @@ trait WithFailureMessage
         AngularMeasure $delta
     ): string {
         $this->checkComparison($comparison);
-        return "{$alfa->toSexadecimalDegrees()} $comparison {$beta->toSexadecimalDegrees()} with delta {$delta->toSexadecimalDegrees()}.";
+        return "{$alfa->toSexadecimalDegrees()} {$comparison} {$beta->toSexadecimalDegrees()} with delta {$delta->toSexadecimalDegrees()}.";
     }
 
     /**
@@ -132,7 +131,7 @@ trait WithFailureMessage
     protected function checkComparison(string $comparison): void
     {
         if (! in_array($comparison, $this->allowed_comparisons))
-            throw new ValueError("\"$comparison\" is not an allowed comparison.");
+            throw new ValueError("\"{$comparison}\" is not an allowed comparison.");
     }
 
     /**

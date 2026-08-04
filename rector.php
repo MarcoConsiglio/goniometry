@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
+use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
+use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
-use Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector;
 
-$level = 39;
+$level = 51;
 return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/src',
@@ -15,9 +16,9 @@ return RectorConfig::configure()
     ->withTypeCoverageLevel($level)
     ->withDeadCodeLevel($level)
     ->withCodeQualityLevel($level)
+    ->withCodingStyleLevel(12)
+    ->withImportNames(removeUnusedImports: true)
     ->withSkip([
-        ClassPropertyAssignToConstructorPromotionRector::class => [
-            __DIR__ . '/src/Builders/FromSexagesimal.php',
-            __DIR__ . '/src/Comparisons/Fuzzy/Comparison.php'
-        ]
+        NewlineAfterStatementRector::class,
+        EncapsedStringsToSprintfRector::class
     ]);

@@ -23,7 +23,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as RelativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -52,7 +52,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(Seconds::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class GreaterIntTest extends StrategiesTestCase

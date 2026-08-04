@@ -3,11 +3,12 @@ namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Types;
 
 use Error;
 use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types\AngleType as FuzzyAngleType;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\Fuzzy\EqualAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
 
 /**
@@ -16,12 +17,18 @@ use Override;
  * 
  * @internal
  */
-class AngularDistanceType extends FuzzyAngleType
+class AngularDistanceType extends InputType
 {
     /**
-     * The delta error.
+     * Construct the `InputType`.
+     * 
+     * @param AngularDistance $beta The right operand of the comparison.
+     * @param Angle $delta The delta error.
      */
-    protected Angle $delta;
+    public function __construct(AngularDistance $beta, protected Angle $delta)
+    {
+        parent::__construct($beta);
+    }
 
     /**
      * Get the correct strategy for the current `$comparison` operation.
@@ -30,10 +37,9 @@ class AngularDistanceType extends FuzzyAngleType
      * @throws Error if there's no strategy for `$comparison`.
      */
     #[Override]
-    public function getStrategyFor(Comparison $comparison, AngularMeasure $alfa): EqualAngularDistance
+    public function getStrategyFor(Comparison $comparison, AngularDistance $alfa): Strategy
     {
         if ($comparison instanceof Equal) return new EqualAngularDistance($alfa, $this->beta, $this->delta);
-        $unknown_class = get_class($comparison);
-        throw new Error("There's no strategy for {$unknown_class} comparison.");
+        return $this->throwError($comparison); // @codeCoverageIgnore
     }
 }

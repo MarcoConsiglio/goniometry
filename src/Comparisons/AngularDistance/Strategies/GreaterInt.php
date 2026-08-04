@@ -2,8 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterInt as AngleGreaterInt;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
 
 /**
@@ -12,7 +12,7 @@ use Override;
  * 
  * @internal
  */
-class GreaterInt extends AngleGreaterInt
+class GreaterInt implements Strategy
 {
     /**
      * Construct the comparison strategy.
@@ -20,10 +20,10 @@ class GreaterInt extends AngleGreaterInt
      * @param AngularDistance $alfa The left comparison operand.
      * @param int $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, int $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected int $beta
+    ) {}
 
     #[Override]
     public function compare(): bool

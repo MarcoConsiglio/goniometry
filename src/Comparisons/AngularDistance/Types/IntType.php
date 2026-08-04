@@ -3,20 +3,19 @@ namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types;
 
 use Error;
 use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\IntType as AngleIntType;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualInt;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Different;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
 
@@ -26,8 +25,15 @@ use Override;
  * 
  * @internal
  */
-class IntType extends AngleIntType
+class IntType extends InputType
 {
+    /**
+     * Construct the `InputType` of `$beta`.
+     * 
+     * @param int $beta The right operand of the comparison.
+     */
+    public function __construct(protected int $beta) {}
+
     /**
      * Get the correct strategy for the current `$comparison` operation.
      * 
@@ -43,7 +49,6 @@ class IntType extends AngleIntType
         if ($comparison instanceof GreaterOrEqual) return new GreaterOrEqualInt($alfa, $this->beta);
         if ($comparison instanceof Lesser) return new LesserInt($alfa, $this->beta);
         if ($comparison instanceof LesserOrEqual) return new LesserOrEqualInt($alfa, $this->beta);
-        $unknown_class = get_class($comparison);
-        throw new Error("There's no strategy for {$unknown_class} comparison.");
+        return $this->throwError($comparison); // @codeCoverageIgnore
     }
 }

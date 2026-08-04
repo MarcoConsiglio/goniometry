@@ -6,16 +6,13 @@ use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as AngularDistanceFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal as AngularDistanceFromSexagesimal;
+use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
+use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\Fuzzy\EqualAngularDistance as FuzzyEqualAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngularDistance;
@@ -23,10 +20,11 @@ use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEq
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\AngularDistanceType;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison as GenericComparison;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
@@ -40,8 +38,8 @@ use MarcoConsiglio\Goniometry\Random\Validator\FloatValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeAngularDistance as NegativeAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveAngularDistance as PositiveAngularDistanceValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -63,16 +61,13 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(Degrees::class)]
 #[UsesClass(EqualAngularDistance::class)]
 #[UsesClass(FloatValidator::class)]
+#[UsesClass(GenericComparison::class)]
 #[UsesClass(Greater::class)]
-#[UsesClass(GreaterAngle::class)]
 #[UsesClass(GreaterAngularDistance::class)]
 #[UsesClass(GreaterOrEqual::class)]
-#[UsesClass(GreaterOrEqualAngle::class)]
 #[UsesClass(GreaterOrEqualAngularDistance::class)]
-#[UsesClass(LesserAngle::class)]
 #[UsesClass(LesserAngularDistance::class)]
 #[UsesClass(LesserOrEqual::class)]
-#[UsesClass(LesserOrEqualAngle::class)]
 #[UsesClass(LesserOrEqualAngularDistance::class)]
 #[UsesClass(Minutes::class)]
 #[UsesClass(NegativeAngularDistanceGenerator::class)]
@@ -84,11 +79,12 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeSum::class)]
 #[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(SumBuilder::class)]
+#[UsesTrait(CalcOrderForSexagesimals::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class EqualAngularDistanceTest extends StrategiesTestCase
 {
@@ -96,13 +92,13 @@ class EqualAngularDistanceTest extends StrategiesTestCase
 
     public function test_compare(): void
     {
+        $delta = Angle::createFromValues(4);
         /**
          * Equal
          * $alfa = -2°
          * $beta = 0°
          */
         // Arrange
-        $delta = Angle::createFromValues(4);
         $beta = AngularDistance::createFromValues();
         $alfa = AngularDistance::createFromDecimal(-2);
 

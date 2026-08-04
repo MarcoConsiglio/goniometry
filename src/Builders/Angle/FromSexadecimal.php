@@ -2,11 +2,13 @@
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
 use MarcoConsiglio\BCMathExtended\Number;
+use MarcoConsiglio\Goniometry\Builders\Builder;
+use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
@@ -14,12 +16,14 @@ use MarcoConsiglio\Goniometry\SexagesimalDegrees;
  * 
  * @internal
  */
-class FromSexadecimal extends AngleBuilder
+class FromSexadecimal extends Builder
 {
+    use CalcOrderForSexagesimals;
+
     /**
      * The decimal value used to build an angle.
      */
-    protected SexadecimalDegrees $decimal;
+    protected SexadecimalAngle $decimal;
 
     /**
      * The remainder that remains during the conversion steps from decimal to
@@ -30,19 +34,12 @@ class FromSexadecimal extends AngleBuilder
     /**
      * Construct `FromSexadecimal` `AngleBuilder` with a sexadecimal degrees value.
      */
-    public function __construct(float|SexadecimalDegrees $decimal)
+    public function __construct(float|SexadecimalAngle $decimal)
     {
         $this->decimal =
-            $decimal instanceof SexadecimalDegrees ?
-            $decimal : new SexadecimalDegrees($decimal);
+            $decimal instanceof SexadecimalAngle ?
+            $decimal : new SexadecimalAngle($decimal);
     }
-
-    /**
-     * Not implemented as overflow above/below +/-360° is allowed.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function checkOverflow(): void {/* No need to check overflow. Overflow is allowed. */}
 
     /**
      * Calc degrees.
@@ -91,14 +88,11 @@ class FromSexadecimal extends AngleBuilder
     /**
      * Fetches the data to build an `Angle`.
      *
-     * @return array{SexagesimalDegrees,SexadecimalDegrees,null}
+     * @return array{SexagesimalDegrees,SexadecimalAngle,null}
      */
     public function fetchData(): array
     {
-        $this->calcDegrees();
-        $this->calcMinutes();
-        $this->calcSeconds();
-        $this->calcSign();
+        $this->calcFromMostToLessSignificantValue();
         return [
             new SexagesimalDegrees(
                 $this->degrees,
@@ -107,7 +101,7 @@ class FromSexadecimal extends AngleBuilder
                 $this->direction
             ),
             $this->decimal,
-            null
+            null // Radian
         ];
     }
 }

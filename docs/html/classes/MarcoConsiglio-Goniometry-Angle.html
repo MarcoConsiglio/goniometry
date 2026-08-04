@@ -121,6 +121,9 @@
                             </ul>
         </div>
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-BuildableFromRadian.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\BuildableFromRadian">BuildableFromRadian</abbr></a>,                             <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-BuildableFromSexadecimal.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\BuildableFromSexadecimal">BuildableFromSexadecimal</abbr></a>,                             <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-Comparable.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\Comparable">Comparable</abbr></a>,                             <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-FuzzyComparable.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\FuzzyComparable">FuzzyComparable</abbr></a>,                             <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-Summable.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\Summable">Summable</abbr></a>                    </span>
     
     </h2>
 
@@ -132,7 +135,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
@@ -152,6 +155,13 @@
 
 
 
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-BuildableFromRadian.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\BuildableFromRadian">BuildableFromRadian</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-BuildableFromSexadecimal.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\BuildableFromSexadecimal">BuildableFromSexadecimal</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-Comparable.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\Comparable">Comparable</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-FuzzyComparable.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\FuzzyComparable">FuzzyComparable</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle-Summable.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle\Summable">Summable</abbr></a></dt>    </dl>
 
 
 
@@ -168,6 +178,20 @@
         &nbsp;: mixed&nbsp;= &quot;/(?&lt;!\\d)(-?(?:360|3[0-5]\\d|[12]?\\d{1,2}))°/&quot;                            </span>
 </dt>
 <dd>Regular expression used to parse degrees value as integer number.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_MAX">MAX</a>
+    <span>
+        &nbsp;: int&nbsp;= \MarcoConsiglio\Goniometry\Degrees::MAX                            </span>
+</dt>
+<dd>The maximum allowed value.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_MIN">MIN</a>
+    <span>
+        &nbsp;: int&nbsp;= -self::MAX                            </span>
+</dt>
+<dd>The minimum allowed value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#constant_MINUTES_REGEX">MINUTES_REGEX</a>
@@ -245,49 +269,49 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_absolute">absolute()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Return this `Angle` as absolute (positive).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_absSum">absSum()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Sum this `Angle` to an `$addend` two absolute `Angle`s. The resulting `Angle` can be only positive.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_asb">asb()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Alias for `absolute()` method.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_createFromDecimal">createFromDecimal()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Creates an `Angle` from its sexadecimal representation.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_createFromRadian">createFromRadian()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Creates an `Angle` from its radian representation.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_createFromString">createFromString()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Creates an `Angle` from its textual sexagesimal representation.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_createFromValues">createFromValues()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Creates an `Angle` from its sexagesimal values.</dd>
 
@@ -314,7 +338,7 @@
 error angle.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_getDegrees">getDegrees()</a>
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees">getDegrees()</a>
     <span>
                                 &nbsp;: array{int, int, float}|array{degrees: int, minutes: int, seconds: float}    </span>
 </dt>
@@ -414,21 +438,21 @@ error angle.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_oppositeDirection">oppositeDirection()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Return the opposite direction `Angle`.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_oppositeRotation">oppositeRotation()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Return the same instance with the opposite `Rotation` direction.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_sum">sum()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a>    </span>
+                                &nbsp;: static    </span>
 </dt>
 <dd>Sum this `Angle` to an `$addend`. The resulting `Angle` can be positive or negative.</dd>
 
@@ -449,7 +473,7 @@ error angle.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_toSexadecimalDegrees">toSexadecimalDegrees()</a>
     <span>
-                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalDegrees">SexadecimalDegrees</abbr></a>    </span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-SexadecimalAngle.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalAngle">SexadecimalAngle</abbr></a>    </span>
 </dt>
 <dd>Cast this `Angle` to `SexadecimalDegrees`.</dd>
 
@@ -481,7 +505,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
@@ -503,6 +527,68 @@ error angle.</dd>
         
     </article>
                     <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_MAX">
+        MAX
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_MAX" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The maximum allowed value.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">MAX</span>
+    = <span class="phpdocumentor-signature__default-value">\MarcoConsiglio\Goniometry\Degrees::MAX</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_MIN">
+        MIN
+        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_MIN" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">50</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">The minimum allowed value.</p>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">MIN</span>
+    = <span class="phpdocumentor-signature__default-value">-self::MAX</span>
+</code>
+
+
+    
+    
+    
+
+        
+    </article>
+                    <article class="phpdocumentor-element -constant -public ">
     <h4 class="phpdocumentor-element__name" id="constant_MINUTES_REGEX">
         MINUTES_REGEX
         <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#constant_MINUTES_REGEX" class="headerlink"><i class="fas fa-link"></i></a>
@@ -512,7 +598,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
@@ -543,7 +629,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -590,7 +676,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -644,7 +730,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -698,7 +784,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -752,7 +838,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -811,7 +897,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">435</span>
+    <span class="phpdocumentor-element-found-in__line">452</span>
 
     </aside>
 
@@ -846,7 +932,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">426</span>
+    <span class="phpdocumentor-element-found-in__line">443</span>
 
     </aside>
 
@@ -900,7 +986,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
@@ -908,7 +994,7 @@ error angle.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">absolute</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">absolute</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -921,7 +1007,7 @@ error angle.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -939,7 +1025,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">403</span>
+    <span class="phpdocumentor-element-found-in__line">420</span>
 
     </aside>
 
@@ -947,7 +1033,7 @@ error angle.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">absSum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$addend</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">absSum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$addend</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -970,7 +1056,7 @@ error angle.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -988,7 +1074,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">86</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
@@ -996,7 +1082,7 @@ error angle.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">asb</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">asb</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1009,7 +1095,7 @@ error angle.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -1027,7 +1113,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -1035,7 +1121,7 @@ error angle.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromDecimal</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-Interfaces-SexadecimalValue.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue">SexadecimalValue</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sexadecimal</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromDecimal</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-SexadecimalAngle.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalAngle">SexadecimalAngle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sexadecimal</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1045,7 +1131,7 @@ error angle.</dd>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$sexadecimal</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-Interfaces-SexadecimalValue.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue">SexadecimalValue</abbr></a></span>
+                : <span class="phpdocumentor-argument-list__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-SexadecimalAngle.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalAngle">SexadecimalAngle</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1058,7 +1144,7 @@ error angle.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -1076,7 +1162,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -1084,7 +1170,7 @@ error angle.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromRadian</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-Interfaces-RadianValue.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\RadianValue">RadianValue</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$radian</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromRadian</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-RadianAngle.html"><abbr title="\MarcoConsiglio\Goniometry\RadianAngle">RadianAngle</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$radian</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1094,7 +1180,7 @@ error angle.</dd>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$radian</span>
-                : <span class="phpdocumentor-argument-list__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-Interfaces-RadianValue.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\RadianValue">RadianValue</abbr></a></span>
+                : <span class="phpdocumentor-argument-list__argument__type">float|<a href="classes/MarcoConsiglio-Goniometry-RadianAngle.html"><abbr title="\MarcoConsiglio\Goniometry\RadianAngle">RadianAngle</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1107,7 +1193,7 @@ error angle.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -1125,7 +1211,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
@@ -1133,7 +1219,7 @@ error angle.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromString</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sexagesimal</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromString</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sexagesimal</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1172,7 +1258,7 @@ error angle.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -1190,7 +1276,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
@@ -1198,7 +1284,7 @@ error angle.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromValues</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$degrees</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$minutes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$seconds</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0.0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation">Rotation</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$direction</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html#enumcase_COUNTER_CLOCKWISE"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation::COUNTER_CLOCKWISE">Rotation::COUNTER_CLOCKWISE</abbr></a></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromValues</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$degrees</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$minutes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$seconds</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">0.0</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation">Rotation</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$direction</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html#enumcase_COUNTER_CLOCKWISE"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation::COUNTER_CLOCKWISE">Rotation::COUNTER_CLOCKWISE</abbr></a></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1242,7 +1328,7 @@ error angle.</dd>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -1260,7 +1346,7 @@ error angle.</dd>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">338</span>
+    <span class="phpdocumentor-element-found-in__line">355</span>
 
     </aside>
 
@@ -1268,7 +1354,7 @@ error angle.</dd>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">eq</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">eq</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1286,7 +1372,7 @@ error angle.</dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -1335,7 +1421,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">387</span>
+    <span class="phpdocumentor-element-found-in__line">404</span>
 
     </aside>
 
@@ -1391,7 +1477,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">379</span>
+    <span class="phpdocumentor-element-found-in__line">396</span>
 
     </aside>
 
@@ -1442,13 +1528,13 @@ error angle.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_getDegrees">
         getDegrees()
-        <a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_getDegrees" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
@@ -1510,7 +1596,7 @@ error angle.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">217</span>
+    <span class="phpdocumentor-element-found-in__line">234</span>
 
     </aside>
 
@@ -1518,7 +1604,7 @@ error angle.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">gt</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">gt</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1536,7 +1622,7 @@ error angle.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -1585,7 +1671,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">248</span>
+    <span class="phpdocumentor-element-found-in__line">265</span>
 
     </aside>
 
@@ -1593,7 +1679,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">gte</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">gte</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1611,7 +1697,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -1660,7 +1746,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">118</span>
+    <span class="phpdocumentor-element-found-in__line">135</span>
 
     </aside>
 
@@ -1699,7 +1785,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">126</span>
+    <span class="phpdocumentor-element-found-in__line">143</span>
 
     </aside>
 
@@ -1738,7 +1824,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">352</span>
+    <span class="phpdocumentor-element-found-in__line">369</span>
 
     </aside>
 
@@ -1746,7 +1832,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isDifferentThan</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">isDifferentThan</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1764,7 +1850,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -1813,7 +1899,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">322</span>
+    <span class="phpdocumentor-element-found-in__line">339</span>
 
     </aside>
 
@@ -1821,7 +1907,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isEqualTo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">isEqualTo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1839,7 +1925,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -1888,7 +1974,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">201</span>
+    <span class="phpdocumentor-element-found-in__line">218</span>
 
     </aside>
 
@@ -1896,7 +1982,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isGreaterThan</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">isGreaterThan</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1914,7 +2000,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -1963,7 +2049,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">231</span>
+    <span class="phpdocumentor-element-found-in__line">248</span>
 
     </aside>
 
@@ -1971,7 +2057,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isGreaterThanOrEqualTo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">isGreaterThanOrEqualTo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1989,7 +2075,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -2038,7 +2124,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">262</span>
+    <span class="phpdocumentor-element-found-in__line">279</span>
 
     </aside>
 
@@ -2046,7 +2132,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isLessThan</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">isLessThan</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2064,7 +2150,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -2113,7 +2199,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">292</span>
+    <span class="phpdocumentor-element-found-in__line">309</span>
 
     </aside>
 
@@ -2121,7 +2207,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isLessThanOrEqualTo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">isLessThanOrEqualTo</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2139,7 +2225,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -2188,7 +2274,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">278</span>
+    <span class="phpdocumentor-element-found-in__line">295</span>
 
     </aside>
 
@@ -2196,7 +2282,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">lt</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">lt</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2214,7 +2300,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -2263,7 +2349,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">308</span>
+    <span class="phpdocumentor-element-found-in__line">325</span>
 
     </aside>
 
@@ -2271,7 +2357,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">lte</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">lte</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2289,7 +2375,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -2338,7 +2424,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">368</span>
+    <span class="phpdocumentor-element-found-in__line">385</span>
 
     </aside>
 
@@ -2346,7 +2432,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">not</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">not</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string|int|float|<a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$angle</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2364,7 +2450,7 @@ variable.</p>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$precision</span>
                 : <span class="phpdocumentor-argument-list__argument__type">int</span>
-                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison::MAX_PRECISION">Comparison::MAX_PRECISION</abbr></span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The precision used when <code class="prettyprint">$angle</code> is a <code class="prettyprint">float</code> type
 variable.</p>
@@ -2413,7 +2499,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">411</span>
+    <span class="phpdocumentor-element-found-in__line">428</span>
 
     </aside>
 
@@ -2421,7 +2507,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">oppositeDirection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">oppositeDirection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2445,7 +2531,7 @@ variable.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -2463,7 +2549,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">134</span>
+    <span class="phpdocumentor-element-found-in__line">151</span>
 
     </aside>
 
@@ -2471,7 +2557,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">oppositeRotation</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">oppositeRotation</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2484,7 +2570,7 @@ variable.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -2502,7 +2588,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">395</span>
+    <span class="phpdocumentor-element-found-in__line">412</span>
 
     </aside>
 
@@ -2510,7 +2596,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">sum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$addend</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">sum</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html"><abbr title="\MarcoConsiglio\Goniometry\AngularMeasure">AngularMeasure</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$addend</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2533,7 +2619,7 @@ variable.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Angle">Angle</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">static</span>
             </section>
 
 </article>
@@ -2551,7 +2637,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">175</span>
+    <span class="phpdocumentor-element-found-in__line">192</span>
 
     </aside>
 
@@ -2602,7 +2688,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">187</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
@@ -2653,7 +2739,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">149</span>
+    <span class="phpdocumentor-element-found-in__line">166</span>
 
     </aside>
 
@@ -2661,7 +2747,7 @@ variable.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">toSexadecimalDegrees</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalDegrees">SexadecimalDegrees</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">toSexadecimalDegrees</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-SexadecimalAngle.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalAngle">SexadecimalAngle</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2674,7 +2760,7 @@ variable.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-SexadecimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalDegrees">SexadecimalDegrees</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-SexadecimalAngle.html"><abbr title="\MarcoConsiglio\Goniometry\SexadecimalAngle">SexadecimalAngle</abbr></a></span>
             </section>
 
 </article>
@@ -2692,7 +2778,7 @@ variable.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Angle.php"><a href="files/src-angle.html"><abbr title="src/Angle.php">Angle.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">165</span>
+    <span class="phpdocumentor-element-found-in__line">182</span>
 
     </aside>
 
@@ -2740,6 +2826,8 @@ variable.</p>
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#constant_DEGREES_REGEX">DEGREES_REGEX</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_MAX">MAX</a></li>
+                                                    <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#constant_MIN">MIN</a></li>
                                                     <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#constant_MINUTES_REGEX">MINUTES_REGEX</a></li>
                                                     <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#constant_SECONDS_REGEX">SECONDS_REGEX</a></li>
                                             </ul>
@@ -2770,7 +2858,7 @@ variable.</p>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_eq">eq()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_feq">feq()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_fuzzyEqual">fuzzyEqual()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_getDegrees">getDegrees()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees">getDegrees()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_gt">gt()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_gte">gte()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isClockwise">isClockwise()</a></li>

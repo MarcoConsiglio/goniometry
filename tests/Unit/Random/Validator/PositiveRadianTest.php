@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveRadian;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -59,7 +59,7 @@ class PositiveRadianTest extends FloatValidatorTestCase
          * $max ≥ 2π
          */
         // Arrange
-        $this->setRange(Radian::MAX + 1, Radian::MAX + 1);
+        $this->setRange(RadianAngle::MAX + 1, RadianAngle::MAX + 1);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), $this->allowedMax());
@@ -69,7 +69,7 @@ class PositiveRadianTest extends FloatValidatorTestCase
          * $max ≥ 2π
          */
         // Arrange
-        $this->setRange($this->allowedMin(), Radian::MAX + 1);
+        $this->setRange($this->allowedMin(), RadianAngle::MAX + 1);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), $this->allowedMax());
@@ -79,7 +79,7 @@ class PositiveRadianTest extends FloatValidatorTestCase
          * 0 ≤ $max < 2π
          */
         // Arrange
-        $this->setRange(Radian::MAX + 1, $this->allowedMax());
+        $this->setRange(RadianAngle::MAX + 1, $this->allowedMax());
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), $this->allowedMax());

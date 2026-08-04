@@ -2,10 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngularDistance;
@@ -30,7 +27,6 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as Relati
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -39,10 +35,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
 #[CoversClass(GreaterAngularDistance::class)]
-#[UsesClass(Angle::class)]
 #[UsesClass(AngularDistance::class)]
-#[UsesClass(AngularMeasure::class)]
-#[UsesClass(AngleFromSexagesimal::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
 #[UsesClass(Degrees::class)]
@@ -65,7 +58,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeAngularDistanceValidator::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class GreaterAngularDistanceTest extends StrategiesTestCase

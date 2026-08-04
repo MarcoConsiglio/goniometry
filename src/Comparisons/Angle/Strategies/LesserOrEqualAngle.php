@@ -1,8 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
-use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * The strategy that compares two `Angle` instances to check if the first is 
@@ -10,18 +10,18 @@ use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
  * 
  * @internal
  */
-class LesserOrEqualAngle extends ComparisonStrategy
+class LesserOrEqualAngle implements Strategy
 {
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngularMeasure $alfa The left comparison operand.
-     * @param AngularMeasure $beta The right comparison operand.
+     * @param Angle $alfa The left comparison operand.
+     * @param Angle $beta The right comparison operand.
      */
-    public function __construct(AngularMeasure $alfa, protected AngularMeasure $beta)
-    {
-        parent::__construct($alfa);
-    }
+    public function __construct(
+        protected Angle $alfa, 
+        protected Angle $beta
+    ) {}
 
     /**
      * Perform the comparison.

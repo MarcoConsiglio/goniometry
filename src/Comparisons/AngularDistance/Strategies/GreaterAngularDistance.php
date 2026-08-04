@@ -2,10 +2,9 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
-use Override;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * The strategy that compares two `AngularDistance` instances to check if the first is 
@@ -13,7 +12,7 @@ use Override;
  * 
  * @internal
  */
-class GreaterAngularDistance extends GreaterAngle
+class GreaterAngularDistance implements Strategy
 {
     /**
      * Construct the comparison strategy.
@@ -21,12 +20,11 @@ class GreaterAngularDistance extends GreaterAngle
      * @param AngularDistance $alfa The left comparison operand.
      * @param AngularDistance $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, AngularDistance $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected AngularDistance $beta
+    ) {}
 
-    #[Override]
     public function compare(): bool
     {
         if ($this->bothAre180()) return false;
@@ -40,6 +38,9 @@ class GreaterAngularDistance extends GreaterAngle
         return ! $this->secondsAreLess();
     }
 
+    /**
+     * Return `true` if both $alfa and $beta are ±180°.
+     */
     protected function bothAre180(): bool
     {
         return
@@ -47,6 +48,9 @@ class GreaterAngularDistance extends GreaterAngle
             $this->beta->degrees->eq(new Degrees(180));
     }
 
+    /**
+     * Return `true` if `$alfa` is positive while `$beta` is negative.
+     */
     protected function alfaIsPositiveBetaIsNegative(): bool
     {
         return 
@@ -54,6 +58,9 @@ class GreaterAngularDistance extends GreaterAngle
             $this->beta->direction === Rotation::CLOCKWISE;
     }
 
+    /**
+     * Return `true` if `$alfa` is negative while `$beta` is positive.
+     */
     protected function alfaIsNegativeBetaIsPositive(): bool
     {
         return
@@ -61,7 +68,10 @@ class GreaterAngularDistance extends GreaterAngle
             $this->beta->direction === Rotation::COUNTER_CLOCKWISE;
     }
 
-    #[Override]
+    /**
+     * Return true if `$alfa->degrees` are greter than `$beta->degrees`, false 
+     * otherwise.
+     */
     protected function degreesAreGreater(): bool
     {
         return 
@@ -70,7 +80,10 @@ class GreaterAngularDistance extends GreaterAngle
             );
     }
 
-    #[Override]
+    /**
+     * Return true if `$alfa->degrees` are less than `$beta->degrees`, false 
+     * otherwise.
+     */
     protected function degreesAreLess(): bool
     {
         return 
@@ -79,7 +92,10 @@ class GreaterAngularDistance extends GreaterAngle
             );
     }
 
-    #[Override]
+    /**
+     * Return true if `$alfa->minutes` are greater than `$beta->minutes`, false 
+     * otherwise.
+     */
     protected function minutesAreGreater(): bool
     {
         return 
@@ -88,7 +104,10 @@ class GreaterAngularDistance extends GreaterAngle
             );
     }
 
-    #[Override]
+    /**
+     * Return true if `$alfa->minutes` are less than `$beta->minutes`, false 
+     * otherwise.
+     */
     protected function minutesAreLess(): bool
     {
         return 
@@ -97,7 +116,10 @@ class GreaterAngularDistance extends GreaterAngle
             );
     }
 
-    #[Override]
+    /**
+     * Return true if `$alfa->seconds` are greater than `$beta->seconds`, false 
+     * otherwise.
+     */
     protected function secondsAreGreater(): bool
     {
         return 
@@ -106,7 +128,10 @@ class GreaterAngularDistance extends GreaterAngle
             );
     }
 
-    #[Override]
+    /**
+     * Return true if `$alfa->seconds` are less than `$beta->seconds`, false 
+     * otherwise.
+     */
     protected function secondsAreLess(): bool
     {
         return 

@@ -1,0 +1,19 @@
+<?php
+namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance;
+
+/**
+ * The `Different` comparison between angles.
+ * 
+ * @internal
+ */
+class Different extends Comparison
+{
+    /**
+     * Set the comparison strategy based on the comparison type and
+     * the type of the right operand of this `Comparison`.
+     */
+    protected function setComparisonStrategy(): void
+    {
+        $this->comparison_strategy = $this->getBetaType()->getStrategyFor($this, $this->alfa);
+    }
+}

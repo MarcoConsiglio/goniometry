@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Validator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -30,7 +30,7 @@ class NegativeRadianTest extends FloatValidatorTestCase
          * $max ≤ -2π
          */
         // Arrange
-        $this->setRange(-Radian::MAX - 1, -Radian::MAX - 1);
+        $this->setRange(-RadianAngle::MAX - 1, -RadianAngle::MAX - 1);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), $this->allowedMax());
@@ -40,7 +40,7 @@ class NegativeRadianTest extends FloatValidatorTestCase
          * $max ≤ -2π 
          */
         // Arrange
-        $this->setRange(-3.141593, -Radian::MAX - 1);
+        $this->setRange(-3.141593, -RadianAngle::MAX - 1);
 
         // Act & Assert
         $this->testValidator(-3.141593, $this->allowedMax());
@@ -50,7 +50,7 @@ class NegativeRadianTest extends FloatValidatorTestCase
          * -2π < $max < 0
          */
         // Arrange
-        $this->setRange(-Radian::MAX - 1, -3.141593);
+        $this->setRange(-RadianAngle::MAX - 1, -3.141593);
 
         // Act & Assert
         $this->testValidator($this->allowedMin(), -3.141593);

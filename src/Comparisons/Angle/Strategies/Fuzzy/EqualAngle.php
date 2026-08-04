@@ -2,9 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\AngularMeasure;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle as EqualAngleStrategy;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 
 /**
  * The strategy that compares two `Angle` instances to check if they are equal
@@ -12,7 +11,7 @@ use MarcoConsiglio\Goniometry\SexadecimalDegrees;
  * 
  * @internal
  */
-class EqualAngle extends EqualAngleStrategy
+class EqualAngle implements Strategy
 {
     /**
      * The error `Angle`.
@@ -22,26 +21,25 @@ class EqualAngle extends EqualAngleStrategy
     /**
      * The low extreme of delta.
      */
-    protected AngularMeasure $low_extreme;
+    protected Angle $low_extreme;
 
     /**
      * The high extreme of delta.
      */
-    protected AngularMeasure $high_extreme;
+    protected Angle $high_extreme;
 
     /**
      * Construct the comparison strategy.
      * 
-     * @param AngularMeasure $alfa The left comparison operand.
-     * @param AngularMeasure $beta The right comparison operand.
+     * @param Angle $alfa The left comparison operand.
+     * @param Angle $beta The right comparison operand.
      * @param Angle $delta The error within which the comparison is succesful.
      */
     public function __construct(
-        AngularMeasure $alfa, 
-        AngularMeasure $beta, 
+        protected Angle $alfa, 
+        protected Angle $beta, 
         protected Angle $delta
     ) {
-        parent::__construct($alfa, $beta);
         $this->calcEpsilon();
         $this->calcLowExtreme();
         $this->calcHighExtreme();
@@ -50,7 +48,6 @@ class EqualAngle extends EqualAngleStrategy
     /**
      * Perform the comparison.
      */
-    #[\Override]
     public function compare(): bool
     {
         // $min ≤ $alfa ≤ $max
@@ -71,7 +68,7 @@ class EqualAngle extends EqualAngleStrategy
     {
         $width = $this->delta->toSexadecimalDegrees()->value->abs();
         $this->epsilon = Angle::createFromDecimal(
-            new SexadecimalDegrees($width->div(2))
+            new SexadecimalAngle($width->div(2))
         );
     }
 

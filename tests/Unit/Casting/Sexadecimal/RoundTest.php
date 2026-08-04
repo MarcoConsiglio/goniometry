@@ -15,7 +15,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -34,7 +34,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesTrait(WithAngleFaker::class)]
@@ -48,7 +48,7 @@ class RoundTest extends TestCase
          */
         // Arrange
         $precision = $this->randomPrecision();
-        $sexadecimal = new SexadecimalDegrees(
+        $sexadecimal = new SexadecimalAngle(
             $this->randomSexadecimal(precision: $precision)
         );
         $expected_float = $sexadecimal->value($precision);
@@ -60,7 +60,7 @@ class RoundTest extends TestCase
         $this->assertSame(
             $expected_float, 
             $float, 
-            "$expected_float ≠ $float with $precision precision digits."
+            "{$expected_float} ≠ {$float} with {$precision} precision digits."
         );
     }
 
@@ -68,7 +68,7 @@ class RoundTest extends TestCase
     {
         // Arrange
         $expected_float = $this->randomSexadecimal(precision: 1);
-        $sexadecimal = new SexadecimalDegrees($expected_float);
+        $sexadecimal = new SexadecimalAngle($expected_float);
 
         // Act
         $float = new Round($sexadecimal)->cast();
@@ -77,7 +77,7 @@ class RoundTest extends TestCase
         $this->assertSame(
             $expected_float, 
             $float,
-            "$expected_float ≠ $float with no precision."
+            "{$expected_float} ≠ {$float} with no precision."
         );
     }
 }

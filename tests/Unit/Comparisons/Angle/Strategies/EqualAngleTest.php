@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies;
 
+use Override;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
@@ -34,6 +35,7 @@ class EqualAngleTest extends StrategiesTestCase
     /**
      * Return a fail message for this TestCase.
      */
+    #[Override]
     protected function getFailMessage(Angle $alfa, int|float|string|Angle $beta): string
     {
         return $this->comparisonFail($alfa, $this->comparison, $beta);

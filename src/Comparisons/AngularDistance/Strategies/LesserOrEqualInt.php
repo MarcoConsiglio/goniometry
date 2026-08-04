@@ -2,7 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualInt as AngleLesserOrEqualInt;
+use MarcoConsiglio\Goniometry\Enums\Rotation;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
 
 /**
@@ -11,7 +12,7 @@ use Override;
  * 
  * @internal
  */
-class LesserOrEqualInt extends AngleLesserOrEqualInt
+class LesserOrEqualInt implements Strategy
 {
     /**
      * Construct the comparison strategy.
@@ -19,16 +20,22 @@ class LesserOrEqualInt extends AngleLesserOrEqualInt
      * @param AngularDistance $alfa The left comparison operand.
      * @param int $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, int $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected int $beta
+    ) {}
 
     #[Override]
     public function compare(): bool
     {
+        $beta = AngularDistance::createFromValues(
+            degrees: abs($this->beta),
+            direction: $this->beta >= 0 ? 
+                Rotation::COUNTER_CLOCKWISE : 
+                Rotation::CLOCKWISE
+        );
         return 
-            new EqualInt($this->alfa, $this->beta)->compare() ||
-            new LesserInt($this->alfa, $this->beta)->compare();
+            new EqualAngularDistance($this->alfa, $beta)->compare() ||
+            new LesserAngularDistance($this->alfa, $beta)->compare();
     }
 }

@@ -2,7 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentFloat as AngleDifferentFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
 use Override;
 
 /**
@@ -11,7 +12,7 @@ use Override;
  * 
  * @internal
  */
-class DifferentFloat extends AngleDifferentFloat
+class DifferentFloat extends FloatComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
@@ -19,9 +20,12 @@ class DifferentFloat extends AngleDifferentFloat
      * @param AngularDistance $alfa The left comparison operand.
      * @param float $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, float $beta)
-    {
-        parent::__construct($alfa, $beta);
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected float $beta,
+        int $precision = Comparison::MAX_PRECISION
+    ) {
+        $this->normalizePrecision($precision);
     }
 
     #[Override]

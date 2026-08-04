@@ -13,17 +13,16 @@ use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundToRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundToSexadecimal;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Different;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Comparison as FuzzyComparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Equal as FuzzyEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types\AngleType as FuzzyAngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentFloat;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentInt;
@@ -57,7 +56,7 @@ use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\Degrees as DegreesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\Minutes as MinutesGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeAngle as NegativeAngleGenerator;
@@ -86,7 +85,8 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSe
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
+
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -102,7 +102,6 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(CastToRadian::class)]
 #[UsesClass(CastToSexadecimal::class)]
 #[UsesClass(Comparison::class)]
-#[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
@@ -160,7 +159,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
@@ -173,10 +172,10 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RoundToRadian::class)]
 #[UsesClass(RoundToSexadecimal::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SecondsGenerator::class)]
 #[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
-#[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
@@ -220,7 +219,7 @@ class AngleTest extends TestCase
         );
     }
 
-    #[TestDox("had read-only property \"direction\" which is of type Rotation.")]
+    #[TestDox('had read-only property "direction" which is of type Rotation.')]
     public function test_direction_property(): void
     {
         // Arrange
@@ -660,11 +659,11 @@ class AngleTest extends TestCase
         // Arrange
         $angle = $this->positiveRandomAngle();
         if ($angle->isClockwise())
-            $opposite_sexadecimal = new SexadecimalDegrees(
+            $opposite_sexadecimal = new SexadecimalAngle(
                 $angle->toSexadecimalDegrees()->value->plus(-180)
             );
         else
-            $opposite_sexadecimal = new SexadecimalDegrees(
+            $opposite_sexadecimal = new SexadecimalAngle(
                 $angle->toSexadecimalDegrees()->value->plus(Degrees::MAX)->plus(-180)
             );
 
@@ -685,11 +684,11 @@ class AngleTest extends TestCase
         // Arrange
         $angle = $this->negativeRandomAngle();
         if ($angle->isClockwise())
-            $opposite_sexadecimal = new SexadecimalDegrees(
+            $opposite_sexadecimal = new SexadecimalAngle(
                 $angle->toSexadecimalDegrees()->value->plus(-180)
             );
         else
-            $opposite_sexadecimal = new SexadecimalDegrees(
+            $opposite_sexadecimal = new SexadecimalAngle(
                 $angle->toSexadecimalDegrees()->value->plus(Degrees::MAX)->plus(-180)
             );
 

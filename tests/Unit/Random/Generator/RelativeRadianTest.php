@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\RelativeRadian as RelativeRadianGenerator;
@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(RelativeRadianGenerator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(NegativeRadianGenerator::class)]
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
@@ -36,7 +36,7 @@ class RelativeRadianTest extends GeneratorTestCase
         );
 
         // Act & Assert
-        $this->assertInstanceOf(Radian::class, $generator->generate());
+        $this->assertInstanceOf(RadianAngle::class, $generator->generate());
 
         /**
          * Negative range
@@ -49,7 +49,7 @@ class RelativeRadianTest extends GeneratorTestCase
         );
 
         // Act & Assert
-        $this->assertInstanceOf(Radian::class, $generator->generate());
+        $this->assertInstanceOf(RadianAngle::class, $generator->generate());
 
         /**
          * Relative range
@@ -68,7 +68,7 @@ class RelativeRadianTest extends GeneratorTestCase
         $radian = $generator->generate();
 
         // Assert
-        $this->assertInstanceOf(Radian::class, $radian);
+        $this->assertInstanceOf(RadianAngle::class, $radian);
         $this->assertGreaterThanOrEqual(0, $radian->value());
 
         /**
@@ -88,7 +88,7 @@ class RelativeRadianTest extends GeneratorTestCase
         $radian = $generator->generate();
 
         // Assert
-        $this->assertInstanceOf(Radian::class, $radian);
+        $this->assertInstanceOf(RadianAngle::class, $radian);
         $this->assertLessThan(0, $radian->value());
     }
 }

@@ -7,28 +7,38 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
+use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Cast as CastToSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundSexadecimal;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Different;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Equal as FuzzyEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
+use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\BuildableFromRadian;
+use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\BuildableFromSexadecimal;
+use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\Comparable;
+use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\FuzzyComparable;
+use MarcoConsiglio\Goniometry\Interfaces\AngularDistance\Summable;
 use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
-use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 use Override;
 
 /**
  * The `AngularDistance` type.
  */
-class AngularDistance extends AngularMeasure
+class AngularDistance extends AngularMeasure implements
+    BuildableFromRadian,
+    BuildableFromSexadecimal,
+    Comparable,
+    FuzzyComparable,
+    Summable
 {
     /**
      * The maximum allowed value in degrees.
@@ -40,6 +50,28 @@ class AngularDistance extends AngularMeasure
      */
     public const int MIN = -self::MAX;
 
+    /** 
+     * The sexadecimal degrees value of this `Angle`.
+     */
+    protected SexadecimalAngularDistance|null $sexadecimal = null;
+
+    /** 
+     * The radian value of this `Angle`.
+     */
+    protected RadianAngularDistance|null $radian = null;
+
+    /**
+     * Construct an `AngularDistance`.
+     */
+    protected function __construct(Builder $builder)
+    {
+        [
+            $this->sexagesimal,
+            $this->sexadecimal,
+            $this->radian
+        ] = $builder->fetchData();
+    }
+
     /**
      * Creates an `AngularDistance` from its sexagesimal values.
      */
@@ -49,9 +81,9 @@ class AngularDistance extends AngularMeasure
         int $minutes = 0, 
         float $seconds = 0.0, 
         Rotation $direction = Rotation::COUNTER_CLOCKWISE
-    ): AngularDistance
+    ): static
     {
-        return new AngularDistance(
+        return new static(
             new FromSexagesimal($degrees, $minutes, $seconds, $direction)
         );
     }
@@ -61,9 +93,9 @@ class AngularDistance extends AngularMeasure
      */
     #[Override]
     public static function createFromDecimal(
-        float|SexadecimalValue $sexadecimal
-    ): AngularDistance {
-        return new AngularDistance(new FromSexadecimal($sexadecimal));
+        float|SexadecimalAngularDistance $sexadecimal
+    ): static {
+        return new static(new FromSexadecimal($sexadecimal));
     }
 
     /**
@@ -72,18 +104,18 @@ class AngularDistance extends AngularMeasure
      * @throws NoMatchException when bad formatted angle is found.
      */
     #[Override]
-    public static function createFromString(string $sexagesimal): AngularDistance
+    public static function createFromString(string $sexagesimal): static
     {
-        return new AngularDistance(new FromString($sexagesimal));
+        return new static(new FromString($sexagesimal));
     }
 
     /**
      * Creates an `AngularDistance` from its radian representation.
      */
     #[Override]
-    public static function createFromRadian(float|RadianValue $radian): AngularDistance
+    public static function createFromRadian(float|RadianValue $radian): static
     {
-        return new AngularDistance(new FromRadian($radian));
+        return new static(new FromRadian($radian));
     }
 
     /**
@@ -95,37 +127,12 @@ class AngularDistance extends AngularMeasure
     }
 
     /**
-     * Return an array containing separate sexagesimal values.
-     * 
-     * The direction of the `AngularDistance` is the sign of `"degrees"` value.
-    *
-    * @param bool $associative Set to true it returns an associative array.
-    * @param int $precision The precision used for seconds.
-    * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
-    */
-    #[Override]
-    public function getDegrees(bool $associative = false, int $precision = PHP_FLOAT_DIG): array
-    {
-        $degrees = $this->degrees->value() * $this->direction->value;
-        $minutes = $this->minutes->value();
-        $seconds = $this->seconds->value($precision);
-        if ($associative)
-            return [
-                "degrees" => $degrees,
-                "minutes" => $minutes,
-                "seconds" => $seconds
-            ];
-        else
-            return [$degrees, $minutes, $seconds];
-    }
-
-    /**
      * Return an absolute `AngularDistance`
      */
     #[Override]
-    public function absolute(): AngularDistance
+    public function absolute(): static
     {
-        return AngularDistance::createFromDecimal(
+        return static::createFromDecimal(
             new SexadecimalAngularDistance(
                 $this->toSexadecimalDegrees()->value->abs()
             )
@@ -136,7 +143,7 @@ class AngularDistance extends AngularMeasure
      * Alias of `absolute()` method.
      */
     #[Override]
-    public function asb(): AngularDistance
+    public function asb(): static
     {
         return $this->absolute();
     }
@@ -145,7 +152,7 @@ class AngularDistance extends AngularMeasure
      * Return the same instance with the opposite `Rotation` direction.
      */
     #[Override]
-    public function oppositeRotation(): AngularDistance
+    public function oppositeRotation(): static
     {
         $clone = clone $this;
         $clone->sexagesimal->direction =
@@ -443,26 +450,18 @@ class AngularDistance extends AngularMeasure
     /**
      * Sum this `AngularDistance` to another `$addend`.
      */
-    public function sum(AngularMeasure $addend): AngularDistance
+    public function sum(AngularMeasure $addend): static
     {
-        return new AngularDistance(new RelativeSum($this, $addend));
-    }
-
-    /**
-     * Alias of `sum()` method.
-     */
-    public function absSum(AngularMeasure $addend): AngularDistance
-    {
-        return $this->sum($addend);
+        return new static(new RelativeSum($this, $addend));
     }
 
     /**
      * Return the opposite direction `AngularDistance`.
      */
     #[Override]
-    public function oppositeDirection(): AngularDistance
+    public function oppositeDirection(): static
     {
-        $opposite = Angle::createFromValues(180, direction: Rotation::CLOCKWISE);
+        $opposite = static::createFromValues(180, direction: Rotation::CLOCKWISE);
         return $this->sum($opposite);
     }
 

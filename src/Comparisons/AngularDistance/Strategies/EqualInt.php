@@ -2,9 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualInt as AngleEqualInt;
-use Override;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**
  * The strategy that compares an `AngularDistance` instance against a sexagesimal degrees 
@@ -12,7 +11,7 @@ use MarcoConsiglio\Goniometry\Enums\Rotation;
  * 
  * @internal
  */
-class EqualInt extends AngleEqualInt
+class EqualInt implements Strategy
 {
     /**
      * Construct the comparison strategy.
@@ -20,12 +19,11 @@ class EqualInt extends AngleEqualInt
      * @param AngularDistance $alfa The left comparison operand.
      * @param int $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, int $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected int $beta
+    ) {}
 
-    #[Override]
     public function compare(): bool
     {
         return new EqualAngularDistance(

@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
-use MarcoConsiglio\Goniometry\AngularMeasure;
+use Error;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
@@ -13,9 +13,13 @@ use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 abstract class InputType
 {
     /**
-     * Get the correct strategy for the current `$comparison` operation.
-     * 
-     * @param AngularMeasure $alfa The left operand of the `$comparison`.
+     * @throws Error for `$comparison` with no strategy.
+     * @return Strategy This is not true, it always throws `Error`. The return 
+     * type serves only to keep the static type checker happy.
      */
-    abstract public function getStrategyFor(Comparison $comparison, AngularMeasure $alfa): Strategy;
+    protected function throwError(Comparison $comparison): Strategy
+    {
+        $unknown_class = $comparison::class;
+        throw new Error("There's no strategy for {$unknown_class} comparison.");
+    }
 }

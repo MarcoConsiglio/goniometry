@@ -1,8 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
-use MarcoConsiglio\Goniometry\AngularDistanceRadian;
-use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
+use MarcoConsiglio\Goniometry\RadianAngularDistance;
+use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 
 /**
@@ -10,70 +10,33 @@ use Override;
  * 
  * @internal
  */
-class FromRadian extends AngleBuilder
+class FromRadian extends FromSexadecimal
 {
     /**
      * The input radian value.
      */
-    protected AngularDistanceRadian $radian;
+    protected RadianAngularDistance $radian;
 
     /**
      * Constructs `FromRadian` `AngleBuilder` with a `$radian` value.
      */
-    public function __construct(float|AngularDistanceRadian $radian)
+    public function __construct(float|RadianAngularDistance $radian)
     {
         $this->radian = 
-            $radian instanceof AngularDistanceRadian ?
-            $radian : new AngularDistanceRadian($radian);
+            $radian instanceof RadianAngularDistance ?
+            $radian : new RadianAngularDistance($radian);
+        $this->decimal = new SexadecimalAngularDistance($this->radian->value->toDegrees());
     }
-
-    /**
-     * Calc degrees.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcDegrees(): void {}
-
-
-    /**
-     * Calcs minutes.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcMinutes(): void {}
-
-    /**
-     * Calcs seconds.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcSeconds(): void {}
-
-    /**
-     * Calcs sign.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcSign(): void {}
-
-    /**
-     * Not implemented as there's no need to check for overflow above/below +/-360°.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function checkOverflow(): void {/* No need check overflow. */}
 
     /**
      * Fetches the data to build an `AngularDistance`.
      *
-     * @return array{SexagesimalDegrees,SexadecimalAngularDistance,AngularDistanceRadian}
+     * @return array{SexagesimalDegrees,SexadecimalAngularDistance,RadianAngularDistance}
      */    
     #[Override]
     public function fetchData(): array
     {
-        [$sexagesimal, $sexadecimal] = new FromSexadecimal(
-            $this->radian->value->toDegrees()->toFloat()
-        )->fetchData();
+        [$sexagesimal, $sexadecimal] = parent::fetchData();
         return [
             $sexagesimal,
             $sexadecimal,

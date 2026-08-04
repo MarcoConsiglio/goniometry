@@ -15,7 +15,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -32,7 +32,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(RelativeSexadecimalGenerator::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]

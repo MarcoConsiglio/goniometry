@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies;
 
+use Override;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
@@ -86,6 +87,7 @@ class DifferentAngularDistanceTest extends StrategiesTestCase
     /**
      * Return a fail message for this TestCase.
      */
+    #[Override]
     protected function getFailMessage(AngularDistance $alfa, int|float|string|AngularDistance $beta): string
     {
         return $this->comparisonFail($alfa, $this->comparison, $beta);

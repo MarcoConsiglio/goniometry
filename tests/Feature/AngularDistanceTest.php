@@ -4,37 +4,34 @@ namespace MarcoConsiglio\Goniometry\Tests\Feature;
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\AngularDistanceRadian;
+use MarcoConsiglio\Goniometry\RadianAngularDistance;
 use MarcoConsiglio\Goniometry\Builders\Angle\AbsoluteSum;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexagesimal as AngleFromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\Angle\FromString as AngleFromString;
-use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
+use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString as AngleFromString;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromAngles;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundRadian;
 use MarcoConsiglio\Goniometry\Casting\Sexadecimal\Round as RoundSexadecimal;
 use MarcoConsiglio\Goniometry\Casting\Sexagesimal;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
-use MarcoConsiglio\Goniometry\Comparisons\Different;
-use MarcoConsiglio\Goniometry\Comparisons\Equal;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualAngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserAngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualAngularDistance;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Comparison as GeneralComparison;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Different;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Comparison as FuzzyComparison;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Equal as FuzzyEqual;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Types\AngularDistanceType as FuzzyAngularDistanceType;
-use MarcoConsiglio\Goniometry\Comparisons\Greater;
-use MarcoConsiglio\Goniometry\Comparisons\GreaterOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\Lesser;
-use MarcoConsiglio\Goniometry\Comparisons\LesserOrEqual;
-use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Greater;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\GreaterOrEqual;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Lesser;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\DifferentInt;
@@ -44,18 +41,14 @@ use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\Fuzzy\EqualAngularDistance as FuzzyEqualAngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterInt;
-use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterOrEqualString;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\GreaterString;
-use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserInt;
-use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualAngularDistance;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualFloat;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualInt;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\LesserOrEqualString;
@@ -66,7 +59,7 @@ use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\IntType;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Types\StringType;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\Random\Generator\Angle as AngleGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\AngularDistance as AngularDistanceGenerator;
@@ -102,8 +95,9 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeRadian as RelativeRadianV
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Seconds as SecondsValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -121,11 +115,10 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AngleFromString::class)]
 #[UsesClass(AngleGenerator::class)]
 #[UsesClass(AngularDistanceGenerator::class)]
-#[UsesClass(AngularDistanceRadian::class)]
+#[UsesClass(RadianAngularDistance::class)]
 #[UsesClass(AngularDistanceRange::class)]
 #[UsesClass(AngularDistanceType::class)]
 #[UsesClass(CastToRadian::class)]
-#[UsesClass(ComparisonStrategy::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(DegreesGenerator::class)]
 #[UsesClass(DegreesValidator::class)]
@@ -146,19 +139,17 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(FromRadian::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
-#[UsesClass(FromString::class)]
+#[UsesClass(AngleFromString::class)]
 #[UsesClass(FuzzyAngularDistanceType::class)]
 #[UsesClass(FuzzyComparison::class)]
 #[UsesClass(FuzzyEqual::class)]
 #[UsesClass(FuzzyEqualAngularDistance::class)]
 #[UsesClass(GeneralComparison::class)]
 #[UsesClass(Greater::class)]
-#[UsesClass(GreaterAngle::class)]
 #[UsesClass(GreaterAngularDistance::class)]
 #[UsesClass(GreaterFloat::class)]
 #[UsesClass(GreaterInt::class)]
 #[UsesClass(GreaterOrEqual::class)]
-#[UsesClass(GreaterOrEqualAngle::class)]
 #[UsesClass(GreaterOrEqualAngularDistance::class)]
 #[UsesClass(GreaterOrEqualFloat::class)]
 #[UsesClass(GreaterOrEqualInt::class)]
@@ -166,12 +157,10 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(GreaterString::class)]
 #[UsesClass(IntType::class)]
 #[UsesClass(Lesser::class)]
-#[UsesClass(LesserAngle::class)]
 #[UsesClass(LesserAngularDistance::class)]
 #[UsesClass(LesserFloat::class)]
 #[UsesClass(LesserInt::class)]
 #[UsesClass(LesserOrEqual::class)]
-#[UsesClass(LesserOrEqualAngle::class)]
 #[UsesClass(LesserOrEqualAngularDistance::class)]
 #[UsesClass(LesserOrEqualFloat::class)]
 #[UsesClass(LesserOrEqualInt::class)]
@@ -192,7 +181,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(PositiveRadianGenerator::class)]
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(RadianGenerator::class)]
 #[UsesClass(RadianRange::class)]
 #[UsesClass(RelativeAngleGenerator::class)]
@@ -210,12 +199,11 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(SecondsRange::class)]
 #[UsesClass(SecondsValidator::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(Sexagesimal::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesClass(StringType::class)]
-#[UsesClass(SumBuilder::class)]
 #[UsesTrait(WithAngleFaker::class)]
 class AngularDistanceTest extends TestCase
 {
@@ -255,10 +243,10 @@ class AngularDistanceTest extends TestCase
     public function test_create_from_radian(): void
     {
         // Arrange
-        $radian = $this->randomRadian(Radian::MIN / 2, Radian::MAX / 2);
+        $radian = $this->randomRadian(RadianAngle::MIN / 2, RadianAngle::MAX / 2);
 
         // Act
-        $angle = AngularDistance::createFromRadian(new AngularDistanceRadian($radian->value));
+        $angle = AngularDistance::createFromRadian(new RadianAngularDistance($radian->value));
 
         // Assert
         $this->assertInstanceOf(AngularDistance::class, $angle);
@@ -408,8 +396,8 @@ class AngularDistanceTest extends TestCase
         // Arrange
         $angle = AngularDistance::createFromRadian(
             $this->randomRadian(
-                min: NextFloat::after(AngularDistanceRadian::MIN),
-                max: NextFloat::before(AngularDistanceRadian::MAX)
+                min: NextFloat::after(RadianAngularDistance::MIN),
+                max: NextFloat::before(RadianAngularDistance::MAX)
             )->value()
         );
 

@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\DifferentAngle;
+use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
 
 /**
@@ -10,7 +10,7 @@ use Override;
  * 
  * @internal
  */
-class DifferentAngularDistance extends DifferentAngle
+class DifferentAngularDistance implements Strategy
 {
     /**
      * Construct the comparison strategy.
@@ -18,10 +18,10 @@ class DifferentAngularDistance extends DifferentAngle
      * @param AngularDistance $alfa The left comparison operand.
      * @param AngularDistance $beta The right comparison operand.
      */
-    public function __construct(AngularDistance $alfa, AngularDistance $beta)
-    {
-        parent::__construct($alfa, $beta);
-    }
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected AngularDistance $beta
+    ) {}
 
     /**
      * Perform the comparison.

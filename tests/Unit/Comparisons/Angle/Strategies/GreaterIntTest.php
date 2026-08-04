@@ -19,7 +19,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\Degrees as DegreesValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\Angle\Strategies\TestCase as StrategiesTestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -43,7 +43,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexagesimalDegrees::class)]
 #[UsesTrait(WithAngleFaker::class)]

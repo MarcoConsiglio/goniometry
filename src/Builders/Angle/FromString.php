@@ -1,7 +1,9 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
-use MarcoConsiglio\Goniometry\Angle;
+use MarcoConsiglio\Goniometry\AngularMeasure;
+use MarcoConsiglio\Goniometry\Builders\Builder;
+use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
 use MarcoConsiglio\Goniometry\Degrees;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
@@ -14,8 +16,10 @@ use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
  * 
  * @internal
  */
-class FromString extends AngleBuilder
+class FromString extends Builder
 {
+    use CalcOrderForSexagesimals;
+
     /**
      * The parsing status for degrees value.
      */
@@ -58,7 +62,7 @@ class FromString extends AngleBuilder
         $this->parseDegreesString();
         $this->parseMinutesString();
         $this->parseSecondsString();
-        $this->checkOverflow();
+        $this->checkParsingErrors();
     }
 
     /**
@@ -66,7 +70,7 @@ class FromString extends AngleBuilder
      */
     protected function parseDegreesString(): void
     {
-        $this->degrees_parsing_status = preg_match(Angle::DEGREES_REGEX, $this->measure, $this->degrees_match);
+        $this->degrees_parsing_status = preg_match(AngularMeasure::DEGREES_REGEX, $this->measure, $this->degrees_match);
     }
 
     /**
@@ -74,7 +78,7 @@ class FromString extends AngleBuilder
      */
     protected function parseMinutesString(): void
     {
-        $this->minutes_parsing_status = preg_match(Angle::MINUTES_REGEX, $this->measure, $this->minutes_match);
+        $this->minutes_parsing_status = preg_match(AngularMeasure::MINUTES_REGEX, $this->measure, $this->minutes_match);
     }
 
     /**
@@ -82,25 +86,19 @@ class FromString extends AngleBuilder
      */
     protected function parseSecondsString(): void
     {
-        $this->seconds_parsing_status = preg_match(Angle::SECONDS_REGEX, $this->measure, $this->seconds_match);
+        $this->seconds_parsing_status = preg_match(AngularMeasure::SECONDS_REGEX, $this->measure, $this->seconds_match);
     }
 
     /**
-     * In previous versions, this method checked for overflow above/below +/-360°.
-     * Now check only parsing error and decide to throw a `NoMatchException`.
+     * Check if there are parsing error for degrees, minutes and seconds at 
+     * the same time.
      * 
-     * @throws NoMatchException when a bad formatted angle is matched.
+     * @throws NoMatchException when no value is recognized.
      */
-    protected function checkOverflow(): void
+    protected function checkParsingErrors(): void
     {
         if ($this->thereAreParsingErrors())
             throw new NoMatchException("Can't recognize the string $this->measure.");
-        // if ($this->degreesError())
-            // throw new NoMatchException("Can't recognize the string $this->measure.");
-        // if ($this->minutesError())
-        //     throw new NoMatchException("Can't recognize the string $this->measure.");
-        // if ($this->secondsError())
-        //     throw new NoMatchException("Can't recognize the string $this->measure.");
     }
 
     protected function thereAreParsingErrors(): bool
@@ -198,10 +196,7 @@ class FromString extends AngleBuilder
      */
     public function fetchData(): array
     {
-        $this->calcDegrees();
-        $this->calcMinutes();
-        $this->calcSeconds();
-        $this->calcSign();
+        $this->calcFromMostToLessSignificantValue();
         return [
             new SexagesimalDegrees(
                 $this->degrees,
@@ -209,8 +204,8 @@ class FromString extends AngleBuilder
                 $this->seconds,
                 $this->direction
             ),
-            null,
-            null
+            null, // Sexadecimal
+            null  // Radian 
         ];
     }
 }

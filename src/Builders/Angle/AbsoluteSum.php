@@ -4,7 +4,7 @@ namespace MarcoConsiglio\Goniometry\Builders\Angle;
 use BcMath\Number;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Degrees;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 
 /**
  * Sum two `Angle`s resulting in an absolute sum.
@@ -34,11 +34,11 @@ class AbsoluteSum extends SumBuilder
         $this->calcSign();
         $alfa = $this->alfa->toSexadecimalDegrees()->value;
         $beta = $this->beta->toSexadecimalDegrees()->value;
-        $this->decimal_sum = new SexadecimalDegrees(
+        $this->decimal_sum = new SexadecimalAngle(
             $alfa->plus($beta)
         );
         if ($this->decimal_sum->value->isNegative()) {
-            $this->decimal_sum = new SexadecimalDegrees(
+            $this->decimal_sum = new SexadecimalAngle(
                 new Number(Degrees::MAX)->add($this->decimal_sum->value)
             );
         }
@@ -53,32 +53,4 @@ class AbsoluteSum extends SumBuilder
     {
         $this->direction = Rotation::COUNTER_CLOCKWISE;
     }
-
-    /**
-     * Not implemented as this is already done in `calcSum()` method.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function checkOverflow(): void {/* This is already done in calcSum() */}
-
-    /**
-     * Calc seconds.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcSeconds(): void {/* No need to calc seconds as it is done in fetchData() */}
-
-    /**
-     * Calc minutes.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcMinutes(): void {/* No need to calc minutes as it is done in fetchData() */}
-
-    /**
-     * Calc degrees.
-     * 
-     * @codeCoverageIgnore
-     */
-    protected function calcDegrees(): void {/* No need to calc degrees as it is done in fetchData() */}
 }

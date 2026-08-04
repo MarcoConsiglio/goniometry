@@ -11,7 +11,8 @@ use MarcoConsiglio\Goniometry\Random\Validator\NegativeSexadecimal as NegativeSe
 use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
+
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -27,7 +28,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(PositiveSexadecimalGenerator::class)]
 #[UsesClass(PositiveSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
@@ -48,7 +49,7 @@ class FromSexadecimalTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
-        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
+        $this->assertInstanceOf(SexadecimalAngle::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
@@ -59,7 +60,7 @@ class FromSexadecimalTest extends TestCase
          * SexagesimalDegrees type input
          */
         // Arrange
-        $expected_sexadecimal = new SexadecimalDegrees(
+        $expected_sexadecimal = new SexadecimalAngle(
             $this->positiveRandomSexadecimal(precision: 1)
         );
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal(
@@ -71,7 +72,7 @@ class FromSexadecimalTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
-        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
+        $this->assertInstanceOf(SexadecimalAngle::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
@@ -96,7 +97,7 @@ class FromSexadecimalTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
-        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
+        $this->assertInstanceOf(SexadecimalAngle::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);
@@ -110,7 +111,7 @@ class FromSexadecimalTest extends TestCase
          * SexadecimalDegrees type input
          */
         // Arrange
-        $expected_sexadecimal = new SexadecimalDegrees(
+        $expected_sexadecimal = new SexadecimalAngle(
             $this->negativeRandomSexadecimal(precision: 1)
         );
         [$degrees, $minutes, $seconds, $direction] = $this->toSexagesimal(
@@ -122,7 +123,7 @@ class FromSexadecimalTest extends TestCase
 
         // Assert
         $this->assertInstanceOf(SexagesimalDegrees::class, $sexagesimal);
-        $this->assertInstanceOf(SexadecimalDegrees::class, $sexadecimal);
+        $this->assertInstanceOf(SexadecimalAngle::class, $sexadecimal);
         $this->assertDegrees($degrees, $sexagesimal->degrees);
         $this->assertMinutes($minutes, $sexagesimal->minutes);
         $this->assertSeconds($seconds, $sexagesimal->seconds);

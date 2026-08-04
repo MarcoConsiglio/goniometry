@@ -1,5 +1,5 @@
 <?php
-namespace MarcoConsiglio\Goniometry\Tests\Unit\Casting\Radian;
+namespace MarcoConsiglio\Goniometry\Tests\Unit\Casting\RadianAngle;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal;
@@ -18,7 +18,7 @@ use MarcoConsiglio\Goniometry\Random\Validator\PositiveSexadecimal as PositiveSe
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -41,7 +41,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RelativeAngleGenerator::class)]
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Seconds::class)]
-#[UsesClass(SexadecimalDegrees::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
@@ -62,7 +62,7 @@ class CastTest extends TestCase
 
         // Assert
         $this->assertSame($radian, $actual_radian,
-            "{$sexadecimal} = {$radian} but expected radian {$radian} ≠ {$actual_radian} actual radian using precision $precision."
+            "{$sexadecimal} = {$radian} but expected radian {$radian} ≠ {$actual_radian} actual radian using precision {$precision}."
         );
     }
 

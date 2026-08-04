@@ -1,208 +1,98 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Dummy;
 
+use Exception;
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Enums\Rotation;
-use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
-use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use Override;
 
-class UnknownAngularMeasure extends AngularMeasure
+class UnknownAngularMeasure extends Angle
 {
     public function __construct()
     {}
 
     #[Override]
-    public static function createFromValues(int $degrees, int $minutes, float $seconds, Rotation $direction): AngularMeasure
+    public static function createFromValues(
+        int $degrees = 0, 
+        int $minutes = 0, 
+        float $seconds = 0.0, 
+        Rotation $direction = Rotation::COUNTER_CLOCKWISE
+    ): static
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
-    public static function createFromString(string $sexagesimal): AngularMeasure
+    public static function createFromString(string $sexagesimal): static
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
-    public static function createFromDecimal(float|SexadecimalValue $sexadecimal): AngularMeasure
+    public function absolute(): static
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
-    public static function createFromRadian(float|RadianValue $radian): AngularMeasure
+    public function asb(): static
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
-    public function absolute(): AngularMeasure
+    public function oppositeRotation(): static
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
-    public function asb(): AngularMeasure
+    public function oppositeDirection(): static
     {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function oppositeRotation(): AngularMeasure
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function oppositeDirection(): AngularMeasure
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function getDegrees(): array
-    {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
     public function isClockwise(): bool
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
     public function isCounterClockwise(): bool
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
     public function toSexagesimalDegrees(): SexagesimalDegrees
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
-    public function toSexadecimalDegrees(): SexadecimalValue
+    public function toSexadecimalDegrees(): SexadecimalAngle
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
-    public function toFloat(int $precision = PHP_FLOAT_DIG): float
+    public function toFloat(int|null $precision = null): float
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
-    public function toRadian(int $precision = PHP_FLOAT_DIG): float
+    public function toRadian(int|null $precision = null): float
     {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function isEqualTo(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function eq(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function isGreaterThan(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function gt(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function isGreaterThanOrEqualTo(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function gte(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function isLessThan(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function lt(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function isLessThanOrEqualTo(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function lte(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function isDifferentThan(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function not(string|int|float|AngularMeasure $angle, int $precision = 54): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function fuzzyEqual(AngularMeasure $beta, AngularMeasure $delta): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function feq(AngularMeasure $beta, AngularMeasure $delta): bool
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function sum(AngularMeasure $addend): AngularMeasure
-    {
-        throw new \Exception('Not implemented');
-    }
-
-    #[Override]
-    public function absSum(AngularMeasure $addend): AngularMeasure
-    {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     #[Override]
     public function __toString(): string
     {
-        throw new \Exception('Not implemented');
+        throw new Exception('Not implemented');
     }
 }

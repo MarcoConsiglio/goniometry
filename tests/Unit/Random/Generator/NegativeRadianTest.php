@@ -2,7 +2,7 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 use MarcoConsiglio\Goniometry\Random\Validator\NegativeRadian as NegativeRadianValidator;
@@ -11,7 +11,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(NegativeRadianGenerator::class)]
-#[UsesClass(Radian::class)]
+#[UsesClass(RadianAngle::class)]
 #[UsesClass(RadianRange::class)]
 class NegativeRadianTest extends TestCase
 {
@@ -30,7 +30,7 @@ class NegativeRadianTest extends TestCase
         $radian = $generator->generate();
 
         // Assert
-        $this->assertInstanceOf(Radian::class, $radian);
+        $this->assertInstanceOf(RadianAngle::class, $radian);
         $this->assertLessThan(0, $radian->value());
     }
 }

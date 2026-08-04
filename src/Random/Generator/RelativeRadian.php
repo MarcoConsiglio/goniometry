@@ -2,27 +2,27 @@
 namespace MarcoConsiglio\Goniometry\Random\Generator;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\Generator\Radian as RadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\NegativeRadian as NegativeRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\Generator\PositiveRadian as PositiveRadianGenerator;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 
 /**
- * The `Radian` random generator for relative radian values.
+ * The `RadianAngle` random generator for relative radian values.
  * 
  * @internal
  */
 class RelativeRadian extends RadianGenerator
 {
-    public function generate(int $precision = PHP_FLOAT_DIG): Radian
+    public function generate(int $precision = PHP_FLOAT_DIG): RadianAngle
     {
         $this->validate();
 
         if ($this->validator->areBothPositive(
             $this->range->start,
             $this->range->end
-        )) return new PositiveRadian(
+        )) return new PositiveRadianGenerator(
             $this->generator,
             $this->validator,
             $this->range

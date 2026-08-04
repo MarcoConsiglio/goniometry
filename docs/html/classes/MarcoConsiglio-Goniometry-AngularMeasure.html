@@ -120,7 +120,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a>,                             <abbr title="\Stringable">Stringable</abbr>                    </span>
+                            <abbr title="\Stringable">Stringable</abbr>,                             <a href="classes/MarcoConsiglio-Goniometry-Interfaces-BuildableFromSexagesimalString.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\BuildableFromSexagesimalString">BuildableFromSexagesimalString</abbr></a>,                             <a href="classes/MarcoConsiglio-Goniometry-Interfaces-BuildableFromSexagesimal.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\BuildableFromSexagesimal">BuildableFromSexagesimal</abbr></a>,                             <a href="classes/MarcoConsiglio-Goniometry-Interfaces-CastableToSexagesimal.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\CastableToSexagesimal">CastableToSexagesimal</abbr></a>,                             <a href="classes/MarcoConsiglio-Goniometry-Interfaces-CastableToSexadecimal.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\CastableToSexadecimal">CastableToSexadecimal</abbr></a>,                             <a href="classes/MarcoConsiglio-Goniometry-Interfaces-CastableToRadian.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\CastableToRadian">CastableToRadian</abbr></a>                    </span>
     
     </h2>
 
@@ -134,7 +134,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -160,7 +160,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-Angle.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\Angle">Angle</abbr></a></dt><dd>The behavior of an angle.</dd>            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Stringable">Stringable</abbr></dt>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Stringable">Stringable</abbr></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-BuildableFromSexagesimalString.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\BuildableFromSexagesimalString">BuildableFromSexagesimalString</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-BuildableFromSexagesimal.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\BuildableFromSexagesimal">BuildableFromSexagesimal</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-CastableToSexagesimal.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\CastableToSexagesimal">CastableToSexagesimal</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-CastableToSexadecimal.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\CastableToSexadecimal">CastableToSexadecimal</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-CastableToRadian.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\CastableToRadian">CastableToRadian</abbr></a></dt>    </dl>
 
 
 
@@ -231,6 +231,98 @@
 
     </dl>
 
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_absolute">absolute()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_asb">asb()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_createFromString">createFromString()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Create an `AngularDistance` from a sexagesimal `string`.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_createFromValues">createFromValues()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+<dd>Create an `Angle` from its sexagesimal values.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees">getDegrees()</a>
+    <span>
+                                &nbsp;: array{int, int, float}|array{degrees: int, minutes: int, seconds: float}    </span>
+</dt>
+<dd>Return an array containing separate sexagesimal values.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_isClockwise">isClockwise()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_isCounterClockwise">isCounterClockwise()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_oppositeDirection">oppositeDirection()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_oppositeRotation">oppositeRotation()</a>
+    <span>
+                                &nbsp;: static    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toFloat">toFloat()</a>
+    <span>
+                                &nbsp;: float    </span>
+</dt>
+<dd>Return the `float` sexadecimal value.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toRadian">toRadian()</a>
+    <span>
+                                &nbsp;: float    </span>
+</dt>
+<dd>Cast this `Angle` to its `float` radian representation.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toSexadecimalDegrees">toSexadecimalDegrees()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-Interfaces-SexadecimalValue.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue">SexadecimalValue</abbr></a>    </span>
+</dt>
+<dd>Return the sexadecimal values.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toSexagesimalDegrees">toSexagesimalDegrees()</a>
+    <span>
+                                &nbsp;: <a href="classes/MarcoConsiglio-Goniometry-SexagesimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexagesimalDegrees">SexagesimalDegrees</abbr></a>    </span>
+</dt>
+<dd>Return the sexagesimal values.</dd>
+
+    </dl>
 
 
 
@@ -251,7 +343,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
@@ -282,7 +374,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
@@ -313,7 +405,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -360,7 +452,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -414,7 +506,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -468,7 +560,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
@@ -522,7 +614,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -561,7 +653,599 @@
 </article>
             </section>
 
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_absolute">
+        absolute()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_absolute" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">90</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">absolute</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
         
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_asb">
+        asb()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_asb" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">92</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">asb</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract            -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_createFromString">
+        createFromString()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_createFromString" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">80</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Create an `AngularDistance` from a sexagesimal `string`.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>        <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromString</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sexagesimal</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$sexagesimal</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract            -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_createFromValues">
+        createFromValues()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_createFromValues" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">73</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Create an `Angle` from its sexagesimal values.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>        <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createFromValues</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$degrees</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$minutes</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$seconds</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation">Rotation</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$direction</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$degrees</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$minutes</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$seconds</span>
+                : <span class="phpdocumentor-argument-list__argument__type">float</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$direction</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/MarcoConsiglio-Goniometry-Enums-Rotation.html"><abbr title="\MarcoConsiglio\Goniometry\Enums\Rotation">Rotation</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getDegrees">
+        getDegrees()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">111</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Return an array containing separate sexagesimal values.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getDegrees</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$associative</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\PHP_FLOAT_DIG">PHP_FLOAT_DIG</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{int, int, float}|array{degrees: int, minutes: int, seconds: float}</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>The direction of the <code class="prettyprint">Angle</code> is the sign of <code class="prettyprint">&quot;degrees&quot;</code> value.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$associative</span>
+                : <span class="phpdocumentor-argument-list__argument__type">bool</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Set to true it returns an associative array.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$precision</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\PHP_FLOAT_DIG">PHP_FLOAT_DIG</abbr></span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The precision used for seconds.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array{int, int, float}|array{degrees: int, minutes: int, seconds: float}</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_isClockwise">
+        isClockwise()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_isClockwise" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">98</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">isClockwise</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_isCounterClockwise">
+        isCounterClockwise()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_isCounterClockwise" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">100</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">isCounterClockwise</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_oppositeDirection">
+        oppositeDirection()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_oppositeDirection" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">96</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">oppositeDirection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_oppositeRotation">
+        oppositeRotation()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_oppositeRotation" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">94</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">oppositeRotation</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toFloat">
+        toFloat()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toFloat" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">86</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Return the `float` sexadecimal value.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">toFloat</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\PHP_FLOAT_DIG">PHP_FLOAT_DIG</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$precision</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\PHP_FLOAT_DIG">PHP_FLOAT_DIG</abbr></span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">float</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toRadian">
+        toRadian()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toRadian" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">82</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Cast this `Angle` to its `float` radian representation.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">toRadian</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\PHP_FLOAT_DIG">PHP_FLOAT_DIG</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$precision</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
+                 = <span class="phpdocumentor-argument-list__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\PHP_FLOAT_DIG">PHP_FLOAT_DIG</abbr></span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">float</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toSexadecimalDegrees">
+        toSexadecimalDegrees()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toSexadecimalDegrees" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">84</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Return the sexadecimal values.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">toSexadecimalDegrees</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-SexadecimalValue.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue">SexadecimalValue</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-Interfaces-SexadecimalValue.html"><abbr title="\MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue">SexadecimalValue</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toSexagesimalDegrees">
+        toSexagesimalDegrees()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toSexagesimalDegrees" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">88</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Return the sexagesimal values.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">toSexagesimalDegrees</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-SexagesimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexagesimalDegrees">SexagesimalDegrees</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MarcoConsiglio-Goniometry-SexagesimalDegrees.html"><abbr title="\MarcoConsiglio\Goniometry\SexagesimalDegrees">SexagesimalDegrees</abbr></a></span>
+            </section>
+
+</article>
+            </section>
+
         
     </article>
                                 </section>
@@ -576,7 +1260,8 @@
                 <ul class="phpdocumentor-list -clean">
                                         <li><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#toc-constants">Constants</a></li>
                                                             <li><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#toc-properties">Properties</a></li>
-                                                        </ul>
+                                                            <li><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
                             <li class="phpdocumentor-on-this-page-section__title">Constants</li>
                 <li>
@@ -597,6 +1282,24 @@
                                             </ul>
                 </li>
             
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_absolute">absolute()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_asb">asb()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_createFromString">createFromString()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_createFromValues">createFromValues()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees">getDegrees()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_isClockwise">isClockwise()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_isCounterClockwise">isCounterClockwise()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_oppositeDirection">oppositeDirection()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_oppositeRotation">oppositeRotation()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toFloat">toFloat()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toRadian">toRadian()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toSexadecimalDegrees">toSexadecimalDegrees()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_toSexagesimalDegrees">toSexagesimalDegrees()</a></li>
+                                    </ul>
+            </li>
                     </ul>
     </section>
 

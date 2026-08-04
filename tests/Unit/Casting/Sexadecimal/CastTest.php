@@ -27,8 +27,9 @@ use MarcoConsiglio\Goniometry\Random\Validator\RelativeAngularDistance as Relati
 use MarcoConsiglio\Goniometry\Random\Validator\RelativeSexadecimal as RelativeSexadecimalValidator;
 use MarcoConsiglio\Goniometry\Random\Validator\Sexadecimal as SexadecimalValidator;
 use MarcoConsiglio\Goniometry\Seconds;
+use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
-use MarcoConsiglio\Goniometry\SexadecimalDegrees;
+
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
@@ -61,8 +62,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(RelativeSexadecimalValidator::class)]
 #[UsesClass(Round::class)]
 #[UsesClass(Seconds::class)]
+#[UsesClass(SexadecimalAngle::class)]
 #[UsesClass(SexadecimalAngularDistance::class)]
-#[UsesClass(SexadecimalDegrees::class)]
 #[UsesClass(SexadecimalRange::class)]
 #[UsesClass(SexadecimalValidator::class)]
 #[UsesClass(SexagesimalDegrees::class)]
@@ -71,7 +72,7 @@ class CastTest extends TestCase
 {
     protected Angle $angle;
 
-    protected SexadecimalDegrees $sexadecimal;
+    protected SexadecimalAngle $sexadecimal;
 
     protected int $precision;
 
@@ -96,7 +97,7 @@ class CastTest extends TestCase
         $float = new Cast($this->angle, $this->precision)->cast();
 
         // Assert
-        $this->assertSame($sexadecimal, $float, "$sexadecimal ≠ $float with $this->precision digit precision");
+        $this->assertSame($sexadecimal, $float, "{$sexadecimal} ≠ {$float} with $this->precision digit precision");
     }
 
     public function test_cast_without_precision(): void
@@ -108,7 +109,7 @@ class CastTest extends TestCase
         $float = new Cast($this->angle)->cast();
 
         // Assert
-        $this->assertSame($sexadecimal, $float, "$sexadecimal ≠ $float");
+        $this->assertSame($sexadecimal, $float, "{$sexadecimal} ≠ {$float}");
     }
 
     public function test_cast_to_SexadecimalAngularDistance(): void
@@ -123,7 +124,7 @@ class CastTest extends TestCase
 
         // Assert
         $this->assertSame($sexadecimal_angular_distance, $float, 
-            "$sexadecimal_angular_distance ≠ $float"
+            "{$sexadecimal_angular_distance} ≠ {$float}"
         );
     }
 }

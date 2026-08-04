@@ -1,4 +1,27 @@
 # Changelog
+## v8.0.0 2026-08-04
+### Added
+-
+  - `BuildableFromSexagesimal`  
+  - `BuildableFromSexagesimalString`  
+  - `BuildableFromSexadecimal`  
+  - `BuildableFromRadian`  
+  - `CastableToRadian`  
+  - `CastableToSexadecimal`  
+  - `Comparable`  
+  - `FuzzyComparable`  
+  - `Directionable`  
+  - `Summable`  
+interfaces to enforce interface segregation principle instead of `Angle` interface.
+### Changed
+- `Radian` class to `RadianAngle`.
+- `AngularDistanceRadian` class to `RadianAngularDistance`.
+- `SexadecimalDegrees` to `SexadecimalAngle`.
+- `AngularMeasure::{$sexadecimal, $radian}` properties with `{Angle,AngularDistance}::{$sexadecimal, $radian}`.
+- README and API documentation.
+### Removed
+- `Angle` interface.
+
 ## v7.0.0 2026-07-14
 ### Fixed
 - [#27](https://github.com/MarcoConsiglio/goniometry/issues/27)

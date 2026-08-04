@@ -3,7 +3,8 @@ namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserFloat as AngleLesserFloat;
+use MarcoConsiglio\Goniometry\Comparisons\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\FloatComparisonStrategy;
 use Override;
 
 /**
@@ -12,7 +13,7 @@ use Override;
  * 
  * @internal
  */
-class LesserFloat extends AngleLesserFloat
+class LesserFloat extends FloatComparisonStrategy
 {
     /**
      * Construct the comparison strategy.
@@ -21,9 +22,12 @@ class LesserFloat extends AngleLesserFloat
      * @param float $beta The right comparison operand.
      * @param int $precision The precision used in the comparison.
      */
-    public function __construct(AngularDistance $alfa, float $beta, int $precision = 54)
-    {
-        parent::__construct($alfa, $beta, $precision);
+    public function __construct(
+        protected AngularDistance $alfa, 
+        protected float $beta, 
+        int $precision = Comparison::MAX_PRECISION
+    ) {
+        $this->normalizePrecision($precision);
     }
 
     #[Override]
@@ -35,6 +39,9 @@ class LesserFloat extends AngleLesserFloat
             ->lt(new Number($this->beta)->round($this->precision));
     }
 
+    /**
+     * Return `true` if both $alfa and $beta are ±180°.
+     */
     protected function bothAre180(): bool
     {
         return 

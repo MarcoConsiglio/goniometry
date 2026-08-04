@@ -16,7 +16,6 @@ class Equal extends FuzzyComparison
     {
         $this->comparison_strategy =
             $this->getBetaType()
-                 ->setDelta($this->delta)
                  ->getStrategyFor($this, $this->alfa);
     }
 }

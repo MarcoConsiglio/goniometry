@@ -1,7 +1,8 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
-use MarcoConsiglio\Goniometry\Interfaces\Angle;
+use MarcoConsiglio\Goniometry\AngularMeasure;
+use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
 
 /**
@@ -9,7 +10,7 @@ use MarcoConsiglio\Goniometry\Interfaces\SexadecimalValue;
  * 
  * @internal
  */
-abstract class SumBuilder extends AngleBuilder
+abstract class SumBuilder extends Builder
 {
     /**
      * The decimal sum of the two `Angle`s.
@@ -19,5 +20,5 @@ abstract class SumBuilder extends AngleBuilder
     /**
      * Construct the SumBuilder with two `Angle`s.
      */
-    public function __construct(protected Angle $alfa, protected Angle $beta) {}
+    public function __construct(protected AngularMeasure $alfa, protected AngularMeasure $beta) {}
 }

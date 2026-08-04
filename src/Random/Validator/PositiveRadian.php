@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
-use MarcoConsiglio\Goniometry\Radian;
+use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\Random\RadianRange;
 
 /**
@@ -36,8 +36,8 @@ class PositiveRadian extends FloatValidator
      */
     protected function avoidExceedingValues(float &$min, float &$max): void
     {
-        if ($this->greaterThanOrEqual($min, Radian::MAX)) $this->setMin($min);
-        if ($this->greaterThanOrEqual($max, Radian::MAX)) $this->setMax($max);
+        if ($this->greaterThanOrEqual($min, RadianAngle::MAX)) $this->setMin($min);
+        if ($this->greaterThanOrEqual($max, RadianAngle::MAX)) $this->setMax($max);
     }
 
     /**
