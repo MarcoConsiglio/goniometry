@@ -22,7 +22,7 @@ class RelativeRadian extends RadianGenerator
         if ($this->validator->areBothPositive(
             $this->range->start,
             $this->range->end
-        )) return new PositiveRadian(
+        )) return new PositiveRadianGenerator(
             $this->generator,
             $this->validator,
             $this->range

@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
 use MarcoConsiglio\BCMathExtended\Number;
-use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
 use MarcoConsiglio\Goniometry\Degrees;
@@ -11,7 +10,6 @@ use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\ModularArithmetic\ModularRelativeNumber;
 
 /**
  *  Build an `AngularDistance` starting from sexagesimal values.

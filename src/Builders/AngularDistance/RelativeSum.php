@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
+use Override;
 use MarcoConsiglio\Goniometry\Builders\Angle\RelativeSum as AngleRelativeSum;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 
@@ -14,7 +15,7 @@ class RelativeSum extends AngleRelativeSum
     /**
      * Sum the two addend.
      */
-    #[\Override]
+    #[Override]
     protected function calcSum(): void
     {
         $alfa = $this->alfa->toSexadecimalDegrees()->value;
@@ -30,7 +31,7 @@ class RelativeSum extends AngleRelativeSum
      *
      * @return array{SexagesimalDegrees,SexadecimalAngularDistance,null}
      */
-    #[\Override]
+    #[Override]
     public function fetchData(): array
     {
         $this->calcSum();

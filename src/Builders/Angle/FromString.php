@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;

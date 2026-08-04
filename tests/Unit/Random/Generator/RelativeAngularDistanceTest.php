@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Random\Generator;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Degrees;

@@ -88,7 +88,7 @@ class FromStringTest extends TestCase
         // Arrage
         $minutes = $this->randomMinutes();
         $seconds = $this->randomSeconds();
-        $measure = "$minutes $seconds";
+        $measure = "{$minutes} {$seconds}";
         $builder = new FromString($measure);
 
         // Act
@@ -107,7 +107,7 @@ class FromStringTest extends TestCase
         // Arrage
         $degrees = $this->randomDegrees();
         $seconds = $this->randomSeconds();
-        $measure = "$degrees $seconds";
+        $measure = "{$degrees} {$seconds}";
         $builder = new FromString($measure);
 
         // Act
@@ -126,7 +126,7 @@ class FromStringTest extends TestCase
         // Arrage
         $degrees = $this->randomDegrees();
         $minutes = $this->randomMinutes();
-        $measure = "$degrees $minutes";
+        $measure = "{$degrees} {$minutes}";
         $builder = new FromString($measure);
 
         // Act
@@ -144,7 +144,7 @@ class FromStringTest extends TestCase
     {
         // Arrange
         $seconds = $this->randomSeconds();
-        $measure = "$seconds";
+        $measure = "{$seconds}";
         $builder = new FromString($measure);
 
         // Act

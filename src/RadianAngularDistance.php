@@ -4,7 +4,6 @@ namespace MarcoConsiglio\Goniometry;
 use BcMath\Number as BCMathNumber;
 use MarcoConsiglio\BCMathExtended\Number;
 use MarcoConsiglio\Goniometry\Interfaces\RadianValue;
-use MarcoConsiglio\Goniometry\Interfaces\Scalar;
 use MarcoConsiglio\ModularArithmetic\Builders\FromExtremes;
 use MarcoConsiglio\ModularArithmetic\ModularRelativeNumber;
 use Override;

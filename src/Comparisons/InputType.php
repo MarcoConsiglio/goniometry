@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
 use Error;
-use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
@@ -20,7 +19,7 @@ abstract class InputType
      */
     protected function throwError(Comparison $comparison): Strategy
     {
-        $unknown_class = get_class($comparison);
+        $unknown_class = $comparison::class;
         throw new Error("There's no strategy for {$unknown_class} comparison.");
     }
 }

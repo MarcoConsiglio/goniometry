@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
 use MarcoConsiglio\Goniometry\RadianAngularDistance;
-use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;
 

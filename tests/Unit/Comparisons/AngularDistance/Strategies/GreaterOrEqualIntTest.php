@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Strategies;
 
 use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
-use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;

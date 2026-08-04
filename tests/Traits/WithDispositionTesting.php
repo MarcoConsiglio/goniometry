@@ -87,10 +87,10 @@ trait WithDispositionTesting
 
     /**
      * Test whether two objects are equal or different. This is a Parameterized Test.
-     * 
-     * @param int $properties_number The number of properties of the class being 
+     *
+     * @param int $properties_number The number of properties of the class being
      * compared.
-     * @throws \InvalidArgumentException if $properties_number exceed MAX_PROPERTIES constant.
+     * @throws InvalidArgumentException if $properties_number exceed MAX_PROPERTIES constant.
      */
     protected function testEqualComparison(int $properties_number): void
     {
@@ -206,6 +206,6 @@ trait WithDispositionTesting
     {
         $first = $objects[0];
         $second = $objects[1];
-        return "Comparison test case n. $case_number failed with objects\n$first\n$second\n";
+        return "Comparison test case n. {$case_number} failed with objects\n{$first}\n{$second}\n";
     }
 }

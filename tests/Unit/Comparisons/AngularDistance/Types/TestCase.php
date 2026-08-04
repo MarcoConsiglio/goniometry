@@ -88,6 +88,7 @@ abstract class TestCase extends BaseTestCase
      * 
      * @throws Error if `$comparison` is not a valid class.
      */
+    #[Override]
     protected function checkComparison(string $comparison): void
     {
         $this->checkClassExists($comparison);

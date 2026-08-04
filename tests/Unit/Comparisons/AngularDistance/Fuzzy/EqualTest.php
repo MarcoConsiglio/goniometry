@@ -1,22 +1,13 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Tests\Unit\Comparisons\AngularDistance\Fuzzy;
 
-use Error;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\Angle\FromSexadecimal as AngleFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as AngularDistanceFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types\AngleType as FuzzyAngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle as FuzzyEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterOrEqualAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Types\AngularDistanceType as FuzzyAngularDistanceType;

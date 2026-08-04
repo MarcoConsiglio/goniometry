@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry;
 
+use Override;
 use BcMath\Number;
 use MarcoConsiglio\BCMathExtended\Number as BCMathExtendedNumber;
 use MarcoConsiglio\Goniometry\Interfaces\Scalar;
@@ -33,7 +34,7 @@ class Minutes extends ModularNumber implements Stringable, Scalar
     /**
      * Cast minutes to string.
      */
-    #[\Override]
+    #[Override]
     public function __toString(): string
     {
         return $this->value->value . self::MEASURE;

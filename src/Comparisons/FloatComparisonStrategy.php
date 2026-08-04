@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Comparisons;
 
-use MarcoConsiglio\Goniometry\Comparisons\ComparisonStrategy;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 
 /**

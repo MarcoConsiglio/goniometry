@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Random\Validator;
 
-use MarcoConsiglio\FakerPhpNumberHelpers\NextFloat;
 use MarcoConsiglio\Goniometry\Random\AngularDistanceRange;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use Override;

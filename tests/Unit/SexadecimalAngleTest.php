@@ -67,6 +67,6 @@ class SexadecimalAngleTest extends TestCase
         $expected_value = new Number($value);
 
         // Act
-        $this->assertSame("{$expected_value}°", "$sexadecimal");       
+        $this->assertSame("{$expected_value}°", "{$sexadecimal}");       
     }
 }

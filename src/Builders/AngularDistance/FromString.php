@@ -1,7 +1,6 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
-use MarcoConsiglio\Goniometry\AngularDistance;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
@@ -10,8 +9,7 @@ use MarcoConsiglio\Goniometry\Enums\Rotation;
 use MarcoConsiglio\Goniometry\Exceptions\NoMatchException;
 use MarcoConsiglio\Goniometry\Minutes;
 use MarcoConsiglio\Goniometry\Seconds;
-use MarcoConsiglio\Goniometry\SexagesimalDegrees; // This is needed for static type checking.
-use Override;
+use MarcoConsiglio\Goniometry\SexagesimalDegrees;
 
 /**
  *  Build an `AngularDistance` starting from a `string` sexagesimal value.

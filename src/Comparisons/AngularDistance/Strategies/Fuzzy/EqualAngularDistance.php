@@ -3,7 +3,6 @@ namespace MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\Fuzzy
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularDistance;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use Override;

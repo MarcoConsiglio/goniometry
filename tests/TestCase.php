@@ -14,7 +14,8 @@ use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class TestCase extends PHPUnitTestCase
 {
-    use WithFailureMessage, WithAngleFaker;
+    use WithFailureMessage;
+    use WithAngleFaker;
 
     /**
      * This method is called before each test.
@@ -52,7 +53,7 @@ class TestCase extends PHPUnitTestCase
     ): void {
         $this->assertEquals($expected->value(), $actual->value(), $message);
     }
-    
+
     /**
      * Assert `$expected` `Minutes` are equal to `$actual` `Minutes`.
      */    
@@ -114,7 +115,7 @@ class TestCase extends PHPUnitTestCase
      */
     protected function checkClassExists(string $class): void
     {
-        if (! class_exists($class)) throw new Error("$class class doesn't exist.");
+        if (! class_exists($class)) throw new Error("{$class} class doesn't exist.");
     }
 
     /**
@@ -122,6 +123,6 @@ class TestCase extends PHPUnitTestCase
      */
     protected function throwNotAllowedClassError(string $class): void
     {
-        throw new Error("$class is not an allowed class.");
+        throw new Error("{$class} is not an allowed class.");
     }
 }

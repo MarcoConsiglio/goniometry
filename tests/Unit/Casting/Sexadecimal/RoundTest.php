@@ -60,7 +60,7 @@ class RoundTest extends TestCase
         $this->assertSame(
             $expected_float, 
             $float, 
-            "$expected_float ≠ $float with $precision precision digits."
+            "{$expected_float} ≠ {$float} with {$precision} precision digits."
         );
     }
 
@@ -77,7 +77,7 @@ class RoundTest extends TestCase
         $this->assertSame(
             $expected_float, 
             $float,
-            "$expected_float ≠ $float with no precision."
+            "{$expected_float} ≠ {$float} with no precision."
         );
     }
 }

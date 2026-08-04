@@ -1,6 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Random\Generator;
 
+use Exception;
 use Faker\Generator as FakerGenerator;
 use MarcoConsiglio\FakerPhpNumberHelpers\Random\Generator;
 use MarcoConsiglio\Goniometry\Random\SexadecimalRange;
@@ -34,6 +35,6 @@ abstract class Sexagesimal extends Generator
      */
     protected function validate(): void
     {
-        throw new \Exception('Not implemented by design. Do not call this method.');
+        throw new Exception('Not implemented by design. Do not call this method.');
     }
 } 

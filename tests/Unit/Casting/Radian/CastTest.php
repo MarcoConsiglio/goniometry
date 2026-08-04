@@ -62,7 +62,7 @@ class CastTest extends TestCase
 
         // Assert
         $this->assertSame($radian, $actual_radian,
-            "{$sexadecimal} = {$radian} but expected radian {$radian} ≠ {$actual_radian} actual radian using precision $precision."
+            "{$sexadecimal} = {$radian} but expected radian {$radian} ≠ {$actual_radian} actual radian using precision {$precision}."
         );
     }
 

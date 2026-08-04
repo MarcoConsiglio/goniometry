@@ -1,7 +1,7 @@
 <?php
 namespace MarcoConsiglio\Goniometry\Builders\Angle;
 
-use MarcoConsiglio\Goniometry\Builders\Builder;
+use Override;
 use MarcoConsiglio\Goniometry\RadianAngle;
 use MarcoConsiglio\Goniometry\SexadecimalAngle;
 
@@ -33,6 +33,7 @@ class FromRadian extends FromSexadecimal
      *
      * @return array{SexagesimalDegrees,SexadecimalDegrees,RadianAngle}
      */
+    #[Override]
     public function fetchData(): array
     {
         [$sexagesimal, $sexadecimal] = parent::fetchData();

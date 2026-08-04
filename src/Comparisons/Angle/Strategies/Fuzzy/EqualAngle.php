@@ -2,10 +2,8 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use MarcoConsiglio\Goniometry\SexadecimalAngle;
-use Override;
 
 /**
  * The strategy that compares two `Angle` instances to check if they are equal

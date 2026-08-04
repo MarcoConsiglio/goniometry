@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Goniometry\Builders\AngularDistance;
 
 use MarcoConsiglio\BCMathExtended\Number;
-use MarcoConsiglio\Goniometry\Builders\Angle\AngleBuilder;
 use MarcoConsiglio\Goniometry\Builders\Builder;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
 use MarcoConsiglio\Goniometry\Degrees;

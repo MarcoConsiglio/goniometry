@@ -49,21 +49,21 @@ class SexagesimalDegreesTest extends TestCase
         );
     }
 
-    #[TestDox("has the \"degrees\" property which is a Degrees type.")]
+    #[TestDox('has the "degrees" property which is a Degrees type.')]
     public function test_degrees(): void
     {
         // Act & Assert
         $this->assertInstanceOf(Degrees::class, $this->sexagesimal->degrees);
     }
 
-    #[TestDox("has the \"minutes\" property which is a Minutes type.")]
+    #[TestDox('has the "minutes" property which is a Minutes type.')]
     public function test_minutes(): void
     {
         // Act & Assert
         $this->assertInstanceOf(Minutes::class, $this->sexagesimal->minutes);
     }
 
-    #[TestDox("has the \"seconds\" property which is a Seconds type.")]
+    #[TestDox('has the "seconds" property which is a Seconds type.')]
     public function test_seconds(): void
     {   
         // Act & Assert

@@ -219,7 +219,7 @@ class AngleTest extends TestCase
         );
     }
 
-    #[TestDox("had read-only property \"direction\" which is of type Rotation.")]
+    #[TestDox('had read-only property "direction" which is of type Rotation.')]
     public function test_direction_property(): void
     {
         // Arrange

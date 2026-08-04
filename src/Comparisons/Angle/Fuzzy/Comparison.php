@@ -2,7 +2,6 @@
 namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy;
 
 use MarcoConsiglio\Goniometry\Angle;
-use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\Comparison as GeneralComparison;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types\AngleType;
 

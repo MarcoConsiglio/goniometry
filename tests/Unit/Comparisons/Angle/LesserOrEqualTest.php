@@ -13,7 +13,6 @@ use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Types\AngleType;
-use MarcoConsiglio\Goniometry\Comparisons\Angle\LesserOrEqual;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\EqualString;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\GreaterAngle;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\LesserOrEqualFloat;
@@ -43,7 +42,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\UsesTrait;
 
-#[CoversClass(LesserOrEqual::class)]
+#[CoversClass(AngleLesserOrEqual::class)]
 #[UsesClass(Angle::class)]
 #[UsesClass(AngleGenerator::class)]
 #[UsesClass(AngleType::class)]

@@ -13,7 +13,6 @@ use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromAngles;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromRadian;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexagesimal;
-use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromString;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
 use MarcoConsiglio\Goniometry\Casting\Radian\Cast as CastToRadian;
 use MarcoConsiglio\Goniometry\Casting\Radian\Round as RoundRadian;
@@ -140,7 +139,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(FromRadian::class)]
 #[UsesClass(FromSexadecimal::class)]
 #[UsesClass(FromSexagesimal::class)]
-#[UsesClass(FromString::class)]
+#[UsesClass(AngleFromString::class)]
 #[UsesClass(FuzzyAngularDistanceType::class)]
 #[UsesClass(FuzzyComparison::class)]
 #[UsesClass(FuzzyEqual::class)]

@@ -3,7 +3,6 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies;
 
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
-use Override;
 
 /**
  * The strategy that compares an `Angle` instance against a sexagesimal string 
