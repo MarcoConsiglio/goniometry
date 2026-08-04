@@ -40,6 +40,6 @@ class AngularDistanceType extends InputType
     public function getStrategyFor(Comparison $comparison, AngularDistance $alfa): Strategy
     {
         if ($comparison instanceof Equal) return new EqualAngularDistance($alfa, $this->beta, $this->delta);
-        return $this->throwError($comparison);
+        return $this->throwError($comparison); // @codeCoverageIgnore
     }
 }

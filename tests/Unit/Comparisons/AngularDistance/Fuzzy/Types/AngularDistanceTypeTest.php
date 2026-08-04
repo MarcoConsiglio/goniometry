@@ -9,6 +9,7 @@ use MarcoConsiglio\Goniometry\Builders\Angle\SumBuilder;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\FromSexadecimal as AngularDistanceFromSexadecimal;
 use MarcoConsiglio\Goniometry\Builders\AngularDistance\RelativeSum;
 use MarcoConsiglio\Goniometry\Builders\Traits\CalcOrderForSexagesimals;
+use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Comparison;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Fuzzy\Types\AngularDistanceType;
 use MarcoConsiglio\Goniometry\Comparisons\AngularDistance\Strategies\Fuzzy\EqualAngularDistance;
@@ -30,7 +31,7 @@ use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\SexadecimalAngularDistance;
 use MarcoConsiglio\Goniometry\SexagesimalDegrees;
-use MarcoConsiglio\Goniometry\Tests\Dummy\UnknownComparison;
+use MarcoConsiglio\Goniometry\Tests\Dummy\AngularDistance\Fuzzy\UnknownComparison;
 use MarcoConsiglio\Goniometry\Tests\TestCase;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -45,6 +46,7 @@ use PHPUnit\Framework\Attributes\UsesTrait;
 #[UsesClass(AngularDistanceFromSexadecimal::class)]
 #[UsesClass(AngularDistanceGenerator::class)]
 #[UsesClass(AngularDistanceRange::class)]
+#[UsesClass(Comparison::class)]
 #[UsesClass(Degrees::class)]
 #[UsesClass(EqualAngularDistance::class)]
 #[UsesClass(FloatValidator::class)]
@@ -96,7 +98,7 @@ class AngularDistanceTypeTest extends TestCase
         $beta = $this->createStub(AngularDistance::class);
         $delta = $this->createStub(Angle::class);
         $input_type = new AngularDistanceType($beta, $delta);
-        $comparison = new UnknownComparison($alfa, $beta);
+        $comparison = new UnknownComparison($alfa, $beta, $delta);
 
         // Act
         $input_type

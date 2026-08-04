@@ -4,6 +4,7 @@ namespace MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Types;
 use MarcoConsiglio\Goniometry\Angle;
 use MarcoConsiglio\Goniometry\AngularMeasure;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Comparison;
+use MarcoConsiglio\Goniometry\Comparisons\Angle\Fuzzy\Equal;
 use MarcoConsiglio\Goniometry\Comparisons\Angle\Strategies\Fuzzy\EqualAngle;
 use MarcoConsiglio\Goniometry\Interfaces\Comparison\Strategy;
 use Override;
@@ -34,7 +35,8 @@ class AngleType extends InputType
     #[Override]
     public function getStrategyFor(Comparison $comparison, Angle $alfa): Strategy
     {
-        return new EqualAngle($alfa, $this->beta, $this->delta);
+        if ($comparison instanceof Equal) return new EqualAngle($alfa, $this->beta, $this->delta);
+        return $this->throwError($comparison); // @codeCoverageIgnore
     }
 
     /**

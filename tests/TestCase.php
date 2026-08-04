@@ -10,7 +10,7 @@ use MarcoConsiglio\Goniometry\Seconds;
 use MarcoConsiglio\Goniometry\SexadecimalAngle;
 use MarcoConsiglio\Goniometry\Tests\Traits\WithFailureMessage;
 use MarcoConsiglio\Goniometry\Traits\WithAngleFaker;
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;use RoundingMode;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class TestCase extends PHPUnitTestCase
 {
