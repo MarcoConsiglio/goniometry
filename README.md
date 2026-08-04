@@ -38,6 +38,8 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
   - [Fuzzy Comparison](#fuzzy-comparison)
     - [$\alpha \approxeq \beta$ (almost equal)](#almost-equal)
   - [Algebraic sum between two angles](#algebraic-sum-between-two-angles)
+    - [Relative sum](#relative-sum)
+    - [Absolute sum](#absolute-sum)
 - [FakerPHP support](#fakerphp-support)
 - [API documentation](#api-documentation)
 
