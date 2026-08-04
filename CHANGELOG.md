@@ -18,6 +18,7 @@ interfaces to enforce interface segregation principle instead of `Angle` interfa
 - `AngularDistanceRadian` class to `RadianAngularDistance`.
 - `SexadecimalDegrees` to `SexadecimalAngle`.
 - `AngularMeasure::{$sexadecimal, $radian}` properties with `{Angle,AngularDistance}::{$sexadecimal, $radian}`.
+- README and API documentation.
 ### Removed
 - `Angle` interface.
 
