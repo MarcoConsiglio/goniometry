@@ -1,4 +1,7 @@
 # Changelog
+## Unreleased
+fix: `FromSexagesimal` `AngleBuilder` don't calc the correct ouput.
+
 ## v8.0.0 2026-08-04
 ### Added
 -

@@ -45,9 +45,6 @@ class FromSexagesimal extends Builder
      */
     protected function calcDegrees(): void 
     {
-        $this->degrees_input =
-            $this->minutes_input->sub($this->minutes->value)
-            ->div(Minutes::MAX)->plus($this->degrees_input);
         $this->degrees = new Degrees($this->degrees_input);
     }
 
@@ -57,10 +54,12 @@ class FromSexagesimal extends Builder
     protected function calcMinutes(): void 
     {
         $this->minutes = new Minutes($this->minutes_input);
-        $this->minutes_input = 
-            $this->minutes_input->sub($this->minutes->value)
-            ->div(Seconds::MAX)->plus($this->minutes_input);
-        $this->minutes = new Minutes($this->minutes_input);
+        $this->degrees_input = $this->degrees_input->plus(
+            $this->minutes_input->divmod(Minutes::MAX)[0]
+        );
+        $this->minutes_input = $this->minutes_input->sub(
+            $this->minutes_input->divmod(Minutes::MAX)[0]->mul(Minutes::MAX)
+        );
     }
 
     /**
@@ -69,6 +68,10 @@ class FromSexagesimal extends Builder
     protected function calcSeconds(): void 
     {
         $this->seconds = new Seconds($this->seconds_input);
+        $this->minutes_input = 
+            $this->minutes_input->plus(
+                $this->seconds_input->divmod(Seconds::MAX)[0]
+            );
     }
 
     /**
