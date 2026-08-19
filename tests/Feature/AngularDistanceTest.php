@@ -279,8 +279,8 @@ class AngularDistanceTest extends TestCase
         $this->assertInstanceOf(AngularDistance::class, $distance);
     }
 
-    #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]
-    public function test_get_angle_values_in_array(): void
+    #[TestDox("can output degrees, minutes, seconds and direction wrapped in a simple or associative array.")]
+    public function test_get_values(): void
     {
         // Arrange
         $alfa = AngularDistance::createFromValues(
@@ -289,20 +289,21 @@ class AngularDistanceTest extends TestCase
             $seconds = $this->randomSeconds()->value(1),
             $direction = $this->randomDirection()
         );
-        $degrees *= $direction->value;
 
         // Act
-        $simple_result = $alfa->getDegrees(precision: 1);
-        $associative_result = $alfa->getDegrees(associative: true, precision: 1);
+        $simple_result = $alfa->getValues(precision: 1);
+        $associative_result = $alfa->getValues(associative: true, precision: 1);
 
         // Assert
         $fail_message = "Input: {$alfa}\nOutput:{$degrees}°{$minutes}'{$seconds}\"";
         $this->assertEquals($degrees, $simple_result[0], $fail_message);
         $this->assertEquals($minutes, $simple_result[1], $fail_message);
         $this->assertEquals($seconds, $simple_result[2], $fail_message);
+        $this->assertEquals($direction->value, $simple_result[3], $fail_message);
         $this->assertEquals($degrees, $associative_result["degrees"], $fail_message);
         $this->assertEquals($minutes, $associative_result["minutes"], $fail_message);
         $this->assertEquals($seconds, $associative_result["seconds"], $fail_message);
+        $this->assertEquals($direction->value, $associative_result["direction"], $fail_message);
     }
 
     #[TestDox("can return its absolute value.")]
