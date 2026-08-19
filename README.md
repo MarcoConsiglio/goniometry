@@ -1,7 +1,7 @@
 # [goniometry](https://github.com/MarcoConsiglio/goniometry?tab=readme-ov-file#goniometry)
 ![GitHub License](https://img.shields.io/github/license/marcoconsiglio/goniometry)
 ![GitHub Release](https://img.shields.io/github/v/release/marcoconsiglio/goniometry)
-![Static Badge](https://img.shields.io/badge/version-v8.0.1-white)
+![Static Badge](https://img.shields.io/badge/version-v9.0.0-white)
 
 ![Static Badge](https://img.shields.io/badge/Line%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
 ![Static Badge](https://img.shields.io/badge/Branch%20coverage-100%25-rgb(40%2C167%2C69)?labelColor=%23fff&color=rgb(40%2C167%2C69))
@@ -16,7 +16,7 @@ A PHP support for string, decimal, radian and object angles, providing goniometr
 - [Quick Start](#quick-start)
 - [Usage](#usage)
   - [Creating an `AngularMeasure` object](#creating-an-angularmeasure-object)
-    - [Sexagesimal (`int` degrees, `int` minutes, `float` seconds)](#sexagesimal_values)
+    - [Sexagesimal (`int` degrees, `int` minutes, `float` seconds, `Rotation` direction)](#sexagesimal_values)
     - [Sexagesimal `string`](#sexagesimal_string)
     - [Sexadecimal `float`](#sexadecimal_float)
     - [Radian float](#radian_value)
@@ -72,7 +72,7 @@ $delta = AngularDistance::createFromRadian(M_PI); // 180°
 Both `Angle` and `AngularDistance` are `AngularMeasure` types that implement the `Angle` interface.
 # Usage
 ## Creating an `AngularMeasure` object
-### Sexagesimal (`int` degrees, `int` minutes, `float` seconds) <a id="sexagesimal_values"></a>
+### Sexagesimal (`int` degrees, `int` minutes, `float` seconds, `Rotation` direction) <a id="sexagesimal_values"></a>
 This creates an angle from its values in degrees, minutes and seconds:
 ```php
 $alfa = Angle::createFromValues(180, 12, 43.4618, Rotation::CLOCKWISE); // -180° 12' 43.4618"
@@ -126,13 +126,15 @@ For more info on `Number::π()` check the API of [marcoconsiglio/bcmath-extended
 You can obtain sexagesimal values separated in an array (simple by default, or associative):
 ```php
 $values = $alfa->getDegrees();
-echo $values[0]; // int
-echo $values[1]; // int
-echo $values[2]; // float
+echo $values[0]; // int (degrees)
+echo $values[1]; // int (minutes)
+echo $values[2]; // float (seconds)
+echo $values[3]; // int (rotation direction +1/-1)
 $values = $alfa->getDegrees(true);
 echo $value['degrees']; // int
 echo $value['minutes']; // int
 echo $value['seconds']; // float
+echo $value['direction']; // int
 ```
 The angle's direction determines the sign of the degrees value.
 
@@ -147,7 +149,7 @@ There are read-only properties too:
 /** @var Rotation */
 $alfa->direction;         // Rotation::CLOCKWISE (-1)
 ```
-The `Degrees` and `Minutes` to `int`, and `Seconds` to `float`. These three classes extends `ModularNumber`, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
+The `Degrees`, `Minutes`, and `Seconds` classes extends `ModularNumber`, whose API is documented in [marcoconsiglio/modular-arithmetic](https://github.com/MarcoConsiglio/php-modular-arithmetic).
 
 You can cast `Degrees`, `Minutes`, and `Seconds` to `string` automatically putting their variables in a string.
 

@@ -318,8 +318,8 @@ class AngleTest extends TestCase
         $this->assertTrue($angle->asb()->isCounterClockwise());
     }
 
-    #[TestDox("can output degrees, minutes and seconds wrapped in a simple or associative array.")]
-    public function test_get_angle_values_in_array(): void
+    #[TestDox("can output degrees, minutes, seconds and direction wrapped in a simple or associative array.")]
+    public function test_get_values(): void
     {
         // Arrange
         $alfa = Angle::createFromValues(
@@ -331,16 +331,18 @@ class AngleTest extends TestCase
         $degrees *= $direction->value;
 
         // Act
-        $simple_result = $alfa->getDegrees(precision: 1);
-        $associative_result = $alfa->getDegrees(associative: true, precision: 1);
+        $simple_result = $alfa->getValues(precision: 1);
+        $associative_result = $alfa->getValues(associative: true, precision: 1);
 
         // Assert
         $this->assertEquals($degrees,   $simple_result[0]);
         $this->assertEquals($minutes,   $simple_result[1]);
         $this->assertEquals($seconds,   $simple_result[2]);
+        $this->assertEquals($direction->value,   $simple_result[3]);
         $this->assertEquals($degrees,   $associative_result["degrees"]);
         $this->assertEquals($minutes,   $associative_result["minutes"]);
         $this->assertEquals($seconds,   $associative_result["seconds"]);
+        $this->assertEquals($direction->value,   $associative_result["direction"]);
     }
 
     #[TestDox("can be casted to SexagesimalDegrees.")]

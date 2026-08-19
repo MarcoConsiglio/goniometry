@@ -100,26 +100,26 @@ abstract class AngularMeasure implements
     abstract public function isCounterClockwise(): bool;
     
     /**
-     * Return an array containing separate sexagesimal values.
-     * 
-     * The direction of the `Angle` is the sign of `"degrees"` value.
+     * Return an array containing separate sexagesimal values (degrees, minutes, seconds, direction).
      *
      * @param bool $associative Set to true it returns an associative array.
      * @param int $precision The precision used for seconds.
-     * @return array{int,int,float}|array{degrees:int,minutes:int,seconds:float}
+     * @return array{int,int,float,int}|array{degrees:int,minutes:int,seconds:float,direction:int}
      */
-    public function getDegrees(bool $associative = false, int $precision = PHP_FLOAT_DIG): array
+    public function getValues(bool $associative = false, int $precision = PHP_FLOAT_DIG): array
     {
-        $degrees = $this->degrees->value() * $this->direction->value;
+        $degrees = $this->degrees->value();
         $minutes = $this->minutes->value();
         $seconds = $this->seconds->value($precision);
+        $sign = $this->direction->value;
         if ($associative)
             return [
                 "degrees" => $degrees,
                 "minutes" => $minutes,
-                "seconds" => $seconds
+                "seconds" => $seconds,
+                "direction" => $sign
             ];
         else
-            return [$degrees, $minutes, $seconds];
+            return [$degrees, $minutes, $seconds, $sign];
     }
 }

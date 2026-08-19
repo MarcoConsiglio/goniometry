@@ -416,10 +416,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_isCounterClockwise"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularMeasure\u003A\u003AgetDegrees\u0028\u0029",
-            "name": "getDegrees",
-            "summary": "Return\u0020an\u0020array\u0020containing\u0020separate\u0020sexagesimal\u0020values.",
-            "url": "classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees"
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularMeasure\u003A\u003AgetValues\u0028\u0029",
+            "name": "getValues",
+            "summary": "Return\u0020an\u0020array\u0020containing\u0020separate\u0020sexagesimal\u0020values\u0020\u0028degrees,\u0020minutes,\u0020seconds,\u0020direction\u0029.",
+            "url": "classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getValues"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\AngularMeasure\u003A\u003ADEGREES_REGEX",
             "name": "DEGREES_REGEX",
@@ -926,10 +926,10 @@ Search.appendIndex(
             "summary": "Return\u0020the\u0020sexagesimal\u0020values.",
             "url": "classes/MarcoConsiglio-Goniometry-Interfaces-CastableToSexagesimal.html#method_toSexagesimalDegrees"
         },                {
-            "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\CastableToSexagesimal\u003A\u003AgetDegrees\u0028\u0029",
-            "name": "getDegrees",
+            "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\CastableToSexagesimal\u003A\u003AgetValues\u0028\u0029",
+            "name": "getValues",
             "summary": "Return\u0020an\u0020array\u0020containing\u0020the\u0020values\u0020of\u0020degrees,\u0020minutes,\u0020seconds.\u0020The\ndirection\u0020is\u0020expressed\u0020as\u0020the\u0020sign\u0020of\u0020degrees.",
-            "url": "classes/MarcoConsiglio-Goniometry-Interfaces-CastableToSexagesimal.html#method_getDegrees"
+            "url": "classes/MarcoConsiglio-Goniometry-Interfaces-CastableToSexagesimal.html#method_getValues"
         },                {
             "fqsen": "\\MarcoConsiglio\\Goniometry\\Interfaces\\Directionable",
             "name": "Directionable",

@@ -14,5 +14,5 @@ interface CastableToSexagesimal
      * Return an array containing the values of degrees, minutes, seconds. The 
      * direction is expressed as the sign of degrees.
      */
-    public function getDegrees(): array;
+    public function getValues(): array;
 }
