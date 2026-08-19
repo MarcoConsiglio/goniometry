@@ -338,11 +338,11 @@
 error angle.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees">getDegrees()</a>
+    <a class="" href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getValues">getValues()</a>
     <span>
-                                &nbsp;: array{int, int, float}|array{degrees: int, minutes: int, seconds: float}    </span>
+                                &nbsp;: array{int, int, float, int}|array{degrees: int, minutes: int, seconds: float, direction: int}    </span>
 </dt>
-<dd>Return an array containing separate sexagesimal values.</dd>
+<dd>Return an array containing separate sexagesimal values (degrees, minutes, seconds, direction).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/MarcoConsiglio-Goniometry-Angle.html#method_gt">gt()</a>
@@ -1526,30 +1526,28 @@ error angle.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getDegrees">
-        getDegrees()
-        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getValues">
+        getValues()
+        <a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getValues" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/AngularMeasure.php"><a href="files/src-angularmeasure.html"><abbr title="src/AngularMeasure.php">AngularMeasure.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">111</span>
+    <span class="phpdocumentor-element-found-in__line">109</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Return an array containing separate sexagesimal values.</p>
+        <p class="phpdocumentor-summary">Return an array containing separate sexagesimal values (degrees, minutes, seconds, direction).</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDegrees</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$associative</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\PHP_FLOAT_DIG">PHP_FLOAT_DIG</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{int, int, float}|array{degrees: int, minutes: int, seconds: float}</span></code>
+                    <span class="phpdocumentor-signature__name">getValues</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$associative</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$precision</span><span> = </span><span class="phpdocumentor-signature__argument__default-value"><abbr title="\MarcoConsiglio\Goniometry\PHP_FLOAT_DIG">PHP_FLOAT_DIG</abbr></span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{int, int, float, int}|array{degrees: int, minutes: int, seconds: float, direction: int}</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-        <section class="phpdocumentor-description"><p>The direction of the <code class="prettyprint">Angle</code> is the sign of <code class="prettyprint">&quot;degrees&quot;</code> value.</p>
-</section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1578,7 +1576,7 @@ error angle.</p>
     
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array{int, int, float}|array{degrees: int, minutes: int, seconds: float}</span>
+        <span class="phpdocumentor-signature__response_type">array{int, int, float, int}|array{degrees: int, minutes: int, seconds: float, direction: int}</span>
             </section>
 
 </article>
@@ -2858,7 +2856,7 @@ variable.</p>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_eq">eq()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_feq">feq()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_fuzzyEqual">fuzzyEqual()</a></li>
-                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getDegrees">getDegrees()</a></li>
+                                            <li class=""><a href="classes/MarcoConsiglio-Goniometry-AngularMeasure.html#method_getValues">getValues()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_gt">gt()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_gte">gte()</a></li>
                                             <li class=""><a href="classes/MarcoConsiglio-Goniometry-Angle.html#method_isClockwise">isClockwise()</a></li>
