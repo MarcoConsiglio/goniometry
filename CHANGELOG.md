@@ -1,4 +1,4 @@
-# Changelog
+# v.9.0.0 2026-08-19
 ## Unreleased
 ### Changed
 - `CastableToSexagesimal::getDegrees()` method to `getValues()`.
