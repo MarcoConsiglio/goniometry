@@ -1,4 +1,11 @@
 # Changelog
+## Unreleased
+### Changed
+- `CastableToSexagesimal::getDegrees()` method to `getValues()`.
+- README and API documentation.
+### Fix
+- [#31](https://github.com/MarcoConsiglio/goniometry/issues/31)
+
 ## v8.0.1 2026-08-10
 fix: `FromSexagesimal` `AngleBuilder` don't calc the correct ouput.
 
